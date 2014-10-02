@@ -1,4 +1,5 @@
 grader
 ======
 
-Flexible high school grading system
+Flexible high school grading system. Project by 
+Matthieu and Daan. 
