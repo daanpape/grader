@@ -9,6 +9,11 @@ $app = new \Slim\Slim(array(
 ));
 $app->setName('grader');
 
+$app->get('/test',
+function() {
+	echo 'het werkt :)';
+});
+
 // GET route
 $app->get(
     '/',
