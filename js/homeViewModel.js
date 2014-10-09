@@ -12,11 +12,12 @@ function ViewModel() {
 	this.loginModalTitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LoginModalTitle")}, this);
 	this.homeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("HomeButton")}, this);
 	this.assessBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("AssessButton")}, this);
-	this.settingsBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("SettingsButton")}, this);
+	this.structureBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("StructureButton")}, this);
 	this.forgotPswdBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ForgotPassword")}, this);
 	this.loginBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LoginBtn")}, this);
 	this.username = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Username")}, this);
 	this.password = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Password")}, this);
+	this.projecttypeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjecttypesButton")}, this); 
 	
 	// Page specific i18n bindings
 	this.title = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjectName") + ' - ' + i18n.__("HomeTitle")}, this);
@@ -55,32 +56,3 @@ function setLang(locale) {
 	$(".navbar-toggle").stop().removeClass('collapsed');
 	return false;
 }
-
-/* Attach mailform handler */
-$('document').ready(function(){
-	$('#contact').submit(function(e){
-		e.preventDefault();
-		
-		// Submit the form
-		$.ajax({
-			type: "POST",
-			data: $('form#contactform').serialize(),
-			cache: false,
-			url: 'mail.php',
-			dataType: 'json',
-			success: function(data){
-				if(data) {
-					$('#oksenticon').show();
-					setTimeout(function() { alert(i18n.__("MailSucces")); }, 1);
-					$('form#contactform')[0].reset();
-					setTimeout($('#oksenticon').fadeOut(250), 3000);
-				} else {
-					alert(i18n.__("MailError"));
-				}
-			},
-			error: function(data){
-				alert(i18n.__("MailError"));
-			}
-		});
-	});
-});

@@ -4,11 +4,19 @@
 	"LoginModalTitle" : "Aanmelden",
 	"HomeButton" : "Home",
 	"AssessButton" : "Beordeel",
-	"SettingsButton" : "Instellingen",
+	"StructureButton" : "Structuur",
 	"ForgotPassword" : "Wachtwoord vergeten?",
 	"LoginBtn" : "Aanmelden",
 	"Username" : "Gebruikersnaam",
 	"Password" : "Wachtwoord",
+	"ProjecttypesButton" : "Projecttypes",
+	"ProjecttypeTitle" : "Projecttypes",
+	
+	"AddBtn" : "Maak nieuw",
+	"CodeTableTitle" : "Code",
+	"NameTableTitle" : "Naam",
+	"DescTableTitle" : "Beschrijving",
+	"ActionTableTitle" : "Acties",
 	
 	"HomeManual" : "<h1>Beoordelings tool</h1><p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
 	

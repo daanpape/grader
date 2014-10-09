@@ -12,9 +12,14 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="/home" data-bind="text: homeBtn">Home</a></li>
+				<li <?php if($location == 'home') { echo 'class="active"'; } ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
 				<li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
-				<li><a href="/settings" data-bind="text: settingsBtn">Settings</a></li>
+				<li class="dropdown <?php if($location == 'projecttypes') { echo 'active'; } ?>">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-bind="text: structureBtn">Structure</span> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/projecttypes" data-bind="text: projecttypeBtn">Assess</a></li></li>
+					</ul>
+				</li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">

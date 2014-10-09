@@ -4,11 +4,20 @@
 	"LoginModalTitle" : "Login",
 	"HomeButton" : "Home",
 	"AssessButton" : "Assess",
-	"SettingsButton" : "Settings",
+	"StructureButton" : "Structure",
 	"ForgotPassword" : "Forgot password?",
 	"LoginBtn" : "Log in",
 	"Username" : "Username",
 	"Password" : "Password",
+	"ProjecttypesButton" : "Projecttypes",
+	"ProjecttypeTitle" : "Projecttypes",
+	
+	"AddBtn" : "Add new",
+	"CodeTableTitle" : "Code",
+	"NameTableTitle" : "Name",
+	"DescTableTitle" : "Description",
+	"ActionTableTitle" : "Actions",
+	
 	
 	"HomeManual" : "<h1>Assessment tool</h1><p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
 	
