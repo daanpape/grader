@@ -1,0 +1,74 @@
+body {
+  padding-top: 50px;
+}
+
+.navspan {
+	position: relative;
+	display: block;
+	padding: 15px;
+	color: #777;
+	line-height: 20px;
+}
+
+.navspan:hover {
+	color: #333;
+	cursor: pointer;
+}
+
+.dropdown-menu .navspan {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	color: #777;
+	line-height: 20px;
+}
+
+.dropdown-menu .navspan:hover {
+	color: #262626;
+	cursor: pointer;
+	background-color: #f5f5f5;
+}
+
+.overlay {
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 100;
+	background-color: rgba(0,0,0,0.8);
+	display: none;
+}
+
+#login_window {
+	margin-top: 200px;
+	background-color: #FFF;
+	padding: 20px;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.modal_title {
+	position: relative;
+	font-size: 40px;
+	font-weight: 200;
+	right: -20px;
+	height: 40px;
+	top: -75px;
+	color: #FFF;
+	text-transform:capitalize;
+	text-align: right;
+	margin-bottom: -40px;
+}
+
+.modal_error {
+	position: relative;
+	padding: 2px 4px;
+	color: #C7254e;
+	background-color: #F9F2F4;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	width: 100%;
+	display: none;
+}

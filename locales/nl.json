@@ -1,0 +1,16 @@
+﻿{
+	"ProjectName" : "Beoordelings tool",
+	"HomeTitle" : "Welkom",
+	"LoginModalTitle" : "Aanmelden",
+	"HomeButton" : "Home",
+	"AssessButton" : "Beordeel",
+	"SettingsButton" : "Instellingen",
+	"ForgotPassword" : "Wachtwoord vergeten?",
+	"LoginBtn" : "Aanmelden",
+	"Username" : "Gebruikersnaam",
+	"Password" : "Wachtwoord",
+	
+	"HomeManual" : "<h1>Beoordelings tool</h1><p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
+	
+	"ServiceNotReachableError" : "Kon niet met server verbinden, probeer later opnieuw"
+}

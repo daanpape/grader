@@ -1,0 +1,16 @@
+﻿{
+	"ProjectName" : "Assessment tool",
+	"HomeTitle" : "Welcome",
+	"LoginModalTitle" : "Login",
+	"HomeButton" : "Home",
+	"AssessButton" : "Assess",
+	"SettingsButton" : "Settings",
+	"ForgotPassword" : "Forgot password?",
+	"LoginBtn" : "Log in",
+	"Username" : "Username",
+	"Password" : "Password",
+	
+	"HomeManual" : "<h1>Assessment tool</h1><p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
+	
+	"ServiceNotReachableError" : "Could not connect to server, try again later"
+}
