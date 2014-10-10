@@ -29,7 +29,21 @@ $app->get('/api/projecttypes/page/:pagenr',		function ($pagenr) use ($app){
 	echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
 });
 
-$app->delete('/ap/projecttypes/:id',		function ($id) use ($app) {
+// API PUT routes
+$app->put('/api/projecttype', 				function () use ($app) {
+	// Use json headers
+	$response = $app->response();
+	$response->header('Content-Type', 'application/json');
+	
+	// Insert the data
+	echo json_encode(GraderAPI::createProjectType(
+		$app->request->put('code'), 
+		$app->request->put('name'), 
+		$app->request->put('description')));
+});
+
+// API DELETE routes
+$app->delete('/api/projecttypes/:id',		function ($id) use ($app) {
 	// Use json headers
 	$response = $app->response();
 	$response->header('Content-Type', 'application/json');

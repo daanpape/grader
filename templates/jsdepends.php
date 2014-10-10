@@ -4,5 +4,5 @@
 <script src="/js/knockout-3.1.0.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/js/<?php echo $location ?>ViewModel.js"></script>
 <script src="/js/modals.js"></script>
+<script src="/js/<?php echo $location ?>ViewModel.js"></script>

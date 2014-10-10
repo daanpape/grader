@@ -18,6 +18,9 @@ function ViewModel() {
 	this.username = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Username")}, this);
 	this.password = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Password")}, this);
 	this.projecttypeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjecttypesButton")}, this); 
+	this.yesNoModaltitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("YesNoModaltitle")}, this); 
+	this.yes = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Yes")}, this); 
+	this.no = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("No")}, this); 
 	
 	// Page specific i18n bindings
 	this.title = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjectName") + ' - ' + i18n.__("HomeTitle")}, this);

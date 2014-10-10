@@ -11,6 +11,9 @@
 	"Password" : "Password",
 	"ProjecttypesButton" : "Projecttypes",
 	"ProjecttypeTitle" : "Projecttypes",
+	"YesNoModaltitle" : "Are you shure?",
+	"Yes" : "Yes",
+	"No" : "No",
 	
 	"AddBtn" : "Add new",
 	"CodeTableTitle" : "Code",

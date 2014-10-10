@@ -37,10 +37,10 @@
 </div>
 
 <!-- Modal overlay -->
-<div class="overlay" id="loginoverlay">
+<div class="overlay" id="modaloverlay">
 
 	<!-- Login modal -->
-	<div id="login_window">
+	<div class="modal_box" id="login_modal">
 		<div class="modal_title" data-bind="text: loginModalTitle">
 			Login
 		</div>
@@ -57,5 +57,19 @@
 				<span class="margin-top"><a href="#" data-bind="text: forgotPswdBtn">Forgot password?</a></span>
 			</div>
 		</form>
+	</div>
+	
+	<!-- Yes no modal -->
+	<div id="yes_no_modal" class="modal_box extrapadding">
+		<div class="modal_title" data-bind="text: yesNoModaltitle">
+			Are you shure?
+		</div>
+		<div id="modal_title_body">
+			Bent u zeker dat u dit wenst te verwijderen?
+		</div>
+		<div class="form-inline rightbtns">
+			<button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
+			<button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
+		</div>
 	</div>
 </div>

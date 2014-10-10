@@ -89,5 +89,29 @@
 			return null;
 		}
 	}
+	
+	/*
+	 * Insert a new projecttype in the database 
+	 * @code the projecttype code
+	 * @name the name of the projecttype
+	 * @description a description about the project
+	 */
+	public static function insertProjectType($code, $name, $description)
+	{
+		try
+		{
+			$conn = Db::getConnection();
+			$stmt = $conn->prepare("INSERT INTO projecttype (code, name, description) VALUES (?, ?, ?)");
+			$stmt->execute(array($code, $name, $description));
+			
+			// Return the id of the newly inserted item on success.
+			return $conn->lastInsertId();
+		}
+		catch(PDOException $err)
+		{
+			Logger::logError('Could not connect to database', $err);
+			return null;
+		}
+	}
  }
 ?>

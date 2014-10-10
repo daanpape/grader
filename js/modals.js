@@ -2,8 +2,8 @@
  * Init login overlay
  */
 $('document').ready(function(){
-	$('#loginoverlay').click(function(){
-		hideLogin();
+	$('#modaloverlay').click(function(){
+		hideModal();
 	});
 	
 	$('#login_window').click(function(e){
@@ -52,7 +52,7 @@ function logoutUser() {
 }
 
 /*
- * Show the login form 
+ * Show the login modal 
  */
 function showLogin() {
 	// Clear the form 
@@ -60,13 +60,34 @@ function showLogin() {
 	$('#loginform')[0].reset();
 
 	// Show the login window 
-	$('#loginoverlay').show();
+	$('#yes_no_modal').hide();
+	$('#login_modal').show();
+	$('#modaloverlay').show();
 }
 
 /*
- * Hide the login form 
+ * Show the Yes and No modal with callback
  */
-function hideLogin() {
+function showYesNoModal(body, callback) {
 	// Hide the login window 
-	$('#loginoverlay').hide();
+	$('#login_modal').hide();
+	$('#yes_no_modal').show();
+	
+	// Fill up the body
+	$('#modal_title_body').html = body;
+	
+	// Show the modal
+	$('#modaloverlay').show();
+	
+	$('#ynmodel-y-btn').click(function(){
+		callback(true);
+	});
+	
+	$('#ynmodal-n-btn').click(function(){
+		callback(false);
+	});
+}
+
+function hideModal() {
+	$('#modaloverlay').hide();
 }

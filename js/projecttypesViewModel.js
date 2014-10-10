@@ -18,6 +18,9 @@ function ViewModel() {
 	this.username = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Username")}, this);
 	this.password = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Password")}, this);
 	this.projecttypeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjecttypesButton")}, this); 
+	this.yesNoModaltitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("YesNoModaltitle")}, this); 
+	this.yes = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Yes")}, this); 
+	this.no = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("No")}, this); 
 	
 	// Page specific i18n bindings
 	this.title = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjectName") + ' - ' + i18n.__("ProjecttypeTitle")}, this);
@@ -39,10 +42,15 @@ function ViewModel() {
 	
 	// Add data to the table
 	this.addTableData = function(id, code, name, desc) {
-		this.tabledata.push({
-			tcode: code,
-			tname: name,
-			tdesc: desc
+		// Push data
+		var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc}
+		this.tabledata.push(tblOject);
+		
+		// Attach delete handler to delete button
+		$('#removebtn-' + id).bind('click', function(event, data){
+			// Delete the table item
+			deleteTableItem(id, tblOject);
+			event.stopPropagation();
 		});
 	}
 	
@@ -54,6 +62,37 @@ function ViewModel() {
 		this.lang(locale);
 		i18n.setLocale(this.lang());
 	}
+}
+
+/*
+ * Delete item from table given the id. 
+ */
+function deleteTableItem(id, tblOject) {
+	showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
+		if(val){
+			$.ajax({
+            url: "/api/projecttypes/" + id,
+            type: "DELETE",
+			success: function() {
+				viewModel.tabledata.remove(tblOject);
+			}
+        })
+		}
+	});
+}
+
+/*
+ * Add a new projecttype
+ */
+function addNewProjecttype(code, name, description) {
+	$.ajax({
+            url: "/api/projecttype",
+            type: "PUT",
+			data: "code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description),
+			success: function(data) {
+				viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+			}
+        })
 }
 
 /*

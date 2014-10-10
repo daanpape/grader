@@ -41,7 +41,7 @@
 						<td data-bind="text: tcode">--</td>
 						<td data-bind="text: tname">--</td>
 						<td data-bind="text: tdesc">--</td>
-						<td><span class="glyphicon glyphicon-pencil"> <span class="glyphicon glyphicon-trash"></td>
+						<td><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"> <span class="glyphicon glyphicon-trash"></td>
 					</tr>
 				</tbody>
 			</table>

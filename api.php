@@ -32,4 +32,23 @@
 			return false;
 		}
 	}
+	
+	/*
+	 * Create a new projecttype and put it in the database
+	 * @return -1 on error;
+	 */
+	public static function createProjectType($code, $name, $description)
+	{	
+		$id = ClassDAO::insertProjectType($code, $name, $description);
+		
+		if($id != null) {
+			return array(
+				"id" => $id, 
+				"code" => $code, 
+				"name" => $name, 
+				"description" => $description); 
+		} else {
+			return -1;
+		}
+	}
  }
