@@ -9,6 +9,7 @@
  
  // Load required files
  require_once('config.php');
+ require_once('logger.php');
  
  // Database class for connection handling
  class Db 
@@ -34,7 +35,7 @@
 		}
 		catch(PDOException $err)
 		{
-			//TODO: handle exceptions
+			Logger::logError('could not connect to database', $err);
 			return null;
 		}
 	}
@@ -63,7 +64,29 @@
 		}
 		catch(PDOException $err)
 		{
-			return $err;
+			Logger::logError('could not select all projecttypes', $err);
+			return null;
+		}
+	}
+	
+	/*
+	 * Delete a project type from the database
+	 * @id the projectttype id to delete
+	 */
+	public static function deleteProjectType($id)
+	{
+		try
+		{
+			$conn = Db::getConnection();
+			$stmt = $conn->prepare("DELETE FROM projecttype WHERE id = :id");
+			$stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+			$stmt->execute();
+			return true;
+		}
+		catch(PDOException $err)
+		{
+			Logger::logError('Could not connect to database', $err);
+			return null;
 		}
 	}
  }

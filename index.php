@@ -26,7 +26,15 @@ $app->get('/api/projecttypes/page/:pagenr',		function ($pagenr) use ($app){
 	$pg = Pager::pageToStartStop($pagenr);
 	
 	// Get the page
-	GraderAPI::getProjectTypes($pg->start, $pg->count);
+	echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
+});
+
+$app->delete('/ap/projecttypes/:id',		function ($id) use ($app) {
+	// Use json headers
+	$response = $app->response();
+	$response->header('Content-Type', 'application/json');
+	
+	echo json_encode(GraderAPI::deleteProjectType($id));
 });
 
 /* Run the application */

@@ -36,8 +36,10 @@
 	</div>
 </div>
 
-<!-- Login window -->
+<!-- Modal overlay -->
 <div class="overlay" id="loginoverlay">
+
+	<!-- Login modal -->
 	<div id="login_window">
 		<div class="modal_title" data-bind="text: loginModalTitle">
 			Login
