@@ -12,9 +12,9 @@ $app = new \Slim\Slim(array(
 $app->setName('Assesment Tool');
 
 // GET routes
-$app->get('/', 						function () use ($app) { $app->render('home.php');});
-$app->get('/home', 					function () use ($app) { $app->render('home.php');});
-$app->get('/projecttypes', 			function () use ($app) { $app->render('projecttypes.php');});
+$app->get('/',                                          function () use ($app) { $app->render('home.php');});
+$app->get('/home',                                      function () use ($app) { $app->render('home.php');});
+$app->get('/projecttypes',                              function () use ($app) { $app->render('projecttypes.php');});
 
 // API GET routes
 $app->get('/api/projecttypes/page/:pagenr',		function ($pagenr) use ($app){

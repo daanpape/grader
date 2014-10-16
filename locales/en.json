@@ -1,28 +1,28 @@
-﻿{
-	"ProjectName" : "Assessment tool",
-	"HomeTitle" : "Welcome",
-	"LoginModalTitle" : "Login",
-	"HomeButton" : "Home",
-	"AssessButton" : "Assess",
-	"StructureButton" : "Structure",
-	"ForgotPassword" : "Forgot password?",
-	"LoginBtn" : "Log in",
-	"Username" : "Username",
-	"Password" : "Password",
-	"ProjecttypesButton" : "Projecttypes",
-	"ProjecttypeTitle" : "Projecttypes",
-	"YesNoModaltitle" : "Are you shure?",
-	"Yes" : "Yes",
-	"No" : "No",
-	
-	"AddBtn" : "Add new",
-	"CodeTableTitle" : "Code",
-	"NameTableTitle" : "Name",
-	"DescTableTitle" : "Description",
-	"ActionTableTitle" : "Actions",
-	
-	
-	"HomeManual" : "<h1>Assessment tool</h1><p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
-	
-	"ServiceNotReachableError" : "Could not connect to server, try again later"
+{
+    "AppName" : "Assessment tool",
+    "HomeTitle" : "Welcome",
+    "LoginModalTitle" : "Login",
+    "HomeButton" : "Home",
+    "AssessButton" : "Assess",
+    "StructureButton" : "Structure",
+    "ForgotPassword" : "Forgot password?",
+    "LoginBtn" : "Log in",
+    "Username" : "Username",
+    "Password" : "Password",
+    "ProjecttypesButton" : "Projecttypes",
+    "ProjecttypeTitle" : "Projecttypes",
+    "YesNoModaltitle" : "Are you shure?",
+    "Yes" : "Yes",
+    "No" : "No",
+
+    "AddBtn" : "Add new",
+    "CodeTableTitle" : "Code",
+    "NameTableTitle" : "Name",
+    "DescTableTitle" : "Description",
+    "ActionTableTitle" : "Actions",
+
+
+    "HomeManual" : "<h1>Assessment tool</h1><p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
+
+    "ServiceNotReachableError" : "Could not connect to server, try again later"
 }
