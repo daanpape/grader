@@ -16,11 +16,15 @@
     "No" : "No",
 
     "AddBtn" : "Add new",
+    "SaveBtn" : "Save",
     "CodeTableTitle" : "Code",
     "NameTableTitle" : "Name",
     "DescTableTitle" : "Description",
     "ActionTableTitle" : "Actions",
 
+    "AddNewProjectTypeTitle" : "Add new projecttype",
+    "EditProjectTitle" : "Edit projecttype",
+    "CancelBtn" : "Cancel",
 
     "HomeManual" : "<h1>Assessment tool</h1><p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
 

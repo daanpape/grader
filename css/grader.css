@@ -94,3 +94,7 @@ body {
 .glyphicon-btn:hover {
 	cursor: pointer;
 }
+
+.btn-extra-margin {
+    margin-left: 10px;
+}

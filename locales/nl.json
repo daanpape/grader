@@ -16,10 +16,16 @@
 	"No" : "Nee",
 	
 	"AddBtn" : "Maak nieuw",
+        "SaveBtn" : "Sla op",
 	"CodeTableTitle" : "Code",
 	"NameTableTitle" : "Naam",
 	"DescTableTitle" : "Beschrijving",
 	"ActionTableTitle" : "Acties",
+        
+        
+        "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
+        "EditProjectTitle" : "Wijzig projecttype",
+        "CancelBtn" : "Annuleer",
 	
 	"HomeManual" : "<h1>Beoordelings tool</h1><p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
 	

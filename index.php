@@ -1,4 +1,5 @@
 <?php
+
 require 'Slim/Slim.php';
 require 'api.php';
 require 'dptcms/pagination.php';
@@ -7,48 +8,52 @@ require 'dptcms/pagination.php';
 
 /* Instatiate application */
 $app = new \Slim\Slim(array(
-	'cookies.encrypt' => true
-));
+    'cookies.encrypt' => true
+        ));
 $app->setName('Assesment Tool');
 
 // GET routes
-$app->get('/',                                          function () use ($app) { $app->render('home.php');});
-$app->get('/home',                                      function () use ($app) { $app->render('home.php');});
-$app->get('/projecttypes',                              function () use ($app) { $app->render('projecttypes.php');});
+$app->get('/', function () use ($app) {
+    $app->render('home.php');
+});
+$app->get('/home', function () use ($app) {
+    $app->render('home.php');
+});
+$app->get('/projecttypes', function () use ($app) {
+    $app->render('projecttypes.php');
+});
 
 // API GET routes
-$app->get('/api/projecttypes/page/:pagenr',		function ($pagenr) use ($app){
-	// Use json headers
-	$response = $app->response();
-	$response->header('Content-Type', 'application/json');
+$app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
 
-	//Calculate start and count 
-	$pg = Pager::pageToStartStop($pagenr);
-	
-	// Get the page
-	echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
+    //Calculate start and count 
+    $pg = Pager::pageToStartStop($pagenr);
+
+    // Get the page
+    echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
 });
 
 // API PUT routes
-$app->put('/api/projecttype', 				function () use ($app) {
-	// Use json headers
-	$response = $app->response();
-	$response->header('Content-Type', 'application/json');
-	
-	// Insert the data
-	echo json_encode(GraderAPI::createProjectType(
-		$app->request->put('code'), 
-		$app->request->put('name'), 
-		$app->request->put('description')));
+$app->put('/api/projecttype', function () use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Insert the data
+    echo json_encode(GraderAPI::createProjectType(
+                    $app->request->put('code'), $app->request->put('name'), $app->request->put('description')));
 });
 
 // API DELETE routes
-$app->delete('/api/projecttypes/:id',		function ($id) use ($app) {
-	// Use json headers
-	$response = $app->response();
-	$response->header('Content-Type', 'application/json');
-	
-	echo json_encode(GraderAPI::deleteProjectType($id));
+$app->delete('/api/projecttypes/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::deleteProjectType($id));
 });
 
 /* Run the application */
