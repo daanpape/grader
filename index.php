@@ -1,8 +1,11 @@
 <?php
 
-require 'Slim/Slim.php';
-require 'api.php';
-require 'dptcms/pagination.php';
+require_once 'Slim/Slim.php';
+require_once 'api.php';
+require_once 'dptcms/pagination.php';
+require_once 'dptcms/logger.php';
+
+Logger::logError("test");
 
 \Slim\Slim::registerAutoloader();
 
