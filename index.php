@@ -5,7 +5,7 @@ require_once 'api.php';
 require_once 'dptcms/pagination.php';
 require_once 'dptcms/logger.php';
 
-Logger::logError("test");
+Logger::logInfo("App started from ".$_SERVER['REMOTE_ADDR']);
 
 \Slim\Slim::registerAutoloader();
 
@@ -39,7 +39,7 @@ $app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
 });
 
-// API POST routes
+// API PUT routes
 $app->put('/api/projecttype/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();

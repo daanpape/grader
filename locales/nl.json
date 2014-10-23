@@ -1,6 +1,7 @@
 {
 	"AppName" : "Beoordelings tool",
 	"HomeTitle" : "Welkom",
+    "ProjectName" : "Grader",
 	"LoginModalTitle" : "Aanmelden",
 	"HomeButton" : "Home",
 	"AssessButton" : "Beoordeel",
@@ -12,6 +13,7 @@
 	"ProjecttypesButton" : "Projecttypes",
 	"ProjecttypeTitle" : "Projecttypes",
 	"YesNoModaltitle" : "Bent u zeker?",
+    "YesNoModalBody" : "Bent u zeker dat u dit item wilt verwijderen?",
 	"Yes" : "Ja",
 	"No" : "Nee",
 	

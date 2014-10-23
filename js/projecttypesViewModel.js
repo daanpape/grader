@@ -37,6 +37,11 @@ function pageViewModel(gvm) {
             showEditProjectTypeModal(code, name, desc, id);
             event.stopPropagation();
         });
+
+        //Attach manage handler to manage competences, subcompetences and indicators to manage button
+        $('#managebtn-' + id).bind('click', function(event, data) {
+            //TODO
+        });
     }
 }
 

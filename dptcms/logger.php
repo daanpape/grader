@@ -13,15 +13,17 @@ class Logger {
 
     public static function logInfo($nice, $raw = '')
     {
+        error_log(date("Y-m-d H:i:s")." : LOG_LEVEL->info: ".$nice." ".$raw."\r\n", 3, Config::$logfile);
     }
 
     public static function logWarning($nice, $raw = '')
     {
+        error_log(date("Y-m-d H:i:s")." : LOG_LEVEL->warning: ".$nice." ".$raw."\r\n", 3, Config::$logfile);
     }
 
     public static function logError($nice, $raw = '')
     {
-        error_log($nice." ".$raw."\r\n", 3, Config::$logfile);
+        error_log(date("Y-m-d H:i:s")." : LOG_LEVEL->error: ".$nice." ".$raw."\r\n", 3, Config::$logfile);
     }
 }
 
