@@ -36,15 +36,26 @@ $app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
 });
 
-// API PUT routes
-$app->put('/api/projecttype', function () use ($app) {
+// API POST routes
+$app->put('/api/projecttype/:id', function($id) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    
+    // Update the existing resource
+    echo json_encode(GraderAPI::updateProjectType(
+                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
+
+// API POST routes
+$app->post('/api/projecttype', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
     echo json_encode(GraderAPI::createProjectType(
-                    $app->request->put('code'), $app->request->put('name'), $app->request->put('description')));
+                    $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 // API DELETE routes

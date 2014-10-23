@@ -21,7 +21,7 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc}
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -63,7 +63,7 @@ function deleteTableItem(id, tblOject) {
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
         url: "/api/projecttype",
-        type: "PUT",
+        type: "POST",
         data: serialData,
         success: function(data) {
             viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
@@ -83,6 +83,43 @@ function addNewProjecttypeRaw(code, name, description, callback) {
 }
 
 /*
+ * Update the projecttype
+ * @param {type} id
+ * @param {type} code
+ * @param {type} name
+ * @param {type} description
+ * @param {type} callback
+ * @returns {undefined}
+ */
+function updateProjecttypeForm(id, serialData, callback) {
+    $.ajax({
+        url: "/api/projecttype/" + id,
+        type: "PUT",
+        data: serialData,
+        success: function(data) {
+            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+}
+
+/**
+ * update project type 
+ * @param {type} id
+ * @param {type} code
+ * @param {type} name
+ * @param {type} description
+ * @param {type} callback
+ * @returns {undefined}
+ */
+function updateProjecttypeRaw(id, code, name, description, callback) {
+    updateProjecttypeForm(id, "code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description), callback);
+}
+
+/*
  * Load page of the table
  */
 function loadTablePage(pagenr)
@@ -95,7 +132,7 @@ function loadTablePage(pagenr)
 }
 
 /**
- * 
+ * Show a new projecttype modal.
  * @returns {undefined}
  */
 function showNewProjectTypeModal()
@@ -123,11 +160,19 @@ function showNewProjectTypeModal()
     showGeneralModal();
 }
 
+/**
+ * Show the edit projecttype modal. 
+ * @param {type} code
+ * @param {type} name
+ * @param {type} description
+ * @param {type} tid
+ * @returns {undefined}
+ */
 function showEditProjectTypeModal(code, name, description, tid)
 {
   resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
-    setGeneralModalBody('<form id="newprojectform"> \
+    setGeneralModalBody('<form id="updateprojectform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
             </div> \
@@ -140,7 +185,9 @@ function showEditProjectTypeModal(code, name, description, tid)
         </form>');
     
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-       //TODO
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+            hideModal(); 
+        });
     });
     
     addGeneralModalButton(i18n.__("CancelBtn"), function(){

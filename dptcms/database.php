@@ -16,7 +16,6 @@ class Db {
     /*
      * Get the PDO database connection object
      */
-
     public static function getConnection() {
 
         // Construct the PDO adress line
@@ -41,14 +40,12 @@ class Db {
 /*
  * Database Access Object for manipulating projecttypes, competencetypes, ...
  */
-
 class ClassDAO {
     /*
      * Get all projecttypes in pagination form
      * @start: the row number to start with (offset 0)
      * @count: the number of rows to return
      */
-
     public static function getAllProjectTypes($start, $count) {
         try {
             $conn = Db::getConnection();
@@ -67,7 +64,6 @@ class ClassDAO {
      * Delete a project type from the database
      * @id the projectttype id to delete
      */
-
     public static function deleteProjectType($id) {
         try {
             $conn = Db::getConnection();
@@ -76,7 +72,7 @@ class ClassDAO {
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not connect to database', $err);
+            Logger::logError('Could not delete projecttype', $err);
             return null;
         }
     }
@@ -87,7 +83,6 @@ class ClassDAO {
      * @name the name of the projecttype
      * @description a description about the project
      */
-
     public static function insertProjectType($code, $name, $description) {
         try {
             $conn = Db::getConnection();
@@ -97,11 +92,29 @@ class ClassDAO {
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
         } catch (PDOException $err) {
-            Logger::logError('Could not connect to database', $err);
+            Logger::logError('Could not create new projecttype', $err);
             return null;
         }
     }
-
+    
+    /*
+     * Update projecttype in the database 
+     * @param type $id the id of the projecttype to update
+     * @param type $code the new projecttype code
+     * @param type $name the new projecttype name
+     * @param type $description the new projecttype description
+     */
+    public static function updateProjectType($id, $code, $name, $description) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE projecttype SET code = ?, name = ?, description = ? WHERE id = ?");
+            $stmt->execute(array($code, $name, $description, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger.logError('Could not update projecttype', $err);
+            return false;
+        }
+    }
 }
 
 ?>

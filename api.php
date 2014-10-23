@@ -36,7 +36,6 @@ class GraderAPI {
      * Create a new projecttype and put it in the database
      * @return -1 on error;
      */
-
     public static function createProjectType($code, $name, $description) {
         $id = ClassDAO::insertProjectType($code, $name, $description);
 
@@ -51,4 +50,18 @@ class GraderAPI {
         }
     }
 
+    /*
+     * Update a projecttype in the database
+     */
+    public static function updateProjectType($id, $code, $name, $description) {
+        if(ClassDAO::updateProjectType($id, $code, $name, $description)){
+            return array(
+                "id" => $id,
+                "code" => $code,
+                "name" => $name,
+                "description" => $description);
+        } else {
+            return -1;
+        }
+    }
 }
