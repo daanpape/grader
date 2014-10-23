@@ -25,6 +25,9 @@ $app->get('/home', function () use ($app) {
 $app->get('/projecttypes', function () use ($app) {
     $app->render('projecttypes.php');
 });
+$app->get('/assess', function() use ($app) {
+    $app->render('assess.php');
+});
 
 // API GET routes
 $app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {

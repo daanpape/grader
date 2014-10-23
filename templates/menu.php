@@ -66,6 +66,7 @@
     <!-- Yes no modal -->
     <div id="yes_no_modal" class="modal_box extrapadding">
         <div class="modal_title" data-bind="text: yesNoModaltitle">
+            Are you sure?
         </div>
         <div id="modal_title_body" data-bind="text: yesNoModalBody">
             Bent u zeker dat u dit wenst te verwijderen?

@@ -1,4 +1,4 @@
-// View model for the index page
+// View model for the projecttypes page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjecttypeTitle");}, gvm);
