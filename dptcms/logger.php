@@ -18,6 +18,8 @@ class Logger {
 	
 	public static function logError($nice, $raw = '')
 	{
+        $logfile = Config::$logfile;
+        error_log($nice + " " + $raw, 3, $logfile);
 	}
 }
 

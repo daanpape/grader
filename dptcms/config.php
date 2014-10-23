@@ -20,5 +20,8 @@
 	
 	/* Pagination settings */
 	public static $pageCount	= 20;
+
+     /* Log file */
+     public static $logfile = './logfile.log';
  }
 ?>
