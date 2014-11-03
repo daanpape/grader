@@ -55,13 +55,13 @@ $location = "projecttypes";
         <div class="container">
             <!-- Pagination -->
             <ul class="pagination float_left">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
+                <li id="pager-prev-btn"><a href="#" >&laquo;</a></li>
+                <li class="pager-nr-btn"><a href="#" >1</a></li>
+                <li class="pager-nr-btn"><a href="#" >2</a></li>
+                <li class="pager-nr-btn"><a href="#">3</a></li>
+                <li class="pager-nr-btn"><a href="#">4</a></li>
+                <li class="pager-nr-btn"><a href="#">5</a></li>
+                <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
             </ul>
 
             <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">

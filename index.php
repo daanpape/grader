@@ -34,12 +34,16 @@ $app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
-
-    //Calculate start and count 
+    
+    // Calculate start and count 
     $pg = Pager::pageToStartStop($pagenr);
-
+    
+    // Get total number of projecttypes in the database
+    $pagedata = GraderAPI::getProjectTypes($pg->start, $pg->count);
+    $totalprojects = GraderAPI::getProjectTypesCount();
+    
     // Get the page
-    echo json_encode(GraderAPI::getProjectTypes($pg->start, $pg->count));
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
 // API PUT routes

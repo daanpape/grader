@@ -59,6 +59,21 @@ class ClassDAO {
             return null;
         }
     }
+    
+    /**
+     * Get the number of projecttypes currently in the database 
+     */
+    public static function getAllProjectTypesCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM projecttype");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all projecttypes in the database', $err);
+            return 0;
+        }
+    }
 
     /*
      * Delete a project type from the database
