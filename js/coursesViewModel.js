@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
 
 function loadAvailableLocations()
 {
-    $.getJSON('/api/courses', function(data){
+    $.getJSON('/api/locations', function(data){
         // Load table data
         $.each(data.data, function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
