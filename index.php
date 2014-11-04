@@ -49,6 +49,17 @@ $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
+$app->get('/api/locations', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all locations
+    $pagedata = GraderAPI::getLocations();
+
+    echo json_encode($pagedata);
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

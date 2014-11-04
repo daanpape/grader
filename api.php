@@ -67,4 +67,12 @@ class GraderAPI {
             return -1;
         }
     }
+
+    /*
+     * Get all courses from database
+     */
+    public static function getLocations() {
+        /* Return the requested pages */
+        return ClassDAO::getAllLocations();
+    }
 }

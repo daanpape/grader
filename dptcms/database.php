@@ -130,6 +130,21 @@ class ClassDAO {
             return false;
         }
     }
+
+    /*
+     * Get all the locations
+     */
+    public static function getAllLocations() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM location");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        }catch (PDOException $err) {
+            Logger.logError('Could not get locations', $err);
+            return false;
+        }
+    }
 }
 
 ?>
