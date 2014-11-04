@@ -24,15 +24,25 @@ function pageViewModel(gvm) {
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
     }
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
 }
 
 function loadTablePage(pagenr)
 {
     $.getJSON('/api/projecttypes/page/' + pagenr, function(data){
-        $.each(data, function(i, item) {
+
+        /* Clear current table page */
+        viewModel.clearTable();
+
+        // Load table data
+        $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
     });
+
 }
 
 function initPage() {
