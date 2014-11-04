@@ -49,7 +49,7 @@ $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
-$app->get('/api/locations', function ($pagenr) use ($app) {
+$app->get('/api/locations', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
