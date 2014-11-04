@@ -32,7 +32,7 @@ function pageViewModel(gvm) {
 
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projectts/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
