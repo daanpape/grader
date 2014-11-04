@@ -25,7 +25,9 @@
                 ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span data-bind="text: structureBtn">Structure</span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li></li>
+                        <li><a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                    </ul>
+                </li>
             </ul>
             </li>
             </ul>

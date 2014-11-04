@@ -22,6 +22,9 @@ $app->get('/', function () use ($app) {
 $app->get('/home', function () use ($app) {
     $app->render('home.php');
 });
+$app->get('/courses', function () use ($app) {
+    $app->render('courses.php');
+});
 $app->get('/projects', function () use ($app) {
     $app->render('projects.php');
 });

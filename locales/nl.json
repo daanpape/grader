@@ -10,8 +10,13 @@
 	"LoginBtn" : "Aanmelden",
 	"Username" : "Gebruikersnaam",
 	"Password" : "Wachtwoord",
+
 	"ProjecttypesButton" : "Projecten",
 	"ProjecttypeTitle" : "Projecten",
+
+    "CoursesTitle" : "Richting",
+    "CoursesHeader" : "Selecteer een richting",
+
     "AssessTitle" : "Beoordeel een Project",
 	"YesNoModaltitle" : "Bent u zeker?",
     "YesNoModalBody" : "Bent u zeker dat u dit item wilt verwijderen?",
