@@ -10,7 +10,7 @@ function pageViewModel(gvm) {
     gvm.addAvailableLocations = function(id, name) {
         // Push data
         var selectObject = {$id: id, $locationName: name};
-        gvm.availableLocations.push(tblOject);
+        gvm.availableLocations.push(selectObject);
     }
 }
 
