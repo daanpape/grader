@@ -6,8 +6,26 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
     gvm.availableLocations = ko.observableArray([]);
+
+    gvm.addAvailableLocations = function(id, name) {
+        // Push data
+        var selectObject = {$id: id, $locationName: name};
+        gvm.availableLocations.push(tblOject);
+    }
 }
 
-function initPage() {
+function loadAvailableLocations()
+{
+    $.getJSON('/api/courses', function(data){
+        // Load table data
+        $.each(data.data, function(i, item) {
+            viewModel.addAvailableLocations(item.id, item.name);
+        });
+    });
+}
 
+
+
+    function initPage() {
+    loadAvailableLocations();
 }
