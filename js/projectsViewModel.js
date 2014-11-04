@@ -1,4 +1,4 @@
-// View model for the projecttypes page
+// View model for the projects page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjecttypeTitle");}, gvm);
@@ -56,7 +56,7 @@ function deleteTableItem(id, tblOject) {
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
         if(val){
             $.ajax({
-                url: "/api/projecttypes/" + id,
+                url: "/api/project/" + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);
@@ -71,7 +71,7 @@ function deleteTableItem(id, tblOject) {
  */
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
-        url: "/api/projecttype",
+        url: "/api/project",
         type: "POST",
         data: serialData,
         success: function(data) {
@@ -102,7 +102,7 @@ function addNewProjecttypeRaw(code, name, description, callback) {
  */
 function updateProjecttypeForm(id, serialData, callback) {
     $.ajax({
-        url: "/api/projecttype/" + id,
+        url: "/api/project/" + id,
         type: "PUT",
         data: serialData,
         success: function(data) {
@@ -134,7 +134,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  */
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projecttypes/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable()

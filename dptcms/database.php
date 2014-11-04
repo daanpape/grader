@@ -46,16 +46,16 @@ class ClassDAO {
      * @start: the row number to start with (offset 0)
      * @count: the number of rows to return
      */
-    public static function getAllProjectTypes($start, $count) {
+    public static function getAllProjects($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM projecttype LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM project LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select all projecttypes', $err);
+            Logger::logError('could not select all projects', $err);
             return null;
         }
     }
@@ -63,14 +63,14 @@ class ClassDAO {
     /**
      * Get the number of projecttypes currently in the database 
      */
-    public static function getAllProjectTypesCount() {
+    public static function getAllProjectCount() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM projecttype");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM project");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
-            Logger::logError('Could not count all projecttypes in the database', $err);
+            Logger::logError('Could not count all projects in the database', $err);
             return 0;
         }
     }
@@ -79,15 +79,15 @@ class ClassDAO {
      * Delete a project type from the database
      * @id the projectttype id to delete
      */
-    public static function deleteProjectType($id) {
+    public static function deleteProject($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM projecttype WHERE id = :id");
+            $stmt = $conn->prepare("DELETE FROM project WHERE id = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not delete projecttype', $err);
+            Logger::logError('Could not delete project', $err);
             return null;
         }
     }
@@ -98,16 +98,16 @@ class ClassDAO {
      * @name the name of the projecttype
      * @description a description about the project
      */
-    public static function insertProjectType($code, $name, $description) {
+    public static function insertProject($code, $name, $description) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO projecttype (code, name, description) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO project (code, name, description) VALUES (?, ?, ?)");
             $stmt->execute(array($code, $name, $description));
 
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
         } catch (PDOException $err) {
-            Logger::logError('Could not create new projecttype', $err);
+            Logger::logError('Could not create new project', $err);
             return null;
         }
     }
@@ -119,14 +119,14 @@ class ClassDAO {
      * @param type $name the new projecttype name
      * @param type $description the new projecttype description
      */
-    public static function updateProjectType($id, $code, $name, $description) {
+    public static function updateProject($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE projecttype SET code = ?, name = ?, description = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE project SET code = ?, name = ?, description = ? WHERE id = ?");
             $stmt->execute(array($code, $name, $description, $id));
             return true;
         } catch (PDOException $err) {
-            Logger.logError('Could not update projecttype', $err);
+            Logger.logError('Could not update project', $err);
             return false;
         }
     }

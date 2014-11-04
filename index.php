@@ -22,15 +22,15 @@ $app->get('/', function () use ($app) {
 $app->get('/home', function () use ($app) {
     $app->render('home.php');
 });
-$app->get('/projecttypes', function () use ($app) {
-    $app->render('projecttypes.php');
+$app->get('/projects', function () use ($app) {
+    $app->render('projects.php');
 });
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
 
 // API GET routes
-$app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -39,42 +39,42 @@ $app->get('/api/projecttypes/page/:pagenr', function ($pagenr) use ($app) {
     $pg = Pager::pageToStartStop($pagenr);
     
     // Get total number of projecttypes in the database
-    $pagedata = GraderAPI::getProjectTypes($pg->start, $pg->count);
-    $totalprojects = GraderAPI::getProjectTypesCount();
+    $pagedata = GraderAPI::getProjects($pg->start, $pg->count);
+    $totalprojects = GraderAPI::getProjectCount();
     
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
 // API PUT routes
-$app->put('/api/projecttype/:id', function($id) use ($app){
+$app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     
     // Update the existing resource
-    echo json_encode(GraderAPI::updateProjectType(
+    echo json_encode(GraderAPI::updateProject(
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 // API POST routes
-$app->post('/api/projecttype', function () use ($app) {
+$app->post('/api/project', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
-    echo json_encode(GraderAPI::createProjectType(
+    echo json_encode(GraderAPI::createProject(
                     $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 // API DELETE routes
-$app->delete('/api/projecttypes/:id', function ($id) use ($app) {
+$app->delete('/api/project/:id', function ($id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode(GraderAPI::deleteProjectType($id));
+    echo json_encode(GraderAPI::deleteProject($id));
 });
 
 /* Run the application */

@@ -14,20 +14,20 @@ class GraderAPI {
      * @start: the item start with
      * @count: the number of items on the page 
      */
-    public static function getProjectTypes($start, $count) {
+    public static function getProjects($start, $count) {
         /* Return the requested pages */
-        return ClassDAO::getAllProjectTypes($start, $count);
+        return ClassDAO::getAllProjects($start, $count);
     }
     
-    public static function getProjectTypesCount() {
+    public static function getProjectCount() {
         /* Return the number of projecttypes currently in the database */
-        return ClassDAO::getAllProjectTypesCount();
+        return ClassDAO::getAllProjectCount();
     }
 
     /*
      * Delete a projecttype from the database
      */
-    public static function deleteProjectType($id) {
+    public static function deleteProject($id) {
         if (ClassDAO::deleteProjectType($id) === true) {
             return true;
         } else {
@@ -39,8 +39,8 @@ class GraderAPI {
      * Create a new projecttype and put it in the database
      * @return -1 on error;
      */
-    public static function createProjectType($code, $name, $description) {
-        $id = ClassDAO::insertProjectType($code, $name, $description);
+    public static function createProject($code, $name, $description) {
+        $id = ClassDAO::insertProject($code, $name, $description);
 
         if ($id != null) {
             return array(
@@ -56,8 +56,8 @@ class GraderAPI {
     /*
      * Update a projecttype in the database
      */
-    public static function updateProjectType($id, $code, $name, $description) {
-        if(ClassDAO::updateProjectType($id, $code, $name, $description)){
+    public static function updateProject($id, $code, $name, $description) {
+        if(ClassDAO::updateProject($id, $code, $name, $description)){
             return array(
                 "id" => $id,
                 "code" => $code,
