@@ -12,6 +12,10 @@ function pageViewModel(gvm) {
         var selectObject = {$id: id, $locationName: name};
         gvm.availableLocations.push(selectObject);
     }
+
+    gvm.clearAll = function() {
+        gvm.availableLocations.removeAll();
+    }
 }
 
 function loadAvailableLocations()
@@ -26,6 +30,6 @@ function loadAvailableLocations()
 
 
 
-    function initPage() {
+function initPage() {
     loadAvailableLocations();
 }
