@@ -141,10 +141,38 @@ class ClassDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         }catch (PDOException $err) {
-            Logger.logError('Could not get locations', $err);
+            Logger::logError('Could not get locations', $err);
             return false;
         }
     }
+
+    public static function getTrainingsByLocation($id) {
+        try{
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM training WHERE location = :location");
+            $stmt->bindValue(':location', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get locations', $err);
+            return false;
+        }
+    }
+
+    public static function getCoursesByTraining($id) {
+        try{
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course WHERE training = :training");
+            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get courses', $err);
+            return false;
+        }
+    }
+
+
 }
 
 ?>

@@ -75,4 +75,12 @@ class GraderAPI {
         /* Return the requested pages */
         return ClassDAO::getAllLocations();
     }
+
+    public static function getTrainingsByLocation($id) {
+        return ClassDAO::getTrainingsByLocation($id);
+    }
+
+    public static function getCoursesByTraining($id) {
+        return ClassDAO::getCoursesByTraining($id);
+    }
 }

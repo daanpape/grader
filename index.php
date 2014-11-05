@@ -60,6 +60,28 @@ $app->get('/api/locations', function () use ($app) {
     echo json_encode($pagedata);
 });
 
+$app->get('/api/trainings/:locationId', function ($locationId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all trainings by locationsid
+    $pagedata = GraderAPI::getTrainingsByLocation($locationId);
+
+    echo json_encode($pagedata);
+});
+
+$app->get('/api/courses/:trainingId', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = GraderAPI::getCoursesByTraining($trainingId);
+
+    echo json_encode($pagedata);
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
