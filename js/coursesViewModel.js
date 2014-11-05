@@ -13,7 +13,6 @@ function pageViewModel(gvm) {
         var selectObject = {id: id, locationName: name};
         gvm.availableLocations.push(selectObject);
     }
-
     gvm.addAvailableTrainings = function(id, name) {
         var selectObject = {id: id, trainingName: name};
         gvm.availableTrainings.push(selectObject);

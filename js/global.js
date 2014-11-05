@@ -41,6 +41,7 @@ function GlobalViewModel()
     this.loginBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LoginBtn");}, this);
     this.username = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Username");}, this);
     this.password = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Password");}, this);
+    this.coursesbtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("CourseButton")}, this);
     this.projecttypeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjecttypesButton");}, this); 
     this.yesNoModaltitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("YesNoModaltitle");}, this);
     this.yesNoModalBody = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("YesNoModalBody");}, this);
