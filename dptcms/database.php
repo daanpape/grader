@@ -145,7 +145,10 @@ class ClassDAO {
             return false;
         }
     }
-
+    /*
+     * Get all trainings by locationId
+     * @id the locationId
+     */
     public static function getTrainingsByLocation($id) {
         try{
             $conn = Db::getConnection();
@@ -158,7 +161,10 @@ class ClassDAO {
             return false;
         }
     }
-
+    /*
+     * Get all courses by trainingid
+     * @id the trainingid
+     */
     public static function getCoursesByTraining($id) {
         try{
             $conn = Db::getConnection();
