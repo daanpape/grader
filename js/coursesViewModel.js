@@ -53,6 +53,7 @@ function loadAllSelects($locationid, $trainingid)
     });
 
     $("#location").change(function() {
+        alert("changebind");
         loadAllSelects($("#location").val(), $("#training").val());
     });
 }
