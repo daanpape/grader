@@ -194,6 +194,8 @@ class Security {
     public static function isUserAuthorized($permission) {
         $auth = false;
         
+        Logger::logInfo('Checking permissions for request "' + $permission + '"');
+        
         /*
          * Use star as wildcard
          */
