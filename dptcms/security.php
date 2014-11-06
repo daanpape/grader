@@ -196,16 +196,13 @@ class Security {
         /*
          * Use star as wildcard
          */
-        foreach (self::getUserPermissions() as $perm) {
-            $perm = $perm[0];
-            
-            if ($perm == $permission) {
+        foreach (self::getUserPermissions() as $perm) {  
+            if ($perm[0] == $permission) {
                 $auth = true;
             } else {
                 /* Check for star wildcard in permission */
-                if(substr($perm, -1) == '*'){
-                    $perm = rtrim($perm, '*');
-                    $auth = startsWith($permission, $perm);
+                if(substr($perm[0], -1) == '*'){
+                    $auth = startsWith($permission, rtrim($perm[0], '*'));
                 } else {
                     $auth = false;
                 }
