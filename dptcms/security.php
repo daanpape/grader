@@ -190,9 +190,9 @@ class Security {
         foreach (self::getUserPermissions() as $perm) {
             $length = strlen($permission);
             for ($i = 0; $i < $length; ++$i) {
-                //if($perm[$i] != $permission[$i]){
+                if($perm[$i] != $permission[$i]){
                     
-                //}
+                }
             }
             
             if ($perm[0] === $permission) {

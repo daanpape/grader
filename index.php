@@ -68,9 +68,6 @@ $app->get('/activate/:token', function ($token) use ($app) {
     $status = Security::activateUser($token);
     $app->render('activate.php', array('status' => $status));
 });
-$app->get('/mailtest', function() use ($app) {
-    Email::sendMail('matthieu.Calie@student.howest.be', 'RSS.studentensecretariaat@howest.be', 'Devoxx betalingen', 'daan@dptechnics.com', 'Geachte,<br/>br/>Wij hebben vernomen dat u voor meerdere studenten betalingen hebt ontvangen voor devoxx. In het schoolregelement staat echter dat het ontvangen van betalingen van andere leerlingen verboden is indien dit voor schoolactiviteiten is. Wij vragen u dan ook met aandrang contact met ons op te nemen.<br/>br/>Mvg, het studentensecretariaat', '');
-});
 
 // POST routes
 $app->post('/login/:username', function ($username) use($app) {	
