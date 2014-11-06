@@ -78,4 +78,33 @@ function initPage() {
             }
         }
     });
+    
+    // Register register form submit handler
+    $('#registerform').on('success.form.bv', function(e){
+        // Hide register error
+        $('#register_error').hide();
+
+        // Post the form 
+        $.ajax({
+            type: "POST",
+            url: "register",
+            data: $('#registerform').serialize(),
+            success: function() {
+                    // Show email validation message when success.
+                    $('#regcontent').html(
+                    '<div class="contenttitle">Success!</div><br/>' +
+                    '<p>' +
+                    'Thank you for you registration. You have received an email in which you can activate your account. You must be activated before you can logon.' +
+                    '</p>'
+                    );
+            },
+            error: function() {
+                // Display error message 
+                $('#register_error').show();
+            }
+        });
+
+        // Stop form submit via normal post
+        e.preventDefault();
+    });
 }
