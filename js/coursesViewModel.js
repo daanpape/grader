@@ -48,7 +48,6 @@ function loadAllSelects($locationid, $trainingid)
 }
 
 function bindEvents() {
-    viewModel.clearAll();
     $("#location").on("change", function() {
         loadAllSelects($("#location").val(), $("#training").val());
     });
