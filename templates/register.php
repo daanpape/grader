@@ -22,7 +22,7 @@ $location = "register";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: title">Register</h1>
+            <h1 class="page-header" data-bind="text: pageHeader">Register</h1>
         </div>
 
         <!-- Content container -->

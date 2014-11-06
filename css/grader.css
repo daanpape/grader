@@ -98,3 +98,15 @@ body {
 .btn-extra-margin {
     margin-left: 10px;
 }
+
+.has-feedback .form-control-feedback {
+	width: 54px;
+	height: 44px;
+	font-size: 34px;
+	padding-top: 5px;
+}
+
+.col-md-6 .form-control-feedback {
+	width: 56px;
+	padding-right: 22px;
+}
