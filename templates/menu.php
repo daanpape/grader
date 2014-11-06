@@ -40,6 +40,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php 
                     $username = Security::isUserLoggedIn();
+                    var_dump($username);
                     if($username){
                         echo '<li><a href="#" id="usermanagement">'.$username.'</a></li>';
                         echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn">Logout</a></li>';
