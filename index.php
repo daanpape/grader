@@ -5,6 +5,7 @@ require_once 'api.php';
 require_once 'dptcms/pagination.php';
 require_once 'dptcms/logger.php';
 require_once 'dptcms/email.php';
+require_once 'dptcms/security.php';
 
 Logger::logInfo("App started from ".$_SERVER['REMOTE_ADDR']);
 
@@ -33,7 +34,7 @@ class DPTSecurityMiddleware extends \Slim\Middleware
         if($requesturi != 'unauthorized') {
             // Check if the user is authorized to execute this request
             if(!Security::isUserAuthorized($requesturi)) {
-                //$app->redirect('/unauthorized');
+                $app->redirect('/unauthorized');
             }
         }
 
@@ -41,7 +42,7 @@ class DPTSecurityMiddleware extends \Slim\Middleware
         $this->next->call();
     }
 }
-$app->add(new DPTSecurityMiddleware());
+//$app->add(new DPTSecurityMiddleware());
 
 // GET routes
 $app->get('/', function () use ($app) {
