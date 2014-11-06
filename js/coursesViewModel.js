@@ -57,7 +57,6 @@ function initPage() {
     loadAllSelects(1,1);
 
     $("#location").on("change", function(event) {
-        alert("hallo");
-        loadAllSelects(this.val(), 1)
+        loadAllSelects(this.options[this.selected].value, 1)
     });
 }
