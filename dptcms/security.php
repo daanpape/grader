@@ -39,7 +39,6 @@ class Security {
             if (password_verify($password, $userdata->password)) {
                 // Check if the user is active
                 if ($userdata->status == ACTIVE) {
-
                     // Set user in session
                     $_SESSION['username'] = $username;
 
@@ -185,8 +184,17 @@ class Security {
      */
     public static function isUserAuthorized($permission) {
         $auth = false;
-        // Search the array with wildcards 
+        /*
+         * Use star as wildcard
+         */
         foreach (self::getUserPermissions() as $perm) {
+            $length = strlen($permission);
+            for ($i = 0; $i < $length; ++$i) {
+                if($perm[i] != $permission[$i]){
+                    
+                }
+            }
+            
             if ($perm[0] === $permission) {
                 $auth = true;
                 break;
