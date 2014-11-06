@@ -70,6 +70,9 @@ $app->get('/activate/:token', function ($token) use ($app) {
     $status = Security::activateUser($token);
     $app->render('activate.php', array('status' => $status));
 });
+$app->get('/logout', function() use ($app) {
+    Security::logoutUser();
+});
 
 // POST routes
 $app->post('/login/:email', function ($email) use($app) {	
