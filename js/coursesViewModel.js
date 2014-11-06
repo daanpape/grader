@@ -56,13 +56,18 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
+        $.each(data[2], function(i, item) {
+            viewModel.addAvailableTrainings(item.id, item.name);
+        });
+        $.each(data[3], function(i, item) {
+            viewModel.addAvailableCourses(item.id, item.name);
+        });
     });
     bindEvents();
 }
 
 function bindEvents() {
     $("#location").on("change", function() {
-        alert("hallo");
         //loadAllSelects($("#location").val(), $("#training").val());
     });
 }
