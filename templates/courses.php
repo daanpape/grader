@@ -25,8 +25,8 @@ $location = "courses";
     <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
 
     <select data-bind="options: availableLocations, optionsText: 'locationName', optionsValue: 'id'"></select>
-    <select data-bind="options: availableTrainings"></select>
-    <select data-bind="options: availableCourses"></select>
+    <select data-bind="options: availableTrainings, optionsText: 'trainingName', optionsValue: 'id'"></select>
+    <select data-bind="options: availableCourses, optionsText: 'courseName', optionsValue: 'id'"></select>
 </div>
 
 <!-- Content container -->
