@@ -52,6 +52,11 @@ function loadAllSelects($locationid, $trainingid)
 //        });
 //    });
 
+    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+        $.each(data[0],function(i, item) {
+            viewModel.addAvailableLocations(item.id, item.name);
+        });
+    });
     bindEvents();
 }
 
