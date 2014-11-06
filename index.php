@@ -7,8 +7,6 @@ require_once 'dptcms/logger.php';
 require_once 'dptcms/email.php';
 require_once 'dptcms/security.php';
 
-Logger::logInfo("App started from ".$_SERVER['REMOTE_ADDR']);
-
 \Slim\Slim::registerAutoloader();
 
 /* Instatiate application */
@@ -56,6 +54,9 @@ $app->get('/courses', function () use ($app) {
 });
 $app->get('/projects', function () use ($app) {
     $app->render('projects.php');
+});
+$app->get('/register', function () use ($app) {
+    $app->render('register.php');
 });
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');

@@ -194,15 +194,11 @@ class Security {
     public static function isUserAuthorized($permission) {
         $auth = false;
         
-        Logger::logInfo('Checking permissions for request "'.$permission.'"');
-        
         /*
          * Use star as wildcard
          */
-        foreach (self::getUserPermissions() as $perm) {  
-            Logger::logInfo('Checking "'.$perm[0].'" against request "'.$permission.'"');    
-            if ($perm[0] === $permission) {
-                Logger::logInfo('Authentication success');  
+        foreach (self::getUserPermissions() as $perm) {
+            if ($perm[0] === $permission) { 
                 $auth = true;
                 break;
             } else {
