@@ -32,8 +32,8 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
-    viewModel.clearAll();
     $("#location").unbind("change");
+    viewModel.clearAll();
     $.getJSON('/api/locations', function(data){
         // Load table data
         $.each(data, function(i, item) {
@@ -50,10 +50,14 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data, function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
-        $("#location").change(function() {
-            alert("hallo");
-            loadAllSelects($("#location").val(), $("#training").val());
-        });
+    });
+    bindEvents();
+}
+
+function bindEvents() {
+    $("#location").change(function() {
+        alert("hallo");
+        loadAllSelects($("#location").val(), $("#training").val());
     });
 }
 
