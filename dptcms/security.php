@@ -200,7 +200,7 @@ class Security {
          * Use star as wildcard
          */
         foreach (self::getUserPermissions() as $perm) {  
-            Logger::logInfo('Checking "'.$perm.'" against request "'.$permission.'"');    
+            Logger::logInfo('Checking "'.$perm[0].'" against request "'.$permission.'"');    
             if ($perm[0] == $permission) {
                 $auth = true;
             } else {
