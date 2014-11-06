@@ -32,26 +32,6 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
-//    $("#location").unbind("change");
-//    viewModel.clearAll();
-//    $.getJSON('/api/locations', function(data){
-//        // Load table data
-//        $.each(data, function(i, item) {
-//            viewModel.addAvailableLocations(item.id, item.name);
-//        });
-//    });
-//    $.getJSON('/api/trainings/' + $locationid, function(data){
-//        // Load table data
-//        $.each(data, function(i, item) {
-//            viewModel.addAvailableTrainings(item.id, item.name);
-//        });
-//    });
-//    $.getJSON('/api/courses/' + $trainingid, function(data) {
-//        $.each(data, function(i, item) {
-//            viewModel.addAvailableCourses(item.id, item.name);
-//        });
-//    });
-
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
@@ -68,7 +48,7 @@ function loadAllSelects($locationid, $trainingid)
 
 function bindEvents() {
     $("#location").on("change", function() {
-        //loadAllSelects($("#location").val(), $("#training").val());
+        loadAllSelects($("#location").val(), $("#training").val());
     });
 }
 
