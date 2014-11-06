@@ -4,6 +4,7 @@ require_once 'Slim/Slim.php';
 require_once 'api.php';
 require_once 'dptcms/pagination.php';
 require_once 'dptcms/logger.php';
+require_once 'dptcms/email.php';
 
 Logger::logInfo("App started from ".$_SERVER['REMOTE_ADDR']);
 
@@ -13,7 +14,7 @@ Logger::logInfo("App started from ".$_SERVER['REMOTE_ADDR']);
 $app = new \Slim\Slim(array(
     'cookies.encrypt' => true
         ));
-$app->setName('Assesment Tool');
+$app->setName('Grader');
 
 // GET routes
 $app->get('/', function () use ($app) {
@@ -30,6 +31,9 @@ $app->get('/projects', function () use ($app) {
 });
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
+});
+$app->get('/mailtest', function() use ($app) {
+    Email::sendMail('daan@dptechnics.com', 'info@grader.howest.be', 'Uw account', 'info@grader.howest.be', '<b>Vette tekst</b>', 'Platte tekst');
 });
 
 // API GET routes
