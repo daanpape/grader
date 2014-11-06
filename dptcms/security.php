@@ -1,5 +1,4 @@
 <?php
-
 /*
  * DPTechnics CMS
  * Security module
