@@ -11,6 +11,7 @@
 require_once('password.php');
 require_once('database.php');
 require_once('email.php');
+require_once('logger.php');
 
 /* User status constants */
 define('WAIT_ACTIVATION', 'WAIT_ACTIVATION');
@@ -197,6 +198,7 @@ class Security {
          * Use star as wildcard
          */
         foreach (self::getUserPermissions() as $perm) {  
+            Logger::logInfo('Checking "' + $perm  +'" against request "' + $permission + '"');    
             if ($perm[0] == $permission) {
                 $auth = true;
             } else {
