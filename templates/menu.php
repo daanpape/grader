@@ -34,7 +34,16 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>
+                <?php 
+                    $username = Security::isUserLoggedIn();
+                    if($username){
+                        echo '<li><a href="#" id="usermanagement">'.$username.'</a></li>';
+                        echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn">Logout</a></li>';
+                    } else {
+                        echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
+                    }
+                ?>
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                     <ul class="dropdown-menu">
