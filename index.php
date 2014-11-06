@@ -71,11 +71,11 @@ $app->get('/activate/:token', function ($token) use ($app) {
 });
 
 // POST routes
-$app->post('/login/:username', function ($username) use($app) {	
+$app->post('/login/:email', function ($email) use($app) {	
     $app->response->headers->set('Content-Type', 'application/json');
 
     // Try to login the user 
-    $response = Security::loginUser($username, $_POST['password']);
+    $response = Security::loginUser($email, $_POST['password']);
     if($response !== true){
         // Login failed
         $app->response->setStatus(401);
@@ -98,7 +98,7 @@ $app->post('/checkemail', function() use($app) {
 
 $app->post('/register', function() use($app){
     // Try to register the user
-    if(!Security::registerUser($_POST['lang'], $_POST['firstname'], $_POST['lastname'], $_POST['user'], $_POST['email'], $_POST['pass'], $_POST['passconfirm'])) {
+    if(!Security::registerUser($_POST['lang'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['email'], $_POST['pass'], $_POST['passconfirm'])) {
         // Registration failed, bad request
         $app->response->setStatus(400);
     }
