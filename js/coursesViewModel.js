@@ -50,11 +50,10 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data, function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
-    });
-
-    $("#location").change(function() {
-        alert("changebind");
-        loadAllSelects($("#location").val(), $("#training").val());
+        $("#location").change(function() {
+            alert("hallo");
+            loadAllSelects($("#location").val(), $("#training").val());
+        });
     });
 }
 
@@ -62,6 +61,4 @@ function loadAllSelects($locationid, $trainingid)
 
 function initPage() {
     loadAllSelects(1, 1);
-
-
 }
