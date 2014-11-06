@@ -25,6 +25,13 @@ class Security {
     public static function hashPass($password) {
         return password_hash($password, PASSWORD_BCRYPT);
     }
+    
+    /*
+     * Return the first name of the currently logged in user.
+     */
+    public static function getLoggedInName() {
+        return $_SESSION['firstname'];
+    }
 
     /*
      * Log in a user into the current session 
@@ -41,7 +48,7 @@ class Security {
                 if ($userdata->status == ACTIVE) {
                     // Set user in session
                     $_SESSION['username'] = $username;
-
+                    $_SESSION['firstname'] = $userdata->firstname;
                     return true;
                 } else {
                     // Return the current user status

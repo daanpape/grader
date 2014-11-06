@@ -39,10 +39,9 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <?php 
-                    $username = Security::isUserLoggedIn();
-                    var_dump($username);
+                    var_dump(Security::isUserLoggedIn());
                     if($username){
-                        echo '<li><a href="#" id="usermanagement">'.$username.'</a></li>';
+                        echo '<li><a href="#" id="usermanagement">'.Security::getLoggedInName().'</a></li>';
                         echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn">Logout</a></li>';
                     } else {
                         echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
