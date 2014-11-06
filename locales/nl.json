@@ -7,6 +7,7 @@
 	"AssessButton" : "Beoordeel",
 	"StructureButton" : "Structuur",
 	"ForgotPassword" : "Wachtwoord vergeten?",
+        "NotMemberYetBtn" : "Nog geen lid?",
 	"LoginBtn" : "Aanmelden",
 	"Username" : "Gebruikersnaam",
 	"Password" : "Wachtwoord",

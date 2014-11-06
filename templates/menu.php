@@ -66,6 +66,7 @@
             <div class="form-group">
                 <button class="btn btn-primary btn-lg btn-block" data-bind="text: loginBtn">Log in</button>
                 <span class="margin-top"><a href="#" data-bind="text: forgotPswdBtn">Forgot password?</a></span>
+                <span class="pull-right margin-top"><a href="register" data-bind="text: notMemberBtn">Not a member yet?</a></span>
             </div>
         </form>
     </div>
