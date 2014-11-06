@@ -32,6 +32,7 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
+    viewModel.clearAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
