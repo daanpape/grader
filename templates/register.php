@@ -63,6 +63,6 @@ $location = "register";
         </div>
 
         <?php include_once('jsdepends.php') ?>
-        <script src="/js/<?php echo $location ?>bootstrapValidator.min.js"></script>
+        <script src="/js/<?php echo $location ?>/bootstrapValidator.min.js"></script>
     </body>
 </html>
