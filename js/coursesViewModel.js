@@ -38,7 +38,7 @@ function loadAllSelects($locationid, $trainingid)
             viewModel.addAvailableLocations(item.id, item.name);
         });
     });
-    $.getJSON('/api/trainings/' + $trainingid, function(data){
+    $.getJSON('/api/trainings/' + $locationid, function(data){
         // Load table data
         $.each(data, function(i, item) {
             viewModel.addAvailableTrainings(item.id, item.name);
