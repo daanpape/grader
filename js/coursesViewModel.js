@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadAllSelects()
+function loadAllSelects($locationid, $trainingid)
 {
     $.getJSON('/api/locations', function(data){
         // Load table data
@@ -38,10 +38,16 @@ function loadAllSelects()
             viewModel.addAvailableLocations(item.id, item.name);
         });
     });
+    $.getJSON('/api/trainings/' + $trainingid, function(data){
+        // Load table data
+        $.each(data, function(i, item) {
+            viewModel.addAvailableTrainings(item.id, item.name);
+        });
+    });
 }
 
 
 
 function initPage() {
-    loadAllSelects();
+    loadAllSelects(1,1);
 }
