@@ -32,6 +32,7 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
+    viewModel.clearAll();
     $.getJSON('/api/locations', function(data){
         // Load table data
         $.each(data, function(i, item) {
@@ -54,9 +55,9 @@ function loadAllSelects($locationid, $trainingid)
 
 
 function initPage() {
-    loadAllSelects(1,1);
+    loadAllSelects(1, 1);
 
-    $("#location").change(function() {
+    $("#location").select(function() {
         loadAllSelects($("#location").val(), $("#training").val());
     });
 }
