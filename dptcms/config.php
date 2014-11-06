@@ -9,7 +9,7 @@
  class Config {
  
 	/* Site configuration */
-	public static $siteURL	= 'http://grader.localhost.com';
+	public static $siteURL	= 'http://dptknokke.ns01.info:9000';
  
 	/* Database configuration */
 	public static $dbServer = 'localhost';

@@ -1,7 +1,3 @@
-// Page wide variables  
-var viewModel = null;
-var i18n = null;
-
 // View model for the index page
 function ViewModel() {
 	// Global settings
