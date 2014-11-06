@@ -16,6 +16,33 @@ $app = new \Slim\Slim(array(
         ));
 $app->setName('Grader');
 
+/* Add security middleware */
+class DPTSecurityMiddleware extends \Slim\Middleware
+{
+    /* 
+     * This function is called by the slim application for all requests
+     */
+    public function call()
+    {
+        // Get the reference to the application
+        $app = $this->app;
+
+        // Get the application request without trailing slashes 
+        $requesturi = ltrim($app->request->getPathInfo(), '/');
+
+        if($requesturi != 'unauthorized') {
+            // Check if the user is authorized to execute this request
+            if(!Security::isUserAuthorized($requesturi)) {
+                //$app->redirect('/unauthorized');
+            }
+        }
+
+        // Run the inner middleware and application
+        $this->next->call();
+    }
+}
+$app->add(new DPTSecurityMiddleware());
+
 // GET routes
 $app->get('/', function () use ($app) {
     $app->render('home.php');
@@ -33,7 +60,7 @@ $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
 $app->get('/mailtest', function() use ($app) {
-    Email::sendMail('daan@dptechnics.com', 'info@grader.howest.be', 'Uw account', 'info@grader.howest.be', '<b>Vette tekst</b>', 'Platte tekst');
+    Email::sendMail('daan@dptechnics.com', 'grader@howest.be', 'Uw account', 'grader@howest.be', '<b>Vette tekst</b>', 'Platte tekst');
 });
 
 // API GET routes
