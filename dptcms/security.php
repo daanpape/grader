@@ -199,7 +199,7 @@ class Security {
         foreach (self::getUserPermissions() as $perm) {
             $perm = $perm[0];
             
-            if ($perm === $permission) {
+            if ($perm == $permission) {
                 $auth = true;
             } else {
                 /* Check for star wildcard in permission */
