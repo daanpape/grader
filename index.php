@@ -88,14 +88,6 @@ $app->post('/login/:username', function ($username) use($app) {
     }
 });
 
-$app->post('/checkuser', function() use($app) {
-    $app->response->headers->set('Content-Type', 'application/json');
-
-    // Check if the username is unique
-    $unique = Security::isUserUnique($_POST['user']);
-    echo json_encode(array('valid' => $unique));
-});
-
 $app->post('/checkemail', function() use($app) {
     $app->response->headers->set('Content-Type', 'application/json');
 
