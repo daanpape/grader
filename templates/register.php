@@ -43,9 +43,6 @@ $location = "register";
                     <div class="col-md-6 form-group "><input type="text" class="form-control input-lg" placeholder="Lastname" name="lastname" autocomplete="off" value=""></div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg" placeholder="Username" name="user" autocomplete="off" value="">
-                </div>
-                <div class="form-group">
                     <input type="text" class="form-control input-lg" placeholder="Email" name="email" autocomplete="off" value="">
                 </div>
                 <div class="form-group">
@@ -66,5 +63,6 @@ $location = "register";
         </div>
 
         <?php include_once('jsdepends.php') ?>
+        <script src="/js/<?php echo $location ?>bootstrapValidator.min.js"></script>
     </body>
 </html>
