@@ -42,7 +42,7 @@ class DPTSecurityMiddleware extends \Slim\Middleware
         $this->next->call();
     }
 }
-//$app->add(new DPTSecurityMiddleware());
+$app->add(new DPTSecurityMiddleware());
 
 // GET routes
 $app->get('/', function () use ($app) {
@@ -60,8 +60,55 @@ $app->get('/projects', function () use ($app) {
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
-$app->get('/mailtest', function() use ($app) {
-    Email::sendMail('daan@dptechnics.com', 'grader@howest.be', 'Uw account', 'grader@howest.be', '<b>Vette tekst</b>', 'Platte tekst');
+$app->get('/unauthorized', function() use ($app) {
+    $app->render('unauthorized.php');
+});
+$app->get('/activate/:token', function ($token) use ($app) { 
+    // Try to activate user 
+    $status = Security::activateUser($token);
+    $app->render('activate.php', array('status' => $status));
+});
+
+// POST routes
+$app->post('/login/:username', function ($username) use($app) {	
+    $app->response->headers->set('Content-Type', 'application/json');
+
+    // Try to login the user 
+    $response = Security::loginUser($username, $_POST['password']);
+    if($response !== true){
+        // Login failed
+        $app->response->setStatus(401);
+
+        // Send error message
+        echo json_encode(array('error' => $response));
+    } else {
+        // Login success
+        echo '{}';
+    }
+});
+
+$app->post('/checkuser', function() use($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+
+    // Check if the username is unique
+    $unique = Security::isUserUnique($_POST['user']);
+    echo json_encode(array('valid' => $unique));
+});
+
+$app->post('/checkemail', function() use($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+
+    // Check if the email address is unique
+    $unique = Security::isEmailUnique($_POST['email']);
+    echo json_encode(array('valid' => $unique));
+});
+
+$app->post('/register', function() use($app){
+    // Try to register the user
+    if(!Security::registerUser($_POST['lang'], $_POST['firstname'], $_POST['lastname'], $_POST['user'], $_POST['email'], $_POST['pass'], $_POST['passconfirm'])) {
+        // Registration failed, bad request
+        $app->response->setStatus(400);
+    }
 });
 
 // API GET routes
