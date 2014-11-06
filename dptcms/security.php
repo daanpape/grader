@@ -176,6 +176,7 @@ class Security {
         } else {
             // Get user permissions based on username
             // TODO
+            return UserDAO::getGuestPermissions();
         }
     }
     
