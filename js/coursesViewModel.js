@@ -44,7 +44,6 @@ function loadAllSelects($locationid, $trainingid)
             viewModel.addAvailableCourses(item.id, item.name);
         });
     });
-    bindEvents();
 }
 
 function bindEvents() {
