@@ -57,6 +57,6 @@ function initPage() {
     loadAllSelects(1,1);
 
     $("#location").change(function() {
-        alert($("#location").val());
+        loadAllSelects($("#location").val(), $("#training").val());
     });
 }
