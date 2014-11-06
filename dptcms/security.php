@@ -178,26 +178,37 @@ class Security {
             // TODO
         }
     }
+    
+    /*
+     * Helper function for string comparison
+     */
+    function startsWith($haystack, $needle)
+    {
+        return $needle === "" || strpos($haystack, $needle) === 0;
+    }
 
     /*
      * Returns true if a user is authorized, false otherwise. 
      */
     public static function isUserAuthorized($permission) {
         $auth = false;
+        
         /*
          * Use star as wildcard
          */
         foreach (self::getUserPermissions() as $perm) {
-            $length = strlen($permission);
-            for ($i = 0; $i < $length; ++$i) {
-                if($perm[$i] != $permission[$i]){
-                    
-                }
-            }
+            $perm = $perm[0];
             
-            if ($perm[0] === $permission) {
+            if ($perm === $permission) {
                 $auth = true;
-                break;
+            } else {
+                /* Check for star wildcard in permission */
+                if(substr($perm, -1) == '*'){
+                    $perm = rtrim($perm, '*');
+                    $auth = startsWith($permission, $perm);
+                } else {
+                    $auth = false;
+                }
             }
         }
         return $auth;
