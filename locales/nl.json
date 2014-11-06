@@ -1,43 +1,45 @@
 {
-	"AppName" : "Beoordelings tool",
-	"HomeTitle" : "Welkom",
+    "AppName" : "Beoordelings tool",
+    "HomeTitle" : "Welkom",
     "ProjectName" : "Grader",
-	"LoginModalTitle" : "Aanmelden",
-	"HomeButton" : "Home",
-	"AssessButton" : "Beoordeel",
-	"StructureButton" : "Structuur",
-	"ForgotPassword" : "Wachtwoord vergeten?",
-        "NotMemberYetBtn" : "Nog geen lid?",
-	"LoginBtn" : "Aanmelden",
-	"Username" : "Gebruikersnaam",
-	"Password" : "Wachtwoord",
+    "LoginModalTitle" : "Aanmelden",
+    "HomeButton" : "Home",
+    "AssessButton" : "Beoordeel",
+    "StructureButton" : "Structuur",
+    "ForgotPassword" : "Wachtwoord vergeten?",
+    "NotMemberYetBtn" : "Nog geen lid?",
+    "LoginBtn" : "Aanmelden",
+    "Username" : "Gebruikersnaam",
+    "Password" : "Wachtwoord",
 
-	"ProjecttypesButton" : "Projecten",
-	"ProjecttypeTitle" : "Projecten",
+    "ProjecttypesButton" : "Projecten",
+    "ProjecttypeTitle" : "Projecten",
     "CourseButton" : "Rinchting",
 
     "CoursesTitle" : "Richting",
     "CoursesHeader" : "Selecteer een richting",
+    
+    "RegisterTitle" : "Registreer",
 
     "AssessTitle" : "Beoordeel een Project",
-	"YesNoModaltitle" : "Bent u zeker?",
+    "YesNoModaltitle" : "Bent u zeker?",
     "YesNoModalBody" : "Bent u zeker dat u dit item wilt verwijderen?",
-	"Yes" : "Ja",
-	"No" : "Nee",
-	
-	"AddBtn" : "Maak nieuw",
-        "SaveBtn" : "Sla op",
-	"CodeTableTitle" : "Code",
-	"NameTableTitle" : "Naam",
-	"DescTableTitle" : "Beschrijving",
-	"ActionTableTitle" : "Acties",
-        
-        
-        "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
-        "EditProjectTitle" : "Wijzig projecttype",
-        "CancelBtn" : "Annuleer",
-	
-	"HomeManual" : "<h1>Beoordelings tool</h1><p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
-	
-	"ServiceNotReachableError" : "Kon niet met server verbinden, probeer later opnieuw"
+    "Yes" : "Ja",
+    "No" : "Nee",
+
+    "AddBtn" : "Maak nieuw",
+    "SaveBtn" : "Sla op",
+    "CodeTableTitle" : "Code",
+    "NameTableTitle" : "Naam",
+    "DescTableTitle" : "Beschrijving",
+    "ActionTableTitle" : "Acties",
+
+
+    "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
+    "EditProjectTitle" : "Wijzig projecttype",
+    "CancelBtn" : "Annuleer",
+
+    "HomeManual" : "<h1>Beoordelings tool</h1><p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
+
+    "ServiceNotReachableError" : "Kon niet met server verbinden, probeer later opnieuw"
 }
