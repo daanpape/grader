@@ -204,10 +204,14 @@ class Security {
             if ($perm[0] === $permission) {
                 Logger::logInfo('Authentication success');  
                 $auth = true;
+                break;
             } else {
                 /* Check for star wildcard in permission */
                 if(substr($perm[0], -1) == '*'){
-                    $auth = self::startsWith($permission, rtrim($perm[0], '*'));
+                    if(self::startsWith($permission, rtrim($perm[0], '*'))){
+                        $auth = true;
+                        break;
+                    }
                 } else {
                     $auth = false;
                 }
