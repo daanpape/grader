@@ -56,7 +56,8 @@ function loadAllSelects($locationid, $trainingid)
 function initPage() {
     loadAllSelects(1,1);
 
-    $("#location").on("change", function(event) {
-        loadAllSelects(this.options[this.selected].value, 1)
+    $("#location").change(function() {
+        $locationid = $("#location").selectedOptions.selected.val();
+        alert($locationid);
     });
 }
