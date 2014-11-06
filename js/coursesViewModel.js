@@ -57,6 +57,7 @@ function initPage() {
     loadAllSelects(1,1);
 
     $(".location").on("change", function(event) {
+        alert("hallo");
         loadAllSelects(this.val(), 1)
     });
 }
