@@ -83,4 +83,6 @@ class GraderAPI {
     public static function getCoursesByTraining($id) {
         return ClassDAO::getCoursesByTraining($id);
     }
+
+    public statid function getLocationsTrainingsAndCourses($locationId, $trainingId)
 }

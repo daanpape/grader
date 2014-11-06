@@ -155,6 +155,16 @@ $app->get('/api/courses/:trainingId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 
+$app->get('/api/courses/:locationId/:trainingId', function($locationId, $trainingId) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = GraderAPI::getLocationsTrainingsAndCourses($locationId, $trainingId);
+
+    echo json_encode($pagedata);
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
