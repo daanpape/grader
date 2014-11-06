@@ -57,7 +57,7 @@ function initPage() {
     loadAllSelects(1,1);
 
     $("#location").change(function() {
-        $locationid = $("#location").selectedOptions.selected.val();
+        $locationid = $("#location").options.selected.val();
         alert($locationid);
     });
 }
