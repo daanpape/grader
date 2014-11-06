@@ -50,11 +50,13 @@ function bindEvents() {
     $("#location").on("change", function() {
         $("#location").unbind("change");
         $("#training").unbind("change");
+        viewModel.clearAll();
         loadAllSelects($("#location").val(), $("#training").val());
     });
     $("#training").on("change", function() {
         $("#location").unbind("change");
         $("#training").unbind("change");
+        viewModel.clearAll();
         loadAllSelects($("#location").val(), $("#training").val());
     });
 }
