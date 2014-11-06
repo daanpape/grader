@@ -55,7 +55,7 @@ function loadAllSelects($locationid, $trainingid)
 }
 
 function bindEvents() {
-    $("#location").change(function() {
+    $("#location").bind("change", function() {
         alert("hallo");
         loadAllSelects($("#location").val(), $("#training").val());
     });
