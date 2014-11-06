@@ -1,3 +1,7 @@
+<?php
+    require_once 'dptcms/security.php';
+?>
+
 <!-- Main menu -->
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
