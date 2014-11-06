@@ -183,7 +183,7 @@ class Security {
     /*
      * Helper function for string comparison
      */
-    function startsWith($haystack, $needle)
+    private static function startsWith($haystack, $needle)
     {
         return $needle === "" || strpos($haystack, $needle) === 0;
     }
@@ -207,7 +207,7 @@ class Security {
             } else {
                 /* Check for star wildcard in permission */
                 if(substr($perm[0], -1) == '*'){
-                    $auth = startsWith($permission, rtrim($perm[0], '*'));
+                    $auth = self::startsWith($permission, rtrim($perm[0], '*'));
                 } else {
                     $auth = false;
                 }
