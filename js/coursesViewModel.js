@@ -53,13 +53,16 @@ function loadAllSelects($locationid, $trainingid)
 
 function bindEvents() {
     if(!viewModel.isUpdating) {
-        $("#location").one("change", function() {
+        $("#location").bind("change", function() {
             loadAllSelects($("#location").val(), $("#training").val());
         });
         $("#training").bind("change", function() {
             loadAllSelects($("#location").val(), $("#training").val());
         });
         viewModel.isUpdating = false;
+    } else {
+        $("#location").unbind("change");
+        $("#training").unbind("change");
     }
 }
 
