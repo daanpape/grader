@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
 //}
 
 function loadLocations() {
-    $.getJSON('/api/location', function(data) {
+    $.getJSON('/api/locations', function(data) {
         $.each(data, function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
@@ -80,7 +80,7 @@ function loadLocations() {
 
 function loadTraining($id) {
     $('#training').show();
-    $.getJSON("/api/training/" + $id, function(data) {
+    $.getJSON("/api/trainings/" + $id, function(data) {
         $.each(data, function(i, item) {
             viewModel.addAvailableTrainings(item.id, item.name);
         });
