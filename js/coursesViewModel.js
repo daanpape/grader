@@ -5,8 +5,6 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CoursesHeader");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
-    gvm.isUpdating = false;
-
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
@@ -32,21 +30,21 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadAllSelects($locationid, $trainingid)
-{
-    viewModel.clearAll();
-    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
-        $.each(data[1],function(i, item) {
-            viewModel.addAvailableLocations(item.id, item.name);
-        });
-        $.each(data[2], function(i, item) {
-            viewModel.addAvailableTrainings(item.id, item.name);
-        });
-        $.each(data[3], function(i, item) {
-            viewModel.addAvailableCourses(item.id, item.name);
-        });
-    });
-}
+//function loadAllSelects($locationid, $trainingid)
+//{
+//    viewModel.clearAll();
+//    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+//        $.each(data[1],function(i, item) {
+//            viewModel.addAvailableLocations(item.id, item.name);
+//        });
+//        $.each(data[2], function(i, item) {
+//            viewModel.addAvailableTrainings(item.id, item.name);
+//        });
+//        $.each(data[3], function(i, item) {
+//            viewModel.addAvailableCourses(item.id, item.name);
+//        });
+//    });
+//}
 
 //function loadTrainingsAndCourses($locationid, $trainingid) {
 //    $("#location").unbind("change");
@@ -70,7 +68,7 @@ function loadAllSelects($locationid, $trainingid)
 //            viewModel.addAvailableCourses(item.id, item.name);
 //        });
 //    });
-}
+//}
 
 function loadLocations() {
     $.getJSON('/api/location', function(data) {
