@@ -79,6 +79,7 @@ function loadLocations() {
 }
 
 function loadTraining($id) {
+    viewModel.availableTrainings.removeAll();
     $('#training').show();
     $.getJSON("/api/trainings/" + $id, function(data) {
         $.each(data, function(i, item) {
