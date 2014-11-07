@@ -75,5 +75,5 @@ function loadCourses($locationid, $trainingid) {
 
 
 function initPage() {
-    loadAllSelects(1,1);
+    loadAllSelects(1,4);
 }
