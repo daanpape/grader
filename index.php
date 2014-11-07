@@ -147,7 +147,7 @@ $app->get('/api/trainings/:locationId', function ($locationId) use ($app) {
     echo json_encode($pagedata);
 });
 
-$app->get('/api/courses/:trainingId', function ($trainingId) use ($app) {
+/*$app->get('/api/courses/:trainingId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -156,7 +156,7 @@ $app->get('/api/courses/:trainingId', function ($trainingId) use ($app) {
     $pagedata = GraderAPI::getCoursesByTraining($trainingId);
 
     echo json_encode($pagedata);
-});
+});*/
 
 $app->get('/api/courses/:locationId/:trainingId', function($locationId, $trainingId) use ($app) {
     $response = $app->response();
