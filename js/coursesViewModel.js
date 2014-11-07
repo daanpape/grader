@@ -77,12 +77,12 @@ function loadCourses($locationid, $trainingid) {
 function initPage() {
     loadAllSelects(1,4);
     $("#location").on("click", function() {
-       $("#location").bind("change", function() {
+       $("#location").one("change", function() {
            loadTrainingsAndCourses($("#location").val(), $("#training").val());
        });
     });
     $("#training").on("click", function() {
-        $("#training").bind("change", function() {
+        $("#training").one("change", function() {
             loadCourses($("#training").val(), $("#training").val());
         });
     });
