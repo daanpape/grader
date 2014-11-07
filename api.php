@@ -101,7 +101,7 @@ class GraderAPI {
 
         $locations = ClassDAO::getAllLocations();
         $trainings = ClassDAO::getTrainingsByLocation($locationId);
-        $courses = ClassDAO::getCoursesByTraining($trainings[0].'id');
+        $courses = ClassDAO::getCoursesByTraining($trainings[0].id);
 
         array_push($result, $locations, $trainings, $courses);
 
