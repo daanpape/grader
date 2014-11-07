@@ -57,7 +57,6 @@ function loadTrainingsAndCourses($locationid, $trainingid) {
             viewModel.addAvailableTrainings(item.id, item.name);
         });
     });
-    loadCourses($("#training").val());
 }
 
 function loadCourses( $trainingid) {
