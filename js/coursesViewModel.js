@@ -76,6 +76,7 @@ function loadLocations() {
             viewModel.addAvailableLocations(item.id, item.name);
         });
     });
+    $("#location").unbind("change");
 }
 
 function loadTraining($id) {
