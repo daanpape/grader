@@ -65,5 +65,5 @@ function bindEvents() {
 
 
 function initPage() {
-    loadAllSelects();
+    loadAllSelects(1,1);
 }
