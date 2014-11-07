@@ -49,11 +49,10 @@ function loadAllSelects($locationid, $trainingid)
     });
     viewModel.isUpdating = false;
     if(viewModel.isUpdating = false) {
-        $("#location").one("change", function() {
+        $("#location").on("change", function() {
                 loadAllSelects($("#location").val(), $("#training").val());
-
         });
-        $("#training").one("change", function() {
+        $("#training").on("change", function() {
                 loadAllSelects($("#location").val(), $("#training").val());
         });
     }
