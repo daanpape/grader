@@ -53,7 +53,6 @@ function bindEvents() {
     $("#training").one("change", function() {
         loadAllSelects($("#location").val(), $("#training").val());
     });
-    loadAllSelects(1,1);
 }
 
 
