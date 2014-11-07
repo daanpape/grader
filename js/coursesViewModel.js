@@ -32,6 +32,7 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
+    viewModel.clearAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
@@ -46,14 +47,10 @@ function loadAllSelects($locationid, $trainingid)
 }
 
 function bindEvents() {
-    $("#location").bind("change", function() {
-        $("#location").unbind("change");
-        $("#training").unbind("change");
+    $("#location").one("change", function() {
         loadAllSelects($("#location").val(), $("#training").val());
     });
-    $("#training").on("change", function() {
-        $("#location").unbind("change");
-        $("#training").unbind("change");
+    $("#training").one("change", function() {
         loadAllSelects($("#location").val(), $("#training").val());
     });
 }
