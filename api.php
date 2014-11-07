@@ -95,4 +95,16 @@ class GraderAPI {
 
         return $result;
     }
+
+    public static function getLocationsTrainingsAndCoursesByLocation($locationId) {
+        $result[] = array();
+
+        $locations = ClassDAO::getAllLocations();
+        $trainings = ClassDAO::getTrainingsByLocation($locationId);
+        $courses = ClassDAO::getCoursesByTraining($trainings[1].id);
+
+        array_push($result, $locations, $trainings, $courses);
+
+        return $result;
+    }
 }
