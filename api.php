@@ -109,7 +109,7 @@ class GraderAPI {
     }
 
     public static function test($locationId) {
-        return ClassDAO::getTrainingsByLocation($locationId[1].id);
+        return ClassDAO::getTrainingsByLocation($locationId[0].id);
 
     }
 }
