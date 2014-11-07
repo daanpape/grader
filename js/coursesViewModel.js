@@ -35,7 +35,7 @@ function pageViewModel(gvm) {
 function loadAllSelects($locationid, $trainingid)
 {
     viewModel.clearAll();
-    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+    $.when($.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
@@ -45,7 +45,7 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
-    }).done($("#location").bind("change", function() {
+    })).done($("#location").bind("change", function() {
             loadTrainingsAndCourses($("#location").val(), $("#training").val());
         }));
 }
