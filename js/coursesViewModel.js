@@ -45,9 +45,9 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
-    }).done($(function() {("#location").bind("change", function() {
+    }).done($("#location").bind("change", function() {
             loadTrainingsAndCourses($("#location").val(), $("#training").val());
-        })}));
+        }));
 }
 
 function loadTrainingsAndCourses($locationid, $trainingid) {
