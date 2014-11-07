@@ -48,7 +48,6 @@ function loadAllSelects($locationid, $trainingid)
 }
 
 function bindEvents() {
-    loadAllSelects(1,1);
     $("#location").bind("change", function() {
         $("#location").unbind("change").done($("#training").unbind("change").done(loadAllSelects($("#location").val(), $("#training").val())));
     });
