@@ -35,7 +35,7 @@ function pageViewModel(gvm) {
 function loadAllSelects($locationid, $trainingid)
 {
     viewModel.clearAll();
-    $.when($.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
@@ -45,10 +45,7 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
-    })).then($("#location").bind("change", function() {
-            alert("hallo");
-            loadTrainingsAndCourses($("#location").val(), $("#training").val());
-        }));
+    });
 }
 
 function loadTrainingsAndCourses($locationid, $trainingid) {
@@ -78,4 +75,9 @@ function loadCourses($locationid, $trainingid) {
 
 function initPage() {
     loadAllSelects(1,4);
+    $("#location").on("click", function() {
+       $("#location").bind("change", function() {
+           loadTrainingsAndCourses($("#location").val(), $("#training").val());
+       });
+    });
 }
