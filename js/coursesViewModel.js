@@ -62,9 +62,10 @@ function loadTrainingsAndCourses($locationid, $trainingid) {
     });
 }
 
-function loadCourses( $trainingid) {
+function loadCourses($locationid, $trainingid) {
+    $("#training").unbind("change");
     viewModel.availableCourses.removeAll();
-    $.getJSON('/api/courses/' +  $trainingid, function(data) {
+    $.getJSON('/api/courses/' + $locationid + '/'  +  $trainingid, function(data) {
         $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
@@ -79,5 +80,10 @@ function initPage() {
        $("#location").bind("change", function() {
            loadTrainingsAndCourses($("#location").val(), $("#training").val());
        });
+    });
+    $("#training").on("click", function() {
+        $("#training").bind("change", function() {
+            loadCourses($("#training").val(), $("#training").val());
+        });
     });
 }
