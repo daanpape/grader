@@ -56,7 +56,7 @@ function loadAllSelects($locationid, $trainingid)
 
 function loadTrainingsAndCourses($locationid, $trainingid) {
     viewModel.availableTrainings.removeAll();
-    view.availableCourses.removeAll();
+    viewModel.availableCourses.removeAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[2], function(i, item) {
             viewModel.addAvailableTrainings(item.id, item.name);
@@ -68,7 +68,7 @@ function loadTrainingsAndCourses($locationid, $trainingid) {
 }
 
 function loadCourses($locationid, $trainingid) {
-    view.availableCourses.removeAll();
+    viewModel.availableCourses.removeAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
