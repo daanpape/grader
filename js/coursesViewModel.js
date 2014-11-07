@@ -49,14 +49,10 @@ function loadAllSelects($locationid, $trainingid)
     $("#location").bind("change", function() {
         loadTrainingsAndCourses($("#location").val(), $("#training").val());
     }) ;
-    $("#training").bind("change", function() {
-       loadCourses($("#location").val(), $("#training").val());
-    });
 }
 
 function loadTrainingsAndCourses($locationid, $trainingid) {
     $("#location").unbind("change");
-    $("#training").unbind("change");
     viewModel.availableTrainings.removeAll();
     viewModel.availableCourses.removeAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
