@@ -34,7 +34,6 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
-    viewModel.isUpdating = true;
     viewModel.clearAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
@@ -47,27 +46,34 @@ function loadAllSelects($locationid, $trainingid)
             viewModel.addAvailableCourses(item.id, item.name);
         });
     });
-    viewModel.isUpdating = false;
-    if(viewModel.isUpdating = false) {
-        $("#location").on("change", function() {
-                loadAllSelects($("#location").val(), $("#training").val());
-        });
-        $("#training").on("change", function() {
-                loadAllSelects($("#location").val(), $("#training").val());
-        });
-    }
+    $("#location").bind("change", function() {
+        loadTrainingsAndCourses($("#location").val(), $("#training").val());
+    }) ;
+    $("#training").bind("change", function() {
+       loadCourses($("#location").val(), $("#training").val());
+    });
 }
 
-function bindEvents() {
-    if(!viewModel.isUpdating) {
-        $("#location").bind("change", function() {
-            loadAllSelects($("#location").val(), $("#training").val());
+function loadTrainingsAndCourses($locationid, $trainingid) {
+    viewModel.availableTrainings.clearAll();
+    view.availableCourses.clearAll();
+    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+        $.each(data[2], function(i, item) {
+            viewModel.addAvailableTrainings(item.id, item.name);
         });
-        $("#training").bind("change", function() {
-            loadAllSelects($("#location").val(), $("#training").val());
+        $.each(data[3], function(i, item) {
+            viewModel.addAvailableCourses(item.id, item.name);
         });
-        viewModel.isUpdating = false;
-    }
+    });
+}
+
+function loadCourses($locationid, $trainingid) {
+    view.availableCourses.clearAll();
+    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+        $.each(data[3], function(i, item) {
+            viewModel.addAvailableCourses(item.id, item.name);
+        });
+    });
 }
 
 
