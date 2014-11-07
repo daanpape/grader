@@ -50,12 +50,10 @@ function loadAllSelects($locationid, $trainingid)
     viewModel.isUpdating = false;
     if(viewModel.isUpdating = false) {
         $("#location").one("change", function() {
-            if(viewModel.isUpdating = false)
                 loadAllSelects($("#location").val(), $("#training").val());
 
         });
         $("#training").one("change", function() {
-            if(viewModel.isUpdating = false)
                 loadAllSelects($("#location").val(), $("#training").val());
         });
     }
