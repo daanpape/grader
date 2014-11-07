@@ -32,7 +32,6 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
-    var r = $.Deferred();
     viewModel.clearAll();
     $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
         $.each(data[1],function(i, item) {
@@ -45,25 +44,21 @@ function loadAllSelects($locationid, $trainingid)
             viewModel.addAvailableCourses(item.id, item.name);
         });
     });
-
-    setTimeout(function() {
-        r.resolve();
-    }, 2500);
-    return r;
+    bindEvents();
 }
 
 function bindEvents() {
     loadAllSelects(1,1);
-    $("#location").one("change", function() {
-        loadAllSelects($("#location").val(), $("#training").val());
+    $("#location").bind("change", function() {
+        $("#location").unbind("change").done($("#training").unbind("change").done(loadAllSelects($("#location").val(), $("#training").val())));
     });
-    $("#training").one("change", function() {
-        loadAllSelects($("#location").val(), $("#training").val());
+    $("#training").bind("change", function() {
+        $("#location").unbind("change").done($("#training").unbind("change").done(loadAllSelects($("#location").val(), $("#training").val())));
     });
 }
 
 
 
 function initPage() {
-    loadAllSelects(1,1).done(bindEvents());
+    loadAllSelects(1,1);
 }
