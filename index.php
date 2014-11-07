@@ -158,6 +158,16 @@ $app->get('/api/trainings/:locationId', function ($locationId) use ($app) {
     echo json_encode($pagedata);
 });*/
 
+$app->get('/api/test/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = GraderAPI::test($id);
+
+    echo json_encode($pagedata);
+});
+
 $app->get('/api/courses/:locationId/:trainingId', function($locationId, $trainingId) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
