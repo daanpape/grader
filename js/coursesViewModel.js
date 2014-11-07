@@ -48,26 +48,43 @@ function loadAllSelects($locationid, $trainingid)
     });
 }
 
-function loadTrainingsAndCourses($locationid, $trainingid) {
-    $("#location").unbind("change");
-    viewModel.availableTrainings.removeAll();
-    viewModel.availableCourses.removeAll();
-    $.getJSON('/api/courses/' + $locationid + '/' + $trainingid, function(data) {
-        $.each(data[2], function(i, item) {
-            viewModel.addAvailableTrainings(item.id, item.name);
-        });
-        $.each(data[3], function(i, item) {
-            viewModel.addAvailableCourses(item.id, item.name);
+//function loadTrainingsAndCourses($locationid, $trainingid) {
+//    $("#location").unbind("change");
+//    viewModel.availableTrainings.removeAll();
+//    viewModel.availableCourses.removeAll();
+//    $.getJSON('/api/courses/' + $locationid + '/' + $trainingid, function(data) {
+//        $.each(data[2], function(i, item) {
+//            viewModel.addAvailableTrainings(item.id, item.name);
+//        });
+//        $.each(data[3], function(i, item) {
+//            viewModel.addAvailableCourses(item.id, item.name);
+//        });
+//    });
+//}
+
+//function loadCourses($locationid, $trainingid) {
+//    $("#training").unbind("change");
+//    viewModel.availableCourses.removeAll();
+//    $.getJSON('/api/courses/' + $locationid + '/'  +  $trainingid, function(data) {
+//        $.each(data[3], function(i, item) {
+//            viewModel.addAvailableCourses(item.id, item.name);
+//        });
+//    });
+}
+
+function loadLocations() {
+    $.getJSON('/api/location', function(data) {
+        $.each(data, function(i, item) {
+            viewModel.addAvailableLocations(item.id, item.name);
         });
     });
 }
 
-function loadCourses($locationid, $trainingid) {
-    $("#training").unbind("change");
-    viewModel.availableCourses.removeAll();
-    $.getJSON('/api/courses/' + $locationid + '/'  +  $trainingid, function(data) {
-        $.each(data[3], function(i, item) {
-            viewModel.addAvailableCourses(item.id, item.name);
+function loadTraining($id) {
+    $('#training').show();
+    $.getJSON("/api/training/" + $id, function(data) {
+        $.each(data, function(i, item) {
+            viewModel.addAvailableTrainings(item.id, item.name);
         });
     });
 }
@@ -75,15 +92,23 @@ function loadCourses($locationid, $trainingid) {
 
 
 function initPage() {
-    loadAllSelects(1,4);
+//    loadAllSelects(1,4);
+//    $("#location").on("click", function() {
+//       $("#location").one("change", function() {
+//           loadTrainingsAndCourses($("#location").val(), $("#training").val());
+//       });
+//    });
+//    $("#training").on("click", function() {
+//        $("#training").one("change", function() {
+//            loadCourses($("#training").val(), $("#training").val());
+//        });
+//    });
+    $('#training').hide();
+    $("#course").hide();
+    loadLocations();
     $("#location").on("click", function() {
        $("#location").one("change", function() {
-           loadTrainingsAndCourses($("#location").val(), $("#training").val());
+           loadTraining($("#location").val());
        });
-    });
-    $("#training").on("click", function() {
-        $("#training").one("change", function() {
-            loadCourses($("#training").val(), $("#training").val());
-        });
     });
 }
