@@ -189,7 +189,31 @@ class ClassDAO {
         }
     }
 
+    public static function getFirstCoursesByLocation($id) {
+        try {
+//           $conn = Db::getConnection();
+//            $stmt1 = $conn->prepare("SELECT TOP 1 id FROM training WHERE location = :location");
+//            $stmt1->bindValue(':location', (int) $id, PDO::PARAM_INT);
+//            $stmt1->execute();
+//
+//            $stmt2 = $conn->prepare("SELECT * from course WHERE training = :training");
+//            $stmt2->bindValue(':training', (int) $stmt1->fetchAll(PDO::FETCH_CLASS), PDO::PARAM_INT);
+//            $stmt2->execute();
+//
+//            return $stmt2->fetchAll(PDO::FETCH_CLASS);
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course WHERE training.location = :location JOIN training on course.training = training.id");
+            $stmt->bindValue(':LOCATION', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+
+        } catch (PDOException $err) {
+            Logger::logError('Could not get courses', $err);
+            return false;
+        }
+    }
 }
+
 
 /*
  * Database Access Object for accessing account information
