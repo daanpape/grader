@@ -48,7 +48,17 @@ function loadAllSelects($locationid, $trainingid)
         });
     });
     viewModel.isUpdating = false;
-    bindEvents();
+    if(viewModel.isUpdating = false) {
+        $("#location").one("change", function() {
+            if(viewModel.isUpdating = false)
+                loadAllSelects($("#location").val(), $("#training").val());
+
+        });
+        $("#training").one("change", function() {
+            if(viewModel.isUpdating = false)
+                loadAllSelects($("#location").val(), $("#training").val());
+        });
+    }
 }
 
 function bindEvents() {
@@ -60,9 +70,6 @@ function bindEvents() {
             loadAllSelects($("#location").val(), $("#training").val());
         });
         viewModel.isUpdating = false;
-    } else {
-        $("#location").unbind("change");
-        $("#training").unbind("change");
     }
 }
 
