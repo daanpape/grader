@@ -46,6 +46,7 @@ function loadAllSelects($locationid, $trainingid)
             viewModel.addAvailableCourses(item.id, item.name);
         });
     })).done($("#location").bind("change", function() {
+            alert("hallo");
             loadTrainingsAndCourses($("#location").val(), $("#training").val());
         }));
 }
