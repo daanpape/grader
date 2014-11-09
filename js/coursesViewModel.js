@@ -62,6 +62,7 @@ function loadTrainingsAndCourses($locationid, $trainingid) {
 }
 
 function loadCourses($locationid, $trainingid) {
+    $("#location").unbind("change");
     $("#training").unbind("change");
     viewModel.availableCourses.removeAll();
     $.getJSON('/api/courses/' + $locationid + '/'  +  $trainingid, function(data) {
