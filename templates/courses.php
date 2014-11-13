@@ -23,10 +23,12 @@ $location = "courses";
 <!-- Header container -->
 <div class="container">
     <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
+    <div class="col-lg-12"><select id="location" data-bind="options: availableLocations, optionsText: 'locationName', optionsValue: 'id'"></select></div>
 
-    <select id="location" data-bind="options: availableLocations, optionsText: 'locationName', optionsValue: 'id'"></select>
     <select id="training" data-bind="options: availableTrainings, optionsText: 'trainingName', optionsValue: 'id'"></select>
     <select id="course" data-bind="options: availableCourses, optionsText: 'courseName', optionsValue: 'id'"></select>
+
+    <button class="btn btn-lg"></button>
 </div>
 
 <!-- Content container -->

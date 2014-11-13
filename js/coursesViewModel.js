@@ -32,37 +32,58 @@ function pageViewModel(gvm) {
 
 function loadAllSelects($locationid, $trainingid)
 {
-    $("#location").unbind("change");
     viewModel.clearAll();
-    $.getJSON('/api/locations', function(data){
-        // Load table data
-        $.each(data, function(i, item) {
+    $.getJSON('/api/courses/' + $locationid + '/' +  $trainingid, function(data) {
+        $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
-    });
-    $.getJSON('/api/trainings/' + $locationid, function(data){
-        // Load table data
-        $.each(data, function(i, item) {
+        $.each(data[2], function(i, item) {
             viewModel.addAvailableTrainings(item.id, item.name);
         });
-    });
-    $.getJSON('/api/courses/' + $trainingid, function(data) {
-        $.each(data, function(i, item) {
+        $.each(data[3], function(i, item) {
             viewModel.addAvailableCourses(item.id, item.name);
         });
     });
-    bindEvents();
 }
 
-function bindEvents() {
-    $("#location").on("change", function() {
-        alert("hallo");
-        //loadAllSelects($("#location").val(), $("#training").val());
+function loadTrainingsAndCourses($locationid, $trainingid) {
+    $("#location").unbind("change");
+    $("#training").unbind("change");
+    viewModel.availableTrainings.removeAll();
+    viewModel.availableCourses.removeAll();
+    $.getJSON('/api/courses/' + $locationid + '/' + $trainingid, function(data) {
+        $.each(data[2], function(i, item) {
+            viewModel.addAvailableTrainings(item.id, item.name);
+        });
+        $.each(data[3], function(i, item) {
+            viewModel.addAvailableCourses(item.id, item.name);
+        });
+    });
+}
+
+function loadCourses($locationid, $trainingid) {
+    $("#location").unbind("change");
+    $("#training").unbind("change");
+    viewModel.availableCourses.removeAll();
+    $.getJSON('/api/courses/' + $locationid + '/'  +  $trainingid, function(data) {
+        $.each(data[3], function(i, item) {
+            viewModel.addAvailableCourses(item.id, item.name);
+        });
     });
 }
 
 
 
 function initPage() {
-    loadAllSelects(1, 1);
+    loadAllSelects(1,4);
+    $("#location").on("click", function() {
+       $("#location").one("change", function() {
+           loadTrainingsAndCourses($("#location").val(), $("#training").val());
+       });
+    });
+    $("#training").on("click", function() {
+        $("#training").one("change", function() {
+            loadCourses($("#training").val(), $("#training").val());
+        });
+    });
 }

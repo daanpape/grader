@@ -188,8 +188,8 @@ class ClassDAO {
             return false;
         }
     }
-
 }
+
 
 /*
  * Database Access Object for accessing account information
