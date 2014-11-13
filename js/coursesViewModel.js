@@ -12,10 +12,9 @@ function pageViewModel(gvm) {
     /*
      * Update the location dropdown list
      */
-    gvm.updateLocations = function() {
-        
+    gvm.updateLocations = function() {      
         $.getJSON('/api/locations', function(data) {
-            availableLocations.removeAll();
+            gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
                 /* Put item in list */
                 gvm.availableLocations.push(item);
@@ -32,10 +31,9 @@ function pageViewModel(gvm) {
     /*
      * Update the training data
      */
-    gvm.updateTrainings = function(id) {
-        
+    gvm.updateTrainings = function(id) {   
         $.getJSON('/api/trainings/' + id, function(data) {
-            availableTrainings.removeAll();
+            gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableTrainings.push(item);
             });
@@ -47,10 +45,9 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.updateCourses = function(id) {
-        
+    gvm.updateCourses = function(id) { 
         $.getJSON('/api/courses/' + id, function(data) {
-            availableCourses.removeAll();
+            gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableCourses.push(item);
             });
