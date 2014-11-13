@@ -27,15 +27,12 @@ $location = "courses";
     </div>
     <div class="row">
         <div class="dropdown col-md-4">
-            <button class="btn btn-default dropdown-toggle" type="button" id="availableLocations" data-toggle="dropdown" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                 Locations
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="availableLocations">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: locationName"</a> </li>
             </ul>
         </div>
 
@@ -54,7 +51,7 @@ $location = "courses";
 
         <div class="dropdown col-md-4">
             <button class="btn btn-default dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
-                trainings
+                Courses
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
