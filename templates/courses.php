@@ -26,19 +26,47 @@ $location = "courses";
         <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
     </div>
     <div class="row">
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                Dropdown
+        <div class="dropdown col-md-4">
+            <button class="btn btn-default dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+                Locations
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: locationName"</a> </li>
+            </ul>
+        </div>
+
+        <div class="dropdown col-md-4">
+            <button class="btn btn-default dropdown-toggle" type="button" id="availableTrainings" data-toggle="dropdown" aria-expanded="true">
+                trainings
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
             </ul>
         </div>
+
+        <div class="dropdown col-md-4">
+            <button class="btn btn-default dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
+                Courses
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            </ul>
+
+        </div>
     </div>
+
+
+
+
     <div class="col-lg-12"><select id="location" data-bind="options: availableLocations, optionsText: 'locationName', optionsValue: 'id'"></select></div>
 
     <select id="training" data-bind="options: availableTrainings, optionsText: 'trainingName', optionsValue: 'id'"></select>
