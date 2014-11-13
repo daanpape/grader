@@ -41,7 +41,7 @@
                 <?php
                     if(Security::isUserLoggedIn()){
                         echo '<li><a href="#" id="usermanagement">'.Security::getLoggedInName().'</a></li>';
-                        echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn">Logout</a></li>';
+                        echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
                     } else {
                         echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
                     }
@@ -70,7 +70,7 @@
         <div class="modal_error" id="login_error"></div>
         <form id="loginform">
             <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Username" data-bind="attr: {placeholder: email}" name="username">
+                <input type="text" class="form-control input-lg" placeholder="Email" data-bind="attr: {placeholder: email}" name="email">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control input-lg" placeholder="Password" data-bind="attr: {placeholder: password}" name="password">

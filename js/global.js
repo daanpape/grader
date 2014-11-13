@@ -41,7 +41,7 @@ function GlobalViewModel()
     this.notMemberBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("NotMemberYetBtn");}, this);
     this.loginBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LoginBtn");}, this);
     this.logoutBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LogoutBtn")}, this);
-    this.email = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Username");}, this);
+    this.email = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Email");}, this);
     this.password = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Password");}, this);
     this.coursesbtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("CourseButton")}, this);
     this.projecttypeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ProjecttypesButton");}, this); 

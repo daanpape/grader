@@ -21,7 +21,7 @@ $('document').ready(function(){
         // Post the form 
         $.ajax({
             type: "POST",
-            url: "/login/" + encodeURIComponent($('#loginform').find('input[name="username"]').val()),
+            url: "/login/" + encodeURIComponent($('#loginform').find('input[name="email"]').val()),
             data: $('#loginform').serialize(),
             success: function() {
                 // Reload page when logged in 
