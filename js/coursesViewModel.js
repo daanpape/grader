@@ -36,12 +36,11 @@ function pageViewModel(gvm) {
             gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableTrainings.push(item);
-            });
-            
-            /* Add listener to listitem */
-            $("#trainingbtn-" + item.id).click(function(){
-                alert('test');
-                gvm.updateCourses(item.id);
+                
+                /* Add listener to listitem */
+                $("#trainingbtn-" + item.id).click(function(){
+                    gvm.updateCourses(item.id);
+                });
             });
         });
     }
@@ -51,11 +50,11 @@ function pageViewModel(gvm) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableCourses.push(item);
-            });
-            
-            /* Add listener to listitem */
-            $("#coursebtn-" + item.id).click(function(){
-                alert("You selected course: " + item.name);
+                
+                /* Add listener to listitem */
+                $("#coursebtn-" + item.id).click(function(){
+                    alert("You selected course: " + item.name);
+                });
             });
         });
     }
