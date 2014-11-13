@@ -83,7 +83,7 @@ function loadCourses($locationid, $trainingid) {
 
 function updateDropLists() {
     $.getJSON('/api/locations', function(data) {
-        gvm.updateLocations(data);
+        viewModel.updateLocations(data);
     });
 }
 
