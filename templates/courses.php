@@ -38,7 +38,7 @@ $location = "courses";
 
         <div class="dropdown col-md-4">
             <button class="btn btn-default dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
-                trainings
+                Trainings
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
@@ -51,7 +51,7 @@ $location = "courses";
                 Courses
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="availableCourses">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
             </ul>
 
