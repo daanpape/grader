@@ -52,7 +52,7 @@ $location = "courses";
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="availableCourses">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ><span data-bind="text: name"></span></a> </li>
             </ul>
 
         </div>
