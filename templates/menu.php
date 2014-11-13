@@ -70,7 +70,7 @@
         <div class="modal_error" id="login_error"></div>
         <form id="loginform">
             <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Username" data-bind="attr: {placeholder: username}" name="username">
+                <input type="text" class="form-control input-lg" placeholder="Username" data-bind="attr: {placeholder: email}" name="username">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control input-lg" placeholder="Password" data-bind="attr: {placeholder: password}" name="password">
