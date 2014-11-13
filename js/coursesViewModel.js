@@ -8,6 +8,15 @@ function pageViewModel(gvm) {
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
+    
+    /*
+     * Update the location dropdown list
+     */
+    gvm.updateLocations = function(locationData) {
+        $.each(locationData, function(i, item) {
+            gvm.availableLocations.push(item);
+        });
+    }
 
     gvm.addAvailableLocations = function(id, name) {
         var selectObject = {id: id, locationName: name};
@@ -72,9 +81,18 @@ function loadCourses($locationid, $trainingid) {
     });
 }
 
+function updateDropLists() {
+    $.getJSON('/api/locations', function(data) {
+        gvm.updateLocations(data);
+    });
+}
 
 
 function initPage() {
+    
+    updateDropLists();
+    
+    /*
     loadAllSelects(1,4);
     $("#location").on("click", function() {
        $("#location").one("change", function() {
@@ -86,4 +104,5 @@ function initPage() {
             loadCourses($("#training").val(), $("#training").val());
         });
     });
+   */
 }
