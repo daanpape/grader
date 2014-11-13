@@ -37,15 +37,12 @@ $location = "courses";
         </div>
 
         <div class="dropdown col-md-4">
-            <button class="btn btn-default dropdown-toggle" type="button" id="availableTrainings" data-toggle="dropdown" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
                 trainings
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: trainingName"></span></a></li>
             </ul>
         </div>
 
@@ -55,10 +52,6 @@ $location = "courses";
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="availableTrainings">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
             </ul>
 
         </div>
