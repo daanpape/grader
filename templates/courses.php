@@ -57,16 +57,6 @@ $location = "courses";
 
         </div>
     </div>
-
-
-
-
-    <div class="col-lg-12"><select id="location" data-bind="options: availableLocations, optionsText: 'locationName', optionsValue: 'id'"></select></div>
-
-    <select id="training" data-bind="options: availableTrainings, optionsText: 'trainingName', optionsValue: 'id'"></select>
-    <select id="course" data-bind="options: availableCourses, optionsText: 'courseName', optionsValue: 'id'"></select>
-
-    <button class="btn btn-lg"></button>
 </div>
 
 <!-- Content container -->
