@@ -31,7 +31,7 @@ $location = "courses";
                 Locations
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: locationName"</a> </li>
             </ul>
         </div>

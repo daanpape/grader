@@ -37,7 +37,6 @@ function loadAllSelects($locationid, $trainingid)
         $.each(data[1],function(i, item) {
             viewModel.addAvailableLocations(item.id, item.name);
         });
-        gvm.availableLocations1 = ko.observableArray(gvm.availableLocations);
         $.each(data[2], function(i, item) {
             viewModel.addAvailableTrainings(item.id, item.name);
         });
