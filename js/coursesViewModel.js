@@ -19,8 +19,7 @@ function pageViewModel(gvm) {
                 gvm.availableLocations.push(item);
                 
                 /* Add listener to listitem */
-                $("locbtn-" + item.id).click(function(){
-                    alert("test");
+                $("#locbtn-" + item.id).click(function(){
                     gvm.updateTrainings(item.id);
                 });
             });
@@ -38,7 +37,7 @@ function pageViewModel(gvm) {
             });
             
             /* Add listener to listitem */
-            $("trainingbtn-" + item.id).click(function(){
+            $("#trainingbtn-" + item.id).click(function(){
                 gvm.updateCourses(item.id);
             });
         });
