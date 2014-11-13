@@ -12,8 +12,26 @@ function pageViewModel(gvm) {
     /*
      * Update the location dropdown list
      */
-    gvm.updateLocations = function(locationData) {
-        $.each(locationData, function(i, item) {
+    gvm.updateLocations = function() {
+        $.getJSON('/api/locations', function(data) {
+            $.each(data, function(i, item) {
+                /* Put item in list */
+                gvm.availableLocations.push(item);
+                
+                /* Add listener to listitem */
+                //$("locbtn-" + item.id).click(function(){
+
+                //});
+            });
+        });
+        
+    }
+    
+    /*
+     * Update the training data
+     */
+    gvm.updateTrainings = function(trainingData) {
+        $.each(trainingData, function(i, item) {
             gvm.availableLocations.push(item);
         });
     }
@@ -81,16 +99,14 @@ function loadCourses($locationid, $trainingid) {
     });
 }
 
-function updateDropLists() {
-    $.getJSON('/api/locations', function(data) {
-        viewModel.updateLocations(data);
-    });
-}
 
 
 function initPage() {
+    viewModel.updateLocations();
     
-    updateDropLists();
+    $("testcliker").click(function(){
+        alert('test');
+    });
     
     /*
     loadAllSelects(1,4);

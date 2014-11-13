@@ -31,8 +31,8 @@ $location = "courses";
                 Locations
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: name, attr: {'data-id': id}"></span></a> </li>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + tid}"><span data-bind="text: name, attr: {'data-id': id}"></span></a> </li>
             </ul>
         </div>
 
@@ -42,7 +42,7 @@ $location = "courses";
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: trainingName"></span></a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'trainingbtn-' + tid}"><span data-bind="text: name, attr: {'data-id': id}"></span></a></li>
             </ul>
         </div>
 
