@@ -7,7 +7,6 @@ function pageViewModel(gvm) {
 
 }
 
-
 function initPage() {
     // Attach form validation 
     $('#registerform').bootstrapValidator({

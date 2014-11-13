@@ -26,7 +26,7 @@ $location = "register";
         </div>
 
         <!-- Content container -->
-        <div class="container">
+        <div class="container" id="regcontent">
             <p>
                 Register for a Grader account on this page. 
             </p>
