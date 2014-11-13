@@ -40,6 +40,7 @@ function pageViewModel(gvm) {
             
             /* Add listener to listitem */
             $("#trainingbtn-" + item.id).click(function(){
+                alert('test');
                 gvm.updateCourses(item.id);
             });
         });
