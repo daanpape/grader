@@ -26,8 +26,8 @@ $location = "courses";
         <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
     </div>
     <div class="row">
-        <div class="dropdown col-md-4">
-            <button class="btn btn-default btn-block text-center dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+        <div class="dropdown col-lg-4">
+            <button class="btn btn-default dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                 Locations
                 <span class="caret"></span>
             </button>
@@ -36,7 +36,7 @@ $location = "courses";
             </ul>
         </div>
 
-        <div class="dropdown col-md-4">
+        <div class="dropdown col-lg-4">
             <button class="btn btn-default dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
                 Trainings
                 <span class="caret"></span>
@@ -46,7 +46,7 @@ $location = "courses";
             </ul>
         </div>
 
-        <div class="dropdown col-md-4">
+        <div class="dropdown col-lg-4">
             <button class="btn btn-default dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
                 Courses
                 <span class="caret"></span>
@@ -56,6 +56,9 @@ $location = "courses";
             </ul>
 
         </div>
+
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><button class="btn btn-lg">Verder</button></div>
     </div>
 </div>
 
