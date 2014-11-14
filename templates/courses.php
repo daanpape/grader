@@ -26,8 +26,8 @@ $location = "courses";
         <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
     </div>
     <div class="row">
-        <div class="dropdown center-block col-md-4">
-            <button class="btn btn-default dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+        <div class="dropdown col-md-4">
+            <button class="btn btn-default btn-block text-center dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                 Locations
                 <span class="caret"></span>
             </button>
