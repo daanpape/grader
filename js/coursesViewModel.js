@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
                     $(".btn-location span:first").text($(this).text());
                 });
             });
-        });
+        }).done(console.log($(".dropdown-location li a:first").text()));
         console.log($(".dropdown-location li a:first").text());
         $(".btn-location span:first").text($(".dropdown-location li a:first").text());
     }
