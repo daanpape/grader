@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#locbtn-" + item.id).click(function(){
                     gvm.updateTrainings(item.id);
-                    $(".btn-location span").text($(this).text() + "<span class=\"caret\"></span>");
+                    $(".btn-location span").text($(this).text());
                 });
             });
         });
