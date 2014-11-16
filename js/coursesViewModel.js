@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    }.done($(".btn-location span:first").text($(".dropdown-location li a:first").text()))
+    }.done($(".btn-location span:first").text($(".dropdown-location li a:first").text()));
     
     /*
      * Update available courses
