@@ -22,6 +22,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#locbtn-" + item.id).click(function(){
                     gvm.updateTrainings(item.id);
+                    console.log($(this).text());
                     $(".btn-location").text($(this).text);
                 });
             });
