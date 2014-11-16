@@ -58,7 +58,6 @@ function pageViewModel(gvm) {
                 
                 /* Add listener to listitem */
                 $("#coursebtn-" + item.id).click(function(){
-                    alert("You selected course: " + item.name);
                     $(".btn-course span:first").text($(this).text());
                 });
             });
