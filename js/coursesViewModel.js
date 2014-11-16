@@ -26,7 +26,8 @@ function pageViewModel(gvm) {
                 });
             });
         });
-        $(".btn-location span:first").text($(".dropdown-location li a:first span").text());
+        console.log($(".dropdown-location li a:first").text());
+        $(".btn-location span:first").text($(".dropdown-location li a:first").text());
     }
     
     /*
