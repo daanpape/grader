@@ -23,7 +23,7 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.updateTrainings(item.id);
                     console.log($(this).text());
-                    $(".btn-location").text($(this).text);
+                    $(".btn-location").text($(this).text() + "<span class=\"caret\"></span>");
                 });
             });
         });
@@ -67,9 +67,4 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.updateLocations();
-    console.log("hallo");
-    $(".dropdown-location li a").click(function() {
-        console.log("clicked");
-        $(".btn-location").text($(this).text);
-    });
 }
