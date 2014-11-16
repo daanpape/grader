@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#locbtn-" + item.id).click(function(){
                     gvm.updateTrainings(item.id);
-                    $(".btn-location span").text($(this).text());
+                    $(".btn-location span:first").text($(this).text());
                 });
             });
         });
@@ -41,6 +41,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.updateCourses(item.id);
+                    $(".btn-training span:first").text($(this).text());
                 });
             });
         });
@@ -58,6 +59,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#coursebtn-" + item.id).click(function(){
                     alert("You selected course: " + item.name);
+                    $(".btn-course span:first").text($(this).text());
                 });
             });
         });
