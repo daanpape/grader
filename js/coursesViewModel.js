@@ -65,7 +65,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.updateLocations();
-    $(".dropdown-location li a").click(function() {
+    $(".dropdown-location li a span").click(function() {
         console.log("clicked");
         $(".btn-location").text($(this).text);
     });
