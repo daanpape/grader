@@ -37,7 +37,7 @@ $location = "projects";
                         <span class="pull-right caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-location" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
 
@@ -57,7 +57,7 @@ $location = "projects";
                         <span class="pull-right caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-course" role="menu" aria-labelledby="availableCourses" data-bind="foreach: availableCourses">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
 
                 </div>
