@@ -324,7 +324,6 @@ function showEditProjectTypeModal(code, name, description, tid)
 
 function initPage() {
     viewModel.updateLocations();
-    loadTablePage(1);
     
     // Add button handlers
     $('#addProjectTypeBtn').click(function(){
