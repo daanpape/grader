@@ -66,7 +66,7 @@ class ClassDAO {
     public static function getProjectsByCourseId($courseid, $start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM project WHERE courseid = :courseid LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM project WHERE course = :courseid LIMIT :start,:count");
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
@@ -85,6 +85,19 @@ class ClassDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM project");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all projects in the database', $err);
+            return 0;
+        }
+    }
+
+    public static function getProjectCountByCourseId($courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM project WHERE course = :courseid");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
