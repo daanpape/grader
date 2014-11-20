@@ -15,6 +15,64 @@ function pageViewModel(gvm) {
     gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
+    gvm.availableLocations = ko.observableArray([]);
+    gvm.availableTrainings = ko.observableArray([]);
+    gvm.availableCourses = ko.observableArray([]);
+
+    /*
+     * Update the location dropdown list
+     */
+    gvm.updateLocations = function() {
+        $.getJSON('/api/locations', function(data) {
+            gvm.availableLocations.removeAll();
+            $.each(data, function(i, item) {
+                /* Put item in list */
+                gvm.availableLocations.push(item);
+
+                /* Add listener to listitem */
+                $("#locbtn-" + item.id).click(function(){
+                    gvm.updateTrainings(item.id);
+                    $(".btn-location span:first").text($(this).text());
+                });
+            });
+        });
+    }
+
+    /*
+     * Update the training data
+     */
+    gvm.updateTrainings = function(id) {
+        $.getJSON('/api/trainings/' + id, function(data) {
+            gvm.availableTrainings.removeAll();
+            $.each(data, function(i, item) {
+                gvm.availableTrainings.push(item);
+
+                /* Add listener to listitem */
+                $("#trainingbtn-" + item.id).click(function(){
+                    gvm.updateCourses(item.id);
+                    $(".btn-training span:first").text($(this).text());
+                });
+            });
+        });
+    }
+
+    /*
+     * Update available courses
+     */
+    gvm.updateCourses = function(id) {
+        $.getJSON('/api/courses/' + id, function(data) {
+            gvm.availableCourses.removeAll();
+            $.each(data, function(i, item) {
+                gvm.availableCourses.push(item);
+
+                /* Add listener to listitem */
+                $("#coursebtn-" + item.id).click(function(){
+                    $(".btn-course span:first").text($(this).text());
+                });
+            });
+        });
+    }
+
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
@@ -265,6 +323,7 @@ function showEditProjectTypeModal(code, name, description, tid)
 }
 
 function initPage() {
+    viewModel.updateLocations();
     loadTablePage(1);
     
     // Add button handlers
