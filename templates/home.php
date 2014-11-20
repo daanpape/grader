@@ -32,6 +32,16 @@ $location = "home";
                     before using the service.</p>
             </div>
         </div>
+        
+        <!-- Header container -->
+        <div class="container">
+            <h1 class="page-header">Uw openstaande projecten</h1>
+        </div>
+        
+        <!-- Header container -->
+        <div class="container">
+            <h1 class="page-header">Te beoordelen projecten</h1>
+        </div>
 
         <?php include_once('jsdepends.php') ?>
     </body>
