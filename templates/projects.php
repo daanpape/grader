@@ -47,7 +47,7 @@ $location = "projects";
                         <span class="pull-right caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-training" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'trainingbtn-' + id}"><span data-bind="text: name"></span></a></li>
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'trainingbtn-' + id}"><span data-bind="text: name"></span></a></li>
                     </ul>
                 </div>
 
