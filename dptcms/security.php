@@ -181,15 +181,20 @@ class Security {
         } else {
             // Get the role assigned to this user
             $roles = UserDAO::getUserRoles($_SESSION['username']);
+            $permissions = array();
             
             /* Get the permissions for each user role */
             foreach ($roles as $role) {
-                echo $role;
+                /* Foreach role fetch the permissions */
+                $role_perms = UserDAO::getPermissionsFromRole($role);
+                
+                /* Use array keys as set */
+                foreach($role_perms as $perm) {
+                    $permissions[$perm] = $perm;
+                }
             }
-            
-            // Get user permissions based on username
-            // TODO
-            return UserDAO::getGuestPermissions();
+
+            return $permissions;
         }
     }
     
@@ -211,13 +216,13 @@ class Security {
          * Use star as wildcard
          */
         foreach (self::getUserPermissions() as $perm) {
-            if ($perm[0] === $permission) { 
+            if ($perm === $permission) { 
                 $auth = true;
                 break;
             } else {
                 /* Check for star wildcard in permission */
-                if(substr($perm[0], -1) == '*'){
-                    if(self::startsWith($permission, rtrim($perm[0], '*'))){
+                if(substr($perm, -1) == '*'){
+                    if(self::startsWith($permission, rtrim($perm, '*'))){
                         $auth = true;
                         break;
                     }
