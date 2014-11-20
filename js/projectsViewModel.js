@@ -19,6 +19,8 @@ function pageViewModel(gvm) {
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
 
+    gvm.currentCourseId = null;
+
     /*
      * Update the location dropdown list
      */
@@ -68,6 +70,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#coursebtn-" + item.id).click(function(){
                     $(".btn-course span:first").text($(this).text());
+                    gvm.currentCourseId = item.id;
                     loadTablePage(item.id, 1);
                 });
             });
@@ -166,7 +169,7 @@ function updateProjecttypeForm(id, serialData, callback) {
         data: serialData,
         success: function(data) {
             //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-            loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
+            loadTablePage(viewModel.currentCourseId, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
             callback(true);
         },
         error: function(data) {
