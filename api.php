@@ -18,6 +18,10 @@ class GraderAPI {
         /* Return the requested pages */
         return ClassDAO::getAllProjects($start, $count);
     }
+
+    public static function getProjectFromCourseId($courseid, $start, $count) {
+        return ClassDAO::getProjectsByCourseId($courseid, $start, $count);
+    }
     
     public static function getProjectCount() {
         /* Return the number of projecttypes currently in the database */

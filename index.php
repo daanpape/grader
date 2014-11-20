@@ -128,6 +128,22 @@ $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
+$app->get('/api/projects/:courseid/page/:pagenr', function ($courseid, $pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+
+    // Get total number of projecttypes in the database
+    $pagedata = GraderAPI::getProjectFromCourseId($courseid, $pg->start, $pg->count);
+    $totalprojects = GraderAPI::getProjectCount();
+
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
+});
+
 $app->get('/api/locations', function () use ($app) {
     // Use json headers
     $response = $app->response();
