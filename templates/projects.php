@@ -22,10 +22,11 @@ $location = "projects";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: selectCourse">Select course</h1>
+            <h1 class="page-header" data-bind="text: pageHeader">Projects</h1>
         </div>
         <!-- Content container -->
         <div class="container">
+            <div ><span data-bind="text: selectCourse">Select course</span>:</div>
             <div class="row">
                 <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
@@ -60,12 +61,9 @@ $location = "projects";
             </div>
         </div>
         
-        <!-- Header container -->
-        <div class="container">
-            <h1 class="page-header" data-bind="text: foundProjects">Found projects</h1>
-        </div>
         <!-- Content container -->
         <div class="container">
+            <div ><span data-bind="text: foundProjects">Found projects</span>:</div>
             <table class="table table-striped">
                 <thead>
                     <tr>
