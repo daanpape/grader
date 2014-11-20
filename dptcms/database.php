@@ -331,7 +331,7 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT r.role FROM roles r INNER JOIN user_roles ur ON ur.role_id = r.id INNER JOIN users us ON us.id = ur.user_id WHERE us.username = ?");
             $stmt->execute(array($username));
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         } catch (PDOException $err) {
             return null;
         }
