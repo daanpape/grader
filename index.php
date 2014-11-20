@@ -53,6 +53,9 @@ $app->get('/home', function () use ($app) {
 $app->get('/projects', function () use ($app) {
     $app->render('projects.php');
 });
+$app->get('/project/:id', function ($id) use($app) {
+    $app->render('project.php', array('projectid' => $id));
+});
 $app->get('/register', function () use ($app) {
     $app->render('register.php');
 });
@@ -140,6 +143,7 @@ $app->get('/api/projects/:courseid/page/:pagenr', function ($courseid, $pagenr) 
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
+
 
 $app->get('/api/locations', function () use ($app) {
     // Use json headers
