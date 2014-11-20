@@ -10,7 +10,7 @@ I18n.localeCache = {};
 
 I18n.prototype = {
     defaultLocale: "en",
-    directory: __DIR__ + "/locales",
+    directory: "//locales",
     extension: ".min.json",
 
     getLocale: function(){
