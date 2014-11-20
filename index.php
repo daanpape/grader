@@ -62,6 +62,9 @@ $app->get('/register', function () use ($app) {
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
+$app->get('/account', function() use ($app) {
+    $app->render('account.php');
+});
 $app->get('/unauthorized', function() use ($app) {
     $app->render('unauthorized.php');
 });

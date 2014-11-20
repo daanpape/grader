@@ -1,6 +1,7 @@
 {
     "AppName" : "Beoordelings tool",
     "HomeTitle" : "Welkom",
+    "AccountTitle" : "My Account",
     "ProjectName" : "Grader",
     "LoginModalTitle" : "Aanmelden",
     "HomeButton" : "Home",
