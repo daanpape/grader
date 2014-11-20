@@ -9,7 +9,7 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
     gvm.getProjectInfo = function() {
-        $.getJSON('/api/project/' + $("#projectHeader").val(), function(data) {
+        $.getJSON('/api/project/' + $("#projectHeader").data('id'), function(data) {
             console.log(data.code + ' ' + data.name);
             gvm.pageHeader(data.code + ' ' + data.name);
         });
