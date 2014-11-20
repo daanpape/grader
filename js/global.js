@@ -3,7 +3,7 @@ var viewModel = null;
 
 // Instantiate localisation 
 var i18n = new I18n({
-    directory: "locales",
+    directory: "/locales",
     locale: document.documentElement.lang,
     extension: ".json"
 });
