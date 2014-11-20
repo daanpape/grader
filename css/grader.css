@@ -116,3 +116,6 @@ body {
 .btn-wide {
     width: 100%;
 }
+.caret {
+    margin-top: 2px;
+}
