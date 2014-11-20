@@ -10,7 +10,8 @@ function pageViewModel(gvm) {
 
     gvm.getProjectInfo = function(data) {
         $.getJSON('/api/project/' + $("#projectHeader").val(), function() {
-
+            console.log(data.code + ' ' + data.name);
+            gvm.pageHeader(data.code + ' ' + data.name);
         });
     };
     
