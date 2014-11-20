@@ -36,7 +36,7 @@ $location = "projects";
                         <span class="text-center">Locations</span>
                         <span class="pull-right caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-location" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
+                    <ul class="dropdown-menu dropdown-location li-wide" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
