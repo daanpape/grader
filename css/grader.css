@@ -113,3 +113,6 @@ body {
 .table {
     margin-top: 15px;
 }
+.btn-wide {
+    width: 100%;
+}

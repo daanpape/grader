@@ -32,7 +32,7 @@ $location = "projects";
 
             <div class="row">
                 <div class="dropdown col-md-4">
-                    <button class="btn btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wid btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                         <span>Locations</span>
                         <span class="caret"></span>
                     </button>
@@ -42,7 +42,7 @@ $location = "projects";
                 </div>
 
                 <div class="dropdown col-md-4">
-                    <button class="btn btn-default btn-training dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
                         <span>Trainings</span>
                         <span class="caret"></span>
                     </button>
@@ -52,7 +52,7 @@ $location = "projects";
                 </div>
 
                 <div class="dropdown col-md-4">
-                    <button class="btn btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wide btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
                         <span>Courses</span>
                         <span class="caret"></span>
                     </button>
