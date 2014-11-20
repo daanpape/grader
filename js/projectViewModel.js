@@ -9,10 +9,10 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
     gvm.getProjectInfo = function(data) {
-        /*$.getJSON('/api/project/' + $("#projectHeader").val(), function() {
+        $.getJSON('/api/project/' + $("#projectHeader").val(), function() {
             console.log(data.code + ' ' + data.name);
             gvm.pageHeader(data.code + ' ' + data.name);
-        });*/
+        });
     };
     
     
