@@ -120,6 +120,10 @@ body {
 .caret {
     margin-top: 8px;
 }
+.ul-wide {
+    width: 100%;
+    margin-top: -15px;
+}
 .li-wide {
     width: 100%;
 }
