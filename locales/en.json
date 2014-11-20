@@ -1,6 +1,7 @@
 {
     "AppName" : "Assessment tool",
     "HomeTitle" : "Welcome",
+    "AccountTitle" : "My account",
     "ProjectName" : "Grader",
     "LoginModalTitle" : "Login",
     "HomeButton" : "Home",

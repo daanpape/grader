@@ -22,7 +22,7 @@ $location = "account";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" data-bind="text: pageHeader">Account</h1>
+    <h1 class="page-header"><span data-bind="text: pageHeader">My Account</span>: <?php echo Security::getLoggedInName() ?></h1>
 </div>
 
 <!-- Content container -->
