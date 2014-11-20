@@ -27,6 +27,13 @@ $location = "account";
 
 <!-- Content container -->
 <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
 </div>
 
 <?php include_once('jsdepends.php') ?>
