@@ -373,26 +373,11 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT p.permission FROM permissions p INNER JOIN role_permissions rp ON p.id = rp.permission_id INNER JOIN roles r ON r.id = rp.role_id WHERE r.role = ?");
             $stmt->execute(array($role));
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         } catch (PDOException $err) {
             return null;
         }
     }
-
-    /*
-     * Get all the user permissions given the user roles 
-     */
-    public static function getUserPermissions($roles) { 
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT p.permission FROM permissions p INNER JOIN role_permissions rp ON p.id = rp.permission_id INNER JOIN roles r ON r.id = rp.role_id WHERE r.role = ?");
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (PDOException $err) {
-            return null;
-        }
-    }
-
 }
 
 class EmailDAO {
