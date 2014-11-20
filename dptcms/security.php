@@ -183,9 +183,10 @@ class Security {
             $roles = UserDAO::getUserRoles($_SESSION['username']);
             
             /* Get the permissions for each user role */
-            foreach ($roles as $role) {
-                echo $role;
-            }
+            //foreach ($roles as $role) {
+            //    echo $role;
+            //}
+            var_dump($roles);
             
             // Get user permissions based on username
             // TODO
