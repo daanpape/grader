@@ -63,6 +63,21 @@ class ClassDAO {
         }
     }
 
+    public static function getProjectsByCourseId($courseid, $start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM project WHERE courseid = :courseid LIMIT :start,:count");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select projects from courseid '.$courseid, $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */
