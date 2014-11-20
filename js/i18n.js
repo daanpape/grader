@@ -10,7 +10,7 @@ I18n.localeCache = {};
 
 I18n.prototype = {
     defaultLocale: "en",
-    directory: $_SERVER['DOCUMENT_ROOT'] + "/locales",
+    directory: __DIR__ + "/locales",
     extension: ".min.json",
 
     getLocale: function(){
