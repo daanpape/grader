@@ -32,8 +32,33 @@ $location = "account";
             <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
         </div>
         <div class="col-md-8">
+            <table class="table">
+                <tr>
+                    <td>Voornaam:</td>
+                    <td>Daan</td>
+                </tr>
+                
+                <tr>
+                    <td>Naam:</td>
+                    <td>Pape</td>
+                </tr>
+                
+                <tr>
+                    <td>Email:</td>
+                    <td>daan@dptechnics.com</td>
+                </tr>
+                
+                <tr>
+                    <td>Lid sinds:</td>
+                    <td>20/11/2014</td>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
+
+<div class="container">
+    <h1 class="page-header">Mijn projecten</h1>
 </div>
 
 <?php include_once('jsdepends.php') ?>
