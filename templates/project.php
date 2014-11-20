@@ -22,7 +22,7 @@ $location = "project";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" id="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
+            <h1 class="page-header" id="projectHeader" value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
         </div>
 
         <!-- Content container -->

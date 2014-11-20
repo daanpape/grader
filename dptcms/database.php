@@ -78,6 +78,19 @@ class ClassDAO {
         }
     }
 
+    public static function getProjectById($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM project WHERE id = :projectid LIMIT :start,:count");
+            $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select project by projectid '.$id, $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */

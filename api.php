@@ -32,6 +32,10 @@ class GraderAPI {
         return ClassDAO::getProjectCountByCourseId($courseid);
     }
 
+    public static function getProjectById($id) {
+        return ClassDAO::getProjectById($id);
+    }
+
     /*
      * Delete a projecttype from the database
      */

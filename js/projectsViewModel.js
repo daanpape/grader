@@ -40,7 +40,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    }
+    };
 
     /*
      * Update the training data
