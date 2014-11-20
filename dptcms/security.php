@@ -180,7 +180,7 @@ class Security {
             return UserDAO::getPermissionsFromRole('GUEST');
         } else {
             // Get the role assigned to this user
-            $roles = UserDAO::getUserRoles($username);
+            $roles = UserDAO::getUserRoles($_SESSION['username']);
             
             /* Get the permissions for each user role */
             foreach ($roles as $role) {
