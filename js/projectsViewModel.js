@@ -104,7 +104,7 @@ function pageViewModel(gvm) {
 
         //Attach manage handler to manage competences, subcompetences and indicators to manage button
         $('#managebtn-' + id).bind('click', function(event, data) {
-            window.location.replace('/project/' + id);
+            //TODO
         });
     }
     
