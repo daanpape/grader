@@ -341,7 +341,6 @@ class UserDAO {
     /*
      * Get all the user roles given the username
      */
-
     public static function getUserRoles($username) {
         try {
             $conn = Db::getConnection();
@@ -352,16 +351,15 @@ class UserDAO {
             return null;
         }
     }
-
+    
     /*
-     * Return all the permissions for the guest user as an array. 
+     * Get all permissions given a certain role
      */
-
-    public static function getGuestPermissions() {
+    public static function getPermissionsFromRole($role) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT p.permission FROM permissions p INNER JOIN role_permissions rp ON p.id = rp.permission_id INNER JOIN roles r ON r.id = rp.role_id WHERE r.role = 'GUEST'");
-            $stmt->execute();
+            $stmt = $conn->prepare("SELECT p.permission FROM permissions p INNER JOIN role_permissions rp ON p.id = rp.permission_id INNER JOIN roles r ON r.id = rp.role_id WHERE r.role = ?");
+            $stmt->execute(array($role));
             return $stmt->fetchAll();
         } catch (PDOException $err) {
             return null;
@@ -371,9 +369,15 @@ class UserDAO {
     /*
      * Get all the user permissions given the user roles 
      */
-
-    public static function getUserPermissions($roles) {
-        //TODO
+    public static function getUserPermissions($roles) { 
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT p.permission FROM permissions p INNER JOIN role_permissions rp ON p.id = rp.permission_id INNER JOIN roles r ON r.id = rp.role_id WHERE r.role = ?");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (PDOException $err) {
+            return null;
+        }
     }
 
 }
