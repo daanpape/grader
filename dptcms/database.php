@@ -326,7 +326,6 @@ class UserDAO {
     /*
      * Get all the user roles given the username
      */
-
     public static function getUserRoles($username) {
         try {
             $conn = Db::getConnection();
