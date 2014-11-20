@@ -22,13 +22,7 @@
                 }
                 ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
                 <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
-                <li<?php
-                if ($location == 'projects') {
-                    echo 'active';
-                }
-                ?>">
-                    <a href="/projects" data-bind="text: projecttypeBtn">Projects</a>
-                </li>
+                <li class="<?php if ($location == 'projects') { echo 'active';} ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
             </ul>
             </li>
             </ul>
