@@ -40,7 +40,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <?php
                     if(Security::isUserLoggedIn()){
-                        echo '<li><a href="/account" id="usermanagement">'.Security::getLoggedInName().'</a></li>';
+                        echo '<li><a href="/account">'.Security::getLoggedInName().'</a></li>';
                         echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
                     } else {
                         echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
