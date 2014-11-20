@@ -67,7 +67,6 @@ class Security {
     public static function logoutUser() {
         // Clear all user data
         unset($_SESSION['username']);
-
         // Return success
         return true;
     }
@@ -113,7 +112,6 @@ class Security {
                 return $token;
             }
         }
-
         return false;
     }
 
@@ -179,8 +177,16 @@ class Security {
         $current_user = self::isUserLoggedIn();
         if ($current_user === false) {
             // No user is logged in, return guest permissions 
-            return UserDAO::getGuestPermissions();
+            return UserDAO::getPermissionsFromRole('GUEST');
         } else {
+            // Get the role assigned to this user
+            $roles = UserDAO::getUserRoles($username);
+            
+            /* Get the permissions for each user role */
+            foreach ($roles as $role) {
+                echo $role;
+            }
+            
             // Get user permissions based on username
             // TODO
             return UserDAO::getGuestPermissions();
