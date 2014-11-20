@@ -248,7 +248,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(courseid, thispagenr);
                 });
             }
         });
