@@ -81,7 +81,7 @@ class ClassDAO {
     public static function getProjectById($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM project WHERE id = :projectid LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM project WHERE id = :projectid");
             $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
