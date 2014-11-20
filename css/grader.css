@@ -123,3 +123,10 @@ body {
 .li-wide {
     width: 100%;
 }
+
+.big-info {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

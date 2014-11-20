@@ -26,7 +26,7 @@ $location = "projects";
         </div>
         <!-- Content container -->
         <div class="container">
-            <div ><span data-bind="text: selectCourse">Select course</span>:</div>
+            <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
             <div class="row">
                 <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
@@ -63,7 +63,7 @@ $location = "projects";
         
         <!-- Content container -->
         <div class="container">
-            <div ><span data-bind="text: foundProjects">Found projects</span>:</div>
+            <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
             <table class="table table-striped">
                 <thead>
                     <tr>
