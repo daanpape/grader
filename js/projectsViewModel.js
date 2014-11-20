@@ -68,6 +68,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#coursebtn-" + item.id).click(function(){
                     $(".btn-course span:first").text($(this).text());
+                    loadTablePage(item.id, 1);
                 });
             });
         });
@@ -190,9 +191,9 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 /*
  * Load page of the table
  */
-function loadTablePage(pagenr)
+function loadTablePage(courseid, pagenr)
 {
-    $.getJSON('/api/projects/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable()
@@ -247,7 +248,7 @@ function loadTablePage(pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(courseid, thispagenr);
                 });
             }
         });
