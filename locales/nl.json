@@ -16,7 +16,9 @@
 
     "ProjecttypesButton" : "Projecten",
     "ProjecttypeTitle" : "Projecten",
-    "CourseButton" : "Rinchting",
+    "CourseButton" : "Richting",
+    "FoundProjects" : "Gevonden projecten",
+    "SelectCourse" : "Kies cursus",
 
     "CoursesTitle" : "Richting",
     "CoursesHeader" : "Selecteer een richting",

@@ -17,6 +17,8 @@
     "ProjecttypesButton" : "Projects",
     "ProjecttypeTitle" : "Projects",
     "CourseButton" : "Courses",
+    "FoundProjects" : "Found Projects",
+    "SelectCourse" : "Select course",
 
     "CoursesTitle" : "Courses",
     "CoursesHeader" : "Select a course",
