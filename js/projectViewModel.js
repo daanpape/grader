@@ -26,17 +26,11 @@ function addComptetence() {
     var competenceName = document.createElement('input');
     var subcompetenceButton = document.createElement('button');
 
-    var inputName = document.createElement('div');
-    var inputCode = document.createElement('div');
-
     $(competencePanelWrapper).addClass("col-md-9");
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading");
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
-
-    $(inputName).addClass("input-group");
-    $(inputCode).addClass("input-group");
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
@@ -53,10 +47,8 @@ function addComptetence() {
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
-    $(competencePanelHeading).append(inputName);
-    $(inputName).append(competenceName);
-    $(inputName).after(inputCode);
-    $(inputCode).append(competenceCode);
+    $(competencePanelHeading).append(competenceName);
+    $(competenceName).after(competenceCode);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
