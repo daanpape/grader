@@ -118,7 +118,7 @@ function addSubCompetence(competence) {
     $(subcompName).after(subcompCode);
     $(subcompPanelHeading).after(subcompPanelBody);
     $(subcompPanelBody).after(subcompPanelFooter);
-    $(subcompPanelFooter).after(indicatorButton);
+    $(subcompPanelFooter).append(indicatorButton);
     $(indicatorButton).after(removeSubcompButton);
 }
 
