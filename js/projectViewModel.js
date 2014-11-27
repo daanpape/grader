@@ -46,7 +46,7 @@ function addCompetence() {
     $(removeCompetenceButton).text("Remove this competence");
     $(removeCompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(removeCompetenceButton).on('click', function() {
-        removeCompetence($(removeCompetenceButton).val());
+        $(".panel-" + competence).remove($(removeCompetenceButton).val());
     });
 
     $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
@@ -73,10 +73,6 @@ function addCompetence() {
 
 function addSubCompetence(competence) {
     alert(competence);
-}
-
-function removeCompetence(competence) {
-    $(".panel-" + competence).remove();
 }
 
 function addIndicator() {
