@@ -19,6 +19,7 @@ function pageViewModel(gvm) {
 function addComptetence() {
     var competence = document.createElement("div");
     $(competence).addClass("col-md-9  competence");
+    console.log(competence);
     $("#page-header").append(competence);
 }
 
@@ -34,6 +35,7 @@ function addIndicator() {
 function initPage() {
     viewModel.getProjectInfo();
     $("#addCompetenceBtn").click(function() {
+        console.log("clickec");
         addComptetence();
     })
 }
