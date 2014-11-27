@@ -19,6 +19,7 @@ function pageViewModel(gvm) {
 function addComptetence() {
     var competence = document.createElement("div");
     $(competence).addClass("col-md-9  competence");
+    $(competence).text("Hallo competence");
     console.log(competence);
     $("#page-header").append(competence);
 }
