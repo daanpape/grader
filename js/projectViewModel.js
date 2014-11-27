@@ -10,7 +10,6 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
     gvm.getProjectInfo = function() {
-        console.log($("#projectHeader").data('value'));
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
@@ -18,6 +17,7 @@ function pageViewModel(gvm) {
 }
 
 function addCompetence() {
+
     ++viewModel.numberOfCompetencesToAdd;
 
     var competencePanelWrapper = document.createElement('div');
@@ -50,7 +50,12 @@ function addCompetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    $("#top-col").after(competencePanelWrapper);
+    if(viewModel.numberOfCompetencesToAdd == 0) {
+        $("#top-col").after(competencePanelWrapper);
+    } else {
+        $(".panel:last").after(competencePanelWrapper);
+    }
+
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(competenceName);
