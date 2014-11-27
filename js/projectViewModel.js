@@ -3,6 +3,7 @@ function pageViewModel(gvm) {
     // projecttitle 
     gvm.projecttitle = ko.observable("");
     gvm.numberOfCompetencesToAdd = 0;
+    gvm.compSubcomp = new array();
     
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -39,14 +40,14 @@ function addCompetence() {
     $(subcompetenceButton).text("Add a subcompetence");
     $(subcompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(subcompetenceButton).on('click', function() {
-        addSubCompetence("comp-" + $(subcompetenceButton).val())
+        addSubCompetence($(subcompetenceButton).val())
     });
 
     $(removeCompetenceButton).addClass("btn pull-right");
     $(removeCompetenceButton).text("Remove this competence");
     $(removeCompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(removeCompetenceButton).on('click', function() {
-        $(".panel-" + $(removeCompetenceButton).val()).remove();
+        $(this).parent().parent().remove();
     });
 
     $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
@@ -63,8 +64,8 @@ function addCompetence() {
     ++viewModel.numberOfCompetencesToAdd;
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
-    $(competencePanelHeading).append(competenceName);
-    $(competenceName).after(competenceCode);
+    $(competencePanelHeading).append(competenceCode);
+    $(competenceCode).after(competenceName);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
@@ -72,6 +73,7 @@ function addCompetence() {
 }
 
 function addSubCompetence(competence) {
+    ++viewModel.compSubcomp[competence];
     var subcompPanelWrapper = document.createElement('div');
     var subcompPanel = document.createElement('div');
     var subcompPanelHeading = document.createElement('div');
@@ -94,7 +96,7 @@ function addSubCompetence(competence) {
     $(indicatorButton).text("Add an indicator");
     $(indicatorButton).val(viewModel.numberOfCompetencesToAdd);
     $(indicatorButton).on('click', function() {
-        addSubCompetence("comp-" + $(subcompetenceButton).val())
+        addIndicator();
     });
 
     $(removeSubcompButton).addClass("btn pull-right");
@@ -102,10 +104,9 @@ function addSubCompetence(competence) {
     $(removeSubcompButton).val();
     $(removeSubcompButton).on('click', function() {
         $(this).parent().parent().remove();
-        $//(".panel-" + $(removeSubcompButton).val()).remove();
     });
 
-    $(subcompPanelWrapper).addClass("subcompPanel");
+    $(subcompPanelWrapper).addClass("subcompPanel panel-" + );
     $(subcompPanel).addClass("panel panel-default");
     $(subcompPanelHeading).addClass("panel-heading");
     $(subcompPanelBody).addClass("panel-body");
@@ -115,8 +116,8 @@ function addSubCompetence(competence) {
     $(".panel-body." + competence).append(subcompPanelWrapper);
     $(subcompPanelWrapper).append(subcompPanel);
     $(subcompPanel).append(subcompPanelHeading);
-    $(subcompPanelHeading).append(subcompName);
-    $(subcompName).after(subcompCode);
+    $(subcompPanelHeading).append(subcompCode);
+    $(subcompCode).after(subcompName);
     $(subcompPanelHeading).after(subcompPanelBody);
     $(subcompPanelBody).after(subcompPanelFooter);
     $(subcompPanelFooter).append(indicatorButton);
