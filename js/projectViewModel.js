@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
     };
 }
 
-function addComptetence() {
+function addCompetence() {
     var competencePanelWrapper = document.createElement('div');
     var competencePanel = document.createElement('div');
     var competencePanelHeading = document.createElement('div');
@@ -42,7 +42,7 @@ function addComptetence() {
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
-    $(subcompetenceButton).on('click', addSubCompetence());
+    $(subcompetenceButton).on('click', addSubCompetence);
 
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
@@ -66,6 +66,6 @@ function addIndicator() {
 function initPage() {
     viewModel.getProjectInfo();
     $("#addCompetenceBtn").click(function() {
-        addComptetence();
+        addCompetence();
     })
 }
