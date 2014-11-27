@@ -25,6 +25,7 @@ function addCompetence() {
     var competenceCode = document.createElement('input');
     var competenceName = document.createElement('input');
     var subcompetenceButton = document.createElement('button');
+    var removeCompetenceButton = document.createElement('button');
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
@@ -39,6 +40,13 @@ function addCompetence() {
     $(subcompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(subcompetenceButton).on('click', function() {
         addSubCompetence("comp-" + $(subcompetenceButton).val())
+    });
+
+    $(removeCompetenceButton).addClass("btn pull-right");
+    $(removeCompetenceButton).text("Remove this competence");
+    $(removeCompetenceButton).val(viewModel.numberOfCompetencesToAdd);
+    $(subcompetenceButton).on('click', function() {
+        removeCompetence("comp-" + $(removeCompetenceButton).val());
     });
 
     $(competencePanelWrapper).addClass("col-md-9 compPanel");
@@ -64,6 +72,10 @@ function addCompetence() {
 
 function addSubCompetence(competence) {
     alert(competence);
+}
+
+function removeCompetence(competence) {
+    $(".comp" + competence).remove();
 }
 
 function addIndicator() {
