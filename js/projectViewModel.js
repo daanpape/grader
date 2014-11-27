@@ -77,6 +77,32 @@ function addSubCompetence(competence) {
     var subcompPanelHeading = document.createElement('div');
     var subcompPanelBody = document.createElement('div');
     var subcompPanelFooter = document.createElement('div');
+    var subcompCode = document.createElement('input');
+    var subcompName = document.createElement('input');
+    var indicatorButton = document.createElement('button');
+    var removeSubcompButton = document.createElement('button');
+
+    subcompCode.type = 'text';
+    subcompCode.placeholder = "Competence-Code";
+    $(subcompCode).addClass("form-control");
+
+    subcompName.type = 'text';
+    subcompName.placeholder = "Name of the competence";
+    $(subcompName).addClass("form-control");
+
+    $(indicatorButton).addClass("btn");
+    $(indicatorButton).text("Add a subcompetence");
+    $(indicatorButton).val(viewModel.numberOfCompetencesToAdd);
+    $(indicatorButton).on('click', function() {
+        addSubCompetence("comp-" + $(subcompetenceButton).val())
+    });
+
+    $(removeSubcompButton).addClass("btn pull-right");
+    $(removeSubcompButton).text("Remove this competence");
+    $(removeSubcompButton).val(viewModel.numberOfCompetencesToAdd);
+    $(removeSubcompButton).on('click', function() {
+        $(".panel-" + $(removeCompetenceButton).val()).remove();
+    });
 
     $(subcompPanelWrapper).addClass("subcompPanel");
     $(subcompPanel).addClass("panel panel-default");
@@ -88,8 +114,21 @@ function addSubCompetence(competence) {
     $(".panel-body." + competence).append(subcompPanelWrapper);
     $(subcompPanelWrapper).append(subcompPanel);
     $(subcompPanel).append(subcompPanelHeading);
+    $(subcompPanelHeading).append(subcompName);
+    $(subcompName).after(subcompCode);
     $(subcompPanelHeading).after(subcompPanelBody);
     $(subcompPanelBody).after(subcompPanelFooter);
+    $(subcompPanelFooter).after(indicatorButton);
+    $(indicatorButton).after(removeSubcompButton);
+
+    $(competencePanelWrapper).append(competencePanel);
+    $(competencePanel).append(competencePanelHeading);
+    $(competencePanelHeading).append(competenceName);
+    $(competenceName).after(competenceCode);
+    $(competencePanelHeading).after(competencePanelBody);
+    $(competencePanelBody).after(competencePanelFooter);
+    $(competencePanelFooter).append(subcompetenceButton);
+    $(subcompetenceButton).after(removeCompetenceButton);
 }
 
 function addIndicator() {
