@@ -41,12 +41,12 @@ function addCompetence() {
     $(subcompetenceButton).text("Add a subcompetence");
     $(subcompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(subcompetenceButton).on('click', function() {
-        addSubCompetence($(subcompetenceButton).val())
+        addSubCompetence("comp-" + $(subcompetenceButton).val())
     });
 
     $(competencePanelWrapper).addClass("col-md-9");
     $(competencePanel).addClass("panel panel-default");
-    $(competencePanelHeading).addClass("panel-heading comp" + $(subcompetenceButton).val());
+    $(competencePanelHeading).addClass("panel-heading comp-" + $(subcompetenceButton).val());
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
@@ -60,8 +60,8 @@ function addCompetence() {
     $(competencePanelFooter).append(subcompetenceButton);
 }
 
-function addSubCompetence(compId) {
-    alert(compId);
+function addSubCompetence(competence) {
+    alert(competence);
 }
 
 function addIndicator() {
