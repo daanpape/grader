@@ -58,11 +58,11 @@ function addComptetence() {
 }
 
 function addSubCompetence() {
-
+    alert("hai");
 }
 
 function addIndicator() {
-    alert("hai");
+
 }
 
 
