@@ -17,7 +17,8 @@ function pageViewModel(gvm) {
 }
 
 function addComptetence() {
-    var competence
+    var competence = document.createElement("div");
+    competence.addClass("col-md-9");
 }
 
 function addSubCompetence() {
