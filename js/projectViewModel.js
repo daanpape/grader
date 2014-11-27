@@ -48,7 +48,6 @@ function addCompetence() {
     $(competencePanelFooter).addClass("panel-footer");
 
     if(viewModel.numberOfCompetencesToAdd == 0) {
-        alert(viewModel.numberOfCompetencesToAdd);
         $("#top-col").after(competencePanelWrapper);
     } else {
         $(".compPanel:last").after(competencePanelWrapper);
