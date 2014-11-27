@@ -49,7 +49,7 @@ function addCompetence() {
         removeCompetence("comp-" + $(removeCompetenceButton).val());
     });
 
-    $(competencePanelWrapper).addClass("col-md-9 compPanel");
+    $(competencePanelWrapper).addClass("col-md-9 compPanel-" + $(subcompetenceButton).val());
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading comp-" + $(subcompetenceButton).val());
     $(competencePanelBody).addClass("panel-body");
@@ -76,7 +76,7 @@ function addSubCompetence(competence) {
 }
 
 function removeCompetence(competence) {
-    $(".comp-" + competence).remove();
+    $(".comppanel-" + competence).remove();
 }
 
 function addIndicator() {
