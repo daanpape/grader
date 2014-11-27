@@ -51,7 +51,7 @@ function addCompetence() {
         alert(viewModel.numberOfCompetencesToAdd);
         $("#top-col").after(competencePanelWrapper);
     } else {
-        $(".panel:last").after(competencePanelWrapper);
+        $(".competencePanelWrapper:last").after(competencePanelWrapper);
     }
     ++viewModel.numberOfCompetencesToAdd;
     $(competencePanelWrapper).append(competencePanel);
