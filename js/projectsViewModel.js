@@ -35,6 +35,7 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#locbtn-" + item.id).click(function(){
+                    gvm.currentCourseId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
                 });
@@ -53,6 +54,7 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
+                    gvm.currentCourseId = null;
                     gvm.updateCourses(item.id);
                     $(".btn-training span:first").text($(this).text());
                 });

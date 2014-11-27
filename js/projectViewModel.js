@@ -14,9 +14,20 @@ function pageViewModel(gvm) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
-    
-    
 }
+
+function addComptetence() {
+    var competence
+}
+
+function addSubCompetence() {
+
+}
+
+function addIndicator() {
+
+}
+
 
 function initPage() {
     viewModel.getProjectInfo();
