@@ -3,6 +3,7 @@ function pageViewModel(gvm) {
     // projecttitle 
     gvm.projecttitle = ko.observable("");
     gvm.numberOfCompetencesToAdd = 0;
+    gvm.subcomp = 0;
     gvm.compSubcomp = [];
     
     // Page specific i18n bindings
@@ -73,7 +74,8 @@ function addCompetence() {
 }
 
 function addSubCompetence(competence) {
-    ++viewModel.compSubcomp[competence];
+    ++viewModel.subcomp;
+    viewModel.compSubcomp[competence].push(subcomp);
     console.log(competence);
     console.log(viewModel.compSubcomp[competence]);
     var subcompPanelWrapper = document.createElement('div');
