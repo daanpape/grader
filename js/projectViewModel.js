@@ -22,6 +22,7 @@ function addComptetence() {
     var competencePanelHeading = document.createElement('div');
     var competencePanelBody = document.createElement('div');
     var competencePanelFooter = document.createElement('div');
+    var competenceCode = document.createElement('input');
     var competenceName = document.createElement('input');
     var subcompetenceButton = document.createElement('button');
 
@@ -31,9 +32,13 @@ function addComptetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
+    competenceCode.type = 'text';
+    competenceCode.placeholder = "Competence-Code";
+    $(competenceCode).addClass("form-control");
+
     competenceName.type = 'text';
     competenceName.placeholder = "Name of the competence";
-    $(competenceName).addClass("form-control competence");
+    $(competenceName).addClass("form-control");
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
@@ -42,7 +47,8 @@ function addComptetence() {
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
-    $(competencePanelHeading).append(competenceName);
+    $(competencePanelHeading).append(competenceCode);
+    $(competenceCode).after(competenceName);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
