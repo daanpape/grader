@@ -52,6 +52,9 @@ function addComptetence() {
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
+    subcompetenceButton.click(function() {
+       addSubCompetence();
+    });
 }
 
 function addSubCompetence() {
@@ -59,7 +62,7 @@ function addSubCompetence() {
 }
 
 function addIndicator() {
-
+    alert("hai");
 }
 
 
