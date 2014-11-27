@@ -52,7 +52,7 @@ function addCompetence() {
     $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading comp-" + $(subcompetenceButton).val());
-    $(competencePanelBody).addClass("panel-body");
+    $(competencePanelBody).addClass("panel-body comp-"  + $(subcompetenceButton).val());
     $(competencePanelFooter).addClass("panel-footer");
 
     if(!$(".compPanel")[0]) {
@@ -72,7 +72,7 @@ function addCompetence() {
 }
 
 function addSubCompetence(competence) {
-    alert(competence);
+    $(".panel-body." + competence).append("hallo");
 }
 
 function addIndicator() {
