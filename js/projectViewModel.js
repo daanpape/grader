@@ -31,7 +31,7 @@ function addCompetence() {
 
     $(competencePanelWrapper).addClass("col-md-9");
     $(competencePanel).addClass("panel panel-default");
-    $(competencePanelHeading).addClass("panel-heading");
+    $(competencePanelHeading).addClass("panel-heading comp" + $(subcompetenceButton).val());
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
