@@ -27,6 +27,10 @@ $location = "project";
 
         <!-- Content container -->
         <div class="container">
+            <div class="col-md-9"></div>
+            <col-md-3>
+
+            </col-md-3>
         </div>
 
         <?php include_once('jsdepends.php') ?>
