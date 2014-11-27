@@ -55,7 +55,7 @@ function addCompetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    if(viewModel.numberOfCompetencesToAdd == 0) {
+    if($(".compPanel")[0]) {
         $("#top-col").after(competencePanelWrapper);
     } else {
         $(".compPanel:last").after(competencePanelWrapper);
@@ -77,7 +77,6 @@ function addSubCompetence(competence) {
 
 function removeCompetence(competence) {
     $(".panel-" + competence).remove();
-    --viewModel.numberOfCompetencesToAdd;
 }
 
 function addIndicator() {
