@@ -23,9 +23,14 @@ $location = "project";
         <!-- Header container -->
         <div class="container">
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
-            <button id="addCompetenceBtn" class="btn btn-lg">
-                Add competence
-            </button>
+            <div class="row">
+                <div id="top-col" class="col-md-12">
+                    <button id="addCompetenceBtn" class="btn btn-lg">
+                        Add competence
+                    </button>
+                </div>
+
+            </div>
         </div>
 
         <!-- Content container -->
