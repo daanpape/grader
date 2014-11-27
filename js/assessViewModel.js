@@ -93,7 +93,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(pagenr)
+function loadTablePage(courseid, pagenr)
 {
     $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
 
