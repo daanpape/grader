@@ -60,8 +60,8 @@ function addCompetence() {
     $(competencePanelFooter).append(subcompetenceButton);
 }
 
-function addSubCompetence() {
-    alert('hoi');
+function addSubCompetence(compId) {
+    alert(compId);
 }
 
 function addIndicator() {
