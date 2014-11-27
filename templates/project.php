@@ -23,14 +23,13 @@ $location = "project";
         <!-- Header container -->
         <div class="container">
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
+            <button id="addCompetenceBtn" class="btn btn-lg">
+                Add competence
+            </button>
         </div>
 
         <!-- Content container -->
         <div class="container">
-            <div class="col-md-9"></div>
-            <col-md-3>
-
-            </col-md-3>
         </div>
 
         <?php include_once('jsdepends.php') ?>
