@@ -35,7 +35,8 @@ function addComptetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    $(inputGroup).addClass("input-group");
+    $(inputname).addClass("input-group");
+    $(inputCode).addClass("input-group");
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
