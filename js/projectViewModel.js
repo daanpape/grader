@@ -82,6 +82,9 @@ function addSubCompetence(competence) {
     var subcompName = document.createElement('input');
     var indicatorButton = document.createElement('button');
     var removeSubcompButton = document.createElement('button');
+    var listgroup = document.createElement('ul');
+
+    listgroup.addClass('list-group');
 
     subcompCode.type = 'text';
     subcompCode.placeholder = "Competence-Code";
@@ -118,6 +121,7 @@ function addSubCompetence(competence) {
     $(subcompPanelHeading).append(subcompCode);
     $(subcompCode).after(subcompName);
     $(subcompPanelHeading).after(subcompPanelBody);
+    $(subcompPanelBody).append(listgroup);
     $(subcompPanelBody).after(subcompPanelFooter);
     $(subcompPanelFooter).append(indicatorButton);
     $(indicatorButton).after(removeSubcompButton);
