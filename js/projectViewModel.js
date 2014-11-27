@@ -27,7 +27,7 @@ function addComptetence() {
     $(competencePanel).addClass("col-md-9 panel panel-default");
     $(competencePanel).text("Hallo competence");
 
-    competencePanelHeading.addClass("panel-heading");
+    $(competencePanelHeading).addClass("panel-heading");
 
     competenceName.type = 'text';
     $(competenceName).addClass('compname');
