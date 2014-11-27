@@ -45,7 +45,7 @@ function addCompetence() {
     $(removeCompetenceButton).addClass("btn pull-right");
     $(removeCompetenceButton).text("Remove this competence");
     $(removeCompetenceButton).val(viewModel.numberOfCompetencesToAdd);
-    $(subcompetenceButton).on('click', function() {
+    $(removeCompetenceButton).on('click', function() {
         removeCompetence($(removeCompetenceButton).val());
     });
 
