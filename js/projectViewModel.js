@@ -21,7 +21,7 @@ function addComptetence() {
     $(competence).addClass("col-md-9  competence");
     $(competence).text("Hallo competence");
     console.log(competence);
-    $("#page-header").append(competence);
+    $("#projectHeader").append(competence);
 }
 
 function addSubCompetence() {
