@@ -54,7 +54,7 @@ function addComptetence() {
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(inputName);
-    $(inputName).append(competenceCode);
+    $(inputName).append(competenceName);
     $(inputName).after(inputCode);
     $(inputCode).append(competenceCode);
     $(competencePanelHeading).after(competencePanelBody);
