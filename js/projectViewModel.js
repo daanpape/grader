@@ -17,9 +17,6 @@ function pageViewModel(gvm) {
 }
 
 function addCompetence() {
-
-    ++viewModel.numberOfCompetencesToAdd;
-
     var competencePanelWrapper = document.createElement('div');
     var competencePanel = document.createElement('div');
     var competencePanelHeading = document.createElement('div');
@@ -50,13 +47,13 @@ function addCompetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    if(viewModel.numberOfCompetencesToAdd == '0') {
+    if(viewModel.numberOfCompetencesToAdd == 0) {
         alert(viewModel.numberOfCompetencesToAdd);
         $("#top-col").after(competencePanelWrapper);
     } else {
         $(".panel:last").after(competencePanelWrapper);
     }
-
+    ++viewModel.numberOfCompetencesToAdd;
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(competenceName);
