@@ -76,7 +76,7 @@ function addSubCompetence(competence) {
 }
 
 function removeCompetence(competence) {
-    $(".comp" + competence).remove();
+    $(".comp-" + competence).remove();
 }
 
 function addIndicator() {
