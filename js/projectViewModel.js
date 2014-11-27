@@ -17,7 +17,6 @@ function pageViewModel(gvm) {
 }
 
 function addCompetence() {
-    alert('hallo');
     var competencePanelWrapper = document.createElement('div');
     var competencePanel = document.createElement('div');
     var competencePanelHeading = document.createElement('div');
@@ -50,7 +49,7 @@ function addCompetence() {
         removeCompetence($(removeCompetenceButton).val());
     });
 
-    $(competencePanelWrapper).addClass("col-md-9 compPanel-" + $(subcompetenceButton).val());
+    $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading comp-" + $(subcompetenceButton).val());
     $(competencePanelBody).addClass("panel-body");
@@ -77,7 +76,7 @@ function addSubCompetence(competence) {
 }
 
 function removeCompetence(competence) {
-    $(".compPanel-" + competence).remove();
+    $(".panel-" + competence).remove();
     --viewModel.numberOfCompetencesToAdd;
 }
 
