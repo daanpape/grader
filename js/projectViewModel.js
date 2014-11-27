@@ -72,7 +72,24 @@ function addCompetence() {
 }
 
 function addSubCompetence(competence) {
-    $(".panel-body." + competence).append("hallo");
+    var subcompPanelWrapper = document.createElement('div');
+    var subcompPanel = document.createElement('div');
+    var subcompPanelHeading = document.createElement('div');
+    var subcompPanelBody = document.createElement('div');
+    var subcompPanelFooter = document.createElement('div');
+
+    $(subcompPanelWrapper).addClass("subcompPanel");
+    $(subcompPanel).addClass("panel panel-default");
+    $(subcompPanelHeading).addClass("panel-heading");
+    $(subcompPanelBody).addClass("panel-body");
+    $(subcompPanelFooter).addClass("panel-footer");
+
+
+    $(".panel-body." + competence).append(subcompPanelWrapper);
+    $(subcompPanelWrapper).append(subcompPanel);
+    $(subcompPanel).append(subcompPanelHeading);
+    $(subcompPanelHeading).after(subcompPanelBody);
+    $(subcompPanelBody).after(subcompPanelFooter);
 }
 
 function addIndicator() {
