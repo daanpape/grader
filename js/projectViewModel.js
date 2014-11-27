@@ -99,9 +99,10 @@ function addSubCompetence(competence) {
 
     $(removeSubcompButton).addClass("btn pull-right");
     $(removeSubcompButton).text("Remove this subcompetence");
-    $(removeSubcompButton).val(viewModel.numberOfCompetencesToAdd);
+    $(removeSubcompButton).val();
     $(removeSubcompButton).on('click', function() {
-        $(".panel-" + $(removeCompetenceButton).val()).remove();
+        $(this).parent().parent().remove();
+        $//(".panel-" + $(removeSubcompButton).val()).remove();
     });
 
     $(subcompPanelWrapper).addClass("subcompPanel");
