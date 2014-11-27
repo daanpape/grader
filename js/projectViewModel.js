@@ -106,7 +106,7 @@ function addSubCompetence(competence) {
         $(this).parent().parent().remove();
     });
 
-    $(subcompPanelWrapper).addClass("subcompPanel panel-" + );
+    $(subcompPanelWrapper).addClass("subcompPanel panel-");
     $(subcompPanel).addClass("panel panel-default");
     $(subcompPanelHeading).addClass("panel-heading");
     $(subcompPanelBody).addClass("panel-body");
