@@ -3,7 +3,7 @@ function pageViewModel(gvm) {
     // projecttitle 
     gvm.projecttitle = ko.observable("");
     gvm.numberOfCompetencesToAdd = 0;
-    gvm.compSubcomp = new array();
+    gvm.compSubcomp = array();
     
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
