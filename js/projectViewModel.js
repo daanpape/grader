@@ -120,15 +120,6 @@ function addSubCompetence(competence) {
     $(subcompPanelBody).after(subcompPanelFooter);
     $(subcompPanelFooter).after(indicatorButton);
     $(indicatorButton).after(removeSubcompButton);
-
-    $(competencePanelWrapper).append(competencePanel);
-    $(competencePanel).append(competencePanelHeading);
-    $(competencePanelHeading).append(competenceName);
-    $(competenceName).after(competenceCode);
-    $(competencePanelHeading).after(competencePanelBody);
-    $(competencePanelBody).after(competencePanelFooter);
-    $(competencePanelFooter).append(indicatorButton);
-    $(indicatorButton).after(removeCompetenceButton);
 }
 
 function addIndicator() {
