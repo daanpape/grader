@@ -135,7 +135,7 @@ function deleteTableItem(id, tblOject) {
  */
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
-        url: "/api/project",
+        url: "/api/project/" + viewModel.currentCourseId,
         type: "POST",
         data: serialData,
         success: function(data) {

@@ -51,8 +51,8 @@ class GraderAPI {
      * Create a new projecttype and put it in the database
      * @return -1 on error;
      */
-    public static function createProject($code, $name, $description) {
-        $id = ClassDAO::insertProject($code, $name, $description);
+    public static function createProject($courseid, $code, $name, $description) {
+        $id = ClassDAO::insertProject($courseid, $code, $name, $description);
 
         if ($id != null) {
             return array(

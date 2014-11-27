@@ -210,14 +210,14 @@ $app->put('/api/project/:id', function($id) use ($app){
 });
 
 // API POST routes
-$app->post('/api/project', function () use ($app) {
+$app->post('/api/project/:id', function ($courseid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
     echo json_encode(GraderAPI::createProject(
-                    $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+                    $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 // API DELETE routes
