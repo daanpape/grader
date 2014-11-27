@@ -53,7 +53,9 @@ function addComptetence() {
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(inputGroup);
     $(inputGroup).append(competenceCode);
-    $(competenceCode).after(competenceName);
+    //$(competenceCode).after(competenceName);
+    $(inputGroup).after(inputGroup);
+    $(inputGroup).append(competenceName);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
