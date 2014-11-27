@@ -17,6 +17,7 @@ function pageViewModel(gvm) {
 }
 
 function addCompetence() {
+    alert('hallo');
     var competencePanelWrapper = document.createElement('div');
     var competencePanel = document.createElement('div');
     var competencePanelHeading = document.createElement('div');
