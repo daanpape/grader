@@ -74,6 +74,7 @@ function addCompetence() {
 
 function addSubCompetence(competence) {
     ++viewModel.compSubcomp[competence];
+    console.log(viewModel.compSubcomp[competence]);
     var subcompPanelWrapper = document.createElement('div');
     var subcompPanel = document.createElement('div');
     var subcompPanelHeading = document.createElement('div');
