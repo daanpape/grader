@@ -34,8 +34,8 @@ function addComptetence() {
     $(competence).text("Hallo competence");
 
     $("#top-col").append(competence);
-    $(competence).append(subcompetenceButton);
-    $(subcompetenceButton).after(competenceName);
+    $(competence).after(competenceName);
+    $(competenceName).after(subcompetenceButton);
 }
 
 function addSubCompetence() {
