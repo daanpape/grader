@@ -19,15 +19,19 @@ function pageViewModel(gvm) {
 function addComptetence() {
     var competence = document.createElement("div");
     var SubcompetenceButton = document.createElement('button');
+    var competenceName = document.createElement('input');
+    var competenceCode = document.createElement();
+    var competenceWeight = document.createEvlement();
+
+    $(competence).type('text');
+    $(competence).addClass('compname');
 
     $(SubcompetenceButton).addClass("btn");
     $(SubcompetenceButton).text("Add a subcompetence");
     $(SubcompetenceButton).click(addSubCompetence());
 
-
     $(competence).addClass("col-md-9");
     $(competence).text("Hallo competence");
-
 
     $("#top-col").append(competence);
     $(competence).appendChild(SubcompetenceButton);
