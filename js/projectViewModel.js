@@ -26,11 +26,15 @@ function addComptetence() {
     var competenceName = document.createElement('input');
     var subcompetenceButton = document.createElement('button');
 
+    var inputGroup = document.createElement('div');
+
     $(competencePanelWrapper).addClass("col-md-9");
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading");
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
+
+    $(inputGroup).addClass("input-group");
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
@@ -47,7 +51,8 @@ function addComptetence() {
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
-    $(competencePanelHeading).append(competenceCode);
+    $(competencePanelHeading).append(inputGroup);
+    $(inputGroup).append(competenceCode);
     $(competenceCode).after(competenceName);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
@@ -66,7 +71,6 @@ function addIndicator() {
 function initPage() {
     viewModel.getProjectInfo();
     $("#addCompetenceBtn").click(function() {
-        console.log("clickec");
         addComptetence();
     })
 }
