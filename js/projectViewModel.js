@@ -2,6 +2,7 @@
 function pageViewModel(gvm) {
     // projecttitle 
     gvm.projecttitle = ko.observable("");
+    gvm.numberOfCompetencesToAdd = 0;
     
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -42,6 +43,7 @@ function addCompetence() {
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
+    $(subcompetenceButton).val(viewModel.numberOfCompetencesToAdd);
     $(subcompetenceButton).on('click', addSubCompetence);
 
     $("#top-col").after(competencePanelWrapper);
@@ -52,10 +54,11 @@ function addCompetence() {
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
+    ++viewModel.numberOfCompetencesToAdd;
 }
 
 function addSubCompetence() {
-    alert("hai");
+    
 }
 
 function addIndicator() {
