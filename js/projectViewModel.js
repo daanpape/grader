@@ -17,11 +17,17 @@ function pageViewModel(gvm) {
 }
 
 function addComptetence() {
-    var competence = document.createElement("div");
-    var subcompetenceButton = document.createElement('button');
+    var competencePanel = document.createElement("div");
+    var competencePanelHeading = document.createElement('div');
     var competenceName = document.createElement('input');
+    var subcompetenceButton = document.createElement('button');
     /*var competenceCode = document.createElement();
     var competenceWeight = document.createEvlement();*/
+
+    $(competencePanel).addClass("col-md-9 panel panel-default");
+    $(competencePanel).text("Hallo competence");
+
+    competencePanelHeading.addClass("panel-heading");
 
     competenceName.type = 'text';
     $(competenceName).addClass('compname');
@@ -30,11 +36,9 @@ function addComptetence() {
     $(subcompetenceButton).text("Add a subcompetence");
     $(subcompetenceButton).click(addSubCompetence());
 
-    $(competence).addClass("col-md-9");
-    $(competence).text("Hallo competence");
-
-    $("#top-col").after(competence);
-    $(competence).append(competenceName);
+    $("#top-col").after(competencePanel);
+    $(competencePanel).append(competencePanelHeading);
+    $(competencePanelHeading).append(competenceName);
     $(competenceName).after(subcompetenceButton);
 }
 
