@@ -77,6 +77,7 @@ function addSubCompetence(competence) {
 
 function removeCompetence(competence) {
     $(".compPanel-" + competence).remove();
+    --viewModel.numberOfCompetencesToAdd;
 }
 
 function addIndicator() {
