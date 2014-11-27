@@ -85,9 +85,7 @@ $location = "assess";
             <td data-bind="text: tname">--</td>
             <td data-bind="text: tdesc">--</td>
             <td>
-                <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
-                <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
+                buttons...
             </td>
         </tr>
         </tbody>
