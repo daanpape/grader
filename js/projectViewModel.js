@@ -23,8 +23,8 @@ function addComptetence() {
     /*var competenceCode = document.createElement();
     var competenceWeight = document.createEvlement();*/
 
-    $(competence).type() = 'text';
-    $(competence).addClass('compname');
+    $(competenceName).type('text');
+    $(competenceName).addClass('compname');
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
