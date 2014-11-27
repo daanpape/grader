@@ -41,7 +41,8 @@ function addComptetence() {
     $("#top-col").after(competencePanel);
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(competenceName);
-    $(competencePanelHeading).after(subcompetenceButton);
+    $(competencePanelHeading).after(competencePanelBody);
+    $(competencePanelBody).append(subcompetenceButton);
 }
 
 function addSubCompetence() {
