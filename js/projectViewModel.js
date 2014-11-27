@@ -112,7 +112,7 @@ function addSubCompetence(competence) {
     $(subcompPanelFooter).addClass("panel-footer");
 
 
-    $(".panel-body.panel-" + competence + "-" + viewModel.subcomp).append(subcompPanelWrapper);
+    $(".panel-body.comp-" + competence + "-" + viewModel.subcomp).append(subcompPanelWrapper);
     $(subcompPanelWrapper).append(subcompPanel);
     $(subcompPanel).append(subcompPanelHeading);
     $(subcompPanelHeading).append(subcompCode);
