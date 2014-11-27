@@ -55,7 +55,7 @@ function addCompetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    if($(".compPanel")[0]) {
+    if(!$(".compPanel")[0]) {
         $("#top-col").after(competencePanelWrapper);
     } else {
         $(".compPanel:last").after(competencePanelWrapper);
