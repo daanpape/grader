@@ -20,7 +20,7 @@ function addComptetence() {
     var competence = document.createElement("div");
     var SubcompetenceButton = document.createElement('button');
 
-    $(SubcompetenceButton).class("btn");
+    $(SubcompetenceButton).addClass("btn");
     $(SubcompetenceButton).text("Add a subcompetence");
     $(SubcompetenceButton).click(addSubCompetence());
 
