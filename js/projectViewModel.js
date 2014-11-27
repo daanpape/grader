@@ -91,14 +91,14 @@ function addSubCompetence(competence) {
     $(subcompName).addClass("form-control");
 
     $(indicatorButton).addClass("btn");
-    $(indicatorButton).text("Add a subcompetence");
+    $(indicatorButton).text("Add an indicator");
     $(indicatorButton).val(viewModel.numberOfCompetencesToAdd);
     $(indicatorButton).on('click', function() {
         addSubCompetence("comp-" + $(subcompetenceButton).val())
     });
 
     $(removeSubcompButton).addClass("btn pull-right");
-    $(removeSubcompButton).text("Remove this competence");
+    $(removeSubcompButton).text("Remove this subcompetence");
     $(removeSubcompButton).val(viewModel.numberOfCompetencesToAdd);
     $(removeSubcompButton).on('click', function() {
         $(".panel-" + $(removeCompetenceButton).val()).remove();
