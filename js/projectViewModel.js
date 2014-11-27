@@ -68,6 +68,7 @@ function addCompetence() {
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
+    $(subcompetenceButton).after(removeCompetenceButton);
 }
 
 function addSubCompetence(competence) {
