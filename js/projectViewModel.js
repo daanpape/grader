@@ -98,7 +98,7 @@ function addSubCompetence(competence) {
     $(indicatorButton).text("Add an indicator");
     $(indicatorButton).val(competence + "-" + viewModel.subcomp);
     $(indicatorButton).on('click', function() {
-        addIndicator($(indicatorButton).val());
+        addIndicator(listgroup);
     });
 
     $(removeSubcompButton).addClass("btn pull-right");
@@ -128,7 +128,32 @@ function addSubCompetence(competence) {
     ++viewModel.subcomp;
 }
 
-function addIndicator(compandsubcomp) {
+function addIndicator(listgroup) {
+    var listItem = document.createElement('li');
+    var indicatorDescription = document.createElement('input');
+    var indicatorName = document.createElement('input');
+    var removeIndicator = document.createElement('button');
+
+    indicatorDescription.type = 'text';
+    indicatorDescription.placeholder = "Description";
+    $(indicatorDescription).addClass("form-control");
+
+    indicatorName.type = 'text;';
+    indicatorName.placeholder = "Indicatorname";
+    $(indicatorName).addClass('form-control');
+
+    $(removeIndicator).addClass("btn");
+    $(removeIndicator).text("Remove this indicator");
+    $(removeIndicator).on('click', function() {
+        $(this).parent().remove();
+    });
+
+    $(listItem).addClass("list-group-item");
+
+    $(listgroup).append(listItem);
+    $(listItem).append(indicatorName);
+    $(listItem).append(indicatorDescription);
+    $(listItem).append(removeIndicator);
 
 }
 
