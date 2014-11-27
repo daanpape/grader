@@ -59,6 +59,7 @@ function addCompetence() {
 }
 
 function addSubCompetence() {
+    alert('hoi');
 }
 
 function addIndicator() {
