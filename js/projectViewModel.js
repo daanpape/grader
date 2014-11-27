@@ -59,7 +59,7 @@ function addCompetence() {
 }
 
 function addSubCompetence(compNumber) {
-    alert(compNumber);
+    console.log(compNumber);
 }
 
 function addIndicator() {
