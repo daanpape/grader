@@ -50,7 +50,7 @@ function addCompetence() {
     $(competencePanelBody).addClass("panel-body");
     $(competencePanelFooter).addClass("panel-footer");
 
-    if(viewModel.numberOfCompetencesToAdd == 0) {
+    if(viewModel.numberOfCompetencesToAdd == '0') {
         alert(viewModel.numberOfCompetencesToAdd);
         $("#top-col").after(competencePanelWrapper);
     } else {
