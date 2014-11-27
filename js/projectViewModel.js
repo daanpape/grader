@@ -42,7 +42,7 @@ function addComptetence() {
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
-    $(subcompetenceButton).click(addSubCompetence());
+    $(subcompetenceButton).on('click', addSubCompetence());
 
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
