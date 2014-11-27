@@ -84,7 +84,7 @@ function addSubCompetence(competence) {
     var removeSubcompButton = document.createElement('button');
     var listgroup = document.createElement('ul');
 
-    listgroup.addClass('list-group');
+    $(listgroup).addClass('list-group');
 
     subcompCode.type = 'text';
     subcompCode.placeholder = "Competence-Code";
