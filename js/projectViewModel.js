@@ -46,7 +46,7 @@ function addCompetence() {
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
     $(subcompetenceButton).val(viewModel.numberOfCompetencesToAdd);
-    $(subcompetenceButton).on('click', addSubCompetence($(this).val()));
+    $(subcompetenceButton).on('click', alert($(this).val()));
 
     $("#top-col").after(competencePanelWrapper);
     $(competencePanelWrapper).append(competencePanel);
