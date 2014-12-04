@@ -53,8 +53,8 @@ $location = "project";
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next">
-                        <input type="text" placeholder="Name of the competence" class="form-control form-next">
-                        <span>Current Percentage: </span>
+                        
+                        <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight"></span>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
