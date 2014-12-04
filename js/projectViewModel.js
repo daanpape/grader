@@ -114,7 +114,6 @@ function addSubCompetence(competence) {
     $(removeSubcompButton).val();
     $(removeSubcompButton).on('click', function() {
         $(this).parent().parent().remove();
-        viewModel.subcomp--;
     });
 
     $(subcompPanelWrapper).addClass("subcompPanel panel-" + competence + "-" + viewModel.subcomp);
