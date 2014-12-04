@@ -56,7 +56,7 @@ function addCompetence() {
         viewModel.competences--;
     });
 
-    $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
+    $(competencePanelWrapper).addClass("col-md-12 compPanel panel-" + $(subcompetenceButton).val());
     $(competencePanel).addClass("panel panel-default");
     $(competencePanelHeading).addClass("panel-heading comp-" + $(subcompetenceButton).val());
     $(competencePanelBody).addClass("panel-body comp-"  + $(subcompetenceButton).val());
