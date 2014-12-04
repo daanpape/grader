@@ -198,7 +198,7 @@ $app->get('/api/project/:id', function($id) use ($app){
     echo json_encode($pagedata);
 });
 
-$app->get('/api/user/:username', function($id) use ($app) {
+$app->get('/api/currentuser', function() use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
