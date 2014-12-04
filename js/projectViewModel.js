@@ -110,9 +110,9 @@ function addSubCompetence(competence) {
 
     $(subcompPanelWrapper).addClass("subcompPanel panel-" + competence + "-" + viewModel.subcomp);
     $(subcompPanel).addClass("panel panel-default");
-    $(subcompPanelHeading).addClass("panel-heading");
+    $(subcompPanelHeading).addClass("panel-heading color-subcomp");
     $(subcompPanelBody).addClass("panel-body");
-    $(subcompPanelFooter).addClass("panel-footer");
+    $(subcompPanelFooter).addClass("panel-footer color-subcomp");
 
 
     $(".panel-body.comp-" + competence).append(subcompPanelWrapper);
@@ -154,7 +154,6 @@ function addIndicator(listgroup) {
     $(listItem).append(indicatorName);
     $(listItem).append(indicatorDescription);
     $(listItem).append(removeIndicator);
-
 }
 
 
