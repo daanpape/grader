@@ -49,34 +49,36 @@ $location = "project";
 
         <!-- Content container -->
         <div class="container" data-bind="foreach: competences">
-            <div class="col-md-12 compPanel panel-NaN">
+            <div class="col-md-12 compPanel">
                 <div class="panel panel-default">
-                    <div class="panel-heading comp-NaN">
+                    <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next">
-                        <span>Current Percentage: NaN</span></div><div class="panel-body comp-NaN">
-                            <div class="subcompPanel panel-NaN-0">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading color-subcomp">
-                                        <input type="text" placeholder="Competence-Code" class="form-control form-next">
-                                        <input type="text" placeholder="Name of the competence" class="form-control form-next">
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <input type="text;" placeholder="Indicatorname" class="form-control form-next">
-                                                <input type="text" placeholder="Description" class="form-control form-next">
-                                                <button class="btn">Remove this indicator</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="panel-footer color-subcomp">
-                                        <button class="btn" value="NaN-0">Add an indicator</button>
-                                        <button class="btn pull-right">Remove this subcompetence</button>
-                                    </div>
+                        <span>Current Percentage: </span>
+                    </div>
+                    <div class="panel-body" data-bind="foreach: subcompetences">         
+                        <div class="subcompPanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading color-subcomp">
+                                    <input type="text" placeholder="Competence-Code" class="form-control form-next">
+                                    <input type="text" placeholder="Name of the competence" class="form-control form-next">
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group" data-bind="foreach: indicators">
+                                        <li class="list-group-item">
+                                            <input type="text;" placeholder="Indicatorname" class="form-control form-next">
+                                            <input type="text" placeholder="Description" class="form-control form-next">
+                                            <button class="btn">Remove this indicator</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="panel-footer color-subcomp">
+                                    <button class="btn" value="NaN-0">Add an indicator</button>
+                                    <button class="btn pull-right">Remove this subcompetence</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div class="panel-footer">
                         <button class="btn" value="NaN">Add a subcompetence</button>
                         <button class="btn pull-right" value="NaN">Remove this competence</button>
