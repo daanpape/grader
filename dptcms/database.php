@@ -246,7 +246,7 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
             $stmt->execute(array($username));
-            return $stmt->fetchObject();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             return null;
         }
