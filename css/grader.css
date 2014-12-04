@@ -130,3 +130,7 @@ body {
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
+.color-subcomp {
+    background-color: blue;
+}
