@@ -18,9 +18,10 @@ $location = "project";
                 padding-bottom: 15px;
             }
             
-            .form-control {
+            .form-next {
                 display: inline-block !important;
                 margin-right: 10px;
+                width: auto !important;
             }
         </style>
 
@@ -35,7 +36,7 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
-                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetenceBtn">
                         Add competence
                     </button>
                     
@@ -47,13 +48,49 @@ $location = "project";
         </div>
 
         <!-- Content container -->
-        <div class="container">
+        <div class="container" data-bind="foreach: competences">
+            <div class="col-md-12 compPanel">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" placeholder="Competence-Code" class="form-control form-next">
+                        <input type="text" placeholder="Name of the competence" class="form-control form-next">
+                        <span>Current Percentage: </span>
+                    </div>
+                    <div class="panel-body" data-bind="foreach: subcompetences">         
+                        <div class="subcompPanel">
+                            <div class="panel panel-default">
+                                <div class="panel-heading color-subcomp">
+                                    <input type="text" placeholder="Competence-Code" class="form-control form-next">
+                                    <input type="text" placeholder="Name of the competence" class="form-control form-next">
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="list-group" data-bind="foreach: indicators">
+                                        <li class="list-group-item">
+                                            <input type="text;" placeholder="Indicatorname" class="form-control form-next">
+                                            <input type="text" placeholder="Description" class="form-control form-next">
+                                            <button class="btn">Remove this indicator</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="panel-footer color-subcomp">
+                                    <button class="btn" value="NaN-0">Add an indicator</button>
+                                    <button class="btn pull-right">Remove this subcompetence</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn" value="NaN">Add a subcompetence</button>
+                        <button class="btn pull-right" value="NaN">Remove this competence</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="container">
             <div class="row">
                 <div id="bottom-col" class="col-md-12">
-                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetenceBtn">
                         Add competence
                     </button>
                     

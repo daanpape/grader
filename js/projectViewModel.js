@@ -1,3 +1,28 @@
+function Competence(code, name, weight, subcompetences) {
+    return {
+        code: ko.observable(code),
+        name: ko.observable(name),
+        weight: ko.observable(weight),
+        subcompetences: ko.observableArray(subcompetences)
+    };
+}
+
+function SubCompetence(code, name, weight, indicators) {
+    return {
+        code: ko.observable(code),
+        name: ko.observable(name),
+        weight: ko.observable(weight),
+        indicators: ko.observableArray(indicators)
+    };
+}
+
+function Indicator(name, description) {
+    return {
+        name: ko.observable(name),
+        description : ko.observable(description)
+    };
+}
+
 // View model for the courses page
 function pageViewModel(gvm) {
     // projecttitle 
@@ -10,13 +35,19 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
-    gvm.addCompetence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
+    gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
+    };
+    
+    gvm.competences = ko.observableArray([]);
+    
+    gvm.addCompetence = function() {
+        gvm.competences.push(new Competence());
     };
 }
 
@@ -35,11 +66,11 @@ function addCompetence() {
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
-    $(competenceCode).addClass("form-control");
+    $(competenceCode).addClass("form-control form-next");
 
     competenceName.type = 'text';
     competenceName.placeholder = "Name of the competence";
-    $(competenceName).addClass("form-control");
+    $(competenceName).addClass("form-control form-next");
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
@@ -99,11 +130,11 @@ function addSubCompetence(competence) {
 
     subcompCode.type = 'text';
     subcompCode.placeholder = "Competence-Code";
-    $(subcompCode).addClass("form-control");
+    $(subcompCode).addClass("form-control form-next");
 
     subcompName.type = 'text';
     subcompName.placeholder = "Name of the competence";
-    $(subcompName).addClass("form-control");
+    $(subcompName).addClass("form-control form-next");
 
     $(indicatorButton).addClass("btn");
     $(indicatorButton).text("Add an indicator");
@@ -146,11 +177,11 @@ function addIndicator(listgroup) {
 
     indicatorDescription.type = 'text';
     indicatorDescription.placeholder = "Description";
-    $(indicatorDescription).addClass("form-control");
+    $(indicatorDescription).addClass("form-control  form-next");
 
     indicatorName.type = 'text;';
     indicatorName.placeholder = "Indicatorname";
-    $(indicatorName).addClass('form-control');
+    $(indicatorName).addClass('form-control  form-next');
 
     $(removeIndicator).addClass("btn");
     $(removeIndicator).text("Remove this indicator");
