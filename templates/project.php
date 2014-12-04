@@ -18,7 +18,7 @@ $location = "project";
                 padding-bottom: 15px;
             }
             
-            .form-control {
+            .form-next {
                 display: inline-block !important;
                 margin-right: 10px;
             }

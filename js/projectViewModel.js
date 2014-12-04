@@ -99,7 +99,7 @@ function addSubCompetence(competence) {
 
     subcompCode.type = 'text';
     subcompCode.placeholder = "Competence-Code";
-    $(subcompCode).addClass("form-control");
+    $(subcompCode).addClass("form-control form-next");
 
     subcompName.type = 'text';
     subcompName.placeholder = "Name of the competence";
