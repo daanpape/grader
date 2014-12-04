@@ -50,6 +50,7 @@ function addCompetence() {
     $(removeCompetenceButton).val(viewModel.competences);
     $(removeCompetenceButton).on('click', function() {
         $(this).parent().parent().remove();
+        viewModel.competences--;
     });
 
     $(competencePanelWrapper).addClass("col-md-9 compPanel panel-" + $(subcompetenceButton).val());
@@ -113,6 +114,7 @@ function addSubCompetence(competence) {
     $(removeSubcompButton).val();
     $(removeSubcompButton).on('click', function() {
         $(this).parent().parent().remove();
+        viewModel.subcomp--;
     });
 
     $(subcompPanelWrapper).addClass("subcompPanel panel-" + competence + "-" + viewModel.subcomp);
