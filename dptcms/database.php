@@ -255,6 +255,7 @@ class ClassDAO {
                 }
                 
                 if(!array_key_exists($row['sid'], $competence->subCompetence)) {
+                    $subcompetence = new stdClass();
                     $subcompetence->id = $row['sid'];
                     $subcompetence->code = $row['scode'];
                     $subcompetence->description = $row['sdescription'];
