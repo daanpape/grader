@@ -34,22 +34,22 @@ $location = "account";
         <div class="col-md-9">
             <table class="table">
                 <tr>
-                    <td>Voornaam:</td>
+                    <td data-bind="text: firstname">First name:</td>
                     <td>Daan</td>
                 </tr>
                 
                 <tr>
-                    <td>Naam:</td>
+                    <td data-bind="text: lastname">Last name:</td>
                     <td>Pape</td>
                 </tr>
                 
                 <tr>
-                    <td>Email:</td>
+                    <td data-bind="text: email">Email:</td>
                     <td>daan@dptechnics.com</td>
                 </tr>
                 
                 <tr>
-                    <td>Lid sinds:</td>
+                    <td data-bind="text: memberSince">Member since:</td>
                     <td>20/11/2014</td>
                 </tr>
             </table>
