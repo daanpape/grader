@@ -76,6 +76,13 @@ function pageViewModel(gvm) {
     
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
+        
+        // Update automated weight calculation
+        var size = gvm.competences.length;
+        var percent = 100/size;
+        ko.utils.arrayForEach(gvm.competences, function(competence){
+            competence.weight(percent);
+        });
     };
     
     gvm.removeCompetence = function(competence) {
