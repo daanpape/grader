@@ -108,9 +108,9 @@ function addSubCompetence(competence) {
         $(this).parent().parent().remove();
     });
 
-    $(subcompPanelWrapper).addClass("subcompPanel color-subcomp panel-" + competence + "-" + viewModel.subcomp);
+    $(subcompPanelWrapper).addClass("subcompPanel panel-" + competence + "-" + viewModel.subcomp);
     $(subcompPanel).addClass("panel panel-default");
-    $(subcompPanelHeading).addClass("panel-heading");
+    $(subcompPanelHeading).addClass("panel-heading color-subcomp");
     $(subcompPanelBody).addClass("panel-body");
     $(subcompPanelFooter).addClass("panel-footer color-subcomp");
 
