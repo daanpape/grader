@@ -251,7 +251,7 @@ class ClassDAO {
                     $competence->max = $row['cmax'];
                     $competence->weight = $row['cweight'];
                     
-                    $data[$row['id']] = $competence;
+                    $data[$row['cid']] = $competence;
                 }
                 
                 if(!array_key_exists($row['sid'], $competence->subCompetence)) {
