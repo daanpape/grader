@@ -242,7 +242,7 @@ class UserDAO {
      * @clean: if clean is true the output will be filtered for public use. 
      */
 
-    public static function getUserByUsername($username, $clean = true) {
+    public static function getUserByUsername($username, $clean = false) {
         try {
             $conn = Db::getConnection();
             if(!$clean) {
