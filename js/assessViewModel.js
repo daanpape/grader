@@ -88,6 +88,12 @@ function pageViewModel(gvm) {
         gvm.tabledata.push(tblOject);
     }
 
+    $('#assessbtn-' + id).bind('click', function(event, data){
+        // Edit the table item
+        showEditProjectTypeModal(code, name, desc, id);
+        event.stopPropagation();
+    });
+
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
