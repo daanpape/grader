@@ -6,7 +6,7 @@ function Competence(viewmodel, code, name, weight, subcompetences) {
         subcompetences: ko.observableArray(subcompetences),
         
         addSubCompetence: function() {
-            this.subcompetences.push(new SubCompetence());
+            this.subcompetences.push(new SubCompetence(this));
         },
         
         removeThis: function() {
@@ -27,7 +27,7 @@ function SubCompetence(parent, code, name, weight, indicators) {
         indicators: ko.observableArray(indicators),
         
         addIndicator: function() {
-            this.indicators.push(new Indicator());
+            this.indicators.push(new Indicator(this));
         },
         
         removeThis: function() {
@@ -75,7 +75,7 @@ function pageViewModel(gvm) {
     gvm.competences = ko.observableArray([]);
     
     gvm.addCompetence = function() {
-        gvm.competences.push(new Competence());
+        gvm.competences.push(new Competence(this));
     };
     
     gvm.removeCompetence = function(competence) {
