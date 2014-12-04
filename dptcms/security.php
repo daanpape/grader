@@ -45,22 +45,21 @@ class Security {
      */
     public static function loginUser($username, $password) {
         // Search if the username is used 
-        $userdata = UserDAO::getUserByUsername($username, false);
-        var_dump($userdata);
+        $userdata = UserDAO::getUserByUsername($username);
 
         // Check password if there is data
         if ($userdata != false) {
             // Check account status if the password is successful
-            if (password_verify($password, $userdata['password'])) {
+            if (password_verify($password, $userdata->password)) {
                 // Check if the user is active
-                if ($userdata['status'] == ACTIVE) {
+                if ($userdata->status == ACTIVE) {
                     // Set user in session
                     $_SESSION['username'] = $username;
-                    $_SESSION['firstname'] = $userdata['firstname'];
+                    $_SESSION['firstname'] = $userdata->firstname;
                     return true;
                 } else {
                     // Return the current user status
-                    return $userdata['status'];
+                    return $userdata->status;
                 }
             }
         }

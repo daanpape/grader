@@ -242,7 +242,7 @@ class UserDAO {
      * @clean: if clean is true the output will be filtered for public use. 
      */
 
-    public static function getUserByUsername($username, $clean) {
+    public static function getUserByUsername($username, $clean = true) {
         try {
             $conn = Db::getConnection();
             if(!$clean) {
@@ -251,7 +251,7 @@ class UserDAO {
                 $stmt = $conn->prepare("SELECT username, avatar, firstname, lastname, created FROM users WHERE username = ?");
             }
             $stmt->execute(array($username));
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            return $stmt->fetchObject();
         } catch (PDOException $err) {
             return null;
         }
