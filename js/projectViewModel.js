@@ -1,3 +1,28 @@
+function Competence(code, name, weight, subcompetences) {
+    return {
+        code: ko.observable(code),
+        name: ko.observable(name),
+        weight: ko.observable(weight),
+        subcompetences: ko.observableArray(subcompetences)
+    };
+}
+
+function SubCompetence(code, name, weight, indicators) {
+    return {
+        code: ko.observable(code),
+        name: ko.observable(name),
+        weight: ko.observable(weight),
+        indicators: ko.observableArray(indicators)
+    };
+}
+
+function Indicator(name, description) {
+    return {
+        name: ko.observable(name),
+        description : ko.observable(description)
+    };
+}
+
 // View model for the courses page
 function pageViewModel(gvm) {
     // projecttitle 
@@ -10,13 +35,19 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
-    gvm.addCompetence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
+    gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
+    };
+    
+    gvm.competences = ko.observableArray([]);
+    
+    gvm.addCompetence = function() {
+        gvm.competences.push(new Competence());
     };
 }
 

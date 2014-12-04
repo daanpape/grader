@@ -36,7 +36,7 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
-                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetenceBtn">
                         Add competence
                     </button>
                     
@@ -54,7 +54,7 @@ $location = "project";
         <div class="container">
             <div class="row">
                 <div id="bottom-col" class="col-md-12">
-                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetenceBtn">
                         Add competence
                     </button>
                     
