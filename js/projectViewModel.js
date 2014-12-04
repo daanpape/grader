@@ -3,7 +3,11 @@ function Competence(code, name, weight, subcompetences) {
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
-        subcompetences: ko.observableArray(subcompetences)
+        subcompetences: ko.observableArray(subcompetences),
+        
+        addSubCompetence: function() {
+            this.subcompetences.push(new SubCompetence());
+        }
     };
 }
 
@@ -12,7 +16,11 @@ function SubCompetence(code, name, weight, indicators) {
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
-        indicators: ko.observableArray(indicators)
+        indicators: ko.observableArray(indicators),
+        
+        addIndicator: function() {
+            this.indicators.push(new Indicator());
+        }
     };
 }
 
@@ -201,6 +209,6 @@ function addIndicator(listgroup) {
 function initPage() {
     viewModel.getProjectInfo();
     $(".addCompetenceBtn").click(function() {
-        addCompetence();
-    })
+        viewModel.addCompetence();
+    });
 }

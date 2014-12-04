@@ -73,14 +73,14 @@ $location = "project";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button class="btn" value="NaN-0">Add an indicator</button>
+                                    <button class="btn" value="NaN-0" data-bind="click: addIndicator">Add an indicator</button>
                                     <button class="btn pull-right">Remove this subcompetence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn" value="NaN">Add a subcompetence</button>
+                        <button class="btn" value="NaN" data-bind="click: addSubCompetence">Add a subcompetence</button>
                         <button class="btn pull-right" value="NaN">Remove this competence</button>
                     </div>
                 </div>
