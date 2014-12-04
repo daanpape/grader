@@ -242,8 +242,7 @@ class ClassDAO {
             
             $data = array();
             foreach($dataFromDb as $row) {
-                $competence = $data[$row['cid']];
-                if($competence == null){
+                if(!array_key_exists($row['cid'], $data)){
                     $competence = new stdClass();
                     $competence->subCompetence = array();
                     $competence->id = $row['cid'];
@@ -255,9 +254,7 @@ class ClassDAO {
                     $data[$row['id']] = $competence;
                 }
                 
-                
-                $subcompetence = $competence->subCompetence[$row['sid']];
-                if($subcompetence == null) {
+                if(!array_key_exists($row['sid'], $competence->subCompetence)) {
                     $subcompetence->id = $row['sid'];
                     $subcompetence->code = $row['scode'];
                     $subcompetence->description = $row['sdescription'];
