@@ -41,6 +41,11 @@
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "EditProjectTitle" : "Edit projecttype",
     "CancelBtn" : "Cancel",
+    
+    "Firstname" : "First name",
+    "Lastname" : "Last name",
+    "MemberSince" : "Member since",
+    "MyProjects" : "My projects",
 
     "HomeManual" : "<p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
 
