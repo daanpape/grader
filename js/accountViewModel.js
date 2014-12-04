@@ -20,5 +20,4 @@ function initPage() {
         $('#email').html(data.username);
         $('#member_since').html(data.created);
     });
-    alert("test");
 }
