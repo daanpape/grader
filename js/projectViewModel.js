@@ -25,8 +25,10 @@ function addCompetence() {
     var competencePanelFooter = document.createElement('div');
     var competenceCode = document.createElement('input');
     var competenceName = document.createElement('input');
+    var weightSpan = document.createElement('span');
     var subcompetenceButton = document.createElement('button');
     var removeCompetenceButton = document.createElement('button');
+
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
@@ -62,10 +64,15 @@ function addCompetence() {
         $(".compPanel:last").after(competencePanelWrapper);
     }
     ++viewModel.competences;
+
+    $(weightSpan).text("Current Percentage: " + 100 / viewModel.competences);
+
+
     $(competencePanelWrapper).append(competencePanel);
     $(competencePanel).append(competencePanelHeading);
     $(competencePanelHeading).append(competenceCode);
     $(competenceCode).after(competenceName);
+    $(competenceName).after(weightSpan);
     $(competencePanelHeading).after(competencePanelBody);
     $(competencePanelBody).after(competencePanelFooter);
     $(competencePanelFooter).append(subcompetenceButton);
@@ -113,7 +120,6 @@ function addSubCompetence(competence) {
     $(subcompPanelHeading).addClass("panel-heading color-subcomp");
     $(subcompPanelBody).addClass("panel-body");
     $(subcompPanelFooter).addClass("panel-footer color-subcomp");
-
 
     $(".panel-body.comp-" + competence).append(subcompPanelWrapper);
     $(subcompPanelWrapper).append(subcompPanel);
