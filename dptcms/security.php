@@ -45,7 +45,7 @@ class Security {
      */
     public static function loginUser($username, $password) {
         // Search if the username is used 
-        $userdata = UserDAO::getUserByUsername($username);
+        $userdata = UserDAO::getUserByUsername($username, false);
 
         // Check password if there is data
         if ($userdata != false) {
