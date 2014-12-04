@@ -36,6 +36,10 @@ class GraderAPI {
         return ClassDAO::getProjectById($id);
     }
 
+    public static function getAllDataFromProject($id) {
+        return ClassDAO::getAllDataFromProject($id);
+    }
+
     /*
      * Delete a projecttype from the database
      */

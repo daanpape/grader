@@ -211,6 +211,16 @@ $app->get('/api/currentuser', function() use ($app) {
     echo json_encode($userdata);
 });
 
+$app->get('/api/project/getAllData/:id', function($id) use($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $allData = GraderAPI::getAllDataFromProject($id);
+
+    echo json_encode($allData);
+
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

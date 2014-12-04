@@ -229,6 +229,21 @@ class ClassDAO {
             return false;
         }
     }
+
+    public static function getAllDataFromProject($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT competence.id cid, competence.code ccode, competence.description cdescription, competence.max cmax, competence.weight cweight, subcompetence.id sid, subcompetence.code scode, subcompetence.description sdescription, subcompetence.weight sweight, subcompetence.max smax, subcompetence.min_required smin_required, indicator.id iid, indicator.name iname, indicator.description idescription, indicator.max imax, indicator.weight iweight
+                                    FROM competence JOIN subcompetence ON competence.id = subcompetence.competence
+                                    JOIN indicator ON subcompetence.id = indicator.subcompetence WHERE project = :projectid");
+            $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get all data from project with id '.$id, $err);
+            return false;
+        }
+    }
 }
 
 

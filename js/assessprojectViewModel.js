@@ -12,6 +12,12 @@ function pageViewModel(gvm) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
+
+    gvm.getAllData = function() {
+        $getJSON('/api/project/getAllData/' + $("#projectHeader").data('value'), function(data) {
+
+        });
+    }
 }
 
 function initPage() {
