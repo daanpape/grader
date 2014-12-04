@@ -203,7 +203,6 @@ $app->get('/api/currentuser', function() use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
-    var_dump(Security::getLoggedInName());
     $userdata = GraderAPI::getUserData(Security::getLoggedInUsername());
 
     echo json_encode($userdata);
