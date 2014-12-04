@@ -238,7 +238,7 @@ class ClassDAO {
                                     JOIN indicator ON subcompetence.id = indicator.subcompetence WHERE project = :projectid ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
-            $dataFromDb =  $stmt->fetchAll(PDO::FETCH_CLASS);
+            $dataFromDb =  $stmt->fetchAll(PDO::FETCH_ASSOC);
             
             $data = array();
             foreach($dataFromDb as $row) {
