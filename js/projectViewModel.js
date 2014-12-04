@@ -35,11 +35,11 @@ function addCompetence() {
 
     competenceCode.type = 'text';
     competenceCode.placeholder = "Competence-Code";
-    $(competenceCode).addClass("form-control");
+    $(competenceCode).addClass("form-control form-next");
 
     competenceName.type = 'text';
     competenceName.placeholder = "Name of the competence";
-    $(competenceName).addClass("form-control");
+    $(competenceName).addClass("form-control form-next");
 
     $(subcompetenceButton).addClass("btn");
     $(subcompetenceButton).text("Add a subcompetence");
@@ -103,7 +103,7 @@ function addSubCompetence(competence) {
 
     subcompName.type = 'text';
     subcompName.placeholder = "Name of the competence";
-    $(subcompName).addClass("form-control");
+    $(subcompName).addClass("form-control form-next");
 
     $(indicatorButton).addClass("btn");
     $(indicatorButton).text("Add an indicator");
@@ -146,11 +146,11 @@ function addIndicator(listgroup) {
 
     indicatorDescription.type = 'text';
     indicatorDescription.placeholder = "Description";
-    $(indicatorDescription).addClass("form-control");
+    $(indicatorDescription).addClass("form-control  form-next");
 
     indicatorName.type = 'text;';
     indicatorName.placeholder = "Indicatorname";
-    $(indicatorName).addClass('form-control');
+    $(indicatorName).addClass('form-control  form-next');
 
     $(removeIndicator).addClass("btn");
     $(removeIndicator).text("Remove this indicator");
