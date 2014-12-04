@@ -112,8 +112,6 @@ class GraderAPI {
      * Get user information given a username
      */
     public static function getUserData($username) {
-        $userdata = UserDAO::getUserByUsername($username);
-        
-        return $response;
+        return UserDAO::getUserByUsername($username, true);
     }
 }
