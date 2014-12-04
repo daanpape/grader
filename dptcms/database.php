@@ -247,7 +247,7 @@ class ClassDAO {
                     $competence->subCompetence = array();
                     $competence->id = $row['cid'];
                     $competence->code = $row['ccode'];
-                    $competence->description = $row['description'];
+                    $competence->description = $row['cdescription'];
                     $competence->max = $row['cmax'];
                     $competence->weight = $row['cweight'];
                     
