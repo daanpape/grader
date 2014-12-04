@@ -204,7 +204,7 @@ $app->get('/api/currentuser', function() use ($app) {
 
     // Get all courses by the trainingsid
     var_dump(Security::getLoggedInName());
-    $userdata = GraderAPI::getUserData(Security::getLoggedInName());
+    $userdata = GraderAPI::getUserData(Security::getLoggedInUsername());
 
     echo json_encode($userdata);
 });

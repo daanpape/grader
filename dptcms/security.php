@@ -32,6 +32,13 @@ class Security {
     public static function getLoggedInName() {
         return $_SESSION['firstname'];
     }
+    
+    /*
+     * Return the username of the currently logged in user.
+     */
+    public static function getLoggedInUsername() {
+        return $_SESSION['username'];
+    }
 
     /*
      * Log in a user into the current session 
