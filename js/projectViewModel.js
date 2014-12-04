@@ -10,6 +10,9 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
+    gvm.addCompetence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
+    gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+    
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);

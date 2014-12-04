@@ -46,6 +46,9 @@
     "Lastname" : "Last name",
     "MemberSince" : "Member since",
     "MyProjects" : "My projects",
+    
+    "SaveBtn" : "Save",
+    "AddCompetence" : "Add competence",
 
     "HomeManual" : "<p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
 
