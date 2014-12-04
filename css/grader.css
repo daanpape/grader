@@ -134,3 +134,7 @@ body {
 .color-subcomp {
     background-color: rgb(155, 155, 200) !important;
 }
+
+.list-group-item {
+    background-color: #ECDFA0
+}
