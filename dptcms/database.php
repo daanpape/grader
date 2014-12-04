@@ -239,11 +239,38 @@ class ClassDAO {
             $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb =  $stmt->fetchAll(PDO::FETCH_CLASS);
-            $obj = new competence();
+            
+            $data = array();
             foreach($dataFromDb as $row) {
-
+                $competence = $data[$row['cid']];
+                if($competence == null){
+                    $competence = new stdClass();
+                    $competence->subCompetence = array();
+                    $competence->id = $row['cid'];
+                    $competence->code = $row['ccode'];
+                    $competence->description = $row['description'];
+                    $competence->max = $row['cmax'];
+                    $competence->weight = $row['cweight'];
+                    
+                    $data[$row['id']] = $competence;
+                }
+                
+                
+                $subcompetence = $competence->subCompetence[$row['sid']];
+                if($subcompetence == null) {
+                    $subcompetence->id = $row['sid'];
+                    $subcompetence->code = $row['scode'];
+                    $subcompetence->description = $row['sdescription'];
+                    $subcompetence->weight = $row['sweight'];
+                    $subcompetence->max = $row['smax'];
+                    $subcompetence->minRequired = $row['smin_required'];
+                    
+                    $competence->subCompetence[$row['sid']] = $subcompetence;
+                }
             }
-            return $obj;
+            
+            
+            return $data;
         } catch (PDOException $err) {
             Logger::logError('Could not get all data from project with id '.$id, $err);
             return false;
