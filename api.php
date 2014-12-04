@@ -108,4 +108,7 @@ class GraderAPI {
         return $result;
     }
 
+    public static function getUserData($username) {
+        return UserDAO::getUserByUsername($username);
+    }
 }

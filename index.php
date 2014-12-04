@@ -198,6 +198,16 @@ $app->get('/api/project/:id', function($id) use ($app){
     echo json_encode($pagedata);
 });
 
+$app->get('/api/user/:username', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $userdata = GraderAPI::getUserData(Security::getLoggedInName());
+
+    echo json_encode($userdata);
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

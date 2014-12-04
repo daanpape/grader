@@ -28,10 +28,10 @@ $location = "account";
 <!-- Content container -->
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <table class="table">
                 <tr>
                     <td>Voornaam:</td>
