@@ -21,7 +21,7 @@ $location = "project";
             .form-next {
                 display: inline-block !important;
                 margin-right: 10px;
-                width: auto;
+                width: auto !important;
             }
         </style>
 
