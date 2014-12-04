@@ -166,7 +166,7 @@ function addIndicator(listgroup) {
 
 function initPage() {
     viewModel.getProjectInfo();
-    $("#addCompetenceBtn").click(function() {
+    $(".addCompetenceBtn").click(function() {
         addCompetence();
     })
 }

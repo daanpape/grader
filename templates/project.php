@@ -13,6 +13,11 @@ $location = "project";
         <link rel="icon" href="/img/favicon.ico">
 
         <title data-bind="text: title"></title>
+        <style>
+            .btn-top {
+                margin-bottom: 10px;
+            }
+        </style>
 
         <?php include_once('hddepends.php') ?>
     </head>
@@ -25,7 +30,7 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
-                    <button id="addCompetenceBtn" class="btn btn-lg">
+                    <button class="btn btn-lg addCompetenceBtn btn-top">
                         Add competence
                     </button>
                 </div>
