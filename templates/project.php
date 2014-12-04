@@ -17,6 +17,11 @@ $location = "project";
             #top-col {
                 padding-bottom: 15px;
             }
+            
+            .form-control {
+                display: inline-block;
+                margin-right: 10px;
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
