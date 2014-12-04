@@ -35,22 +35,22 @@ $location = "account";
             <table class="table">
                 <tr>
                     <td data-bind="text: firstname">First name:</td>
-                    <td>Daan</td>
+                    <td id="firstname"></td>
                 </tr>
                 
                 <tr>
                     <td data-bind="text: lastname">Last name:</td>
-                    <td>Pape</td>
+                    <td id="lastname"></td>
                 </tr>
                 
                 <tr>
                     <td data-bind="text: email">Email:</td>
-                    <td>daan@dptechnics.com</td>
+                    <td id="email"></td>
                 </tr>
                 
                 <tr>
                     <td data-bind="text: memberSince">Member since:</td>
-                    <td>20/11/2014</td>
+                    <td id="member_since"></td>
                 </tr>
             </table>
         </div>
@@ -58,7 +58,7 @@ $location = "account";
 </div>
 
 <div class="container">
-    <h1 class="page-header">Mijn projecten</h1>
+    <h1 class="page-header" data-bind="text: myProjects">Mijn projecten</h1>
 </div>
 
 <?php include_once('jsdepends.php') ?>

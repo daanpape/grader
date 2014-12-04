@@ -9,8 +9,15 @@ function pageViewModel(gvm) {
     gvm.lastname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
     gvm.email = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Email");}, gvm);
     gvm.memberSince = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MemberSince");}, gvm);
+    gvm.myProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MyProjects");}, gvm);
 }
 
 function initPage() {
-
+    // Fetch userdata
+    $.getJSON('/api/currentuser', function(data) {
+        $('#firstname').html(data.firstname);
+        $('#lastname').html(data.lastname);
+        $('#email').html(data.username);
+        $('#member_since').html(data.created);
+    });
 }
