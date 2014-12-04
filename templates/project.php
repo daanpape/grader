@@ -14,8 +14,8 @@ $location = "project";
 
         <title data-bind="text: title"></title>
         <style>
-            .btn-top {
-                margin-bottom: 10px;
+            #top-col {
+                padding-bottom: 15px;
             }
         </style>
 
@@ -30,16 +30,33 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
-                    <button class="btn btn-lg addCompetenceBtn btn-top">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
                         Add competence
                     </button>
+                    
+                    <button class="btn btn-lg savePageBtn" data-bind="text: savePage">
+                        Save
+                    </button>
                 </div>
-
             </div>
         </div>
 
         <!-- Content container -->
         <div class="container">
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <div id="bottom-col" class="col-md-12">
+                    <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetence">
+                        Add competence
+                    </button>
+                    
+                    <button class="btn btn-lg savePageBtn" data-bind="text: savePage">
+                        Save
+                    </button>
+                </div>
+            </div>
         </div>
 
         <?php include_once('jsdepends.php') ?>
