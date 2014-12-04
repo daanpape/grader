@@ -241,7 +241,7 @@ class ClassDAO {
             $dataFromDb =  $stmt->fetchAll(PDO::FETCH_CLASS);
             $obj = new competence();
             foreach($dataFromDb as $row) {
-                
+
             }
             return $obj;
         } catch (PDOException $err) {
