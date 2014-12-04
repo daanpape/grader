@@ -19,7 +19,7 @@ $location = "project";
             }
             
             .form-control {
-                display: inline-block;
+                display: inline-block !important;
                 margin-right: 10px;
             }
         </style>
