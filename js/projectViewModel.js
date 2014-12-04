@@ -82,6 +82,7 @@ function pageViewModel(gvm) {
         var percent = 100/size;
         ko.utils.arrayForEach(gvm.competences, function(competence){
             competence.weight(percent);
+            alert(percent);
         });
     };
     
