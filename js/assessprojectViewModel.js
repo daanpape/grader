@@ -14,7 +14,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.getAllData = function() {
-        $getJSON('/api/project/getAllData/' + $("#projectHeader").data('value'), function(data) {
+        $.getJSON('/api/project/getAllData/' + $("#projectHeader").data('value'), function(data) {
             console.log(data);
         });
     }
