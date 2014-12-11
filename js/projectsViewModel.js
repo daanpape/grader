@@ -346,7 +346,7 @@ function showEditProjectTypeModal(code, name, description, tid)
 function showCoupleStudentListModal(projectid) {
     resetGeneralModal();
     setGeneralModalTitle(i18n.__("CoupleStudentList"));
-    setGeneralModalBody('<form id="coupleform">' +
+    setGeneralModalBody(
         '<div class="dropdown">' +
             '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownStudLists" data-toggle="dropdown" aria-expanded="true">' +
                 'Dropdown' +
@@ -354,8 +354,7 @@ function showCoupleStudentListModal(projectid) {
             '</button>' +
             '<ul class="dropdown-menu" role="menu" id="ddlLists" aria-labelledby="dropdownStudLists">' +
             '</ul>' +
-        '</div>' +
-        '</form>');
+        '</div>');
 
     addGeneralModalButton(i18n.__("SaveBtn"), function() {
         updateProjecttypeForm(projectid, $('#coupleform').serialize(), function(result){
