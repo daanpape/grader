@@ -104,6 +104,19 @@ class ClassDAO {
         }
     }
 
+    public static function getStudentListInfoFromListId($listid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist where id = :id ");
+            $stmt->bindValue(':id', (int) $listid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */
@@ -131,6 +144,8 @@ class ClassDAO {
             return 0;
         }
     }
+
+
 
     /*
      * Delete a project type from the database

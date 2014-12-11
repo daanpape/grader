@@ -238,6 +238,14 @@ $app->get('/api/studentlists/:id', function($id) use($app) {
 
     echo json_encode($data);
 });
+$app->get('/api/studentlist/info/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = GraderAPI::getStudentListInfoFromListId($id);
+
+    echo json_encode($data);
+});
 
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){

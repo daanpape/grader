@@ -104,6 +104,10 @@ class GraderAPI {
         return ClassDAO::getCoursesByTraining($id);
     }
 
+    public static function getStudentListInfoFromListId($id) {
+        return ClassDAO::getStudentListInfoFromListId($id);
+    }
+
     public static function getLocationsTrainingsAndCourses($locationId, $trainingId) {
         $result[] = array();
 

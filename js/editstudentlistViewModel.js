@@ -24,7 +24,7 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    $.getJSON('/api/studentlist/' + $("#page-header").data('value'), function(data) {
+    $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
         gvm.studentlistName(data[0].name);
     });
 }
