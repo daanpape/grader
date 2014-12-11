@@ -381,6 +381,7 @@ function loadCoupleDropdown() {
 
 function listClicked() {
     console.log("test");
+    console.log($(this));
     $(this).parent().parent().removeClass("open");
     $(this).parent().parent().text($(this).text());
 }
