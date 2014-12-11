@@ -380,8 +380,8 @@ function loadCoupleDropdown() {
     $(".studentListItem").click(function() {
         console.log("test");
         console.log($(this));
-        $(this).parent().parent().removeClass("open");
-        $(this).parent().parent().text($(this).text());
+        $(this).parent().parent().parent().removeClass("open");
+        $(this).parent().parent().parent().text($(this).text());
     });
 }
 
