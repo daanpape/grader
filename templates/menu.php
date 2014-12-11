@@ -114,7 +114,7 @@ require_once 'dptcms/security.php';
                 <p>
                     <label for="file">Choose images:</label>
                     <input type="file" name="files[]" multiple>
-                    <input type="button" class="upload" value="Upload">
+                    <input type="button" id="uploadformbtn" class="upload" value="Upload">
                 </p>
             </form>
             <div id="upimagestext">Uploaded images:</div>

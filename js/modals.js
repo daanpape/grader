@@ -145,7 +145,7 @@ function hideModal() {
 }
 
 $(document).ready(function () { 
-        $('body').on('click', '.upload', function(){
+        $('#uploadformbtn').click(function(){
             // Get the form data. This serializes the entire form. pritty easy huh!
             var form = new FormData($('#uploadform')[0]);
 
