@@ -49,5 +49,5 @@ function initPage() {
     $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
         viewModel.studentlistName(data[0].name);
     });
-    viewModel.loadStudentTable();
+    loadStudentTable();
 }
