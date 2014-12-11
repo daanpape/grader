@@ -387,7 +387,7 @@ function loadCoupleDropdown() {
             viewModel.addCoupleDropdownData(item.id, item.name);
         });
     })
-    ko.applyBindings(viewModel.availableStudentlists, $('#dropdown'));
+    ko.applyBindings(viewModel, $('#dropdown'));
 }
 
 function initPage() {
