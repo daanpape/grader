@@ -311,9 +311,9 @@ class UserDAO {
             $data = $stmt->fetchObject();
             
             // Fetch an avater when it is not null
-            $file_id = $data['avatar'];
+            $file_id = $data->avatar;
             if($file_id != null) {
-                $data['avatar'] = FileDAO::getUpload($file_id);
+                $data->avatar = FileDAO::getUpload($file_id);
             }
             
             return $data;
