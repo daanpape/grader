@@ -74,8 +74,8 @@ $app->get('/account', function() use ($app) {
 $app->get('/account/studentlists', function() use ($app) {
     $app->render('accountstudentlists.php');
 });
-$app->get('/account/studentlist/edit/1', function() use($app) {
-    $app->render('editstudentlist.php');
+$app->get('/account/studentlist/edit/:id', function($id) use($app) {
+    $app->render('editstudentlist.php', array('studentlistid' =>$id));
 });
 $app->get('/unauthorized', function() use ($app) {
     $app->render('unauthorized.php');

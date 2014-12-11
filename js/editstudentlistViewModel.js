@@ -1,9 +1,11 @@
 // View model for the courses page
 function pageViewModel(gvm) {
     gvm.userId = -1;
+    gvm.studentlistName = ko.observable('Name');
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AccountTitle");}, gvm);
-    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserlistsTitle");}, gvm);
+    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("EditListTitle");}, gvm);
+
     gvm.myLists = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("myLists");}, gvm);
     gvm.addStudListBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("addStudListBtn");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
@@ -22,5 +24,7 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    // Fetch userdata
+    $.getJSON('/api/studentlist/' + $("#projectHeader").data('value'), function(data) {
+        gvm.studentlistName(data[0].name);
+    });
 }
