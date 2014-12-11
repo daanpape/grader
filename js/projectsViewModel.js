@@ -370,7 +370,6 @@ function showCoupleStudentListModal(projectid) {
 
 function loadCoupleDropdown() {
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
-        console.log("testest");
         $.each(data, function(i, item) {
             $("#ddlLists").append('<li class="li-wide" onclick="listClicked()" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="\'dropdownitem-\' + item.id""><span>' + item.name + '</span></a> </li>')
         });
@@ -381,6 +380,7 @@ function loadCoupleDropdown() {
 }
 
 function listClicked() {
+    console.log("test");
     $(this).parent().parent().removeClass("open");
     $(this).parent().parent().text($(this).text());
 }
