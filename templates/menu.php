@@ -94,6 +94,7 @@
         </div>
     </div>
     
+    <!-- Upload modal -->
     <div class="upload_modal" class="modal_box extrapadding">
         <div class="modal_title" data-bind="text: uploadModalTitle">
             Upload a file

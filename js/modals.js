@@ -73,6 +73,7 @@ function showYesNoModal(body, callback) {
     // Hide the login window 
     $('#login_modal').hide();
     $('#general_modal').hide();
+    $('#upload_modal').hide();
     $('#yes_no_modal').show();
 
     // Fill up the body
@@ -92,10 +93,19 @@ function showYesNoModal(body, callback) {
     });
 }
 
+function showUploadModal()
+{
+    $('#login_modal').hide();
+    $('#yes_no_modal').hide();
+    $('#general_modal').hide();
+    $('#upload_modal').show();
+}
+
 function showGeneralModal()
 {
     $('#login_modal').hide();
     $('#yes_no_modal').hide();
+    $('#upload_modal').hide();
     $('#general_modal').show();
     
     // Show the modal
