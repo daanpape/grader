@@ -39,7 +39,7 @@ function loadTable(id) {
         viewModel.clearTable();
 
         // Load table data
-        $.each(data.data, function(i, item) {
+        $.each(data, function(i, item) {
             viewModel.addTableData(item.id, item.name);
         });
     });
