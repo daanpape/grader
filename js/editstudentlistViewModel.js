@@ -48,7 +48,7 @@ function deleteTableItem(id, tblObject){
                 url: "/api/studentlist/delete/student/" + id,
                 type: "DELETE",
                 success: function() {
-                    viewModel.tabledata.remove(tblOject);
+                    viewModel.tabledata.remove(tblObject);
                 }
             });
         }
