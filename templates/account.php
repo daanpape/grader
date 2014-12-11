@@ -19,6 +19,18 @@ $location = "account";
         .avatarimg {
             width: 210px;
         }
+        
+        .edit-pencil {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 20px;
+            bottom: 2Opx;
+        }
+        
+        .edit-picture {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -34,7 +46,10 @@ $location = "account";
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <img src="/upload/unknown.png" class="avatarimg" alt="avatar" id="avatar"/>
+            <div id="edit-picture">
+                <img src="/upload/unknown.png" class="avatarimg" alt="avatar" id="avatar"/>
+                <img src="/img/pencil.svg" class="edit-pencil" alt="edit-pencil" id="edit-avatar"/>
+            </div>
         </div>
         <div class="col-md-9">
             <table class="table">
