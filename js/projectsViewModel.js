@@ -377,12 +377,6 @@ function loadCoupleDropdown() {
     $("#dropdownStudLists").click(function() {
         $(this).parent().toggleClass("open");
     });
-    $(".studentListItem").click(function() {
-        console.log("test");
-        console.log($(this));
-        $(this).parent().parent().parent().removeClass("open");
-        $(this).parent().parent().parent().text($(this).text());
-    });
 }
 
 function initPage() {
