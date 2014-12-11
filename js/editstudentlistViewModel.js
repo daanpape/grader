@@ -45,7 +45,7 @@ function deleteTableItem(id, tblObject){
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
         if(val){
             $.ajax({
-                url: "/api/studentlist/delete/student" + id,
+                url: "/api/studentlist/delete/student/" + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);
