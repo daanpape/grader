@@ -318,7 +318,7 @@ class UserDAO {
             if(!$clean) {
                 $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
             } else {
-                $stmt = $conn->prepare("SELECT username, avatar, firstname, lastname, created FROM users WHERE username = ?");
+                $stmt = $conn->prepare("SELECT id, username, avatar, firstname, lastname, created FROM users WHERE username = ?");
             }
             $stmt->execute(array($username));
             $data = $stmt->fetchObject();
