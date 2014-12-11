@@ -18,6 +18,31 @@ function pageViewModel(gvm) {
     gvm.email = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Email");}, gvm);
     gvm.memberSince = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MemberSince");}, gvm);
     gvm.myProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MyProjects");}, gvm);
+
+    // The table data observable array
+    gvm.tabledata = ko.observableArray([]);
+
+    // Add data to the table
+    gvm.addTableData = function(id, name) {
+        // Push data
+        var tblOject = {tid: id, tname: name};
+        gvm.tabledata.push(tblOject);
+    }
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
+}
+
+function loadTable(id) {
+    $.getJSON('/api/studentlists/' + id, function(data) {
+        viewModel.clearTable();
+
+        // Load table data
+        $.each(data.data, function(i, item) {
+            viewModel.addTableData(item.id, item.name);
+        });
+    });
 }
 
 function initPage() {
@@ -25,4 +50,5 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
+    loadTable(viewModel.userId);
 }

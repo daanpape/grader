@@ -91,6 +91,19 @@ class ClassDAO {
         }
     }
 
+    public static function getStudentListsFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist WHERE owner = :ower");
+            $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch(PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id'.$id, $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */
