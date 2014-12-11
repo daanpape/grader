@@ -24,7 +24,7 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    console.log($("#page-header").value());
+    console.log($("#page-header").data('value'));
     $.getJSON('/api/studentlist/' + $("#page-header").data('value'), function(data) {
         gvm.studentlistName(data[0].name);
     });
