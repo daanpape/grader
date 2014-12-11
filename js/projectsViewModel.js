@@ -84,7 +84,6 @@ function pageViewModel(gvm) {
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
-    gvm.availableStudentlists = ko.observableArray([]);
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
@@ -120,14 +119,6 @@ function pageViewModel(gvm) {
     
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
-    }
-
-    gvm.addCoupleDropdownData = function(id, name) {
-        var dropdownObject = {ddid: id, ddname: name};
-        gvm.availableStudentlists.push(dropdownObject);
-    }
-    gvm.clearDropDown = function() {
-        gvm.availableStudentlists.removeAll();
     }
 }
 
@@ -361,8 +352,7 @@ function showCoupleStudentListModal(projectid) {
                 'Dropdown' +
                 '<span class="caret"></span>' +
             '</button>' +
-            '<ul class="dropdown-menu" role="menu" data-bind="foreach: availableStudentlists" aria-labelledby="dropdownStudLists">' +
-                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'dropdownitem-\' + ddid}"><span data-bind="text: ddname"></span></a> </li>' +
+            '<ul class="dropdown-menu" role="menu" id="ddlLists" aria-labelledby="dropdownStudLists">' +
             '</ul>' +
         '</div>' +
         '</form>');
@@ -384,10 +374,9 @@ function loadCoupleDropdown() {
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         viewModel.clearDropDown();
         $.each(data, function(i, item) {
-            viewModel.addCoupleDropdownData(item.id, item.name);
+            $("#ddlLists").appendChild('<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="\'dropdownitem-\' + item.id""><span>item.name</span></a> </li>')
         });
     })
-    ko.applyBindings(viewModel, $('#dropdown'));
 }
 
 function initPage() {
