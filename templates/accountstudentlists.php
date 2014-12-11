@@ -28,37 +28,8 @@ $location = "accountstudentlists";
 <!-- Content container -->
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
-        </div>
-        <div class="col-md-9">
-            <table class="table">
-                <tr>
-                    <td data-bind="text: firstname">First name:</td>
-                    <td id="firstname"></td>
-                </tr>
 
-                <tr>
-                    <td data-bind="text: lastname">Last name:</td>
-                    <td id="lastname"></td>
-                </tr>
-
-                <tr>
-                    <td data-bind="text: email">Email:</td>
-                    <td id="email"></td>
-                </tr>
-
-                <tr>
-                    <td data-bind="text: memberSince">Member since:</td>
-                    <td id="member_since"></td>
-                </tr>
-            </table>
-        </div>
     </div>
-</div>
-
-<div class="container">
-    <h1 class="page-header" data-bind="text: myProjects">Mijn projecten</h1>
 </div>
 
 <?php include_once('jsdepends.php') ?>
