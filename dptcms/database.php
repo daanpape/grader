@@ -308,7 +308,15 @@ class UserDAO {
                 $stmt = $conn->prepare("SELECT username, avatar, firstname, lastname, created FROM users WHERE username = ?");
             }
             $stmt->execute(array($username));
-            return $stmt->fetchObject();
+            $data = $stmt->fetchObject();
+            
+            // Fetch an avater when it is not null
+            $file_id = $data['avatar'];
+            if($file_id != null) {
+                $data['avatar'] = FileDAO::getUpload($file_id);
+            }
+            
+            return $data;
         } catch (PDOException $err) {
             return null;
         }
@@ -471,6 +479,20 @@ class EmailDAO {
         }
     }
 
+}
+
+class FileDAO {
+    
+    public static function getUpload($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT filename FROM uploads WHERE id = ?");
+            $stmt->execute(array($id));
+            return $stmt->fetchColumn();
+        } catch (Exception $ex) {
+            return null;
+        }
+    }
 }
 
 ?>
