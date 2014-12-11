@@ -373,6 +373,7 @@ function loadCoupleDropdown() {
     console.log("test");
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         $.each(data, function(i, item) {
+            console.log('<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="\'dropdownitem-\' + item.id""><span>item.name</span></a> </li>');
             $("#ddlLists").append('<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="\'dropdownitem-\' + item.id""><span>item.name</span></a> </li>')
         });
     })
