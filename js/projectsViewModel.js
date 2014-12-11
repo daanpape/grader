@@ -376,7 +376,7 @@ function loadCoupleDropdown() {
         });
     })
     $.("#dropdownStudLists").click(function() {
-        $(this).parent().toggleClass("open");
+        console.log("test");
     });
 }
 
