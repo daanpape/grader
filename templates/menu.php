@@ -93,6 +93,15 @@
             <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
         </div>
     </div>
+    
+    <div class="upload_modal" class="modal_box extrapadding">
+        <div class="modal_title" data-bind="text: uploadModalTitle">
+            Upload a file
+        </div>
+        <div id="modal_title_body">
+            <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+        </div>
+    </div>
 
     <!-- General modal -->
     <div id="general_modal" class="modal_box extrapadding">
