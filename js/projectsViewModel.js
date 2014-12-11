@@ -377,7 +377,6 @@ function showCoupleStudentListModal(projectid) {
     addGeneralModalButton(i18n.__("SaveBtn"), function() {
         updateListForm(viewModel.currentselectedlist, $('#coupleform').serialize(), function(result){
             hideModal();
-            viewModel.currentselectedlist = -1;
         });
     });
 
