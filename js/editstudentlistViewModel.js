@@ -1,9 +1,11 @@
 // View model for the courses page
 function pageViewModel(gvm) {
     gvm.userId = -1;
+    gvm.studentlistName = ko.observable('Name');
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AccountTitle");}, gvm);
-    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserlistsTitle");}, gvm);
+    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("EditListTitle");}, gvm);
+
     gvm.myLists = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("myLists");}, gvm);
     gvm.addStudListBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("addStudListBtn");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
@@ -19,36 +21,17 @@ function pageViewModel(gvm) {
     gvm.memberSince = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MemberSince");}, gvm);
     gvm.myProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MyProjects");}, gvm);
 
-    // The table data observable array
-    gvm.tabledata = ko.observableArray([]);
+    gvm.loadStudentTable = function() {
+        $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
 
-    // Add data to the table
-    gvm.addTableData = function(id, name) {
-        // Push data
-        var tblOject = {tid: id, tname: name};
-        gvm.tabledata.push(tblOject);
-    }
-
-    gvm.clearTable = function() {
-        gvm.tabledata.removeAll();
-    }
-}
-
-function loadTable(id) {
-    $.getJSON('/api/studentlists/' + id, function(data) {
-        viewModel.clearTable();
-        console.log("aftercleartable");
-        // Load table data
-        $.each(data, function(i, item) {
-            viewModel.addTableData(item.id, item.name);
         });
-    });
+    };
+
 }
 
 function initPage() {
-    // Fetch userdata
-    $.getJSON('/api/currentuser', function(data) {
-        viewModel.userId = data.id;
-        loadTable(data.id);
+    $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
+        viewModel.studentlistName(data[0].name);
     });
+    viewModel.loadStudentTable();
 }

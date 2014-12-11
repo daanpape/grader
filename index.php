@@ -74,6 +74,9 @@ $app->get('/account', function() use ($app) {
 $app->get('/account/studentlists', function() use ($app) {
     $app->render('accountstudentlists.php');
 });
+$app->get('/account/studentlist/edit/:id', function($id) use($app) {
+    $app->render('editstudentlist.php', array('studentlistid' =>$id));
+});
 $app->get('/unauthorized', function() use ($app) {
     $app->render('unauthorized.php');
 });
@@ -227,6 +230,32 @@ $app->get('/api/project/getAllData/:id', function($id) use($app) {
 
 });
 
+$app->get('/api/studentlists/:id', function($id) use($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = GraderAPI::getStudentListsFromUser($id);
+
+    echo json_encode($data);
+});
+$app->get('/api/studentlist/info/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = GraderAPI::getStudentListInfoFromListId($id);
+
+    echo json_encode($data);
+});
+
+$app->get('/api/studentlist/students/:id', function($id) use($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = GraderAPI::getStudentsFromStudentList($id);
+
+    echo json_encode($data);
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
@@ -257,6 +286,8 @@ $app->delete('/api/project/:id', function ($id) use ($app) {
 
     echo json_encode(GraderAPI::deleteProject($id));
 });
+
+
 
 /* Run the application */
 $app->run();

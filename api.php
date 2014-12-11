@@ -40,11 +40,15 @@ class GraderAPI {
         return ClassDAO::getAllDataFromProject($id);
     }
 
+    public static function getStudentListsFromUser($id) {
+        return ClassDAO::getStudentListsFromUser($id);
+    }
+
     /*
      * Delete a projecttype from the database
      */
     public static function deleteProject($id) {
-        if (ClassDAO::deleteProjectType($id) === true) {
+        if (ClassDAO::deleteProject($id) === true) {
             return true;
         } else {
             return false;
@@ -98,6 +102,14 @@ class GraderAPI {
 
     public static function getCoursesByTraining($id) {
         return ClassDAO::getCoursesByTraining($id);
+    }
+
+    public static function getStudentListInfoFromListId($id) {
+        return ClassDAO::getStudentListInfoFromListId($id);
+    }
+
+    public static function getStudentsFromStudentList($id) {
+        return ClassDAO::getStudentsFromStudentList($id);
     }
 
     public static function getLocationsTrainingsAndCourses($locationId, $trainingId) {

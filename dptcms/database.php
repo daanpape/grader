@@ -91,6 +91,46 @@ class ClassDAO {
         }
     }
 
+
+    public static function getStudentListsFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist WHERE owner = :owner");
+            $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch(PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id'.$id, $err);
+            return null;
+        }
+    }
+
+    public static function getStudentListInfoFromListId($listid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist where id = :id ");
+            $stmt->bindValue(':id', (int) $listid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
+
+    public static function getStudentsFromStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT users.id, users.username, users.firstname, users.lastname FROM users JOIN studentlist_users ON users.id = studentlist_users.student WHERE studentlist_users.studentlist = :id ");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select project by projectid '.$id, $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */
@@ -118,6 +158,8 @@ class ClassDAO {
             return 0;
         }
     }
+
+
 
     /*
      * Delete a project type from the database
@@ -305,7 +347,7 @@ class UserDAO {
             if(!$clean) {
                 $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
             } else {
-                $stmt = $conn->prepare("SELECT username, avatar, firstname, lastname, created FROM users WHERE username = ?");
+                $stmt = $conn->prepare("SELECT id, username, avatar, firstname, lastname, created FROM users WHERE username = ?");
             }
             $stmt->execute(array($username));
             $data = $stmt->fetchObject();
