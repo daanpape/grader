@@ -99,6 +99,8 @@ function showUploadModal()
     $('#yes_no_modal').hide();
     $('#general_modal').hide();
     $('#upload_modal').show();
+    
+    $('#modaloverlay').show();
 }
 
 function showGeneralModal()
