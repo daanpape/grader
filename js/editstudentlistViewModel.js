@@ -21,12 +21,28 @@ function pageViewModel(gvm) {
     gvm.memberSince = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MemberSince");}, gvm);
     gvm.myProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MyProjects");}, gvm);
 
-    gvm.loadStudentTable = function() {
-        $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
+    gvm.tabledata = ko.observableArray([]);
 
+    gvm.addTableData = function(username, firstname, lastname) {
+        // Push data
+        var tblOject = {tusername: username, tfirstname: firstname, tlastname: lastname};
+        gvm.tabledata.push(tblOject);
+    }
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
+
+}
+
+function loadStudentTable() {
+    $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
+        viewModel.clearTable();
+        // Load table data
+        $.each(data, function(i, item) {
+            viewModel.addTableData(item.username, item.firstname, item.lastname);
         });
-    };
-
+    });
 }
 
 function initPage() {
