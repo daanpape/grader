@@ -91,6 +91,7 @@ class ClassDAO {
         }
     }
 
+
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -113,6 +114,19 @@ class ClassDAO {
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
+
+    public static function getStudentsFromStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT users.id, users.username, users.firstname, user.lastname FROM users JOIN studentlist_users ON users.id = studentlist_users.student WHERE studentlist_users.studentlist = :id ");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select project by projectid '.$id, $err);
             return null;
         }
     }

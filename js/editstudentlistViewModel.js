@@ -21,10 +21,17 @@ function pageViewModel(gvm) {
     gvm.memberSince = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MemberSince");}, gvm);
     gvm.myProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MyProjects");}, gvm);
 
+    gvm.loadStudentTable = function() {
+        $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
+
+        });
+    };
+
 }
 
 function initPage() {
     $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
         viewModel.studentlistName(data[0].name);
     });
+    viewModel.loadStudentTable();
 }
