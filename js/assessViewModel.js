@@ -160,5 +160,4 @@ function loadTablePage(courseid, pagenr)
 
 function initPage() {
     viewModel.updateLocations();
-    loadTablePage(1);
 }
