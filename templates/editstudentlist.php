@@ -44,7 +44,6 @@ $location = "editstudentlist";
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
                     <td>
-                        <a data-bind="attr:{'href': '/account/studentlist/edit/' + tid}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span></a>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                     </td>
                 </tr>
