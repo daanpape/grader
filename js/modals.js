@@ -143,3 +143,15 @@ function resetGeneralModal()
 function hideModal() {
     $('#modaloverlay').hide();
 }
+
+var zone = new FileDrop('filedropzone');
+zone.multiple(true);
+
+// opt.input contains file input created by FileDrop:
+zone.opt.input.file.onchange = function (e) {
+  // eventFiles() retrieve dropped File objects in
+  // a cross-browser fashion:
+  zone.eventFiles(e).each(function (file) {
+    alert(file.name + ' (' + file.size + ') bytes');
+  });
+};

@@ -100,7 +100,9 @@
             Upload a file
         </div>
         <div id="modal_title_body">
-            <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+            <div id="filedropzone">
+                <p class="legend">Click here to browse for files...</p>
+              </div>
         </div>
     </div>
 
