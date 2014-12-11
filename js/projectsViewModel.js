@@ -374,7 +374,6 @@ function loadCoupleDropdown() {
             $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
             $("#dropdownitem-" + item.id).click(function(){
                 $(this).parent().parent().parent().removeClass("open");
-                $(this).parent().parent().parent().text($(this).text());
             });
         });
     });
@@ -383,12 +382,6 @@ function loadCoupleDropdown() {
     });
 }
 
-function listClicked() {
-    console.log("test");
-    console.log($(this));
-    $(this).parent().parent().removeClass("open");
-    $(this).parent().find(".btn").text($(this).text());
-}
 
 function initPage() {
     // Add button handlers
