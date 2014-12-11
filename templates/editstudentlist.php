@@ -22,7 +22,7 @@ $location = "editstudentlist";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" data-bind="attr{'value': <?php echo $studentlistid?>"><span data-bind="text: pageHeader">List: </span></h1>
+    <h1 class="page-header" data-bind="attr{'value': <?php echo $studentlistid?>"><span data-bind="text: pageHeader">List: </span><span data-bind="text: studentlistName">Name</span></h1>
 </div>
 
 <!-- Content container -->
