@@ -375,9 +375,7 @@ function loadCoupleDropdown() {
             $("#ddlLists").append('<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="\'dropdownitem-\' + item.id""><span>' + item.name + '</span></a> </li>')
         });
     })
-    $.("#dropdownStudLists").click(function() {
-        alert("ding");
-    });
+    $.("#dropdownStudLists").click();
 }
 
 function listClicked() {
