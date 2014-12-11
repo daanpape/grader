@@ -3,6 +3,8 @@
     "HomeTitle" : "Welkom",
     "AccountTitle" : "Mijn account",
     "UserlistsTitle": "Mijn Studentenlijsten",
+    "myLists": "Mijn lijsten",
+    "addStudListBtn": "Maak nieuwe studentenlijst",
     "ProjectName" : "Grader",
     "LoginModalTitle" : "Aanmelden",
     "HomeButton" : "Home",
