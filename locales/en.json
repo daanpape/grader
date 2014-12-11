@@ -3,6 +3,8 @@
     "HomeTitle" : "Welcome",
     "AccountTitle" : "My account",
     "UserlistsTitle": "My StudentLists",
+    "myLists": "My lists",
+    "addStudListBtn": "Add Student List",
     "ProjectName" : "Grader",
     "LoginModalTitle" : "Login",
     "HomeButton" : "Home",

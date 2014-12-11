@@ -28,7 +28,34 @@ $location = "accountstudentlists";
 <!-- Content container -->
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            <div class="big-info"><span data-bind="myLists">My Studentlists</span>:</div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: actionTableTitle">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: tabledata">
+                <tr>
+                    <td data-bind="text: tname">--</td>
+                    <td>
+                        <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
+                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
+        <button type="button" class="btn btn-default pagination-button" id="addStudentList">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addStudListBtn"></span>
+        </button>
     </div>
 </div>
 
