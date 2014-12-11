@@ -23,10 +23,16 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
-    gvm.addTableData = function(username, firstname, lastname) {
+    gvm.addTableData = function(id, username, firstname, lastname) {
         // Push data
-        var tblOject = {tusername: username, tfirstname: firstname, tlastname: lastname};
+        var tblOject = {tid: id, tusername: username, tfirstname: firstname, tlastname: lastname};
         gvm.tabledata.push(tblOject);
+
+        $('#removebtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, tblOject);
+            event.stopPropagation();
+        });
     }
 
     gvm.clearTable = function() {
@@ -35,12 +41,26 @@ function pageViewModel(gvm) {
 
 }
 
+function deleteTableItem(id, tblObject){
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
+        if(val){
+            $.ajax({
+                url: "/api/studentlist/delete/student/" + id,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblObject);
+                }
+            });
+        }
+    });
+}
+
 function loadStudentTable() {
     $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {
-            viewModel.addTableData(item.username, item.firstname, item.lastname);
+            viewModel.addTableData(item.id, item.username, item.firstname, item.lastname);
         });
     });
 }
