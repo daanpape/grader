@@ -379,6 +379,7 @@ function showCoupleStudentListModal(projectid) {
 }
 
 function loadCoupleDropdown() {
+    console.log("test");
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         viewModel.clearDropDown();
         $.each(data, function(i, item) {
