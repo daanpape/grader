@@ -1,5 +1,6 @@
 // View model for the projects page
 function pageViewModel(gvm) {
+    gvm.userId=-1;
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjecttypeTitle");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjecttypeTitle");}, gvm);
@@ -83,6 +84,7 @@ function pageViewModel(gvm) {
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
+    gvm.dropdownData = ko.observableArray([]);
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
@@ -117,6 +119,14 @@ function pageViewModel(gvm) {
     
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
+    }
+
+    gvm.addCoupleDropdownData = function(id, name) {
+        var dropdownObject = {ddid: id, ddname: name};
+        gvm.dropdownData.push(dropdownObject);
+    }
+    gvm.clearDropDown = function() {
+        gvm.dropdownData.removeAll();
     }
 }
 
@@ -326,6 +336,7 @@ function showEditProjectTypeModal(code, name, description, tid)
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
             </div> \
         </form>');
+    $.getJSON()
     
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
@@ -350,7 +361,7 @@ function showCoupleStudentListModal(projectid) {
                 '<span class="caret"></span>' +
             '</button>' +
             '<ul class="dropdown-menu" role="menu" data-bind="foreach: availableStudentlists" aria-labelledby="dropdownStudLists">' +
-                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'locbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
+                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'dropdownitem-\' + ddid}"><span data-bind="text: ddname"></span></a> </li>' +
             '</ul>' +
         '</div>' +
         '</form>');
@@ -368,11 +379,23 @@ function showCoupleStudentListModal(projectid) {
     showGeneralModal();
 }
 
+function loadCoupleDropdown() {
+    $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
+        viewModel.clearDropDown();
+        $.each(data, function(i, item) {
+            viewModel.addCoupleDropdownData(item.id, item.name);
+        });
+    })
+}
+
 function initPage() {
-    viewModel.updateLocations();
-    
     // Add button handlers
     $('#addProjectTypeBtn').click(function(){
         showNewProjectTypeModal();
+    });
+
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateLocations();
     });
 }
