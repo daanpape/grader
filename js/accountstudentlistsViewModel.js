@@ -37,7 +37,7 @@ function pageViewModel(gvm) {
 function loadTable(id) {
     $.getJSON('/api/studentlists/' + id, function(data) {
         viewModel.clearTable();
-
+        console.log("aftercleartable");
         // Load table data
         $.each(data, function(i, item) {
             viewModel.addTableData(item.id, item.name);

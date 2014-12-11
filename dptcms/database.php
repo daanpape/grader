@@ -94,7 +94,7 @@ class ClassDAO {
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM studentlist WHERE owner = :ower");
+            $stmt = $conn->prepare("SELECT * FROM studentlist WHERE owner = :owner");
             $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
