@@ -163,14 +163,19 @@ $(document).ready(function () {
                 //add beforesend handler to validate or something
                 beforeSend: function(){
 					$('progress').attr({value:0,max:100});
-					showMsgBox('Uploading images...', '<progress value="0" max="100" id="progressbar"></progress>', false);
+                                        setGeneralModalTitle('Uploading images...');
+                                        setGeneralModalBody('<progress value="0" max="100" id="progressbar"></progress>');
+                                        showGeneralModal();
 					
 					var imgdiv = document.getElementById('uploadedimages');
 					imgdiv.innerHTML = "";
 					document.getElementById('upimagestext').style.display = 'none';
 				},
                 success: function(res){
-					showMsgBox('Upload succes', 'All images are succesfully uploaded', true);
+                                    setGeneralModalTitle('Upload succes');
+                                        setGeneralModalBody('All images are succesfully uploaded');
+                                        showGeneralModal();
+                                        
 					var imgdiv = document.getElementById('uploadedimages');
 					document.getElementById('upimagestext').style.display = 'block';
 					
@@ -188,7 +193,10 @@ $(document).ready(function () {
 				},
                 //add error handler for when a error occurs if you want!
                 error: function(xhr, status, error){
-					showMsgBox('Upload error', xhr.responseText);
+                                        setGeneralModalTitle('Upload error');
+                                        setGeneralModalBody(xhr.responseText);
+                                        showGeneralModal();
+                                        
 				},
                 data: form,
                 // this is the important stuf you need to overide the usual post behavior
