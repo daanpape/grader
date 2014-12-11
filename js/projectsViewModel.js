@@ -374,7 +374,7 @@ function loadCoupleDropdown() {
             $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
             $("#dropdownitem-" + item.id).click(function(){
                 $(this).parent().parent().parent().removeClass("open");
-                $(this).parent().parent().parent().find(".btn").text($(this).text());
+                $(this).parent().parent().parent().find(".btn").text($(this).text() + '<span class="caret"></span>');
             });
         });
     });
