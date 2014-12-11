@@ -394,7 +394,7 @@ function loadCoupleDropdown() {
             $("#dropdownitem-" + item.id).click(function(){
                 $(this).parent().parent().parent().removeClass("open");
                 $(this).parent().parent().parent().find(".btn").html($(this).text() + '<span class="caret"></span>');
-                viewModel.currentselectedlist(item.id);
+                viewModel.currentselectedlist = item.id;
             });
         });
     });
