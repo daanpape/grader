@@ -27,11 +27,31 @@ function pageViewModel(gvm) {
         // Push data
         var tblOject = {tid: id, tname: name};
         gvm.tabledata.push(tblOject);
+
+        $('#removebtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, tblOject);
+            event.stopPropagation();
+        });
     }
 
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+}
+
+function deleteTableItem(id, tblObject){
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
+        if(val){
+            $.ajax({
+                url: '/api/studentlist/delete/' + id,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblObject);
+                }
+            });
+        }
+    });
 }
 
 function loadTable(id) {

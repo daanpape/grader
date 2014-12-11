@@ -295,5 +295,13 @@ $app->delete('/api/studentlist/:studlistid/delete/student/:studid', function ($s
     echo json_encode(GraderAPI::deleteStudentFromStudentList($studlistid, $studid));
 });
 
+$app->delete('/api/studentlist/delete/:id', function($id) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::deleteStudentList($id));
+});
+
 /* Run the application */
 $app->run();

@@ -63,6 +63,14 @@ class GraderAPI {
         }
     }
 
+    public static function deleteStudentList($id) {
+        if(ClassDao::deleteStudentList($id) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
      * Create a new projecttype and put it in the database
      * @return -1 on error;

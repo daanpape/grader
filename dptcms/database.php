@@ -193,6 +193,23 @@ class ClassDAO {
         }
     }
 
+    public static function deleteStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $stmt2 = $conn->prepare("DELETE FROM studentlist_users WHERE studentlist = :id");
+            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt2->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
     /*
      * Insert a new projecttype in the database 
      * @code the projecttype code
