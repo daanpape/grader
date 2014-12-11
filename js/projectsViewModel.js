@@ -362,6 +362,7 @@ function showEditProjectTypeModal(code, name, description, tid)
 }
 
 function showCoupleStudentListModal(projectid) {
+    viewModel.currentselectedlist = -1;
     resetGeneralModal();
     setGeneralModalTitle(i18n.__("CoupleStudentList"));
     setGeneralModalBody(
@@ -382,7 +383,6 @@ function showCoupleStudentListModal(projectid) {
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
         hideModal();
-        viewModel.currentselectedlist = -1;
     })
     showGeneralModal();
 }
