@@ -49,6 +49,6 @@ function initPage() {
     // Fetch userdata
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
+        loadTable(data.id);
     });
-    loadTable(viewModel.userId);
 }
