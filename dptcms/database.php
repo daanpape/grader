@@ -312,6 +312,7 @@ class UserDAO {
             
             // Fetch an avater when it is not null
             $file_id = $data->avatar;
+            var_dump($file_id);
             if($file_id != null) {
                 $data->avatar = FileDAO::getUpload($file_id);
             }
