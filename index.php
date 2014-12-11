@@ -71,6 +71,9 @@ $app->get('/assess/project/:id', function($id) use($app) {
 $app->get('/account', function() use ($app) {
     $app->render('account.php');
 });
+$app->get('/account/studentlists', function() use ($app) {
+    $app->render('accountstudentlists.php');
+});
 $app->get('/unauthorized', function() use ($app) {
     $app->render('unauthorized.php');
 });
