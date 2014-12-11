@@ -19,5 +19,6 @@ function initPage() {
         $('#lastname').html(data.lastname);
         $('#email').html(data.username);
         $('#member_since').html(data.created);
+        $('#avatar').attr("src", '/' + data.avatar);
     });
 }

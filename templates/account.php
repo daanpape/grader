@@ -15,6 +15,11 @@ $location = "account";
     <title data-bind="text: title"></title>
 
     <?php include_once('hddepends.php') ?>
+    <style>
+        .avatarimg {
+            width: 210px;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +34,7 @@ $location = "account";
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
+            <img src="/upload/unknown.png" class="avatarimg" alt="avatar" id="avatar"/>
         </div>
         <div class="col-md-9">
             <table class="table">
