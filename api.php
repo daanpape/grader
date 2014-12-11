@@ -55,8 +55,8 @@ class GraderAPI {
         }
     }
 
-    public static function deleteStudentFromStudentList($id) {
-        if(ClassDao::deleteStudentFromStudentList($id) == true) {
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        if(ClassDao::deleteStudentFromStudentList($studlistid, $studid) == true) {
             return true;
         } else {
             return false;
