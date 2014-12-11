@@ -1,5 +1,5 @@
 <?php
-    require_once 'dptcms/security.php';
+require_once 'dptcms/security.php';
 ?>
 
 <!-- Main menu -->
@@ -22,7 +22,9 @@
                 }
                 ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
                 <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
-                <li class="<?php if ($location == 'projects') { echo 'active';} ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                <li class="<?php if ($location == 'projects') {
+                        echo 'active';
+                    } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
             </ul>
             </li>
             </ul>
@@ -30,20 +32,20 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <?php
-                    if(Security::isUserLoggedIn()){
+                if (Security::isUserLoggedIn()) {
 
-                        echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">'.Security::getLoggedInName().'<b class="caret"></b></a>
+                    echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/account"><span class="navspan">Account</span></a></li>
                                 <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
                             </ul>
                         </li>';
-                        echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
-                    } else {
-                        echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
-                    }
+                    echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
+                } else {
+                    echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
+                }
                 ?>
-                
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -93,16 +95,31 @@
             <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
         </div>
     </div>
-    
+
     <!-- Upload modal -->
     <div id="upload_modal" class="modal_box extrapadding">
         <div class="modal_title" data-bind="text: uploadModalTitle">
             Upload a file
         </div>
         <div id="modal_title_body">
-            <div id="filedropzone">
-                <p class="legend">Click here to browse for files...</p>
-              </div>
+            <p>
+                To upload pictures to the server simply choose one ore more pictures form your hard drive and click upload.<br/>
+                The images must comply to the following restrictions:
+            <ul>
+                <li>Maximum file size: 4069Mb</li>
+                <li>Supported file types: xxx</li>
+            </ul>
+            </p>
+            <form id="uploadform" enctype="multipart/form-data">
+                <p>
+                    <label for="file">Choose images:</label>
+                    <input type="file" name="files[]" multiple>
+                    <input type="button" class="upload" value="Upload">
+                </p>
+            </form>
+            <div id="upimagestext">Uploaded images:</div>
+            <div id="uploadedimages">
+            </div>
         </div>
     </div>
 

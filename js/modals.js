@@ -144,14 +144,65 @@ function hideModal() {
     $('#modaloverlay').hide();
 }
 
-var zone = new FileDrop('filedropzone');
-zone.multiple(true);
+$(document).ready(function () { 
+        $('body').on('click', '.upload', function(){
+            // Get the form data. This serializes the entire form. pritty easy huh!
+            var form = new FormData($('#uploadform')[0]);
 
-// opt.input contains file input created by FileDrop:
-zone.opt.input.file.onchange = function (e) {
-  // eventFiles() retrieve dropped File objects in
-  // a cross-browser fashion:
-  zone.eventFiles(e).each(function (file) {
-    alert(file.name + ' (' + file.size + ') bytes');
-  });
-};
+            // Make the ajax call
+            $.ajax({
+                url: '/upload.php',
+                type: 'POST',
+                xhr: function() {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){
+                        myXhr.upload.addEventListener('progress',progress, false);
+                    }
+                    return myXhr;
+                },
+                //add beforesend handler to validate or something
+                beforeSend: function(){
+					$('progress').attr({value:0,max:100});
+					showMsgBox('Uploading images...', '<progress value="0" max="100" id="progressbar"></progress>', false);
+					
+					var imgdiv = document.getElementById('uploadedimages');
+					imgdiv.innerHTML = "";
+					document.getElementById('upimagestext').style.display = 'none';
+				},
+                success: function(res){
+					showMsgBox('Upload succes', 'All images are succesfully uploaded', true);
+					var imgdiv = document.getElementById('uploadedimages');
+					document.getElementById('upimagestext').style.display = 'block';
+					
+					$.each(res, function(index, elem){
+						var div = document.createElement('div');
+						div.className += 'upimage';
+						imgdiv.appendChild(div);
+						
+						div.innerHTML += '<img src="'+elem['link']+'" class="upimageimg" /><br/>';
+        				div.innerHTML += 'id: '+elem['id']+'<br/>';
+       					div.innerHTML += 'type: '+elem['type']+'<br/>';
+        				div.innerHTML += 'name: '+elem['name']+'<br/>';
+        				div.innerHTML += 'size: '+elem['size']+'';
+					});
+				},
+                //add error handler for when a error occurs if you want!
+                error: function(xhr, status, error){
+					showMsgBox('Upload error', xhr.responseText);
+				},
+                data: form,
+                // this is the important stuf you need to overide the usual post behavior
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    }); 
+
+    // Yes outside of the .ready space becouse this is a function not an event listner!
+    function progress(e){
+        if(e.lengthComputable){
+            //this makes a nice fancy progress bar
+            $('progress').attr({value:e.loaded,max:e.total});
+        }
+    }
