@@ -28,9 +28,16 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+
                 <?php
                     if(Security::isUserLoggedIn()){
-                        echo '<li><a href="/account">'.Security::getLoggedInName().'</a></li>';
+
+                        echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">'.Security::getLoggedInName().'<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account"><span class="navspan">Account</span></a></li>
+                                <li><a href="/studentlists"><span class="navspan">Student lists</span></a></li>
+                            </ul>
+                        </li>';
                         echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
                     } else {
                         echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
