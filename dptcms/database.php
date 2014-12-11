@@ -488,9 +488,18 @@ class FileDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT filename FROM uploads WHERE id = ?");
             $stmt->execute(array($id));
-            return $stmt->fetchColumn();
+            return 'upload/'.$stmt->fetchColumn();
         } catch (Exception $ex) {
             return null;
+        }
+    }
+    
+    public static function putUpload($name) {
+        try {
+            $conn = Db::getConnection();
+            
+        } catch (Exception $ex) {
+
         }
     }
 }

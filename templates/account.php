@@ -15,6 +15,26 @@ $location = "account";
     <title data-bind="text: title"></title>
 
     <?php include_once('hddepends.php') ?>
+    <style>
+        .avatarimg {
+            width: 210px;
+        }
+        
+        .edit-pencil {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 80px;
+            bottom: 20px;
+            background-color: #FFF;
+            border: 5px solid #FFF;
+            border-radius: 20px;
+        }
+        
+        .edit-picture {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +49,10 @@ $location = "account";
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <img src="/upload/unknown.png" class="avatarimg" alt="avatar"/>
+            <div id="edit-picture">
+                <img src="/upload/unknown.png" class="avatarimg" alt="avatar" id="avatar"/>
+                <img src="/img/pencil.svg" class="edit-pencil" alt="edit-pencil" id="edit-avatar"/>
+            </div>
         </div>
         <div class="col-md-9">
             <table class="table">
