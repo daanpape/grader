@@ -2,6 +2,7 @@
     "AppName" : "Assessment tool",
     "HomeTitle" : "Welcome",
     "AccountTitle" : "My account",
+    "UserlistsTitle": "My StudentLists",
     "ProjectName" : "Grader",
     "LoginModalTitle" : "Login",
     "HomeButton" : "Home",
