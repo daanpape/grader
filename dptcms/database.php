@@ -179,12 +179,30 @@ class ClassDAO {
         }
     }
 
-    public static function deleteStudentFromStudentList($id) {
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM studentlist_users WHERE student = :id");
+            $stmt = $conn->prepare("DELETE FROM studentlist_users WHERE studentlist = :studlist AND WHERE student = :student");
+            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':student', (int) $studid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
+    public static function deleteStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist WHERE id = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
+
+            $stmt2 = $conn->prepare("DELETE FROM studentlist_users WHERE studentlist = :id");
+            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt2->execute();
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not delete project', $err);

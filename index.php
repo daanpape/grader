@@ -287,12 +287,20 @@ $app->delete('/api/project/:id', function ($id) use ($app) {
     echo json_encode(GraderAPI::deleteProject($id));
 });
 
-$app->delete('/api/studentlist/delete/student/:id', function ($id) use ($app) {
+$app->delete('/api/studentlist/:studlistid/delete/student/:studid', function ($studlistid, $studid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode(GraderAPI::deleteStudentFromStudentList($id));
+    echo json_encode(GraderAPI::deleteStudentFromStudentList($studlistid, $studid));
+});
+
+$app->delete('/api/studentlist/delete/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::deleteStudentList($id));
 });
 
 /* Run the application */
