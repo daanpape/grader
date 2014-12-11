@@ -29,6 +29,12 @@ $location = "account";
             background-color: #FFF;
             border: 5px solid #FFF;
             border-radius: 20px;
+            opacity: 0.3;
+        }
+        
+        .edit-pencil:hover {
+            opacity: 1;
+            cursor: pointer;
         }
         
         .edit-picture {
