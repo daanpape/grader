@@ -48,7 +48,7 @@ class GraderAPI {
      * Delete a projecttype from the database
      */
     public static function deleteProject($id) {
-        if (ClassDAO::deleteProjectType($id) === true) {
+        if (ClassDAO::deleteProject($id) === true) {
             return true;
         } else {
             return false;
