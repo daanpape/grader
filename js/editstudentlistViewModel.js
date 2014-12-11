@@ -23,9 +23,9 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
-    gvm.addTableData = function(username, firstname, lastname) {
+    gvm.addTableData = function(id, username, firstname, lastname) {
         // Push data
-        var tblOject = {tusername: username, tfirstname: firstname, tlastname: lastname};
+        var tblOject = {tid: id, tusername: username, tfirstname: firstname, tlastname: lastname};
         gvm.tabledata.push(tblOject);
 
         $('#removebtn-' + id).bind('click', function(event, data){
@@ -60,7 +60,7 @@ function loadStudentTable() {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {
-            viewModel.addTableData(item.username, item.firstname, item.lastname);
+            viewModel.addTableData(item.id, item.username, item.firstname, item.lastname);
         });
     });
 }
