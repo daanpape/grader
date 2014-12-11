@@ -21,11 +21,14 @@ $location = "account";
         }
         
         .edit-pencil {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             position: absolute;
-            right: 20px;
-            bottom: 2Opx;
+            right: 80px;
+            bottom: 20px;
+            background-color: #FFF;
+            border: 5px solid #FFF;
+            border-radius: 20px;
         }
         
         .edit-picture {
