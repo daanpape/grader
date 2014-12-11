@@ -1,6 +1,8 @@
 // View model for the projects page
 function pageViewModel(gvm) {
     gvm.userId=-1;
+    gvm.currentprojectid = -1;
+    gvm.currentselectedlist = -1;
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjecttypeTitle");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjecttypeTitle");}, gvm);
@@ -112,6 +114,8 @@ function pageViewModel(gvm) {
 
         $('#studentbtn-' + id).bind('click', function(event, data) {
             showCoupleStudentListModal(id);
+            gvm.currentprojectid = id;
+            gvm.currentselectedlist = -1;
             event.stopPropagation();
             loadCoupleDropdown();
         });
@@ -186,6 +190,20 @@ function updateProjecttypeForm(id, serialData, callback) {
         success: function(data) {
             //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             loadTablePage(viewModel.currentCourseId, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+}
+
+function updateListForm(id, serialData, callback) {
+    $.ajax({
+        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
+        type: "PUT",
+        data: serialData,
+        success: function(data) {
             callback(true);
         },
         error: function(data) {
@@ -357,13 +375,15 @@ function showCoupleStudentListModal(projectid) {
         '</div>');
 
     addGeneralModalButton(i18n.__("SaveBtn"), function() {
-        updateProjecttypeForm(projectid, $('#coupleform').serialize(), function(result){
+        updateListForm(projectid, $('#coupleform').serialize(), function(result){
             hideModal();
+            viewModel.currentselectedlist = -1;
         });
     });
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
         hideModal();
+        viewModel.currentselectedlist = -1;
     })
     showGeneralModal();
 }
@@ -375,7 +395,7 @@ function loadCoupleDropdown() {
             $("#dropdownitem-" + item.id).click(function(){
                 $(this).parent().parent().parent().removeClass("open");
                 $(this).parent().parent().parent().find(".btn").html($(this).text() + '<span class="caret"></span>');
-                $(this).parent().parent().parent().find(".btn").value(item.id);
+                viewModel.currentselectedlist(item.id);
             });
         });
     });

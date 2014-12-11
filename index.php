@@ -266,6 +266,9 @@ $app->put('/api/project/:id', function($id) use ($app){
     echo json_encode(GraderAPI::updateProject(
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+$app->put('/api/project/studentlist/:id', function($id) use($app) {
+
+});
 
 // API POST routes
 $app->post('/api/project/:id', function ($courseid) use ($app) {
