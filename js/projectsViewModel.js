@@ -114,6 +114,7 @@ function pageViewModel(gvm) {
         $('#studentbtn-' + id).bind('click', function(event, data) {
             showCoupleStudentListModal(id);
             event.stopPropagation();
+            loadCoupleDropdown();
         });
     }
     
@@ -397,6 +398,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateLocations();
-        loadCoupleDropdown();
+
     });
 }
