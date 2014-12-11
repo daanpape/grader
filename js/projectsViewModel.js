@@ -84,7 +84,7 @@ function pageViewModel(gvm) {
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
-    gvm.availableStudLists = ko.observableArray([]);
+    gvm.availableStudentlists = ko.observableArray([]);
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
@@ -123,10 +123,10 @@ function pageViewModel(gvm) {
 
     gvm.addCoupleDropdownData = function(id, name) {
         var dropdownObject = {ddid: id, ddname: name};
-        gvm.availableStudLists.push(dropdownObject);
+        gvm.availableStudentlists.push(dropdownObject);
     }
     gvm.clearDropDown = function() {
-        gvm.availableStudLists.removeAll();
+        gvm.availableStudentlists.removeAll();
     }
 }
 
