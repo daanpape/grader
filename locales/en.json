@@ -44,6 +44,7 @@
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "EditProjectTitle" : "Edit projecttype",
+    "CoupleStudentList": "Couple a studentlist to the project",
     "CancelBtn" : "Cancel",
     
     "Firstname" : "First name",

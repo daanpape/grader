@@ -108,6 +108,11 @@ function pageViewModel(gvm) {
         $('#managebtn-' + id).bind('click', function(event, data) {
             //TODO
         });
+
+        $('#studentbtn-' + id).bind('click', function(event, data) {
+            showCoupleStudentListModal(id);
+            event.stopPropagation();
+        });
     }
     
     gvm.clearTable = function() {
@@ -333,6 +338,34 @@ function showEditProjectTypeModal(code, name, description, tid)
     })
     
     showGeneralModal();  
+}
+
+function showCoupleStudentListModal(projectid) {
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("CoupleStudentList"));
+    setGeneralModalBody('<form id="coupleform">' +
+        '<div class="dropdown">' +
+            '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownStudLists" data-toggle="dropdown" aria-expanded="true">' +
+                'Dropdown' +
+                '<span class="caret"></span>' +
+            '</button>' +
+            '<ul class="dropdown-menu" role="menu" data-bind="foreach: availableStudentlists" aria-labelledby="dropdownStudLists">' +
+                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'locbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
+            '</ul>' +
+        '</div>' +
+        '</form>');
+
+    addGeneralModalButton(i18n.__("SaveBtn"), function() {
+        updateProjecttypeForm(projectid, $('#coupleform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    addGeneralModalButton(i18n.__("CancelBtn"), function(){
+        hideModal();
+    })
+
+    showGeneralModal();
 }
 
 function initPage() {
