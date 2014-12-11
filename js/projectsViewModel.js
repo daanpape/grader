@@ -375,7 +375,7 @@ function showCoupleStudentListModal(projectid) {
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
         hideModal();
     })
-
+    loadCoupleDropdown();
     showGeneralModal();
 }
 
