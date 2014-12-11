@@ -29,7 +29,7 @@ $location = "accountstudentlists";
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="big-info"><span data-bind="myLists">My Studentlists</span>:</div>
+            <div class="big-info"><span data-bind="text: myLists">My Studentlists</span>:</div>
             <table class="table table-striped">
                 <thead>
                 <tr>

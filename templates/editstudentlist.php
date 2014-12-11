@@ -28,6 +28,29 @@ $location = "editstudentlist";
 <!-- Content container -->
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: email">Username</th>
+                    <th data-bind="text: firstname">Firstname</th>
+                    <th data-bind="text: lastname">Lastname</th>
+                    <th data-bind="text: actionTableTitle">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: tabledata">
+                <tr>
+                    <td data-bind="text: tusername">--</td>
+                    <td data-bind="text: tfirstname">--</td>
+                    <td data-bind="text: tlastname">--</td>
+                    <td>
+                        <a data-bind="attr:{'href': '/account/studentlist/edit/' + tid}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span></a>
+                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
