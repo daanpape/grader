@@ -31,15 +31,11 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    if(!$.isEmptyObject(item)) {
-                        $(".btn-location span:first").text(item.location);
-                        $(".btn-training span:first").text(item.training);
-                        $(".btn-course span:first").text(item.course);
-                        gvm.updateLocations();
-                        loadTablePage(item.courseid, 1);
-                    } else {
-                        gvm.updateLocations();
-                    }
+                    $(".btn-location span:first").text(item.location);
+                    $(".btn-training span:first").text(item.training);
+                    $(".btn-course span:first").text(item.course);
+                    gvm.updateLocations();
+                    loadTablePage(item.courseid, 1);
                 });
             } else {
                 gvm.updateLocations();
@@ -48,7 +44,12 @@ function pageViewModel(gvm) {
     }
 
     gvm.saveLastSelectedDropdowns = function() {
-
+        data = {};
+        data["location"] = $(".btn-location span:first").text();
+        data["training"] = $(".btn-training span:first").text();
+        data["course"] = $(".btn-course span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+        console.log(data);
     }
 
     /*
