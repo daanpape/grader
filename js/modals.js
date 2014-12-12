@@ -183,9 +183,7 @@ $(document).ready(function () {
                     
                     var src = elem['link'];
                     
-                    if(!elem['type'] != 'png'
-                       || !elem['type'] != 'jpg'
-                       || !elem['type'] != 'jpeg'){
+                    if(elem['type'] !== 'png' || elem['type'] !== 'jpg' || elem['type'] !== 'jpeg'){
                         src = '/img/file.png';
                     }
 
