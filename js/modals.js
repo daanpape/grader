@@ -183,7 +183,9 @@ $(document).ready(function () {
                     
                     var src = elem['link'];
                     
-                    if(!elem['type'].startsWith('image')){
+                    if(!elem['type'].startsWith('png')
+                       || !elem['type'].startsWith('jpg')
+                       || !elem['type'].startsWith('jpeg')){
                         src = '/img/file.png';
                     }
 
