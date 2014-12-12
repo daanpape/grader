@@ -35,7 +35,7 @@ class FileUpload {
 
                 // Check file type requirements
                 if (!in_array($file_type, Config::$fileImgSupport)) {
-                    $errors[] = 'The file is not in the correct format';
+                    $errors[] = 'The file is not in the correct format: '.$file_type;
                 }
 
                 if (empty($errors)) {
