@@ -131,6 +131,19 @@ class ClassDAO {
         }
     }
 
+    public static function getLastDropdownFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT $ FROM lastdropdown WHERE user = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get last dropdowns from the database', $err);
+            return null;
+        }
+    }
+
     /**
      * Get the number of projecttypes currently in the database 
      */
@@ -158,6 +171,8 @@ class ClassDAO {
             return 0;
         }
     }
+
+
 
 
 
