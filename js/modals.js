@@ -1,20 +1,20 @@
 /*
  * Init login overlay
  */
-$('document').ready(function(){
-    $('#modaloverlay').click(function(){
+$('document').ready(function () {
+    $('#modaloverlay').click(function () {
         hideModal();
     });
 
-    $('.modal_box').click(function(e){
+    $('.modal_box').click(function (e) {
         e.stopPropagation();
     });
 
-    $('#usermanagement').click(function(){
+    $('#usermanagement').click(function () {
         showLogin();
     });
 
-    $('#loginform').submit(function(e){
+    $('#loginform').submit(function (e) {
         // Hide the error message 
         $('#login_error').hide();
 
@@ -23,11 +23,11 @@ $('document').ready(function(){
             type: "POST",
             url: "/login/" + encodeURIComponent($('#loginform').find('input[name="email"]').val()),
             data: $('#loginform').serialize(),
-            success: function() {
+            success: function () {
                 // Reload page when logged in 
                 location.reload();
             },
-            error: function() {
+            error: function () {
                 // Display error message 
                 $('#login_error').html(i18n.__("ServiceNotReachableError"));
                 $('#login_error').show();
@@ -45,7 +45,7 @@ $('document').ready(function(){
 function logoutUser() {
     $.ajax({
         url: 'logout',
-        success: function() {
+        success: function () {
             location.reload();
         }
     });
@@ -83,12 +83,12 @@ function showYesNoModal(body, callback) {
     // Show the modal
     $('#modaloverlay').show();
 
-    $('#ynmodel-y-btn').click(function(){
+    $('#ynmodel-y-btn').click(function () {
         callback(true);
         hideModal();
     });
 
-    $('#ynmodal-n-btn').click(function(){
+    $('#ynmodal-n-btn').click(function () {
         callback(false);
         hideModal();
     });
@@ -100,7 +100,7 @@ function showUploadModal()
     $('#yes_no_modal').hide();
     $('#general_modal').hide();
     $('#upload_modal').show();
-    
+
     $('#modaloverlay').show();
 }
 
@@ -110,7 +110,7 @@ function showGeneralModal()
     $('#yes_no_modal').hide();
     $('#upload_modal').hide();
     $('#general_modal').show();
-    
+
     // Show the modal
     $('#modaloverlay').show();
 }
@@ -125,11 +125,18 @@ function setGeneralModalBody(body)
     $('#general_modal_body').html(body);
 }
 
+function getGeneralModalBody()
+{
+    return $('#general_modal_body').html();
+}
+
 function addGeneralModalButton(text, action)
 {
     var button = document.createElement('button');
     $(button).addClass('btn btn-primary inline btn-extra-margin');
-    $(button).click(function(){action();});
+    $(button).click(function () {
+        action();
+    });
     $(button).html(text);
     $('#general_modal_buttons').append(button);
 }
@@ -145,73 +152,77 @@ function hideModal() {
     $('#modaloverlay').hide();
 }
 
-$(document).ready(function () { 
-        $('#uploadformbtn').click(function(){
-            // Get the form data. This serializes the entire form. pritty easy huh!
-            var form = new FormData($('#uploadform')[0]);
+$(document).ready(function () {
+    $('#uploadformbtn').click(function () {
+        // Get the form data. This serializes the entire form. pritty easy huh!
+        var form = new FormData($('#uploadform')[0]);
 
-            // Make the ajax call
-            $.ajax({
-                url: '/api/upload',
-                type: 'POST',
-                xhr: function() {
-                    var myXhr = $.ajaxSettings.xhr();
-                    if(myXhr.upload){
-                        myXhr.upload.addEventListener('progress',progress, false);
-                    }
-                    return myXhr;
-                },
-                //add beforesend handler to validate or something
-                beforeSend: function(){
-					$('progress').attr({value:0,max:100});
-                                        setGeneralModalTitle('Uploading images...');
-                                        setGeneralModalBody('<progress value="0" max="100" id="progressbar"></progress>');
-                                        showGeneralModal();
-					
-					var imgdiv = document.getElementById('uploadedimages');
-					imgdiv.innerHTML = "";
-					document.getElementById('upimagestext').style.display = 'none';
-				},
-                success: function(res){
-                                    setGeneralModalTitle('Upload succes');
-                                        setGeneralModalBody('All images are succesfully uploaded');
-                                        showGeneralModal();
-                                        
-					var imgdiv = document.getElementById('uploadedimages');
-					document.getElementById('upimagestext').style.display = 'block';
-					
-					$.each(res, function(index, elem){
-						var div = document.createElement('div');
-						div.className += 'upimage';
-						imgdiv.appendChild(div);
-						
-						div.innerHTML += '<img src="'+elem['link']+'" class="upimageimg" /><br/>';
-        				div.innerHTML += 'id: '+elem['id']+'<br/>';
-       					div.innerHTML += 'type: '+elem['type']+'<br/>';
-        				div.innerHTML += 'name: '+elem['name']+'<br/>';
-        				div.innerHTML += 'size: '+elem['size']+'';
-					});
-				},
-                //add error handler for when a error occurs if you want!
-                error: function(xhr, status, error){
-                                        setGeneralModalTitle('Upload error');
-                                        setGeneralModalBody(xhr.responseText);
-                                        showGeneralModal();
-                                        
-				},
-                data: form,
-                // this is the important stuf you need to overide the usual post behavior
-                cache: false,
-                contentType: false,
-                processData: false
-            });
+        var body;
+
+        // Make the ajax call
+        $.ajax({
+            url: '/api/upload',
+            type: 'POST',
+            xhr: function () {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    myXhr.upload.addEventListener('progress', progress, false);
+                }
+                return myXhr;
+            },
+            //add beforesend handler to validate or something
+            beforeSend: function () {
+                body = getGeneralModalBody();
+                $('progress').attr({value: 0, max: 100});
+                setGeneralModalTitle('Uploading images...');
+                setGeneralModalBody('<progress value="0" max="100" id="progressbar"></progress>');
+                showGeneralModal();
+
+
+                var imgdiv = document.getElementById('uploadedimages');
+                imgdiv.innerHTML = "";
+                document.getElementById('upimagestext').style.display = 'none';
+            },
+            success: function (res) {
+                setGeneralModalTitle('Upload succes');
+                setGeneralModalBody(body);
+                showGeneralModal();
+
+                var imgdiv = document.getElementById('uploadedimages');
+                document.getElementById('upimagestext').style.display = 'block';
+
+                $.each(res, function (index, elem) {
+                    var div = document.createElement('div');
+                    div.className += 'upimage';
+                    imgdiv.appendChild(div);
+
+                    div.innerHTML += '<img src="' + elem['link'] + '" class="upimageimg" /><br/>';
+                    div.innerHTML += 'id: ' + elem['id'] + '<br/>';
+                    div.innerHTML += 'type: ' + elem['type'] + '<br/>';
+                    div.innerHTML += 'name: ' + elem['name'] + '<br/>';
+                    div.innerHTML += 'size: ' + elem['size'] + '';
+                });
+            },
+            //add error handler for when a error occurs if you want!
+            error: function (xhr, status, error) {
+                setGeneralModalTitle('Upload error');
+                setGeneralModalBody(xhr.responseText);
+                showGeneralModal();
+
+            },
+            data: form,
+            // this is the important stuf you need to overide the usual post behavior
+            cache: false,
+            contentType: false,
+            processData: false
         });
-    }); 
+    });
+});
 
-    // Yes outside of the .ready space becouse this is a function not an event listner!
-    function progress(e){
-        if(e.lengthComputable){
-            //this makes a nice fancy progress bar
-            $('progress').attr({value:e.loaded,max:e.total});
-        }
+// Yes outside of the .ready space becouse this is a function not an event listner!
+function progress(e) {
+    if (e.lengthComputable) {
+        //this makes a nice fancy progress bar
+        $('progress').attr({value: e.loaded, max: e.total});
     }
+}
