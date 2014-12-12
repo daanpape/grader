@@ -29,18 +29,21 @@ function pageViewModel(gvm) {
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
-            $.each(data, function(i, item) {
-                if(!isEmptyObject(item)) {
-                    $(".btn-location span:first").text(item.location);
-                    $(".btn-training span:first").text(item.training);
-                    $(".btn-course span:first").text(item.course);
-                    gvm.updateLocations();
-                    loadTablePage(item.courseid, 1);
-                } else {
-                    gvm.updateLocations();
-                }
-
-            });
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    if(!$.isEmptyObject(item)) {
+                        $(".btn-location span:first").text(item.location);
+                        $(".btn-training span:first").text(item.training);
+                        $(".btn-course span:first").text(item.course);
+                        gvm.updateLocations();
+                        loadTablePage(item.courseid, 1);
+                    } else {
+                        gvm.updateLocations();
+                    }
+                });
+            } else {
+                gvm.updateLocations();
+            }
         });
     }
 
@@ -438,6 +441,6 @@ function initPage() {
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateLocations();
+        viewModel.updateDropdowns();
     });
 }
