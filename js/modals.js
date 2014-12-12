@@ -62,6 +62,7 @@ function showLogin() {
     // Show the login window 
     $('#yes_no_modal').hide();
     $('#general_modal').hide();
+    $('#upload_modal').hide();
     $('#login_modal').show();
     $('#modaloverlay').show();
 }
