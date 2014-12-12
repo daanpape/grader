@@ -303,7 +303,7 @@ $app->post('/api/savedropdowns', function() use ($app) {
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    echo json_encode(GraderAPI::saveDropdownChoice($app->request->post('location'), $app->request->post('training'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
+    echo json_encode(GraderAPI::saveDropdownChoice($app->request->post('location'), $app->request->post('locationid'), $app->request->post('training'), $app->request->post('trainingid'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
 });
 
 $app->post('/api/upload', function() use($app){
