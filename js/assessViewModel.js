@@ -1,5 +1,6 @@
 //viewmodel for the assess page
 function pageViewModel(gvm) {
+    gvm.userId = -1;
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AssessTitle");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle");}, gvm);
@@ -193,5 +194,8 @@ function loadTablePage(courseid, pagenr)
 }
 
 function initPage() {
-    viewModel.updateDropdowns();
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateDropdowns();
+    });
 }
