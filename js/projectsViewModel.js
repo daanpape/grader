@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             $.each(data, function(i, item) {
-                if(!isEmptyObject(item)) {
+                if(!$.isEmptyObject(item)) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
                     $(".btn-course span:first").text(item.course);
