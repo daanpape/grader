@@ -53,6 +53,10 @@
     "MyProjects" : "My projects",
     
     "UploadModalTitle" : "Upload a file",
+    "UploadBtn" : "Upload file",
+    "ChooseFiles" : "Choose files",
+    "UploadedFiles" : "Succesfully uploaded files",
+    "Progress" : "Progress",
     
     "SaveBtn" : "Save",
     "AddCompetence" : "Add competence",

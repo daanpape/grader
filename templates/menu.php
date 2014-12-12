@@ -1,5 +1,6 @@
 <?php
 require_once 'dptcms/security.php';
+require_once 'dptcms/config.php';
 ?>
 
 <!-- Main menu -->
@@ -106,19 +107,23 @@ require_once 'dptcms/security.php';
                 To upload pictures to the server simply choose one ore more pictures form your hard drive and click upload.<br/>
                 The images must comply to the following restrictions:
             <ul>
-                <li>Maximum file size: 4069Mb</li>
-                <li>Supported file types: xxx</li>
+                <li>Maximum file size: <?php echo Config::$fileMaxSize ?>Mb</li>
+                <li>Supported file types: <?php echo Config::$fileFriendlySupport ?></li>
             </ul>
             </p>
             <form id="uploadform" enctype="multipart/form-data">
-                <p>
-                    <label for="file">Choose images:</label>
-                    <input type="file" name="files[]" multiple>
-                    <input type="button" id="uploadformbtn" class="upload" value="Upload">
-                </p>
+                <table>
+                    <tr>
+                        <td><span data-bind="text: chooseFiles">Choose images</span>:</td>
+                    </tr>
+                    <tr>
+                        <td><input type="file" name="files[]" multiple></td>
+                        <td><button class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
+                    </tr>
+                </table>
             </form>
-            <div id="upimagestext">Uploaded images:</div>
-            <div id="uploadedimages">
+            <div id="upload-result">
+                
             </div>
         </div>
     </div>
