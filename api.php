@@ -89,6 +89,19 @@ class GraderAPI {
         }
     }
 
+    public static function createProjectStudentlistCouple($projectid, $studlistid) {
+        $id = ClassDAO::insertProjectStudlistCouple($projectid, $studlistid);
+
+        if($id != null) {
+            return array(
+                "projectid" => $projectid,
+                "studentlistid" => $studlistid
+            );
+        } else {
+            return -1;
+        }
+    }
+
     /*
      * Update a projecttype in the database
      */

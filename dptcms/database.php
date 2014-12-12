@@ -231,6 +231,19 @@ class ClassDAO {
         }
     }
 
+    public static function insertProjectStudlistCouple($projectid, $studlistid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO project_student (project, studentlist) VALUES (?,?)");
+            $stmt->execute(array($projectid, $studlistid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a project and a studentlist', $err);
+            return null;
+        }
+    }
+
     /*
      * Update projecttype in the database 
      * @param type $id the id of the projecttype to update

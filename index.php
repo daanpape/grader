@@ -266,9 +266,7 @@ $app->put('/api/project/:id', function($id) use ($app){
     echo json_encode(GraderAPI::updateProject(
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
-$app->put('/api/project/studentlist/:id', function($id) use($app) {
 
-});
 
 // API POST routes
 $app->post('/api/project/:id', function ($courseid) use ($app) {
@@ -279,6 +277,15 @@ $app->post('/api/project/:id', function ($courseid) use ($app) {
     // Insert the data
     echo json_encode(GraderAPI::createProject(
                     $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
+
+$app->post('/api/project/:projectid/studentlist/:studlistid', function($projectid, $studlistid) use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
 });
 
 // API DELETE routes

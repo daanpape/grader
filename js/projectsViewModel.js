@@ -201,7 +201,7 @@ function updateProjecttypeForm(id, serialData, callback) {
 function updateListForm(id, serialData, callback) {
     $.ajax({
         url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
-        type: "PUT",
+        type: "POST",
         data: serialData,
         success: function(data) {
             callback(true);
