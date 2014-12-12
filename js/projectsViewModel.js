@@ -36,7 +36,8 @@ function pageViewModel(gvm) {
                     $(".btn-training span:first").text(item.training);
                     $(".btn-course span:first").text(item.course);
                     gvm.updateLocations();
-                    gvm.updateTrainings(item.locationid)
+                    gvm.updateTrainings(item.locationid);
+                    gvm.updateCourses(item.trainingid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
