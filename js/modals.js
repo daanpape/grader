@@ -197,9 +197,9 @@ $(document).ready(function () {
             },
             data: form,
             // this is the important stuf you need to overide the usual post behavior
-            //cache: false,
-            //contentType: false,
-            //processData: false
+            cache: false,
+            contentType: false,
+            processData: false
         });
     });
 });
