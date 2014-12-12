@@ -7,6 +7,7 @@ require_once 'dptcms/pagination.php';
 require_once 'dptcms/logger.php';
 require_once 'dptcms/email.php';
 require_once 'dptcms/security.php';
+require_once 'dptcms/fileupload.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -295,6 +296,11 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
 
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
+});
+
+$app->post('/api/upload', function() use($app){
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(FileUpload::uploadFile());
 });
 
 // API DELETE routes
