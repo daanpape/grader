@@ -246,7 +246,7 @@ $app->get('/api/studentlist/info/:id', function($id) use ($app) {
 
     echo json_encode($data);
 });
-$app->get('api/lastdropdownchoice/:id', function($id) use ($app) {
+$app->get('api/dropdownchoice/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
