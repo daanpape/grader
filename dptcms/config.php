@@ -27,9 +27,9 @@
    /*
     * Image upload settings
     */
-   public static $fileImgSupport          = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png");
-   public static $fileFriendlySupport     = 'GIF, JPEG, PNG';
-   public static $fileMaxSize             = 4096;
+   public static $fileImgSupport          = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png", "application/vnd.ms-excel","text/plain", "text/csv", "text/tsv");
+   public static $fileFriendlySupport     = 'GIF, JPEG, PNG, CSV';
+   public static $fileMaxSize             = 32;
    public static $fileDestination	  = 'upload';
  }
 ?>

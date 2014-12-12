@@ -614,9 +614,12 @@ class FileDAO {
     public static function putUpload($name) {
         try {
             $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT into uploads (filename) VALUES (?)");
+            $stmt->execute(array($name));
+            return $conn->lastInsertId();
             
         } catch (Exception $ex) {
-
+            return -1;
         }
     }
 }

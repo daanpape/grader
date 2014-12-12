@@ -180,8 +180,14 @@ $(document).ready(function () {
                     var div = document.createElement('div');
                     div.className += 'upimage';
                     $('#uploaded-files').append(div);
+                    
+                    var src = elem['link'];
+                    
+                    if(!elem['type'].startsWith('image')){
+                        src = '/img/file.png';
+                    }
 
-                    div.innerHTML += '<img src="' + elem['link'] + '" style="width: 100px;" /><br/>';
+                    div.innerHTML += '<a href="' + elem['link'] + '" target="_blank"><img src="' + src + '" style="width: 100px;" /></a><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';
                     div.innerHTML += 'type: ' + elem['type'] + '<br/>';
                     div.innerHTML += 'name: ' + elem['name'] + '<br/>';
