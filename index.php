@@ -108,11 +108,6 @@ $app->post('/login/:email', function ($email) use($app) {
     }
 });
 
-$app->post('/upload', function() use($app){
-    $app->response->headers->set('Content-Type', 'application/json');
-    echo json_encode(FileUpload::uploadFile());
-});
-
 $app->post('/checkemail', function() use($app) {
     $app->response->headers->set('Content-Type', 'application/json');
 
@@ -301,6 +296,11 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
 
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
+});
+
+$app->post('/api/upload', function() use($app){
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(FileUpload::uploadFile());
 });
 
 // API DELETE routes

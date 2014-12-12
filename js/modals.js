@@ -152,7 +152,7 @@ $(document).ready(function () {
 
             // Make the ajax call
             $.ajax({
-                url: '/upload',
+                url: '/api/upload',
                 type: 'POST',
                 xhr: function() {
                     var myXhr = $.ajaxSettings.xhr();
