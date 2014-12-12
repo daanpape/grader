@@ -263,17 +263,17 @@ class ClassDAO {
     public static function saveDropdownChoice($location, $training, $course, $courseid, $user) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, training, course, courseid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE location = :location, training = :training, course = :course, courseid = :courseid");
-            $stmt->bindValue(':location', (string) $location, PDO::PARAM_STR);
+            $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, training, course, courseid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, training = ?, course = ?, courseid = ?");
+           /* $stmt->bindValue(':location', (string) $location, PDO::PARAM_STR);
             $stmt->bindValue(':taining', (string) $training, PDO::PARAM_STR);
             $stmt->bindValue(':course', (string) $course, PDO::PARAM_STR);
-            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
-            $stmt->execute(array($user, $location, $training, $course, $courseid));
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);*/
+            $stmt->execute(array($user, $location, $training, $course, $courseid, $location, $training, $course, $courseid));
 
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a project and a studentlist', $err);
-            return null;
+            return false;
         }
     }
 
