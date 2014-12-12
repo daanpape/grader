@@ -234,7 +234,7 @@ class ClassDAO {
     public static function insertProjectStudlistCouple($projectid, $studlistid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO project_student (project, studentlist) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO project_studentlist (project, studentlist) VALUES (?,?)");
             $stmt->execute(array($projectid, $studlistid));
 
             return $conn->lastInsertId();
@@ -259,7 +259,7 @@ class ClassDAO {
             $stmt->execute(array($code, $name, $description, $id));
             return true;
         } catch (PDOException $err) {
-            Logger . logError('Could not update project', $err);
+            Logger::logError('Could not update project', $err);
             return false;
         }
     }
