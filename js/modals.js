@@ -94,7 +94,9 @@ function showYesNoModal(body, callback) {
     });
 }
 
-function showUploadModal()
+var uploadCallback;
+
+function showUploadModal(callback)
 {
     $('#login_modal').hide();
     $('#yes_no_modal').hide();
@@ -102,6 +104,7 @@ function showUploadModal()
     $('#upload_modal').show();
 
     $('#modaloverlay').show();
+    uploadCallBack = callback;
 }
 
 function showGeneralModal()
@@ -186,6 +189,8 @@ $(document).ready(function () {
                     if(elem['type'] !== 'png' && elem['type'] !== 'jpg' && elem['type'] !== 'jpeg'){
                         src = '/img/file.png';
                     }
+                    
+                    uploadCallBack(src);
 
                     div.innerHTML += '<a href="' + elem['link'] + '" target="_blank"><img src="' + src + '" style="width: 100px;" /></a><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';

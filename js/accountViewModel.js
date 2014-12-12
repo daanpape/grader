@@ -21,4 +21,10 @@ function initPage() {
         $('#member_since').html(data.created);
         $('#avatar').attr("src", '/' + data.avatar);
     });
+    
+    $('#edit-avatar').click(function(){
+        showUploadModal(function(src){
+            $('#avatar').attr("src", src);
+        });
+    })
 }
