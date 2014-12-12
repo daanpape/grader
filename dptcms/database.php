@@ -270,7 +270,7 @@ class ClassDAO {
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute(array($user, $location, $training, $course, $courseid));
 
-            return $conn->lastInsertId();
+            return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a project and a studentlist', $err);
             return null;
