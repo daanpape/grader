@@ -80,6 +80,8 @@ class FileUpload {
             }
 
             return $image_data;
+        } else {
+            return "No files were selected";
         }
     }
 }
