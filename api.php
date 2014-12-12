@@ -107,7 +107,19 @@ class GraderAPI {
     }
 
     public static function saveDropdownChoice($location, $training, $course, $courseid, $user) {
+        $id = ClassDAO::saveDropdownChoice($location, $training, $course, $courseid, $user);
 
+        if($id != null) {
+            return array(
+                "location" => $location,
+                "training" => $training,
+                "course" => $course,
+                "courseid" => $courseid,
+                "user" => $user
+            );
+        } else {
+            return -1;
+        }
     }
 
     /*
