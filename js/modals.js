@@ -179,7 +179,7 @@ $(document).ready(function () {
                 $.each(res, function (index, elem) {
                     var div = document.createElement('div');
                     div.className += 'upimage';
-                    $('#uploaded-files').appendChild(div);
+                    $('#uploaded-files').append(div);
 
                     div.innerHTML += '<img src="' + elem['link'] + '" style="width: 100px;" /><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';
