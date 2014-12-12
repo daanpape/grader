@@ -23,6 +23,40 @@ function pageViewModel(gvm) {
 
     gvm.currentCourseId = null;
 
+    gvm.updateDropdowns = function() {
+        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    $(".btn-location span:first").text(item.location);
+                    $(".btn-training span:first").text(item.training);
+                    $(".btn-course span:first").text(item.course);
+                    gvm.updateLocations();
+                    loadTablePage(item.courseid, 1);
+                });
+            } else {
+                gvm.updateLocations();
+            }
+        });
+    }
+
+    gvm.saveLastSelectedDropdowns = function() {
+        data = {};
+        data["location"] = $(".btn-location span:first").text();
+        data["training"] = $(".btn-training span:first").text();
+        data["course"] = $(".btn-course span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+        data["user"] = gvm.userId;
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdowns",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
+    }
+
     gvm.updateLocations = function() {
         $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
@@ -159,5 +193,5 @@ function loadTablePage(courseid, pagenr)
 }
 
 function initPage() {
-    viewModel.updateLocations();
+    viewModel.updateDropdowns();
 }
