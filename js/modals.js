@@ -173,7 +173,8 @@ $(document).ready(function () {
                 $('progress').attr({value: 0, max: 100});                
                 $('#upload-result').html('<span data-bind="text: progress">Progress</span>: <progress value="0" max="100" id="progressbar"></progress>');
             },
-            success: function (res) {       
+            success: function (res) {
+                /*
                 $('#upload-result').html('<p><span data-bind="text: uploadedFiles">Uploaded files</span>:</p><div id="uploaded-files"></div>');
 
                 $.each(res, function (index, elem) {
@@ -187,6 +188,7 @@ $(document).ready(function () {
                     div.innerHTML += 'name: ' + elem['name'] + '<br/>';
                     div.innerHTML += 'size: ' + elem['size'] + '';
                 });
+                */
             },
             //add error handler for when a error occurs if you want!
             error: function (xhr, status, error) {
