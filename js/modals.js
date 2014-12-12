@@ -157,8 +157,6 @@ $(document).ready(function () {
         // Get the form data. This serializes the entire form. pritty easy huh!
         var form = new FormData($('#uploadform')[0]);
 
-        var body;
-
         // Make the ajax call
         $.ajax({
             url: '/api/upload',
@@ -172,31 +170,18 @@ $(document).ready(function () {
             },
             //add beforesend handler to validate or something
             beforeSend: function () {
-                body = getGeneralModalBody();
-                $('progress').attr({value: 0, max: 100});
-                setGeneralModalTitle('Uploading images...');
-                setGeneralModalBody('<progress value="0" max="100" id="progressbar"></progress>');
-                showGeneralModal();
-
-
-                var imgdiv = document.getElementById('uploadedimages');
-                imgdiv.innerHTML = "";
-                document.getElementById('upimagestext').style.display = 'none';
+                $('progress').attr({value: 0, max: 100});                
+                $('#upload-result').html('<progress value="0" max="100" id="progressbar"></progress>');
             },
-            success: function (res) {
-                setGeneralModalTitle('Upload succes');
-                setGeneralModalBody(body);
-                showGeneralModal();
-
-                var imgdiv = document.getElementById('uploadedimages');
-                document.getElementById('upimagestext').style.display = 'block';
+            success: function (res) {       
+                $('#upload-result').html('<p><span data-bind="text: uploadedFiles">Uploaded files</span>:</p><div id="uploaded-files"></div>');
 
                 $.each(res, function (index, elem) {
                     var div = document.createElement('div');
                     div.className += 'upimage';
-                    imgdiv.appendChild(div);
+                    $('#uploaded-files').appendChild(div);
 
-                    div.innerHTML += '<img src="' + elem['link'] + '" class="upimageimg" /><br/>';
+                    div.innerHTML += '<img src="' + elem['link'] + '" style="width: 100px;" /><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';
                     div.innerHTML += 'type: ' + elem['type'] + '<br/>';
                     div.innerHTML += 'name: ' + elem['name'] + '<br/>';

@@ -49,6 +49,9 @@ function GlobalViewModel()
     this.yes = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Yes");}, this); 
     this.no = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("No");}, this);
     this.uploadModalTitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadModalTitle");}, this);
+    this.upload = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadBtn");}, this);
+    this.chooseFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ChooseFiles");}, this);
+    this.uploadedFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadedFiles");}, this);
 
     /**
      * Change the UI locale
