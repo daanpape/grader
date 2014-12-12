@@ -134,7 +134,7 @@ class ClassDAO {
     public static function getLastDropdownFromUser($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT $ FROM lastdropdown WHERE user = :id");
+            $stmt = $conn->prepare("SELECT * FROM lastdropdown WHERE user = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
