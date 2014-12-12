@@ -106,6 +106,10 @@ class GraderAPI {
         }
     }
 
+    public static function saveDropdownChoice($location, $training, $course, $courseid, $user) {
+        
+    }
+
     /*
      * Update a projecttype in the database
      */
