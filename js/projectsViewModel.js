@@ -49,7 +49,16 @@ function pageViewModel(gvm) {
         data["training"] = $(".btn-training span:first").text();
         data["course"] = $(".btn-course span:first").text();
         data["courseid"] = gvm.currentCourseId;
+        data["user"] = gvm.userId;
         console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdowns",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
     }
 
     /*

@@ -297,6 +297,14 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
 });
+$app->post('/api/savedropdowns', function() use ($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(GraderAPI::saveDropdownChoice($app->request->post('location'), $app->request->post('training'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
+});
 
 $app->post('/api/upload', function() use($app){
     $app->response->headers->set('Content-Type', 'application/json');
