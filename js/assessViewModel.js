@@ -23,6 +23,8 @@ function pageViewModel(gvm) {
     gvm.availableCourses = ko.observableArray([]);
 
     gvm.currentCourseId = null;
+    gvm.currentLocationId = null;
+    gvm.currentTrainingid = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -32,6 +34,7 @@ function pageViewModel(gvm) {
                     $(".btn-training span:first").text(item.training);
                     $(".btn-course span:first").text(item.course);
                     gvm.updateLocations();
+                    gvm.updateTrainings(item.locationid)
                     loadTablePage(item.courseid, 1);
                 });
             } else {
@@ -43,7 +46,9 @@ function pageViewModel(gvm) {
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
         data["location"] = $(".btn-location span:first").text();
+        data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-training span:first").text();
+        data["trainingid"] = gvm.currentTrainingid;
         data["course"] = $(".btn-course span:first").text();
         data["courseid"] = gvm.currentCourseId;
         data["user"] = gvm.userId;
@@ -67,6 +72,8 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#locbtn-" + item.id).click(function(){
+                    gvm.currentLocationId = item.id;
+                    gvm.currentTrainingid = null;
                     gvm.currentCourseId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
@@ -86,6 +93,7 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
+                    gvm.currentTrainingid = null;
                     gvm.currentCourseId = null;
                     gvm.updateCourses(item.id);
                     $(".btn-training span:first").text($(this).text());

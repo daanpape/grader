@@ -260,11 +260,11 @@ class ClassDAO {
         }
     }
 
-    public static function saveDropdownChoice($location, $training, $course, $courseid, $user) {
+    public static function saveDropdownChoice($location, $locationid, $training, $trainingid, $course, $courseid, $user) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, training, course, courseid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, training = ?, course = ?, courseid = ?");
-            $stmt->execute(array($user, $location, $training, $course, $courseid, $location, $training, $course, $courseid));
+            $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, locationid, training, trainingid, course, courseid) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, locationid = ?, training = ?, trainingid = ?, course = ?, courseid = ?");
+            $stmt->execute(array($user, $location, $locationid, $training, $trainingid, $course, $courseid, $location, $locationid, $training, $trainingid, $course, $courseid));
 
             return true;
         } catch (PDOException $err) {
