@@ -157,6 +157,8 @@ $(document).ready(function () {
         // Get the form data. This serializes the entire form. pritty easy huh!
         var form = new FormData($('#uploadform')[0]);
 
+        var body;
+
         // Make the ajax call
         $.ajax({
             url: '/api/upload',
@@ -170,25 +172,36 @@ $(document).ready(function () {
             },
             //add beforesend handler to validate or something
             beforeSend: function () {
-                $('progress').attr({value: 0, max: 100});                
-                $('#upload-result').html('<span data-bind="text: progress">Progress</span>: <progress value="0" max="100" id="progressbar"></progress>');
+                body = getGeneralModalBody();
+                $('progress').attr({value: 0, max: 100});
+                setGeneralModalTitle('Uploading images...');
+                setGeneralModalBody('<progress value="0" max="100" id="progressbar"></progress>');
+                showGeneralModal();
+
+
+                var imgdiv = document.getElementById('uploadedimages');
+                imgdiv.innerHTML = "";
+                document.getElementById('upimagestext').style.display = 'none';
             },
             success: function (res) {
-                /*
-                $('#upload-result').html('<p><span data-bind="text: uploadedFiles">Uploaded files</span>:</p><div id="uploaded-files"></div>');
+                setGeneralModalTitle('Upload succes');
+                //setGeneralModalBody('All images are succesfully uploaded');
+                //showGeneralModal();
+
+                var imgdiv = document.getElementById('uploadedimages');
+                document.getElementById('upimagestext').style.display = 'block';
 
                 $.each(res, function (index, elem) {
                     var div = document.createElement('div');
                     div.className += 'upimage';
-                    $('#uploaded-files').appendChild(div);
+                    imgdiv.appendChild(div);
 
-                    div.innerHTML += '<img src="' + elem['link'] + '" style="width: 100px;" /><br/>';
+                    div.innerHTML += '<img src="' + elem['link'] + '" class="upimageimg" /><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';
                     div.innerHTML += 'type: ' + elem['type'] + '<br/>';
                     div.innerHTML += 'name: ' + elem['name'] + '<br/>';
                     div.innerHTML += 'size: ' + elem['size'] + '';
                 });
-                */
             },
             //add error handler for when a error occurs if you want!
             error: function (xhr, status, error) {
