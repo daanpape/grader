@@ -125,13 +125,6 @@ require_once 'dptcms/config.php';
             <div id="upload-result">
                 
             </div>
-            <p>
-                <div id="upload-progress-container">
-                </div>
-            </p>
-            <p><span data-bind="text: uploadedFiles">Uploaded images</span>:</p>
-            <div id="uploadedimages">
-            </div>
         </div>
     </div>
 

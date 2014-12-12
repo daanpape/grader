@@ -171,7 +171,7 @@ $(document).ready(function () {
             //add beforesend handler to validate or something
             beforeSend: function () {
                 $('progress').attr({value: 0, max: 100});                
-                $('#upload-result').html('<progress value="0" max="100" id="progressbar"></progress>');
+                $('#upload-result').html('<span data-bind="text: progress">Progress</span>: <progress value="0" max="100" id="progressbar"></progress>');
             },
             success: function (res) {       
                 $('#upload-result').html('<p><span data-bind="text: uploadedFiles">Uploaded files</span>:</p><div id="uploaded-files"></div>');
