@@ -264,10 +264,6 @@ class ClassDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, training, course, courseid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, training = ?, course = ?, courseid = ?");
-           /* $stmt->bindValue(':location', (string) $location, PDO::PARAM_STR);
-            $stmt->bindValue(':taining', (string) $training, PDO::PARAM_STR);
-            $stmt->bindValue(':course', (string) $course, PDO::PARAM_STR);
-            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);*/
             $stmt->execute(array($user, $location, $training, $course, $courseid, $location, $training, $course, $courseid));
 
             return true;

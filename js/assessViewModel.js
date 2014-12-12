@@ -1,5 +1,6 @@
 //viewmodel for the assess page
 function pageViewModel(gvm) {
+    gvm.userId = -1;
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AssessTitle");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle");}, gvm);
@@ -22,6 +23,40 @@ function pageViewModel(gvm) {
     gvm.availableCourses = ko.observableArray([]);
 
     gvm.currentCourseId = null;
+
+    gvm.updateDropdowns = function() {
+        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    $(".btn-location span:first").text(item.location);
+                    $(".btn-training span:first").text(item.training);
+                    $(".btn-course span:first").text(item.course);
+                    gvm.updateLocations();
+                    loadTablePage(item.courseid, 1);
+                });
+            } else {
+                gvm.updateLocations();
+            }
+        });
+    }
+
+    gvm.saveLastSelectedDropdowns = function() {
+        data = {};
+        data["location"] = $(".btn-location span:first").text();
+        data["training"] = $(".btn-training span:first").text();
+        data["course"] = $(".btn-course span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+        data["user"] = gvm.userId;
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdowns",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
+    }
 
     gvm.updateLocations = function() {
         $.getJSON('/api/locations', function(data) {
@@ -159,5 +194,8 @@ function loadTablePage(courseid, pagenr)
 }
 
 function initPage() {
-    viewModel.updateLocations();
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateDropdowns();
+    });
 }
