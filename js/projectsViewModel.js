@@ -83,6 +83,8 @@ function pageViewModel(gvm) {
                     gvm.currentCourseId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
+                    $(".btn-training span:first").text("training");
+                    $(".btn-course span:first").text("course");
                 });
             });
         });
@@ -103,6 +105,7 @@ function pageViewModel(gvm) {
                     gvm.currentCourseId = null;
                     gvm.updateCourses(item.id);
                     $(".btn-training span:first").text($(this).text());
+                    $(".btn-course span:first").text("course");
                 });
             });
         });
