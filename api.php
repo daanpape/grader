@@ -107,7 +107,7 @@ class GraderAPI {
     }
 
     public static function saveDropdownChoice($location, $training, $course, $courseid, $user) {
-        
+
     }
 
     /*

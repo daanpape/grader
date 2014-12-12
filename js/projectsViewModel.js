@@ -50,6 +50,7 @@ function pageViewModel(gvm) {
         data["course"] = $(".btn-course span:first").text();
         data["courseid"] = gvm.currentCourseId;
         data["user"] = gvm.userId;
+        console.log(data);
         $.ajax({
             type: "POST",
             url: "/api/savedropdowns",
