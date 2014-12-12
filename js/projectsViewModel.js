@@ -98,7 +98,7 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
-                    gvm.currentTrainingid = null;
+                    gvm.currentTrainingid = item.id;
                     gvm.currentCourseId = null;
                     gvm.updateCourses(item.id);
                     $(".btn-training span:first").text($(this).text());
@@ -120,6 +120,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     $(".btn-course span:first").text($(this).text());
                     gvm.currentCourseId = item.id;
+                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
             });
