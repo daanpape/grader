@@ -118,7 +118,7 @@ require_once 'dptcms/config.php';
                     </tr>
                     <tr>
                         <td><input type="file" name="files[]" multiple></td>
-                        <td><button class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
+                        <td><button type="button" class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
                     </tr>
                 </table>
             </form>
