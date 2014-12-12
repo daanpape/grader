@@ -273,7 +273,7 @@ class ClassDAO {
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a project and a studentlist', $err);
-            return null;
+            return false;
         }
     }
 
