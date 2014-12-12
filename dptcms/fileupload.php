@@ -41,7 +41,7 @@ class FileUpload {
                 if (empty($errors)) {
                     /* Place file on the server */
                     chdir(dirname(__FILE__));
-                    $name = uniqid("img_", false) . '.' . strtolower(substr(strrchr($file_name, '.'), 1));
+                    $name = uniqid("file_", false) . '.' . strtolower(substr(strrchr($file_name, '.'), 1));
                     $upload_path = Config::$fileDestination . '/' . $name;
                     if (!move_uploaded_file($file_tmp, '../' . $upload_path))
                         $errors[] = 'An unidentified error occured, please try again later';
