@@ -26,6 +26,28 @@ function pageViewModel(gvm) {
 
     gvm.currentCourseId = null;
 
+
+    gvm.updateDropdowns = function() {
+        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+            $.each(data, function(i, item) {
+                if(!isEmptyObject(item)) {
+                    $(".btn-location span:first").text(item.location);
+                    $(".btn-training span:first").text(item.training);
+                    $(".btn-course span:first").text(item.course);
+                    gvm.updateLocations();
+                    loadTablePage(item.courseid, 1);
+                } else {
+                    gvm.updateLocations();
+                }
+
+            });
+        });
+    }
+
+    gvm.saveLastSelectedDropdowns = function() {
+
+    }
+
     /*
      * Update the location dropdown list
      */
@@ -78,6 +100,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     $(".btn-course span:first").text($(this).text());
                     gvm.currentCourseId = item.id;
+                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
             });
@@ -198,19 +221,6 @@ function updateProjecttypeForm(id, serialData, callback) {
     });
 }
 
-function updateListForm(id, serialData, callback) {
-    $.ajax({
-        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
-        type: "POST",
-        data: serialData,
-        success: function(data) {
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}
 
 /**
  * update project type 
@@ -404,6 +414,21 @@ function loadCoupleDropdown() {
 }
 
 
+function updateListForm(id, serialData, callback) {
+    $.ajax({
+        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
+        type: "POST",
+        data: serialData,
+        success: function(data) {
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+}
+
+
 function initPage() {
     // Add button handlers
     $('#addProjectTypeBtn').click(function(){
@@ -414,6 +439,5 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateLocations();
-
     });
 }

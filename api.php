@@ -40,8 +40,12 @@ class GraderAPI {
         return ClassDAO::getAllDataFromProject($id);
     }
 
-    public static function getStudentListsFromUser($id) {
+    public static function getStudentListsFromUser($id)
+    {
         return ClassDAO::getStudentListsFromUser($id);
+    }
+    public static function getLastDropdownFromUser($id) {
+        return ClassDAO::getLastDropdownFromUser($id);
     }
 
     /*
