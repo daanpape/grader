@@ -7,6 +7,7 @@ require_once 'dptcms/pagination.php';
 require_once 'dptcms/logger.php';
 require_once 'dptcms/email.php';
 require_once 'dptcms/security.php';
+require_once 'dptcms/fileupload.php';
 
 \Slim\Slim::registerAutoloader();
 
@@ -105,6 +106,11 @@ $app->post('/login/:email', function ($email) use($app) {
         // Login success
         echo '{}';
     }
+});
+
+$app->post('/upload', function() use($app){
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(FileUpload::uploadFile());
 });
 
 $app->post('/checkemail', function() use($app) {
