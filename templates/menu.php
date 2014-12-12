@@ -107,7 +107,7 @@ require_once 'dptcms/config.php';
                 To upload pictures to the server simply choose one ore more pictures form your hard drive and click upload.<br/>
                 The images must comply to the following restrictions:
             <ul>
-                <li>Maximum file size: <?php echo Config::$fileMaxSize ?>Mb</li>
+                <li>Maximum file size: <?php echo Config::$fileMaxSize/4096 ?>Mb</li>
                 <li>Supported file types: <?php echo Config::$fileFriendlySupport ?></li>
             </ul>
             </p>
