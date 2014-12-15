@@ -66,10 +66,10 @@ $app->get('/register', function () use ($app) {
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
-$app->get('/assess/:projectid/student/:studentid/scores', function($projectid, $studentid) use ($app) {
+$app->get('/assess/project/:projectid/student/:studentid/scores', function($projectid, $studentid) use ($app) {
     $app->render('assessstudent.php', array('projectid' => $projectid, 'studentid' => $studentid));
 });
-$app->get('/assess/:projectid/student/:studentid/completeness', function($projectid, $studentid) use ($app) {
+$app->get('/assess/project/:projectid/student/:studentid/completeness', function($projectid, $studentid) use ($app) {
     $app->render('assesscompletement.php', array('projectid' => $projectid, 'studentid' => $studentid));
 });
 $app->get('/assess/project/:id/students', function($id) use($app) {
