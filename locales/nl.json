@@ -41,6 +41,8 @@
     "NameTableTitle" : "Naam",
     "DescTableTitle" : "Beschrijving",
     "ActionTableTitle" : "Acties",
+    "firstNameTableTitle": "Voornaam",
+    "lastNameTableTitle": "Naam",
 
 
     "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",

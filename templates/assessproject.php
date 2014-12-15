@@ -25,7 +25,25 @@ $location = "assessproject";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="row">
         <div id="top-col" class="col-md-12">
-            hallo?!
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: firstNameTableTitle">FirstName</th>
+                    <th data-bind="text: lastNameTableTitle">LastName</th>
+                    <th data-bind="text: actionTableTitle">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: tabledata">
+                <tr>
+                    <td data-bind="text: tcode">--</td>
+                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: tdesc">--</td>
+                    <td>
+                        ...
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

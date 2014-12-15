@@ -41,6 +41,8 @@
     "NameTableTitle" : "Name",
     "DescTableTitle" : "Description",
     "ActionTableTitle" : "Actions",
+    "firstNameTableTitle": "First Name",
+    "lastNameTableTitle": "Last Name",
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "EditProjectTitle" : "Edit projecttype",

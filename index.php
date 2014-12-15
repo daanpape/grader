@@ -66,7 +66,7 @@ $app->get('/register', function () use ($app) {
 $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
-$app->get('/assess/project/:id', function($id) use($app) {
+$app->get('/assess/project/:id/students', function($id) use($app) {
    $app->render('assessproject.php', array('projectid' => $id));
 });
 $app->get('/account', function() use ($app) {
@@ -207,6 +207,15 @@ $app->get('/api/project/:id', function($id) use ($app){
 
     // Get all courses by the trainingsid
     $pagedata = GraderAPI::getProjectById($id);
+
+    echo json_encode($pagedata);
+});
+
+$app->get('/api/project/:id/students', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $pagedata = GraderAPI::getStudentListsFromProject($id);
 
     echo json_encode($pagedata);
 });
