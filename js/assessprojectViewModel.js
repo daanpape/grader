@@ -48,4 +48,5 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.getProjectInfo();
+    viewModel.getStudentList();
 }
