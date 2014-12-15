@@ -39,8 +39,8 @@ $location = "assessproject";
                 <tr>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
-                    <td><a><button><span data-bind="text: scoreTableTitle"></span></button></a></td>
-                    <td><a><button><span data-bind="text: filesTableTitle"</button></a></td>
+                    <td><a><button><span data-bind="text: scoreTableTitleBtn"></span></button></a></td>
+                    <td><a><button><span data-bind="text: filesTableTitleBtn"></span></button></a></td>
                     <td></td>
                 </tr>
                 </tbody>
