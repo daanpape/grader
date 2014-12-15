@@ -43,6 +43,8 @@
     "ActionTableTitle" : "Actions",
     "firstNameTableTitle": "First Name",
     "lastNameTableTitle": "Last Name",
+    "scoreNameTableTitle": "Fill in scores",
+    "filesNameTableTitle": "Check Completeness",
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "EditProjectTitle" : "Edit projecttype",
@@ -59,8 +61,7 @@
     "ChooseFiles" : "Choose files",
     "UploadedFiles" : "Succesfully uploaded files",
     "Progress" : "Progress",
-    
-    "SaveBtn" : "Save",
+
     "AddCompetence" : "Add competence",
 
     "HomeManual" : "<p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",

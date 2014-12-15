@@ -43,7 +43,8 @@
     "ActionTableTitle" : "Acties",
     "firstNameTableTitle": "Voornaam",
     "lastNameTableTitle": "Naam",
-
+    "scoreNameTableTitle": "Score invullen",
+    "filesNameTableTitle": "Ingediende documenten",
 
     "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
     "EditProjectTitle" : "Wijzig projecttype",
@@ -60,8 +61,7 @@
     "ChooseFiles" : "Kies bestanden",
     "UploadedFiles" : "Geslaagde uploads",
     "Progress" : "Voortgang",
-    
-    "SaveBtn" : "Opslaan",
+
     "AddCompetence" : "Voeg competentie toe",
 
     "HomeManual" : "<p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",

@@ -30,16 +30,18 @@ $location = "assessproject";
                 <tr>
                     <th data-bind="text: firstNameTableTitle">FirstName</th>
                     <th data-bind="text: lastNameTableTitle">LastName</th>
-                    <th data-bind="text: actionTableTitle">Actions</th>
+                    <th data-bind="text: scoreNameTableTitle">Scores</th>
+                    <th data-bind="text: filesNameTableTitle">Scores</th>
+                    <th data-bind="text: actionsNameTableTitle">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
-                    <td>
-                        ...
-                    </td>
+                    <td><a><button data-bind="text: scoreNameTableTitle"></button></a></td>
+                    <td><a><button data-bind="text: filesNameTableTitle"></button></a></td>
+                    <td></td>
                 </tr>
                 </tbody>
             </table>
