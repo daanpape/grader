@@ -13,8 +13,6 @@ function pageViewModel(gvm) {
 
     gvm.scoreTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle")});
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
-    gvm.scoreTableTitleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle")});
-    gvm.filesTableTitleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
@@ -36,7 +34,7 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTextBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle};
         gvm.tabledata.push(tblOject);
     };
 
