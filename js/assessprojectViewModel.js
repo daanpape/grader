@@ -20,8 +20,23 @@ function pageViewModel(gvm) {
 
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/students', function(data) {
-
+            $.each(data.data, function(i, item) {
+                viewModel.addTableData(item.id, item.firsntame, item.lastname);
+            });
         });
+    };
+
+    gvm.tabledata = ko.observableArray([]);
+
+    // Add data to the table
+    gvm.addTableData = function(id, firstname, lastname) {
+        // Push data
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname};
+        gvm.tabledata.push(tblOject);
+    };
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
     };
 
     /*gvm.getAllData = function() {

@@ -35,9 +35,8 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tcode">--</td>
-                    <td data-bind="text: tname">--</td>
-                    <td data-bind="text: tdesc">--</td>
+                    <td data-bind="text: tfirstname">--</td>
+                    <td data-bind="text: tlastname">--</td>
                     <td>
                         ...
                     </td>
