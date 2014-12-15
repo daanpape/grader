@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
         console.log("hallo");
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/students', function(data) {
             console.log(data);
-            $.each(data.data, function(i, item) {
+            $.each(data, function(i, item) {
                 console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname);
             });
