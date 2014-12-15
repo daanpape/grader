@@ -43,8 +43,8 @@
     "ActionTableTitle" : "Actions",
     "firstNameTableTitle": "First Name",
     "lastNameTableTitle": "Last Name",
-    "scoreNameTableTitle": "Fill in scores",
-    "filesNameTableTitle": "Check Completeness",
+    "scoreTableTitle": "Fill in scores",
+    "filesTableTitle": "Check Completeness",
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "EditProjectTitle" : "Edit projecttype",

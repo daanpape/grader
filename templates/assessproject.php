@@ -30,9 +30,9 @@ $location = "assessproject";
                 <tr>
                     <th data-bind="text: firstNameTableTitle">FirstName</th>
                     <th data-bind="text: lastNameTableTitle">LastName</th>
-                    <th data-bind="text: scoreNameTableTitle">Scores</th>
-                    <th data-bind="text: filesNameTableTitle">Scores</th>
-                    <th data-bind="text: actionNameTableTitle">Actions</th>
+                    <th data-bind="text: scoreTableTitle">Scores</th>
+                    <th data-bind="text: filesTableTitle">Scores</th>
+                    <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
