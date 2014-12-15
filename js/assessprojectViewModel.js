@@ -1,6 +1,7 @@
 function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
+    gvm.projectId = $("#projectHeader").data('value');
 
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -15,13 +16,13 @@ function pageViewModel(gvm) {
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
     gvm.getProjectInfo = function() {
-        $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
+        $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
 
     gvm.getStudentList = function() {
-        $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/students', function(data) {
+        $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
                 console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname);
