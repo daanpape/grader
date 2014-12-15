@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTextBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle};
         gvm.tabledata.push(tblOject);
     };
 
