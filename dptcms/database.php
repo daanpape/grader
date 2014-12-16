@@ -262,7 +262,7 @@ class ClassDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not delete documenttype', $err);
             return null;
-            
+
         }
     }
 
