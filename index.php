@@ -303,22 +303,12 @@ $app->put('/api/project/:id', function($id) use ($app){
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
-$app->put('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {
+$app->post('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     $documents = json_decode($_POST['documents']);
     var_dump($documents);
-    $updateArray = [];
-    $insertArray = [];
-
-    foreach($documents as $document) {
-        if($document <= $lastid) {
-            array_push($updateArray, $document);
-        } else {
-            array_push($insertArray, $document);
-        }
-    }
 
 
     echo json_encode($documents);

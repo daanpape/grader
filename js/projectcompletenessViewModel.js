@@ -65,7 +65,7 @@ function pageViewModel(gvm) {
         var json = JSON.stringify(ko.toJS(gvm.documents));
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
-            type: "PUT",
+            type: "POST",
             datatype: "json",
             data: {documents: json},
             success: function() {
