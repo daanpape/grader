@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.documents = ko.observableArray(ko.utils.arrayMap(documents, function(document) {
+    gvm.documents = ko.observableArray(ko.utils.arrayMap(function(document) {
         return { description: document.description, amount_required: document.amount_required, weight: document.weight}
     }));
 
