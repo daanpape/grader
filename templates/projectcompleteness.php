@@ -40,7 +40,7 @@ $location = "projectcompleteness";
                 </thead>
                 <tbody data-bind="foreach: documents">
                     <tr>
-                        <td data-bind="{'id': id}"">
+                        <td data-bind="attr: {'id': id}"">
                             <input class="form-control" data-bind="value: description">
                         </td>
                         <td>
