@@ -313,15 +313,15 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
 
 
     foreach($documents as $document) {
-        if($document->id <= $lastid) {
+        if($document->id < $lastid) {
             array_push($updateArray, $document);
         } else {
             array_push($insertArray, $document);
         }
     }
-    var_dump($updateArray);
-
-    $updates = GraderAPI::updateDocuments($updateArray);
+    if($updateArray != null)
+        $updates = GraderAPI::updateDocuments($updateArray);
+    if($insertArray != null)
     $inserts = GraderAPI::insertDocuments($insertArray);
 
     echo json_encode($updates + $inserts);
