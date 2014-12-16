@@ -64,6 +64,7 @@ function pageViewModel(gvm) {
         var data = [];
         console.log(gvm.documents);
         ko.utils.arrayForEach(gvm.documents(), function(document) {
+            console.log(document);
             var obj = {
                 "id": document.id,
                 "description": document.description,
