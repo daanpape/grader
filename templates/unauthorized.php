@@ -26,7 +26,6 @@ $location = basename(__FILE__, '.php');
                 </div>
             </div>
         </div>
-    </div>
-    <?php require('jsdepends.php') ?>    
-</body>
+        <?php require('jsdepends.php') ?>    
+    </body>
 </html>
