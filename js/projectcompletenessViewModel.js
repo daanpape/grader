@@ -66,6 +66,7 @@ function pageViewModel(gvm) {
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
+            datatype: "json",
             data: {documents: json},
             success: function() {
                 console.log("success");
