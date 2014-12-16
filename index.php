@@ -307,7 +307,7 @@ $app->put('/api/project/:projectid/documents/:lastid', function($projectid, $las
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    $documents = json_decode(stripslashes($_POST['documents']));
+    $documents = json_decode($_POST['documents']);
     var_dump($documents);
     $updateArray = [];
     $insertArray = [];
