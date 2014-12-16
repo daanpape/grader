@@ -47,7 +47,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.removeDocument = function(id, document) {
-        if(id > gvm.lastIdFromDb) {
+        if(id < gvm.lastIdFromDb) {
             $.ajax({
                 url: "/api/delete/document/" + id,
                 type: "DELETE",
