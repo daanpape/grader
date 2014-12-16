@@ -64,7 +64,7 @@ function pageViewModel(gvm) {
     gvm.saveDocumentsToSubmit = function() {
         console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
         $.ajax({
-            url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
+            url: "/api/project/" + 1 + "/documents/" + 1,
             type: "PUT",
             data: gvm.documents,
             success: function(data) {
