@@ -307,11 +307,6 @@ $app->put('/api/project/:projectid/documents/:lastid', function($projectid, $las
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    foreach ($app->request->post()  as $document) {
-        if($document->id < $lastid) {
-
-        }
-    }
     echo json_encode("hallo");
 });
 
