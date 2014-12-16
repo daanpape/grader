@@ -2,6 +2,7 @@ function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
+    gvm.lastId = -1;
 
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -31,13 +32,15 @@ function pageViewModel(gvm) {
     }
 
     gvm.addDocumentToSubmit = function() {
-        gvm.addDocument(-1, "Descrion", 1, 1);
+        ++gvm.lastId;
+        gvm.addDocument(gvm.lastId, "", "", "");
     };
 
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
+                gvm.lastId = item.id;
             });
         });
     };
