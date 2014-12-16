@@ -303,6 +303,17 @@ $app->put('/api/project/:id', function($id) use ($app){
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+$app->put('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    foreach ($app->request->post()  as $document) {
+        if($document->id < $lastid) {
+            var_dump($document);
+        }
+    }
+});
+
 
 // API POST routes
 $app->post('/api/project/:id', function ($courseid) use ($app) {
