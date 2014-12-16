@@ -16,35 +16,37 @@ function pageViewModel(gvm) {
         });
     };
 
+
+
+    gvm.documents = ko.observableArray([]);
+
+    gvm.addDocument = function(id, description, amount_required, weight) {
+        var document = {id: id, description: description, amount_required: amount_required, weight: weight};
+        gvm.documents.push(document);
+
+        $('#removebtn-' + id).bind('click', function(event, data) {
+            gvm.removeDocument(id, document);
+            event.stopPropagation();
+        })
+    }
+
+    gvm.addDocumentToSubmit = function() {
+        gvm.addDocument(-1, "Descrion", 1, 1);
+    };
+
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.documents.push({
-                    id: item.id,
-                    description: item.description,
-                    amount_required: item.amount_required,
-                    weight: item.weight
-                });
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
             });
         });
     };
 
-    gvm.documents = ko.observableArray([]);
-
-    gvm.addDocumentToSubmit = function() {
-        gvm.documents.push({
-            id: -1,
-            description: "",
-            amount_required: "",
-            weight: ""
-        });
-    };
-
-    gvm.removeDocument = function(document) {
+    gvm.removeDocument = function(id, document) {
         console.log(hallo);
-        if(document.id != -1) {
+        if(id != -1) {
             $.ajax({
-                url: "/api/delete/document/" + document.id,
+                url: "/api/delete/document/" + id,
                 type: "DELETE",
                 success: function() {
                     gvm.documents.remove(document);
