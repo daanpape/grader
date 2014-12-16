@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
 
     gvm.documents = ko.observableArray([]);
 
-    gvm.addDocument = function(id, description, amount_required, weight) {
+    /*gvm.addDocument = function(id, description, amount_required, weight) {
         var document = {id: id, description: description, amount_required: amount_required, weight: weight};
         gvm.documents.push(document);
 
@@ -59,7 +59,7 @@ function pageViewModel(gvm) {
         } else {
             gvm.documents.remove(document);
         }
-    };
+    };*/
 
     gvm.saveDocumentsToSubmit = function() {
         console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
