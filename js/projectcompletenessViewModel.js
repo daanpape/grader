@@ -65,14 +65,8 @@ function pageViewModel(gvm) {
         console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
-            type: "POST",
-            data: gvm.documents,
-            success: function(data) {
-                console.log("success");
-            },
-            error: function(data) {
-                console.log("error");
-            }
+            type: "PUT",
+            data: gvm.documents
         });
     };
 }
