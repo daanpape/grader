@@ -353,7 +353,7 @@ class ClassDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight, project) VALUES (?, ?, ?,?)");
             foreach ($array as $document) {
-                $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight), (int)$projectid);
+                $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight, (int)$projectid));
             }
             return true;
         } catch (PDOException $err) {
