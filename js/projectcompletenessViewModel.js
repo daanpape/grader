@@ -41,6 +41,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.removeDocument = function(document) {
+        console.log(hallo);
         if(document.id != -1) {
             $.ajax({
                 url: "/api/delete/document/" + document.id,
