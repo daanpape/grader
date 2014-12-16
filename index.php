@@ -312,7 +312,7 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
     $insertArray = [];
 
     foreach($documents as $document) {
-        if($document <= $lastid) {
+        if($document['id'] <= $lastid) {
             array_push($updateArray, $document);
         } else {
             array_push($insertArray, $document);
