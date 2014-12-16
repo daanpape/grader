@@ -67,7 +67,7 @@ $app->get('/assess', function() use ($app) {
     $app->render('assess.php');
 });
 $app->get('/assess/project/:projectid/student/:studentid/scores', function($projectid, $studentid) use ($app) {
-    $app->render('assessstudent.php', array('projectid' => $projectid, 'studentid' => $studentid));
+    $app->render('assessscore.php', array('projectid' => $projectid, 'studentid' => $studentid));
 });
 $app->get('/assess/project/:projectid/student/:studentid/completeness', function($projectid, $studentid) use ($app) {
     $app->render('assesscompletement.php', array('projectid' => $projectid, 'studentid' => $studentid));

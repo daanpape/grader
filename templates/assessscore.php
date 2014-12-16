@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "assesscompletement";
+$location = "assessscore";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
