@@ -15,6 +15,22 @@ function pageViewModel(gvm) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
+
+    gvm.documents = ko.observableArray(ko.utils.arrayMap(documents, function(document) {
+        return { description: document.description, amount_required: document.amount_required, weight: document.weight}
+    }));
+
+    gvm.addDocumentToSubmit = function(document) {
+        gvm.documents.push({
+            description: "",
+            amount_required: "",
+            weight: ""
+        });
+    };
+
+    gvm.removeDocument = function(document) {
+        gvm.documents.remove(document);
+    };
 }
 
 function initPage() {

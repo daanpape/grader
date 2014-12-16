@@ -29,6 +29,32 @@ $location = "projectcompleteness";
                 <span data-bind="text: projectCompletenessTitle"></span>
             </div>
         </div>
+        <div class="col-md-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Document</th>
+                        <th>amount required</th>
+                        <th>weight</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: documents">
+                    <tr>
+                        <td>
+                            <input data-bind="value: description">
+                        </td>
+                        <td>
+                            <input data-bind="value: amount_required">
+                        </td>
+                        <td>
+                            <input data-bind="value: weight">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-lg" data-bind="click: addDocumentToSubmit">Add a Document</button>
+            <button class="btn btn-lg" data-bind="click: saveDocumentsToSubmit">Save</button>
+        </div>
 
     </div>
 </div>
