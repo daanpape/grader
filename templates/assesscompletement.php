@@ -36,16 +36,14 @@ $location = "assesscompletement";
                 </thead>
                 <tbody data-bind="foreach: documents">
                     <tr>
+                        <td><span data-bind="text: description"></span></td>
+                        <td><span data-bind="amount_required"></span></td>
+                        <td><span data-bind="weight"></span></td>
                         <td>
                             <select class="form-control">
-                                {{ for(var i = 0; i <= documents.amount_required; i++) { }}
-                                    <option>hello</option>
-                                {{ /for }}
+                                <option>hello</option>
                             </select>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
                 </tbody>
             </table>
