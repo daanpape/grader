@@ -311,16 +311,16 @@ $app->put('/api/project/:projectid/documents/:lastid', function($projectid, $las
     $updateArray = [];
     $insertArray = [];
 
-    foreach($documents as $document) {
+    /*foreach($documents as $document) {
         if($document <= $lastid) {
             array_push($updateArray, $document);
         } else {
             array_push($insertArray, $document);
         }
-    }
+    }*/
 
 
-    echo json_encode($updateArray);
+    echo json_encode($documents);
 });
 
 
