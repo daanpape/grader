@@ -307,7 +307,20 @@ $app->put('/api/project/:projectid/documents/:lastid', function($projectid, $las
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode("hallo");
+    $documents = $app->request->post('documents');
+    $updateArray = [];
+    $insertArray = [];
+
+    foreach($documents as $document) {
+        if($document <= $lastid) {
+            array_push($updateArray, $document);
+        } else {
+            array_push($insertArray, $document);
+        }
+    }
+
+
+    echo json_encode($updateArray);
 });
 
 
