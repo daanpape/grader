@@ -65,7 +65,7 @@ function pageViewModel(gvm) {
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
-            data: JSON.stringify(ko.toJS(gvm.documents)),
+            data: ko.toJS(gvm.documents),
             success: function() {
                 console.log("success");
             },
