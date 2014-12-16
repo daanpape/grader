@@ -152,6 +152,22 @@ class GraderAPI {
         }
     }
 
+    public static function updateDocuments($array) {
+        if(ClassDAO::updateDocuments($array)) {
+            return $array;
+        } else {
+            return -1;
+        }
+    }
+
+    public static function insertDocuments($array) {
+        if(ClassDAO::insertDocuments($array)) {
+            return $array;
+        } else {
+            return -1;
+        }
+    }
+
     /*
      * Get all courses from database
      */

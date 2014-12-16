@@ -334,6 +334,35 @@ class ClassDAO {
         }
     }
 
+    public static function updateDocuments($array) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ? WHERE id = ?");
+            foreach($array as $document) {
+                $stmt->execute(array($document['description'], $document['amount_required'], $document['weight'], $document['id']));
+            }
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update project', $err);
+            return false;
+        }
+    }
+    public static function insertDocuments($array) {
+        try {
+            // Insert the user
+            $conn = Db::getConnection();
+            foreach ($array as $document) {
+                $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight) VALUES (?, ?, ?)");
+                $stmt->execute(array($document['description'],$document['amount_required'], $document['weight']));
+            }
+            $uid = $conn->lastInsertId();
+            return $uid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+
     /*
      * Get all the locations
      */
@@ -546,7 +575,7 @@ class UserDAO {
 
     public static function createUser($lang, $email, $username, $firstname, $lastname, $password, $token, $status) {
         try {
-            // Insert the user 
+            // the user
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO users (username, lang, firstname, lastname, password, activation_key, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute(array($username, $lang, $firstname, $lastname, $password, $token, $status));

@@ -308,10 +308,21 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
     $response->header('Content-Type', 'application/json');
 
     $documents = json_decode($_POST['documents']);
-    var_dump($documents);
+    $updateArray = [];
+    $insertArray = [];
 
+    foreach($documents as $document) {
+        if($document <= $lastid) {
+            array_push($updateArray, $document);
+        } else {
+            array_push($insertArray, $document);
+        }
+    }
 
-    echo json_encode($documents);
+    $updates = GraderAPI::updateDocuments($updateArray);
+    $inserts = GraderAPI::insertDocuments($insertArray);
+
+    echo json_encode($updates + $inserts);
 });
 
 
