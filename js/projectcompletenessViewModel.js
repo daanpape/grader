@@ -18,8 +18,6 @@ function pageViewModel(gvm) {
         });
     };
 
-
-
     gvm.documents = ko.observableArray([]);
 
     gvm.addDocument = function(id, description, amount_required, weight) {
@@ -29,7 +27,7 @@ function pageViewModel(gvm) {
         $('#removebtn-' + id).bind('click', function(event, data) {
             gvm.removeDocument(id, document);
             event.stopPropagation();
-        })
+        });
     };
 
     gvm.addDocumentToSubmit = function() {
@@ -66,10 +64,10 @@ function pageViewModel(gvm) {
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
-            success: function(data) {
+            success: function() {
                 console.log("success");
             },
-            error: function(data) {
+            error: function() {
                 console.log("error");
             }
         });
