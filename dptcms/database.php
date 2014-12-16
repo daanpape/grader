@@ -355,11 +355,10 @@ class ClassDAO {
                 $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight) VALUES (?, ?, ?)");
                 $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight));
             }
-            $uid = $conn->lastInsertId();
-            return $uid;
+            return true;
         } catch (PDOException $err) {
             Logger::logError('Could not get locations', $err);
-            return null;
+            return false;
         }
     }
 

@@ -324,9 +324,6 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
         $updates = GraderAPI::updateDocuments($updateArray);
     if(!empty($insertArray))
         $inserts = GraderAPI::insertDocuments($insertArray);
-    if($inserts == -1) {
-        echo json_encode("fjdqsfjdqslm");
-    }
     echo json_encode("success");
 });
 
