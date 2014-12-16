@@ -37,8 +37,8 @@ $location = "assesscompletement";
                 <tbody data-bind="foreach: documents">
                     <tr>
                         <td><span data-bind="text: description"></span></td>
-                        <td><span data-bind="amount_required"></span></td>
-                        <td><span data-bind="weight"></span></td>
+                        <td><span data-bind="text: amount_required"></span></td>
+                        <td><span data-bind="text: weight"></span></td>
                         <td>
                             <select class="form-control">
                                 <option>hello</option>
