@@ -70,7 +70,7 @@ function pageViewModel(gvm) {
             error: function(data) {
                 console.log("error");
             }
-        })
+        });
     };
 }
 
