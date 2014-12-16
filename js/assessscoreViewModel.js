@@ -14,11 +14,11 @@ function pageViewModel(gvm) {
         });
     };
 
-    /*gvm.getAllData = function() {
-     $.getJSON('/api/project/getAllData/' + $("#projectHeader").data('value'), function(data) {
-     console.log(data);
-     });
-     }*/
+    gvm.getAllData = function() {
+         $.getJSON('/api/project/getAllData/' + gvm.projectId, function(data) {
+         console.log(data);
+         });
+    }
 }
 
 function initPage() {
