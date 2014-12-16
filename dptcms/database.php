@@ -339,7 +339,7 @@ class ClassDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ? WHERE id = ?");
             foreach($array as $document) {
-                $stmt->execute(array($document['description'], $document['amount_required'], $document['weight'], $document['id']));
+                $stmt->execute(array((string)$document['description'],(int)$document['amount_required'], (int)$document['weight'], (int)$document['id']));
             }
             return true;
         } catch (PDOException $err) {
@@ -353,7 +353,7 @@ class ClassDAO {
             $conn = Db::getConnection();
             foreach ($array as $document) {
                 $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight) VALUES (?, ?, ?)");
-                $stmt->execute(array($document['description'],$document['amount_required'], $document['weight']));
+                $stmt->execute(array((string)$document['description'],(int)$document['amount_required'], (int)$document['weight']));
             }
             $uid = $conn->lastInsertId();
             return $uid;
