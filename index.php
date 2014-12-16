@@ -318,6 +318,7 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
             array_push($insertArray, $document);
         }
     }
+    var_dump($updateArray, $insertArray);
 
     $updates = GraderAPI::updateDocuments($updateArray);
     $inserts = GraderAPI::insertDocuments($insertArray);
