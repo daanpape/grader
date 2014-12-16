@@ -358,7 +358,7 @@ class ClassDAO {
             $uid = $conn->lastInsertId();
             return $uid;
         } catch (PDOException $err) {
-            echo $err;
+            Logger::logError('Could not get locations', $err);
             return null;
         }
     }
