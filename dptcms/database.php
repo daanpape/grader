@@ -352,8 +352,8 @@ class ClassDAO {
             // Insert the user
             var_dump($array);
             $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight) VALUES (?, ?, ?)");
             foreach ($array as $document) {
-                $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight) VALUES (?, ?, ?)");
                 $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight));
             }
             return true;
