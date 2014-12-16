@@ -61,9 +61,21 @@ function pageViewModel(gvm) {
 
     gvm.saveDocumentsToSubmit = function() {
         console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
+        var data = [];
+        ko.utils.arrayForEach(gvm.documents(), function(document) {
+            var obj = {
+                "id": document.id,
+                "description": document.description,
+                "amount_required": document.amount_required,
+                "weight": document.weight
+            };
+            data.push(obj);
+        });
+        console.log(data);
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
+
             success: function() {
                 console.log("success");
             },
