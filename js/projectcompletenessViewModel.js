@@ -66,9 +66,29 @@ function pageViewModel(gvm) {
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
-            data: gvm.documents
+            data: gvm.documents,
+            success: function(data) {
+                console.log("success");
+            },
+            error: function(data) {
+                console.log("error");
+            }
         });
     };
+}
+
+function saveDocuments() {
+    $.ajax({
+        url: "/api/project/" + viewModel.projectId + "/documents/" + viewModel.lastId,
+        type: "PUT",
+        data: viewModel.documents,
+        success: function(data) {
+            console.log("success");
+        },
+        error: function(data) {
+            console.log("error");
+        }
+    });
 }
 
 function initPage() {
