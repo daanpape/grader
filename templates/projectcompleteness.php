@@ -25,6 +25,9 @@ $location = "projectcompleteness";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="row">
         <div id="top-col" class="col-md-12">
+            <div class="big-info">
+                <span data-bind="text: projectCompletenessTitle"></span>
+            </div>
         </div>
 
     </div>
