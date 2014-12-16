@@ -51,7 +51,7 @@ $location = "projectcompleteness";
                             <input class="form-control" data-bind="value: weight">
                         </td>
                         <td>
-                            <button class="btn" data-bind="click: $parent.deleteDocumentToSubmit"></button>
+                            <button class="btn" data-bind="click: $parent.deleteDocumentToSubmit">Remove</button>
                         </td>
                     </tr>
                 </tbody>
