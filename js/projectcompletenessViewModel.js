@@ -2,6 +2,7 @@ function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
+    gvm.lastIdFromDb = -1;
     gvm.lastId = -1;
 
     // Page specific i18n bindings
@@ -40,13 +41,13 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
-                gvm.lastId = item.id;
+                gvm.lastIdFromDb = item.id;
             });
         });
     };
 
     gvm.removeDocument = function(id, document) {
-        if(id < gvm.lastId) {
+        if(id > gvm.lastIdFromDb) {
             $.ajax({
                 url: "/api/delete/document/" + id,
                 type: "DELETE",
