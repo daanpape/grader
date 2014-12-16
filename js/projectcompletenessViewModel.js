@@ -62,6 +62,7 @@ function pageViewModel(gvm) {
     gvm.saveDocumentsToSubmit = function() {
         console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
         var data = [];
+        console.log(gvm.documents);
         ko.utils.arrayForEach(gvm.documents(), function(document) {
             var obj = {
                 "id": document.id,
