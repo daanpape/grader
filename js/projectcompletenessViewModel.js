@@ -16,11 +16,9 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.documents = ko.observableArray(ko.utils.arrayMap(function(document) {
-        return { description: document.description, amount_required: document.amount_required, weight: document.weight}
-    }));
+    gvm.documents = ko.observableArray([]);
 
-    gvm.addDocumentToSubmit = function(document) {
+    gvm.addDocumentToSubmit = function() {
         gvm.documents.push({
             description: "",
             amount_required: "",
@@ -35,4 +33,5 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.getProjectInfo();
+
 }
