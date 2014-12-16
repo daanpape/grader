@@ -160,8 +160,8 @@ class GraderAPI {
         }
     }
 
-    public static function insertDocuments($array) {
-        if(ClassDAO::insertDocuments($array)) {
+    public static function insertDocuments($projectid, $array) {
+        if(ClassDAO::insertDocuments($projectid, $array)) {
             return $array;
         } else {
             return -1;
