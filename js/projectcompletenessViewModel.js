@@ -77,20 +77,6 @@ function pageViewModel(gvm) {
     };
 }
 
-function saveDocuments() {
-    $.ajax({
-        url: "/api/project/" + viewModel.projectId + "/documents/" + viewModel.lastId,
-        type: "PUT",
-        data: viewModel.documents,
-        success: function(data) {
-            console.log("success");
-        },
-        error: function(data) {
-            console.log("error");
-        }
-    });
-}
-
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getDocumentsToSubmit();
