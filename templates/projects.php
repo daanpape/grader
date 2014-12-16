@@ -80,9 +80,10 @@ $location = "projects";
                         <td data-bind="text: tdesc">--</td>
                         <td>
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
                             <!--<a data-bind="attr:{'href': '/project/students/' + tid}">--><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span><!--</a>-->
+                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
+                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             </td>
                     </tr>
                 </tbody>
