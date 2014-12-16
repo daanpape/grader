@@ -29,6 +29,10 @@ function pageViewModel(gvm) {
     gvm.removeDocument = function(document) {
         gvm.documents.remove(document);
     };
+
+    gvm.saveDocumentsToSubmit = function() {
+
+    };
 }
 
 function initPage() {
