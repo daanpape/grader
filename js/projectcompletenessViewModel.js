@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
             gvm.removeDocument(id, document);
             event.stopPropagation();
         })
-    }
+    };
 
     gvm.addDocumentToSubmit = function() {
         ++gvm.lastId;
