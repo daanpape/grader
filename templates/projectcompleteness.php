@@ -26,7 +26,7 @@ $location = "projectcompleteness";
     <div class="row">
         <div id="top-col" class="col-md-12">
             <div class="big-info">
-                <!--<span data-bind="text: projectCompletenessTitle"></span>-->
+                <span data-bind="text: projectCompletenessTitle"></span>
             </div>
         </div>
 
