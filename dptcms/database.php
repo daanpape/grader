@@ -252,6 +252,19 @@ class ClassDAO {
         }
     }
 
+    public static function deleteDocumentType($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM documenttype WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete documenttype', $err);
+            return null;
+        }
+    }
+
     /*
      * Insert a new projecttype in the database 
      * @code the projecttype code

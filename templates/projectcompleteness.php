@@ -36,6 +36,7 @@ $location = "projectcompleteness";
                         <th>Document</th>
                         <th>amount required</th>
                         <th>weight</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: documents">
@@ -49,11 +50,14 @@ $location = "projectcompleteness";
                         <td>
                             <input class="form-control" data-bind="value: weight">
                         </td>
+                        <td>
+                            <button class="btn" data-bind="click: deleteDocumentToSubmit"></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
             <button class="btn btn-lg" data-bind="click: addDocumentToSubmit">Add a Document</button>
-            <button class="btn btn-lg" data-bind="click: saveDocumentsToSubmit">Save</button>
+            <button class="btn btn-lg" data-bind="click: $parent.saveDocumentsToSubmit">Save</button>
         </div>
 
     </div>

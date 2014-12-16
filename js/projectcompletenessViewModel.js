@@ -41,7 +41,17 @@ function pageViewModel(gvm) {
     };
 
     gvm.removeDocument = function(document) {
-        gvm.documents.remove(document);
+        if(document.id != -1) {
+            $.ajax({
+                url: "/api/delete/document/" + document.id,
+                type: "DELETE",
+                success: function() {
+                    gvm.documents.remove(document);
+                }
+            })
+        } else {
+            gvm.documents.remove(document);
+        }
     };
 
     gvm.saveDocumentsToSubmit = function() {

@@ -362,5 +362,12 @@ $app->delete('/api/studentlist/delete/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::deleteStudentList($id));
 });
 
+$app->delete('/api/delete/document/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::deleteDocumentTypeFromProject($id));
+});
+
 /* Run the application */
 $app->run();
