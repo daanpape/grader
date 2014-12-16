@@ -25,6 +25,27 @@ $location = "assesscompletement";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="row">
         <div id="top-col" class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># to submit</th>
+                    <th>Weight</th>
+                    <th>Not submitted</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: documents">
+                    <tr>
+                        <td>
+                            <select class="form-control">
+                                {{ for(var i = 0; i <= documents.amount_required; i++) { }}
+                                    <option>hello</option>
+                                {{ /for }}
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>

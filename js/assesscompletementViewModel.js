@@ -14,6 +14,21 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.documents = ko.observableArray([]);
+
+    gvm.addDocument = function(id, description, amount_required, weight) {
+        var document = {id: id, description: description, amount_required: amount_required, weight: weight};
+        gvm.documents.push(document);
+    };
+
+    gvm.getDocumentsToSubmit = function() {
+        $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
+            $.each(data, function(i, item) {
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
+            });
+        });
+    };
+
     /*gvm.getAllData = function() {
      $.getJSON('/api/project/getAllData/' + $("#projectHeader").data('value'), function(data) {
      console.log(data);
