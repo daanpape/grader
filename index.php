@@ -166,6 +166,14 @@ $app->get('/api/projects/:courseid/page/:pagenr', function ($courseid, $pagenr) 
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
 });
 
+$app->get('/api/project/:id/documents', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = GraderAPI::getDocumentsFromProject($id);
+    echo json_encode($data);
+});
+
 
 $app->get('/api/locations', function () use ($app) {
     // Use json headers

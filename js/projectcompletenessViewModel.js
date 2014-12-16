@@ -16,10 +16,24 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.getDocumentsToSubmit = function() {
+        $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
+            $.each(data, function(i, item) {
+                gvm.documents.push({
+                    id: item.id,
+                    description: item.description,
+                    amount_required: item.amount_required,
+                    weight: item.weight
+                });
+            });
+        });
+    };
+
     gvm.documents = ko.observableArray([]);
 
     gvm.addDocumentToSubmit = function() {
         gvm.documents.push({
+            id: -1,
             description: "",
             amount_required: "",
             weight: ""
@@ -37,5 +51,5 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.getProjectInfo();
-
+    viewModel.getDocumentsToSubmit();
 }
