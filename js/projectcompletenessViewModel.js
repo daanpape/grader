@@ -42,6 +42,7 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
                 gvm.lastIdFromDb = item.id;
+                gvm.lastId = item.id;
             });
         });
     };
@@ -61,7 +62,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocumentsToSubmit = function() {
-        console.log("big booty bitches");
+        console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
