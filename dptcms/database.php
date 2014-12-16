@@ -340,9 +340,7 @@ class ClassDAO {
             $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ? WHERE id = ?");
             foreach($array as $document) {
                 $stmt->execute(array($document['description'], $document['amount_required'], $document['weight'], $document['id']));
-                var_dump($document);
             }
-
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update project', $err);
