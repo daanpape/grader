@@ -60,7 +60,17 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocumentsToSubmit = function() {
-
+        $.ajax({
+            url: "/api/insert/documents/" + gvm.lastId,
+            type: "PUT",
+            data: gvm.documents,
+            success: function(data) {
+                console.log("success");
+            },
+            error: function(data) {
+                console.log("error");
+            }
+        })
     };
 }
 
