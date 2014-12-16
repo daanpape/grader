@@ -309,9 +309,10 @@ $app->put('/api/project/:projectid/documents/:lastid', function($projectid, $las
 
     foreach ($app->request->post()  as $document) {
         if($document->id < $lastid) {
-            var_dump($document);
+
         }
     }
+    echo json_encode("hallo");
 });
 
 
