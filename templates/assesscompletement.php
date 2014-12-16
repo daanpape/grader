@@ -43,6 +43,9 @@ $location = "assesscompletement";
                                 {{ /for }}
                             </select>
                         </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
