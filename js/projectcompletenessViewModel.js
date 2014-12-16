@@ -55,7 +55,7 @@ function pageViewModel(gvm) {
                 success: function() {
                     gvm.documents.remove(document);
                 }
-            })
+            });
         } else {
             gvm.documents.remove(document);
         }
