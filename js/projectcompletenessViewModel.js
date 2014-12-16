@@ -60,6 +60,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocumentsToSubmit = function() {
+        console.log("big booty bitches");
         $.ajax({
             url: "/api/project/" + gvm.projectId + "/documents/" + gvm.lastId,
             type: "PUT",
