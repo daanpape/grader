@@ -41,14 +41,16 @@ $location = "assesscompletement";
                         <td><span data-bind="text: weight"></span></td>
                         <td>
                             <select class="form-control" data-bind="options: amount_not_submitted">
-                                <option>hello</option>
                             </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        <div class="col-md-12">
+            <button class="btn btn-lg">Save</button>
+            <button class="btn btn-lg">Cancel</button>
+        </div>
     </div>
 </div>
 
