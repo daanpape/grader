@@ -17,7 +17,12 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
 
     gvm.addDocument = function(id, description, amount_required, weight) {
-        var document = {id: id, description: description, amount_required: amount_required, weight: weight};
+        var amount_not_submitted = ko.observableArray([]);
+        for(i = 0; i <= amount_required; i++) {
+            amount_not_submitted.push(i);
+        }
+
+        var document = {id: id, description: description, amount_required: amount_required, weight: weight, amount_not_submitted: amount_not_submitted};
         gvm.documents.push(document);
     };
 
