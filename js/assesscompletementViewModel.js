@@ -34,6 +34,12 @@ function pageViewModel(gvm) {
             });
         });
     };
+
+    gvm.saveDocumentsNotSubmitted = function() {
+        $.( select ).each(function() {
+            echo("test");
+        });
+    }
 }
 
 
@@ -41,10 +47,4 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getDocumentsToSubmit();
-    $("#saveBtn").click(function() {
-
-        $.( select ).each(function() {
-            echo("test");
-        });
-    });
 }
