@@ -64,6 +64,26 @@ function pageViewModel(gvm) {
         })
     }
 
+    gvm.saveLastSelectedDropdowns = function() {
+        data = {};
+        data["location"] = $(".btn-location span:first").text();
+        data["locationid"] = gvm.currentLocationId;
+        data["training"] = $(".btn-training span:first").text();
+        data["trainingid"] = gvm.currentTrainingid;
+        data["course"] = $(".btn-course span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+        data["user"] = gvm.userId;
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdowns",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
+    }
+
     gvm.updateLocations = function() {
         $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
@@ -119,6 +139,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     $(".btn-course span:first").text($(this).text());
                     gvm.currentCourseId = item.id;
+                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
             });
