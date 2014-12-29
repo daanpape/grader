@@ -36,12 +36,12 @@ function pageViewModel(gvm) {
     };
 }
 
-$("#saveBtn").click(function() {
+/*$("#saveBtn").click(function() {
 
     $.( select ).each(function() {
         echo("test");
     });
-});
+});*/
 
 function initPage() {
     viewModel.getProjectInfo();
