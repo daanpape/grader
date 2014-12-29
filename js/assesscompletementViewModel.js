@@ -34,10 +34,6 @@ function pageViewModel(gvm) {
             });
         });
     };
-
-    $("#saveBtn").click(function() {
-        
-    });
 }
 
 function initPage() {
