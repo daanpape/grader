@@ -83,6 +83,7 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.updateTrainings(item.id);
+                    gvm.availableCourses.clear();
                     $(".btn-location span:first").text($(this).text());
                     $(".btn-training span:first").text("training");
                     $(".btn-course span:first").text("course");
