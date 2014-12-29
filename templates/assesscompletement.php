@@ -40,7 +40,7 @@ $location = "assesscompletement";
                         <td><span data-bind="text: amount_required"></span></td>
                         <td><span data-bind="text: weight"></span></td>
                         <td>
-                            <select class="form-control" data-bind="options: amount_not_submitted">
+                            <select data-bind="attr: {'id': 'document-' + id}"  class="form-control" data-bind="options: amount_not_submitted">
                             </select>
                         </td>
                     </tr>
@@ -48,8 +48,8 @@ $location = "assesscompletement";
             </table>
         </div>
         <div class="col-md-12">
-            <button class="btn btn-lg">Save</button>
-            <button class="btn btn-lg">Cancel</button>
+            <button id="saveBtn" class="btn btn-lg">Save</button>
+            <button id="cancelBtn" class="btn btn-lg">Cancel</button>
         </div>
     </div>
 </div>
