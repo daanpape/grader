@@ -36,7 +36,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocumentsNotSubmitted = function() {
-        $.( select ).each(function() {
+        $.( "select" ).each(function() {
             echo("test");
         });
     }
