@@ -210,4 +210,13 @@ class GraderAPI {
     public static function getUserData($username) {
         return UserDAO::getUserByUsername($username, true);
     }
+    
+    /**
+     * Put a project structure into the database.
+     * @param type $projectid the projectid to save the structure for.
+     * @param type $projectStructure the JSON data containing the project structure.
+     */
+    public static function putProjectStructure($projectid, $projectStructure) {
+        
+    }
 }

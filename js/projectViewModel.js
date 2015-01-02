@@ -1,8 +1,9 @@
 /**
  * Competence class
  */
-function Competence(viewmodel, code, name, weight, subcompetences) {
+function Competence(viewmodel, id, code, name, weight, subcompetences) {
     return {
+        id: id,
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
@@ -25,8 +26,9 @@ function Competence(viewmodel, code, name, weight, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, code, name, weight, indicators) {
+function SubCompetence(parent, id, code, name, weight, indicators) {
     return {
+        id: id,
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
@@ -49,8 +51,9 @@ function SubCompetence(parent, code, name, weight, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, name, description) {
+function Indicator(parent, id, name, description) {
     return {
+        id: id,
         name: ko.observable(name),
         description : ko.observable(description),
         
@@ -100,14 +103,29 @@ function pageViewModel(gvm) {
     }
 }
 
-
+/**
+ * Push the current project state to the database
+ * @returns {undefined}
+ */
 function saveProjectStructure() {
-    
+    $.ajax({
+       type: "POST",
+       url: "/api/projectstructure/" + projectid,
+       data: ko.toJSON(viewModel.competences),
+       success: function(){
+           // TODO make multilangual and with modals
+           alert("Saved projectstructure to server");
+       }
+    });
 }
 
 function initPage() {
     viewModel.getProjectInfo();
     $(".addCompetenceBtn").click(function() {
         viewModel.addCompetence();
+    });
+    
+    $(".savePageBtn").click(function(){
+        saveProjectStructure(); 
     });
 }
