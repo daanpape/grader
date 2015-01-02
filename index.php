@@ -303,6 +303,7 @@ $app->put('/api/project/:id', function($id) use ($app){
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+// API POST routes
 $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -327,8 +328,6 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
     echo json_encode("success");
 });
 
-
-// API POST routes
 $app->post('/api/project/:id', function ($courseid) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -359,6 +358,11 @@ $app->post('/api/savedropdowns', function() use ($app) {
 $app->post('/api/upload', function() use($app){
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(FileUpload::uploadFile());
+});
+
+$app->post('/api/projectstructure/:id', function($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::putProjectStructure($id, file_get_contents('php://input')));
 });
 
 // API DELETE routes
