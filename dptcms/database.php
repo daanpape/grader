@@ -11,12 +11,14 @@
 require_once('config.php');
 require_once('logger.php');
 
-// Database class for connection handling
+/**
+ * Represents an SQL database connection class.
+ */
 class Db {
-    /*
+    
+    /**
      * Get the PDO database connection object
      */
-
     public static function getConnection() {
 
         // Construct the PDO adress line
@@ -38,17 +40,17 @@ class Db {
 
 }
 
-/*
+/**
  * Database Access Object for manipulating projecttypes, competencetypes, ...
  */
-
 class ClassDAO {
-    /*
-     * Get all projecttypes in pagination form
-     * @start: the row number to start with (offset 0)
-     * @count: the number of rows to return
-     */
 
+    /**
+     * Get part of the projects, ready for pagination.
+     * @param type $start the start row offset.
+     * @param type $count the number of projects to fetch.
+     * @return type an object containing the projects or null on error.
+     */
     public static function getAllProjects($start, $count) {
         try {
             $conn = Db::getConnection();
@@ -63,6 +65,13 @@ class ClassDAO {
         }
     }
 
+    /**
+     * Get the projects corresponding to a course.
+     * @param type $courseid the course ID to get the associated projects from.
+     * @param type $start the start row offset.
+     * @param type $count the number of projects to fetch.
+     * @return type an object containing the projects or null on error.
+     */
     public static function getProjectsByCourseId($courseid, $start, $count) {
         try {
             $conn = Db::getConnection();
@@ -73,11 +82,16 @@ class ClassDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select projects from courseid '.$courseid, $err);
+            Logger::logError('could not select projects from courseid ' . $courseid, $err);
             return null;
         }
     }
 
+    /**
+     * Fetch a project from the database, based on its ID. 
+     * @param type $id the id of the project.
+     * @return type an object containing the project information or null on error.
+     */
     public static function getProjectById($id) {
         try {
             $conn = Db::getConnection();
@@ -86,12 +100,16 @@ class ClassDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select project by projectid '.$id, $err);
+            Logger::logError('could not select project by projectid ' . $id, $err);
             return null;
         }
     }
 
-
+    /**
+     * Get student list metadata about a list associated with a tutor user-ID.
+     * @param type $id the id of the tutor user.
+     * @return type an object containing the student list metadata or null on error. 
+     */
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -99,12 +117,17 @@ class ClassDAO {
             $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch(PDOException $err) {
-            Logger::logError('Could not get studentlists from ower with id'.$id, $err);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id' . $id, $err);
             return null;
         }
     }
-
+    
+    /**
+     * Get student list metadata based on it's id. 
+     * @param type $listid the ID of the student list.
+     * @return type an object containing the student list metadata or null on error.   
+     */
     public static function getStudentListInfoFromListId($listid) {
         try {
             $conn = Db::getConnection();
@@ -117,7 +140,12 @@ class ClassDAO {
             return null;
         }
     }
-
+    
+    /**
+     * Get a list of students in a student list. 
+     * @param type $id the ID of the student list.
+     * @return type an object containing a list of students in this studentlist or null on error.
+     */
     public static function getStudentsFromStudentList($id) {
         try {
             $conn = Db::getConnection();
@@ -126,11 +154,16 @@ class ClassDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select project by projectid '.$id, $err);
+            Logger::logError('could not select project by projectid ' . $id, $err);
             return null;
         }
     }
-
+    
+    /**
+     * Get a list of students associated with a project.
+     * @param type $id the ID of the project.
+     * @return type an object containing a list of students associated with a project.
+     */
     public static function getStudentListsFromProject($id) {
         try {
             $conn = Db::getConnection();
@@ -138,7 +171,7 @@ class ClassDAO {
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch(PDOException $err) {
+        } catch (PDOException $err) {
             Logger::logError('Could not select students from project', $err);
             return null;
         }
@@ -170,7 +203,6 @@ class ClassDAO {
         }
     }
 
-
     /**
      * Get the number of projecttypes currently in the database 
      */
@@ -198,10 +230,6 @@ class ClassDAO {
             return 0;
         }
     }
-
-
-
-
 
     /*
      * Delete a project type from the database
@@ -262,7 +290,6 @@ class ClassDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not delete documenttype', $err);
             return null;
-
         }
     }
 
@@ -338,8 +365,8 @@ class ClassDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ? WHERE id = ?");
-            foreach($array as $document) {
-                $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight, (int)$document->id));
+            foreach ($array as $document) {
+                $stmt->execute(array((string) $document->description, (int) $document->amount_required, (int) $document->weight, (int) $document->id));
             }
             return true;
         } catch (PDOException $err) {
@@ -347,13 +374,14 @@ class ClassDAO {
             return false;
         }
     }
+
     public static function insertDocuments($projectid, $array) {
         try {
             // Insert the user
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight, project) VALUES (?, ?, ?,?)");
             foreach ($array as $document) {
-                $stmt->execute(array((string)$document->description,(int)$document->amount_required, (int)$document->weight, (int)$projectid));
+                $stmt->execute(array((string) $document->description, (int) $document->amount_required, (int) $document->weight, (int) $projectid));
             }
             return true;
         } catch (PDOException $err) {
@@ -382,7 +410,6 @@ class ClassDAO {
      * Get all trainings by locationId
      * @id the locationId
      */
-
     public static function getTrainingsByLocation($id) {
         try {
             $conn = Db::getConnection();
@@ -396,11 +423,11 @@ class ClassDAO {
         }
     }
 
-    /*
-     * Get all courses by trainingid
-     * @id the trainingid
+    /**
+     * Get a list of courses associated with a training.
+     * @param type $id the trainings id to get the courses information from.
+     * @return stdClass an object containing courses information
      */
-
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
@@ -410,10 +437,15 @@ class ClassDAO {
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('Could not get courses', $err);
-            return false;
+            return null;
         }
     }
 
+    /**
+     * Get's all the data associated with a project. 
+     * @param type $id the project id to get the data from. 
+     * @return stdClass an object containing all project information or null on error. 
+     */
     public static function getAllDataFromProject($id) {
         try {
             $conn = Db::getConnection();
@@ -422,11 +454,11 @@ class ClassDAO {
                                     JOIN indicator ON subcompetence.id = indicator.subcompetence WHERE project = :projectid ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
-            $dataFromDb =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             $data = array();
-            foreach($dataFromDb as $row) {
-                if(!array_key_exists($row['cid'], $data)){
+            foreach ($dataFromDb as $row) {
+                if (!array_key_exists($row['cid'], $data)) {
                     $competence = new stdClass();
                     $competence->subCompetence = array();
                     $competence->id = $row['cid'];
@@ -434,11 +466,11 @@ class ClassDAO {
                     $competence->description = $row['cdescription'];
                     $competence->max = $row['cmax'];
                     $competence->weight = $row['cweight'];
-                    
+
                     $data[$row['cid']] = $competence;
                 }
-                
-                if(!array_key_exists($row['sid'], $competence->subCompetence)) {
+
+                if (!array_key_exists($row['sid'], $competence->subCompetence)) {
                     $subcompetence = new stdClass();
                     $subcompetence->indicator = array();
                     $subcompetence->id = $row['sid'];
@@ -447,11 +479,11 @@ class ClassDAO {
                     $subcompetence->weight = $row['sweight'];
                     $subcompetence->max = $row['smax'];
                     $subcompetence->minRequired = $row['smin_required'];
-                    
+
                     $competence->subCompetence[$row['sid']] = $subcompetence;
                 }
 
-                if(!array_key_exists($row['iid'], $subcompetence->indicator)) {
+                if (!array_key_exists($row['iid'], $subcompetence->indicator)) {
                     $indicator = new stdClass();
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
@@ -462,56 +494,58 @@ class ClassDAO {
                     $subcompetence->indicator[$row['iid']] = $indicator;
                 }
             }
-            
-            
+
+
             return $data;
         } catch (PDOException $err) {
-            Logger::logError('Could not get all data from project with id '.$id, $err);
-            return false;
+            Logger::logError('Could not get all data from project with id ' . $id, $err);
+            return null;
         }
     }
-}
 
+}
 
 /*
  * Database Access Object for accessing account information
  */
-
 class UserDAO {
-    /*
-     * Get a user given the username.
-     * @clean: if clean is true the output will be filtered for public use. 
-     */
 
+    /**
+     * Get account information given the users username.
+     * @param type $username the username to get information from.
+     * @param type $clean if clean is true the output will be filtered for public use. 
+     * @return stdClass an object containing the user or null on error.
+     */
     public static function getUserByUsername($username, $clean = true) {
         try {
             $conn = Db::getConnection();
-            if(!$clean) {
+            if (!$clean) {
                 $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
             } else {
                 $stmt = $conn->prepare("SELECT id, username, avatar, firstname, lastname, created FROM users WHERE username = ?");
             }
             $stmt->execute(array($username));
             $data = $stmt->fetchObject();
-            
+
             // Fetch an avater when it is not null
-            if($data != null){
+            if ($data != null) {
                 $file_id = $data->avatar;
-                if($file_id != null) {
+                if ($file_id != null) {
                     $data->avatar = FileDAO::getUpload($file_id);
                 }
             }
-            
+
             return $data;
         } catch (PDOException $err) {
             return null;
         }
     }
 
-    /*
-     * Get a user given the token
+    /**
+     * Get account information based on a user token.
+     * @param type $token the users token.
+     * @return stdClass the user associated with a token or null on error.
      */
-
     public static function getUserByToken($token) {
         try {
             $conn = Db::getConnection();
@@ -522,11 +556,12 @@ class UserDAO {
             return null;
         }
     }
-
-    /*
-     * Returns true if the username exists in the database
+    
+    /**
+     * Check if a username exists.
+     * @param type $username the username to check.
+     * @return boolean true if the user exist, false otherways and null on error.
      */
-
     public static function doesUserExist($username) {
         try {
             $conn = Db::getConnection();
@@ -538,10 +573,11 @@ class UserDAO {
         }
     }
 
-    /*
-     * Returns true if the email exists in the database
+    /**
+     * Check if an email is registered. 
+     * @param type $email the email address to check.
+     * @return boolean true if the email address is registered, false otherways and null on error.
      */
-
     public static function doesEmailExist($email) {
         try {
             $conn = Db::getConnection();
@@ -553,10 +589,11 @@ class UserDAO {
         }
     }
 
-    /*
-     * Returns true if the token exists in the database
+    /**
+     * Check if a token is unique. 
+     * @param type $token the token to check.
+     * @return boolean true if the token exists, false otherways and null on error.
      */
-
     public static function doesUsertokenExist($token) {
         try {
             $conn = Db::getConnection();
@@ -568,10 +605,18 @@ class UserDAO {
         }
     }
 
-    /*
-     * Create a user in the system and return the new UserId. 
+    /**
+     * Create a new user in the database 
+     * @param type $lang the users preferred language.
+     * @param type $email the users primary email address.
+     * @param type $username the users username, may be equal to email.
+     * @param type $firstname the firstname of the user.
+     * @param type $lastname the lastname of the user.
+     * @param type $password the users password, must allready be hashed. 
+     * @param type $token the users token if any. 
+     * @param type $status the users activation status. 
+     * @return type the userid of the newly created user or null on error.
      */
-
     public static function createUser($lang, $email, $username, $firstname, $lastname, $password, $token, $status) {
         try {
             // the user
@@ -591,11 +636,11 @@ class UserDAO {
         }
     }
 
-    /*
-     * Searches the activation token in the database and if
-     * it is present activates the user account. 
+    /**
+     * Searches the activation token in the database and if present activates the users account. 
+     * @param type $token the token to activate. 
+     * @return boolean true if the user could be activated, false otherways and null on error.
      */
-
     public static function activateUser($token) {
         try {
             // First check if the token exists
@@ -620,8 +665,10 @@ class UserDAO {
         }
     }
 
-    /*
-     * Get all the user roles given the username
+    /**
+     * Get all the roles from a certain user. 
+     * @param type $username the username to search the roles from. 
+     * @return type an array containing all the roles associated with the username, null on error. 
      */
     public static function getUserRoles($username) {
         try {
@@ -633,9 +680,11 @@ class UserDAO {
             return null;
         }
     }
-    
-    /*
-     * Get all permissions given a certain role
+
+    /**
+     * Get all permissions associated with role.
+     * @param type $role the role you want to get the permissions from.
+     * @return type an array of permissions associated with a role.
      */
     public static function getPermissionsFromRole($role) {
         try {
@@ -647,12 +696,19 @@ class UserDAO {
             return null;
         }
     }
+
 }
 
+/**
+ * Class mananging all email based transactions. 
+ */
 class EmailDAO {
     
-    /*
-     * Get an email from the database
+    /**
+     * Get an email in a specified language from the database.
+     * @param type $tag the email tag. 
+     * @param type $lang the required email language.
+     * @return type an object containing email information from the database or null on error.
      */
     public static function getEmail($tag, $lang) {
         try {
@@ -667,26 +723,38 @@ class EmailDAO {
 
 }
 
+/**
+ * Class managing all file upload information
+ */
 class FileDAO {
-    
+
+    /**
+     * Get the name of an uploaded file based on it's ID. 
+     * @param type $id the ID of the uploaded file.
+     * @return type the name of an uploaded file or null on error.
+     */
     public static function getUpload($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT filename FROM uploads WHERE id = ?");
             $stmt->execute(array($id));
-            return 'upload/'.$stmt->fetchColumn();
+            return 'upload/' . $stmt->fetchColumn();
         } catch (Exception $ex) {
             return null;
         }
     }
     
+    /**
+     * Put a new upload in the database.
+     * @param type $name the name of the newly uploaded file.
+     * @return type the ID of the new file or -1 on error.
+     */
     public static function putUpload($name) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into uploads (filename) VALUES (?)");
             $stmt->execute(array($name));
             return $conn->lastInsertId();
-            
         } catch (Exception $ex) {
             return -1;
         }

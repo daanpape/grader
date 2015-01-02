@@ -1,3 +1,6 @@
+/**
+ * Competence class
+ */
 function Competence(viewmodel, code, name, weight, subcompetences) {
     return {
         code: ko.observable(code),
@@ -19,6 +22,9 @@ function Competence(viewmodel, code, name, weight, subcompetences) {
     };
 }
 
+/**
+ * SubCompetence class
+ */
 function SubCompetence(parent, code, name, weight, indicators) {
     return {
         code: ko.observable(code),
@@ -40,6 +46,9 @@ function SubCompetence(parent, code, name, weight, indicators) {
     };
 }
 
+/**
+ * Indicator class
+ */
 function Indicator(parent, name, description) {
     return {
         name: ko.observable(name),
@@ -89,6 +98,11 @@ function pageViewModel(gvm) {
     gvm.removeCompetence = function(competence) {
         gvm.competences.remove(competence);
     }
+}
+
+
+function saveProjectStructure() {
+    
 }
 
 function initPage() {

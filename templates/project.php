@@ -52,22 +52,23 @@ $location = "project";
             <div class="col-md-12 compPanel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <input type="text" placeholder="Competence-Code" class="form-control form-next">
-                        <input type="text" placeholder="Name of the competence" class="form-control form-next">
+                        <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
+                        <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
                             <div class="panel panel-default">
                                 <div class="panel-heading color-subcomp">
-                                    <input type="text" placeholder="SubCompetence-Code" class="form-control form-next">
-                                    <input type="text" placeholder="Name of the subcompetence" class="form-control form-next">
+                                    <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
+                                    <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
+                                    <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
                                         <li class="list-group-item">
-                                            <input type="text" placeholder="Indicatorname" class="form-control form-next">
-                                            <input type="text" placeholder="Description" class="form-control form-next">
+                                            <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
+                                            <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
                                     </ul>
