@@ -252,9 +252,9 @@ $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
-    $userlists = GraderAPI::getCoupledListsFromProject($id);
+    $studentlists = GraderAPI::getCoupledListsFromProject($id);
 
-    echo json_encode($userlists);
+    echo json_encode($studentlists);
 });
 
 $app->get('/api/project/getAllData/:id', function($id) use($app) {

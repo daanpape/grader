@@ -144,7 +144,7 @@ class ClassDAO {
     public static function getCoupledListsFromProject($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist.id, studentlist.name FROM studentlist join project_studentlist on studentlist.id = project_studentlist.project where project_studentlist.project = :id ");
+            $stmt = $conn->prepare("SELECT studentlist.id, studentlist.name FROM studentlist join project_studentlist on studentlist.id = project_studentlist.studentlist where project_studentlist.project = :id ");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
