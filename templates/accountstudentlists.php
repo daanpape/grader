@@ -37,12 +37,11 @@ $location = "accountstudentlists";
                     <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: tabledata">
+                <tbody data-bind="foreach: coupledLists">
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <a data-bind="attr:{'href': '/account/studentlist/edit/' + tid}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span></a>
-                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                        <button class="btn">UnCouple</button>
                     </td>
                 </tr>
                 </tbody>
