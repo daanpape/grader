@@ -70,4 +70,6 @@ function initPage() {
         viewModel.studentlistName(data[0].name);
     });
     loadStudentTable();
+    
+    
 }

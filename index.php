@@ -389,6 +389,13 @@ $app->post('/api/projectstructure/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::putProjectStructure($id, file_get_contents('php://input')));
 });
 
+$app->post('/api/csv/studentlist', function() use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    
+    //TODO: parse CSV 
+    CSVParser::parseCSV($_POST['fileid']);
+});
+
 // API DELETE routes
 $app->delete('/api/project/:id', function ($id) use ($app) {
     // Use json headers

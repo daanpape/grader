@@ -70,4 +70,19 @@ function initPage() {
         viewModel.userId = data.id;
         loadTable(data.id);
     });
+    
+    $('#addStudentList').click(function(){
+        showUploadModal(function(src, id){    
+            // Save new picture in database
+            $.ajax({
+               type: "POST",
+               url: '/api/csv/studentlist',
+               data: "fileid="+id,
+               success: function(data){
+                   alert(data);
+                   // Do something with student list
+               }
+            });
+        });
+    })
 }
