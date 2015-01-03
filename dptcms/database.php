@@ -799,8 +799,7 @@ class UserDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE users SET avatar = ? WHERE id = ?");
-            $stmt->execute(array($userid, $imageid));
-            echo "updateding with userid = ".$userid." and imageid = ".$imageid;
+            $stmt->execute(array($imageid, $userid));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update project', $err);
