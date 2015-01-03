@@ -32,7 +32,6 @@ $location = "projectstudents";
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -49,7 +48,6 @@ $location = "projectstudents";
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
