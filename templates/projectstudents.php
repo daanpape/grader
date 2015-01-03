@@ -11,21 +11,8 @@ $location = "projectstudents";
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
-
     <title data-bind="text: title"></title>
-    <style>
-        #top-col {
-            padding-bottom: 15px;
-        }
-
-        .form-next {
-            display: inline-block !important;
-            margin-right: 10px;
-            width: auto !important;
-        }
-    </style>
-
-    <?php include_once('hddepends.php') ?>
+        <?php include_once('hddepends.php') ?>
 </head>
 
 <body>
@@ -34,18 +21,42 @@ $location = "projectstudents";
 <!-- Header container -->
 <div class="container">
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
-    <div class="row">
-
-    </div>
 </div>
 
 <!-- Content container -->
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p>Coupled lists</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: tabledata">
+                <tr>
+                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: status">--</td>
+                    <td>
+                        <a data-bind="attr:{'href': '/account/studentlist/edit/' + tid}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span></a>
+                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table id="coupledLists">
+                <thead>
 
-</div>
+                </thead>
+                <tbody>
 
-<div class="container">
-
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <?php include_once('jsdepends.php') ?>

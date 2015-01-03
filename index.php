@@ -247,6 +247,16 @@ $app->get('/api/currentuser', function() use ($app) {
     echo json_encode($userdata);
 });
 
+$app->get('/api/project/:id/coupledlists', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $userlists = GraderAPI::getCoupledListsFromProject($id);
+
+    echo json_encode($userlists);
+});
+
 $app->get('/api/project/getAllData/:id', function($id) use($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

@@ -423,7 +423,6 @@ function showCoupleStudentListModal(projectid) {
     })
     showGeneralModal();
 }
-
 function loadCoupleDropdown() {
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         $.each(data, function(i, item) {
@@ -440,7 +439,6 @@ function loadCoupleDropdown() {
     });
 }
 
-
 function updateListForm(id, serialData, callback) {
     $.ajax({
         url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
@@ -455,13 +453,11 @@ function updateListForm(id, serialData, callback) {
     });
 }
 
-
 function initPage() {
     // Add button handlers
     $('#addProjectTypeBtn').click(function(){
         showNewProjectTypeModal();
     });
-
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;

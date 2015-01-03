@@ -140,6 +140,19 @@ class ClassDAO {
             return null;
         }
     }
+
+    public static function getCoupledListsFromProject($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT studentlist.id, studentlist.name FROM studentlist join project_studentlist on studentlist.id = project_studentlist.project where project_studentlist.project = :id ");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
     
     /**
      * Get a list of students in a student list. 

@@ -19,6 +19,22 @@ function pageViewModel(gvm) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
+
+    gvm.coupledLists = ko.observableArray([]);
+
+    gvm.addCoupledList = function(id, name) {
+        // Push data
+        var tblOject = {tid: id, tname: name, status: "coupled"};
+        gvm.coupledLists.push(tblOject);
+    }
+
+    gvm.getStudentlists = function() {
+        $.getJSON('api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
+            $.each(data, function(i, item) {
+                gvm.addCoupledList(item.id, item.name);
+            });
+        });
+    }
 }
 
 function initPage() {

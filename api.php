@@ -54,6 +54,9 @@ class GraderAPI {
     public static function getDocumentsFromProject($id) {
         return ClassDAO::getDocumentsFromProject($id);
     }
+    public static function getCoupledListsFromProject($id) {
+        return ClassDAO::getCoupledListsFromProject($id);
+    }
 
     /*
      * Delete a projecttype from the database
