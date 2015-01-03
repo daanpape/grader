@@ -27,7 +27,7 @@ function initPage() {
             // Save new picture in database
             $.ajax({
                type: "POST",
-               url: url,
+               url: '/api/account/avatar',
                data: "pictureid="+id,
                success: function(){
                    $('#avatar').attr("src", src);
