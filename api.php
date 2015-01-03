@@ -217,6 +217,7 @@ class GraderAPI {
      * @param type $projectStructure the JSON data containing the project structure.
      */
     public static function putProjectStructure($projectid, $projectStructure) {
-        var_dump($projectStructure);
+        $data = json_decode($projectStructure);
+        var_dump($data);
     }
 }
