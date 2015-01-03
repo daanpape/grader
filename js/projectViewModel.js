@@ -101,6 +101,12 @@ function pageViewModel(gvm) {
     gvm.removeCompetence = function(competence) {
         gvm.competences.remove(competence);
     }
+    
+    gvm.updateCompetence = function(id, code, description, max, weight) {
+        var comp = new Competence(this, id, code, description, weight);
+        gvm.competences.push(comp);
+        return comp;
+    }
 }
 
 /**
@@ -122,7 +128,16 @@ function saveProjectStructure() {
 function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            alert(data[i]);
+            var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            
+            $.each(item.subcompetences, function(i, subcomp){
+               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+               competence.subcompetences.push(subcompetence);
+               
+               $.each(subcomp.indicators, function(i, indic){
+                  subcompetence.push(new Indicator(subcompetence, indic.id, indic.name, indic.description)); 
+               });
+            });
         })
     });
 }
