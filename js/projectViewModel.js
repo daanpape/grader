@@ -101,6 +101,10 @@ function pageViewModel(gvm) {
         gvm.competences.push(comp);
         return comp;
     }
+    
+    gvm.clearStructure = function() {
+        gvm.competences.destroyAll();
+    }
 }
 
 /**
@@ -120,6 +124,8 @@ function saveProjectStructure() {
 }
 
 function fetchProjectStructure() {
+    viewModel.clearStructure();
+    
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
             var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
