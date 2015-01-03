@@ -502,7 +502,147 @@ class ClassDAO {
             return null;
         }
     }
+    
+    
+    /**
+     * Insert a new competence in the database.
+     * @param type $code
+     * @param type $description 
+     * @param type $max
+     * @param type $weight
+     * @param type $projectid
+     * @return type the id of the newly inserted competence or null on error.
+     */
+    public static function putNewCompetence($code, $description, $max, $weight, $projectid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO competence (code, description, max, weight, project) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute(array($code, $description, $max, $weight, $projectid));
+            $pid = $conn->lastInsertId();
 
+            return $pid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    /**
+     * Update an existing competence in the database
+     * @param type $id
+     * @param type $code
+     * @param type $description
+     * @param type $max
+     * @param type $weight
+     * @param type $projectid
+     * @return boolean true on success, false on error.
+     */
+    public static function updateCompetence($id, $code, $description, $max, $weight, $projectid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE competence SET code = ?, description = ?, max = ?, weight = ?, project = ? WHERE id = ?");
+            $stmt->execute(array($code, $description, $max, $weight, $projectid, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+    /**
+     * Insert a new subcompetence in the database.
+     * @param type $code
+     * @param type $description
+     * @param type $max
+     * @param type $weight
+     * @param type $min_required
+     * @param type $competenceid
+     * @return type the id of the newly inserted subcompetence or null on error.
+     */
+    public static function putNewSubCompetence($code, $description, $max, $weight, $min_required, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO subcompetence (code, description, weight, max, min_required, competence) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute(array($code, $description, $weight, $max, $min_required, $competenceid));
+            $sid = $conn->lastInsertId();
+
+            return $sid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    /**
+     * Update an existing subcompetence in the database.
+     * @param type $id
+     * @param type $code
+     * @param type $description
+     * @param type $max
+     * @param type $weight
+     * @param type $min_required
+     * @param type $competenceid
+     * @return type true if update is success, false otherways
+     */
+    public static function updateSubCompetence($id, $code, $description, $max, $weight, $min_required, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE subcompetence SET code = ?, description = ?, weight = ?, max = ?, min_required = ?, competence = ? WHERE id = ?");
+            $stmt->execute(array($code, $description, $weight, $max, $min_required, $competenceid, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+    /**
+     * Insert a new indicator in the database
+     * @param type $name
+     * @param type $description
+     * @param type $max
+     * @param type $weight
+     * @param type $subcompetenceid
+     * @return type the id of the newly inserted indicator or null on error.
+     */
+    public static function putNewIndicator($name, $description, $max, $weight, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO indicator (name, description, max, weight, subcompetence) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute(array(name, $description, $max, $weight, $subcompetenceid));
+            $iid = $conn->lastInsertId();
+
+            return $iid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    /**
+     * Update an existing indicator in the database
+     * @param type $id
+     * @param type $name
+     * @param type $description
+     * @param type $max
+     * @param type $weight
+     * @param type $subcompetenceid
+     * @return boolean true on succes, false on error
+     */
+    public static function updateIndicator($id, $name, $description, $max, $weight, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
 }
 
 /*

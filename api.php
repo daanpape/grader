@@ -218,6 +218,78 @@ class GraderAPI {
      */
     public static function putProjectStructure($projectid, $projectStructure) {
         $data = json_decode($projectStructure);
-        var_dump($data);
+        
+        foreach ($data as $competence) {
+            // Insert a competence
+            $competenceid = self::putCompetence(
+                property_exists($competence, "code") ? $competence->code : "", 
+                property_exists($competence, "name") ? $competence->name : "", 
+                property_exists($competence, "max") ? $competence->max : 20, 
+                property_exists($competence, "weight") ? $competence->weight : 100, 
+                $projectid,
+                property_exists($competence, "id") ? $competence->id : -1);
+
+            
+            // Insert subcompetences if any
+            if(property_exists($competence, "subcompetences")){
+                foreach($competence->subcompetences as $subcompetence){
+                    // Insert a subcomptence
+                    $subcompetenceid = self::putSubCompetence(
+                        property_exists($subcompetence, "code") ? $subcompetence->code : "", 
+                        property_exists($subcompetence, "name") ? $subcompetence->name : "", 
+                        property_exists($subcompetence, "weight") ? $subcompetence->weight : 100, 
+                        property_exists($subcompetence, "max") ? $subcompetence->max : 20, 
+                        property_exists($subcompetence, "min_required") ? $subcompetence->min_required : 10, 
+                        $competenceid,
+                        property_exists($subcompetence, "id") ? $subcompetence->id : -1);
+                    
+                    // Insert indicators if any
+                    if(property_exists($subcompetence, "indicators")) {
+                       foreach($subcompetence->indicators as $indicator) {
+                           self::putIndicator(
+                                property_exists($indicator, "name") ? $indicator->name : "", 
+                                property_exists($indicator, "description") ? $indicator->description : "", 
+                                property_exists($indicator, "max") ? $indicator->max : 20, 
+                                property_exists($indicator, "weight") ? $indicator->weight : 100, 
+                                $subcompetenceid, 
+                                property_exists($indicator, "id") ? $indicator->id : -1);
+                       } 
+                    }
+                }
+            }
+        }
+        
+        // Return saved data
+        return self::getAllDataFromProject($projectid);
+    }
+    
+    public static function putCompetence($code, $description, $max, $weight, $project, $id = -1) {
+        if($id == -1) {
+            return ClassDAO::putNewCompetence($code, $description, $max, $weight, $project);
+        } else {
+            ClassDAO::updateCompetence($id, $code, $description, $max, $weight, $project);
+            return $id;
+        }
+    }
+    
+    public static function putSubCompetence($code, $description, $weight, $max, $min_required, $competence, $id = -1) {
+        if($id == -1){
+            return ClassDAO::putNewSubCompetence($code, $description, $max, $weight, $min_required, $competence);
+        } else {
+            // Update a subcompetence
+            ClassDAO::updateSubCompetence($id, $code, $description, $max, $weight, $min_required, $competence);
+            return $id;
+        }
+    }
+    
+    public static function putIndicator($name, $description, $max, $weight, $subcompetence, $id = -1) {
+        if($id == -1){
+            // Insert a new indicator
+            return ClassDAO::putNewIndicator($name, $description, $max, $weight, $subcompetence);
+        } else {
+            // Update an indicator
+            ClassDAO::updateIndicator($id, $name, $description, $max, $weight, $subcompetence);
+            return $id;
+        }
     }
 }

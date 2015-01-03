@@ -292,6 +292,11 @@ $app->get('/api/studentlist/students/:id', function($id) use($app) {
     echo json_encode($data);
 });
 
+$app->get('/api/projectstructure/:id', function($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getAllDataFromProject($id));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
