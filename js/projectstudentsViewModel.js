@@ -29,7 +29,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.getStudentlists = function() {
-        $.getJSON('api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
+        $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
             $.each(data, function(i, item) {
                 gvm.addCoupledList(item.id, item.name);
             });
