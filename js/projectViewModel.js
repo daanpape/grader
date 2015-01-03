@@ -119,6 +119,8 @@ function saveProjectStructure() {
        success: function(){
            // TODO make multilangual and with modals
            alert("Saved projectstructure to server");
+           
+            fetchProjectStructure();
        }
     });
 }
