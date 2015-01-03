@@ -96,7 +96,7 @@ class CSVParser {
 
         $retvalue = array();
         if (($handle = fopen('../' . $filepath, "r")) !== FALSE) {
-            while (($data = fgetcsv($handle, ";")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                 $retvalue[] = $data;
                 $row++;
             }
