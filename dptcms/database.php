@@ -470,7 +470,7 @@ class ClassDAO {
                     $data[$row['cid']] = $competence;
                 }
 
-                if (!array_key_exists($row['sid'], $competence->subCompetence)) {
+                if (!array_key_exists($row['sid'], $competence->subcompetences)) {
                     $subcompetence = new stdClass();
                     $subcompetence->indicators = array();
                     $subcompetence->id = $row['sid'];
@@ -483,7 +483,7 @@ class ClassDAO {
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
 
-                if (!array_key_exists($row['iid'], $subcompetence->indicator)) {
+                if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
                     $indicator = new stdClass();
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
