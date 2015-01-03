@@ -611,7 +611,7 @@ class ClassDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO indicator (name, description, max, weight, subcompetence) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute(array(name, $description, $max, $weight, $subcompetenceid));
+            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid));
             $iid = $conn->lastInsertId();
 
             return $iid;
