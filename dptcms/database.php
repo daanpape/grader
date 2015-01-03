@@ -480,7 +480,7 @@ class ClassDAO {
                     $subcompetence->max = $row['smax'];
                     $subcompetence->minRequired = $row['smin_required'];
 
-                    $competence->subCompetence[$row['sid']] = $subcompetence;
+                    $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
 
                 if (!array_key_exists($row['iid'], $subcompetence->indicator)) {
@@ -491,7 +491,7 @@ class ClassDAO {
                     $indicator->max = $row['imax'];
                     $indicator->weight = $row['iweight'];
 
-                    $subcompetence->indicator[$row['iid']] = $indicator;
+                    $subcompetence->indicators[$row['iid']] = $indicator;
                 }
             }
 
