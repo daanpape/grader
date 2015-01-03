@@ -393,7 +393,7 @@ $app->post('/api/csv/studentlist', function() use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     
     //TODO: parse CSV 
-    CSVParser::parseCSV($_POST['fileid']);
+    echo json_encode(CSVParser::parseCSV($_POST['fileid']));
 });
 
 // API DELETE routes

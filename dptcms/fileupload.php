@@ -86,25 +86,26 @@ class FileUpload {
     }
 }
 
-class CSVParser
-{
+class CSVParser {
+
     static function parseCSV($fileid) {
         $filepath = FileDAO::getUpload($fileid);
-        
+
         $row = 1;
         chdir(dirname(__FILE__));
-        if (($handle = fopen('../'.$filepath, "r")) !== FALSE) {
-          while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $num = count($data);
-            echo "<p> $num fields in line $row: <br /></p>\n";
-            $row++;
-            for ($c=0; $c < $num; $c++) {
-                echo $data[$c] . "<br />\n";
+
+        $retvalue = array();
+        if (($handle = fopen('../' . $filepath, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, ";")) !== FALSE) {
+                $retvalue[] = $data;
+                $row++;
             }
-          }
-          fclose($handle);
+            fclose($handle);
         }
+        
+        return $retvalue;
     }
+
 }
 
 ?>
