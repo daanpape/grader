@@ -92,6 +92,7 @@ class CSVParser
         $filepath = FileDAO::getUpload($fileid);
         
         $row = 1;
+        chdir(__FILE__);
         if (($handle = fopen('../'.$filepath, "r")) !== FALSE) {
           while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             $num = count($data);
