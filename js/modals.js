@@ -190,7 +190,7 @@ $(document).ready(function () {
                         src = '/img/file.png';
                     }
                     
-                    uploadCallBack(src);
+                    uploadCallBack(src, elem['id']);
 
                     div.innerHTML += '<a href="' + elem['link'] + '" target="_blank"><img src="' + src + '" style="width: 100px;" /></a><br/>';
                     div.innerHTML += 'id: ' + elem['id'] + '<br/>';

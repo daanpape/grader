@@ -361,6 +361,15 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
 });
+
+$app->post('/api/account/avatar', function() use ($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    
+    echo json_encode(GraderAPI::updateProfilePicture($_POST['pictureid']));
+});
+
 $app->post('/api/savedropdowns', function() use ($app) {
     //Use json header
     $response = $app->response();

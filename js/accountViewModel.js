@@ -23,8 +23,16 @@ function initPage() {
     });
     
     $('#edit-avatar').click(function(){
-        showUploadModal(function(src){
-            $('#avatar').attr("src", src);
+        showUploadModal(function(src, id){    
+            // Save new picture in database
+            $.ajax({
+               type: "POST",
+               url: url,
+               data: "pictureid="+id,
+               success: function(){
+                   $('#avatar').attr("src", src);
+               }
+            });
         });
     })
 }

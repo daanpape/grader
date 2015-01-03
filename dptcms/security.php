@@ -39,6 +39,10 @@ class Security {
     public static function getLoggedInUsername() {
         return $_SESSION['username'];
     }
+    
+    public static function getLoggedInId() {
+        return $_SESSION['userid'];
+    }
 
     /*
      * Log in a user into the current session 
@@ -56,6 +60,7 @@ class Security {
                     // Set user in session
                     $_SESSION['username'] = $username;
                     $_SESSION['firstname'] = $userdata->firstname;
+                    $_SESSION['userid'] = $userdata->id;
                     return true;
                 } else {
                     // Return the current user status
@@ -74,6 +79,7 @@ class Security {
     public static function logoutUser() {
         // Clear all user data
         unset($_SESSION['username']);
+        unset($_SESSION['userid']);
         // Return success
         return true;
     }

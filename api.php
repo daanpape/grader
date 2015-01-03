@@ -170,6 +170,11 @@ class GraderAPI {
             return -1;
         }
     }
+    
+    public static function updateProfilePicture($pictureid) {
+        $userid = Security::getLoggedInId();
+        UserDAO::updateUserProfilePicture($userid, $pictureid);
+    }
 
     /*
      * Get all courses from database

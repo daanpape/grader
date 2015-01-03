@@ -788,6 +788,24 @@ class UserDAO {
             return null;
         }
     }
+    
+    /**
+     * Update the uers avatar. 
+     * @param type $userid the id of the user to update
+     * @param type $imageid the id of the imagefile
+     * @return boolean true on success false on error
+     */
+    public static function updateUserProfilePicture($userid, $imageid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE users SET avatar = ? WHERE id = ?");
+            $stmt->execute(array($userid, $imageid));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update project', $err);
+            return false;
+        }
+    }
 
     /**
      * Searches the activation token in the database and if present activates the users account. 
