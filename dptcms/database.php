@@ -909,7 +909,7 @@ class FileDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT filename FROM uploads WHERE id = ?");
             $stmt->execute(array($id));
-            return 'upload/' . $stmt->fetchColumn();
+            return $stmt->fetchColumn();
         } catch (Exception $ex) {
             return null;
         }
