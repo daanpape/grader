@@ -28,11 +28,18 @@ function pageViewModel(gvm) {
         // Push data
         var tblOject = {tid: id, tname: name};
         gvm.coupledLists.push(tblOject);
+
+        $("#uncouplebtn-" + id).click(function(){
+        });
     }
 
     gvm.addAvailableLists = function(id, name) {
         var tblOject = {tid: id, tname: name};
         gvm.availableLists.push(tblOject);
+
+        $("#couplebtn-" + id).click(function(){
+
+        });
     }
 
     gvm.getCoupledLists = function() {

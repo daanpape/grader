@@ -39,7 +39,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn">UnCouple</button>
+                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">UnCouple</button>
                     </td>
                 </tr>
                 </tbody>
@@ -55,7 +55,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn">Couple</button>
+                        <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}">Couple</button>
                     </td>
                 </tr>
                 </tbody>
