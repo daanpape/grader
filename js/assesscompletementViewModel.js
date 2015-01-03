@@ -35,7 +35,7 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.amountSubmitted = ko.obserbableArray([]);
+    gvm.amountSubmitted = ko.observableArray([]);
 
     gvm.addAmountSubmitted = function(documentid, amount_not_submitted) {
         amountSubmittedObject = {project: gvm.projectId, student: gvm.studentId, document: documentid, amount_not_submitted: amount_not_submitted};
