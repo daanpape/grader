@@ -32,7 +32,7 @@ function pageViewModel(gvm) {
 
     gvm.addAvailableLists = function(id, name) {
         var tblOject = {tid: id, tname: name};
-        gvm.coupledLists.push(tblOject);
+        gvm.availableLists.push(tblOject);
     }
 
     gvm.getCoupledLists = function() {
