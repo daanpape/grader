@@ -5,6 +5,7 @@
 // View model for the courses page
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
+    gvm.userId = -1;
 
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -21,23 +22,42 @@ function pageViewModel(gvm) {
     };
 
     gvm.coupledLists = ko.observableArray([]);
+    gvm.availableLists = ko.observableArray([]);
 
     gvm.addCoupledList = function(id, name) {
         // Push data
-        var tblOject = {tid: id, tname: name, status: "coupled"};
+        var tblOject = {tid: id, tname: name};
         gvm.coupledLists.push(tblOject);
     }
 
-    gvm.getStudentlists = function() {
+    gvm.addAvailableLists = function(id, name) {
+        var tblOject = {tid: id, tname: name};
+        gvm.coupledLists.push(tblOject);
+    }
+
+    gvm.getCoupledLists = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
             $.each(data, function(i, item) {
                 gvm.addCoupledList(item.id, item.name);
             });
         });
     }
-}
+
+    gvm.getAvailableLists = function() {
+        $.getJSON('/api/project/' + gvm.userId + '/availablelists', function(data) {
+            $.each(data, function(i, item) {
+                gvm.addAvailableLists(item.id, item.name);
+            });
+        });
+    }
+ }
 
 function initPage() {
     viewModel.getProjectInfo();
-    viewModel.getStudentlists();
+    viewModel.getCoupledLists();
+
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.getAvailableLists(data.id);
+    });
 }

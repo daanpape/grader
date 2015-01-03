@@ -39,19 +39,27 @@ $location = "projectstudents";
                 <tbody data-bind="foreach: coupledLists">
                 <tr>
                     <td data-bind="text: tname">--</td>
-                    <td data-bind="text: status">--</td>
                     <td>
                         <button class="btn">UnCouple</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <table id="coupledLists">
+            <table class="table table-striped">
                 <thead>
-
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
                 </thead>
-                <tbody>
-
+                <tbody data-bind="foreach: availableLists">
+                <tr>
+                    <td data-bind="text: tname">--</td>
+                    <td>
+                        <button class="btn">Couple</button>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
