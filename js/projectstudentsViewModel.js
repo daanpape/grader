@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.getAvailableLists = function() {
-        $.getJSON('/api/project/' + gvm.userId + '/availablelists', function(data) {
+        $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
             $.each(data, function(i, item) {
                 gvm.addAvailableLists(item.id, item.name);
             });
