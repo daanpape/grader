@@ -119,6 +119,14 @@ function saveProjectStructure() {
     });
 }
 
+function fetchProjectStructure() {
+    $.getJSON("/api/projectstructure/" + projectid, function(data){
+        $.each(data, function(i, item){
+            alert(data[i]);
+        })
+    });
+}
+
 function initPage() {
     viewModel.getProjectInfo();
     $(".addCompetenceBtn").click(function() {
