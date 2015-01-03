@@ -173,7 +173,7 @@ class GraderAPI {
     
     public static function updateProfilePicture($pictureid) {
         $userid = Security::getLoggedInId();
-        UserDAO::updateUserProfilePicture($userid, $pictureid);
+        return UserDAO::updateUserProfilePicture($userid, $pictureid);
     }
 
     /*
