@@ -79,7 +79,7 @@ function initPage() {
                url: '/api/csv/studentlist',
                data: "fileid="+id,
                success: function(data){
-                   alert(data);
+                   location.reload();
                    // Do something with student list
                }
             });
