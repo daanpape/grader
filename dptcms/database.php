@@ -283,7 +283,7 @@ class ClassDAO {
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
 
-            $stmt2 = $conn->prepare("DELETE FROM studentlist_users WHERE studentlist = :id");
+            $stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt2->execute();
             return true;
