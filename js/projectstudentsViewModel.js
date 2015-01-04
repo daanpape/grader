@@ -38,7 +38,7 @@ function pageViewModel(gvm) {
                         type: "DELETE",
                         success: function() {
                             gvm.coupledCount--;
-                            viewModel.tabledata.remove(tblOject);
+                            viewModel.coupledLists.remove(tblOject);
                         }
                     });
 
@@ -57,8 +57,8 @@ function pageViewModel(gvm) {
                     url: '/api/project/' + $("#projectHeader").data('value') + '/studentlist/couple' + id,
                     type: "PUT",
                     success: function() {
-                        gvm.coupledCount--;
-                        viewModel.tabledata.remove(tblOject);
+                        gvm.coupledCount++;
+                        viewModel.coupledLists.push(tblOject);
                     }
                 });
             } else {
