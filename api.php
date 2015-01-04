@@ -114,7 +114,7 @@ class GraderAPI {
     public static function putStudent($id, $mail, $firstname, $lastname) {
         $studentid = ClassDAO::putStudent($mail, $firstname, $lastname);
         $listid = ClassDAO::putStudentlist_Student($studentid, $id);
-        if ($studentid != null && $listid != null) {
+        if ($listid != -1) {
             return array(
                 "id" => $studentid,
                 "username" => $mail,

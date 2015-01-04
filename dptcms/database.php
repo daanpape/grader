@@ -728,7 +728,7 @@ class ClassDAO {
     public static function putStudentlist_Student($studentid, $listid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT into studentlist_students (student, list) VALUES (?, ?)");
+            $stmt = $conn->prepare("INSERT into studentlist_students (student, studentlist) VALUES (?, ?)");
             $stmt->execute(array($studentid, $listid));
             return $conn->lastInsertId();
         } catch (PDOException $ex) {
