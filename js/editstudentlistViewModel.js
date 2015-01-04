@@ -28,6 +28,11 @@ function pageViewModel(gvm) {
         var tblOject = {tid: id, tusername: username, tfirstname: firstname, tlastname: lastname};
         gvm.tabledata.push(tblOject);
 
+        $('#editbtn-' + id).bind('click', function(event, data) {
+            showEditStudentModal(tblOject);
+            event.stopPropagation();
+        });
+
         $('#removebtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
@@ -39,6 +44,51 @@ function pageViewModel(gvm) {
         gvm.tabledata.removeAll();
     }
 
+}
+
+function showEditStudentModal(tblObject) {
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("EditProjectTitle"));
+    setGeneralModalBody('<form id="#updateStudent"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + object.tusername + '" " name="username" value="' + object.tusername + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + object.tfirstname + '" " name="username" value="' + object.tfirstname + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + object.tlastname + '" " name="username" value="' + object.tlastname + '"> \
+            </div> \
+        </form>');
+    $.getJSON()
+
+    addGeneralModalButton(i18n.__("SaveBtn"), function(){
+        updateStudent(object.tid, $('#updateStudent').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    addGeneralModalButton(i18n.__("CancelBtn"), function(){
+        hideModal();
+    })
+
+    showGeneralModal();
+}
+
+function updateStudent(id, object, callback) {
+    $.ajax({
+        url: "/api/student/" + id,
+        type: "PUT",
+        data: object,
+        success: function(data) {
+            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            loadStudentTable();
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
 }
 
 function deleteTableItem(id, tblObject){

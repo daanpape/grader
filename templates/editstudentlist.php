@@ -44,6 +44,7 @@ $location = "editstudentlist";
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
                     <td>
+                        <span class="glyphicon glyphicon-edit glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                     </td>
                 </tr>
