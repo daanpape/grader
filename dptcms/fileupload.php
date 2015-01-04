@@ -102,8 +102,10 @@ class CSVParser {
             }
             fclose($handle);
         }
-        $return = ClassDAO::putStudents($retvalue);
-        return $return;
+        $userid = Security::getLoggedInId();
+        $username = Security::getLoggedInName();
+        /*$return = ClassDAO::putStudents($retvalue);*/
+        return $userid.$username;
     }
 }
 

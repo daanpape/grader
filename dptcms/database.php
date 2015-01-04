@@ -668,8 +668,7 @@ class ClassDAO {
     }
 
     public function putStudents($studentArray) {
-        $userid = Security::getLoggedInId();
-        $username = Security::getLoggedInName();
+
         $listid = $this->putStudentList($userid, $username);
         if($listid != -1) {
             try {
