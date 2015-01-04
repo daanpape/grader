@@ -265,7 +265,7 @@ class ClassDAO {
     public static function deleteStudentFromStudentList($studlistid, $studid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM studentlist_users WHERE studentlist = :studlist AND WHERE student = :student");
+            $stmt = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :studlist AND WHERE student = :student");
             $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
             $stmt->bindValue(':student', (int) $studid, PDO::PARAM_INT);
             $stmt->execute();
