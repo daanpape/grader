@@ -95,7 +95,7 @@ function showNewStudentModal() {
     $.getJSON()
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-        addNewStudent($('#newStudentForm').serialize(), function(result){
+        addNewStudent($('#newStudentFrom').serialize(), function(result){
             hideModal();
         });
     });
