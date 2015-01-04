@@ -27,7 +27,7 @@ $location = "projectstudents";
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <p>Coupled lists</p>
+            <p>Coupled list</p>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -39,7 +39,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">UnCouple</button>
+                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">Uncouple</button>
                     </td>
                 </tr>
                 </tbody>
