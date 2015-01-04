@@ -336,7 +336,7 @@ $app->put('/api/student/:id', function($id) use ($app) {
    echo json_encode(GraderAPI::updateStudent(
         $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
 });
-$app->post('/api/student/:id', function($id) use ($app) {
+$app->post('/api/newstudent/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

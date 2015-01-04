@@ -110,7 +110,7 @@ function showNewStudentModal() {
 function addNewStudent(serialData, callback) {
     console.log(serialData);
     $.ajax({
-        url: "/api/student/" + viewModel.listId,
+        url: "/api/newstudent/" + viewModel.listId,
         type: "POST",
         data: serialData,
         success: function(data) {
