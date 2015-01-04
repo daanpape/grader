@@ -48,7 +48,7 @@ function pageViewModel(gvm) {
 
 function showEditStudentModal(tblObject) {
     resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditProjectTitle"));
+    setGeneralModalTitle("Edit Student");
     setGeneralModalBody('<form id="#updateStudent"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" name="username" value="' + tblObject.tusername + '"> \
@@ -77,7 +77,7 @@ function showEditStudentModal(tblObject) {
 
 function updateStudent(id, object, callback) {
     console.log(object);
-    $.ajax({
+    /*$.ajax({
         url: "/api/student/" + id,
         type: "PUT",
         data: object,
@@ -88,7 +88,7 @@ function updateStudent(id, object, callback) {
         error: function(data) {
             callback(false);
         }
-    });
+    });*/
 }
 
 function deleteTableItem(id, tblObject){
