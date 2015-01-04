@@ -162,13 +162,13 @@ function pageViewModel(gvm) {
             //TODO
         });
 
-        $('#studentbtn-' + id).bind('click', function(event, data) {
+        /*$('#studentbtn-' + id).bind('click', function(event, data) {
             showCoupleStudentListModal(id);
             gvm.currentprojectid = id;
             gvm.currentselectedlist = -1;
             event.stopPropagation();
             loadCoupleDropdown();
-        });
+        });*/
     }
     
     gvm.clearTable = function() {

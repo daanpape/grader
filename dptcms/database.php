@@ -345,20 +345,6 @@ class ClassDAO {
         }
     }
 
-    /**public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO project_studentlist (project, studentlist) VALUES (?, ?)");
-            $stmt->execute(array($projectid, $studentlistid));
-
-            // Return the id of the newly inserted item on success.
-            return $conn->lastInsertId();
-        } catch (PDOException $err) {
-            Logger::logError('Could not create new project', $err);
-            return null;
-        }
-    }**/
-
     public static function insertProjectStudlistCouple($projectid, $studlistid) {
         try {
             $conn = Db::getConnection();
