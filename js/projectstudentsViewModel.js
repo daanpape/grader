@@ -52,7 +52,7 @@ function pageViewModel(gvm) {
         gvm.availableLists.push(tblOject);
 
         $("#couplebtn-" + id).click(function(){
-            if(gvm.coupledCount > 0) {
+            if(gvm.coupledCount == 0) {
                 $.ajax({
                     url: "/api/project/studentlist/couple" + id,
                     type: "PUT",
@@ -61,6 +61,8 @@ function pageViewModel(gvm) {
                         viewModel.tabledata.remove(tblOject);
                     }
                 });
+            } else {
+                alert("list already coupled");
             }
         });
     }
