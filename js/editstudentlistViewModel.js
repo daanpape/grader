@@ -100,6 +100,10 @@ function showNewStudentModal() {
         });
     });
 
+    addGeneralModalButton(i18n.__("CancelBtn"), function(){
+        hideModal();
+    })
+
     showGeneralModal();
 }
 
