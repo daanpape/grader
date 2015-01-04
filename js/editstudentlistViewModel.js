@@ -76,8 +76,7 @@ function showEditStudentModal(tblObject) {
 }
 
 function updateStudent(id, object, callback) {
-    console.log(object);
-    /*$.ajax({
+    $.ajax({
         url: "/api/student/" + id,
         type: "PUT",
         data: object,
@@ -88,7 +87,7 @@ function updateStudent(id, object, callback) {
         error: function(data) {
             callback(false);
         }
-    });*/
+    });
 }
 
 function deleteTableItem(id, tblObject){
