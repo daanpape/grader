@@ -170,7 +170,7 @@ class GraderAPI {
         if(ClassDAO::updateStudent($id, $username, $firstname, $lastname)) {
             return array(
                 "id" => $id,
-                "username" => $username,
+                "mail" => $username,
                 "firstname" => $firstname,
                 "lastname" => $lastname
             );
