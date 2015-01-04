@@ -51,7 +51,7 @@ function showEditStudentModal(tblObject) {
     setGeneralModalTitle("Edit Student");
     setGeneralModalBody('<form id="#updateStudent"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" name="username" value="' + tblObject.tusername + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
             </div> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" name="firstname" value="' + tblObject.tfirstname + '"> \
