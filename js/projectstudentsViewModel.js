@@ -6,6 +6,7 @@
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
     gvm.userId = -1;
+    gvm.coupledCount = 0;
 
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -30,6 +31,19 @@ function pageViewModel(gvm) {
         gvm.coupledLists.push(tblOject);
 
         $("#uncouplebtn-" + id).click(function(){
+            showYesNoModal("Bent u zeker dat u dit item wil ontkoppelen?", function(val){
+                if(val){
+                    $.ajax({
+                        url: "/api/project/studentlist/uncouple" + id,
+                        type: "DELETE",
+                        success: function() {
+                            gvm.coupledCount--;
+                            viewModel.tabledata.remove(tblOject);
+                        }
+                    });
+
+                }
+            });
         });
     }
 
@@ -38,13 +52,23 @@ function pageViewModel(gvm) {
         gvm.availableLists.push(tblOject);
 
         $("#couplebtn-" + id).click(function(){
-
+            if(gvm.coupledCount > 0) {
+                $.ajax({
+                    url: "/api/project/studentlist/couple" + id,
+                    type: "PUT",
+                    success: function() {
+                        gvm.coupledCount--;
+                        viewModel.tabledata.remove(tblOject);
+                    }
+                });
+            }
         });
     }
 
     gvm.getCoupledLists = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
             $.each(data, function(i, item) {
+                gvm.coupledCount++;
                 gvm.addCoupledList(item.id, item.name);
             });
         });
