@@ -76,6 +76,7 @@ function showEditStudentModal(tblObject) {
 }
 
 function updateStudent(id, object, callback) {
+    console.log(object);
     $.ajax({
         url: "/api/student/" + id,
         type: "PUT",
