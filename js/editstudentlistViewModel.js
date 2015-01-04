@@ -60,7 +60,7 @@ function loadStudentTable() {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {
-            viewModel.addTableData(item.id, item.username, item.firstname, item.lastname);
+            viewModel.addTableData(item.id, item.mail, item.firstname, item.lastname);
         });
     });
 }
