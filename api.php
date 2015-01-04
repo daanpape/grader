@@ -58,6 +58,7 @@ class GraderAPI {
         return ClassDAO::getCoupledListsFromProject($id);
     }
 
+
     /*
      * Delete a projecttype from the database
      */
@@ -114,6 +115,18 @@ class GraderAPI {
                 "code" => $code,
                 "name" => $name,
                 "description" => $description);
+        } else {
+            return -1;
+        }
+    }
+
+    public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
+        $id = ClassDAO::putCoupleProjectAndStudentlist($projectid, $studentlistid);
+        if ($id != null) {
+            return array(
+                "projectid" => $projectid,
+                "studentlistid" => $studentlistid,
+            );
         } else {
             return -1;
         }

@@ -317,6 +317,16 @@ $app->put('/api/project/:id', function($id) use ($app){
     echo json_encode(GraderAPI::updateProject(
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+
+$app->put('/api/project/:projectid/studentlist/:studentlistid', function($projectid, $studentlistid) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(GraderAPI::putCoupleProjectAndStudentlist($projectid, $studentlistid));
+});
+
 $app->put('/api/studentlist/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -465,12 +475,15 @@ $app->delete('/api/delete/document/:id', function($id) use ($app) {
 
     echo json_encode(GraderAPI::deleteDocumentTypeFromProject($id));
 });
+
 $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', function($projectid, $studentlistid) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
+
+
 
 /* Run the application */
 $app->run();
