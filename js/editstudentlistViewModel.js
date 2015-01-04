@@ -54,10 +54,10 @@ function showEditStudentModal(tblObject) {
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="username" value="' + tblObject.tfirstname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="firstname" value="' + tblObject.tfirstname + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" " name="username" value="' + tblObject.tlastname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" " name="lastname" value="' + tblObject.tlastname + '"> \
             </div> \
         </form>');
     $.getJSON()
