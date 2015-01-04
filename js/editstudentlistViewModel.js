@@ -83,7 +83,7 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="E-mail" " name="username"> \
+                <input type="text" class="form-control input-lg" placeholder="E-mail" name="username"> \
             </div> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="First Name" name="firstname"> \
