@@ -465,6 +465,12 @@ $app->delete('/api/delete/document/:id', function($id) use ($app) {
 
     echo json_encode(GraderAPI::deleteDocumentTypeFromProject($id));
 });
+$app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', function($projectid, $studentlistid) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
+});
 
 /* Run the application */
 $app->run();

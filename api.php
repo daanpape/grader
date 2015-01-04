@@ -69,6 +69,14 @@ class GraderAPI {
         }
     }
 
+    public static function uncoupleProjectStudentlist($projectid, $studentlistid) {
+        if (ClassDAO::uncoupleProjectStudentlist($projectid, $studentlistid) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static function deleteStudentFromStudentList($studlistid, $studid) {
         if(ClassDao::deleteStudentFromStudentList($studlistid, $studid) == true) {
             return true;

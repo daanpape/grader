@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
             showYesNoModal("Bent u zeker dat u dit item wil ontkoppelen?", function(val){
                 if(val){
                     $.ajax({
-                        url: "/api/project/studentlist/uncouple" + id,
+                        url: '/api/project/' + $("#projectHeader").data('value') +'/studentlist/uncouple/' + id,
                         type: "DELETE",
                         success: function() {
                             gvm.coupledCount--;
@@ -54,7 +54,7 @@ function pageViewModel(gvm) {
         $("#couplebtn-" + id).click(function(){
             if(gvm.coupledCount == 0) {
                 $.ajax({
-                    url: "/api/project/studentlist/couple" + id,
+                    url: '/api/project/' + $("#projectHeader").data('value') + '/studentlist/couple' + id,
                     type: "PUT",
                     success: function() {
                         gvm.coupledCount--;

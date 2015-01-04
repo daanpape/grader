@@ -262,6 +262,20 @@ class ClassDAO {
         }
     }
 
+    public static function uncoupleProjectStudentlist($projectid, $studentlistid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM project_studentlist WHERE project = :projectid AND studentlist = :studentlinstid");
+            $stmt->bindValue(':projectid', (int) $projectid, PDO::PARAM_INT);
+            $stmt->bindValue(':studentlistid', (int) $studentlistid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
     public static function deleteStudentFromStudentList($studlistid, $studid) {
         try {
             $conn = Db::getConnection();
