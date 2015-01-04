@@ -102,10 +102,13 @@ class CSVParser {
             }
             fclose($handle);
         }
-        
-        return $retvalue;
-    }
 
+        if(ClassDAO::putStudentList($data)) {
+            return $retvalue;
+        } else {
+            return -1;
+        }
+    }
 }
 
 ?>

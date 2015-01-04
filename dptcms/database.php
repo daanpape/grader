@@ -656,6 +656,42 @@ class ClassDAO {
             return false;
         }
     }
+    public static function putStudentList($userdata) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT into studentlist (owner, name) VALUES (?, ?)");
+            $stmt->execute(array($userdata->id, $userdata->firstname.' - '. $userdata->lastname.' - New User List '));
+            return $conn->lastInsertId();
+        } catch (Exception $ex) {
+            return -1;
+        }
+    }
+
+    public function putStudents($studentArray) {
+        $userdata = GraderAPI::getUserData(Security::getLoggedInUsername());
+        $listid = $this->putStudentList($userdata);
+        if($listid != -1) {
+            try {
+                $conn = Db::getConnection();
+                $stmt = $conn->prepare("INSERT into students (firstname, lastname, email) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE firstname = firstname");
+                foreach($studentArray as $student) {
+                    if($student[4] != "Titularis") {
+                        $stmt->execute(array($student[1], $student[2], $student[3]));
+                        $id = $conn->lastInsertId();
+                        $stmt2 = $conn->prepare("INSERT into studentlist_students (studentlist, student) VALUES (?, ?)");
+                        $stmt2->execute(array($listid, $id));
+                    }
+                }
+                return $conn->lastInsertId();
+            } catch (PDOException $ex) {
+                Logger::logError("could not insert new student".$ex);
+                return -1;
+            }
+        } else {
+            Logger::logError("Could not make new studentlist");
+        }
+
+    }
 }
 
 /*
