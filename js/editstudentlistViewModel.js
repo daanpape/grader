@@ -49,7 +49,7 @@ function pageViewModel(gvm) {
 function showEditStudentModal(tblObject) {
     resetGeneralModal();
     setGeneralModalTitle("Edit Student");
-    setGeneralModalBody('<form id="#updateStudent"> \
+    setGeneralModalBody('<form id="updateStudent"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
             </div> \
