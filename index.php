@@ -338,6 +338,7 @@ $app->put('/api/student/:id', function($id) use ($app) {
         "firstname" => $app->request->post('firstname'),
         "lastname" => $app->request->post('lastname')
     );
+    var_dump($array);
     echo json_encode($array);
     // Update the existing resource
    /*echo json_encode(GraderAPI::updateStudent(
