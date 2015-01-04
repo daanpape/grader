@@ -286,6 +286,10 @@ class ClassDAO {
             $stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt2->execute();
+
+            $stmt3 = $conn->prepare("DELETE FROM project_studentlist WHERE studentlist =:id");
+            $stmt3->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt3->execute();
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not delete project', $err);

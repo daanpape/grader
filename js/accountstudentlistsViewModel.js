@@ -28,6 +28,11 @@ function pageViewModel(gvm) {
         var tblOject = {tid: id, tname: name};
         gvm.tabledata.push(tblOject);
 
+        $('#editbtn-' + id).bind('click', function(event, data) {
+            showEditStudentListsModal(tblOject);
+            event.stopPropagation();
+        });
+
         $('#removebtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
@@ -38,6 +43,45 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+}
+
+function showEditStudentListsModal(object) {
+        resetGeneralModal();
+        setGeneralModalTitle(i18n.__("EditProjectTitle"));
+        setGeneralModalBody('<form id="updateStudentLists"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + object.tname + '" " name="name" value="' + object.tname + '"> \
+            </div> \
+        </form>');
+        $.getJSON()
+
+        addGeneralModalButton(i18n.__("SaveBtn"), function(){
+            updateStudentsList(tid, $('#updateprojectform').serialize(), function(result){
+                hideModal();
+            });
+        });
+
+        addGeneralModalButton(i18n.__("CancelBtn"), function(){
+            hideModal();
+        })
+
+        showGeneralModal();
+}
+
+function updateStudentsList(id, name) {
+    $.ajax({
+        url: "/api/studentlist/" + id,
+        type: "PUT",
+        data: name,
+        success: function(data) {
+            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            loadTable(viewModel.userId); //TODO now it is refreshing table after updating but it redirects to pagenr 1
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
 }
 
 function deleteTableItem(id, tblObject){
