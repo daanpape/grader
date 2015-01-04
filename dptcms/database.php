@@ -685,7 +685,7 @@ class ClassDAO {
                 return $conn->lastInsertId();
             } catch (PDOException $ex) {
                 Logger::logError("could not insert new student".$ex);
-                return -1;
+                return $userdata->firstname;
             }
         } else {
             Logger::logError("Could not make new studentlist");
