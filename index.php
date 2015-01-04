@@ -327,19 +327,22 @@ $app->put('/api/studentlist/:id', function($id) use ($app) {
         $id, $app->request->post('name')));
 });
 
+$app->put('/api/student/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+   echo json_encode(GraderAPI::updateStudent(
+        $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
+});
 $app->post('/api/student/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    $array = array(
-        "id" => $id,
-        "username" => $app->request->post('username'),
-        "firstname" => $app->request->post('firstname'),
-        "lastname" => $app->request->post('lastname')
-    );
     // Update the existing resource
-   echo json_encode(GraderAPI::updateStudent(
+    echo json_encode(GraderAPI::putStudent(
         $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
 });
 
