@@ -333,8 +333,16 @@ $app->put('/api/student/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Update the existing resource
-    echo json_encode(GraderAPI::updateStudent(
-        $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
+    $array = array(
+        "id" => $id,
+        "mail" => $app->request->post('username'),
+        "firstname" => $app->request->post('firstname'),
+        "lastname" => $app->request->post('lastname')
+    );
+    echo json_encode($array);
+
+    /*echo json_encode(GraderAPI::updateStudent(
+        $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));*/
 });
 
 // API POST routes
