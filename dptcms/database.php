@@ -683,7 +683,7 @@ class ClassDAO {
                         $stmt2->execute(array($listid, $id));
                     }
                 }
-                return $userid.$username
+                return $userid.$username;
             } catch (PDOException $ex) {
                 Logger::logError("could not insert new student".$ex);
                 return $userid.$username;
