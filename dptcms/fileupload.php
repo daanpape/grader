@@ -107,7 +107,7 @@ class CSVParser {
             return $return;
             /*return $retvalue;*/
         } else {
-            return -1;
+            return $return;
         }
     }
 }
