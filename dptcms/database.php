@@ -670,7 +670,7 @@ class ClassDAO {
     public function putStudents($listid, $studentArray) {
             try {
                 $conn = Db::getConnection();
-                $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE firstname = firstname");
+                $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
                 foreach($studentArray as $student) {
                     if($student[4] != "Titularis") {
                         $stmt->execute(array($student[1], $student[2], $student[3]));
