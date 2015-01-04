@@ -265,7 +265,7 @@ class ClassDAO {
     public static function uncoupleProjectStudentlist($projectid, $studentlistid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM project_studentlist WHERE project = :projectid AND studentlist = :studentlinstid");
+            $stmt = $conn->prepare("DELETE FROM project_studentlist WHERE project = :projectid AND studentlist = :studentlistid");
             $stmt->bindValue(':projectid', (int) $projectid, PDO::PARAM_INT);
             $stmt->bindValue(':studentlistid', (int) $studentlistid, PDO::PARAM_INT);
             $stmt->execute();
