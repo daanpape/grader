@@ -56,7 +56,7 @@ function showEditStudentListsModal(object) {
         $.getJSON()
 
         addGeneralModalButton(i18n.__("SaveBtn"), function(){
-            updateStudentsList(tid, $('#updateprojectform').serialize(), function(result){
+            updateStudentsList(tid, $('#updateStudentLists').serialize(), function(result){
                 hideModal();
             });
         });
