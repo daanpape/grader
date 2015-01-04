@@ -111,6 +111,12 @@ class GraderAPI {
         }
     }
 
+    public static function createStudentAndCoupleToListId($listid, $mail, $firstname, $lastname) {
+        $studentid = ClassDao::insertStudent($mail, $firstname, $lastname);
+        $listid2 = ClassDao::insertStudentlist_Student($studentid, $listid);
+
+    }
+
     public static function createProjectStudentlistCouple($projectid, $studlistid) {
         $id = ClassDAO::insertProjectStudlistCouple($projectid, $studlistid);
 
@@ -179,7 +185,7 @@ class GraderAPI {
         }
     }
 
-    public static function updateDocuments($array) {
+    public static function Documents($array) {
         if(ClassDAO::updateDocuments($array)) {
             return $array;
         } else {

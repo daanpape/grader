@@ -2,9 +2,12 @@
 function pageViewModel(gvm) {
     gvm.userId = -1;
     gvm.studentlistName = ko.observable('Name');
+    gvm.listId = -1
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AccountTitle");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("EditListTitle");}, gvm);
+
+    gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     gvm.myLists = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("myLists");}, gvm);
     gvm.addStudListBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("addStudListBtn");}, gvm);
@@ -75,6 +78,46 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
+function showNewStudentModal() {
+    resetGeneralModal();
+    setGeneralModalTitle("Add Student");
+    setGeneralModalBody('<form id="newStudentFrom"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="E-mail" " name="username"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="First Name" name="firstname"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="Last Name" name="lastname"> \
+            </div> \
+        </form>');
+    $.getJSON()
+
+    addGeneralModalButton(i18n.__("AddBtn"), function(){
+        addNewStudent($('#newStudentForm').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    showGeneralModal();
+}
+
+function addNewStudent(serialData, callback) {
+    $.ajax({
+        url: "/api/student/" + viewModel.listId,
+        type: "POST",
+        data: serialData,
+        success: function(data) {
+            viewModel.addTableData(data['id'], data['mail'], data['firstname'], data['lastname']);
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+}
+
 function updateStudent(id, object, callback) {
     $.ajax({
         url: "/api/student/" + id,
@@ -117,6 +160,11 @@ function loadStudentTable() {
 function initPage() {
     $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
         viewModel.studentlistName(data[0].name);
+        viewModel.listId(data[0].id);
+    });
+
+    $('#addStudent').click(function(){
+        showNewStudentModal();
     });
     loadStudentTable();
     

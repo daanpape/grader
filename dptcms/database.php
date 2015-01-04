@@ -713,6 +713,28 @@ class ClassDAO {
             }
 
     }
+
+    public function putStudent($mail, $firstname, $lastname) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
+            $stmt->execute(array($firstname, $lastname, $mail));
+            return $conn->lastInsertId();
+        } catch (PDOException $ex) {
+            Logger::logError("could not insert new student".$ex);
+        }
+    }
+
+    public function insertStudentlist_Student($studentid, $listid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT into studentlist_students (student, list) VALUES (?, ?)");
+            $stmt->execute(array($studentid, $listid));
+            return $conn->lastInsertId();
+        } catch (PDOException $ex) {
+            Logger::logError("could not insert new student".$ex);
+        }
+    }
 }
 
 /*

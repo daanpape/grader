@@ -213,7 +213,6 @@ function addNewProjecttypeForm(serialData, callback) {
     } else {
         alert("No course selected");
     }
-
 } 
 
 /*

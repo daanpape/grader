@@ -372,6 +372,16 @@ $app->post('/api/project/:id', function ($courseid) use ($app) {
                     $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+$app->post('/api/student/:id', function ($listid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Insert the data
+    echo json_encode(GraderAPI::createStudentAndCoupleToListId(
+        $listid, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
+});
+
 $app->post('/api/project/:projectid/studentlist/:studlistid', function($projectid, $studlistid) use($app) {
     //Use json header
     $response = $app->response();
