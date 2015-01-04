@@ -103,7 +103,7 @@ class CSVParser {
             fclose($handle);
         }
 
-        if(ClassDAO::putStudentList($retvalue)) {
+        if(ClassDAO::putStudentList($retvalue) != -1) {
             return $retvalue;
         } else {
             return -1;
