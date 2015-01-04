@@ -68,7 +68,7 @@ function showEditStudentListsModal(object) {
         showGeneralModal();
 }
 
-function updateStudentsList(id, name) {
+function updateStudentsList(id, name, callback) {
     $.ajax({
         url: "/api/studentlist/" + id,
         type: "PUT",
