@@ -155,6 +155,17 @@ class GraderAPI {
         }
     }
 
+    public static function updateStudentListName($id, $name) {
+        if(ClassDAO::updateStudentListName($id, $name)) {
+            return array(
+                "id" => $id,
+                "name" => $name
+            );
+        } else {
+            return -1;
+        }
+    }
+
     public static function updateDocuments($array) {
         if(ClassDAO::updateDocuments($array)) {
             return $array;

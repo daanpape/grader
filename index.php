@@ -317,6 +317,15 @@ $app->put('/api/project/:id', function($id) use ($app){
     echo json_encode(GraderAPI::updateProject(
                     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+$app->put('/api/studentlist/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(GraderAPI::updateStudentListName(
+        $id, $app->request->post('name')));
+});
 
 // API POST routes
 $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {

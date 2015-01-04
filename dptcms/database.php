@@ -378,6 +378,18 @@ class ClassDAO {
         }
     }
 
+    public static function updateStudentListName($id, $name) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE studentlist SET name = ? WHERE id = ?");
+            $stmt->execute(array($name, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update project', $err);
+            return false;
+        }
+    }
+
     public static function updateDocuments($array) {
         try {
             $conn = Db::getConnection();
