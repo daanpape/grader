@@ -690,7 +690,7 @@ class ClassDAO {
             }
         } else {
             Logger::logError("Could not make new studentlist");
-
+            return $userid.$username;
         }
 
     }
