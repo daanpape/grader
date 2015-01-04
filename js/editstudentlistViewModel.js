@@ -81,7 +81,6 @@ function updateStudent(id, object, callback) {
         type: "PUT",
         data: object,
         success: function(data) {
-            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             loadStudentTable();
             callback(true);
         },

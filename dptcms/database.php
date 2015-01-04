@@ -392,7 +392,7 @@ class ClassDAO {
     public static function updateStudent($id, $username, $firstname, $lastname) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE students SET username = ?, firstname = ?, lastname = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE students SET mail = ?, firstname = ?, lastname = ? WHERE id = ?");
             $stmt->execute(array($username, $firstname, $lastname, $id));
             return true;
         } catch (PDOException $err) {
