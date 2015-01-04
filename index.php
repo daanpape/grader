@@ -327,7 +327,7 @@ $app->put('/api/studentlist/:id', function($id) use ($app) {
         $id, $app->request->post('name')));
 });
 
-$app->put('/api/studentlist/:id', function($id) use ($app) {
+$app->put('/api/student/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
