@@ -714,7 +714,7 @@ class ClassDAO {
 
     }
 
-    public function putStudent($mail, $firstname, $lastname) {
+    public static function putStudent($mail, $firstname, $lastname) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
@@ -725,7 +725,7 @@ class ClassDAO {
         }
     }
 
-    public function insertStudentlist_Student($studentid, $listid) {
+    public static function putStudentlist_Student($studentid, $listid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into studentlist_students (student, list) VALUES (?, ?)");

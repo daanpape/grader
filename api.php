@@ -111,6 +111,20 @@ class GraderAPI {
         }
     }
 
+    public static function putStudent($id, $mail, $firstname, $lastname) {
+        $studentid = ClassDAO::putStudent($mail, $firstname, $lastname);
+        $listid = ClassDAO::putStudentlist_Student($studentid, $id);
+        if ($studentid != null && $listid != null) {
+            return array(
+                "id" => $studentid,
+                "username" => $mail,
+                "firstname" => $firstname,
+                "lastname" => $lastname);
+        } else {
+            return -1;
+        }
+    }
+
     public static function createStudentAndCoupleToListId($listid, $mail, $firstname, $lastname) {
         $studentid = ClassDao::insertStudent($mail, $firstname, $lastname);
         $listid2 = ClassDao::insertStudentlist_Student($studentid, $listid);
@@ -248,7 +262,7 @@ class GraderAPI {
     public static function getUserData($username) {
         return UserDAO::getUserByUsername($username, true);
     }
-    
+
     /**
      * Put a project structure into the database.
      * @param type $projectid the projectid to save the structure for.
