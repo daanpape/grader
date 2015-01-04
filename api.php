@@ -166,6 +166,19 @@ class GraderAPI {
         }
     }
 
+    public static function updateStudent($id, $username, $firstname, $lastname) {
+        if(ClassDAO::updateStudent($id, $username, $firstname, $lastname)) {
+            return array(
+                "id" => $id,
+                "username" => $username,
+                "firstname" => $firstname,
+                "lastname" => $lastname
+            );
+        } else {
+            return -1;
+        }
+    }
+
     public static function updateDocuments($array) {
         if(ClassDAO::updateDocuments($array)) {
             return $array;
