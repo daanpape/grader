@@ -667,10 +667,7 @@ class ClassDAO {
         }
     }
 
-    public function putStudents($studentArray) {
-
-        $listid = $this->putStudentList($userid, $username);
-        if($listid != -1) {
+    /*public function putStudents($studentArray) {
             try {
                 $conn = Db::getConnection();
                 $stmt = $conn->prepare("INSERT into students (firstname, lastname, email) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE firstname = firstname");
@@ -685,14 +682,9 @@ class ClassDAO {
                 return $userid.$username;
             } catch (PDOException $ex) {
                 Logger::logError("could not insert new student".$ex);
-                return $userid.$username;
             }
-        } else {
-            Logger::logError("Could not make new studentlist");
-            return $userid.$username;
-        }
 
-    }
+    }*/
 }
 
 /*

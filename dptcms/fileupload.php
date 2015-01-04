@@ -104,8 +104,9 @@ class CSVParser {
         }
         $userid = Security::getLoggedInId();
         $username = Security::getLoggedInName();
-        /*$return = ClassDAO::putStudents($retvalue);*/
-        return $userid.$username;
+        $return = ClassDAO::putStudentList($userid, $username);
+        /*$return = ClassDAO::putStudents($userid, $username, $retvalue);*/
+            return $return;
     }
 }
 
