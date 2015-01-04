@@ -54,7 +54,7 @@ function pageViewModel(gvm) {
         $("#couplebtn-" + id).click(function(){
             if(gvm.coupledCount == 0) {
                 $.ajax({
-                    url: '/api/project/' + $("#projectHeader").data('value') + '/studentlist/couple/' + id,
+                    url: '/api/project/' + $("#projectHeader").data('value') + '/couple/' + id,
                     type: "POST",
                     success: function() {
                         gvm.coupledCount++;
