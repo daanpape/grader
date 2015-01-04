@@ -61,9 +61,6 @@ $location = "editstudentlist";
         </button>
     </div>
 </div>
-<div class="container">
-    <div class="row"></div>
-</div>
 
 <?php include_once('jsdepends.php') ?>
 </body>
