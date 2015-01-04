@@ -159,6 +159,7 @@ function loadStudentTable() {
 
 function initPage() {
     $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
+        console.log(data);
         viewModel.studentlistName(data[0].name);
         viewModel.listId(data[0].id);
     });
