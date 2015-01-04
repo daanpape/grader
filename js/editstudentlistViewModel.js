@@ -63,7 +63,7 @@ function showEditStudentModal(tblObject) {
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateStudent(object.tid, $('#updateStudent').serialize(), function(result){
+        updateStudent(tblObject.tid, $('#updateStudent').serialize(), function(result){
             hideModal();
         });
     });
