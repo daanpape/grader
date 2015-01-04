@@ -345,7 +345,7 @@ class ClassDAO {
         }
     }
 
-    public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
+    /**public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO project_studentlist (project, studentlist) VALUES (?, ?)");
@@ -357,7 +357,7 @@ class ClassDAO {
             Logger::logError('Could not create new project', $err);
             return null;
         }
-    }
+    }**/
 
     public static function insertProjectStudlistCouple($projectid, $studlistid) {
         try {

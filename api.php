@@ -120,7 +120,7 @@ class GraderAPI {
         }
     }
 
-    public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
+    /**public static function putCoupleProjectAndStudentlist($projectid, $studentlistid) {
         $id = ClassDAO::putCoupleProjectAndStudentlist($projectid, $studentlistid);
         if ($id != null) {
             return array(
@@ -130,7 +130,7 @@ class GraderAPI {
         } else {
             return -1;
         }
-    }
+    }**/
 
     public static function putStudent($id, $mail, $firstname, $lastname) {
         $studentid = ClassDAO::putStudent($mail, $firstname, $lastname);
