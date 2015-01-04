@@ -656,11 +656,11 @@ class ClassDAO {
             return false;
         }
     }
-    public static function putStudentList($userdata) {
+    public static function putStudentList($userid, $username) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into studentlist (owner, name) VALUES (?, ?)");
-            $stmt->execute(array($userdata->id, $userdata->firstname.' - '. $userdata->lastname.' - New User List '));
+            $stmt->execute(array($userid, $username.' - New User List '));
             return $conn->lastInsertId();
         } catch (Exception $ex) {
             return -1;
@@ -668,8 +668,9 @@ class ClassDAO {
     }
 
     public function putStudents($studentArray) {
-        $userdata = GraderAPI::getUserData(Security::getLoggedInUsername());
-        $listid = $this->putStudentList($userdata);
+        $userid = Security::getLoggedInId();
+        $username = Security::getLoggedInName();
+        $listid = $this->putStudentList($userid, $username);
         if($listid != -1) {
             try {
                 $conn = Db::getConnection();
@@ -682,7 +683,7 @@ class ClassDAO {
                         $stmt2->execute(array($listid, $id));
                     }
                 }
-                return $userdata->firstname;
+                return $conn->lastInsertId();
             } catch (PDOException $ex) {
                 Logger::logError("could not insert new student".$ex);
                 return $userdata->firstname;
