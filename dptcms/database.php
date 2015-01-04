@@ -162,7 +162,7 @@ class ClassDAO {
     public static function getStudentsFromStudentList($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT users.id, users.username, users.firstname, users.lastname FROM users JOIN studentlist_users ON users.id = studentlist_users.student WHERE studentlist_users.studentlist = :id ");
+            $stmt = $conn->prepare("SELECT students.id, students.username, students.firstname, students.lastname FROM students JOIN studentlist_students ON students.id = studentlist_students.student WHERE studentlist_students.studentlist = :id ");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
