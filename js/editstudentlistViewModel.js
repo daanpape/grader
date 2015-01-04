@@ -51,13 +51,13 @@ function showEditStudentModal(tblObject) {
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody('<form id="#updateStudent"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + object.tusername + '" " name="username" value="' + object.tusername + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + object.tfirstname + '" " name="username" value="' + object.tfirstname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="username" value="' + tblObject.tfirstname + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + object.tlastname + '" " name="username" value="' + object.tlastname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" " name="username" value="' + tblObject.tlastname + '"> \
             </div> \
         </form>');
     $.getJSON()
