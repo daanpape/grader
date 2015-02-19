@@ -32,7 +32,6 @@ $location = "project";
                 height:30px;
                 margin-top:10px;
                 background-position-x:-90px;
-                padding-top:10%;
                 display:inline-block;
 
             }
