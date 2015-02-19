@@ -31,7 +31,7 @@ $location = "project";
                 width:235px;
                 height:143px;
                 margin-top:10px;
-                background-position-x:90px;
+                background-position-x:-90px;
             }
 
             .lock:hover {
