@@ -31,7 +31,7 @@
     "RegisterTitle" : "Register",
 
     "AssessTitle" : "Assess a project",
-    "YesNoModaltitle" : "Are you shure?",
+    "YesNoModaltitle" : "Are you sure?",
     "YesNoModalBody" : "Are you sure you want to delete this item?",
     "Yes" : "Yes",
     "No" : "No",
