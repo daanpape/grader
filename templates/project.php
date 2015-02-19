@@ -23,6 +23,15 @@ $location = "project";
                 margin-right: 10px;
                 width: auto !important;
             }
+
+            .lock{
+                background-image: url("/img/lock.jpg");
+                background-repeat: no-repeat;
+                background-position-y:-5px;
+                width:30px;
+                height:30px;
+                margin-top:10px;
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -64,7 +73,7 @@ $location = "project";
                                     <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
                                     <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
                                     <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                                    <img width="25px" height="25px" src="/img/lock.jpg" />
+                                    <div class="lock"></div>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
