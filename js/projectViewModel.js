@@ -158,4 +158,8 @@ function initPage() {
     $(".savePageBtn").click(function(){
         saveProjectStructure(); 
     });
+
+    $(".locked").click(function() {
+        setLocked();
+    });
 }

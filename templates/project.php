@@ -24,7 +24,18 @@ $location = "project";
                 width: auto !important;
             }
 
-            .lock{
+            .locked{
+                background-position-y:-55px;
+                background-position: -120px;
+            }
+
+            .unlocked:hover {
+                background-position-y:-55px;
+                background-position: -120px;
+            }
+
+            .unlocked
+            {
                 background-image: url("/img/lock.png");
                 background-repeat: no-repeat;
                 background-position-y:-55px;
@@ -33,12 +44,6 @@ $location = "project";
                 margin-top:10px;
                 background-position-x:-90px;
                 display:inline-block;
-
-            }
-
-            .lock:hover {
-                background-position-y:-55px;
-                background-position: -120px;
             }
 
         </style>
@@ -73,7 +78,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <div class="lock"></div>
+                        <div class="unlocked"></div>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
