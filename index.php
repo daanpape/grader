@@ -484,6 +484,8 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
 });
 
 
+/* Admin router */
+require_once 'admin.php';
 
 /* Run the application */
 $app->run();
