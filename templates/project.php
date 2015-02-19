@@ -24,7 +24,18 @@ $location = "project";
                 width: auto !important;
             }
 
-            .lock{
+            .locked{
+                background-position-y:-55px;
+                background-position: -120px;
+            }
+
+            .unlocked:hover {
+                background-position-y:-55px;
+                background-position: -120px;
+            }
+
+            .unlocked
+            {
                 background-image: url("/img/lock.png");
                 background-repeat: no-repeat;
                 background-position-y:-55px;
@@ -33,12 +44,15 @@ $location = "project";
                 margin-top:10px;
                 background-position-x:-90px;
                 display:inline-block;
+<<<<<<< HEAD
 
             }
 
             .lock:hover {
                 background-position-y:-50px;
                 background-position: -120px;
+=======
+>>>>>>> 36a9621b6d4e979fc8105e86f8886265c4e7a4e4
             }
 
         </style>
@@ -73,7 +87,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <div class="lock"></div>
+                        <div class="unlocked"></div>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
@@ -82,7 +96,7 @@ $location = "project";
                                     <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
                                     <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
                                     <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                                    <div class="lock"></div>
+                                    <div class="unlocked"></div>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
@@ -90,7 +104,7 @@ $location = "project";
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
-                                            <div class="lock"></div>
+                                            <div class="unlocked"></div>
                                         </li>
                                     </ul>
                                 </div>
