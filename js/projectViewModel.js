@@ -2,7 +2,6 @@
  * Competence class
  */
 function Competence(viewmodel, id, code, name, weight, subcompetences) {
-    console.log(weight),
     return {
         id: ko.observable(id),
         code: ko.observable(code),
