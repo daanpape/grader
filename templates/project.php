@@ -29,7 +29,7 @@ $location = "project";
                 background-repeat: no-repeat;
                 background-position-y:-50px;
                 width:30px;
-                height:30px;
+                height:40px;
                 margin-top:10px;
                 background-position-x:-90px;
             }
