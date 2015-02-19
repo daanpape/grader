@@ -113,7 +113,7 @@ function pageViewModel(gvm) {
  * @returns {undefined}
  */
 function saveProjectStructure() {
-    console.log(gvm.competences.weight);
+    console.log(viewModel.competences.weight);
     $.ajax({
        type: "POST",
        url: "/api/projectstructure/" + projectid,
