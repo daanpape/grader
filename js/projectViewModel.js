@@ -82,7 +82,6 @@ function pageViewModel(gvm) {
     
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
-        
         // Update automated weight calculation
         var size = gvm.competences.length;
         var percent = 100/size;
@@ -113,6 +112,7 @@ function pageViewModel(gvm) {
  * @returns {undefined}
  */
 function saveProjectStructure() {
+    console.log(gvm.competences.weight);
     $.ajax({
        type: "POST",
        url: "/api/projectstructure/" + projectid,
@@ -121,7 +121,7 @@ function saveProjectStructure() {
            // TODO make multilangual and with modals
            alert("Saved projectstructure to server");
            
-            fetchProjectStructure();
+           fetchProjectStructure();
        }
     });
 }
