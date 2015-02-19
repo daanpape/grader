@@ -6,7 +6,7 @@ $app->get('/admin/', function () use ($app) {
 });
 
 $app->get('/admin/home', function () use ($app) {
-    $app->render('admin/pages/index.php');
+    $app->render('home.php');
 });
 
 ?>
