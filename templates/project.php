@@ -27,11 +27,11 @@ $location = "project";
             .lock{
                 background-image: url("/img/lock.jpg");
                 background-repeat: no-repeat;
-                background-position-y:-55px;
+                background-position-y:-50px;
                 width:235px;
                 height:143px;
                 margin-top:10px;
-                background-position-x:0px;
+                background-position-x:90px;
             }
 
             .lock:hover {
