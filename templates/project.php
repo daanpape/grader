@@ -28,7 +28,7 @@ $location = "project";
                 background-image: url("/img/lock.jpg");
                 background-repeat: no-repeat;
                 background-position-y:-50px;
-                width:25px;
+                width:30px;
                 height:30px;
                 margin-top:10px;
                 background-position-x:-90px;
