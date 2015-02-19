@@ -86,7 +86,7 @@ function pageViewModel(gvm) {
         // Update automated weight calculation
         var size = gvm.competences.length;
         var percent = 100/size;
-        console.log("Test");
+        console.log(gvm.competences);
         ko.utils.arrayForEach(gvm.competences, function(competence){
             competence.weight(percent);
             alert(percent);
