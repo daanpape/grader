@@ -28,8 +28,8 @@ $location = "project";
                 background-image: url("/img/lock.jpg");
                 background-repeat: no-repeat;
                 background-position-y:-50px;
-                width:235px;
-                height:143px;
+                width:25px;
+                height:30px;
                 margin-top:10px;
                 background-position-x:-90px;
             }
