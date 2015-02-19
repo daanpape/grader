@@ -80,6 +80,7 @@ function pageViewModel(gvm) {
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     
     gvm.competences = ko.observableArray([]);
+    console.log(ko.observ)
     
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
@@ -87,7 +88,6 @@ function pageViewModel(gvm) {
         // Update automated weight calculation
         var size = gvm.competences.length;
         var percent = 100/size;
-        console.log(gvm);
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
             console.log("weight");
