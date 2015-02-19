@@ -69,7 +69,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <img width="25px" height="25px" src=""/>
+                        <div class="lock"></div>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
@@ -86,7 +86,7 @@ $location = "project";
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
-                                            <img width="25px" height="25px" />
+                                            <div class="lock"></div>
                                         </li>
                                     </ul>
                                 </div>
