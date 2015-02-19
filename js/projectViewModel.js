@@ -2,13 +2,14 @@
  * Competence class
  */
 function Competence(viewmodel, id, code, name, weight, subcompetences) {
+    console.log(weight),
     return {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
         subcompetences: ko.observableArray(subcompetences),
-        
+
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
         },
@@ -21,6 +22,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
             this.subcompetences.remove(subCompetence);
         }
     };
+
 }
 
 /**
@@ -90,6 +92,7 @@ function pageViewModel(gvm) {
         console.log(gvm.competences);
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
+            console.log("weight");
             competence.weight(percent);
             alert(percent);
         });
