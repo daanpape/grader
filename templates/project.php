@@ -25,13 +25,13 @@ $location = "project";
             }
 
             .lock{
-                background-image: url("/img/sprite.png");
+                background-image: url("/img/lock.png");
                 background-repeat: no-repeat;
-                background-position-y:-155px;
-                width:30px;
-                height:30px;
+                background-position-y:-55px;
+                width:25px;
+                height:25px;
                 margin-top:10px;
-                background-position-x:-80px;
+                background-position-x:-90px;
             }
 
             .lock:hover {
