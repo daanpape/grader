@@ -32,7 +32,9 @@ $location = "project";
                 height:30px;
                 margin-top:10px;
                 background-position-x:-90px;
+                padding-top:10px;
                 display:inline-block;
+
             }
 
             .lock:hover {
