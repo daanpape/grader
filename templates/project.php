@@ -32,12 +32,14 @@ $location = "project";
                 height:30px;
                 margin-top:10px;
                 background-position-x:-90px;
+                display:inline-block;
             }
 
             .lock:hover {
                 background-position-y:-55px;
                 background-position: -120px;
             }
+
         </style>
 
         <?php include_once('hddepends.php') ?>
