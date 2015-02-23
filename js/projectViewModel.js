@@ -31,7 +31,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, indicators) {
+function SubCompetence(parent, id, code, name, weight, indicators, gvm) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
@@ -47,14 +47,13 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
             parent.removeSubCompetence(this);
         },
 
-        toggleLock: function(){
-            this.weightLeft = parseInt(100 - this.weight() - this.weightLeft())
-            alert((this.weightLeft()));
+        toggleLock: function(gvm){
+            alert((gvm.weightLeft()));
         },
         
         removeIndicator: function(indicator) {
             this.indicators.remove(indicator);
-        },
+        }
 
     };
 }
@@ -90,7 +89,9 @@ function pageViewModel(gvm) {
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     
     gvm.competences = ko.observableArray([]);
-    
+
+    gvm.weightLeft = 100;
+
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
 
