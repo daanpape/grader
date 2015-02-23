@@ -12,7 +12,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
 
-            var total = 100;
+            /*var total = 100;
             alert(total);
             console.log(this.subcompetences);
             for(var sub in this.subcompetences){
@@ -20,7 +20,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
                 sub.calculateWeight(100);
                 total -= sub.weight;
                 alert(total);
-            }
+            }*/
         },
 
         removeThis: function() {
@@ -52,9 +52,9 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
             this.indicators.push(new Indicator(this));
         },
 
-        calculateWeight: function(total){
+        /*calculateWeight: function(total){
             this.weight = total;
-        },
+        },*/
 
         removeThis: function() {
             parent.removeSubCompetence(this);
