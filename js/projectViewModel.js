@@ -6,7 +6,14 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
-        weight: ko.observable(weight),
+        weight: function(){
+            if(ko.observable(weight) > 100 || ko.observable(weight) < 0){
+                alert("Het gewicht kan niet kleiner zijn dan 0% of groter dan 100% !");
+                return false;
+            } else {
+                return ko.observable(weight);
+            }
+        },
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
