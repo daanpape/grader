@@ -13,12 +13,6 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
             this.subcompetences.push(new SubCompetence(this));
         },
 
-        weightLeft: ko.computed(
-            function (weight) {
-                this.weight - weight;
-            }
-        ),
-
         removeThis: function() {
             viewmodel.removeCompetence(this);
         },
@@ -53,8 +47,7 @@ function SubCompetence(parent, id, code, name, weight, indicators, gvm) {
         },
 
         toggleLock: function(){
-            parent.weightLeft = parent.weightLeft - this.weight;
-            alert(parent.weightLeft);
+            alert(this.weight());
         },
         
         removeIndicator: function(indicator) {
