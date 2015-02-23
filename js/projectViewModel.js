@@ -48,7 +48,7 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
         },
 
         toggleLock: function(){
-            alert(weight);
+            alert(parent.weight - weight);
         },
         
         removeIndicator: function(indicator) {
