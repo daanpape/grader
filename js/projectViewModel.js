@@ -30,7 +30,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, indicators, gvm) {
+function SubCompetence(parent, id, code, name, weight, indicators) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
