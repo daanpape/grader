@@ -18,7 +18,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         },
 
         toggleLock: function(){
-            alert(weight);
+            alert(this.weight());
         },
 
         removeSubCompetence: function(subCompetence) {
@@ -47,8 +47,8 @@ function SubCompetence(parent, id, code, name, weight, indicators, gvm) {
             parent.removeSubCompetence(this);
         },
 
-        toggleLock: function(gvm){
-            alert((gvm.weightLeft));
+        toggleLock: function(){
+            alert(this.weight());
         },
         
         removeIndicator: function(indicator) {
