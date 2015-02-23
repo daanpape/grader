@@ -6,15 +6,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
-        weight: function(){
-            var weightTemp = weight;
-            if(weightTemp > 100 || weightTemp < 0){
-                alert("Het gewicht kan niet kleiner zijn dan 0% of groter dan 100% !");
-                return false;
-            } else {
-                return weightTemp;
-            }
-        },
+        weight: ko.observable(weight),
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
@@ -33,7 +25,6 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
             this.subcompetences.remove(subCompetence);
         }
     };
-
 }
 
 /**
