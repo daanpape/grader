@@ -14,7 +14,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         },
 
         getWeightLeft: function(weightSub){
-            return this.weight() - weightSub;
+            return 100 - this.weight() - weightSub;
         },
 
         removeThis: function() {
