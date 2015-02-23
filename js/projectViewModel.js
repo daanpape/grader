@@ -48,7 +48,7 @@ function SubCompetence(parent, id, code, name, weight, indicators, gvm) {
         },
 
         toggleLock: function(gvm){
-            alert((gvm.weightLeft()));
+            alert((gvm.weightLeft));
         },
         
         removeIndicator: function(indicator) {
