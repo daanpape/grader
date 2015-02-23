@@ -11,19 +11,17 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
 
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
-        },
-
-        removeThis: function() {
-            viewmodel.removeCompetence(this);
-        },
-
-        calculateWeight: function () {
+            
             var total = 100;
             for(var sub in subcompetences){
                 sub.calculateWeight(100);
                 total -= sub.weight;
                 alert(total);
             }
+        },
+
+        removeThis: function() {
+            viewmodel.removeCompetence(this);
         },
 
         toggleLock: function(){
