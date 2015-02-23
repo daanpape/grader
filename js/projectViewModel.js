@@ -18,7 +18,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         },
 
         toggleLock: function(){
-            alert(weight);
+            alert(ko.observable(weight));
         },
 
         removeSubCompetence: function(subCompetence) {
@@ -48,7 +48,7 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
         },
 
         toggleLock: function(){
-            alert(weight);
+            alert(ko.observable(weight));
         },
         
         removeIndicator: function(indicator) {
@@ -65,10 +65,6 @@ function Indicator(parent, id, name, description) {
         id: ko.observable(id),
         name: ko.observable(name),
         description : ko.observable(description),
-
-        toggleLock: function(){
-            alert(weight);
-        },
 
         removeThis: function() {
             parent.removeIndicator(this);
