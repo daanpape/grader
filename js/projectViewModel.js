@@ -8,7 +8,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         name: ko.observable(name),
         weight: function(){
             var weightTemp = weight;
-            if(weightTemp > 100 || ko.weightTemp < 0){
+            if(weightTemp > 100 || weightTemp < 0){
                 alert("Het gewicht kan niet kleiner zijn dan 0% of groter dan 100% !");
                 return false;
             } else {
