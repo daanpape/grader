@@ -22,6 +22,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
             for(var sub in subcompetences){
                 sub.calculateWeight(100);
                 total -= sub.weight;
+                alert(total);
             }
         },
 
