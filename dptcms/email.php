@@ -88,5 +88,8 @@ class Email {
 		// Send the multipart email
 		return self::sendMail($destination, $email->sender, $email->subject, $email->replyto, $email->html, $email->plain);
 	}
+
+
+
 }
 ?>

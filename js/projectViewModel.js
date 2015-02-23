@@ -16,7 +16,11 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         removeThis: function() {
             viewmodel.removeCompetence(this);
         },
-        
+
+        toggleLock: function(){
+            alert('test');
+        },
+
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
         }
