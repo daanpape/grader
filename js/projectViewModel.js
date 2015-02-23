@@ -48,9 +48,9 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
         },
 
         toggleLock: function(){
-            alert(parent.weight());
-            alert(weight);
-            alert((parseInt(parent.weight - this.weight)));
+            ko.totalSubCompetenceWeight += weight;
+            alert(ko.totalSubCompetenceWeight());
+            alert((parseInt(parent.weight() - weight)));
         },
         
         removeIndicator: function(indicator) {
