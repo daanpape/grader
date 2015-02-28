@@ -122,7 +122,7 @@ function pageViewModel(gvm) {
 
     gvm.lockedStatus = ko.computed(function()
     {
-        return this.locked() ? "icon-lock" : "icon-unlock";
+        return this.locked ? "icon-lock" : "icon-unlock";
     });
     
     gvm.competences = ko.observableArray([]);
