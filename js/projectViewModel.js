@@ -144,7 +144,6 @@ function pageViewModel(gvm) {
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
 
-
         // Update automated weight calculation
 
         var lockedPercent = 0;
