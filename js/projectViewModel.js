@@ -155,7 +155,7 @@ function pageViewModel(gvm) {
         {
             if(gvm.competences()[index].locked == true)
             {
-                lockedPercent = lockedPercent + gvm.competences()[index].weight();
+                lockedPercent += gvm.competences()[index].weight();
             }
             else
             {
