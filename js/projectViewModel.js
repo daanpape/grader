@@ -12,7 +12,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
-
+            automatedWeightCalculation(parent.subcompetences);
             /*var total = 100;
             alert(total);
             console.log(this.subcompetences);
@@ -62,6 +62,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         
         addIndicator: function() {
             this.indicators.push(new Indicator(this));
+            automatedWeightCalculation(parent.indicators);
         },
 
         /*calculateWeight: function(total){
@@ -145,10 +146,7 @@ function pageViewModel(gvm) {
         gvm.competences.push(new Competence(this));
 
         // Update automated weight calculation
-        automatedWeightCalculation(gvm);
-
-
-
+        automatedWeightCalculation(gvm.competences);
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
             console.log(competence.weight);
@@ -220,16 +218,16 @@ function initPage() {
     });
 }
 
-function automatedWeightCalculation(gvm)
+function automatedWeightCalculation(data)
 {
     var lockedPercent = 0;
     var nrOfUnlocked = 0;
 
-    for(var index = 0; index < gvm.competences().length; index++)
+    for(var index = 0; index < data.length; index++)
     {
-        if(gvm.competences()[index].locked == true)
+        if(data[index].locked == true)
         {
-            lockedPercent = lockedPercent + parseInt(gvm.competences()[index].weight());
+            lockedPercent = lockedPercent + parseInt(data[index].weight());
         }
         else
         {
@@ -241,11 +239,11 @@ function automatedWeightCalculation(gvm)
 
     var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
-    for(var index = 0; index < gvm.competences().length; index++)
+    for(var index = 0; index < data.length; index++)
     {
-        if(gvm.competences()[index].locked == false)
+        if(data[index].locked == false)
         {
-            gvm.competences()[index].weight(percentPerCompetence);
+            data[index].weight(percentPerCompetence);
         }
     }
 }
