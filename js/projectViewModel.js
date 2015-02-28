@@ -7,7 +7,7 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
-        locked: ko.observable(false),
+        locked: ko.observable(true),
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
