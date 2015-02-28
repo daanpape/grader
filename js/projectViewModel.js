@@ -1,13 +1,13 @@
 /**
  * Competence class
  */
-function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
+function Competence(viewmodel, id, code, name, weight, subcompetences) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
-        locked: ko.observable(locked),
+        locked: ko.observable(false),
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
