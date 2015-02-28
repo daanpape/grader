@@ -147,19 +147,16 @@ function pageViewModel(gvm) {
 
         // Update automated weight calculation
 
-        var data = ko.toJSON(viewModel.competences);
-        console.log(data);
-
         var lockedPercent = 0;
         var nrOfUnlocked = 0;
 
-        console.log("Array lenght: " + data.length);
+        console.log("Array lenght: " + gvm.competences().length);
 
-        for(var index = 0; index < data.length; index++)
+        for(var index = 0; index < gvm.competences().length; index++)
         {
             if(data[index].locked == true)
             {
-                lockedPercent += data[index].weight;
+                lockedPercent += gvm.competences().weight;
             }
             else
             {
