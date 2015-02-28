@@ -40,6 +40,10 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             //alert(this.weight());
         },
 
+        lockedStatus: function() {
+                return this.locked ? "icon-lock" : "icon-unlock";
+        },
+
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
         }

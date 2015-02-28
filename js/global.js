@@ -76,10 +76,6 @@ $('document').ready(function(){
     viewModel = new GlobalViewModel();
     ko.applyBindings(viewModel, document.getElementById("htmldoc"));
 
-    viewModel.lockedStatus = ko.pureComputed(function() {
-        return this.locked ? "icon-lock" : "icon-unlock";
-    },viewModel);
-
     // Execute page specific initialisation if present
     if(typeof initPage == 'function'){
         initPage();
