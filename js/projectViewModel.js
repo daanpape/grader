@@ -32,12 +32,12 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             if(this.locked == true)
             {
                 this.locked = false;
-                $(this).removeClass("icon-lock").addClass("icon-unlock");
+                $(".icon-large").removeClass("icon-lock").addClass("icon-unlock");
             }
             else
             {
                 this.locked = true;
-                $(this).removeClass("icon-unlock").addClass("icon-lock");
+                $(".icon-large").removeClass("icon-unlock").addClass("icon-lock");
             }
 
 
