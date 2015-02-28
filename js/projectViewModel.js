@@ -146,6 +146,9 @@ function pageViewModel(gvm) {
 
 
         // Update automated weight calculation
+
+        var data = ko.toJSON(viewModel.competences);
+        console.log(data);
         var lockedPercent = 0;
         var nrOfUnlocked = 0;
 
@@ -240,6 +243,4 @@ function initPage() {
     $(".savePageBtn").click(function(){
         saveProjectStructure(); 
     });
-
-    console.log(viewModel.competences);
 }
