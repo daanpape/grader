@@ -59,6 +59,7 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
+        locked: ko.observable(locked),
         indicators: ko.observableArray(indicators),
         
         addIndicator: function() {
@@ -91,11 +92,17 @@ function Indicator(parent, id, name, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
+        locked: ko.observable(locked),
         description : ko.observable(description),
 
         removeThis: function() {
             parent.removeIndicator(this);
+        },
+
+        toggleLock: function(){
+            alert(this.weight());
         }
+
     };
 }
 
