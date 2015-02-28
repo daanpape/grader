@@ -31,10 +31,12 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         toggleLock: function(){
             if(this.locked == true)
             {
+                $(this + " i").addClass("icon-unlock").removeClass("icon-unlock");;
                 this.locked = false;
             }
             else
             {
+                $(this + " i").addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
             }
             console.log(this.locked);
