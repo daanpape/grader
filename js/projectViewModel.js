@@ -44,11 +44,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             this.subcompetences.remove(subCompetence);
         }
     };
-
-
-    viewmodel.lockedStatus = ko.pureComputed(function() {
-        return this.locked ? "icon-lock" : "icon-unlock";
-    },viewmodel);
 }
 
 /**

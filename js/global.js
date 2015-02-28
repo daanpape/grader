@@ -54,6 +54,7 @@ function GlobalViewModel()
     this.uploadedFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadedFiles");}, this);
     this.progress = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Progress");}, this);
 
+
     /**
      * Change the UI locale
      * @param {string} locale - the new UI locale
@@ -74,6 +75,10 @@ $('document').ready(function(){
     // Activate knockout framework
     viewModel = new GlobalViewModel();
     ko.applyBindings(viewModel, document.getElementById("htmldoc"));
+
+    viewModel.lockedStatus = ko.pureComputed(function() {
+        return this.locked ? "icon-lock" : "icon-unlock";
+    },viewModel);
 
     // Execute page specific initialisation if present
     if(typeof initPage == 'function'){
