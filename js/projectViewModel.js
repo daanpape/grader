@@ -174,7 +174,7 @@ function pageViewModel(gvm) {
 
         for(var index = 0; index < gvm.competences().length; index++)
         {
-            if(gvm.competences()[index].locked() == false)
+            if(gvm.competences()[index].locked == false)
             {
                 gvm.competences()[index].weight(percentPerCompetence);
             }
