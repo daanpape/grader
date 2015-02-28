@@ -42,7 +42,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             //alert(this.weight());
         },
 
-        lockedStatus: ko.pureComputed(function() {
+        lockedStatus: ko.computed(function() {
                 console.log("lockedStatus");
                 return this.locked ? "icon-lock" : "icon-unlock";
         },viewmodel),
