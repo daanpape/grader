@@ -27,7 +27,7 @@ $location = "project";
 
             i
             {
-                padding-top:6px;
+                margin-top:6px;
             }
         </style>
 
