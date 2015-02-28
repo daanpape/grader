@@ -240,4 +240,6 @@ function initPage() {
     $(".savePageBtn").click(function(){
         saveProjectStructure(); 
     });
+
+    console.log(viewModel.competences);
 }
