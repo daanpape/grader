@@ -11,6 +11,7 @@ $location = "project";
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="/img/favicon.ico">
+        <link rel="stylesheet" href="../css/bootstrap.icon-large.min.css">
 
         <title data-bind="text: title"></title>
         <style>
@@ -78,7 +79,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <div class="unlocked" data-bind="click: toggleLock"></div>
+                        <div class="icon-unlock" data-bind="click: toggleLock"></div>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
@@ -87,7 +88,7 @@ $location = "project";
                                     <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
                                     <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
                                     <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                                    <div class="unlocked" data-bind="click: toggleLock"></div>
+                                    <div class="icon-unlock" data-bind="click: toggleLock"></div>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
@@ -95,7 +96,7 @@ $location = "project";
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
-                                            <div class="unlocked" data-bind="click: toggleLock"></div>
+                                            <div class="icon-unlock" data-bind="click: toggleLock"></div>
                                         </li>
                                     </ul>
                                 </div>
