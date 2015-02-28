@@ -11,7 +11,7 @@ $location = "project";
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="/img/favicon.ico">
-        <link rel="stylesheet" href="../css/bootstrap.icon-large.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.icon-large.css">
 
         <title data-bind="text: title"></title>
         <style>
