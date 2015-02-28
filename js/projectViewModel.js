@@ -124,7 +124,7 @@ function pageViewModel(gvm) {
 
     gvm.lockedStatus = ko.computed(function()
     {
-        return "icon-tag";
+        return "'icon-tag'";
     },gvm);
 
     gvm.addCompetence = function() {
