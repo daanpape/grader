@@ -29,7 +29,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         toggleLock: function(data){
-            console.log(data);
+            console.log(this);
             if(this.locked == true)
             {
                 this.locked = false;
