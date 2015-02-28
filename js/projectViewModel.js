@@ -41,6 +41,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         lockedStatus: function() {
+                console.log("lockedStatus");
                 return this.locked ? "icon-lock" : "icon-unlock";
         },
 
