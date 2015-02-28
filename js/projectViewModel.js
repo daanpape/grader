@@ -119,8 +119,15 @@ function pageViewModel(gvm) {
 
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+
+    gvm.lockedStatus = ko.computed(function()
+    {
+        return this.locked() ? "icon-lock" : "icon-unlock";
+    });
     
     gvm.competences = ko.observableArray([]);
+
+
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
