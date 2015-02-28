@@ -172,14 +172,14 @@ function pageViewModel(gvm) {
 
         console.log("Every unlocked should get: " + percentPerCompetence);
 
-        /*for(var index = 0; index < gvm.competences().length; index++)
+        for(var index = 0; index < gvm.competences().length; index++)
         {
             if(gvm.competences()[index].locked == false)
             {
-                gvm.competences()[index].weight = percentPerCompetence;
+                gvm.competences()[index].weight(percentPerCompetence);
             }
-        }*/
-        gvm.competences()[0].weight(30);
+        }
+
 
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
