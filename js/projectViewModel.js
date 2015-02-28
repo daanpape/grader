@@ -42,6 +42,12 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             //alert(this.weight());
         },
 
+
+        lockedStatus: function()
+        {
+            return this.locked ? "icon-lock" : "icon-unlock";
+        },
+
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
         }
@@ -120,11 +126,6 @@ function pageViewModel(gvm) {
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
-    gvm.lockedStatus = ko.computed(function()
-    {
-        return this.locked ? "icon-lock" : "icon-unlock";
-    });
-    
     gvm.competences = ko.observableArray([]);
 
 
