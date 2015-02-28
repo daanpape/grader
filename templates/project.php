@@ -56,7 +56,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <i class="icon-large icon-unlock" data-bind="click: toggleLock"></i>
+                        <i class="icon-large icon-unlock form-control" data-bind="click: toggleLock"></i>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
