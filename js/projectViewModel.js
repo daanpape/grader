@@ -143,12 +143,13 @@ function pageViewModel(gvm) {
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
+        console.log(gvm.competences);
 
         // Update automated weight calculation
         var lockedPercent = 0;
         var nrOfUnlocked = 0;
 
-        console.log("Array lenght: " + viewModel.competences.length);
+        console.log("Array lenght: " + gvm.competences.length);
 
         for(var index = 0; index < gvm.competences.length; index++)
         {
