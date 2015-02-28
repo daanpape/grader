@@ -31,7 +31,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         toggleLock: function(){
             if(this.locked == true)
             {
-
                 this.locked = false;
             }
             else
@@ -40,12 +39,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             }
             console.log(this.locked);
             //alert(this.weight());
-        },
-
-
-        lockedStatus: function()
-        {
-            return this.locked ? "icon-lock" : "icon-unlock";
         },
 
         removeSubCompetence: function(subCompetence) {
