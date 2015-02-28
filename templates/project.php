@@ -72,8 +72,9 @@ $location = "project";
                                         <li class="list-group-item">
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
-                                            <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
+                                            <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
                                             <i class="icon-large icon-unlock" data-bind="click: toggleLock"></i>
+                                            <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
                                     </ul>
                                 </div>

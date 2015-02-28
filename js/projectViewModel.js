@@ -95,10 +95,11 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, locked, description) {
+function Indicator(parent, id, name, weight, locked, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
+        weight: ko.observable(weight),
         locked: ko.observable(locked),
         description : ko.observable(description),
 
