@@ -122,11 +122,6 @@ function pageViewModel(gvm) {
     
     gvm.competences = ko.observableArray([]);
 
-    gvm.lockedStatus = ko.computed(function()
-    {
-        return "'icon-tag'";
-    },gvm);
-
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
 
