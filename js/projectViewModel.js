@@ -53,7 +53,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, indicators) {
+function SubCompetence(parent, id, code, name, weight, locked, indicators) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
@@ -88,7 +88,7 @@ function SubCompetence(parent, id, code, name, weight, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, description) {
+function Indicator(parent, id, name, locked, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
