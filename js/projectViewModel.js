@@ -2,6 +2,11 @@
  * Competence class
  */
 function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
+
+    this.lockedStatus = ko.computed(function() {
+        return this.locked ? "icon-lock" : "icon-unlock";
+    });
+
     return {
         id: ko.observable(id),
         code: ko.observable(code),
@@ -42,14 +47,11 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             //alert(this.weight());
         },
 
-        lockedStatus: ko.computed(function() {
-            return this.locked ? "'icon-lock'" : "'icon-unlock'";
-        },viewmodel),
-
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
         }
     };
+
 }
 
 /**
