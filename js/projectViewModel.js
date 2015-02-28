@@ -164,7 +164,7 @@ function pageViewModel(gvm) {
 
         var percentPerCompetence = lockedPercent / nrOfUnlocked;
 
-        gvm.competences[gvm.competences.length-1].weight = percentPerCompetence;
+        console.log(percentPerCompetence);
 
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
