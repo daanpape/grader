@@ -171,7 +171,7 @@ function pageViewModel(gvm) {
         var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
         console.log("Every unlocked should get: " + percentPerCompetence);
-        console.log(gvm.competences()[0].locked());
+        console.log(gvm.competences()[0].locked);
 
         for(var index = 0; index < gvm.competences().length; index++)
         {
