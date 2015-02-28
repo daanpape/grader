@@ -37,7 +37,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             {
                 this.locked = true;
             }
-
             //alert(this.weight());
         },
 
@@ -45,6 +44,11 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
             this.subcompetences.remove(subCompetence);
         }
     };
+
+
+    viewmodel.lockedStatus = ko.pureComputed(function() {
+        return this.locked;
+    },viewmodel);
 }
 
 /**
