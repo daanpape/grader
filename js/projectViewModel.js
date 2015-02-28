@@ -145,14 +145,30 @@ function pageViewModel(gvm) {
         gvm.competences.push(new Competence(this));
 
         // Update automated weight calculation
-        var size = gvm.competences.length;
-        var percent = 100/size;
-        gvm.competences[0] = 50;
-        console.log(this.weight);
+        var lockedPercent = 0;
+        var nrOfUnlocked = 0;
+
+        for(var index = 0; index < gvm.competences.length; index++)
+        {
+            if(gvm.competences[index].locked == true)
+            {
+                lockedPercent += gvm.competences[index].weight;
+            }
+            else
+            {
+                nrOfUnlocked++;
+            }
+        }
+
+        var remainingPercent = 100 - lockedPercent;
+
+        var percentPerCompetence = lockedPercent / nrOfUnlocked;
+
+        gvm.competences[gvm.competences.length-1].weight = percentPerCompetence;
+
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
             competence.weight(percent);
-            alert(percent);
         });
     };
     
