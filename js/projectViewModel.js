@@ -156,7 +156,7 @@ function pageViewModel(gvm) {
         {
             if(gvm.competences()[index].locked == true)
             {
-                lockedPercent += gvm.competences().weight;
+                lockedPercent += gvm.competences()[index].weight;
             }
             else
             {
@@ -170,7 +170,15 @@ function pageViewModel(gvm) {
 
         var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
-        console.log(percentPerCompetence);
+        console.log("Every unlocked should get: " + percentPerCompetence);
+
+        for(var index = 0; index < gvm.competences().length; index++)
+        {
+            if(gvm.competences()[index].locked == false)
+            {
+                gvm.competences()[index].weight = percentPerCompetence;
+            }
+        }
 
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
