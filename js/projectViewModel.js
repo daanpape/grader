@@ -151,8 +151,6 @@ function pageViewModel(gvm) {
 
         console.log("Array lenght: " + gvm.competences.length);
 
-        console.log(this.competences);
-
         for(var index = 0; index < gvm.competences.length; index++)
         {
             if(gvm.competences[index].locked == true)
@@ -175,6 +173,7 @@ function pageViewModel(gvm) {
 
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
+            console.log(competence.weight);
             competence.weight(percent);
         });
     };
