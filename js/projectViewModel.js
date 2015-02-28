@@ -171,7 +171,7 @@ function pageViewModel(gvm) {
 
         var remainingPercent = 100 - lockedPercent;
 
-        var percentPerCompetence = remai5ningPercent / nrOfUnlocked;
+        var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
         console.log(percentPerCompetence);
 
