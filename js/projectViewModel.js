@@ -12,7 +12,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
-            automatedWeightCalculation(this.subcompetences);
+            automatedWeightCalculation(this.subcompetences());
             /*var total = 100;
             alert(total);
             console.log(this.subcompetences);
@@ -62,7 +62,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         
         addIndicator: function() {
             this.indicators.push(new Indicator(this));
-            automatedWeightCalculation(this.indicators);
+            automatedWeightCalculation(this.indicators());
         },
 
         /*calculateWeight: function(total){
@@ -146,7 +146,7 @@ function pageViewModel(gvm) {
         gvm.competences.push(new Competence(this));
 
         // Update automated weight calculation
-        automatedWeightCalculation(gvm.competences);
+        automatedWeightCalculation(gvm.competences());
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
             console.log(competence.weight);
