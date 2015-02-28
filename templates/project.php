@@ -24,12 +24,6 @@ $location = "project";
                 margin-right: 10px;
                 width: auto !important;
             }
-
-            i
-            {
-                width:20px;
-                height:20px;
-            }
         </style>
 
         <?php include_once('hddepends.php') ?>
