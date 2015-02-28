@@ -148,6 +148,8 @@ function pageViewModel(gvm) {
         var lockedPercent = 0;
         var nrOfUnlocked = 0;
 
+        console.log("Array lenght: " + gvm.competences.length);
+
         for(var index = 0; index < gvm.competences.length; index++)
         {
             if(gvm.competences[index].locked == true)
