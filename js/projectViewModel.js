@@ -31,14 +31,14 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         toggleLock: function(){
             if(this.locked == true)
             {
-                console.log("false");
+
                 this.locked = false;
             }
             else
             {
-                console.log("true");
                 this.locked = true;
             }
+            console.log(this.locked);
             //alert(this.weight());
         },
 
