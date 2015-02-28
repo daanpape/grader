@@ -179,7 +179,7 @@ function pageViewModel(gvm) {
                 gvm.competences()[index].weight = percentPerCompetence;
             }
         }*/
-        gvm.competences()[0].weight = 30;
+        gvm.competences()[0].weight(30);
 
 
         ko.utils.arrayForEach(gvm.competences, function(competence){
