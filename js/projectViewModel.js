@@ -126,7 +126,7 @@ function Indicator(parent, id, name, weight, locked, description) {
 function pageViewModel(gvm) {
     // projecttitle 
     gvm.projecttitle = ko.observable("");
-    gvm.competences = 0;
+    //gvm.competences = 0;
     gvm.subcomp = 0;
     
     // Page specific i18n bindings
