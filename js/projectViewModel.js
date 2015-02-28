@@ -39,8 +39,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
             }
-            console.log(this.locked);
-            //alert(this.weight());
         },
 
         removeSubCompetence: function(subCompetence) {
@@ -74,8 +72,17 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
             parent.removeSubCompetence(this);
         },
 
-        toggleLock: function(){
-            alert(this.weight());
+        toggleLock: function(data, event){
+            if(this.locked == true)
+            {
+                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
+                this.locked = false;
+            }
+            else
+            {
+                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
+                this.locked = true;
+            }
         },
         
         removeIndicator: function(indicator) {
@@ -99,10 +106,18 @@ function Indicator(parent, id, name, locked, description) {
             parent.removeIndicator(this);
         },
 
-        toggleLock: function(){
-            alert(this.weight());
+        toggleLock: function(data, event){
+            if(this.locked == true)
+            {
+                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
+                this.locked = false;
+            }
+            else
+            {
+                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
+                this.locked = true;
+            }
         }
-
     };
 }
 
