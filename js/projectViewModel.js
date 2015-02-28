@@ -44,7 +44,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 
         lockedStatus: ko.computed(function() {
                 console.log("lockedStatus");
-                return this.locked ? "icon-lock" : "icon-unlock";
+                return this.locked() ? "icon-lock" : "icon-unlock";
         },viewmodel),
 
         removeSubCompetence: function(subCompetence) {
