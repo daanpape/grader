@@ -151,7 +151,7 @@ function pageViewModel(gvm) {
 
         console.log("Array lenght: " + gvm.competences.length);
 
-        console.log(gvm.competences);
+        console.log(this.competences);
 
         for(var index = 0; index < gvm.competences.length; index++)
         {
