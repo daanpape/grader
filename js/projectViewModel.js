@@ -2,11 +2,6 @@
  * Competence class
  */
 function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
-
-    this.lockedStatus = ko.computed(function() {
-        return this.locked ? "icon-lock" : "icon-unlock";
-    });
-
     return {
         id: ko.observable(id),
         code: ko.observable(code),
