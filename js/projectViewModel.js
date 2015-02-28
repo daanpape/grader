@@ -1,12 +1,13 @@
 /**
  * Competence class
  */
-function Competence(viewmodel, id, code, name, weight, subcompetences) {
+function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
+        locked: ko.observable(locked),
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
@@ -28,7 +29,19 @@ function Competence(viewmodel, id, code, name, weight, subcompetences) {
         },
 
         toggleLock: function(){
-            alert(this.weight());
+            if(this.locked == true)
+            {
+                this.locked = false;
+                $(".icon-large").removeClass("icon-lock").addClass("icon-unlock");
+            }
+            else
+            {
+                this.locked = true;
+                $(".icon-large").removeClass("icon-unlock").addClass("icon-lock");
+            }
+
+
+            //alert(this.weight());
         },
 
         removeSubCompetence: function(subCompetence) {
@@ -179,9 +192,5 @@ function initPage() {
     
     $(".savePageBtn").click(function(){
         saveProjectStructure(); 
-    });
-
-    $(".locked").click(function() {
-        setLocked();
     });
 }

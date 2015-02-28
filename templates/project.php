@@ -24,29 +24,6 @@ $location = "project";
                 margin-right: 10px;
                 width: auto !important;
             }
-
-            .locked{
-                background-position-y:-55px;
-                background-position: -120px;
-            }
-
-            .unlocked:hover {
-                background-position-y:-55px;
-                background-position: -120px;
-            }
-
-            .unlocked
-            {
-                background-image: url("/img/lock.png");
-                background-repeat: no-repeat;
-                background-position-y:-55px;
-                width:30px;
-                height:30px;
-                margin-top:10px;
-                background-position-x:-90px;
-                display:inline-block;
-            }
-
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -79,7 +56,7 @@ $location = "project";
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
                         <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                        <i class="icon-large icon-unlock" data-bind="click: toggleLock"></i>
+                        <i class="icon-large icon-unlock" data-bind="click: toggleLock, value: locked"></i>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
