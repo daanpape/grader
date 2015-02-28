@@ -148,6 +148,7 @@ function pageViewModel(gvm) {
         // Update automated weight calculation
 
         var data = ko.toJSON(viewModel.competences);
+        console.log(data);
 
         var lockedPercent = 0;
         var nrOfUnlocked = 0;
@@ -170,7 +171,7 @@ function pageViewModel(gvm) {
 
         var remainingPercent = 100 - lockedPercent;
 
-        var percentPerCompetence = remainingPercent / nrOfUnlocked;
+        var percentPerCompetence = remai5ningPercent / nrOfUnlocked;
 
         console.log(percentPerCompetence);
 
