@@ -159,6 +159,8 @@ function pageViewModel(gvm) {
                 nrOfUnlocked++;
             }
         }
+        console.log("Unlocked: " + nrOfUnlocked);
+        console.log("Locked Percent: " + lockedPercent);
 
         var remainingPercent = 100 - lockedPercent;
 
