@@ -145,40 +145,8 @@ function pageViewModel(gvm) {
         gvm.competences.push(new Competence(this));
 
         // Update automated weight calculation
+        automatedWeightCalculation(gvm);
 
-        var lockedPercent = 0;
-        var nrOfUnlocked = 0;
-
-        console.log("Array lenght: " + gvm.competences().length);
-
-        for(var index = 0; index < gvm.competences().length; index++)
-        {
-            if(gvm.competences()[index].locked == true)
-            {
-                lockedPercent = lockedPercent + parseInt(gvm.competences()[index].weight());
-            }
-            else
-            {
-                nrOfUnlocked++;
-            }
-        }
-        console.log("Unlocked: " + nrOfUnlocked);
-        console.log("Locked Percent: " + lockedPercent);
-
-        var remainingPercent = 100 - lockedPercent;
-
-        var percentPerCompetence = remainingPercent / nrOfUnlocked;
-
-        console.log("Every unlocked should get: " + percentPerCompetence);
-        console.log(gvm.competences()[0].locked);
-
-        for(var index = 0; index < gvm.competences().length; index++)
-        {
-            if(gvm.competences()[index].locked == false)
-            {
-                gvm.competences()[index].weight(percentPerCompetence);
-            }
-        }
 
 
 
@@ -250,4 +218,34 @@ function initPage() {
     $(".savePageBtn").click(function(){
         saveProjectStructure(); 
     });
+}
+
+function automatedWeightCalculation(gvm)
+{
+    var lockedPercent = 0;
+    var nrOfUnlocked = 0;
+
+    for(var index = 0; index < gvm.competences().length; index++)
+    {
+        if(gvm.competences()[index].locked == true)
+        {
+            lockedPercent = lockedPercent + parseInt(gvm.competences()[index].weight());
+        }
+        else
+        {
+            nrOfUnlocked++;
+        }
+    }
+
+    var remainingPercent = 100 - lockedPercent;
+
+    var percentPerCompetence = remainingPercent / nrOfUnlocked;
+
+    for(var index = 0; index < gvm.competences().length; index++)
+    {
+        if(gvm.competences()[index].locked == false)
+        {
+            gvm.competences()[index].weight(percentPerCompetence);
+        }
+    }
 }
