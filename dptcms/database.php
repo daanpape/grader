@@ -545,7 +545,6 @@ class ClassDAO {
                     $indicator->max = $row['imax'];
                     $indicator->weight = $row['iweight'];
 
-                    console.log($indicator);
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
             }
