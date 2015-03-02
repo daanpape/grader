@@ -538,7 +538,6 @@ class ClassDAO {
                 }
 
                 if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
-                    console.log(indicators);
                     $indicator = new stdClass();
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
@@ -546,6 +545,7 @@ class ClassDAO {
                     $indicator->max = $row['imax'];
                     $indicator->weight = $row['iweight'];
 
+                    console.log($indicator);
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
             }
