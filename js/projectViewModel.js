@@ -231,17 +231,47 @@ function initPage() {
 function totalPercentCheck()
 {
     var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = 0;
-    var totalPercentIndicators = 0;
+    var totalPercentSubcompetences = new Array();
+    var totalPercentIndicators = new Array();
+    var nrOfSubcompetences = 0;
+    var nrOfIndicators = 0;
+
+    var checkSubcompetences = true;
+    var checkIndicators = true;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
         totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
+        totalPercentSubcompetences.push(0);
+        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
+        {
+            totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
+            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
+            {
+                totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
+            }
+            nrOfIndicators++;
+        }
+        nrOfSubcompetences++;
     }
 
-    console.log(totalPercentCompetences);
+    for(var i = 0; i < nrOfIndicators; i++)
+    {
+        if(totalPercentSubcompetences[i] != 100)
+        {
+            checkSubcompetences = false;
+        }
+    }
 
-    if(totalPercentCompetences == 100 && totalPercentSubcompetences == 100 && totalPercentIndicators == 100 )
+    for(var index = 0; index < nrOfIndicators; index++)
+    {
+        if(totalPercentIndicators[index] != 100)
+        {
+            checkIndicators = false;
+        }
+    }
+
+    if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
         return true;
     }
