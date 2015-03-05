@@ -231,8 +231,8 @@ function initPage() {
 function totalPercentCheck()
 {
     var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = 0;
-    var totalPercentIndicators = 0;
+    var totalPercentSubcompetences = new Array();
+    var totalPercentIndicators = new Array();
 
     var nrOfSubcompetences = 0;
     var nrOfIndicators = 0;
@@ -240,22 +240,19 @@ function totalPercentCheck()
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
         totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
+        totalPercentSubcompetences.push(0);
         for(var indexSubCompetences = 0; indexSubCompetences < viewModel.competences()[indexCompetences].subcompetences().length; indexSubCompetences++)
         {
-            totalPercentSubcompetences = totalPercentSubcompetences + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
-            nrOfSubcompetences++;
+            totalPercentSubcompetences[indexCompetences] = totalPercentSubcompetences[indexCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
+            totalPercentIndicators.push(0);
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators().length; indexIndicators++)
             {
-                totalPercentIndicators = totalPercentIndicators + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators()[indexIndicators].weight());
-                nrOfIndicators++;
+                totalPercentIndicators[indexSubCompetences] = totalPercentIndicators[indexSubCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators()[indexIndicators].weight());
             }
         }
     }
 
-    totalPercentSubcompetences = totalPercentSubcompetences / nrOfSubcompetences;
-    totalPercentIndicators = totalPercentIndicators / nrOfIndicators;
-
-    console.log(totalPercentSubcompetences + " and " + totalPercentIndicators);
+    console.log(totalPercentSubcompetences[0]);
 
     if(totalPercentCompetences == 100 && totalPercentSubcompetences == 100 && totalPercentIndicators == 100 )
     {
