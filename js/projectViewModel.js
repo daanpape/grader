@@ -224,7 +224,7 @@ function initPage() {
 
 function totalPercentCheck()
 {
-    console.log(viewModel.competences().weight);
+    console.log(viewModel.competences()[0].weight);
 }
 
 function automatedWeightCalculation(data)
