@@ -231,28 +231,15 @@ function initPage() {
 function totalPercentCheck()
 {
     var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = new Array();
-    var totalPercentIndicators = new Array();
-
-    var nrOfSubcompetences = 0;
-    var nrOfIndicators = 0;
+    var totalPercentSubCompetences = 0;
+    var totalPercentIndicators = 0;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
-        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
-        totalPercentSubcompetences.push(0);
-        for(var indexSubCompetences = 0; indexSubCompetences < viewModel.competences()[indexCompetences].subcompetences().length; indexSubCompetences++)
-        {
-            totalPercentSubcompetences[indexCompetences] = totalPercentSubcompetences[indexCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
-            totalPercentIndicators.push(0);
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators().length; indexIndicators++)
-            {
-                totalPercentIndicators[indexSubCompetences] = totalPercentIndicators[indexSubCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators()[indexIndicators].weight());
-            }
-        }
+        totalPercentCompetences = totalPercentCompetences + viewModel.competences()[indexCompetences].weight();
     }
 
-    console.log(totalPercentSubcompetences[0]);
+    console.log(totalPercentCompetences);
 
     if(totalPercentCompetences == 100 && totalPercentSubcompetences == 100 && totalPercentIndicators == 100 )
     {
