@@ -128,7 +128,7 @@ function Indicator(parent, id, name, weight, locked, description) {
 
 // View model for the courses page
 function pageViewModel(gvm) {
-    // projecttitle 
+    // projecttitle
     gvm.projecttitle = ko.observable("");
     //gvm.competences = 0;
     gvm.subcomp = 0;
@@ -217,8 +217,14 @@ function initPage() {
     });
     
     $(".savePageBtn").click(function(){
-        saveProjectStructure(); 
+        totalPercentCheck();
+        saveProjectStructure();
     });
+}
+
+function totalPercentCheck()
+{
+    console.log(viewModel.competences().weight);
 }
 
 function automatedWeightCalculation(data)
