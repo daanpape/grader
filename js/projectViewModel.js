@@ -255,7 +255,7 @@ function totalPercentCheck()
         nrOfSubcompetences++;
     }
 
-    for(var i = 0; i < nrOfIndicators; i++)
+    for(var i = 0; i < nrOfSubcompetences - 1; i++)
     {
         if(totalPercentSubcompetences[i] != 100)
         {
@@ -263,7 +263,7 @@ function totalPercentCheck()
         }
     }
 
-    for(var index = 0; index < nrOfIndicators; index++)
+    for(var index = 0; index < nrOfIndicators - 1; index++)
     {
         if(totalPercentIndicators[index] != 100)
         {
