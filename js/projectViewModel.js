@@ -255,6 +255,8 @@ function totalPercentCheck()
     totalPercentSubcompetences = totalPercentSubcompetences / nrOfSubcompetences;
     totalPercentIndicators = totalPercentIndicators / nrOfIndicators;
 
+    console.log(totalPercentSubcompetences + " and " + totalPercentIndicators);
+
     if(totalPercentCompetences == 100 && totalPercentSubcompetences == 100 && totalPercentIndicators == 100 )
     {
         return true;
