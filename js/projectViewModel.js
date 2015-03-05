@@ -144,7 +144,7 @@ function pageViewModel(gvm) {
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
-        automatedWeightCalculation(this.competences);
+        automatedWeightCalculation(this.competences());
 
         // Update automated weight calculation
         ko.utils.arrayForEach(gvm.competences, function(competence){
