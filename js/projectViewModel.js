@@ -26,7 +26,6 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 
         removeThis: function() {
             viewmodel.removeCompetence(this);
-            automatedWeightCalculation(this.subcompetences());
         },
 
         toggleLock: function(data, event){
@@ -44,6 +43,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
+            automatedWeightCalculation(this.subcompetences());
         }
     };
 
@@ -72,7 +72,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
 
         removeThis: function() {
             parent.removeSubCompetence(this);
-            automatedWeightCalculation(this.indicators());
+
         },
 
         toggleLock: function(data, event){
@@ -90,6 +90,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         
         removeIndicator: function(indicator) {
             this.indicators.remove(indicator);
+            automatedWeightCalculation(this.indicators());
         }
 
     };
