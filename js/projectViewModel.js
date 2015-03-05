@@ -271,6 +271,8 @@ function totalPercentCheck()
         }
     }
 
+    console.log(checkSubcompetences + " and " + checkIndicators)
+
     if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
         return true;
