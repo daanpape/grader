@@ -231,7 +231,7 @@ function initPage() {
 function totalPercentCheck()
 {
     var totalPercentCompetences = 0;
-    var totalPercentSubCompetences = 0;
+    var totalPercentSubcompetences = 0;
     var totalPercentIndicators = 0;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
