@@ -241,6 +241,10 @@ function totalPercentCheck()
     {
         return false;
     }
+    else
+    {
+        return true;
+    }
 }
 
 function automatedWeightCalculation(data)
