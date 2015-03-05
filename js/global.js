@@ -54,6 +54,7 @@ function GlobalViewModel()
     this.uploadedFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadedFiles");}, this);
     this.progress = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Progress");}, this);
 
+
     /**
      * Change the UI locale
      * @param {string} locale - the new UI locale
