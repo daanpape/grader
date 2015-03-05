@@ -236,7 +236,7 @@ function totalPercentCheck()
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
-        totalPercentCompetences = totalPercentCompetences + viewModel.competences()[indexCompetences].weight();
+        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
     }
 
     console.log(totalPercentCompetences);
