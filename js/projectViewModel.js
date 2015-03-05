@@ -224,7 +224,13 @@ function initPage() {
 
 function totalPercentCheck()
 {
-    console.log(viewModel.competences()[0].weight());
+    var totalPercentCompetences = 0;
+
+    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
+    {
+        totalPercentCompetences = totalPercentCompetences + viewModel.competences()[indexCompetences].weight();
+    }
+    console.log(totalPercentCompetences);
 }
 
 function automatedWeightCalculation(data)
