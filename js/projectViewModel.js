@@ -249,7 +249,7 @@ function totalPercentCheck()
         }
     }
 
-    console.log(percentTotalSubcompetences);
+    console.log(percentTotalSubcompetences[0]);
 
     if(totalPercentCompetences == 100)
     {
