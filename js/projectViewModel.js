@@ -231,19 +231,33 @@ function initPage() {
 function totalPercentCheck()
 {
     var totalPercentCompetences = 0;
+    var percentTotalSubcompetences = new Array();
+    var percentTotalIndicators = new Array();
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
         totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
+        percentTotalSubcompetences.push(0);
+        for(var indexSubCompetences = 0; indexSubCompetences < viewModel.competences()[indexCompetences].subcompetences().length; indexSubCompetences++)
+        {
+            percentTotalSubcompetences[indexCompetences] = percentTotalSubcompetences[indexCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
+            percentTotalIndicators.push(0);
+            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators().length; indexIndicators++)
+            {
+                percentTotalIndicators[indexSubCompetences] = percentTotalIndicators[indexSubCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators()[indexIndicators].weight());
+            }
+        }
     }
 
-    if(totalPercentCompetences != 100)
+    console.log(percentTotalSubcompetences);
+
+    if(totalPercentCompetences == 100)
     {
-        return false;
+        return true;
     }
     else
     {
-        return true;
+        return false;
     }
 }
 
