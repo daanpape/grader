@@ -242,7 +242,7 @@ function totalPercentCheck()
         totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
         for(var indexSubCompetences = 0; indexSubCompetences < viewModel.competences()[indexCompetences].subcompetences().length; indexSubCompetences++)
         {
-            totalPercentSubcompetences = totalPercentSubcompetences[indexCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
+            totalPercentSubcompetences = totalPercentSubcompetences + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
             nrOfSubcompetences++;
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators().length; indexIndicators++)
             {
@@ -251,6 +251,8 @@ function totalPercentCheck()
             }
         }
     }
+
+    console.log(totalPercentSubcompetences + " and " + totalPercentIndicators);
 
     totalPercentSubcompetences = totalPercentSubcompetences / nrOfSubcompetences;
     totalPercentIndicators = totalPercentIndicators / nrOfIndicators;
