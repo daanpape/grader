@@ -233,28 +233,47 @@ function totalPercentCheck()
     var totalPercentCompetences = 0;
     var totalPercentSubcompetences = new Array();
     var totalPercentIndicators = new Array();
-
     var nrOfSubcompetences = 0;
     var nrOfIndicators = 0;
+
+    var checkSubcompetences = true;
+    var checkIndicators = true;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
         totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
         totalPercentSubcompetences.push(0);
-        for(var indexSubCompetences = 0; indexSubCompetences < viewModel.competences()[indexCompetences].subcompetences().length; indexSubCompetences++)
+        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
         {
-            totalPercentSubcompetences[indexCompetences] = totalPercentSubcompetences[indexCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].weight());
-            totalPercentIndicators.push(0);
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators().length; indexIndicators++)
+            totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
+            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
             {
-                totalPercentIndicators[indexSubCompetences] = totalPercentIndicators[indexSubCompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubCompetences].indicators()[indexIndicators].weight());
+                totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
             }
+            nrOfIndicators++;
+        }
+        nrOfSubcompetences++;
+    }
+
+    for(var i = 0; i < nrOfSubcompetences - 1; i++)
+    {
+        if(totalPercentSubcompetences[i] != 100)
+        {
+            checkSubcompetences = false;
         }
     }
 
-    console.log(totalPercentSubcompetences[0]);
+    for(var index = 0; index < nrOfIndicators - 1; index++)
+    {
+        if(totalPercentIndicators[index] != 100)
+        {
+            checkIndicators = false;
+        }
+    }
 
-    if(totalPercentCompetences == 100 && totalPercentSubcompetences == 100 && totalPercentIndicators == 100 )
+    console.log(checkSubcompetences + " and " + checkIndicators)
+
+    if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
         return true;
     }
