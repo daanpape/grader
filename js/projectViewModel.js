@@ -219,6 +219,11 @@ function initPage() {
     $(".savePageBtn").click(function(){
         if(totalPercentCheck()) {
             saveProjectStructure();
+            console.log("Saved");
+        }
+        else
+        {
+            console.log("Not saved");
         }
     });
 }
