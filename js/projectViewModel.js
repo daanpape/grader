@@ -217,8 +217,9 @@ function initPage() {
     });
     
     $(".savePageBtn").click(function(){
-        totalPercentCheck();
-        saveProjectStructure();
+        if(totalPercentCheck()) {
+            saveProjectStructure();
+        }
     });
 }
 
@@ -228,9 +229,13 @@ function totalPercentCheck()
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
-        totalPercentCompetences = totalPercentCompetences + viewModel.competences()[indexCompetences].weight();
+        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
     }
-    console.log(totalPercentCompetences);
+
+    if(totalPercentCompetences != 100)
+    {
+        return false;
+    }
 }
 
 function automatedWeightCalculation(data)
