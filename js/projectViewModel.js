@@ -237,7 +237,7 @@ function automatedWeightCalculation(data)
 
     var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
-    percentPerCompetence = Math.round(percentPerCompetence).toFixed(2);
+    percentPerCompetence = percentPerCompetence.toFixed(2);
 
     for(var index = 0; index < data.length; index++)
     {
