@@ -278,7 +278,8 @@ function totalPercentCheck()
     }
     else
     {
-        $(".validationSummary ul").html("<li>Not all percentages are 100%</li>").removeClass("hide");
+        $(".validationSummary ul").html("<li>Not all percentages are 100%</li>");
+        $(".validationSummary").removeClass("hide");
         return false;
     }
 }
