@@ -261,7 +261,9 @@ function totalPercentCheck()
     {
         if(totalPercentSubcompetences[i] != 100)
         {
+
             checkSubcompetences = false;
+            console.log(checkSubcompetences);
         }
     }
 
@@ -269,7 +271,9 @@ function totalPercentCheck()
     {
         if(totalPercentIndicators[index] != 100)
         {
+
             checkIndicators = false;
+            console.log(checkIndicators);
         }
     }
 
