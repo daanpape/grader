@@ -24,6 +24,10 @@ $location = "project";
                 margin-right: 10px;
                 width: auto !important;
             }
+
+            .validationSummary {
+                color:red;
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -46,6 +50,12 @@ $location = "project";
                     </button>
                 </div>
             </div>
+        </div>
+
+        <!-- Validation Summary -->
+        <div class="validationSummary">
+            <h2>Project was not saved!</h2>
+            <ul></ul>
         </div>
 
         <!-- Content container -->

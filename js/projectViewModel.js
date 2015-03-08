@@ -274,6 +274,7 @@ function totalPercentCheck()
 
     if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
+        $(".validationSummary ul").html("<li>Not all percentages are 100%</li>")
         return true;
     }
     else
