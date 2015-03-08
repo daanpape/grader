@@ -274,6 +274,8 @@ function totalPercentCheck()
 
     if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
+        $(".validationSummary ul").html("");
+        $(".validationSummary").addClass("hide");
         return true;
     }
     else
