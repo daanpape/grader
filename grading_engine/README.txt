@@ -14,7 +14,7 @@ The structure of a rule is as follows:
 | SYSTEM_VALUE | OPERATOR | USER_VALUE | ACTION |
 -------------------------------------------------
  
- Some more detailed explenation:
+ Some more detailed explanation:
   - SYSTEM_VALUE: in a project there are many variables such as
                   documents, points, users, ... all these variables
                   are kept en set by the system. They are the base

@@ -245,9 +245,11 @@ function totalPercentCheck()
         totalPercentSubcompetences.push(0);
         for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
         {
+            console.log(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
             totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
             {
+                console.log(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
                 totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
             }
             nrOfIndicators++;
