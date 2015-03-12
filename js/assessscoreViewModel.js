@@ -46,11 +46,11 @@ function fetchProjectStructure() {
         })
     });
 
-    console.log(viewModel.indicators.id());
+    console.log(viewModel.indicators[0].id());
 }
 
 /* Indicators */
-function Indicator(id, subcompetenceId, competenceId, name, description) {
+function Indicator(viewmodel, id, subcompetenceId, competenceId, name, description) {
     return {
         id: ko.observable(id),
         subcompetenceId: ko.observable(subcompetenceId),
