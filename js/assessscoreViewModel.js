@@ -1,4 +1,4 @@
-var projectData = null;
+var projectData;
 
 function pageViewModel(gvm) {
     // projecttitle
