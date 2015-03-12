@@ -40,7 +40,7 @@ function fetchProjectStructure() {
             $.each(item.subcompetences, function(i, subcomp){
                 $.each(subcomp.indicators, function(i, indic){
                     var indicator = new Indicator(indic.id, subcomp.id, item.id, indic.name, indic.description);
-                    viewModel.updateIndicator(this,indic.id,subcomp.id,item.id,indic.name,indic.description);
+                    viewModel.addIndicator(this,indic.id,subcomp.id,item.id,indic.name,indic.description);
                 });
             });
         })
