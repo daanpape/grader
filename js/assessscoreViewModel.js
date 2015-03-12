@@ -1,3 +1,5 @@
+var data = null;
+
 function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
@@ -8,6 +10,8 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
+    gvm.indicators = ko.observableArray([]);
+
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
@@ -17,6 +21,7 @@ function pageViewModel(gvm) {
     gvm.getAllData = function() {
          $.getJSON('/api/project/getAllData/' + gvm.projectId, function(data) {
             console.log(data);
+             this.data=data;
          });
     }
 
@@ -28,32 +33,11 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
-    fetchProjectStructure();
+    displayProject();
 }
 
-function fetchProjectStructure() {
-
-    $.getJSON("/api/projectstructure/" + projectid, function(data){
-        $.each(data, function(i, item){
-            $.each(item.subcompetences, function(i, subcomp){
-                $.each(subcomp.indicators, function(i, indic){
-                    var indicator = new Indicator(indic.id, subcomp.id, item.id, indic.name, indic.description);
-                    viewModel.updateIndicator(this,indic.id,subcomp.id,item.id,indic.name,indic.description);
-                });
-            });
-        })
-    });
-
-    console.log(viewModel.indicators());
+function displayProject()
+{
+    console.log(data);
 }
 
-/* Indicators */
-function Indicator(viewmodel, id, subcompetenceId, competenceId, name, description) {
-    return {
-        id: ko.observable(id),
-        subcompetenceId: ko.observable(subcompetenceId),
-        competenceId: ko.observable(competenceId),
-        name: ko.observable(name),
-        description : ko.observable(description)
-       }
-}
