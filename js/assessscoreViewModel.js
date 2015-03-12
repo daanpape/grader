@@ -31,7 +31,7 @@ function displayProjectStructure() {
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            console.log(item.subcompetences.indicators.description);
+            console.log(item[0]);
             //$("#indicators").append(item.subcompetences.indicators.description);
 
             /*var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
