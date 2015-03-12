@@ -237,7 +237,7 @@ function validationCheck()
             console.log("Code or Name in competences is empty");
             if(allCompetencesValid)
             {
-                $(".validationSummary ul").html("<li>Code or name in competences is empty</li>");
+                $(".validationSummary ul").append("<li>Code or name in competences is empty</li>");
                 $(".validationSummary").removeClass("hide");
             }
             allCompetencesValid = false;
@@ -249,7 +249,7 @@ function validationCheck()
                 console.log("Code or Name in subcompetences is empty");
                 if(allSubcompetencesValid)
                 {
-                    $(".validationSummary ul").html("<li>Code or name in subcompetences is empty</li>");
+                    $(".validationSummary ul").append("<li>Code or name in subcompetences is empty</li>");
                     $(".validationSummary").removeClass("hide");
                 }
                 allSubcompetencesValid = false;
@@ -261,7 +261,7 @@ function validationCheck()
                     console.log("Description or name in indicators is empty");
                     if(allIndicatorsValid)
                     {
-                        $(".validationSummary ul").html("<li>Description or name in indicators is empty</li>");
+                        $(".validationSummary ul").append("<li>Description or name in indicators is empty</li>");
                         $(".validationSummary").removeClass("hide");
                     }
                     allIndicatorsValid = false;
@@ -324,7 +324,7 @@ function totalPercentCheck()
     }
     else
     {
-        $(".validationSummary ul").html("<li>Not all percentages are 100%</li>");
+        $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
         $(".validationSummary").removeClass("hide");
         return false;
     }
