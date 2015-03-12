@@ -1,4 +1,4 @@
-var data = null;
+var projectData = null;
 
 function pageViewModel(gvm) {
     // projecttitle
@@ -21,7 +21,7 @@ function pageViewModel(gvm) {
     gvm.getAllData = function() {
          $.getJSON('/api/project/getAllData/' + gvm.projectId, function(data) {
             console.log(data);
-             this.data=data;
+             projectData = data;
          });
     }
 
@@ -38,6 +38,6 @@ function initPage() {
 
 function displayProject()
 {
-    console.log(data);
+    console.log(projectData);
 }
 
