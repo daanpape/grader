@@ -21,6 +21,10 @@ function pageViewModel(gvm) {
             console.log(data);
          });
     }
+
+    gvm.updateIndicator = function(id,subcompetenceId,competenceId,name,description) {
+        gvm.indicators.push(new Indicator(this,id,subcompetenceId,competenceId,name,description));
+    };
 }
 
 function initPage() {
@@ -36,13 +40,13 @@ function fetchProjectStructure() {
             $.each(item.subcompetences, function(i, subcomp){
                 $.each(subcomp.indicators, function(i, indic){
                     var indicator = new Indicator(indic.id, subcomp.id, item.id, indic.name, indic.description);
-                    viewModel.indicators.push(indicator);
+                    viewModel.addIndicator(this,indic.id,subcomp.id,item.id,indic.name,indic.description);
                 });
             });
         })
     });
 
-    console.log(viewModel.indicators[0].description());
+    console.log(viewModel.indicators);
 }
 
 /* Indicators */
