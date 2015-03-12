@@ -209,14 +209,11 @@ function initPage() {
     
     $(".savePageBtn").click(function(){
         if(allValidationChecks()) {
-            $(".validationSummary ul").html("Project was saved!");
-            $(".validationSummary").addClas("green").removeClass("red");
             saveProjectStructure();
             console.log("Saved");
         }
         else
         {
-            $(".validationSummary").addClas("red").removeClass("green");
             console.log("Not saved");
         }
     });
