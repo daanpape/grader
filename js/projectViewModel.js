@@ -221,7 +221,7 @@ function initPage() {
 
 function allValidationChecks()
 {
-    validationCheck();
+    return totalPercentCheck() && validationCheck();
 }
 
 function validationCheck()
@@ -267,6 +267,7 @@ function validationCheck()
             }
         }
     }
+    return allValid;
 }
 
 function totalPercentCheck()
