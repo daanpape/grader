@@ -31,10 +31,8 @@ function displayProjectStructure() {
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            console.log(item[0]);
-            //$("#indicators").append(item.subcompetences.indicators.description);
-
-            /*var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            console.log(item.id, item.code);
 
             $.each(item.subcompetences, function(i, subcomp){
                 var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
@@ -43,7 +41,7 @@ function displayProjectStructure() {
                 $.each(subcomp.indicators, function(i, indic){
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
                 });
-            });*/
+            });
         })
     });
 }
