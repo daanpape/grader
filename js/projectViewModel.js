@@ -259,7 +259,7 @@ function validationCheck()
                     console.log("Description or name in indicators is empty");
                     if(allValid)
                     {
-                        $(".validationSummary ul").html("<li>Description or name in competences is empty</li>");
+                        $(".validationSummary ul").html("<li>Description or name in indicators is empty</li>");
                         $(".validationSummary").removeClass("hide");
                     }
                     allValid = false;
