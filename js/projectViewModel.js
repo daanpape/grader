@@ -241,7 +241,7 @@ function validationCheck()
     {
         for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
         {
-            if(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name())
+            if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name())
             {
                 console.log("Name is empty");
             }
