@@ -28,11 +28,11 @@ function initPage() {
 }
 
 function displayProjectStructure() {
-    viewModel.clearStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            $("#indicators").append(item.subcompetences.indicators.description);
+            console.log(item.subcompetences.indicators.description);
+            //$("#indicators").append(item.subcompetences.indicators.description);
 
             /*var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
 
