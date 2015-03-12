@@ -53,6 +53,7 @@ $location = "project";
                     <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
                         Save
                     </button>
+                    </button>
                 </div>
             </div>
             <!-- Validation Summary -->

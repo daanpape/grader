@@ -38,5 +38,10 @@ $location = "assessscore";
 </div>
 
 <?php include_once('jsdepends.php') ?>
+<script>
+    var projectid = <?php echo $projectid ?>
+</script>
 </body>
 </html>
+
+

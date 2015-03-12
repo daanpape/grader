@@ -34,14 +34,14 @@ function displayProjectStructure() {
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
             console.log(item.id, item.code);
 
-            $.each(item.subcompetences, function(i, subcomp){
+            /*$.each(item.subcompetences, function(i, subcomp){
                 var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
                 competence.subcompetences.push(subcompetence);
 
                 $.each(subcomp.indicators, function(i, indic){
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
                 });
-            });
+            });*/
         })
     });
 }
