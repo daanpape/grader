@@ -38,6 +38,7 @@ $location = "assessscore";
 </div>
 
 <div class="container" data-bind="foreach: competences">
+    <label data-bind="value: name"></label>
     <div class="panel-body" data-bind="foreach: subcompetences">
         <ul class="list-group" data-bind="foreach: indicators">
             <li class="list-group-item">
