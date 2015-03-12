@@ -226,48 +226,50 @@ function allValidationChecks()
 
 function validationCheck()
 {
-    var allValid = true;
+    var allCompetencesValid = true;
+    var allSubcompetencesValid = true;
+    var allIndicatorsValid = true;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
         if(!viewModel.competences()[indexCompetences].code() && !viewModel.competences()[indexCompetences].name())
         {
             console.log("Code or Name in competences is empty");
-            if(allValid)
+            if(allCompetencesValid)
             {
                 $(".validationSummary ul").html("<li>Code or name in competences is empty</li>");
                 $(".validationSummary").removeClass("hide");
             }
-            allValid = false;
+            allCompetencesValid = false;
         }
         for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
         {
             if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].code())
             {
                 console.log("Code or Name in subcompetences is empty");
-                if(allValid)
+                if(allSubcompetencesValid)
                 {
                     $(".validationSummary ul").html("<li>Code or name in subcompetences is empty</li>");
                     $(".validationSummary").removeClass("hide");
                 }
-                allValid = false;
+                allSubcompetencesValid = false;
             }
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
             {
                 if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].description())
                 {
                     console.log("Description or name in indicators is empty");
-                    if(allValid)
+                    if(allIndicatorsValid)
                     {
                         $(".validationSummary ul").html("<li>Description or name in indicators is empty</li>");
                         $(".validationSummary").removeClass("hide");
                     }
-                    allValid = false;
+                    allIndicatorsValid = false;
                 }
             }
         }
     }
-    return allValid;
+    return allCompetencesValid && allSubcompetencesValid && allIndicatorsValid;
 }
 
 function totalPercentCheck()
