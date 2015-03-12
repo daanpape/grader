@@ -8,6 +8,8 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
+    gvm.indicators = ko.observableArray([]);
+
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
@@ -24,24 +26,32 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
-    displayProjectStructure();
+    fetchProjectStructure();
 }
 
-function displayProjectStructure() {
+function fetchProjectStructure() {
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            console.log(item.id, item.code);
-
-            /*$.each(item.subcompetences, function(i, subcomp){
-                var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
-                competence.subcompetences.push(subcompetence);
-
+            $.each(item.subcompetences, function(i, subcomp){
                 $.each(subcomp.indicators, function(i, indic){
-                    subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
+                    var indicator = new Indicator(indic.id, subcomp.id, item.id, indic.name, indic.description);
+                    viewModel.indicators.push(indicator);
                 });
-            });*/
+            });
         })
     });
+
+    console.log(viewModel.indicators);
+}
+
+/* Indicators */
+function Indicator(id, subcompetenceId, competenceId, name, description) {
+    return {
+        id: ko.observable(id),
+        subcompetenceId: ko.observable(subcompetenceId),
+        competenceId: ko.observable(competenceId),
+        name: ko.observable(name),
+        description : ko.observable(description)
+       }
 }
