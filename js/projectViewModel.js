@@ -214,6 +214,7 @@ function initPage() {
         }
         else
         {
+            window.scrollTo(0,0);
             console.log("Not saved");
         }
     });
