@@ -802,6 +802,23 @@ class UserDAO {
             return null;
         }
     }
+
+    /**
+     * Get account information based on a user token.
+     * @param type $role the role of the users.
+     * @return stdClass the users associated with the roles.
+     */
+    public static function getUsersByRole($role)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT r.role FROM roles r INNER JOIN user_roles ur ON ur.role_id = r.id INNER JOIN users us ON us.id = ur.user_id WHERE r.role = ?");
+            $stmt->execute(array($role));
+            return $stmt->fetchObject();
+        } catch (PDOException $err) {
+            return null;
+        }
+    }
     
     /**
      * Check if a username exists.

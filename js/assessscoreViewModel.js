@@ -24,4 +24,26 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
+    displayProjectStructure();
+}
+
+function displayProjectStructure() {
+    viewModel.clearStructure();
+
+    $.getJSON("/api/projectstructure/" + projectid, function(data){
+        $.each(data, function(i, item){
+            $("#indicators").append(item.subcompetences.indicators.description);
+
+            /*var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+
+            $.each(item.subcompetences, function(i, subcomp){
+                var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+                competence.subcompetences.push(subcompetence);
+
+                $.each(subcomp.indicators, function(i, indic){
+                    subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
+                });
+            });*/
+        })
+    });
 }

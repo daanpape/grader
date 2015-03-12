@@ -32,6 +32,9 @@ $location = "assessscore";
 
 <!-- Content container -->
 <div class="container">
+    <div class="indicators">
+
+    </div>
 </div>
 
 <?php include_once('jsdepends.php') ?>
