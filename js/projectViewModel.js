@@ -217,7 +217,7 @@ function initPage() {
     });
     
     $(".savePageBtn").click(function(){
-        if(totalPercentCheck()) {
+        if(allValidationChecks()) {
             saveProjectStructure();
             console.log("Saved");
         }
@@ -226,6 +226,32 @@ function initPage() {
             console.log("Not saved");
         }
     });
+}
+
+function allValidationChecks()
+{
+    validationCheck();
+}
+
+function validationCheck()
+{
+    var allValid = true;
+
+    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
+    {
+
+        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
+        {
+            if(viewModel.competences()[indexCompetences].subcompetences().name())
+            {
+                console.log("Name is empty");
+            }
+            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
+            {
+
+            }
+        }
+    }
 }
 
 function totalPercentCheck()
