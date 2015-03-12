@@ -32,9 +32,9 @@ $location = "assessscore";
 
 <!-- Content container -->
 <div class="container">
-    <div class="indicators">
-
-    </div>
+    <ul class="list-group" data-bind="foreach: indicators">
+        <label data-bind="value: name"></label>
+    </ul>
 </div>
 
 <?php include_once('jsdepends.php') ?>
