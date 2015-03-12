@@ -25,8 +25,14 @@ $location = "project";
                 width: auto !important;
             }
 
-            .validationSummary {
-                color:red;
+           .red
+            {
+                color=red;
+            }
+
+            .green
+            {
+                color=green;
             }
 
             .hide{
@@ -55,7 +61,7 @@ $location = "project";
                 </div>
             </div>
             <!-- Validation Summary -->
-            <div class="validationSummary hide">
+            <div class="validationSummary hide red">
                 <h2>Project was not saved!</h2>
                 <ul></ul>
             </div>

@@ -209,11 +209,14 @@ function initPage() {
     
     $(".savePageBtn").click(function(){
         if(allValidationChecks()) {
+            $(".validationSummary ul").html("Project was saved!");
+            $(".validationSummary").addClas("green").removeClass("red");
             saveProjectStructure();
             console.log("Saved");
         }
         else
         {
+            $(".validationSummary").addClas("red").removeClass("green");
             console.log("Not saved");
         }
     });
@@ -234,7 +237,6 @@ function validationCheck()
     {
         if(!viewModel.competences()[indexCompetences].code() && !viewModel.competences()[indexCompetences].name())
         {
-            console.log("Code or Name in competences is empty");
             if(allCompetencesValid)
             {
                 $(".validationSummary ul").append("<li>Code or name in competences is empty</li>");
@@ -246,7 +248,6 @@ function validationCheck()
         {
             if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].code())
             {
-                console.log("Code or Name in subcompetences is empty");
                 if(allSubcompetencesValid)
                 {
                     $(".validationSummary ul").append("<li>Code or name in subcompetences is empty</li>");
@@ -258,7 +259,6 @@ function validationCheck()
             {
                 if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].description())
                 {
-                    console.log("Description or name in indicators is empty");
                     if(allIndicatorsValid)
                     {
                         $(".validationSummary ul").append("<li>Description or name in indicators is empty</li>");
