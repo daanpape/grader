@@ -73,5 +73,6 @@
     "RuleName" : "Rule name",
     "RuleAction" : "Action",
     "AddRule" : "Add rule",
-    "RuleActionDropdown" : "Action"
+    "RuleActionDropdown" : "Action",
+    "RuleNotOK" : "Result of this rule"
 }

@@ -72,5 +72,6 @@
     "RuleName" : "Naam van regel",
     "RuleAction" : "Actie",
     "AddRule" : "Maak regel",
-    "RuleActionDropdown" : "Actie"
+    "RuleActionDropdown" : "Actie",
+    "RuleNotOK" : "Gevolg van deze regel"
 }

@@ -32,6 +32,7 @@ $location = "projectRules";
                     <tr>
                         <th data-bind="text: ruleName">Rule Name</th>
                         <th data-bind="text: ruleAction">Action</th>
+                        <th data-bind="text: ruleNotOK">Action</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: rules">
