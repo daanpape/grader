@@ -31,7 +31,7 @@ $location = "projectRules";
                 <thead>
                     <tr>
                         <th data-bind="text: ruleName">Rule Name</th>
-                        <th data-bind="text: ruleAction">Actions</th>
+                        <th data-bind="text: ruleAction">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,11 +43,11 @@ $location = "projectRules";
                         <td>
                             <div class="dropdown col-md-4">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center">Action</span>
+                                    <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: availableActions" id="avaAct">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: actionName"></span></a> </li>
                                 </ul>
                             </div>
                             <div class="dropdown col-md-2">
@@ -56,10 +56,7 @@ $location = "projectRules";
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: availableOperator" id="avaOpe">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&#60; </li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&#62; </li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&equals; </li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&ne; </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: operatorName"></span></a> </li>
                                 </ul>
                             </div>
                             <div class="col-md-4">
@@ -77,11 +74,9 @@ $location = "projectRules";
     <div class="row">
         <div id="bottom-col" class="col-md-12">
             <button class="btn btn-lg addRule" data-bind="text: addRule">
-                <span data-bind="text: AddRule"></span>
             </button>
 
             <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
-                <span data-bind="text: SaveBtn"></span>
             </button>
         </div>
     </div>
