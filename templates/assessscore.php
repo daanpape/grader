@@ -30,7 +30,7 @@ $location = "assessscore";
             height: 8.4px;
             cursor: pointer;
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-            background: #d071a9;
+            background: #ffffff;
             border-radius: 1.3px;
             border: 0.2px solid #010101;
         }
@@ -40,20 +40,20 @@ $location = "assessscore";
             height: 36px;
             width: 16px;
             border-radius: 3px;
-            background: #69ffff;
+            background: #ffffff;
             cursor: pointer;
             -webkit-appearance: none;
             margin-top: -14px;
         }
         input[type=range]:focus::-webkit-slider-runnable-track {
-            background: #d684b5;
+            background: #ffffff;
         }
         input[type=range]::-moz-range-track {
             width: 100%;
             height: 8.4px;
             cursor: pointer;
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-            background: #d071a9;
+            background: #ffffff;
             border-radius: 1.3px;
             border: 0.2px solid #010101;
         }
@@ -63,7 +63,7 @@ $location = "assessscore";
             height: 36px;
             width: 16px;
             border-radius: 3px;
-            background: #69ffff;
+            background: #ffffff;
             cursor: pointer;
         }
         input[type=range]::-ms-track {
@@ -75,13 +75,13 @@ $location = "assessscore";
             color: transparent;
         }
         input[type=range]::-ms-fill-lower {
-            background: #ca5e9d;
+            background: #ffffff;
             border: 0.2px solid #010101;
             border-radius: 2.6px;
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
         }
         input[type=range]::-ms-fill-upper {
-            background: #d071a9;
+            background: #ffffff;
             border: 0.2px solid #010101;
             border-radius: 2.6px;
             box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
@@ -92,15 +92,15 @@ $location = "assessscore";
             height: 36px;
             width: 16px;
             border-radius: 3px;
-            background: #69ffff;
+            background: #ffffff;
             cursor: pointer;
             height: 8.4px;
         }
         input[type=range]:focus::-ms-fill-lower {
-            background: #d071a9;
+            background: #ffffff;
         }
         input[type=range]:focus::-ms-fill-upper {
-            background: #d684b5;
+            background: #ffffff;
         }
 
     </style>
