@@ -20,4 +20,18 @@ function pageViewModel(gvm) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
+
+    gvm.rules = ko.observableArray([]);
+
+    gvm.addRule = function() {
+        gvm.rules.push(new Rule(this));
+    }
+}
+
+
+/**
+ * Rule class
+ */
+function Rule(viewmodel, id, code, name, weight, locked, subcompetences) {
+
 }
