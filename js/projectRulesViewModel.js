@@ -46,7 +46,6 @@ function pageViewModel(gvm) {
 function initPage() {
     fetchProjectStructure();
 
-
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
@@ -77,6 +76,6 @@ function fetchProjectStructure() {
 /**
  * Rule class
  */
-function Rule(viewmodel, id, code, name, weight, locked, subcompetences) {
+function Rule(viewmodel) {
 
 }
