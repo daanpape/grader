@@ -57,7 +57,7 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            viewModel.addProjectAction(item.description);
+            viewModel.addProjectAction(item.description.toString());
 
             $.each(item.subcompetences, function(i, subcomp){
                 //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
