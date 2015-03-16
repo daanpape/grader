@@ -30,9 +30,9 @@ $location = "projectRules";
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th data-bind="text: ruleName">Rule Name</th>
-                        <th data-bind="text: ruleAction">Action</th>
-                        <th data-bind="text: ruleNotOK">Result of the rule</th>
+                        <th>Rule Name</th>
+                        <th>Action</th>
+                        <th>Result of the rule</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">
@@ -43,12 +43,12 @@ $location = "projectRules";
 
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: projectActions" id="avaAct">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: projectActions">test</span></a> </li>
+                                    <li>test</li>
                                 </ul>
                             </div>
                             <div class="dropdown">
