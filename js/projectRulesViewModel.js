@@ -52,16 +52,16 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            gvm.projectActions.push(item.description);
+            viewModel.projectActions.push(item.description);
 
             $.each(item.subcompetences, function(i, subcomp){
                 //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
                 //competence.subcompetences.push(subcompetence);
-                gvm.projectActions.push(subcomp.description);
+                viewModel.projectActions.push(subcomp.description);
 
                 $.each(subcomp.indicators, function(i, indic){
                     //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
-                    gvm.projectActions.push(indic.description);
+                    viewModel.projectActions.push(indic.description);
                 });
             });
         })
