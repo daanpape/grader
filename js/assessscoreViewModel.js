@@ -77,11 +77,12 @@ function SubCompetence(parent, id, code, name, indicators) {
     };
 }
 
-function Indicator(parent, id, name, description) {
+function Indicator(parent, id, name, description, points) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
-        description: ko.observable(description)
+        description: ko.observable(description),
+        points: ko.observable(points)
     };
 }
 
