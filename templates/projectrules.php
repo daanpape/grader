@@ -12,8 +12,7 @@ $location = "projectRules";
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
     <title data-bind="text: title"></title>
-    <?php include_once('hddepends.php');
-          include_once('jsdepends.php'); ?>
+    <?php include_once('hddepends.php') ?>
 </head>
 
 <body>
@@ -70,6 +69,20 @@ $location = "projectRules";
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div id="bottom-col" class="col-md-12">
+            <button class="btn btn-lg addRule" data-bind="text: addRule">
+                Add rule
+            </button>
+
+            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
+                Save
+            </button>
         </div>
     </div>
 </div>
