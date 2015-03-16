@@ -26,7 +26,6 @@ $location = "assessscore";
     <div class="row">
         <div id="top-col" class="col-md-12">
         </div>
-
     </div>
 </div>
 
