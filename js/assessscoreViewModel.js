@@ -86,4 +86,22 @@ function Indicator(parent, id, name, description, points) {
     };
 }
 
+ko.bindingHandlers.slider = {
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var options = allBindingsAccessor().sliderOptions || {};
+        $(element).slider(options);
+        ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
+            var observable = valueAccessor();
+            observable(ui.value);
+        });
+        ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+            $(element).slider("destroy");
+        });
+        ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+            var observable = valueAccessor();
+            observable(ui.value);
+        });
+    }
+};
+
 
