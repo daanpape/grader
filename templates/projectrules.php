@@ -36,11 +36,11 @@ $location = "projectrules";
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        <td style="width: 25%">
                             <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
 
-                        <td>
+                        <td style="width: 75%">
                             <div class="dropdown col-md-4">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Action</span>
