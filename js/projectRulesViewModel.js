@@ -49,7 +49,7 @@ function initPage() {
 function fetchProjectStructure() {
     viewModel.clearActionsStructure();
 
-    $.getJSON("/api/projectstructure/" + projectid, function(data){
+    $.getJSON("/api/projectstructure/" + gwn.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
             gvm.projectActions.push(item.description);
