@@ -31,16 +31,8 @@ $location = "assessscore";
 </div>
 
 <!-- Content container -->
-<div class="container">
-    <ul class="list-group" data-bind="foreach: indicators">
-
-    </ul>
-</div>
-
 <div class="container" data-bind="foreach: competences">
-    <label data-bind="value: name"></label>
-    <div class="panel-body" data-bind="foreach: subcompetences">
-    </div>
+
 </div>
 
 <?php include_once('jsdepends.php') ?>
