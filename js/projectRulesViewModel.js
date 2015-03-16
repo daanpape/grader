@@ -25,10 +25,6 @@ function pageViewModel(gvm) {
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
 
-    gvm.addProjectActions = function(data) {
-        gvm.projectActions.push(data);
-    }
-
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
     }
@@ -45,6 +41,7 @@ function pageViewModel(gvm) {
 function initPage() {
     fetchProjectStructure();
 
+    console.log(viewModel.projectActions);
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
@@ -56,7 +53,7 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            viewModel.addProjectActions(item.description);
+            viewModel.projectActions.push(item.description);
 
             $.each(item.subcompetences, function(i, subcomp){
                 //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
