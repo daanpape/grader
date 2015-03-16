@@ -59,7 +59,7 @@ $location = "projectrules";
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                                 </ul>
                             </div>
-                            <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
+                            <input type="text" class="form-control form-control" data-bind="value: projectrulesName">
                         </td>
                     </tr>
                 </tbody>
