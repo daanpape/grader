@@ -56,7 +56,9 @@ $location = "projectrules";
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: availableOperator" id="avaOpe">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>test 1 </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>test 2 </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>test 3 </li>
                                 </ul>
                             </div>
                             <div class="col-md-4">
