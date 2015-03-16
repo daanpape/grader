@@ -32,6 +32,10 @@ function pageViewModel(gvm) {
     gvm.removeRule = function(rule) {
         gvm.projectRules.remove(rule);
     }
+
+    gvm.clearActionsStructure = function() {
+        gvm.projectActions.destroyAll();
+    }
 }
 
 function initPage() {
@@ -43,7 +47,7 @@ function initPage() {
 }
 
 function fetchProjectStructure() {
-    viewModel.clearStructure();
+    viewModel.clearActionsStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
