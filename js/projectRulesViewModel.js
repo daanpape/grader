@@ -53,7 +53,7 @@ function initPage() {
 function fetchProjectStructure() {
     viewModel.clearActionsStructure();
 
-    $.getJSON("/api/projectstructure/" + projectId, function(data){
+    $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
             viewModel.addProjectAction(new Action(item.id,item.name));
 
