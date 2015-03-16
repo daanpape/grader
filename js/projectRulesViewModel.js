@@ -11,6 +11,7 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.addRule = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddRule");}, gvm);
+    console.log(ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddRule");}, gvm));
 
 
     gvm.getProjectInfo = function() {
