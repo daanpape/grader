@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "projectrules";
+$location = "projectRules";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
@@ -12,7 +12,8 @@ $location = "projectrules";
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
     <title data-bind="text: title"></title>
-    <?php include_once('hddepends.php') ?>
+    <?php include_once('hddepends.php');
+          include_once('jsdepends.php'); ?>
 </head>
 
 <body>
@@ -58,8 +59,8 @@ $location = "projectrules";
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: availableOperator" id="avaOpe">
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&#60; </li>
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&#62; </li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&equals;; </li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&ne;; </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&equals; </li>
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a>&ne; </li>
                                 </ul>
                             </div>
                             <div class="col-md-4">
