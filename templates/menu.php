@@ -26,6 +26,7 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'projects') {
                         echo 'active';
                     } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                    
             </ul>
             </li>
             </ul>
