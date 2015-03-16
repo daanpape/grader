@@ -8,8 +8,6 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
-    gvm.indicators = ko.observableArray();
-
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
@@ -21,10 +19,6 @@ function pageViewModel(gvm) {
             console.log(data);
          });
     }
-
-    gvm.updateIndicator = function(id,subcompetenceId,competenceId,name,description) {
-        gvm.indicators.push(new Indicator(this,id,subcompetenceId,competenceId,name,description));
-    };
 }
 
 /*function fetchProjectStructure() {
