@@ -55,11 +55,14 @@ $location = "projectrules";
                                     <span class="text-center">Action</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: availableOperator" id="testcliker">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: availableOperator" id="testcliker">
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                                 </ul>
                             </div>
-                            <input type="text" class="form-control form-next" data-bind="value: projectrulesValue">
+                        </td>
+
+                        <td>
+                            <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
                     </tr>
                 </tbody>
