@@ -39,13 +39,11 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
-        console.log(gvm.projectActions().length + " " + gvm.projectActions());
     }
 }
 
 function initPage() {
     fetchProjectStructure();
-
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
@@ -55,28 +53,45 @@ function initPage() {
 function fetchProjectStructure() {
     viewModel.clearActionsStructure();
 
-    $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
+    $.getJSON("/api/projectstructure/" + projectId, function(data){
         $.each(data, function(i, item){
-            //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            viewModel.addProjectAction(item.description.toString());
+            viewModel.addProjectAction(new Action(item.id,item.name));
 
             $.each(item.subcompetences, function(i, subcomp){
-                //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
-                //competence.subcompetences.push(subcompetence);
-                viewModel.addProjectAction(subcomp.description);
+                viewModel.addProjectAction(new Action(subcomp.id,subcomp.name));
 
                 $.each(subcomp.indicators, function(i, indic){
-                    //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
-                    viewModel.addProjectAction(indic.description);
+                    viewModel.addProjectAction(new Action(indic.id, indic.description));
                 });
             });
         })
     });
+    console.log(viewModel.projectActions);
 }
 
 /**
  * Rule class
  */
-function Rule(viewmodel, id, code, name, weight, locked, subcompetences) {
+function Rule(viewmodel, id, name, action, operator, value, result) {
+    return{
+        id: ko.observable(id),
+        name: ko.observable(name),
+        action: ko.observable(action),
+        operator: ko.observable(operator),
+        value: ko.observable(value),
+        result: ko.observable(result)
+    }
 
 }
+
+/**
+ * Action class
+ **/
+function Action(viewmodel, id, name)
+{
+    return {
+        id: ko.observable(id),
+        name: ko.observable(name)
+    }
+}
+

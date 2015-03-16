@@ -88,6 +88,10 @@ $location = "projectRules";
     </div>
 </div>
 
+<script>
+    var projectid = <?php echo $projectid ?>
+</script>
+
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
