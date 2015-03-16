@@ -47,17 +47,12 @@ $location = "projectrules";
                                 <option value="mercedes">Mercedes</option>
                                 <option value="audi">Audi</option>
                             </select>
-                        </td>
-                        <td>
                             <select>
                                 <option value=">">&#62;</option>
                                 <option value="<">&#60;</option>
                                 <option value="=">&#61;</option>
                                 <option value="≠">&ne;</option>
                             </select>
-                        </td>
-
-                        <td>
                             <select>
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
