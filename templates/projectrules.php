@@ -34,8 +34,8 @@ $location = "projectRules";
                         <th data-bind="text: ruleAction">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr data-bind="foreach: rules">
+                <tbody data-bind="foreach: rules">
+                    <tr>
                         <td class="col-lg-4">
                             <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
