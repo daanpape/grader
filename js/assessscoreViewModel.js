@@ -35,41 +35,14 @@ function initPage() {
 /**
  * Competence class
  */
-function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
+function Competence(viewmodel, id, code, name, weight, locked) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
         locked: false,
-        subcompetences: ko.observableArray(subcompetences),
-
-        addSubCompetence: function() {
-            this.subcompetences.push(new SubCompetence(this));
-            automatedWeightCalculation(this.subcompetences());
-        },
-
-        removeThis: function() {
-            viewmodel.removeCompetence(this);
-        },
-
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
-        },
-
-        removeSubCompetence: function(subCompetence) {
-            this.subcompetences.remove(subCompetence);
-            automatedWeightCalculation(this.subcompetences());
-        }
+        subcompetences: ko.observableArray()
     };
 
 }
@@ -77,47 +50,14 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, locked, indicators) {
+function SubCompetence(parent, id, code, name, weight, locked) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
         weight: ko.observable(weight),
         locked: false,
-        indicators: ko.observableArray(indicators),
-
-        addIndicator: function() {
-            this.indicators.push(new Indicator(this));
-            automatedWeightCalculation(this.indicators());
-        },
-
-        /*calculateWeight: function(total){
-         this.weight = total;
-         },*/
-
-        removeThis: function() {
-            parent.removeSubCompetence(this);
-
-        },
-
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
-        },
-
-        removeIndicator: function(indicator) {
-            this.indicators.remove(indicator);
-            automatedWeightCalculation(this.indicators());
-        }
-
+        indicators: ko.observableArray()
     };
 }
 
@@ -130,24 +70,7 @@ function Indicator(parent, id, name, weight, locked, description) {
         name: ko.observable(name),
         weight: ko.observable(weight),
         locked: false,
-        description : ko.observable(description),
-
-        removeThis: function() {
-            parent.removeIndicator(this);
-        },
-
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
-        }
+        description : ko.observable(description)
     };
 }
 
