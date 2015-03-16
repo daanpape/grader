@@ -46,7 +46,7 @@ $location = "assessscore";
                             <ul class="list-group" data-bind="foreach: indicators">
                                 <li class="list-group-item">
                                     <label data-bind="text: description"></label>
-                                    <input type="range" min="0" max="10" data-bind="value: score" />
+                                    <input type="range" min="0" max="100" step="1" data-bind="value: score" />
                                 </li>
                             </ul>
                         </div>
