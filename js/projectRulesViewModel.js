@@ -39,7 +39,7 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push({ projectActionData: data });
-        console.log(gvm.projectActions.length + " " + gvm.projectActions());
+        console.log(gvm.projectActions().length + " " + gvm.projectActions());
     }
 }
 
