@@ -41,7 +41,7 @@ $location = "projectrules";
                         </td>
 
                         <td>
-                            <div class="dropdown col-md-4">
+                            <div class="dropdown col-md-5">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Action</span>
                                     <span class="pull-right caret-down caret"></span>
@@ -59,7 +59,7 @@ $location = "projectrules";
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                                 </ul>
                             </div>
-                            <div class="form-control-inline col-md-4">
+                            <div class="form-control form-next col-md-5">
                                 <input type="text" class="form-control form-control" data-bind="value: projectrulesName">
                             </div>
                         </td>
