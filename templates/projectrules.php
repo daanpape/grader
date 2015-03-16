@@ -20,14 +20,13 @@ $location = "projectrules";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
+    <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project Rules</h1>
 </div>
 
 <!-- Content container -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <p>Project Rules</p>
             <table class="table table-striped">
                 <thead>
                 <tr>
