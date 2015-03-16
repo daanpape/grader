@@ -41,7 +41,7 @@ $location = "projectrules";
                         </td>
 
                         <td>
-                            <div class="dropdown col-md-6">
+                            <div class="dropdown col-md-4">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Action</span>
                                     <span class="pull-right caret-down caret"></span>
