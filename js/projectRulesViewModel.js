@@ -62,6 +62,7 @@ function fetchProjectStructure() {
                 $.each(subcomp.indicators, function(i, indic){
                     //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
                     viewModel.projectActions.push(indic.description);
+                    console.log(indic.description);
                 });
             });
         })
