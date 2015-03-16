@@ -35,7 +35,7 @@ function initPage() {
 /**
  * Competence class
  */
-function Competence(viewmodel, id, code, name, weight, locked) {
+/*function Competence(viewmodel, id, code, name, weight, locked) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
@@ -50,7 +50,7 @@ function Competence(viewmodel, id, code, name, weight, locked) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, locked) {
+/*function SubCompetence(parent, id, code, name, weight, locked) {
     return {
         id: ko.observable(id),
         code: ko.observable(code),
@@ -64,7 +64,7 @@ function SubCompetence(parent, id, code, name, weight, locked) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, weight, locked, description) {
+/*function Indicator(parent, id, name, weight, locked, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
@@ -72,7 +72,7 @@ function Indicator(parent, id, name, weight, locked, description) {
         locked: false,
         description : ko.observable(description)
     };
-}
+}*/
 
 // View model for the courses page
 function pageViewModel(gvm) {
@@ -117,7 +117,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function fetchProjectStructure() {
+/*function fetchProjectStructure() {
     viewModel.clearStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
@@ -140,5 +140,5 @@ function initPage() {
     console.log("Test");
     fetchProjectStructure();
 
-}
+}*/
 
