@@ -36,7 +36,7 @@ $location = "projectrules";
                 </thead>
                 <tbody>
                 <tr>
-                    <select class="dropdown">
+                    <select>
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="mercedes">Mercedes</option>
