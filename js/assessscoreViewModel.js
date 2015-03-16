@@ -214,7 +214,8 @@ function fetchProjectStructure() {
 }
 
 function initPage() {
-    fetchProjectStructure();
     console.log("Test");
+    fetchProjectStructure();
+
 }
 
