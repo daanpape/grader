@@ -25,6 +25,10 @@ function pageViewModel(gvm) {
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
 
+    gvm.addProjectActions = function(data) {
+        gvm.projectActions.push(data);
+    }
+
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
     }
@@ -52,7 +56,7 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            viewModel.projectActions.push(item.description);
+            viewModel.addProjectActions(item.description);
 
             $.each(item.subcompetences, function(i, subcomp){
                 //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
@@ -61,8 +65,7 @@ function fetchProjectStructure() {
 
                 $.each(subcomp.indicators, function(i, indic){
                     //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
-                    viewModel.projectActions.push(indic.description);
-                    console.log(indic.description);
+                    projectActions.push(indic.description);
                 });
             });
         })
