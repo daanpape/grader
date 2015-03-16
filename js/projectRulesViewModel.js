@@ -36,6 +36,11 @@ function pageViewModel(gvm) {
     gvm.clearActionsStructure = function() {
         gvm.projectActions.destroyAll();
     }
+
+    gvm.addProjectAction = function(data) {
+        gvm.projectActions.push(data);
+        console.log(gvm.projectActions);
+    }
 }
 
 function initPage() {
@@ -53,21 +58,20 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + viewModel.projectId, function(data){
         $.each(data, function(i, item){
             //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            viewModel.projectActions.push(item.description);
+            viewModel.addProjectAction(item.description);
 
             $.each(item.subcompetences, function(i, subcomp){
                 //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
                 //competence.subcompetences.push(subcompetence);
-                viewModel.projectActions.push(subcomp.description);
+                viewModel.addProjectAction(subcomp.description);
 
                 $.each(subcomp.indicators, function(i, indic){
                     //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
-                    projectActions.push(indic.description);
+                    viewModel.addProjectAction(indic.description);
                 });
             });
         })
     });
-    console.log(viewModel.projectActions);
 }
 
 /**
