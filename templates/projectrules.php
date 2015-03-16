@@ -36,7 +36,6 @@ $location = "projectrules";
                 </thead>
                 <tbody>
                 <tr>
-                    <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -46,7 +45,6 @@ $location = "projectrules";
                             <li role="presentation" class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
                         </ul>
-                    </div>
                 </tr>
                 </tbody>
             </table>
