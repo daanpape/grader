@@ -36,6 +36,12 @@ $location = "assessscore";
             <div class="panel-heading">
                 <label data-bind="text: name"></label>
             </div>
+            <div class="panel-body" data-bind="foreach: subcompetences">
+                <div class="subcompPanel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading color-subcomp">
+                            <label data-bind="text: name"></label>
+                        </div>
         </div>
     </div>
 </div>
