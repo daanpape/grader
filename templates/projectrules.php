@@ -31,7 +31,7 @@ $location = "projectrules";
                 <thead>
                     <tr>
                         <th>Rule Name</th>
-                        <th>Actions</th>
+                        <th colspan="3">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
