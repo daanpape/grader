@@ -149,7 +149,7 @@ $location = "assessscore";
 <div class="container">
     <div class="row">
         <div id="bottom-col" class="col-md-12">
-            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
+            <button class="btn btn-lg savePageBtn pull-left" data-bind="text: savePage">
                 Save
             </button>
         </div>
