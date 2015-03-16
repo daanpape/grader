@@ -29,20 +29,24 @@ $location = "projectrules";
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <th>Rule Name</th>
-                    <th>Actions</th>
-                </tr>
+                    <tr>
+                        <th>Rule Name</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <select>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </tr>
+                    <tr>
+                        <td>
+                            <select>
+                                <option value="volvo">Volvo</option>
+                                <option value="saab">Saab</option>
+                                <option value="mercedes">Mercedes</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
                 </tbody>
             </table>
         </div>
