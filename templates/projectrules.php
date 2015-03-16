@@ -34,7 +34,7 @@ $location = "projectrules";
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: projectRule">
+                <tbody>
                 <tr>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
