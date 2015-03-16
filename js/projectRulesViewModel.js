@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     $(".addRuleBtn").click(function() {
-        viewModel.addCompetence();
+        viewModel.addRule();
     });
 }
 
