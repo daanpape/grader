@@ -36,6 +36,7 @@ $location = "projectrules";
                 </thead>
                 <tbody>
                 <tr>
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials</button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
