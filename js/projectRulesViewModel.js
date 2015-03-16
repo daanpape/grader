@@ -39,14 +39,19 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push({ dataAction: data });
-        console.log(gvm.projectActions[1]);
+    }
+
+    gvm.projectActionsOverzicht = function(){
+        gvm.projectActions.forEach(function(entry) {
+            console.log(entry);
+        });
     }
 }
 
 function initPage() {
     fetchProjectStructure();
+    viewModel.projectActionsOverzicht();
 
-    console.log(viewModel.projectActions);
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
