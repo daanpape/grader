@@ -38,11 +38,11 @@ $location = "projectRules";
                 <tbody data-bind="foreach: rules">
                     <tr>
                         <td class="col-md-2">
-                            <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
+                            <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: projectrulesName">
                         </td>
 
                         <td>
-                            <div class="dropdown col-md-6">
+                            <div class="dropdown">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
                                     <span class="pull-right caret-down caret"></span>
@@ -51,7 +51,7 @@ $location = "projectRules";
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: actionName"></span></a> </li>
                                 </ul>
                             </div>
-                            <div class="dropdown col-md-4">
+                            <div class="dropdown">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Operator</span>
                                     <span class="pull-right caret-down caret"></span>
@@ -61,12 +61,12 @@ $location = "projectRules";
                                 </ul>
                             </div>
                             <div>
-                                <input type="text" class="form-control form-next" data-bind="value: projectrulesAction">
+                                <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: projectrulesAction">
                             </div>
                         </td>
                         <td>
                             <div>
-                                <input type="text" class="form-control form-next" data-bind="value: projectrulesResult">
+                                <input type="text" class="form-control form-next" placeholder="Result of the rule"  data-bind="value: projectrulesResult">
                             </div>
                         </td>
                     </tr>
