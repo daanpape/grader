@@ -34,28 +34,14 @@ $location = "projectrules";
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: coupledLists">
+                <tbody data-bind="foreach: projectRule">
                 <tr>
-                    <td data-bind="text: tname">--</td>
-                    <td>
-                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">Uncouple</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: availableLists">
-                <tr>
-                    <td data-bind="text: tname">--</td>
-                    <td>
-                        <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}">Couple</button>
-                    </td>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    </ul>
                 </tr>
                 </tbody>
             </table>
