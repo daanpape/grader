@@ -41,12 +41,15 @@ $location = "projectrules";
                         </td>
 
                         <td>
-                            <select class="dropdown">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
-                            </select>
+                            <div class="dropdown col-md-4">
+                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+                                    <span class="text-center">Action</span>
+                                    <span class="pull-right caret-down caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: availableActions" id="testcliker">
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                                </ul>
+                            </div>
                             <select>
                                 <option value=">">&#62;</option>
                                 <option value="<">&#60;</option>
