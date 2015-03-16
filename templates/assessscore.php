@@ -34,7 +34,7 @@ $location = "assessscore";
     <div class="col-md-12 compPanel">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
+                <label data-bind="text: name"></label>
             </div>
         </div>
     </div>
