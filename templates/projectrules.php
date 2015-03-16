@@ -42,7 +42,7 @@ $location = "projectRules";
                         </td>
 
                         <td>
-                            <div class="dropdown">
+                            <div class="dropdown col-md-6">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
                                     <span class="pull-right caret-down caret"></span>
