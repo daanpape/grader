@@ -58,7 +58,10 @@ $app->get('/project/:id', function ($id) use($app) {
     $app->render('project.php', array('projectid' => $id));
 });
 $app->get('/project/students/:id', function($id) use ($app) {
-   $app->render('projectstudents.php', array('projectid' => $id));
+    $app->render('projectstudents.php', array('projectid' => $id));
+});
+$app->get('/project/projectrules/:id', function($id) use ($app) {
+    $app->render('projectrules.php', array('projectid' => $id));
 });
 $app->get('/project/:id/completeness', function ($id) use ($app) {
     $app->render('projectcompleteness.php', array('projectid' => $id));
