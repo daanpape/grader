@@ -22,20 +22,45 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.rules = ko.observableArray([]);
+    gvm.projectRules = ko.observableArray([]);
+    gvm.projectActions = ko.observableArray([]);
 
     gvm.addRule = function() {
-        gvm.rules.push(new Rule(this));
+        gvm.projectRules.push(new Rule(this));
     }
 
-    gvm.removeCompetence = function(rule) {
-        gvm.competences.remove(rule);
+    gvm.removeRule = function(rule) {
+        gvm.projectRules.remove(rule);
     }
 }
 
 function initPage() {
+    fetchProjectStructure();
+
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
+    });
+}
+
+function fetchProjectStructure() {
+    viewModel.clearStructure();
+
+    $.getJSON("/api/projectstructure/" + projectid, function(data){
+        $.each(data, function(i, item){
+            //var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            gvm.projectActions.push(item.description);
+
+            $.each(item.subcompetences, function(i, subcomp){
+                //var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+                //competence.subcompetences.push(subcompetence);
+                gvm.projectActions.push(subcomp.description);
+
+                $.each(subcomp.indicators, function(i, indic){
+                    //subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
+                    gvm.projectActions.push(indic.description);
+                });
+            });
+        })
     });
 }
 
