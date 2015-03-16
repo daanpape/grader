@@ -72,5 +72,6 @@
     "RuleName" : "Naam van regel",
     "RuleAction" : "Actie",
     "AddRule" : "Maak regel",
+    "savePage" : "Opslaan",
     "RuleActionDropdown" : "Actie"
 }
