@@ -31,7 +31,7 @@ $location = "assessscore";
 
 <!-- Content container -->
 <div class="container" data-bind="foreach: competences">
-    <label data-bind="value: name"></label>
+    <label data-bind="value: description"></label>
 </div>
 
 <?php include_once('jsdepends.php') ?>
