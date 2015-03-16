@@ -24,6 +24,7 @@ function pageViewModel(gvm) {
 
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
+    gvm.availableOperators = ko.observableArray([]);
 
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
@@ -44,10 +45,21 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchProjectStructure();
+    setOperators();
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
+}
+
+function setOperators()
+{
+    viewModel.availableOperators.push("=");
+    viewModel.availableOperators.push("!=");
+    viewModel.availableOperators.push("<");
+    viewModel.availableOperators.push("<=");
+    viewModel.availableOperators.push(">");
+    viewModel.availableOperators.push(">=");
 }
 
 function fetchProjectStructure() {
