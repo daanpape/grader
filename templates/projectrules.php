@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "project";
+$location = "projectrules";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
