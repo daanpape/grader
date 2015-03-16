@@ -30,25 +30,25 @@ $location = "projectRules";
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th data-bind="text: ruleName">Rule Name</th>
-                        <th data-bind="text: ruleAction">Action</th>
-                        <th data-bind="text: ruleNotOK">Result of the rule</th>
+                        <th>Rule Name</th>
+                        <th>Action</th>
+                        <th>Result of the rule</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">
                     <tr>
                         <td class="col-md-2">
-                            <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: projectrulesName">
+                            <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: name">
                         </td>
 
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
+                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+                                    <span class="text-center">Action</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: projectActions" id="avaAct">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: projectActions">test</span></a> </li>
+                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: viewModel.projectActions" id="avaAct">
+                                    <li data-bind="text: name"></li>
                                 </ul>
                             </div>
                             <div class="dropdown">
@@ -56,7 +56,7 @@ $location = "projectRules";
                                     <span class="text-center">Operator</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: availableOperator" id="avaOpe">
+                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: viewModel.availableOperators" id="avaOpe">
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: operatorName"></span></a> </li>
                                 </ul>
                             </div>
@@ -87,6 +87,10 @@ $location = "projectRules";
         </div>
     </div>
 </div>
+
+<script>
+    var projectid = <?php echo $projectid ?>
+</script>
 
 <?php include_once('jsdepends.php') ?>
 </body>
