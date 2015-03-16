@@ -46,6 +46,7 @@ $location = "assessscore";
                             <ul class="list-group" data-bind="foreach: indicators">
                                 <li class="list-group-item">
                                     <label data-bind="text: description"></label>
+                                    <input type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" />
                                 </li>
                             </ul>
                         </div>
