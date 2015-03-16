@@ -1,6 +1,4 @@
 function pageViewModel(gvm) {
-    console.log("hey");
-
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
@@ -13,7 +11,8 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.addRule = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddRule");}, gvm);
-    console.log(ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddRule");}, gvm));
+    gvm.ruleName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleName");}, gvm);
+    gvm.ruleName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleAction");}, gvm);
 
 
     gvm.getProjectInfo = function() {

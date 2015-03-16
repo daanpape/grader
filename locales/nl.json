@@ -68,5 +68,8 @@
 
     "HomeManual" : "<p class=\"lead\">Deze HoWest beoordelingstool kan worden gebruikt om leerlingen te beoordelen<br/>Gelieve deze korte handleiding door te nemen alvorens deze service te gebruiken.</p>",
 
-    "ServiceNotReachableError" : "Kon niet met server verbinden, probeer later opnieuw"
+    "ServiceNotReachableError" : "Kon niet met server verbinden, probeer later opnieuw",
+
+    "RuleName" : "Naam van regel",
+    "RuleAction" : "Actie"
 }

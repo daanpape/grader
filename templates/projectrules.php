@@ -30,8 +30,8 @@ $location = "projectRules";
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Rule Name</th>
-                        <th>Actions</th>
+                        <th data-bind="text: ruleName">Rule Name</th>
+                        <th data-bind="text: ruleAction">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
