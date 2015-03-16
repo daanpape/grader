@@ -42,9 +42,11 @@ function pageViewModel(gvm) {
     }
 
     gvm.projectActionsOverzicht = function(){
-        gvm.projectActions.forEach(function(entry) {
-            console.log(entry);
-        });
+        var index;
+
+        for (index = 0; index < gvm.projectActions.length; ++index) {
+            console.log(gvm.projectActions[index]);
+        }
     }
 }
 
