@@ -44,7 +44,7 @@ $location = "projectRules";
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center" data-bind="text: ruleActionDropdown">Action</span>
+                                    <span class="text-center">Action</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: projectActions" id="avaAct">
