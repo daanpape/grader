@@ -38,6 +38,10 @@ function initPage() {
     viewModel.getAllData();
 
     fetchProjectStructure();
+
+    $(".savePageBtn").click(function(){
+
+    });
 }
 
 function fetchProjectStructure() {

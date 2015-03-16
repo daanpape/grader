@@ -146,6 +146,16 @@ $location = "assessscore";
     </div>
 </div>
 
+<div class="container">
+    <div class="row">
+        <div id="bottom-col" class="col-md-12">
+            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
+                Save
+            </button>
+        </div>
+    </div>
+</div>
+
 <?php include_once('jsdepends.php') ?>
 <script>
     var projectid = <?php echo $projectid ?>
