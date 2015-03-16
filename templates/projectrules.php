@@ -60,12 +60,12 @@ $location = "projectRules";
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'opebtn-' + id}"><span data-bind="text: operatorName"></span></a> </li>
                                 </ul>
                             </div>
-                            <div class="col-md-2">
+                            <div>
                                 <input type="text" class="form-control form-next" data-bind="value: projectrulesAction">
                             </div>
                         </td>
                         <td>
-                            <div class="col-md-2">
+                            <div>
                                 <input type="text" class="form-control form-next" data-bind="value: projectrulesResult">
                             </div>
                         </td>
