@@ -31,12 +31,12 @@ $location = "projectrules";
                 <thead>
                     <tr>
                         <th>Rule Name</th>
-                        <th colspan="3">Actions</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        <td style="width: 33%">
                             <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
 
