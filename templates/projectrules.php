@@ -61,7 +61,12 @@ $location = "projectRules";
                                 </ul>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
+                                <input type="text" class="form-control form-next" data-bind="value: projectrulesAction">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control form-next" data-bind="value: projectrulesResult">
                             </div>
                         </td>
                     </tr>
