@@ -51,9 +51,9 @@ function fetchProjectStructure() {
                 var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description);
                 competence.subcompetences.push(subcompetence);
 
-                /*$.each(subcomp.indicators, function(i, indic){
+                $.each(subcomp.indicators, function(i, indic){
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
-                });*/
+                });
             });
         })
     });
@@ -74,6 +74,14 @@ function SubCompetence(parent, id, code, name, indicators) {
         code: ko.observable(code),
         name: ko.observable(name),
         indicators: ko.observableArray(indicators)
+    };
+}
+
+function Indicator(parent, id, name, description) {
+    return {
+        id: ko.observable(id),
+        name: ko.observable(name),
+        description: ko.observable(description)
     };
 }
 

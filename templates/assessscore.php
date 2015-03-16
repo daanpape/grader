@@ -42,6 +42,14 @@ $location = "assessscore";
                         <div class="panel-heading color-subcomp">
                             <label data-bind="text: name"></label>
                         </div>
+                        <div class="panel-body">
+                            <ul class="list-group" data-bind="foreach: indicators">
+                                <label data-bind="text: name"></label>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
