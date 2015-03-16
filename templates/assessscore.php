@@ -31,7 +31,13 @@ $location = "assessscore";
 
 <!-- Content container -->
 <div class="container" data-bind="foreach: competences">
-    <label data-bind="value: name"></label>
+    <div class="col-md-12 compPanel">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label data-bind="value: name"></label>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include_once('jsdepends.php') ?>

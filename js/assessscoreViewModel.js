@@ -38,8 +38,6 @@ function initPage() {
     viewModel.getAllData();
 
     fetchProjectStructure();
-
-    console.log(viewModel.competences()[0].code());
 }
 
 function fetchProjectStructure() {
