@@ -39,7 +39,7 @@ function initPage() {
 
     fetchProjectStructure();
 
-    console.log(viewModel.competences()[0].name());
+    console.log(viewModel.competences()[0]);
 }
 
 function fetchProjectStructure() {
