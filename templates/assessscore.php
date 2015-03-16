@@ -44,7 +44,7 @@ $location = "assessscore";
                         </div>
                         <div class="panel-body">
                             <ul class="list-group" data-bind="foreach: indicators">
-                                <label data-bind="text: name"></label>
+                                <label data-bind="text: description"></label>
                             </ul>
                         </div>
                     </div>
