@@ -1,4 +1,4 @@
-/*function pageViewModel(gvm) {
+function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
@@ -27,96 +27,6 @@
     };
 }
 
-function initPage() {
-    viewModel.getProjectInfo();
-    viewModel.getAllData();
-}*/
-
-/**
- * Competence class
- */
-/*function Competence(viewmodel, id, code, name, weight, locked) {
-    return {
-        id: ko.observable(id),
-        code: ko.observable(code),
-        name: ko.observable(name),
-        weight: ko.observable(weight),
-        locked: false,
-        subcompetences: ko.observableArray()
-    };
-
-}
-
-/**
- * SubCompetence class
- */
-/*function SubCompetence(parent, id, code, name, weight, locked) {
-    return {
-        id: ko.observable(id),
-        code: ko.observable(code),
-        name: ko.observable(name),
-        weight: ko.observable(weight),
-        locked: false,
-        indicators: ko.observableArray()
-    };
-}
-
-/**
- * Indicator class
- */
-/*function Indicator(parent, id, name, weight, locked, description) {
-    return {
-        id: ko.observable(id),
-        name: ko.observable(name),
-        weight: ko.observable(weight),
-        locked: false,
-        description : ko.observable(description)
-    };
-}*/
-
-// View model for the courses page
-function pageViewModel(gvm) {
-    // projecttitle
-    gvm.projecttitle = ko.observable("");
-    //gvm.competences = 0;
-    gvm.subcomp = 0;
-
-    // Page specific i18n bindings
-    gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
-    gvm.pageHeader = ko.observable("Project");
-    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
-
-    gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
-    gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
-
-    gvm.competences = ko.observableArray([]);
-
-    gvm.addCompetence = function() {
-        gvm.competences.push(new Competence(this));
-
-        // Update automated weight calculation
-        ko.utils.arrayForEach(gvm.competences, function(competence){
-            console.log(competence.weight);
-            competence.weight(percent);
-        });
-    };
-
-    gvm.removeCompetence = function(competence) {
-        gvm.competences.remove(competence);
-        automatedWeightCalculation(this.competences());
-    }
-
-    gvm.updateCompetence = function(id, code, description, max, weight) {
-        var comp = new Competence(this, id, code, description, weight);
-        gvm.competences.push(comp);
-        return comp;
-    }
-
-    gvm.clearStructure = function() {
-        gvm.competences.destroyAll();
-    }
-}
-
 /*function fetchProjectStructure() {
     viewModel.clearStructure();
 
@@ -135,10 +45,4 @@ function pageViewModel(gvm) {
         })
     });
 }
-
-function initPage() {
-    console.log("Test");
-    fetchProjectStructure();
-
-}*/
 
