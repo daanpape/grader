@@ -46,6 +46,7 @@ function pageViewModel(gvm) {
 
         for (index = 0; index < gvm.projectActions.length; ++index) {
             console.log(gvm.projectActions[index]);
+            console.log("test");
         }
     }
 }
