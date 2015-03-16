@@ -215,5 +215,6 @@ function fetchProjectStructure() {
 
 function initPage() {
     fetchProjectStructure();
+    console.log(viewModel.competences()[0].subcompetences()[0].indicators()[0].weight());
 }
 
