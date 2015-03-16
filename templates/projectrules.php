@@ -36,7 +36,7 @@ $location = "projectRules";
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="col-lg-10">
+                        <td class="col-lg-4">
                             <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
 
