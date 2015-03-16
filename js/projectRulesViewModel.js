@@ -78,7 +78,7 @@ function fetchProjectStructure() {
             });
         })
     });
-    console.log(viewModel.projectActions());
+    console.log(viewModel.projectActions()[0].id());
 }
 
 /**
