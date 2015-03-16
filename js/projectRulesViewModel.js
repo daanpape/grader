@@ -66,6 +66,7 @@ function fetchProjectStructure() {
             });
         })
     });
+    console.log(viewModel.projectActions);
 }
 
 /**
