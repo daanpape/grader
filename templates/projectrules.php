@@ -40,8 +40,8 @@ $location = "projectrules";
                             <input type="text" class="form-control form-next" data-bind="value: projectrulesName">
                         </td>
 
-                        <td class="dropdown">
-                            <select>
+                        <td>
+                            <select class="dropdown">
                                 <option value="volvo">Volvo</option>
                                 <option value="saab">Saab</option>
                                 <option value="mercedes">Mercedes</option>
