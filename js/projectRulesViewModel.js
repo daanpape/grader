@@ -26,8 +26,17 @@ function pageViewModel(gvm) {
     gvm.addRule = function() {
         gvm.rules.push(new Rule(this));
     }
+
+    gvm.removeCompetence = function(rule) {
+        gvm.competences.remove(rule);
+    }
 }
 
+function initPage() {
+    $(".addRuleBtn").click(function() {
+        viewModel.addCompetence();
+    });
+}
 
 /**
  * Rule class
