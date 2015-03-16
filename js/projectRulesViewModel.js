@@ -1,4 +1,6 @@
 function pageViewModel(gvm) {
+    console.log("hey");
+
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
