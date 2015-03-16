@@ -51,7 +51,7 @@ $location = "projectRules";
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: actionName"></span></a> </li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
+                            <div class="dropdown col-md-1">
                                 <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Operator</span>
                                     <span class="pull-right caret-down caret"></span>
