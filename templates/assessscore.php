@@ -15,6 +15,13 @@ $location = "assessscore";
     <title data-bind="text: title"></title>
 
     <?php include_once('hddepends.php') ?>
+
+    <style>
+        input[type=range] {
+            height: 2%;
+            width: 20%;
+        }
+    </style>
 </head>
 
 <body>
