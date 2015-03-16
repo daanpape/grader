@@ -48,7 +48,7 @@ $location = "projectRules";
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: { data: projectActions, as: 'item' }" id="avaAct">
-                                    <li data-bind="text: item"></li>
+                                    <li data-bind="value: item"></li>
                                     <!--<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'actbtn-' + id}"><span data-bind="text: item">test</span></a> </li>-->
                                 </ul>
                             </div>
