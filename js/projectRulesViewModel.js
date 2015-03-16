@@ -38,14 +38,14 @@ function pageViewModel(gvm) {
     }
 
     gvm.addProjectAction = function(data) {
-        gvm.projectActions.push(data);
+        gvm.projectActions.push({ projectActionData: data });
+        console.log(gvm.projectActions());
     }
 }
 
 function initPage() {
     fetchProjectStructure();
 
-    console.log(viewModel.projectActions());
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
