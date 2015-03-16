@@ -84,6 +84,7 @@ $location = "projects";
                             <a data-bind="attr:{'href': '/project/students/' + tid}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
                             <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
                             <a data-bind="attr:{'href': '/project/projectrules/' + tid}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span></a>
+                            <a data-bind="attr:{'href': '/project/projectsettings/' + tid}"><span class="glyphicon glyphicon-cog glyphicon-btn" data-bind="attr:{'id': 'projectsettingsbtn-' + tid"></span></a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             </td>
                     </tr>
