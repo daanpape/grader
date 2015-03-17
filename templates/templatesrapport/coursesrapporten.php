@@ -14,7 +14,7 @@
 
         <title data-bind="text: title"></title>
 
-        <?php include_once('../hddepends.php') ?>
+        <?php include_once('../templates/hddepends.php') ?>
     </head>
 
     <body>
