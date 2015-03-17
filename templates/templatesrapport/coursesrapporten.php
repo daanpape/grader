@@ -1,6 +1,6 @@
 <?php
     // Page initialisation
-    $location = "courses";
+    $location = "coursesrapporten";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
