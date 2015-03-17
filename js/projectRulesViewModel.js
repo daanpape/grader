@@ -40,12 +40,11 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
-        console.log(data.name());
     }
 }
 
 function initPage() {
-    fetchProjectStructure();
+    fetchActions();
 
     setOperators();
 
@@ -64,7 +63,7 @@ function setOperators()
     viewModel.availableOperators.push(">=");
 }
 
-function fetchProjectStructure() {
+function fetchActions() {
     viewModel.clearActionsStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
@@ -80,6 +79,14 @@ function fetchProjectStructure() {
             });
         })
     });
+
+    $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
+        $.each(data, function(i, item) {
+            viewModel.addProjectAction(new Action(item.id, item.description));
+        });
+    });
+
+
 }
 
 /**
