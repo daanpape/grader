@@ -80,5 +80,5 @@
     "AssessTitle2" : "Assess students",
     "CourseTitle2" : "Courses",
     "HomeRapportManual":"<p class=\"lead\"> Here comes a summary of students who still need to be assessed</p>",
-    "AddNewProjectTypeTitle2" : "Add new course"
+    "AddNewCourse" : "Add new course"
 }

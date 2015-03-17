@@ -275,7 +275,7 @@ function loadTablePage(courseid, pagenr)
 function showNewProjectTypeModal()
 {
     resetGeneralModal();
-    setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle2"));
+    setGeneralModalTitle(i18n.__("AddNewCourse"));
     setGeneralModalBody('<form id="newprojectform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code"> \
