@@ -29,7 +29,7 @@ require_once 'dptcms/config.php';
                 
                 <!---------- RapportSysteem ---------->
                 
-                <li class="<?php if ($location == 'home') {
+                <li class="<?php if ($location == 'homeRapporten') {
                     echo 'active';
                 } 
                 ?>"> <a href="/homerapporten" >Home</a></li> 
