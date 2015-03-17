@@ -90,13 +90,13 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, weight, locked, description) {
+function Indicator(parent, id, name, weight, description, locked) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         weight: ko.observable(weight),
-        locked: false,
         description : ko.observable(description),
+        locked: false,
 
         removeThis: function() {
             parent.removeIndicator(this);
@@ -173,7 +173,7 @@ function fetchProjectStructure() {
                competence.subcompetences.push(subcompetence);
                
                $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weightid, indic.description));
+                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
                });
             });
         })
