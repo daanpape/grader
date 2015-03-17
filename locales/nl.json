@@ -73,5 +73,10 @@
     "RuleAction" : "Actie",
     "AddRule" : "Maak regel",
     "RuleActionDropdown" : "Actie",
-    "RuleNotOK" : "Gevolg van de regel"
+    "RuleNotOK" : "Gevolg van de regel",
+    
+    
+    "AssessTitle2" : "Beoordeel studenten",
+    "CourseTitle2": "Vakken",
+    "HomeRapportManual":"<p class=\"lead\"> Hier moet een overzicht getoond worden van de studenten die nog gequoteerd moeten worden</p>"
 }

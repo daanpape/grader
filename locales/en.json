@@ -67,7 +67,6 @@
     "AddCompetence" : "Add competence",
 
     "HomeManual" : "<p class=\"lead\">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual before using the service.</p>",
-    "HomeRapportManual":"<p class=\"lead\"> Hier moet een overzicht getoond worden van de studenten die nog gequoteerd moeten worden</p>",
     "ServiceNotReachableError" : "Could not connect to server, try again later",
 
     "RuleName" : "Rule name",
