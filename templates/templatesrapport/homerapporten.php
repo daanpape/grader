@@ -14,12 +14,12 @@
 
         <title data-bind="text: title"></title>
 
-        <?php include_once('../hddepends.php');
+        <?php include_once('templates/hddepends.php');
         //Connection with local database: include_once('database.php') + Db::getConnection()  ?>
     </head>
     
     <body>
-        <?php include_once('menu.php') ?>
+        <?php include_once('templates/menu.php') ?>
 
         <!-- Header container -->
         <div class="container">
