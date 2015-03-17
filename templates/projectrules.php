@@ -56,7 +56,7 @@ $location = "projectRules";
                                     <span class="text-center">Operator</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
-                            <select class="dropdown-menu dropdown-location ul-wide" dat-bind="foreach: viewModel.availableOperators">
+                            <select data-bind="foreach: viewModel.availableOperators">
                                 <option data-bind="text: $data"></option>
                             </select>
                             </div>
