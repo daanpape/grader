@@ -79,5 +79,5 @@
     
     "AssessTitle2" : "Assess students",
     "CourseTitle2" : "Courses",
-    "HomeRapportManual" : "Here comes a summary of students who still need to be assessed"
+    "HomeRapportManual":"<p class=\"lead\"> Here comes a summary of students who still need to be assessed</p>"
 }
