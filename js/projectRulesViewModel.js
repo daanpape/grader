@@ -67,6 +67,7 @@ function fetchActions() {
     viewModel.clearActionsStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
+        viewModel.addProjectAction(new Action(0,"Total project score"))
         $.each(data, function(i, item){
             viewModel.addProjectAction(new Action(item.id,item.description));
 
@@ -86,8 +87,6 @@ function fetchActions() {
             viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description));
         });
     });
-
-
 }
 
 /**
