@@ -24,6 +24,22 @@
         <div class="container">
             <h1 class="page-header" data-bind="text: pageHeader">Courses</h1>
         </div>
+
+        <!-- Header container -->
+        <div class="container">
+            <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
+            <div class="row">
+                <div class="dropdown col-md-4">
+                    <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
+                        <span class="text-center">Choose...</span>
+                        <span class="pull-right caret-down caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="locations" data-bind="foreach: availableCourses" id="testcliker">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         
         <!-- Content container -->
         <div class="container">
