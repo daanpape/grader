@@ -68,10 +68,10 @@ function fetchProjectStructure() {
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            viewModel.addProjectAction(new Action(item.id,item.name));
+            viewModel.addProjectAction(new Action(item.id,item.description));
 
             $.each(item.subcompetences, function(i, subcomp){
-                viewModel.addProjectAction(new Action(subcomp.id,subcomp.name));
+                viewModel.addProjectAction(new Action(subcomp.id,subcomp.description));
 
                 $.each(subcomp.indicators, function(i, indic){
                     viewModel.addProjectAction(new Action(indic.id, indic.description));
