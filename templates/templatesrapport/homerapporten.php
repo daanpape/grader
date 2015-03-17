@@ -1,5 +1,5 @@
 <?php
-    $location = "home";
+    $location = "homeRapporten";
 ?>
 
 <!DOCTYPE html>

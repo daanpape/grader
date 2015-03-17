@@ -1,5 +1,5 @@
 <?php
-    $location = "assess";
+    $location = "assessRapporten";
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +14,11 @@
 
         <title data-bind="text: title"></title>
         
-        <?php include_once('../hddepends.php') ?>
+        <?php include_once('templates/hddepends.php') ?>
     </head>
     
     <body>
-        <?php include_once('menu.php') ?>
+        <?php include_once('templates/menu.php') ?>
         
         <!-- Header container -->
         <div class="container">
@@ -83,6 +83,6 @@
             </ul>
         </div>
 
-        <?php include_once('../jsdepends.php') ?>
+        <?php include_once('templates/jsdepends.php') ?>
     </body>
 </html>
