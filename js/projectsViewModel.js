@@ -14,6 +14,20 @@ function pageViewModel(gvm) {
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
+    // Table i18n bindings
+    gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
+    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
+    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
+    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
+
+    gvm.availableLocations = ko.observableArray([]);
+    gvm.availableTrainings = ko.observableArray([]);
+    gvm.availableCourses = ko.observableArray([]);
+
+    gvm.currentCourseId = null;
+    gvm.currentLocationId = null;
+    gvm.currentTrainingid = null;
+
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
@@ -320,7 +334,31 @@ function loadTablePage(courseid, pagenr)
  * Show a new projecttype modal.
  * @returns {undefined}
  */
+function showNewProjectTypeModal()
+{
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
+    setGeneralModalBody('<form id="newprojectform"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
+            </div> \
+        </form>');
 
+    addGeneralModalButton(i18n.__("AddBtn"), function(){
+        console.log($('#newprojectform').serialize());
+       addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    showGeneralModal();
+}
 
 /**
  * Show the edit projecttype modal. 
@@ -330,7 +368,35 @@ function loadTablePage(courseid, pagenr)
  * @param {type} tid
  * @returns {undefined}
  */
+function showEditProjectTypeModal(code, name, description, tid)
+{
+  resetGeneralModal();
+    setGeneralModalTitle(i18n.__("EditProjectTitle"));
+    setGeneralModalBody('<form id="updateprojectform"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
+            </div> \
+        </form>');
+    $.getJSON()
 
+    addGeneralModalButton(i18n.__("SaveBtn"), function(){
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    addGeneralModalButton(i18n.__("CancelBtn"), function(){
+        hideModal();
+    })
+
+    showGeneralModal();
+}
 
 function showCoupleStudentListModal(projectid) {
     viewModel.currentselectedlist = -1;
