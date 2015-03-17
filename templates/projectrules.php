@@ -38,7 +38,7 @@ $location = "projectRules";
                     <tr>
                         <th>Rule Name</th>
                         <th>Action</th>
-                        <th>Result of the rule</th>
+                        <th>Result of the rule on 100</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">
