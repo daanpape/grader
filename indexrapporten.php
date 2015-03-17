@@ -1,11 +1,11 @@
 <?php
 
 $app->get('/coursesrapporten', function () use ($app) {
-    $app->render('coursesrapporten.php');
+    $app->render('templatesrapport/coursesrapporten.php');
 });
 
 $app->get('/homerapporten', function () use ($app) {
-    $app->render('homerapporten.php');
+    $app->render('templatesrapport/homerapporten.php');
 });
 
 ?>
