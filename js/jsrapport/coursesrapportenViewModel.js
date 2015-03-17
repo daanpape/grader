@@ -13,6 +13,10 @@ function pageViewModel(gvm) {
     gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
     gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
+
+
+    // The table data observable array
+    gvm.tabledata = ko.observableArray([]);
     /*
      * Update the location dropdown list
      */
