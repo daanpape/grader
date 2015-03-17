@@ -42,24 +42,12 @@ $location = "projectRules";
                         </td>
 
                         <td>
-                            <div class="dropdown">
-                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center">Action</span>
-                                    <span class="pull-right caret-down caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="actions" data-bind="foreach: viewModel.projectActions" id="avaAct">
-                                    <li data-bind="text: name"></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center">Operator</span>
-                                    <span class="pull-right caret-down caret"></span>
-                                </button>
+                            <select data-bind="foreach: viewModel.projectActions">
+                                <option data-bind="text: $data"></option>
+                            </select>
                             <select data-bind="foreach: viewModel.availableOperators">
                                 <option data-bind="text: $data"></option>
                             </select>
-                            </div>
                             <div>
                                 <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: projectrulesAction">
                             </div>
