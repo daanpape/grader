@@ -1,6 +1,6 @@
 <?php
     // Page initialisation
-    $location = "jsrapport/coursesrapportenViewModel";
+    $location = "coursesrapporten";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
