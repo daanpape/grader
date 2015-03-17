@@ -27,14 +27,19 @@ require_once 'dptcms/config.php';
                         echo 'active';
                     } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
                 
-                <!-- RapportSysteem -->
+                <!---------- RapportSysteem ---------->
+                
+                <li class="<?php if ($location == 'home') {
+                    echo 'active';
+                } 
+                ?>"> <a href="/homerapporten" >Home</a></li> 
                 
                 <li class="<?php if ($location == 'courses') {
                     echo 'active';
                 } 
-                ?>"> <a href="/coursesrapporten" >Courses</a></li>
+                ?>"> <a href="/coursesrapporten" >Courses</a></li> 
                 
-                <!-- RapportSysteem -->
+                <!----------  RapportSysteem ---------->
                     
             </ul>
 
