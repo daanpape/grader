@@ -57,7 +57,7 @@ $location = "projectRules";
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="operator" data-bind="foreach: viewModel.availableOperators" id="avaOpe">
-                                    <li data-bind="text: viewModel.availableOperators"></li>
+                                    <li data-bind="text: $data"></li>
                                 </ul>
                             </div>
                             <div>
