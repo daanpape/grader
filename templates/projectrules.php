@@ -47,9 +47,11 @@ $location = "projectRules";
                                 <option data-bind="text: name"></option>
                             </select>
                             </div>
+                            <div>
                             <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control">
                                 <option data-bind="text: $data"></option>
                             </select>
+                            </div>
                             <div>
                                 <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value">
                             </div>
