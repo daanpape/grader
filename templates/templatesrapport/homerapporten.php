@@ -33,6 +33,6 @@
             </div>
         </div>
 
-        <?php include_once('../jsdepends.php') ?>
+        <?php include_once('templates/jsdepends.php') ?>
     </body>
 </html>
