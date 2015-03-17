@@ -31,7 +31,7 @@ $location = "project";
             }
 
             .hide{
-                display = none;
+                display: none;
             }
         </style>
 
