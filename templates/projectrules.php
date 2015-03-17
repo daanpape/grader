@@ -38,7 +38,7 @@ $location = "projectRules";
                     <tr>
                         <th>Rule Name</th>
                         <th>Action</th>
-                        <th>Result of the rule on 100</th>
+                        <th>Result of the rule</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">
@@ -60,7 +60,7 @@ $location = "projectRules";
                         </td>
                         <td>
                             <div>
-                                <input type="text" class="form-control form-next" placeholder="Result on total score"  data-bind="value: result">
+                                <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
                             </div>
                         </td>
                     </tr>
