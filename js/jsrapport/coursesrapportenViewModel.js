@@ -8,7 +8,11 @@ function pageViewModel(gvm) {
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
-    
+
+    gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
+    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
+    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
+    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
     /*
      * Update the location dropdown list
      */
