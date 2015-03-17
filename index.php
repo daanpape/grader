@@ -486,6 +486,8 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
 
+/* Rapporten routering */
+require_once 'indexrapporten.php';
 
 /* Admin router */
 require_once 'admin.php';
