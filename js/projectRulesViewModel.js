@@ -40,7 +40,7 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
-        console.log(data.id());
+        console.log(data.name());
     }
 }
 
@@ -86,7 +86,7 @@ function fetchProjectStructure() {
  * Rule class
  */
 
-function Rule(viewmodel, id, name, action, operator, value, result) {
+function Rule(id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
@@ -101,7 +101,7 @@ function Rule(viewmodel, id, name, action, operator, value, result) {
 /**
  * Action class
  **/
-function Action(viewmodel, id, name)
+function Action(id, name)
 {
     return {
         id: ko.observable(id),
