@@ -200,6 +200,20 @@ function initPage() {
     });
 }
 
+function saveProjectStructure() {
+    $.ajax({
+        type: "POST",
+        url: "/api/projectstructure/" + projectid,
+        data: ko.toJSON(viewModel.competences),
+        success: function(){
+            // TODO make multilangual and with modals
+            alert("Saved projectstructure to server");
+
+            fetchProjectStructure();
+        }
+    });
+}
+
 function allValidationChecks()
 {
     return totalPercentCheck() && validationCheck();
