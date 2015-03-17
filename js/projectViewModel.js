@@ -173,7 +173,7 @@ function fetchProjectStructure() {
                competence.subcompetences.push(subcompetence);
                
                $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description)); 
+                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weightid, indic.description));
                });
             });
         })
