@@ -13,6 +13,12 @@ $location = "projectRules";
     <link rel="icon" href="/img/favicon.ico">
     <title data-bind="text: title"></title>
     <?php include_once('hddepends.php') ?>
+
+    <style>
+        .form-next{
+            margin-bottom: 1%;
+        }
+    </style>
 </head>
 
 <body>
