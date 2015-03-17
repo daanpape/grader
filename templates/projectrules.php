@@ -60,7 +60,7 @@ $location = "projectRules";
                         </td>
                         <td>
                             <div>
-                                <input type="text" class="form-control form-next" placeholder="Result of the rule"  data-bind="value: result">
+                                <input type="text" class="form-control form-next" placeholder="Result on total score"  data-bind="value: result">
                             </div>
                         </td>
                     </tr>
