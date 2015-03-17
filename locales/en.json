@@ -74,5 +74,9 @@
     "RuleAction" : "Action",
     "AddRule" : "Add rule",
     "RuleActionDropdown" : "Action",
-    "RuleNotOK" : "Result of the rule"
+    "RuleNotOK" : "Result of the rule",
+    
+    
+    
+    "AssessTitle2" : "Assess Students"
 }
