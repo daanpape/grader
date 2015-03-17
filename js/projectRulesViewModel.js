@@ -40,7 +40,6 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
-        console.log(data.description());
     }
 }
 
@@ -84,6 +83,7 @@ function fetchActions() {
     $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
         $.each(data, function(i, item) {
             viewModel.addProjectAction(item.id, item.description);
+            item.description();
         });
     });
 
