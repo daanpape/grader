@@ -14,7 +14,7 @@
 
         <title data-bind="text: title"></title>
 
-        <?php include_once('hddepends.php');
+        <?php include_once('../hddepends.php');
         //Connection with local database: include_once('database.php') + Db::getConnection()  ?>
     </head>
     
@@ -33,6 +33,6 @@
             </div>
         </div>
 
-        <?php include_once('jsdepends.php') ?>
+        <?php include_once('../jsdepends.php') ?>
     </body>
 </html>

@@ -14,7 +14,7 @@
 
         <title data-bind="text: title"></title>
 
-        <?php include_once('hddepends.php') ?>
+        <?php include_once('../hddepends.php') ?>
     </head>
 
     <body>
@@ -71,6 +71,6 @@
             </button>
         </div>
 
-        <?php include_once('jsdepends.php') ?>
+        <?php include_once('../jsdepends.php') ?>
     </body>
 </html>
