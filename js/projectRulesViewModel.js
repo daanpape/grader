@@ -83,6 +83,7 @@ function fetchActions() {
     $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
         $.each(data, function(i, item) {
             viewModel.addProjectAction(item.id, item.description);
+            console.log(item);
         });
     });
 
