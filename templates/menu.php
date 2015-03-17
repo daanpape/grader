@@ -32,12 +32,10 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'courses') {
                     echo 'active';
                 } 
-                ?>"> <a href="/coursesrapporten" data-bind="text: coursestypeBtn">Courses</a></li>
+                ?>"> <a href="/coursesrapporten" >Courses</a></li>
                 
                 <!-- RapportSysteem -->
                     
-            </ul>
-            </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
