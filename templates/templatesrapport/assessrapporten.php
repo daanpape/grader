@@ -1,5 +1,5 @@
 <?php
-    $location = "assessRapporten";
+    $location = "assessrapporten";
 ?>
 
 <!DOCTYPE html>
