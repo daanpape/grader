@@ -32,7 +32,7 @@ require_once 'dptcms/config.php';
                 if ($location == 'courses') {
                     echo 'class="active"';
                 } 
-                ?>> <a href="templatesrapport/courses.php" data-bind="text: projecttypeBtn">Courses</a></li>
+                ?>> <a href="templatesrapport/courses.php" data-bind="text: coursestypeBtn">Courses</a></li>
                 <!-- RapportSysteem -->
                     
             </ul>
