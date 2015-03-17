@@ -8,4 +8,8 @@ $app->get('/homerapporten', function () use ($app) {
     $app->render('templatesrapport/homerapporten.php');
 });
 
+$app->get('/assessrapporten', function () use ($app) {
+    $app->render('templatesrapport/assessrapporten.php');
+});
+
 ?>
