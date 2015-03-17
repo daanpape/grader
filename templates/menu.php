@@ -32,7 +32,7 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'homeRapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="/homerapporten" >Home</a></li> 
+                ?>"> <a href="jsrapport/homerapporten" >Home</a></li>
                 
                 <li class="<?php if ($location == 'jsrapport/assessrapporten') {
                     echo 'active';
