@@ -37,9 +37,9 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'assessRapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="/assesrapporten" >Assess</a></li>
+                ?>"> <a href="/assessrapporten" >Assess</a></li>
                 
-                <li class="<?php if ($location == 'courses') {
+                <li class="<?php if ($location == 'jsrapport/coursesrapporten') {
                     echo 'active';
                 } 
                 ?>"> <a href="/coursesrapporten" >Courses</a></li> 
