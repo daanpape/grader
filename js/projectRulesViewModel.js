@@ -40,6 +40,7 @@ function pageViewModel(gvm) {
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
+        console.log(data);
     }
 }
 
