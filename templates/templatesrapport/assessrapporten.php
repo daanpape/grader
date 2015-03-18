@@ -59,7 +59,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-4">
+                <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Subgoal</span>
                         <span class="pull-right caret-down caret"></span>
