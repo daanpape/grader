@@ -93,10 +93,10 @@ function pageViewModel(gvm) {
         $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
-                Put item in list
+              //  Put item in list
                 gvm.availableLocations.push(item);
 
-                Add listener to listitem
+                // Add listener to listitem
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
