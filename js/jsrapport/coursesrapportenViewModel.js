@@ -135,22 +135,18 @@ function deleteTableItem(id, tblOject) {
  * Add a new projecttype
  */
 function addNewProjecttypeForm(serialData, callback) {
-    if(viewModel.currentCourseId != null) {
-        $.ajax({
-            url: "/api/project/" + viewModel.currentCourseId,
-            type: "POST",
-            data: serialData,
-            success: function(data) {
-                viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-                callback(true);
-            },
-            error: function(data) {
-                callback(false);
-            }
-        });
-    } else {
-        alert("No course selected");
-    }
+    $.ajax({
+        url: "/api/project/" + viewModel.currentCourseId,
+        type: "POST",
+        data: serialData,
+        success: function(data) {
+            viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
 } 
 
 /*
