@@ -82,6 +82,7 @@ function setOperators()
 
 function removeRuleFromDb()
 {
+    console.log(this.id);
     $.ajax({
         type: "POST",
         url: "/api/projectrules/" + projectid + "/remove",
