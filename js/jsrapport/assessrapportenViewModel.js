@@ -89,14 +89,15 @@ function pageViewModel(gvm) {
         })
     }
 
+    /*
     gvm.updateLocations = function() {
-        $.getJSON('/rapportapi/courses', function(data) {
+        $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
-                /* Put item in list */
+                *//* Put item in list *//*
                 gvm.availableLocations.push(item);
 
-                /* Add listener to listitem */
+                *//* Add listener to listitem *//*
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
@@ -108,7 +109,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    };
+    }; */
 
     /*
      * Update the training data
