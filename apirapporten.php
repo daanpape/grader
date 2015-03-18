@@ -31,4 +31,7 @@ Class RapportAPI {
         }
     }
     
+    public static function getCourseCount() {
+        return rapportenDAO::getCourseCount();
+    }
 }
