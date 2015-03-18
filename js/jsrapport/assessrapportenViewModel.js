@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
 
-    gvm.updateDropdowns = function() {
+  /*  gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
@@ -47,7 +47,7 @@ function pageViewModel(gvm) {
                 gvm.updateLocations();
             }
         });
-    }
+    } */
 
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
