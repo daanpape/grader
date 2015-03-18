@@ -800,7 +800,7 @@ class ClassDAO {
                 }
             }*/
 
-            return $projectrules;
+            return $projectrules[0];
 
         }
         catch (PDOException $ex)
