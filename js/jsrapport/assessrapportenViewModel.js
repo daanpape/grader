@@ -3,8 +3,10 @@ function pageViewModel(gvm) {
     console.log(document.title);
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n. __("AssessTitle2");}, gvm);
+    console.log(document.title + " test3");
     gvm.userId = -1;
 
+    console.log(document.title + " test2");
     // Page specific i18n bindings
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
@@ -169,9 +171,9 @@ function pageViewModel(gvm) {
 
 function loadTablePage(courseid, pagenr)
 {
-    /*$.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
 
-        *//* Clear current table page *//*
+        /* Clear current table page */
         viewModel.clearTable()
 
         // Load table data
@@ -179,7 +181,7 @@ function loadTablePage(courseid, pagenr)
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
 
-        *//* Let previous en next buttons work *//*
+        /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
@@ -201,40 +203,40 @@ function loadTablePage(courseid, pagenr)
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
 
-        *//* Calculate for the pager buttons *//*
+        /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
 
         $('.pager-nr-btn').each(function() {
-            *//* calculate current page number *//*
+            /* calculate current page number */
             var thispagenr = lowPage++;
 
-            *//* Add the page number *//*
+            /* Add the page number */
             $(this).html('<a href="#">' + thispagenr + '</a>');
 
-            *//* Add active class to current page *//*
+            /* Add active class to current page */
             if(thispagenr == pagenr) {
                 $(this).addClass('active');
             } else {
                 $(this).removeClass('active');
             }
 
-            *//* Disable inactive classes and bind handlers to active classes *//*
+            /* Disable inactive classes and bind handlers to active classes */
             if(thispagenr > data.pagecount) {
                 $(this).addClass('disabled');
             } else {
-                *//* Add click listener for button *//*
+                /* Add click listener for button */
                 $(this).click(function() {
                     loadTablePage(courseid, thispagenr);
                 });
             }
         });
     });
-*/
+
 }
 
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateDropdowns();
+       // viewModel.updateDropdowns();
     });
 }
