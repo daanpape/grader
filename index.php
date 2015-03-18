@@ -448,6 +448,12 @@ $app->post('/api/projectstructure/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::putProjectStructure($id, file_get_contents('php://input')));
 });
 
+$app->post('/api/projectrules/:id', function($id) use ($app)
+{
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::putProjectRules($id, file_get_contents('php://input')));
+});
+
 $app->post('/api/csv/studentlist', function() use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     

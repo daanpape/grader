@@ -57,6 +57,11 @@ function initPage() {
         viewModel.addRule();
     });
 
+    $(".savePageBtn").click(function()
+    {
+        saveProjectRules();
+    });
+
     setOperators();
 }
 
@@ -101,9 +106,22 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.updateRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
         });
         console.log(data);
+    });
+}
+
+function saveProjectRules() {
+    $.ajax({
+        type: "POST",
+        url: "/api/projectrules/" + projectid,
+        data: ko.toJSON(viewModel.projectRules),
+        success: function(){
+            // TODO make multilangual and with modals
+            console.log("Saved");
+            fetchProjectRules();
+        }
     });
 }
 
@@ -111,7 +129,7 @@ function fetchProjectRules()
  * Rule class
  */
 
-function Rule(id, name, action, operator, value, result) {
+function Rule(viewmodel,id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
