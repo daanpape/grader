@@ -749,6 +749,36 @@ class ClassDAO {
             Logger::logError("could not insert new student".$ex);
         }
     }
+
+    public static function getProjectRules($id)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM rules WHERE project = ?");
+            $stmt->execute(array($id));
+            return $conn->lastInsertId();
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError("could not get project rules. ".$ex);
+        }
+    }
+
+    /*public static function saveProjectRules($id, $name, $action, $operator, $value, $result)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("");
+            $stmt->execute(array());
+            return $conn->lastInsertId();
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError("could not save project rules. ".$ex);
+        }
+    }*/
 }
 
 /*
