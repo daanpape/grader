@@ -27,10 +27,11 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     $pg = Pager::pageToStartStop($pagenr);
 
     // Get total number of projecttypes in the database
-    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
+    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $totalcourses = RapportAPI::getCourseCount();
 
     // Get the page
-    //echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
 $app->post('/rapportapi/course', function () use ($app) {
