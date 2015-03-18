@@ -800,7 +800,8 @@ class ClassDAO {
                 }
             }*/
 
-            return $projectrules;
+            $keys = array_keys($projectrules);
+            return $keys[0];
         }
         catch (PDOException $ex)
         {
