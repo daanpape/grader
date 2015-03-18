@@ -786,17 +786,17 @@ class ClassDAO {
     {
         try
         {
+            $conn = Db::getConnection();
             foreach($projectrules as $rule) {
-                $conn = Db::getConnection();
-                if(isset($rule['id']))
+                if(isset($rule->id))
                 {
                     $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
-                    $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result'], $rule['id']));
+                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result, $rule->id));
                 }
                 else
                 {
                     $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result']));
+                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result));
                 }
             }
             return true;
