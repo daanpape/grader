@@ -83,5 +83,6 @@
     "HomeRapportManual":"<p class=\"lead\"> Here comes a summary of students who still need to be assessed</p>",
     "AddNewCourse" : "Add new course",
 
-  "HomeRapportTitle":"Grading system professional education"
+  "HomeRapportTitle":"Grading system professional education",
+  "ProjectRapportName":"Grading System"
 }
