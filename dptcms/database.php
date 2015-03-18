@@ -786,9 +786,10 @@ class ClassDAO {
     {
         try
         {
+            $data = json_decode($projectrules);
             $conn = Db::getConnection();
-            if(is_array($projectrules)) {
-                foreach ($projectrules as $rule) {
+            if(is_array($data)) {
+                foreach ($data as $rule) {
                     if (isset($rule['id'])) {
                         $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
                         $stmt->execute(array($id, $rule['name'], $rule['action'], $rule['operator'], $rule['value'], $rule['result'], $rule['id']));
