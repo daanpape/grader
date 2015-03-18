@@ -93,7 +93,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateLocations = function() {
-        $.getJSON('/apirapporten/locations', function(data) {
+        $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
                 /* Put item in list */
