@@ -815,7 +815,7 @@ class ClassDAO {
         try
         {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM rules WHERE id=?");
+            $stmt = $conn->prepare("DELETE FROM rules WHERE id= ?");
             $stmt->execute(array((int)$id));
             return $id;
         }
