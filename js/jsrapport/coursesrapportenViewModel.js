@@ -88,6 +88,7 @@ function addNewProjecttypeForm(serialData, callback) {
             callback(true);
         },
         error: function(data) {
+            console.log('Failure');
             callback(false);
         }
     });
