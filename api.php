@@ -257,6 +257,11 @@ class GraderAPI {
         return ClassDAO::getStudentsFromStudentList($id);
     }
 
+    public static function putProjectRules($id,$projectrules)
+    {
+        return ClassDAO::saveProjectRules($id,$projectrules);
+    }
+
     public static function getLocationsTrainingsAndCourses($locationId, $trainingId) {
         $result[] = array();
 
@@ -329,7 +334,7 @@ class GraderAPI {
         // Return saved data
         return self::getAllDataFromProject($projectid);
     }
-    
+
     public static function putCompetence($code, $description, $max, $weight, $project, $id = -1) {
         if($id == -1) {
             return ClassDAO::putNewCompetence($code, $description, $max, $weight, $project);

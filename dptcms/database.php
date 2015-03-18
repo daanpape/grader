@@ -782,20 +782,22 @@ class ClassDAO {
         }
     }
 
-    /*public static function saveProjectRules($id, $name, $action, $operator, $value, $result)
+    public static function saveProjectRules($id, $projectrules)
     {
         try
         {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("");
-            $stmt->execute(array());
+            foreach($projectrules as $rule) {
+                $stmt = $conn->prepare("");
+                $stmt->execute(array());
+            }
             return $conn->lastInsertId();
         }
         catch (PDOException $ex)
         {
             Logger::logError("could not save project rules. ".$ex);
         }
-    }*/
+    }
 }
 
 /*
