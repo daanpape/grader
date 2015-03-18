@@ -13,7 +13,7 @@ Class RapportAPI {
     }
     
     public static function createCourse($code, $name, $description) {
-        ?><script>console.log('im in createcourse apirapporten class function')</script> <?php
+        echo "<p>" + $code + ", " + $name + ", " + $description + "</p>";
         $id = rapportenDAO::insertCourse($code, $name, $description);
 
         if ($id != null) {
