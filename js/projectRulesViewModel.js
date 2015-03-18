@@ -51,13 +51,14 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
-    fetchProjectRules();
-
-    setOperators();
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
+
+    fetchProjectRules();
+
+    setOperators();
 }
 
 function setOperators()
@@ -111,7 +112,7 @@ function fetchProjectRules()
  * Rule class
  */
 
-function Rule(id, name, action, operator, value, result) {
+function Rule(viewmodel, id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
