@@ -14,7 +14,7 @@ $app->get('/assessrapporten', function () use ($app) {
 
 /* API get routes */
 
-$app->get('/rapportapi/projects/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     ?>
         <script>console.log('im in the api')</script>
     <?php
@@ -32,7 +32,7 @@ $app->get('/rapportapi/projects/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/rapportapi/project/', function () use ($app) {
+$app->post('/rapportapi/course/', function () use ($app) {
     ?><script>console.log('im in indexrapporten')</script> <?php
     // Use json headers
     $response = $app->response();

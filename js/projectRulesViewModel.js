@@ -139,7 +139,6 @@ function Rule(viewmodel,id, name, action, operator, value, result) {
         result: ko.observable(result),
 
         removeThisRule: function() {
-            console.log("deleted");
             viewModel.removeRule(this);
         }
     }
