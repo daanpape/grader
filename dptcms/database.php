@@ -786,21 +786,24 @@ class ClassDAO {
     {
         try
         {
+            $data = json_decode($projectrules);
             $conn = Db::getConnection();
-            /*foreach($projectrules as $rule) {
-                if(isset($rule->id))
-                {
-                    $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
-                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result, $rule->id));
+            $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)
+                                            ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
+            if(is_array($data)) {
+                foreach ($data as $rule) {
+                    $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"]));
+                    /*if (isset($rule["id"])) {
+                        $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
+                        $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"], $rule["id"]));
+                    } else {
+                        $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
+                        $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"]));
+                    }*/
                 }
-                else
-                {
-                    $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result));
-                }
-            }*/
 
-            return $projectrules[0];
+            }
+            return true;
 
         }
         catch (PDOException $ex)
@@ -808,6 +811,7 @@ class ClassDAO {
             Logger::logError("could not save project rules. ".$ex);
         }
     }
+
 }
 
 /*
