@@ -1,10 +1,11 @@
 // View model for the courses page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
+    gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("CourseTitle2");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CourseTitle2");}, gvm);
-    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
-    gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
+    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
+
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
