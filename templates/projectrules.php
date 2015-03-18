@@ -61,7 +61,7 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
-                                <button class="btn deleteRuleBtn">
+                                <button class="btn deleteRuleBtn" data-bind="removeThis">
                                     Remove this rule
                                 </button>
                             </div>

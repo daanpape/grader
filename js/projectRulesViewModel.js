@@ -59,7 +59,7 @@ function initPage() {
 
     $(".deleteRuleBtn").click(function()
     {
-       viewModel.removeRule();
+       viewModel.removeRule(this);
     });
 
     setOperators();
@@ -125,10 +125,9 @@ function Rule(id, name, action, operator, value, result) {
         value: ko.observable(value),
         result: ko.observable(result),
 
-        removeThisRule: function() {
+        removeThis: function() {
             viewModel.removeRule(this);
         }
-
     }
 
 }
