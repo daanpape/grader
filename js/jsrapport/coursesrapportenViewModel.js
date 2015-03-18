@@ -231,8 +231,8 @@ function showNewProjectTypeModal()
             </div> \
             <div class="form-group"> \
                 <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="teacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
-                <span class="text-center">Teacher</span> \
-                <span class="pull-right caret-down caret"></span> \
+                    <span class="text-right">Teacher</span> \
+                    <span class="pull-right caret-down caret"></span> \
                 </button> \
             </div> \
         </form>');
