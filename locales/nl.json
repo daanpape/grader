@@ -80,5 +80,6 @@
     "CourseTitle2": "Vakken",
     "HomeRapportManual":"<p class=\"lead\"> Hier moet een overzicht getoond worden van de studenten die nog gequoteerd moeten worden</p>",
     "AddNewCourse" : "Voeg nieuw vak toe",
-  "HomeRapportTitle":"Rapportensysteem Deeltijds Onderwijs"
+  "HomeRapportTitle":"Rapportensysteem Deeltijds Onderwijs",
+  "ProjectRapportName":"Rapportensysteem"
 }
