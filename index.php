@@ -456,7 +456,7 @@ $app->post('/api/projectrules/:id', function($id) use ($app)
 
 $app->post('/api/projectrules/:id/remove', function($id) use ($app)
 {
-   $app->reponse->headers->set('Content-Type', 'application/json');
+    $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(GraderAPI::removeProjectRule($id));
 });
 
