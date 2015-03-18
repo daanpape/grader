@@ -42,6 +42,17 @@ class rapportenDAO {
         }
     }
 
+    public static function getCourseCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_rapport");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all courses in the database', $err);
+            return 0;
+        }
+    }
 }
 
 ?>

@@ -154,6 +154,7 @@ function loadTablePage(pagenr)
         
         // Load table data 
         $.each(data.data, function(i, item) {
+            console.log(item.name);
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
         
