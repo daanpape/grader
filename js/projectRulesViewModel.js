@@ -26,8 +26,8 @@ function pageViewModel(gvm) {
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
 
-    gvm.addRule = function() {
-        gvm.projectRules.push(new Rule(this));
+    gvm.addRule = function(rule) {
+        gvm.projectRules.push(rule);
     }
 
     gvm.removeRule = function(rule) {
