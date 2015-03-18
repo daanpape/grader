@@ -85,7 +85,7 @@ function removeRuleFromDb(rule)
     $.ajax({
         type: "POST",
         url: "/api/projectrules/" + projectid + "/remove",
-        data: rule.id(),
+        data: ko.toJSON(rule.id()),
         success: function(data)
         {
             console.log(data);
