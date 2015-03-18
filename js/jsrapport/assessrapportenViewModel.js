@@ -3,6 +3,7 @@ function pageViewModel(gvm) {
     console.log(document.title);
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n. __("AssessTitle2");}, gvm);
+    console.log(document.title + " test3");
     gvm.userId = -1;
 
     console.log(document.title + " test2");
