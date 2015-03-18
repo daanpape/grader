@@ -1,7 +1,6 @@
 <?php
 
 $app->get('/coursesrapporten', function () use ($app) {
-    ?><script>console.log('im in indexrapporten')</script> <?php
     $app->render('templatesrapport/coursesrapporten.php');
 });
 
@@ -16,9 +15,6 @@ $app->get('/assessrapporten', function () use ($app) {
 /* API get routes */
 
 $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
-    ?>
-        <script>console.log('im in the api')</script>
-    <?php
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -34,7 +30,6 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
 });
 
 $app->post('/rapportapi/course/', function () use ($app) {
-    ?><script>console.log('im in indexrapporten')</script> <?php
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
