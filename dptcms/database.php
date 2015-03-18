@@ -792,7 +792,7 @@ class ClassDAO {
             //                                ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
             $count=0;
             foreach ($data as $rule) {
-                if(isset($rule->id)) {
+                if(!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
                     $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int)$rule->value, (int)$rule->result));
                     $count++;
