@@ -500,16 +500,6 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
 
-$app->post('/rapportapi/course/', function () use ($app) {
-    ?><script>console.log('im in indexrapporten')</script> <?php
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-
-    // Insert the data
-    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
-});
-
 /* Rapporten routering */
 require_once 'indexrapporten.php';
 
