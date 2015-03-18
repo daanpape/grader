@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="nl" id="htmldoc">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="icon" href="/img/favicon.ico">
 
-        <title data-bind="text: title">test</title>
+        <title data-bind="text: title"></title>
         
         <?php include_once('templates/hddepends.php') ?>
     </head>
