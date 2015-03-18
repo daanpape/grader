@@ -1,6 +1,6 @@
 function pageViewModel(gvm) {
     // projecttitle
-    gvm.projecttitle = ko.observable("");
+    gvm.projecttitle = ko.observable("Rules");
     gvm.projectId = $("#projectHeader").data('value');
     gvm.lastIdFromDb = -1;
     gvm.lastId = -1;
