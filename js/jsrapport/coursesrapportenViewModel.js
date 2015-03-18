@@ -82,7 +82,7 @@ function deleteTableItem(id, tblOject) {
  */
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
-            url: "/api/project/",
+            url: "/rapportapi/cours/",
             type: "POST",
             data: serialData,
             success: function(data) {
@@ -230,7 +230,7 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group"> \
-                <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="teacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
+                <button class="btn btn-wide btn-default dropdown-toggle" type="button" id="teacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
                     <span class="text-left">Teacher</span> \
                     <span class="pull-right caret-down caret"></span> \
                 </button> \
