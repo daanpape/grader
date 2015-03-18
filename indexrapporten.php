@@ -32,7 +32,7 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/rapportapi/course/', function () use ($app) {
+$app->post('/rapportapi/course/', function ($data) use ($app) {
     ?><script>alert('im in indexrapporten')</script> <?php
     // Use json headers
     $response = $app->response();
