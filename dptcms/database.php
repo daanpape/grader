@@ -786,21 +786,22 @@ class ClassDAO {
     {
         try
         {
-            $conn = Db::getConnection();
+
             foreach($projectrules as $rule) {
-                if(isset($rule['id']))
+                $conn = Db::getConnection();
+                if(!is_null($rule->id))
                 {
                     $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
-                    $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result'], $rule['id']));
+                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result, $rule->id));
                 }
                 else
                 {
                     $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
-                    $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result']));
+                    $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result));
                 }
-
             }
-            return $conn->lastInsertId();
+            return true;
+
         }
         catch (PDOException $ex)
         {
