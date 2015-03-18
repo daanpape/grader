@@ -94,7 +94,9 @@ function fetchProjectRules()
 {
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
-        console.log(data);
+        $.each(data, function(i, item) {
+            viewModel.addRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
+        });
     });
 }
 
