@@ -1,12 +1,9 @@
 //viewmodel for the assess page
 function pageViewModel(gvm) {
-    console.log(document.title);
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n. __("AssessTitle2");}, gvm);
-    console.log(document.title + " test3");
     gvm.userId = -1;
 
-    console.log(document.title + " test2");
     // Page specific i18n bindings
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
@@ -237,6 +234,6 @@ function loadTablePage(courseid, pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-       // viewModel.updateDropdowns();
+        viewModel.updateDropdowns();
     });
 }
