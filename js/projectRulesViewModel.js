@@ -125,8 +125,9 @@ function Rule(id, name, action, operator, value, result) {
         value: ko.observable(value),
         result: ko.observable(result),
 
-        removeThis: function() {
-            viewmodel.removeRule(this);
+        removeThisRule: function() {
+            console.log("remove rule");
+            viewModel.removeRule(this);
         }
 
     }
