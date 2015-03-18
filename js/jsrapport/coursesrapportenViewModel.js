@@ -3,9 +3,8 @@ function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("CourseTitle2");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CourseTitle2");}, gvm);
-    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjecRapporttName");}, gvm);
+    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
-
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
@@ -143,9 +142,9 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 /*
  * Load page of the table
  */
-function loadTablePage(courseid, pagenr)
+function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable();
@@ -200,7 +199,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(courseid, thispagenr);
+                    loadTablePage(thispagenr);
                 });
             }
         });
