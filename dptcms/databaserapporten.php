@@ -17,6 +17,7 @@ class rapportenDAO {
     
     public static function insertCourse($code, $name, $description) {
         try {
+            ?><script>console.log('im in insertcourse databaseclass function')</script> <?php
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO course_rapport (code, name, description) VALUES (?, ?, ?)");
             $stmt->execute(array($code, $name, $description));

@@ -32,7 +32,7 @@ $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/api/project', function () use ($app) {
+$app->post('/api/project/', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
