@@ -793,7 +793,7 @@ class ClassDAO {
             foreach ($data as $rule) {
                 $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int) $rule->value, (int) $rule->result));
             }
-            return true;
+            return $conn->lastInsertId();
         }
         catch (PDOException $ex)
         {
