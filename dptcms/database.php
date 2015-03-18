@@ -798,9 +798,9 @@ class ClassDAO {
                         $stmt->execute(array($id, $rule['name'], $rule['action'], $rule['operator'], $rule['value'], $rule['result']));
                     }
                 }
-                return true;
-            }
 
+            }
+            return true;
 
         }
         catch (PDOException $ex)
