@@ -43,10 +43,10 @@ require_once 'dptcms/config.php';
                     echo 'active';
                 }
                 ?>"> <a href="/coursesrapporten" >Courses</a></li>
-                <li class="<?php if ($location == 'jsrapport/studentenrapportrapporten') {
+                <li class="<?php if ($location == 'jsrapport/studentrapportrapporten') {
                     echo 'active';
                 }
-                ?>"> <a href="/studentenrapportrapporten" >Rapport</a></li>
+                ?>"> <a href="/studentrapportrapporten" >Rapport</a></li>
 
                 <!----------  RapportSysteem ---------->
                     
