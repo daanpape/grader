@@ -128,7 +128,6 @@ function fetchProjectRules()
         $.each(data, function(i, item) {
             viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
         });
-        console.log(data);
     });
 }
 
