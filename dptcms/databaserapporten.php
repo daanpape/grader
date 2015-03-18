@@ -19,7 +19,7 @@ class rapportenDAO {
         try {
             ?><script>console.log('im in insertcourse databaseclass function')</script> <?php
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_rapport (code, name, description) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO course_rapport (id, code, name, description) VALUES (NULL, ?, ?, ?)");
             $stmt->execute(array($code, $name, $description));
 
             // Return the id of the newly inserted item on success.

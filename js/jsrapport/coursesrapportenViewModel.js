@@ -23,6 +23,7 @@ function pageViewModel(gvm) {
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
+        console.log('in addTableData function');
         // Push data
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
@@ -85,7 +86,7 @@ function addNewProjecttypeForm(serialData, callback) {
         type: "POST",
         data: serialData,
         success: function(data) {
-            console.log('in success function');
+            console.log(data);
             viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             callback(true);
         },
