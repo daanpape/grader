@@ -33,13 +33,13 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/rapportapi/course/', function () use ($app) {
+$app->post('/rapportapi/course', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
-    return json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 ?>

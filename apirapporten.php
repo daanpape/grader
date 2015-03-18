@@ -20,15 +20,15 @@ Class RapportAPI {
     public static function createCourse($code, $name, $description) {
         $id = rapportenDAO::insertCourse($code, $name, $description);
 
-        if ($id != null) {
+        //if ($id != null) {
             return array(
                 "id" => $id,
                 "code" => $code,
                 "name" => $name,
                 "description" => $description);
-        } else {
-            return -1;
-        }
+        //} else {
+        //    return -1;
+        //}
     }
     
 }
