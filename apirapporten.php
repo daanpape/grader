@@ -11,6 +11,11 @@ Class RapportAPI {
         /* Return the requested pages */
         return rapportenDAO::getAllCourses($start, $count);
     }
+
+    public static function getAllCourse() {
+        /* Return the requested pages */
+        return rapportenDAO::getAllCourse();
+    }
     
     public static function createCourse($code, $name, $description) {
         $id = rapportenDAO::insertCourse($code, $name, $description);
