@@ -35,7 +35,7 @@ function pageViewModel(gvm) {
                     $(".btn-course span:first").text(item.course);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentCourseId = item.courseid;
+                   // gvm.currentCourseId = item.courseid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
                     gvm.updateCourses(item.trainingid);
