@@ -393,7 +393,6 @@ $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $la
 });
 
 $app->post('/api/project/:id', function ($courseid) use ($app) {
-    ?><script>console.log('im in index')</script> <?php
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
