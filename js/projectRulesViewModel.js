@@ -82,8 +82,7 @@ function setOperators()
 
 function removeRuleFromDb(rule)
 {
-
-    console.log(viewModel.projectRules.indexOf(rule));
+    console.log(rule);
     var data = viewModel.projectRules.indexOf(rule);
     $.ajax({
         type: "POST",
