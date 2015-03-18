@@ -810,6 +810,20 @@ class ClassDAO {
         }
     }
 
+    public static function removeProjectRule($id)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM rules WHERE id=?");
+            $stmt->execute(array($id));
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError(("could not remove rule. ".$ex));
+        }
+    }
+
 }
 
 /*
