@@ -42,4 +42,15 @@ $app->post('/rapportapi/course', function () use ($app) {
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+$app->get('/rapportapi/courses', function () use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all locations
+    $pagedata = RapportAPI::getAllCourse();
+
+    echo json_encode($pagedata);
+});
+0
 ?>
