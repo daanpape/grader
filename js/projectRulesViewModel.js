@@ -57,10 +57,10 @@ function initPage() {
         viewModel.addRule();
     });
 
-    /*$(".deleteRuleBtn").click(function()
+    $(".deleteRuleBtn").click(function()
     {
        viewModel.removeRule();
-    });*/
+    });
 
     setOperators();
 }
