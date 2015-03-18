@@ -312,7 +312,7 @@ $app->get('/api/projectstructure/:id', function($id) use ($app) {
 
 $app->get('/api/projectrules/:id', function($id) use ($app)
 {
-    $app->responnse->headers->set('Content-Type', 'application/json');
+    $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(GraderAPI::getProjectRules($id));
 });
 
