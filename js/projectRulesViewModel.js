@@ -117,9 +117,10 @@ function saveProjectRules() {
         type: "POST",
         url: "/api/projectrules/" + projectid,
         data: ko.toJSON(viewModel.projectRules),
-        success: function(){
+        success: function(data){
             // TODO make multilangual and with modals
             console.log("Saved");
+            console.log(data);
             fetchProjectRules();
         },
         error: function(){
