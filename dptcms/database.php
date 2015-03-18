@@ -451,7 +451,7 @@ class ClassDAO {
     public static function getAllLocations() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport");
+            $stmt = $conn->prepare("SELECT * FROM location");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -791,15 +791,12 @@ class ClassDAO {
             //$stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)
             //                                ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
             foreach ($data as $rule) {
-                $stmt = $conn->prepare("SELECT TOP 1 rules.id FROM rules WHERE rules.id = ?");
-                $stmt->execute(array($rule->id));
-
-                if(is_null($stmt->fetchObject())) {
+                if(is_null($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
                     $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int)$rule->value, (int)$rule->result));
                 }
             }
-            return true;
+            return $data;
         }
         catch (PDOException $ex)
         {
