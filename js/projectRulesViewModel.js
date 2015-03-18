@@ -44,6 +44,11 @@ function pageViewModel(gvm) {
         gvm.projectActions.destroyAll();
     }
 
+    gvm.clearRuleStructure = function()
+    {
+        gvm.projectRules.destroyAll();
+    }
+
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);
     }
@@ -103,6 +108,8 @@ function fetchActions() {
 
 function fetchProjectRules()
 {
+    viewModel.clearRuleStructure();
+
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
