@@ -815,11 +815,9 @@ class ClassDAO {
         try
         {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM rules WHERE id = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);;
-            $stmt->execute();
-
-            return true;
+            $stmt = $conn->prepare("DELETE FROM rules WHERE id= ?");
+            $stmt->execute(array((int)$id));
+            return $id;
         }
         catch (PDOException $ex)
         {

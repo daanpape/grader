@@ -128,7 +128,6 @@ function fetchProjectRules()
         $.each(data, function(i, item) {
             viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
         });
-        console.log(data);
     });
 }
 
@@ -140,7 +139,6 @@ function saveProjectRules() {
         success: function(data){
             // TODO make multilangual and with modals
             console.log("Saved");
-            console.log(data);
             fetchProjectRules();
         },
         error: function(){
