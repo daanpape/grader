@@ -143,9 +143,9 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 /*
  * Load page of the table
  */
-function loadTablePage(courseid, pagenr)
+function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable();
@@ -200,7 +200,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(courseid, thispagenr);
+                    loadTablePage(thispagenr);
                 });
             }
         });
