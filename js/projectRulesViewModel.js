@@ -125,7 +125,6 @@ function Rule(id, name, action, operator, value, result) {
             viewModel.removeRule(this);
         }
     }
-
 }
 
 /**
