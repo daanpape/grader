@@ -790,21 +790,17 @@ class ClassDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)
                                             ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
-            if(is_array($data)) {
-                foreach ($data as $rule) {
+            foreach ($data as $rule) {
+                $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], (int)$rule["value"], (int)$rule["result"]));
+                /*if (isset($rule["id"])) {
+                    $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
+                    $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"], $rule["id"]));
+                } else {
+                    $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
                     $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"]));
-                    /*if (isset($rule["id"])) {
-                        $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
-                        $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"], $rule["id"]));
-                    } else {
-                        $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
-                        $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"]));
-                    }*/
-                }
-
+                }*/
             }
             return true;
-
         }
         catch (PDOException $ex)
         {
