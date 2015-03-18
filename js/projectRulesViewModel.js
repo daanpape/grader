@@ -88,7 +88,6 @@ function removeRuleFromDb(rule)
         data: rule.id(),
         success: function(data)
         {
-            console.log(data);
             fetchProjectRules();
         }
     })
@@ -140,7 +139,6 @@ function saveProjectRules() {
         success: function(data){
             // TODO make multilangual and with modals
             console.log("Saved");
-            console.log(data);
             fetchProjectRules();
         },
         error: function(){
