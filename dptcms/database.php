@@ -792,15 +792,17 @@ class ClassDAO {
                 {
                     $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
                     $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result'], $rule['id']));
+                    return $conn->lastInsertId();
                 }
                 else
                 {
                     $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
                     $stmt->execute(array($id,$rule['name'],$rule['action'],$rule['operator'], $rule['value'], $rule['result']));
+                    return $conn->lastInsertId();
                 }
 
             }
-            return $conn->lastInsertId();
+
         }
         catch (PDOException $ex)
         {
