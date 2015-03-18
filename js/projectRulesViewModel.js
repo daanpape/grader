@@ -45,6 +45,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
+    fetchProjectRules();
 
     setOperators();
 
