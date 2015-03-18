@@ -12,6 +12,10 @@ $app->get('/assessrapporten', function () use ($app) {
     $app->render('templatesrapport/assessrapporten.php');
 });
 
+$app->get('/studentrapportrapporten', function () use ($app) {
+    $app->render('templatesrapport/studentrapportrapporten.php');
+});
+
 /* API get routes */
 
 $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
@@ -30,15 +34,12 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
 });
 
 $app->post('/rapportapi/course/', function () use ($app) {
-    echo '<pre>';
-    print_r('in post method');
-    echo '</pre>';
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
-    echo json_encode(RapportAPI::createCourse($app->request->post('id'), $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 ?>

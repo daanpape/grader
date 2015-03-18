@@ -2,7 +2,7 @@ function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
-    gvm.lastIdFromDb = -1;
+    gvm.lastIdFromDb = 2;
     gvm.lastId = -1;
 
     // Page specific i18n bindings
@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
     gvm.availableOperators = ko.observableArray([]);
 
     gvm.addRule = function() {
-        gvm.projectRules.push(new Rule(this));
+        gvm.projectRules.push(new Rule(this,viewModel.lastIdFromDb));
     }
 
     gvm.removeRule = function(rule) {
@@ -128,6 +128,7 @@ function saveProjectRules() {
             // TODO make multilangual and with modals
             console.log("Saved");
             console.log(data);
+            viewModel.lastIdFromDb = data + 1;
             fetchProjectRules();
         },
         error: function(){

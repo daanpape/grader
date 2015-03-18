@@ -82,17 +82,17 @@ function deleteTableItem(id, tblOject) {
  */
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
-        url: '/rapportapi/course/',
-        type: 'POST',
-        data: serialData,
-        success: function(data) {
-            viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
+            url: "/api/project/",
+            type: "POST",
+            data: serialData,
+            success: function(data) {
+                viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                callback(true);
+            },
+            error: function(data) {
+                callback(false);
+            }
+        });
 } 
 
 /*
@@ -231,6 +231,9 @@ function showNewProjectTypeModal()
             </div> \
             <div class="form-group"> \
                 <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="teacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
+                    <span class="text-left">Teacher</span> \
+                    <span class="pull-right caret-down caret"></span> \
+                </button> \
             </div> \
         </form>');
 
