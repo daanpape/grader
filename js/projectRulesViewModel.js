@@ -1,12 +1,12 @@
 function pageViewModel(gvm) {
     // projecttitle
-    gvm.projecttitle = ko.observable("Rules");
+    gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
     gvm.lastIdFromDb = -1;
     gvm.lastId = -1;
 
     // Page specific i18n bindings
-    gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
+    gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitleRules");}, gvm);
     gvm.projectRules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRulesTitle");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
