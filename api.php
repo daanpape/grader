@@ -14,7 +14,7 @@ class GraderAPI {
      * @start: the item start with
      * @count: the number of items on the page 
      */
-    public static function getProjcts($start, $count) {
+    public static function getProjects($start, $count) {
         /* Return the requested pages */
         return ClassDAO::getAllProjects($start, $count);
     }
