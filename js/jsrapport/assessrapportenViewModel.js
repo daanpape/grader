@@ -28,26 +28,26 @@ function pageViewModel(gvm) {
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
 
-  /*  gvm.updateDropdowns = function() {
+    gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
-                    $(".btn-course span:first").text(item.course);
+                    //$(".btn-course span:first").text(item.course);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentCourseId = item.courseid;
+                    //gvm.currentCourseId = item.courseid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateCourses(item.trainingid);
+                    //gvm.updateCourses(item.trainingid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
                 gvm.updateLocations();
             }
         });
-    } */
+    }
 
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
