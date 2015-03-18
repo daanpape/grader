@@ -61,6 +61,9 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
+                                <button class="btn btn-lg addRuleBtn" data-bind="text: addRuleName">
+                                    Add Rule
+                                </button>
                             </div>
                         </td>
                     </tr>
