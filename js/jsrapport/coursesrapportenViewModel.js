@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
     gvm.addTableData = function(id, code, name, desc) {
         console.log('in addTableData function');
         // Push data
-        var tblOject = {tid: 5, tcode: 5, tname: name, tdesc: desc};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -86,6 +86,7 @@ function addNewProjecttypeForm(serialData, callback) {
             type: "POST",
             data: serialData,
             success: function(data) {
+                console.log(POST['code']);
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 callback(true);
             },
