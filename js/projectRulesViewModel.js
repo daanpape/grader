@@ -11,6 +11,7 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.addRuleName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddRule");}, gvm);
+    gvm.deleteRuleName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DeleteRule");}, gvm);
     gvm.ruleName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleName");}, gvm);
     gvm.ruleAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleAction");}, gvm);
     gvm.ruleActionDropdown = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleActionDropdown");}, gvm);
@@ -26,12 +27,17 @@ function pageViewModel(gvm) {
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
 
-    gvm.addRule = function(rule) {
-        gvm.projectRules.push(rule);
+    gvm.addRule = function() {
+        gvm.projectRules.push(new Rule(this));
     }
 
     gvm.removeRule = function(rule) {
         gvm.projectRules.remove(rule);
+    }
+
+    gvm.updateRule = function(rule)
+    {
+        gvm.projectRules.push(rule);
     }
 
     gvm.clearActionsStructure = function() {
@@ -45,13 +51,14 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
-    fetchProjectRules();
-
-    setOperators();
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
+
+    fetchProjectRules();
+
+    setOperators();
 }
 
 function setOperators()
@@ -95,7 +102,7 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.addRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
+            viewModel.updateRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
         });
         console.log(data);
     });
@@ -105,7 +112,7 @@ function fetchProjectRules()
  * Rule class
  */
 
-function Rule(id, name, action, operator, value, result) {
+function Rule(viewmodel, id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
