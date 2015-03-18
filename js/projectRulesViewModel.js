@@ -97,6 +97,7 @@ function fetchProjectRules()
         $.each(data, function(i, item) {
             viewModel.addRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
         });
+        console.log(data);
     });
 }
 
