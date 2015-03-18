@@ -88,6 +88,7 @@ function removeRuleFromDb(rule)
         data: rule.id(),
         success: function(data)
         {
+            console.log(data);
             fetchProjectRules();
         }
     })
