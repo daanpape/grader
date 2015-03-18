@@ -23,11 +23,10 @@ $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     $pg = Pager::pageToStartStop($pagenr);
 
     // Get total number of projecttypes in the database
-    $pagedata = GraderAPI::getProjectByCourseId($courseid, $pg->start, $pg->count);
-    $totalprojects = GraderAPI::getProjectCountByCourseId($courseid);
+    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
 
     // Get the page
-    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalprojects));
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
 ?>

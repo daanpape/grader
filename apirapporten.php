@@ -9,7 +9,7 @@ require_once('dptcms/databaserapporten.php');
 Class RapportAPI {
     public static function getAllCourses($start, $count) {
         /* Return the requested pages */
-        return ClassDAO::getAllCourses($start, $count);
+        return rapportenDAO::getAllCourses($start, $count);
     }
     
 }
