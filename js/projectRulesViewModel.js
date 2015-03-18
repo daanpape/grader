@@ -121,6 +121,9 @@ function saveProjectRules() {
             // TODO make multilangual and with modals
             console.log("Saved");
             fetchProjectRules();
+        },
+        error: function(){
+            console.log("Error");
         }
     });
 }
