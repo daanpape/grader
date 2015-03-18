@@ -799,8 +799,12 @@ class ClassDAO {
                     $stmt->execute(array($id,$rule->name,$rule->action,$rule->operator, $rule->value, $rule->result));
                 }
             }*/
+            foreach($projectrules as $rule)
+            {
+                $data = $rule->name;
+            }
 
-            return $projectrules[0];
+            return $data;
 
         }
         catch (PDOException $ex)
