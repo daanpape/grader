@@ -818,7 +818,7 @@ class ClassDAO {
             $stmt = $conn->prepare("DELETE FROM rules WHERE id=?");
             $stmt->execute(array((int)$id));
 
-            return true;
+            return gettype($id);
         }
         catch (PDOException $ex)
         {
