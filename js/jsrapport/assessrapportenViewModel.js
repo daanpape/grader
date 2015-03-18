@@ -237,6 +237,6 @@ function loadTablePage(courseid, pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-       // viewModel.updateDropdowns();
+        viewModel.updateDropdowns();
     });
 }
