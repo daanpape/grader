@@ -89,6 +89,14 @@ function fetchActions() {
     });
 }
 
+function fetchProjectRules()
+{
+    $.getJSON('/api/projectrules/:id' + projectid, function(data)
+    {
+        console.log(data);
+    })
+}
+
 /**
  * Rule class
  */
