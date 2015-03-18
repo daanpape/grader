@@ -51,13 +51,14 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
-    fetchProjectRules();
-
-    setOperators();
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
+
+    fetchProjectRules();
+
+    setOperators();
 }
 
 function setOperators()
