@@ -230,7 +230,7 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
+                <input type="text" class="dropdown col-md-3" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
             </div> \
         </form>');
 
