@@ -83,7 +83,7 @@ function deleteTableItem(id, tblOject) {
 function addNewProjecttypeForm(serialData, callback) {
     console.log(serialData);
     $.ajax({
-        url: '/api/project/' + 5,
+        url: '../rapportapi/course/',
         type: 'POST',
         data: serialData,
         success: function(data) {
