@@ -1,6 +1,7 @@
 <?php
 
 $app->get('/coursesrapporten', function () use ($app) {
+    ?><script>console.log('im in indexrapporten')</script> <?php
     $app->render('templatesrapport/coursesrapporten.php');
 });
 
@@ -32,8 +33,8 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/rapportapi/course/', function ($data) use ($app) {
-    ?><script>alert('im in indexrapporten')</script> <?php
+$app->post('/rapportapi/course/', function () use ($app) {
+    ?><script>console.log('im in indexrapporten')</script> <?php
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
