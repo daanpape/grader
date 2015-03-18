@@ -81,12 +81,12 @@ function deleteTableItem(id, tblOject) {
  * Add a new projecttype
  */
 function addNewProjecttypeForm(serialData, callback) {
+    console.log(serialData);
     $.ajax({
-        url: "/rapportapi/project/",
+        url: "/rapportapi/course/",
         type: "POST",
         data: serialData,
         success: function(data) {
-            console.log(data['code']);
             viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             callback(true);
         },
@@ -148,7 +148,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 function loadTablePage(pagenr)
 {
     console.log('im in loadTablePage');
-    $.getJSON('/rapportapi/projects/page/' + pagenr, function(data){
+    $.getJSON('/rapportapi/courses/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable();
