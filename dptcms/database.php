@@ -800,13 +800,11 @@ class ClassDAO {
                 }
             }*/
 
-            /*foreach($projectrules as $rule) {
-                $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY
-                                    UPDATE project=VALUES(project), name=VALUES(name), action=VALUES(action), operator=VALUES(operator), value=VALUES(value), result=VALUES(result)");
-                $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, $rule->value, $rule->result, $rule->id));
+            foreach($projectrules as $rule) {
+                $test = $rule->name;
+            }
 
-            }*/
-            return true;
+            return $test;
 
         }
         catch (PDOException $ex)
