@@ -791,10 +791,12 @@ class ClassDAO {
             //$stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)
             //                                ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
             foreach ($data as $rule) {
-                $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
-                $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int) $rule->value, (int) $rule->result));
+                if(is_null($rule->id)) {
+                    $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
+                    $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int)$rule->value, (int)$rule->result));
+                }
             }
-            return $conn->lastInsertId();
+            return $data;
         }
         catch (PDOException $ex)
         {
