@@ -12,6 +12,10 @@ $app->get('/assessrapporten', function () use ($app) {
     $app->render('templatesrapport/assessrapporten.php');
 });
 
+$app->get('/studentrapportrapporten', function () use ($app) {
+    $app->render('templatesrapport/studentrapportrapporten.php');
+});
+
 /* API get routes */
 
 $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
