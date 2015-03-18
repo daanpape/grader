@@ -788,10 +788,10 @@ class ClassDAO {
         {
             $data = json_decode($projectrules);
             $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
             if(is_array($data)) {
                 foreach ($data as $rule) {
                     if (isset($rule["id"])) {
-                        $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
                         $stmt->execute(array($id, $rule["name"], $rule["action"], $rule["operator"], $rule["value"], $rule["result"], $rule["id"]));
                     } else {
                         $stmt = $conn->prepare("INSERT into rules (project, name, action, operator, value, result) VALUES (?, ?, ?, ?, ?, ?)");
