@@ -451,7 +451,7 @@ class ClassDAO {
     public static function getAllLocations() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM location");
+            $stmt = $conn->prepare("SELECT * FROM course");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
