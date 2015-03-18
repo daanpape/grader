@@ -30,7 +30,7 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
 
     // Get the page
-    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
+    //echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
 $app->post('/rapportapi/course', function () use ($app) {
