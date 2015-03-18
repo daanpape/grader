@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
     gvm.availableOperators = ko.observableArray([]);
 
     gvm.addRule = function() {
-        gvm.projectRules.push(new Rule(this));
+        gvm.projectRules.push(new Rule("","","","","",""));
     }
 
     gvm.removeRule = function(rule) {
@@ -112,7 +112,7 @@ function fetchProjectRules()
  * Rule class
  */
 
-function Rule(viewmodel, id, name, action, operator, value, result) {
+function Rule(id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
