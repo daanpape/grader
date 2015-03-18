@@ -788,14 +788,18 @@ class ClassDAO {
         {
             $data = json_decode($projectrules);
             $conn = Db::getConnection();
-            //$stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)
-            //                                ON DUPLICATE KEY UPDATE project=?, name=?, action=?, operator=?, value=?, result=?");
+
             $count=0;
             foreach ($data as $rule) {
                 if(!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
                     $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int)$rule->value, (int)$rule->result));
                     $count++;
+                }
+                else
+                {
+                    $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
+                    $stmt->execute(array($id, $rule->name, $rule->action, $rule->operator, (int)$rule->value, (int)$rule->result, (int)$rule->id));
                 }
             }
             return $count;
