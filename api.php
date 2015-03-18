@@ -62,6 +62,10 @@ class GraderAPI {
         return ClassDAO::getProjectRules($id);
     }
 
+    public static function removeProjectRule($id)
+    {
+        return ClassDAO::removeProjectRule($id);
+    }
 
     /*
      * Delete a projecttype from the database
@@ -294,38 +298,39 @@ class GraderAPI {
         foreach ($data as $competence) {
             // Insert a competence
             $competenceid = self::putCompetence(
-                property_exists($competence, "code") ? $competence->code : "", 
-                property_exists($competence, "name") ? $competence->name : "", 
-                property_exists($competence, "max") ? $competence->max : 20, 
-                property_exists($competence, "weight") ? $competence->weight : 100, 
+                property_exists($competence, "code") ? $competence->code : "",
+                property_exists($competence, "name") ? $competence->name : "",
+                property_exists($competence, "max") ? $competence->max : 20,
+                property_exists($competence, "weight") ? $competence->weight : 100,
                 $projectid,
                 property_exists($competence, "id") ? $competence->id : -1);
 
-            
+
             // Insert subcompetences if any
-            if(property_exists($competence, "subcompetences")){
-                foreach($competence->subcompetences as $subcompetence){
+            if (property_exists($competence, "subcompetences")) {
+                foreach ($competence->subcompetences as $subcompetence) {
                     // Insert a subcomptence
                     $subcompetenceid = self::putSubCompetence(
-                        property_exists($subcompetence, "code") ? $subcompetence->code : "", 
-                        property_exists($subcompetence, "name") ? $subcompetence->name : "", 
-                        property_exists($subcompetence, "weight") ? $subcompetence->weight : 100, 
-                        property_exists($subcompetence, "max") ? $subcompetence->max : 20, 
-                        property_exists($subcompetence, "min_required") ? $subcompetence->min_required : 10, 
+                        property_exists($subcompetence, "code") ? $subcompetence->code : "",
+                        property_exists($subcompetence, "name") ? $subcompetence->name : "",
+                        property_exists($subcompetence, "weight") ? $subcompetence->weight : 100,
+                        property_exists($subcompetence, "max") ? $subcompetence->max : 20,
+                        property_exists($subcompetence, "min_required") ? $subcompetence->min_required : 10,
                         $competenceid,
                         property_exists($subcompetence, "id") ? $subcompetence->id : -1);
-                    
+
                     // Insert indicators if any
-                    if(property_exists($subcompetence, "indicators")) {
-                       foreach($subcompetence->indicators as $indicator) {
-                           self::putIndicator(
-                                property_exists($indicator, "name") ? $indicator->name : "", 
-                                property_exists($indicator, "description") ? $indicator->description : "", 
-                                property_exists($indicator, "max") ? $indicator->max : 20, 
-                                property_exists($indicator, "weight") ? $indicator->weight : 100, 
-                                $subcompetenceid, 
+                    if (property_exists($subcompetence, "indicators")) {
+                        foreach ($subcompetence->indicators as $indicator) {
+                            self::putIndicator(
+                                property_exists($indicator, "name") ? $indicator->name : "",
+                                property_exists($indicator, "description") ? $indicator->description : "",
+                                property_exists($indicator, "max") ? $indicator->max : 20,
+                                property_exists($indicator, "weight") ? $indicator->weight : 100,
+                                $subcompetenceid,
                                 property_exists($indicator, "id") ? $indicator->id : -1);
-                       } 
+                        }
+
                     }
                 }
             }

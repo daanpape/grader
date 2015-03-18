@@ -80,6 +80,19 @@ function setOperators()
     viewModel.availableOperators.push(">=");
 }
 
+function removeRuleFromDb(rule)
+{
+    $.ajax({
+        type: "POST",
+        url: "/api/projectrules/" + projectid + "/remove",
+        data: rule.id(),
+        success: function(data)
+        {
+            fetchProjectRules();
+        }
+    })
+}
+
 function fetchActions() {
     viewModel.clearActionsStructure();
 
@@ -151,6 +164,7 @@ function Rule(viewmodel,id, name, action, operator, value, result) {
 
         removeThisRule: function() {
             viewModel.removeRule(this);
+            removeRuleFromDb(this);
         }
     }
 }
