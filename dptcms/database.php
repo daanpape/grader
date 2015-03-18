@@ -786,8 +786,9 @@ class ClassDAO {
     {
         try
         {
-            $conn = Db::getConnection();
+
             foreach($projectrules as $rule) {
+                $conn = Db::getConnection();
                 if(isset($rule->id))
                 {
                     $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, action=?, operator=?, value=?, result=? WHERE id=?");
