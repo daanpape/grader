@@ -18,6 +18,10 @@ $location = "projectRules";
         .form-next{
             margin-bottom: 1%;
         }
+
+        .deleteRuleBtn{
+            margin-top: 1%;
+        }
     </style>
 </head>
 
