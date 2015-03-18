@@ -86,5 +86,7 @@
     "HomeRapportTitle":"Grading system professional education",
     "ProjectRapportName":"Grading System",
     
-    "TeacherTableTitle":"Teacher"
+    "TeacherTableTitle":"Teacher",
+  "studentrapportRapportTitle":"Student grades",
+  "studentenrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>"
 }
