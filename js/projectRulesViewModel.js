@@ -92,7 +92,7 @@ function fetchActions() {
 
 function fetchProjectRules()
 {
-    $.getJSON('/api/projectrules/:id' + projectid, function(data)
+    $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         console.log(data);
     })
