@@ -86,6 +86,7 @@ function addNewProjecttypeForm(serialData, callback) {
             type: "POST",
             data: serialData,
             success: function(data) {
+                console.log(POST['code']);
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 callback(true);
             },
