@@ -757,7 +757,24 @@ class ClassDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM rules WHERE project = ?");
             $stmt->execute(array($id));
-            return $conn->lastInsertId();
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $data = array();
+            foreach ($dataFromDb as $row) {
+                if (!array_key_exists($row['cid'], $data)) {
+                    $rule = new stdClass();
+                    $rule->id = $row['cid'];
+                    $rule->name = $row['cname'];
+                    $rule->action = $row['caction'];
+                    $rule->operator = $row['coperator'];
+                    $rule->value = $row['cvalue'];
+                    $rule->result = $row['cresult'];
+
+                    $data[$row['cid']] = $rule;
+                }
+            }
+
+            return $data;
         }
         catch (PDOException $ex)
         {

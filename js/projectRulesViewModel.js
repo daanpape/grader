@@ -45,6 +45,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
+    fetchProjectRules();
 
     setOperators();
 
@@ -87,6 +88,14 @@ function fetchActions() {
             viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description));
         });
     });
+}
+
+function fetchProjectRules()
+{
+    $.getJSON('/api/projectrules/' + projectid, function(data)
+    {
+        console.log(data);
+    })
 }
 
 /**

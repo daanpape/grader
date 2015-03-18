@@ -310,6 +310,12 @@ $app->get('/api/projectstructure/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::getAllDataFromProject($id));
 });
 
+$app->get('/api/projectrules/:id', function($id) use ($app)
+{
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getProjectRules($id));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

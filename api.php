@@ -57,6 +57,10 @@ class GraderAPI {
     public static function getCoupledListsFromProject($id) {
         return ClassDAO::getCoupledListsFromProject($id);
     }
+    public static function getProjectRules($id)
+    {
+        return ClassDAO::getProjectRules($id);
+    }
 
 
     /*
@@ -355,4 +359,6 @@ class GraderAPI {
             return $id;
         }
     }
+
+
 }
