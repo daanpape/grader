@@ -18,7 +18,7 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 
 /* API get routes */
 
-$app->get('/api/courses/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -33,8 +33,7 @@ $app->get('/api/courses/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata));
 });
 
-$app->post('/api/course/', function () use ($app) {
-    echo '<script>console.log("hi")</script>';
+$app->post('/rapportapi/course/', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

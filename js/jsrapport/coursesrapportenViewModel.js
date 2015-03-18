@@ -82,7 +82,7 @@ function deleteTableItem(id, tblOject) {
  */
 function addNewProjecttypeForm(serialData, callback) {
     $.ajax({
-            url: "/api/course/",
+            url: "/rapportapi/course/",
             type: "POST",
             data: serialData,
             success: function(data) {
@@ -147,7 +147,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 function loadTablePage(pagenr)
 {
     console.log('im in loadTablePage');
-    $.getJSON('/api/courses/page/' + pagenr, function(data){
+    $.getJSON('/rapportapi/courses/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable();
