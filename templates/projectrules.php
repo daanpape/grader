@@ -35,10 +35,10 @@ $location = "projectRules";
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Rule Name</th>
-                        <th>Action</th>
-                        <th>Result of the rule</th>
+                    <tr style="width: 100%">
+                        <th style="width: 25%">Rule Name</th>
+                        <th style="width: 50%">Action</th>
+                        <th style="width: 25%">Result of the rule</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">
@@ -61,7 +61,7 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
-                                <button class="btn deleteRuleBtn" data-bind="removeThisRule">
+                                <button class="btn deleteRuleBtn" data-bind="click: removeThisRule">
                                     Remove this rule
                                 </button>
                             </div>

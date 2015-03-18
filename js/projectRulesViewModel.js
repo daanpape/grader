@@ -57,11 +57,6 @@ function initPage() {
         viewModel.addRule();
     });
 
-    $(".deleteRuleBtn").click(function()
-    {
-       viewModel.removeRule();
-    });
-
     setOperators();
 }
 
@@ -129,9 +124,7 @@ function Rule(id, name, action, operator, value, result) {
             console.log("deleted");
             viewModel.removeRule(this);
         }
-
     }
-
 }
 
 /**
