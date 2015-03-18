@@ -315,7 +315,8 @@ $app->get('/api/projectrules/:id', function($id) use ($app)
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode(GraderAPI::getProjectRules($id));
+    console.log(GraderAPI::getProjectRules($id));
+    //echo json_encode(GraderAPI::getProjectRules($id));
 });
 
 // API PUT routes
