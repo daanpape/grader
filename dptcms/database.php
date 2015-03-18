@@ -761,20 +761,19 @@ class ClassDAO {
 
             $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['cid'], $data)) {
+                if (!array_key_exists($row['id'], $data)) {
                     $rule = new stdClass();
-                    $rule->id = $row['cid'];
-                    $rule->name = $row['cname'];
-                    $rule->action = $row['caction'];
-                    $rule->operator = $row['coperator'];
-                    $rule->value = $row['cvalue'];
-                    $rule->result = $row['cresult'];
+                    $rule->id = $row['id'];
+                    $rule->name = $row['name'];
+                    $rule->action = $row['action'];
+                    $rule->operator = $row['operator'];
+                    $rule->value = $row['value'];
+                    $rule->result = $row['result'];
 
-                    $data[$row['cid']] = $rule;
+                    $data[$row['id']] = $rule;
                 }
             }
 
-            var_dump($data);
             return $data;
         }
         catch (PDOException $ex)
