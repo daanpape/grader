@@ -14,6 +14,20 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function insertCourse($code, $name, $description) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_rapport (code, name, description) VALUES (?, ?, ?)");
+            $stmt->execute(array($code, $name, $description));
+
+            // Return the id of the newly inserted item on success.
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new course', $err);
+            return null;
+        }
+    }
 }
 
 ?>
