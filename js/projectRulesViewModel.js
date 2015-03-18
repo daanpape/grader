@@ -95,7 +95,7 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         console.log(data);
-    })
+    });
 }
 
 /**
