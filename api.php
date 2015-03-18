@@ -259,7 +259,8 @@ class GraderAPI {
 
     public static function putProjectRules($id,$projectrules)
     {
-        return ClassDAO::saveProjectRules($id,$projectrules);
+        $data = json_decode($projectrules);
+        return ClassDAO::saveProjectRules($id,$data);
     }
 
     public static function getLocationsTrainingsAndCourses($locationId, $trainingId) {
