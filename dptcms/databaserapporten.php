@@ -22,8 +22,7 @@ class rapportenDAO {
             $stmt->execute(array($code, $name, $description));
 
             // Return the id of the newly inserted item on success.
-            //return $conn->lastInsertId();
-            return 5;
+            return $conn->lastInsertId();
         } catch (PDOException $err) {
             Logger::logError('Could not create new course', $err);
             return null;
