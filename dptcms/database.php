@@ -801,11 +801,8 @@ class ClassDAO {
             }*/
             foreach($projectrules as $rule)
             {
-                $data = $rule->name;
+                return $rule;
             }
-
-            return $data;
-
         }
         catch (PDOException $ex)
         {
