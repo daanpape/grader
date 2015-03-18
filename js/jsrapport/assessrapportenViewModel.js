@@ -1,9 +1,9 @@
 //viewmodel for the assess page
 function pageViewModel(gvm) {
-    console.log(gvm.title + " test 1");
+
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AssessTitle2");}, gvm);
-console.log(gvm.title + " test 2");
+    console.log(ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AssessTitle2");}, gvm));
     gvm.userId = -1;
     // Page specific i18n bindings
    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
@@ -11,7 +11,7 @@ console.log(gvm.title + " test 2");
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
     gvm.foundProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FoundProjects");}, gvm);
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
-    console.log(gvm.title + " test 3");
+    console.log(ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AssessTitle2");}, gvm));
 
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
