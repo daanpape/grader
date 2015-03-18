@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
     gvm.availableOperators = ko.observableArray([]);
 
     gvm.addRule = function() {
-        gvm.projectRules.push(new Rule("","","","","",""));
+        gvm.projectRules.push(new Rule(this));
     }
 
     gvm.removeRule = function(rule) {
@@ -51,12 +51,16 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
+    fetchProjectRules();
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
     });
 
-    fetchProjectRules();
+    $(".deleteRuleBtn").click(function()
+    {
+       viewModel.removeRule();
+    });
 
     setOperators();
 }
