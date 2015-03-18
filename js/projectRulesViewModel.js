@@ -100,7 +100,7 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.addRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
+            viewModel.updateRule(new Rule(item.id,item.name,item.action,item.operator,item.value,item.result));
         });
         console.log(data);
     });
