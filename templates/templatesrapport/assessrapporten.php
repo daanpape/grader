@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Locations</span>
+                        <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
