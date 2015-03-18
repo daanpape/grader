@@ -123,7 +123,7 @@ function Rule(id, name, action, operator, value, result) {
 
         removeThisRule: function() {
             console.log("remove rule");
-            viewmodel.removeRule(this);
+            viewModel.removeRule(this);
         }
 
     }
