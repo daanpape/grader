@@ -128,7 +128,7 @@ function saveProjectRules() {
             // TODO make multilangual and with modals
             console.log("Saved");
             console.log(data);
-            viewModel.lastIdFromDb = data;
+            viewModel.lastIdFromDb = data + 1;
             fetchProjectRules();
         },
         error: function(){
