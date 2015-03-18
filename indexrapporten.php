@@ -39,7 +39,7 @@ $app->post('/rapportapi/course/', function () use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Insert the data
-    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+    return json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 ?>
