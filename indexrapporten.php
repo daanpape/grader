@@ -14,7 +14,7 @@ $app->get('/assessrapporten', function () use ($app) {
 
 /* API get routes */
 
-$app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/rapportapi/projects/page/:pagenr', function ($pagenr) use ($app) {
     ?>
         <script>console.log('im in the api')</script>
     <?php
