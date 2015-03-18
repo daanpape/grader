@@ -19,62 +19,6 @@ function pageViewModel(gvm) {
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
-    /*
-     * Update the location dropdown list
-     */
-    gvm.updateLocations = function() {      
-        $.getJSON('/api/locations', function(data) {
-            gvm.availableLocations.removeAll();
-            $.each(data, function(i, item) {
-                /* Put item in list */
-                gvm.availableLocations.push(item);
-                
-                /* Add listener to listitem */
-                $("#locbtn-" + item.id).click(function(){
-                    gvm.updateTrainings(item.id);
-                });
-            });
-        });
-        
-    }
-    
-    /*
-     * Update the training data
-     */
-    gvm.updateTrainings = function(id) {   
-        $.getJSON('/api/trainings/' + id, function(data) {
-            gvm.availableTrainings.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availableTrainings.push(item);
-                
-                /* Add listener to listitem */
-                $("#trainingbtn-" + item.id).click(function(){
-                    gvm.updateCourses(item.id);
-                });
-            });
-        });
-    }
-    
-    /*
-     * Update available courses
-     */
-    gvm.updateCourses = function(id) { 
-        $.getJSON('/api/courses/' + id, function(data) {
-            gvm.availableCourses.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availableCourses.push(item);
-                
-                /* Add listener to listitem */
-                $("#coursebtn-" + item.id).click(function(){
-                    alert("You selected course: " + item.name);
-                });
-            });
-        });
-    }
-
-
-// The table data observable array
-    gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
