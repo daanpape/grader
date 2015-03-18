@@ -146,7 +146,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
 function loadTablePage(pagenr)
 {
     console.log('im in loadTablePage');
-    $.getJSON('/api/projects/page/' + pagenr, function(data){
+    $.getJSON('/rapportapi/projects/page/' + pagenr, function(data){
         
         /* Clear current table page */
         viewModel.clearTable();
