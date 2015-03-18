@@ -67,7 +67,7 @@ function deleteTableItem(id, tblOject) {
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
         if(val){
             $.ajax({
-                url: "/api/project/" + id,
+                url: "/rapportapi/project/" + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);
@@ -114,7 +114,7 @@ function addNewProjecttypeRaw(code, name, description, callback) {
  */
 function updateProjecttypeForm(id, serialData, callback) {
     $.ajax({
-        url: "/api/project/" + id,
+        url: "/rapportapi/project/" + id,
         type: "PUT",
         data: serialData,
         success: function(data) {
@@ -313,7 +313,7 @@ function showCoupleStudentListModal(projectid) {
     showGeneralModal();
 }
 function loadCoupleDropdown() {
-    $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
+    $.getJSON('/rapportapi/studentlists/' + viewModel.userId, function(data) {
         $.each(data, function(i, item) {
             $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
             $("#dropdownitem-" + item.id).click(function(){
@@ -330,7 +330,7 @@ function loadCoupleDropdown() {
 
 function updateListForm(id, serialData, callback) {
     $.ajax({
-        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
+        url: "/rapportapi/project/" + viewModel.currentprojectid + "/studentlist/" + id,
         type: "POST",
         data: serialData,
         success: function(data) {
@@ -348,7 +348,7 @@ function initPage() {
         showNewProjectTypeModal();
     });
 
-    $.getJSON('/api/currentuser', function(data) {
+    $.getJSON('/rapportapi/currentuser', function(data) {
         viewModel.userId = data.id;
     });
 }
