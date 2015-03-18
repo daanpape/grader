@@ -30,7 +30,9 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
 });
 
 $app->post('/rapportapi/course/', function () use ($app) {
-    echo "<script>console.log('in post method')</script>";
+    echo '<pre>';
+    print_r('in post method');
+    echo '</pre>';
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
