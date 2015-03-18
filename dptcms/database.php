@@ -774,6 +774,7 @@ class ClassDAO {
                 }
             }
 
+            var_dump($data);
             return $data;
         }
         catch (PDOException $ex)
