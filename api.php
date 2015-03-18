@@ -238,7 +238,7 @@ class GraderAPI {
      */
     public static function getLocations() {
     /* Return the requested pages */
-    return rapportenDAO::getAllCourse();
+    return ClassDAO::getAllLocations();
 }
 
     public static function getTrainingsByLocation($id) {
