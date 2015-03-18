@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="nl" id="htmldoc">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="icon" href="/img/favicon.ico">
 
-        <title data-bind="text: title">test</title>
+        <title data-bind="text: title"></title>
         
         <?php include_once('templates/hddepends.php') ?>
     </head>
@@ -29,7 +29,7 @@
         <div class="container">
             <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
             <div class="row">
-                <div class="dropdown col-md-4">
+                <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-4">
+                <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Subcourse</span>
                         <span class="pull-right caret-down caret"></span>
@@ -49,7 +49,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-4">
+                <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Goal</span>
                         <span class="pull-right caret-down caret"></span>
