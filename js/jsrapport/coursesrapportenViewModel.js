@@ -146,7 +146,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  */
 function loadTablePage(pagenr)
 {
-    console.log('im in loadTablePage');
+    console.log('Pagenumber: ' + pagenr);
     $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
         
         console.log(data);
@@ -156,7 +156,7 @@ function loadTablePage(pagenr)
         // Load table data 
         $.each(data.data, function(i, item) {
             console.log(item.name);
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.code, item.name, item.description);
         });
         
         /* Let previous en next buttons work */
