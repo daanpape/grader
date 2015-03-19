@@ -60,8 +60,8 @@ function pageViewModel(gvm) {
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
-        data["course"] = $(".btn-submodule span:first").text();
-        data["courseid"] = gvm.currentCourseId;
+        data["submodule"] = $(".btn-submodule span:first").text();
+        data["submoduleid"] = gvm.currentCourseId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
