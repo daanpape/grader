@@ -41,7 +41,7 @@
 
                 <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-training dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Subcourse</span>
+                        <span class="text-center">Module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-training ul-wide" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
@@ -51,7 +51,7 @@
 
                 <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Goal</span>
+                        <span class="text-center">Sub-module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-course ul-wide" role="menu" aria-labelledby="availableCourses" data-bind="foreach: availableCourses">
