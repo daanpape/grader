@@ -97,7 +97,6 @@ class rapportenDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT firstname FROM users");
-            $stmt->bindValue(':teacher', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
