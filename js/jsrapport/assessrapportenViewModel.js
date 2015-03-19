@@ -4,7 +4,8 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n. __("AssessTitle2");}, gvm);
     gvm.userId = -1;
 
-    // Page specific i18n bindings
+
++-    // Page specific i18n bindings
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
@@ -90,7 +91,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateLocations = function() {
-        $.getJSON('/api/locations', function(data) {
+        $.getJSON('/api/coursesrapport', function(data) {
             gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
               //  Put item in list
