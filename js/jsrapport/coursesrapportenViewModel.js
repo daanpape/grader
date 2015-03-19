@@ -348,7 +348,7 @@ function initPage() {
         showNewProjectTypeModal();
     });
 
-    $.getJSON('/rapportapi/currentuser', function(data) {
+    $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
 }
