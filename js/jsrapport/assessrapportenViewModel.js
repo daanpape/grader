@@ -145,7 +145,7 @@ function pageViewModel(gvm) {
      * Update goals
      */
     gvm.updateGoals = function(id) {
-        $.getJSON('/api/goalrapport/' + id, function(data) {
+        $.getJSON('/api/submodulerapport/' + id, function(data) {
             gvm.availableGoals.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableGoals.push(item);
