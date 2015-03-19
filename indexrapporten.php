@@ -18,7 +18,7 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 
 /* API get routes */
 
-$app->get('/rapportapi/courses/page/:pagenr', function ($pagenr = 1) use ($app) {
+$app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -53,5 +53,4 @@ $app->get('/rapportapi/courses', function () use ($app) {
 
     echo json_encode($pagedata);
 });
-0
 ?>
