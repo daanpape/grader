@@ -38,7 +38,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
-$app->get('/api/coursesrapport', function () use ($app) {
+$app->get('/api/courserapportdrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -71,4 +71,14 @@ $app->post('/api/courserapport', function () use ($app) {
     // Insert the data
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+
+// API DELETE routes
+$app->delete('/api/coursedelete/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(RapportAPI::deleteProject($id));
+});
+
 ?>
