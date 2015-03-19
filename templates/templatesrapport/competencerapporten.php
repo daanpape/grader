@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "project";
+$location = "jsrapport/competencerapporten";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
