@@ -467,7 +467,7 @@ class ClassDAO {
     public static function getTrainingsByLocation($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM training WHERE location = :location");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE location = :location");
             $stmt->bindValue(':location', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -485,7 +485,7 @@ class ClassDAO {
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE training = :training");
+            $stmt = $conn->prepare("SELECT * FROM course WHERE training = :training");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
