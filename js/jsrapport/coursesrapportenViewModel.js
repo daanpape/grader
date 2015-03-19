@@ -113,7 +113,7 @@ function addNewProjecttypeRaw(code, name, description, callback) {
  */
 function updateProjecttypeForm(id, serialData, callback) {
     $.ajax({
-        url: "/rapportapi/project/" + id,
+        url: "/api/courseupdate/" + id,
         type: "PUT",
         data: serialData,
         success: function(data) {
