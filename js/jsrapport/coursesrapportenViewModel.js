@@ -112,8 +112,6 @@ function addNewProjecttypeRaw(code, name, description, callback) {
  * @returns {undefined}
  */
 function updateProjecttypeForm(id, serialData, callback) {
-    console.log(id);
-    console.log(serialData);
     $.ajax({
         url: "/api/courseupdate/" + id,
         type: "PUT",

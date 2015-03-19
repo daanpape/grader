@@ -78,7 +78,7 @@ $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode(RapportAPI::deleteProject($id));
+    echo json_encode(RapportAPI::deleteCourse($id));
 });
 
 ?>

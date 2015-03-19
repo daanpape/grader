@@ -36,13 +36,26 @@ Class RapportAPI {
     }
     
     /*
-     * Delete a projecttype from the database
+     * Delete a course from the database
      */
-    public static function deleteProject($id) {
+    public static function deleteCourse($id) {
         if (ClassDAO::deleteProject($id) === true) {
             return true;
         } else {
             return false;
+        }
+    }
+    
+    /*update a course*/
+    public static function updateCourse($id, $code, $name, $description) {
+        if(rapportenDAO::updateCourse($id, $code, $name, $description)){
+            return array(
+                "id" => $id,
+                "code" => $code,
+                "name" => $name,
+                "description" => $description);
+        } else {
+            return -1;
         }
     }
 }

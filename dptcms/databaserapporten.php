@@ -53,6 +53,18 @@ class rapportenDAO {
             return 0;
         }
     }
+    
+    public static function updateCourse($id, $code, $name, $description) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_rapport SET code = ?, name = ?, description = ? WHERE id = ?");
+            $stmt->execute(array($code, $name, $description, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update course', $err);
+            return false;
+        }
+    }
 }
 
 ?>
