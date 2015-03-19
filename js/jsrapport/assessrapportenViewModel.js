@@ -24,12 +24,10 @@ function pageViewModel(gvm) {
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
-    gvm.availableGoals = ko.observableArray([]);
 
     gvm.currentCourseId = null;
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
-    gvm.currentGoalid = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -138,7 +136,7 @@ function pageViewModel(gvm) {
     }
 
     /*
-     * Update goal
+     * Update goals
      */
     gvm.updateCourses = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
