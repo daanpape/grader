@@ -90,8 +90,6 @@ $app->get('/api/courserapportdrop', function () use ($app) {
 });
 
 //add teacher to dropdown
-
-//get teacher for dropdown list
 $app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
