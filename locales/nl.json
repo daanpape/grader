@@ -84,6 +84,7 @@
     "HomeRapportTitle":"Rapportensysteem Deeltijds Onderwijs",
     "ProjectRapportName":"Rapportensysteem",
     "TeacherTableTitle":"Leerkracht",
-  "studentrapportRapportTitle":"Rapport van studenten",
-  "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>"
+    "studentrapportRapportTitle":"Rapport van studenten",
+    "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
+    "EditProjectTitle2" : "Wijzig vak"
 }
