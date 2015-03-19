@@ -70,25 +70,7 @@ function pageViewModel(gvm) {
         })
     }
 
-    gvm.saveLastSelectedDropdowns = function() {
-        data = {};
-        data["location"] = $(".btn-location span:first").text();
-        data["locationid"] = gvm.currentLocationId;
-        data["training"] = $(".btn-training span:first").text();
-        data["trainingid"] = gvm.currentTrainingid;
-        data["course"] = $(".btn-course span:first").text();
-        data["courseid"] = gvm.currentCourseId;
-        data["user"] = gvm.userId;
-        console.log(data);
-        $.ajax({
-            type: "POST",
-            url: "/api/savedropdowns",
-            data: data,
-            success: function() {
-                console.log("success");
-            }
-        })
-    }
+ 
 
     gvm.updateLocations = function() {
         $.getJSON('/api/courserapportdrop', function(data) {
@@ -104,8 +86,8 @@ function pageViewModel(gvm) {
                     gvm.currentCourseId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
-                    $(".btn-training span:first").text("training");
-                    $(".btn-course span:first").text("course");
+                    $(".btn-training span:first").text("module");
+                    $(".btn-course span:first").text("sub-module");
                 });
             });
         });
@@ -113,13 +95,15 @@ function pageViewModel(gvm) {
 
 
     /*
-     * Update the training data
+     * Update the course data
      */
     gvm.updateTrainings = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
             gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableTrainings.push(item);
+
+                console.log(id);
 
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){

@@ -117,11 +117,9 @@ function updateProjecttypeForm(id, serialData, callback) {
         type: "PUT",
         data: serialData,
         success: function(data) {
-            var tblOject = {tid: data['id'], tcode: data['code'], tname: data['name'], tdesc: data['description']};
-            console.log(tblOject);
-            viewModel.tabledata.remove(tblOject);
-            viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-            //loadTablePage(viewModel.currentCourseId, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
+            //var tblOject = {tid: data['id'], tcode: data['code'], tname: data['name'], tdesc: data['description']};
+            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            loadTablePage(1, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
             callback(true);
         },
         error: function(data) {
