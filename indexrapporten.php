@@ -52,7 +52,7 @@ $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
 });
 
 //getsubmodule from module
-$app->get('/api/coursesrapport/:moduleId', function ($trainingId) use ($app) {
+$app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
