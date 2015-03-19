@@ -54,8 +54,25 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get locations', $err);
+            Logger::logError('Could not get competences', $err);
             return false;
+        }
+    }
+
+    /**
+     * Get a list of subcompetence associated with a cometenxe.
+     * @param type $id the module id to get the submodule information from.
+     */
+    public static function getCoursesByTraining($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM subcompetence_rapport WHERE competence = :competence");
+            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get subcompetences', $err);
+            return null;
         }
     }
 

@@ -38,7 +38,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
-//get module form course
+//get module from course
 $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -46,6 +46,18 @@ $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
 
     // Get all trainings by locationsid
     $pagedata = RapportAPI::getCompetenceByCourse($locationId);
+
+    echo json_encode($pagedata);
+});
+
+//getsubmodule from module
+$app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::getSubmoduleByModule($trainingId);
 
     echo json_encode($pagedata);
 });
