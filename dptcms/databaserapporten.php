@@ -158,10 +158,7 @@ class rapportenDAO {
                     $competence = new stdClass();
                     $competence->subcompetences = array();
                     $competence->id = $row['cid'];
-                    $competence->code = $row['ccode'];
                     $competence->description = $row['cdescription'];
-                    $competence->max = $row['cmax'];
-                    $competence->weight = $row['cweight'];
 
                     $data[$row['cid']] = $competence;
                 }
@@ -170,11 +167,7 @@ class rapportenDAO {
                     $subcompetence = new stdClass();
                     $subcompetence->indicators = array();
                     $subcompetence->id = $row['sid'];
-                    $subcompetence->code = $row['scode'];
                     $subcompetence->description = $row['sdescription'];
-                    $subcompetence->weight = $row['sweight'];
-                    $subcompetence->max = $row['smax'];
-                    $subcompetence->minRequired = $row['smin_required'];
 
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
@@ -184,8 +177,6 @@ class rapportenDAO {
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
                     $indicator->description = $row['idescription'];
-                    $indicator->max = $row['imax'];
-                    $indicator->weight = $row['iweight'];
 
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
