@@ -36,7 +36,7 @@ $app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
-$app->post('/rapportapi/course', function () use ($app) {
+$app->post('/api/courserapport', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
