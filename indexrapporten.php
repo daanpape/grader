@@ -71,4 +71,14 @@ $app->post('/api/courserapport', function () use ($app) {
     // Insert the data
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+
+// API DELETE routes
+$app->delete('/api/coursedelete/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(RapportAPI::deleteProject($id));
+});
+
 ?>
