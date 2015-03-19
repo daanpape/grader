@@ -9,7 +9,7 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
     gvm.foundProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FoundProjects");}, gvm);
-    gvm.selectSubmodule = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectSubmodule");}, gvm);
+    gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
 
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
     gvm.currentSubmoduleId = null;
-    gvm.currentGoalId = null;
+    gvm.currentCourseId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -36,17 +36,17 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
-                    $(".btn-submodule span:first").text(item.submodule);
+                    $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentSubmoduleId = item.submoduleid;
+                    gvm.currentCourseId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateSubmodules(item.trainingid);
-                    gvm.updateGoals(item.submoduleid);
-                    loadTablePage(item.submoduleid, 1);
+                    gvm.updateCourses(item.trainingid);
+                    gvm.updateGoals(item.courseid);
+                    loadTablePage(item.courseid, 1);
                 });
             } else {
                 gvm.updateLocations();
@@ -60,8 +60,8 @@ function pageViewModel(gvm) {
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
-        data["submodule"] = $(".btn-submodule span:first").text();
-        data["submoduleid"] = gvm.currentSubmoduleIdId;
+        data["course"] = $(".btn-submodule span:first").text();
+        data["courseid"] = gvm.currentCourseId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
@@ -89,7 +89,7 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
-                    gvm.currentSubmoduleId = null;
+                    gvm.currentCourseId = null;
                     gvm.currentGoalId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
@@ -114,10 +114,10 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
-                    gvm.currentSubmoduleId = null;
-                    gvm.updateSubmodules(item.id);
+                    gvm.currentCourseId = null;
+                    gvm.updateCourses(item.id);
                     $(".btn-training span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("submodule");
+                    $(".btn-submodule span:first").text("course");
                 });
             });
         });
@@ -126,7 +126,7 @@ function pageViewModel(gvm) {
     /*
      * Update sub-module
      */
-    gvm.updateSubmodules = function(id) {
+    gvm.updateCourses = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
             gvm.availableSubmodules.removeAll();
             $.each(data, function(i, item) {
@@ -135,7 +135,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#submodulebtn-" + item.id).click(function(){
                     $(".btn-submodule span:first").text($(this).text());
-                    gvm.currentSubmoduleId = item.id;
+                    gvm.currentCourseId = item.id;
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
@@ -178,9 +178,9 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(submoduleid, pagenr)
+function loadTablePage(courseid, pagenr)
 {
-    $.getJSON('/api/projects/' + submoduleid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable()
@@ -235,7 +235,7 @@ function loadTablePage(submoduleid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(submoduleid, thispagenr);
+                    loadTablePage(courseid, thispagenr);
                 });
             }
         });
