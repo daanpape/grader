@@ -506,6 +506,22 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
 
+$app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+
+    // Get total number of projecttypes in the database
+    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $totalcourses = RapportAPI::getCourseCount();
+
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+});
+
 /* Rapporten routering */
 require_once 'indexrapporten.php';
 
