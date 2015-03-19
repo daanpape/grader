@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateCourses(item.trainingid);
+                    gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
                 });
