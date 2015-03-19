@@ -78,4 +78,8 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function getAllDataFromCourse($id) {
+        return rapportenDAO::getAllDataFromCourse($id);
+    }
 }
