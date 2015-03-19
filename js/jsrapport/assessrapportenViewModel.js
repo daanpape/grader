@@ -104,7 +104,7 @@ function pageViewModel(gvm) {
 
                 var temp = item.id
 
-                gvm.availableTrainings.push(item);
+                gvm.availableTrainings.push("test");
                     console.log("item " + item.id);
                     console.log("temp " + temp );
                 /* Add listener to listitem */
