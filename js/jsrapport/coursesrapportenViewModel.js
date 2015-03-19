@@ -117,12 +117,12 @@ function updateProjecttypeForm(id, serialData, callback) {
         type: "PUT",
         data: serialData,
         success: function(data) {
-            console.log(data);
             //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             loadTablePage(viewModel.currentCourseId, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
             callback(true);
         },
         error: function(data) {
+            console.log('Failure');
             callback(false);
         }
     });
