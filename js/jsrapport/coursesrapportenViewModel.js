@@ -65,7 +65,6 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-    }
     
     gvm.updateTeacher = function(id) {
     $.getJSON('/api/teacherrapport/' + id, function(data) {
@@ -82,6 +81,7 @@ function pageViewModel(gvm) {
             });
         });
     });
+    }
     }
 /*
  * Delete item from table given the id. 
