@@ -90,10 +90,12 @@ function pageViewModel(gvm) {
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
                     gvm.currentCourseId = null;
+                    gvm.currentGoalId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
                     $(".btn-training span:first").text("module");
                     $(".btn-course span:first").text("sub-module");
+                    $(".btn-goal span:first").text("goal");
                 });
             });
         });
