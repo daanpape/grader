@@ -65,6 +65,18 @@ $app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 
+//getgoals from submodule
+$app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
+
+    echo json_encode($pagedata);
+});
+
 $app->get('/api/courserapportdrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
