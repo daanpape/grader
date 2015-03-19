@@ -141,6 +141,62 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function getAllDataFromCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence.description sdescription, indicator.id iid, indicator.name iname, indicator.description idescription
+                                    FROM competence_rapport JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
+                                    JOIN indicator ON subcompetence_rapport.id = indicator_rapport.subcompetence WHERE competence_rapport.course = :courseid ORDER BY cid, sid, iid ASC");
+            $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $data = array();
+            foreach ($dataFromDb as $row) {
+                if (!array_key_exists($row['cid'], $data)) {
+                    $competence = new stdClass();
+                    $competence->subcompetences = array();
+                    $competence->id = $row['cid'];
+                    $competence->code = $row['ccode'];
+                    $competence->description = $row['cdescription'];
+                    $competence->max = $row['cmax'];
+                    $competence->weight = $row['cweight'];
+
+                    $data[$row['cid']] = $competence;
+                }
+
+                if (!array_key_exists($row['sid'], $competence->subcompetences)) {
+                    $subcompetence = new stdClass();
+                    $subcompetence->indicators = array();
+                    $subcompetence->id = $row['sid'];
+                    $subcompetence->code = $row['scode'];
+                    $subcompetence->description = $row['sdescription'];
+                    $subcompetence->weight = $row['sweight'];
+                    $subcompetence->max = $row['smax'];
+                    $subcompetence->minRequired = $row['smin_required'];
+
+                    $competence->subcompetences[$row['sid']] = $subcompetence;
+                }
+
+                if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
+                    $indicator = new stdClass();
+                    $indicator->id = $row['iid'];
+                    $indicator->name = $row['iname'];
+                    $indicator->description = $row['idescription'];
+                    $indicator->max = $row['imax'];
+                    $indicator->weight = $row['iweight'];
+
+                    $subcompetence->indicators[$row['iid']] = $indicator;
+                }
+            }
+
+            return $data;
+        } catch (PDOException $err) {
+            Logger::logError('Could not get all data from course with id ' . $id, $err);
+            return null;
+        }
+    }
 }
 
 ?>
