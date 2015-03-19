@@ -258,7 +258,7 @@ function showNewProjectTypeModal()
 function showEditProjectTypeModal(code, name, description, tid)
 {
   resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditProjectTitle"));
+    setGeneralModalTitle(i18n.__("EditProjectTitle2"));
     setGeneralModalBody('<form id="updateprojectform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \

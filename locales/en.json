@@ -87,6 +87,7 @@
     "ProjectRapportName":"Grading System",
     
     "TeacherTableTitle":"Teacher",
-  "studentrapportRapportTitle":"Student grades",
-  "studentrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>"
+    "studentrapportRapportTitle":"Student grades",
+    "studentrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>",
+    "EditProjectTitle2" : "Edit course"
 }

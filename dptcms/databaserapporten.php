@@ -4,7 +4,7 @@ class rapportenDAO {
     public static function getAllCourses($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count  ");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
@@ -33,7 +33,7 @@ class rapportenDAO {
     public static function getAllCourse() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1'");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport  ");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -103,7 +103,7 @@ class rapportenDAO {
     public static function deleteCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE course_rapport SET  active =  '0' WHERE  id = :id");
+            $stmt = $conn->prepare("UPDATE course_rapport SET active = '0' WHERE id = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
