@@ -1,5 +1,7 @@
 <?php
 
+require_once 'apirapporten.php';
+
 $app->get('/coursesrapporten', function () use ($app) {
     $app->render('templatesrapport/coursesrapporten.php');
 });
