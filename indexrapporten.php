@@ -72,7 +72,7 @@ $app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
+    $pagedata = RapportAPI::getGoalBySubCompetence($trainingId);
 
     echo json_encode($pagedata);
 });
