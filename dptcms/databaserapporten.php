@@ -65,6 +65,10 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function deleteCourse($id) {
+        
+    }
 }
 
 ?>
