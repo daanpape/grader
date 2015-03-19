@@ -77,6 +77,7 @@ $app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 
+
 $app->get('/api/courserapportdrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
