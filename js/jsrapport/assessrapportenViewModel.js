@@ -28,7 +28,6 @@ function pageViewModel(gvm) {
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
     gvm.currentSubmoduleId = null;
-    gvm.currentCourseId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -40,7 +39,7 @@ function pageViewModel(gvm) {
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentCourseId = item.courseid;
+                    gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
@@ -61,7 +60,7 @@ function pageViewModel(gvm) {
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
         data["course"] = $(".btn-submodule span:first").text();
-        data["courseid"] = gvm.currentCourseId;
+        data["courseid"] = gvm.currentSubmoduleId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
@@ -89,7 +88,7 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
-                    gvm.currentCourseId = null;
+                    gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
@@ -114,7 +113,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
-                    gvm.currentCourseId = null;
+                    gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-training span:first").text($(this).text());
                     $(".btn-submodule span:first").text("course");
@@ -135,7 +134,7 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#submodulebtn-" + item.id).click(function(){
                     $(".btn-submodule span:first").text($(this).text());
-                    gvm.currentCourseId = item.id;
+                    gvm.currentSubmoduleId = item.id;
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
