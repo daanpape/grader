@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateCourses(item.trainingid);
+                    gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
                 });
@@ -115,7 +115,7 @@ function pageViewModel(gvm) {
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
                     gvm.currentCourseId = null;
-                    gvm.updateCourses(item.id);
+                    gvm.updateSubmodules(item.id);
                     $(".btn-training span:first").text($(this).text());
                     $(".btn-submodule span:first").text("course");
                 });
@@ -126,7 +126,7 @@ function pageViewModel(gvm) {
     /*
      * Update sub-module
      */
-    gvm.updateCourses = function(id) {
+    gvm.updateSubmodules = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
             gvm.availableSubmodules.removeAll();
             $.each(data, function(i, item) {
