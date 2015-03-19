@@ -313,7 +313,7 @@ function showCoupleStudentListModal(projectid) {
     showGeneralModal();
 }
 function loadCoupleDropdown() {
-    $.getJSON('/rapportapi/studentlists/' + viewModel.userId, function(data) {
+    $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         $.each(data, function(i, item) {
             $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
             $("#dropdownitem-" + item.id).click(function(){
@@ -330,7 +330,7 @@ function loadCoupleDropdown() {
 
 function updateListForm(id, serialData, callback) {
     $.ajax({
-        url: "/rapportapi/project/" + viewModel.currentprojectid + "/studentlist/" + id,
+        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
         type: "POST",
         data: serialData,
         success: function(data) {
