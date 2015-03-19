@@ -513,6 +513,7 @@ $app->post('/api/courserapport', function () use ($app) {
 
     // Insert the data
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
 
 /* Rapporten routering */
 require_once 'indexrapporten.php';
