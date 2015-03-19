@@ -66,6 +66,7 @@ class rapportenDAO {
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
+            console.log($id);
             $stmt = $conn->prepare("SELECT * FROM subcompetence_rapport WHERE competence = :competence");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
