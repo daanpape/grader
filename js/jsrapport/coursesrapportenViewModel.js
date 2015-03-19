@@ -9,6 +9,12 @@ function pageViewModel(gvm) {
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
+    
+    /*Teacher*/
+    gvm.availableTeacher = ko.observableArray([]);
+    gvm.currentteacherid = null;
+    /*teacher*/
+    
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
@@ -59,6 +65,23 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+    }
+    
+    gvm.updateTeacher = function(id) {
+    $.getJSON('/api/teacherrapport/' + id, function(data) {
+        gvm.availableTeacher.removeAll();
+        $.each(data, function(i, item) {
+            gvm.availableTeacher.push(item);
+
+            /* Add listener to listitem */
+            $("#teacherbtn-" + item.id).click(function(){
+                $(".btn-teacher span:first").text($(this).text());
+                gvm.currentteacherid = item.id;
+                gvm.saveLastSelectedDropdowns();
+                loadTablePage(item.id, 1);
+            });
+        });
+    });
     }
 /*
  * Delete item from table given the id. 
@@ -230,10 +253,10 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group"> \
-                <button class="btn btn-wide btn-default dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
+                <button class="btn btn-wide btn-default btn-teacher dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
                     <span class="text-left">Teacher</span> \
                     <span class="pull-right caret-down caret"></span> \
-                <ul class="dropdown-menu dropdown-goal ul-wide" role="menu" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">\
+                <ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">\
                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: name"></span></a> </li></ul>\
                 </button> \
             </div> \

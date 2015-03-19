@@ -21,7 +21,7 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 });
 
 $app->get('/coursecompetence/:id', function ($id) use($app) {
-    $app->render('competencerapporten.php', array('courseid' => $id));
+    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id));
 });
 
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
@@ -77,6 +77,7 @@ $app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 
+
 $app->get('/api/courserapportdrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
@@ -84,6 +85,20 @@ $app->get('/api/courserapportdrop', function () use ($app) {
 
     // Get all locations
     $pagedata = RapportAPI::getAllCourse();
+
+    echo json_encode($pagedata);
+});
+
+//add teacher to dropdown
+
+//get teacher for dropdown list
+$app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::getTeacher($trainingId);
 
     echo json_encode($pagedata);
 });
@@ -97,7 +112,7 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     
     // Update the existing resource
     echo json_encode(RapportAPI::updateCourse(
-                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 //POST routes
