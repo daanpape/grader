@@ -21,7 +21,7 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 });
 
 $app->get('/course/:id', function ($id) use($app) {
-    $app->render('competencerapporten.php', array('courseid' => $id));
+    $app->render('competencerapporten.php');
 });
 
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
