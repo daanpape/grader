@@ -60,13 +60,30 @@ class rapportenDAO {
     }
 
     /**
-     * Get a list of subcompetence associated with a cometenxe.
-     * @param type $id the module id to get the submodule information from.
-     */
+ * Get a list of subcompetence associated with a cometenxe.
+ * @param type $id the module id to get the submodule information from.
+ */
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM subcompetence_rapport WHERE competence = $id");
+            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get subcompetences', $err);
+            return null;
+        }
+    }
+
+    /**
+     * Get a list of goals associated with a subcompetence.
+     * @param type $id the module id to get the goal information from.
+     */
+    public static function getGoalsBySubcompetence($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM indicator_rapport WHERE subcompetence = $id");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);

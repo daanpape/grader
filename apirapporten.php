@@ -29,7 +29,7 @@ Class RapportAPI {
 
     public static function getGoalBySubCompetence($id) {
         /* Return module from selected course */
-        return rapportenDAO::getCoursesByTraining($id);
+        return rapportenDAO::getGoalsBySubcompetence($id);
     }
 
     public static function createCourse($code, $name, $description) {
