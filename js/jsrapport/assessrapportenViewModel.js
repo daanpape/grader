@@ -86,8 +86,8 @@ function pageViewModel(gvm) {
                     gvm.currentCourseId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
-                    $(".btn-training span:first").text("training");
-                    $(".btn-course span:first").text("course");
+                    $(".btn-training span:first").text("module");
+                    $(".btn-course span:first").text("sub-module");
                 });
             });
         });
