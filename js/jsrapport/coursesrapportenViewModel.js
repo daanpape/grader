@@ -146,7 +146,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  */
 function loadTablePage(pagenr)
 {
-    console.log('im in loadTablePage');
+    console.log('Pagenumber: ' + pagenr);
     $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
         
         console.log(data);
