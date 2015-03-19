@@ -61,7 +61,7 @@
 
                 <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-goal dropdown-toggle" type="button" id="availableGoals" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Sub-module</span>
+                        <span class="text-center">Goal</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-goal ul-wide" role="menu" aria-labelledby="availableGoals" data-bind="foreach: availableGoals">
