@@ -113,7 +113,7 @@ function pageViewModel(gvm) {
 
 
     /*
-     * Update the training data
+     * Update the course data
      */
     gvm.updateTrainings = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
