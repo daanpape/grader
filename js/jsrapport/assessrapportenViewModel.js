@@ -150,6 +150,8 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.availableGoals.push(item);
 
+                console.log("hier");
+
                 /* Add listener to listitem */
                 $("#goalbtn-" + item.id).click(function(){
                     $(".btn-goal span:first").text($(this).text());
