@@ -22,6 +22,11 @@ Class RapportAPI {
         return rapportenDAO::getCompetenceByCourse($id);
     }
 
+    public static function getSubCompetenceByCompetence($id) {
+        /* Return module from selected course */
+        return rapportenDAO::getCoursesByTraining($id);
+    }
+
     public static function createCourse($code, $name, $description) {
         $id = rapportenDAO::insertCourse($code, $name, $description);
 
