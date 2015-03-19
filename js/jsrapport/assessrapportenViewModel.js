@@ -111,11 +111,12 @@ function pageViewModel(gvm) {
         });
     };
 
+
     /*
      * Update the training data
      */
     gvm.updateTrainings = function(id) {
-        $.getJSON('/api/trainings/' + id, function(data) {
+        $.getJSON('/api/coursesrapport/' + id, function(data) {
             gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableTrainings.push(item);
