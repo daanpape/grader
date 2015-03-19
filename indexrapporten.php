@@ -1,12 +1,6 @@
 <?php
 
-require_once 'Slim/Slim.php';
 require_once 'apirapporten.php';
-require_once 'dptcms/pagination.php';
-require_once 'dptcms/logger.php';
-require_once 'dptcms/email.php';
-require_once 'dptcms/security.php';
-require_once 'dptcms/fileupload.php';
 
 $app->get('/coursesrapporten', function () use ($app) {
     $app->render('templatesrapport/coursesrapporten.php');
