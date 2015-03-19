@@ -2,6 +2,8 @@
 
 require_once 'apirapporten.php';
 
+//GET routes
+
 $app->get('/coursesrapporten', function () use ($app) {
     $app->render('templatesrapport/coursesrapporten.php');
 });
@@ -36,16 +38,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
-$app->post('/api/courserapport', function () use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-
-    // Insert the data
-    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
-});
-
-$app->get('/rapportapi/courses', function () use ($app) {
+$app->get('/api/coursesrapport', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -54,5 +47,28 @@ $app->get('/rapportapi/courses', function () use ($app) {
     $pagedata = RapportAPI::getAllCourse();
 
     echo json_encode($pagedata);
+});
+
+//PUT routes
+
+$app->put('/api/courseupdate/:id', function($id) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    
+    // Update the existing resource
+    echo json_encode(RapportAPI::updateCourse(
+                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
+
+//POST routes
+
+$app->post('/api/courserapport', function () use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Insert the data
+    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 ?>
