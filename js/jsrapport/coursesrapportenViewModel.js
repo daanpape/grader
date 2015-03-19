@@ -233,6 +233,8 @@ function showNewProjectTypeModal()
                 <button class="btn btn-wide btn-default dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '" name="teacher"> \
                     <span class="text-left">Teacher</span> \
                     <span class="pull-right caret-down caret"></span> \
+                <ul class="dropdown-menu dropdown-goal ul-wide" role="menu" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">\
+                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: name"></span></a> </li></ul>\
                 </button> \
             </div> \
         </form>');
