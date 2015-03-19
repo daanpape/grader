@@ -42,6 +42,23 @@ class rapportenDAO {
         }
     }
 
+    /*
+     * Get all trainings by course
+     * @id the course
+     */
+    public static function getTrainingsByLocation($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM competence_rapport WHERE course = :course");
+            $stmt->bindValue(':course', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get locations', $err);
+            return false;
+        }
+    }
+
     public static function getCourseCount() {
         try {
             $conn = Db::getConnection();
