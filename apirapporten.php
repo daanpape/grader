@@ -35,7 +35,7 @@ Class RapportAPI {
         return rapportenDAO::getCourseCount();
     }
     
-        /*
+    /*
      * Delete a projecttype from the database
      */
     public static function deleteProject($id) {
