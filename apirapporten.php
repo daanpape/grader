@@ -33,7 +33,7 @@ Class RapportAPI {
     }
     
     public static function getTeacher($id) {
-        /* Return module from selected course */
+        /* Return teacher from users */
         return rapportenDAO::getTeacher($id);
     }
 
