@@ -101,8 +101,12 @@ function pageViewModel(gvm) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
             gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableTrainings.push(item.id);
 
+                var temp = item.id
+
+                gvm.availableTrainings.push(item);
+                    console.log("item " + item.id);
+                    console.log("temp " + temp );
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
