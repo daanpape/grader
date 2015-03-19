@@ -20,8 +20,8 @@ $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
 
-$app->get('/course/:id', function ($id) use($app) {
-    $app->render('competencerapporten.php', array('courseid' => $id));
+$app->get('/coursecompetence/:id', function ($id) use($app) {
+    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id));
 });
 
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
@@ -72,7 +72,7 @@ $app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
+    $pagedata = RapportAPI::getGoalBySubCompetence($trainingId);
 
     echo json_encode($pagedata);
 });
