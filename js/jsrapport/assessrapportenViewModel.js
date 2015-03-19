@@ -103,6 +103,8 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.availableTrainings.push(item);
 
+                console.log(id);
+
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
