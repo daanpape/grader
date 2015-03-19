@@ -89,6 +89,20 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     echo json_encode($pagedata);
 });
 
+//add teacher to dropdown
+
+//get teacher for dropdown list
+$app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::getTeacher($trainingId);
+
+    echo json_encode($pagedata);
+});
+
 //PUT routes
 
 $app->put('/api/courseupdate/:id', function($id) use ($app){
@@ -98,7 +112,7 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     
     // Update the existing resource
     echo json_encode(RapportAPI::updateCourse(
-                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
 //POST routes
