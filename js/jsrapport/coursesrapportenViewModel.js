@@ -118,7 +118,7 @@ function updateProjecttypeForm(id, serialData, callback) {
         data: serialData,
         success: function(data) {
             var tblOject = {tid: data['id'], tcode: data['code'], tname: data['name'], tdesc: data['description']};
-            viewModel.tabledata.remove(tblObject);
+            viewModel.tabledata.remove(tblOject);
             viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
             //loadTablePage(viewModel.currentCourseId, 1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
             callback(true);
