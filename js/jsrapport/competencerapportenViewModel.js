@@ -1,40 +1,23 @@
 /**
  * Competence class
  */
-function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
+function Competence(viewmodel, id, name, description, subcompetences) {
     return {
         id: ko.observable(id),
-        code: ko.observable(code),
         name: ko.observable(name),
-        weight: ko.observable(weight),
-        locked: false,
+        description: ko.observable(description),
         subcompetences: ko.observableArray(subcompetences),
 
         addSubCompetence: function() {
             this.subcompetences.push(new SubCompetence(this));
-            automatedWeightCalculation(this.subcompetences());
         },
 
         removeThis: function() {
             viewmodel.removeCompetence(this);
         },
 
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
-        },
-
         removeSubCompetence: function(subCompetence) {
             this.subcompetences.remove(subCompetence);
-            automatedWeightCalculation(this.subcompetences());
         }
     };
 
@@ -43,76 +26,39 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, code, name, weight, locked, indicators) {
+function SubCompetence(parent, id, name, description, indicators) {
     return {
         id: ko.observable(id),
-        code: ko.observable(code),
         name: ko.observable(name),
-        weight: ko.observable(weight),
-        locked: false,
+        description: ko.observable(description),
         indicators: ko.observableArray(indicators),
         
         addIndicator: function() {
             this.indicators.push(new Indicator(this));
-            automatedWeightCalculation(this.indicators());
         },
-
-        /*calculateWeight: function(total){
-            this.weight = total;
-        },*/
 
         removeThis: function() {
             parent.removeSubCompetence(this);
 
         },
-
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
-        },
         
         removeIndicator: function(indicator) {
             this.indicators.remove(indicator);
-            automatedWeightCalculation(this.indicators());
         }
-
     };
 }
 
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, weight, description, locked) {
+function Indicator(parent, id, name, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
-        weight: ko.observable(weight),
         description : ko.observable(description),
-        locked: false,
 
         removeThis: function() {
             parent.removeIndicator(this);
-        },
-
-        toggleLock: function(data, event){
-            if(this.locked == true)
-            {
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
-                this.locked = false;
-            }
-            else
-            {
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
-                this.locked = true;
-            }
         }
     };
 }
@@ -136,22 +82,14 @@ function pageViewModel(gvm) {
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
-        automatedWeightCalculation(this.competences());
-
-        // Update automated weight calculation
-        ko.utils.arrayForEach(gvm.competences, function(competence){
-            console.log(competence.weight);
-            competence.weight(percent);
-        });
     };
     
     gvm.removeCompetence = function(competence) {
         gvm.competences.remove(competence);
-        automatedWeightCalculation(this.competences());
     }
     
-    gvm.updateCompetence = function(id, code, description, max, weight) {
-        var comp = new Competence(this, id, code, description, weight);
+    gvm.updateCompetence = function(id, name, description) {
+        var comp = new Competence(this, id, name, description);
         gvm.competences.push(comp);
         return comp;
     }
@@ -167,14 +105,14 @@ function fetchProjectStructure() {
     $.getJSON("/api/coursestructure/" + courseid, function(data){
         console.log(data);
         $.each(data, function(i, item){
-            var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            var competence = viewModel.updateCompetence(item.id, item.name, item.description);
             
             $.each(item.subcompetences, function(i, subcomp){
-               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.name, subcomp.description);
                competence.subcompetences.push(subcompetence);
                
                $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
                });
             });
         })
@@ -321,37 +259,5 @@ function totalPercentCheck()
         $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
         $(".validationSummary").removeClass("hide");
         return false;
-    }
-}
-
-function automatedWeightCalculation(data)
-{
-    var lockedPercent = 0;
-    var nrOfUnlocked = 0;
-
-    for(var index = 0; index < data.length; index++)
-    {
-        if(data[index].locked == true)
-        {
-            lockedPercent = lockedPercent + parseInt(data[index].weight());
-        }
-        else
-        {
-            nrOfUnlocked++;
-        }
-    }
-
-    var remainingPercent = 100 - lockedPercent;
-
-    var percentPerCompetence = remainingPercent / nrOfUnlocked;
-
-    percentPerCompetence = percentPerCompetence.toFixed(2);
-
-    for(var index = 0; index < data.length; index++)
-    {
-        if(data[index].locked == false)
-        {
-            data[index].weight(percentPerCompetence);
-        }
     }
 }

@@ -145,7 +145,7 @@ class rapportenDAO {
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription
                                     FROM competence_rapport JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
                                     JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence WHERE competence_rapport.course = :courseid ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
@@ -156,18 +156,20 @@ class rapportenDAO {
             foreach ($dataFromDb as $row) {
                 if (!array_key_exists($row['cid'], $data)) {
                     $competence = new stdClass();
-                    $competence->subcompetences = array();
                     $competence->id = $row['cid'];
+                    $competence->name = $row['cname'];
                     $competence->description = $row['cdescription'];
+                    $competence->subcompetences = array();
 
                     $data[$row['cid']] = $competence;
                 }
 
                 if (!array_key_exists($row['sid'], $competence->subcompetences)) {
                     $subcompetence = new stdClass();
-                    $subcompetence->indicators = array();
                     $subcompetence->id = $row['sid'];
+                    $subcompetence->name = $row['sname'];
                     $subcompetence->description = $row['sdescription'];
+                    $subcompetence->indicators = array();
 
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
