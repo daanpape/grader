@@ -119,7 +119,7 @@ function pageViewModel(gvm) {
      * Update sub-module
      */
     gvm.updateCourses = function(id) {
-        $.getJSON('/api/coursesrapport/' + id, function(data) {
+        $.getJSON('/api/submodulerapport/' + id, function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableCourses.push(item);
