@@ -102,11 +102,10 @@ function pageViewModel(gvm) {
             gvm.availableTrainings.removeAll();
             $.each(data, function(i, item) {
 
-                var temp = item.id
+                var temp = item.id;
+                console.log("temp " + temp );
 
-                gvm.availableTrainings.push("test");
-                    console.log("item " + item.id);
-                    console.log("temp " + temp );
+                gvm.availableTrainings.push(item);
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
