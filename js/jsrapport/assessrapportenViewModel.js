@@ -24,10 +24,12 @@ function pageViewModel(gvm) {
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
+    gvm.availableGoals = ko.observableArray([]);
 
     gvm.currentCourseId = null;
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
+    gvm.currentGoalid = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -117,6 +119,26 @@ function pageViewModel(gvm) {
 
     /*
      * Update sub-module
+     */
+    gvm.updateCourses = function(id) {
+        $.getJSON('/api/submodulerapport/' + id, function(data) {
+            gvm.availableCourses.removeAll();
+            $.each(data, function(i, item) {
+                gvm.availableCourses.push(item);
+
+                /* Add listener to listitem */
+                $("#coursebtn-" + item.id).click(function(){
+                    $(".btn-course span:first").text($(this).text());
+                    gvm.currentCourseId = item.id;
+                    gvm.saveLastSelectedDropdowns();
+                    loadTablePage(item.id, 1);
+                });
+            });
+        });
+    }
+
+    /*
+     * Update goal
      */
     gvm.updateCourses = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
