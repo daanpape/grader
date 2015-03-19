@@ -133,7 +133,7 @@ function pageViewModel(gvm) {
                 gvm.availableSubmodules.push(item);
 
                 /* Add listener to listitem */
-                $("#coursebtn-" + item.id).click(function(){
+                $("#submodulebtn-" + item.id).click(function(){
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentCourseId = item.id;
                     gvm.saveLastSelectedDropdowns();
