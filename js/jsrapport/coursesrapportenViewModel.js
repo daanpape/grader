@@ -375,5 +375,5 @@ function initPage() {
         viewModel.userId = data.id;
     });
     
-    loadTablePage(1);
+
 }
