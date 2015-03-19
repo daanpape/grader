@@ -9,7 +9,7 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
     gvm.foundProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FoundProjects");}, gvm);
-    gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
+    gvm.selectSubmodule = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectSubmodule");}, gvm);
 
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
@@ -22,13 +22,13 @@ function pageViewModel(gvm) {
 
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
-    gvm.availableCourses = ko.observableArray([]);
+    gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
 
-    gvm.currentGoalId = null;
-    gvm.currentCourseId = null;
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;
+    gvm.currentSubmoduleId = null;
+    gvm.currentGoalId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
@@ -36,17 +36,17 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
-                    $(".btn-course span:first").text(item.course);
+                    $(".btn-submodule span:first").text(item.submodule);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentCourseId = item.courseid;
+                    gvm.currentSubmoduleId = item.submoduleid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateCourses(item.trainingid);
-                    gvm.updateGoals(item.courseid);
-                    loadTablePage(item.courseid, 1);
+                    gvm.updateSubmodules(item.trainingid);
+                    gvm.updateGoals(item.submoduleid);
+                    loadTablePage(item.submoduleid, 1);
                 });
             } else {
                 gvm.updateLocations();
@@ -60,8 +60,8 @@ function pageViewModel(gvm) {
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
-        data["course"] = $(".btn-course span:first").text();
-        data["courseid"] = gvm.currentCourseId;
+        data["submodule"] = $(".btn-submodule span:first").text();
+        data["submoduleid"] = gvm.currentSubmoduleIdId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
@@ -89,12 +89,12 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
                     gvm.currentTrainingid = null;
-                    gvm.currentCourseId = null;
+                    gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
                     $(".btn-training span:first").text("module");
-                    $(".btn-course span:first").text("sub-module");
+                    $(".btn-submodule span:first").text("sub-module");
                     $(".btn-goal span:first").text("goal");
                 });
             });
@@ -114,10 +114,10 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#trainingbtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
-                    gvm.currentCourseId = null;
-                    gvm.updateCourses(item.id);
+                    gvm.currentSubmoduleId = null;
+                    gvm.updateSubmodules(item.id);
                     $(".btn-training span:first").text($(this).text());
-                    $(".btn-course span:first").text("course");
+                    $(".btn-submodule span:first").text("submodule");
                 });
             });
         });
@@ -126,16 +126,16 @@ function pageViewModel(gvm) {
     /*
      * Update sub-module
      */
-    gvm.updateCourses = function(id) {
+    gvm.updateSubmodules = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
-            gvm.availableCourses.removeAll();
+            gvm.availableSubmodules.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableCourses.push(item);
+                gvm.availableSubmodules.push(item);
 
                 /* Add listener to listitem */
-                $("#coursebtn-" + item.id).click(function(){
-                    $(".btn-course span:first").text($(this).text());
-                    gvm.currentCourseId = item.id;
+                $("#submodulebtn-" + item.id).click(function(){
+                    $(".btn-submodule span:first").text($(this).text());
+                    gvm.currentSubmoduleId = item.id;
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
@@ -178,9 +178,9 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(courseid, pagenr)
+function loadTablePage(submoduleid, pagenr)
 {
-    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/' + submoduleid + '/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable()
@@ -235,7 +235,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(courseid, thispagenr);
+                    loadTablePage(submoduleid, thispagenr);
                 });
             }
         });
