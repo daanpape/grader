@@ -117,9 +117,8 @@ function updateProjecttypeForm(id, serialData, callback) {
         type: "PUT",
         data: serialData,
         success: function(data) {
-            //var tblOject = {tid: data['id'], tcode: data['code'], tname: data['name'], tdesc: data['description']};
             //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-            loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1
+            loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1     WERKT NIET
             callback(true);
         },
         error: function(data) {
@@ -146,8 +145,7 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  * Load page of the table
  */
 function loadTablePage(pagenr)
-{
-    console.log('im in loadTablePage');
+{    
     $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
         
         /* Clear current table page */
@@ -351,4 +349,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
+    
+    loadTablePage(1);
 }
