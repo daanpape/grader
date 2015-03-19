@@ -5,7 +5,7 @@ function pageViewModel(gvm) {
     gvm.userId = -1;
 
 
-+-    // Page specific i18n bindings
+    // Page specific i18n bindings
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
