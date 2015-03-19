@@ -145,9 +145,9 @@ class rapportenDAO {
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence.description sdescription, indicator.id iid, indicator.name iname, indicator.description idescription
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription
                                     FROM competence_rapport JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
-                                    JOIN indicator ON subcompetence_rapport.id = indicator_rapport.subcompetence WHERE competence_rapport.course = :courseid ORDER BY cid, sid, iid ASC");
+                                    JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence WHERE competence_rapport.course = :courseid ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -158,10 +158,7 @@ class rapportenDAO {
                     $competence = new stdClass();
                     $competence->subcompetences = array();
                     $competence->id = $row['cid'];
-                    $competence->code = $row['ccode'];
                     $competence->description = $row['cdescription'];
-                    $competence->max = $row['cmax'];
-                    $competence->weight = $row['cweight'];
 
                     $data[$row['cid']] = $competence;
                 }
@@ -170,11 +167,7 @@ class rapportenDAO {
                     $subcompetence = new stdClass();
                     $subcompetence->indicators = array();
                     $subcompetence->id = $row['sid'];
-                    $subcompetence->code = $row['scode'];
                     $subcompetence->description = $row['sdescription'];
-                    $subcompetence->weight = $row['sweight'];
-                    $subcompetence->max = $row['smax'];
-                    $subcompetence->minRequired = $row['smin_required'];
 
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
@@ -184,8 +177,6 @@ class rapportenDAO {
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
                     $indicator->description = $row['idescription'];
-                    $indicator->max = $row['imax'];
-                    $indicator->weight = $row['iweight'];
 
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
