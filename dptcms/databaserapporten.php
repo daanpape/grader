@@ -43,10 +43,10 @@ class rapportenDAO {
     }
 
     /*
-     * Get all trainings by course
+     * Get all competence by course
      * @id the course
      */
-    public static function getTrainingsByLocation($id) {
+    public static function getCompetenceByCourse($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM competence_rapport WHERE course = :course");
