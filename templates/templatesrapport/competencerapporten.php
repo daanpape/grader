@@ -35,11 +35,11 @@ $location = "jsrapport/competencerapporten";
             }
         </style>
 
-        <?php include_once('hddepends.php') ?>
+        <?php include_once('templates/hddepends.php') ?>
     </head>
 
     <body>
-        <?php include_once('menu.php') ?>
+        <?php include_once('templates/menu.php') ?>
 
         <!-- Header container -->
         <div class="container">
@@ -122,7 +122,7 @@ $location = "jsrapport/competencerapporten";
             </div>
         </div>
 
-        <?php include_once('jsdepends.php') ?>
+        <?php include_once('templates/jsdepends.php') ?>
         <script>
             var courseid = <?php echo $courseid ?>
         </script>
