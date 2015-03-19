@@ -96,7 +96,7 @@ class rapportenDAO {
         public static function getTeacher($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM users WHERE id = $id");
+            $stmt = $conn->prepare("SELECT * FROM users");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
