@@ -36,7 +36,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
-                    $(".btn-course span:first").text(item.);
+                    $(".btn-course span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
