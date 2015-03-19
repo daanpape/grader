@@ -36,7 +36,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
                     $(".btn-training span:first").text(item.training);
-                    $(".btn-submodule span:first").text(item.submodule);
+                    $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
-                    gvm.updateSubmodules(item.trainingid);
+                    gvm.updateCourses(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
                 });
@@ -60,8 +60,8 @@ function pageViewModel(gvm) {
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
-        data["submodule"] = $(".btn-submodule span:first").text();
-        data["submoduleid"] = gvm.currentCourseId;
+        data["course"] = $(".btn-submodule span:first").text();
+        data["courseid"] = gvm.currentCourseId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
