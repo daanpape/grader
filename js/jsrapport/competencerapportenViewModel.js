@@ -184,6 +184,7 @@ function initPage() {
     fetchProjectStructure();
 
     $(".addCompetenceBtn").click(function() {
+        console.log('clicked on add competence');
         viewModel.addCompetence();
     });
 
