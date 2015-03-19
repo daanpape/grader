@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
 
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
-    gvm.availableCourses = ko.observableArray([]);
+    gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
 
     gvm.currentLocationId = null;
@@ -128,9 +128,9 @@ function pageViewModel(gvm) {
      */
     gvm.updateCourses = function(id) {
         $.getJSON('/api/submodulerapport/' + id, function(data) {
-            gvm.availableCourses.removeAll();
+            gvm.availableSubmodules.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableCourses.push(item);
+                gvm.availableSubmodules.push(item);
 
                 /* Add listener to listitem */
                 $("#coursebtn-" + item.id).click(function(){
