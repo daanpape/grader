@@ -39,7 +39,7 @@ Class RapportAPI {
      * Delete a projecttype from the database
      */
     public static function deleteProject($id) {
-        if (ClassDAO::deleteProject($id) === true) {
+        if (rapportenDAO::deleteProject($id) === true) {
             return true;
         } else {
             return false;
