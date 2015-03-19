@@ -38,8 +38,8 @@ Class RapportAPI {
     /*
      * Delete a course from the database
      */
-    public static function deleteCourse($id) {
-        if (ClassDAO::deleteProject($id) === true) {
+    public static function deleteProject($id) {
+        if (rapportenDAO::deleteProject($id) === true) {
             return true;
         } else {
             return false;
