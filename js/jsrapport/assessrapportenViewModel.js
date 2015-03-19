@@ -91,7 +91,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateLocations = function() {
-        $.getJSON('/api/courserapport', function(data) {
+        $.getJSON('/api/locations', function(data) {
             gvm.availableLocations.removeAll();
             $.each(data, function(i, item) {
               //  Put item in list
