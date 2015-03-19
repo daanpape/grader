@@ -45,7 +45,7 @@ $app->post('/api/courserapport', function () use ($app) {
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
-$app->get('/api/coursesrapport', function () use ($app) {
+$app->get('/rapportapi/courses', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
