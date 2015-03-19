@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-course dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wide btn-default btn-submodule dropdown-toggle" type="button" id="availableCourses" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Sub-module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
