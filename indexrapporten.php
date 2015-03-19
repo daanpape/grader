@@ -20,7 +20,7 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 
 /* API get routes */
 
-$app->get('/rapportapi/courses/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
