@@ -40,11 +40,11 @@
                 </div>
 
                 <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-module dropdown-toggle" type="button" id="trainings" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wide btn-default btn-module dropdown-toggle" type="button" id="modules" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="trainings" data-bind="foreach: availableModules">
+                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="modules" data-bind="foreach: availableModules">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'modulebtn-' + id}"><span data-bind="text: name"></span></a></li>
                     </ul>
                 </div>
