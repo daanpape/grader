@@ -22,7 +22,7 @@ $location = "jsrapport/competencerapporten";
             .form-next {
                 display: inline-block !important;
                 margin-right: 10px;
-                width: auto !important;
+                width: 200px !important;
             }
 
             .validationSummary
@@ -69,7 +69,7 @@ $location = "jsrapport/competencerapporten";
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: name">
-                        <input type="text" placeholder="Name of the competence" class="form-control form-next input-lg" data-bind="value: description">
+                        <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: description">
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
