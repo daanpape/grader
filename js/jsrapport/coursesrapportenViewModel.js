@@ -69,6 +69,7 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
+                    console.log("updatedropdown");
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
                     gvm.updateTeacher(item.id);
@@ -387,7 +388,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
-        console.log("updatedropdown");
     });
     
     loadTablePage(1);
