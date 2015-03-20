@@ -21,7 +21,7 @@ function pageViewModel(gvm) {
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
     gvm.availableLocations = ko.observableArray([]);
-    gvm.availableTrainings = ko.observableArray([]);
+    gvm.availableModules = ko.observableArray([]);
     gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
 
@@ -106,9 +106,9 @@ function pageViewModel(gvm) {
      */
     gvm.updateTrainings = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
-            gvm.availableTrainings.removeAll();
+            gvm.availableModules.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableTrainings.push(item);
+                gvm.availableModules.push(item);
 
                 /* Add listener to listitem */
                 $("#modulebtn-" + item.id).click(function(){
@@ -116,7 +116,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("submodule");
+                    $(".btn-submodule span:first").text("Sub-module");
                 });
             });
         });
