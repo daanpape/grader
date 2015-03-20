@@ -33,7 +33,7 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    $(".btn-location span:first").text(item.location);
+                    $(".btn-courseRapport span:first").text(item.location);
                     $(".btn-module span:first").text(item.training);
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
@@ -55,7 +55,7 @@ function pageViewModel(gvm) {
 
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
-        data["location"] = $(".btn-location span:first").text();
+        data["location"] = $(".btn-courseRapport span:first").text();
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-module span:first").text();
         data["trainingid"] = gvm.currentModuleid;
@@ -91,7 +91,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateModules(item.id);
-                    $(".btn-location span:first").text($(this).text());
+                    $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("module");
                     $(".btn-submodule span:first").text("sub-module");
                     $(".btn-goal span:first").text("goal");
