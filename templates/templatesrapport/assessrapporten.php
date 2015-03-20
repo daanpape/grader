@@ -45,7 +45,7 @@
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="trainings" data-bind="foreach: availableTrainings">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'trainingbtn-' + id}"><span data-bind="text: name"></span></a></li>
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'modulebtn-' + id}"><span data-bind="text: name"></span></a></li>
                     </ul>
                 </div>
 

@@ -111,7 +111,7 @@ function pageViewModel(gvm) {
                 gvm.availableTrainings.push(item);
 
                 /* Add listener to listitem */
-                $("#trainingbtn-" + item.id).click(function(){
+                $("#modulebtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
