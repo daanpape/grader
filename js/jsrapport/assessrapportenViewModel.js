@@ -33,7 +33,7 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    $(".btn-courseRapport span:first").text(item.);
+                    $(".btn-courseRapport span:first").text(item.location);
                     $(".btn-module span:first").text(item.training);
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
@@ -75,13 +75,13 @@ function pageViewModel(gvm) {
         })
     }
 
- 
+
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/courserapportdrop', function(data) {
             gvm.availableCoursesRapport.removeAll();
             $.each(data, function(i, item) {
-              //  Put item in list
+                //  Put item in list
                 gvm.availableCoursesRapport.push(item);
 
                 // Add listener to listitem
