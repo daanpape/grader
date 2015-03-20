@@ -160,7 +160,7 @@ function validationCheck()
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
-        if(!viewModel.competences()[indexCompetences].code() && !viewModel.competences()[indexCompetences].name())
+        if(!viewModel.competences()[indexCompetences].name() && !viewModel.competences()[indexCompetences].description())
         {
             if(allCompetencesValid)
             {
