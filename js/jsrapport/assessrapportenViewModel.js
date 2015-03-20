@@ -42,7 +42,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
-                    gvm.updateTrainings(item.locationid);
+                    gvm.updateModules(item.locationid);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
@@ -90,7 +90,7 @@ function pageViewModel(gvm) {
                     gvm.currentTrainingid = null;
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
-                    gvm.updateTrainings(item.id);
+                    gvm.updateModules(item.id);
                     $(".btn-location span:first").text($(this).text());
                     $(".btn-module span:first").text("module");
                     $(".btn-submodule span:first").text("sub-module");
@@ -102,9 +102,9 @@ function pageViewModel(gvm) {
 
 
     /*
-     * Update the course data
+     * Update the module data
      */
-    gvm.updateTrainings = function(id) {
+    gvm.updateModules = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
             gvm.availableModules.removeAll();
             $.each(data, function(i, item) {
