@@ -88,7 +88,7 @@ function pageViewModel(gvm) {
                 console.log("updateteacherfunctie")
                 console.log(item);
             /* Add listener to listitem */
-            $("#teacherbtn-" + item.id).click(function(){
+            $("#teacherbtn-" + item.username).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
                 gvm.currentteacherid = item.id;
                 gvm.saveLastSelectedDropdowns();
