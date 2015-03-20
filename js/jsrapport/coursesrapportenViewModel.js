@@ -86,7 +86,6 @@ function pageViewModel(gvm) {
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
             for (var i = 0; i < gvm.availableTeacher.length; i++) {
-                console.log(gvm.availableTeacher[i]);
                 console.log('hi');
             }
             /* Add listener to listitem */
