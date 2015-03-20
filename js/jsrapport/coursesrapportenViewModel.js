@@ -87,6 +87,7 @@ function pageViewModel(gvm) {
             gvm.availableTeacher.push(item);
             for (var i = 0; i < gvm.availableTeacher.length; i++) {
                 console.log(gvm.availableTeacher[i]);
+                console.log('hi');
             }
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
