@@ -29,7 +29,6 @@ function pageViewModel(gvm) {
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
-        console.log(id + ", " + code + ", " + name + ", " + desc);
         // Push data
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
@@ -177,7 +176,6 @@ function loadTablePage(pagenr)
         
         // Load table data 
         $.each(data.data, function(i, item) {
-            console.log(item.name);
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
         
