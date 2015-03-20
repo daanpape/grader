@@ -54,6 +54,9 @@ function pageViewModel(gvm) {
         });
     }
 
+
+    //Houdt bij wat geselecteerd wordt
+    //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
         data[""] = $(".btn-courseRapport span:first").text();
@@ -68,15 +71,13 @@ function pageViewModel(gvm) {
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "/api/savedropdowns",
+            url: "/api/savedropdownsRapport",
             data: data,
             success: function() {
                 console.log("success");
             }
         })
     }
-
-
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/courserapportdrop', function(data) {
