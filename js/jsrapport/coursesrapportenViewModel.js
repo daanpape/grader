@@ -83,7 +83,7 @@ function pageViewModel(gvm) {
     $.getJSON('/api/teacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
-            gvm.availableTeacher.push(item.username);
+            gvm.availableTeacher.push(item);
                 console.log(item)
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
@@ -267,7 +267,7 @@ function showNewProjectTypeModal()
                 '<button class="btn btn-wide btn-default btn-teacher dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
                     '<span class="text-left">Teacher</span>' + '<span class="pull-right caret-down caret"></span>' +
                 '</button>' +
-                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" id="teacher" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">' +
+                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" aria-labelledby="teacher" data-bind="foreach: availableTeacher">' +
                     '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
                 '</ul>' +
             '</div>' +
