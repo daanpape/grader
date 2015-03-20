@@ -141,7 +141,7 @@ function initPage() {
 function saveProjectStructure() {
     $.ajax({
         type: "POST",
-        url: "/api/projectstructure/" + projectid,
+        url: "/api/savecompetences/" + courseid,
         data: ko.toJSON(viewModel.competences),
         success: function(){
             // TODO make multilangual and with modals
@@ -171,7 +171,7 @@ function validationCheck()
         }
         for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
         {
-            if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].code())
+            if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].description())
             {
                 if(allSubcompetencesValid)
                 {
