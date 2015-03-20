@@ -130,6 +130,15 @@ $app->post('/api/courserapport', function () use ($app) {
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+$app->post('/api//api/savedropdownsRapport', function() use ($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(GraderAPI::saveDropdownChoice($app->request->post('location'), $app->request->post('locationid'), $app->request->post('training'), $app->request->post('trainingid'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
+});
+
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     // Use json headers
