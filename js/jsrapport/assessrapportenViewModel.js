@@ -122,10 +122,10 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = null;
                     gvm.updateSubmodules(item.id);
                     gvm.updateGoals(null);
-                    gvm.saveLastSelectedDropdowns();
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
@@ -146,9 +146,9 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = item.id;
                     gvm.currentGoalId = null;
                     gvm.updateGoals(item.id);
-                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
@@ -167,8 +167,8 @@ function pageViewModel(gvm) {
                 $("#goalbtn-" + item.id).click(function(){
                     $(".btn-goal span:first").text($(this).text());
                     gvm.currentGoalId = item.id;
-                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
