@@ -28,7 +28,8 @@ function pageViewModel(gvm) {
     gvm.currentCourseRapportId = null;
     gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
-
+    gvm.currentGoalId = null;
+    
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
