@@ -258,7 +258,7 @@ function showNewProjectTypeModal()
                     '<span class="text-left">Teacher</span>' +
                     '<span class="pull-right caret-down caret"></span>' +
                 '</button>' +
-                '<ul class="dropdown-menu" role="menu" id="teacher" aria-labelledby="availableTeacher">' +
+                '<ul class="dropdown-menu ul-wide" role="menu" id="teacher" aria-labelledby="availableTeacher">' +
                 '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
                 '</ul>' +
             '</div>' +
