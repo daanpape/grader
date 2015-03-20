@@ -86,13 +86,12 @@ function pageViewModel(gvm) {
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
                 console.log("updateteacherfunctie")
-                console.log(item);
+                console.log(item)
             /* Add listener to listitem */
-            $("#teacherbtn-" + item.username).click(function(){
+            $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
                 gvm.currentteacherid = item.id;
-                gvm.saveLastSelectedDropdowns();
-                loadTablePage(item.id, 1);
+                loadTablePage(item.username, 1);
             });
         });
     });
