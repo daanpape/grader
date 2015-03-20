@@ -80,12 +80,10 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateTeacher = function(id) {
-        console.log("updateteacherfunctie1");
     $.getJSON('/api/teacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
-                console.log("updateteacherfunctie")
                 console.log(item)
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
