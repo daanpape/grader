@@ -118,7 +118,6 @@ function pageViewModel(gvm) {
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
-                    $(".btn-goal span:first").text("Goal");
                 });
             });
         });
@@ -138,7 +137,6 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentSubmoduleId = item.id;
                     gvm.currentGoalId = null;
-                    $(".btn-goal span:first").text("Goal");
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
