@@ -21,28 +21,28 @@ function pageViewModel(gvm) {
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
     gvm.availableLocations = ko.observableArray([]);
-    gvm.availableTrainings = ko.observableArray([]);
+    gvm.availableModules = ko.observableArray([]);
     gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
 
     gvm.currentLocationId = null;
-    gvm.currentTrainingid = null;
+    gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    $(".btn-location span:first").text(item.location);
+                    $(".btn-courseRapport span:first").text(item.location);
                     $(".btn-module span:first").text(item.training);
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
-                    gvm.currentTrainingid = item.trainingid;
+                    gvm.currentModuleid = item.trainingid;
                     gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
-                    gvm.updateTrainings(item.locationid);
+                    gvm.updateModules(item.locationid);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
@@ -55,10 +55,10 @@ function pageViewModel(gvm) {
 
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
-        data["location"] = $(".btn-location span:first").text();
+        data["location"] = $(".btn-courseRapport span:first").text();
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-module span:first").text();
-        data["trainingid"] = gvm.currentTrainingid;
+        data["trainingid"] = gvm.currentModuleid;
         data["course"] = $(".btn-submodule span:first").text();
         data["courseid"] = gvm.currentSubmoduleId;
         data["goal"] = $(".btn-goal span:first").text();
@@ -87,11 +87,11 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
-                    gvm.currentTrainingid = null;
+                    gvm.currentModuleid = null;
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
-                    gvm.updateTrainings(item.id);
-                    $(".btn-location span:first").text($(this).text());
+                    gvm.updateModules(item.id);
+                    $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("module");
                     $(".btn-submodule span:first").text("sub-module");
                     $(".btn-goal span:first").text("goal");
@@ -102,21 +102,21 @@ function pageViewModel(gvm) {
 
 
     /*
-     * Update the course data
+     * Update the module data
      */
-    gvm.updateTrainings = function(id) {
+    gvm.updateModules = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
-            gvm.availableTrainings.removeAll();
+            gvm.availableModules.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableTrainings.push(item);
+                gvm.availableModules.push(item);
 
                 /* Add listener to listitem */
                 $("#modulebtn-" + item.id).click(function(){
-                    gvm.currentTrainingid = item.id;
+                    gvm.currentModuleid = item.id;
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("course");
+                    $(".btn-submodule span:first").text("Sub-module");
                 });
             });
         });
