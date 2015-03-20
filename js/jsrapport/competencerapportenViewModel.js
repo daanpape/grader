@@ -128,12 +128,10 @@ function initPage() {
     });
 
     $(".savePageBtn").click(function(){
-        if(allValidationChecks()) {
+        if(validationCheck()) {
             saveProjectStructure();
             console.log("Saved");
-        }
-        else
-        {
+        } else {
             window.scrollTo(0,0);
             console.log("Not saved");
         }
@@ -152,11 +150,6 @@ function saveProjectStructure() {
             fetchProjectStructure();
         }
     });
-}
-
-function allValidationChecks()
-{
-    return totalPercentCheck() && validationCheck();
 }
 
 function validationCheck()
@@ -202,62 +195,4 @@ function validationCheck()
         }
     }
     return allCompetencesValid && allSubcompetencesValid && allIndicatorsValid;
-}
-
-function totalPercentCheck()
-{
-    var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = new Array();
-    var totalPercentIndicators = new Array();
-    var nrOfSubcompetences = 0;
-    var nrOfIndicators = 0;
-
-    var checkSubcompetences = true;
-    var checkIndicators = true;
-
-    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
-    {
-        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
-        totalPercentSubcompetences.push(0);
-        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
-        {
-            totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
-            totalPercentIndicators.push(0);
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
-            {
-                totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
-            }
-            nrOfIndicators++;
-        }
-        nrOfSubcompetences++;
-    }
-
-    for(var i = 0; i < nrOfSubcompetences - 1; i++)
-    {
-        if(totalPercentSubcompetences[i] != 100)
-        {
-            checkSubcompetences = false;
-        }
-    }
-
-    for(var index = 0; index < nrOfIndicators - 1; index++)
-    {
-        if(totalPercentIndicators[index] != 100)
-        {
-            checkIndicators = false;
-        }
-    }
-
-    if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
-    {
-        $(".validationSummary ul").html("");
-        $(".validationSummary").addClass("hide");
-        return true;
-    }
-    else
-    {
-        $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
-        $(".validationSummary").removeClass("hide");
-        return false;
-    }
 }
