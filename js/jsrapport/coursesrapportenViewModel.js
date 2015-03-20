@@ -86,6 +86,7 @@ function pageViewModel(gvm) {
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
                 console.log("updateteacherfunctie")
+                console.log(item);
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
