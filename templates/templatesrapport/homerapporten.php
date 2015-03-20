@@ -23,13 +23,13 @@
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: app">Assessment Tool</h1>
+            <h1 class="page-header" data-bind="text: app">Grading System</h1>
         </div>
         
         <!-- Content container -->
         <div class="container">
             <div class="starter-template" data-bind="html: homeManual">
-                <p class="lead">Hier moet een overzicht getoond worden van de studenten die nog gequoteerd moeten worden</p>
+                <p class="lead">Here comes a summary of students who still need to be assessed</p>
             </div>
         </div>
 
