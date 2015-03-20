@@ -82,4 +82,22 @@ Class RapportAPI {
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);
     }
+
+    //save dropdowns from ASSESS
+    public static function saveDropdownChoiceRapport($location, $locationid, $training, $trainingid, $course, $courseid, $user) {
+        $id = ClassDAO::saveDropdownChoice($location, $locationid, $training, $trainingid, $course, $courseid, $user);
+
+        if($id != false) {
+            return array(
+                "location" => $location,
+                "training" => $training,
+                "course" => $course,
+                "courseid" => $courseid,
+                "user" => $user
+            );
+        } else {
+            return -1;
+        }
+    }
+
 }
