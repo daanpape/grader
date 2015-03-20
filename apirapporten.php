@@ -123,7 +123,31 @@ Class RapportAPI {
         // Return saved data
         return self::getAllDataFromCourse($courseid);
     }
-    
+
+    /*
+$app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
+$app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+$app->request->post('user')));
+    */
+
+    //save dropdowns asses
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
+        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user);
+
+        if($id != false) {
+            return array(
+                "course" => $course,
+                "module" => $module,
+                "submodule" => $submodule,
+                "goal" => $goal,
+                "goalid" => $goalid,
+                "user" => $user
+            );
+        } else {
+            return -1;
+        }
+    }
+
     public static function putCompetence($id = -1, $name, $description, $courseid) {
         if($id == -1) {
             return rapportenDAO::putNewCompetence($name, $description, $courseid);

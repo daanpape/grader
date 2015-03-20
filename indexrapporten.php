@@ -111,7 +111,6 @@ $app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
 });
 
 //PUT routes
-
 $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();
@@ -123,7 +122,6 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
 });
 
 //POST routes
-
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers
     $response = $app->response();
@@ -131,6 +129,18 @@ $app->post('/api/courserapport', function () use ($app) {
 
     // Insert the data
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
+
+$app->post('/api/savedropdownsRapport', function() use ($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
+        $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
+        $app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+        $app->request->post('user')));
 });
 
 $app->post('/api/savecompetences/:id', function($id) use ($app) {
