@@ -68,7 +68,8 @@ function pageViewModel(gvm) {
         console.log(data);
         $.ajax({
             type: "POST",
-            url: "/api/savedropdownsRapport",
+            url: "/api/savedropdowns",
+           // url: "/api/savedropdownsRapport",
             data: data,
             success: function() {
                 console.log("success");
