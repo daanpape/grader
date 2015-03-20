@@ -85,9 +85,9 @@ function pageViewModel(gvm) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
-            gvm.availableTeacher.each(function(item) {
+            for each (item in gvm.availableTeacher) {
                 console.log(item.firstname);
-            });
+            }
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
