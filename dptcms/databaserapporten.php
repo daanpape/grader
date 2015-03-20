@@ -145,9 +145,11 @@ class rapportenDAO {
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription
-                                    FROM competence_rapport JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
-                                    JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence WHERE competence_rapport.course = :courseid ORDER BY cid, sid, iid ASC");
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription FROM competence_rapport 
+                                    LEFT JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
+                                    LEFT JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence 
+                                    WHERE competence_rapport.course = :courseid
+                                    ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -29,7 +29,6 @@ function pageViewModel(gvm) {
 
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
-        console.log(id + ", " + code + ", " + name + ", " + desc);
         // Push data
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
@@ -177,7 +176,6 @@ function loadTablePage(pagenr)
         
         // Load table data 
         $.each(data.data, function(i, item) {
-            console.log(item.name);
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
         
@@ -254,12 +252,11 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group">' +
-                '<button class="btn btn-default dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
-                    '<span class="text-left">Teacher</span>' +
-                    '<span class="pull-right caret-down caret"></span>' +
+                '<button class="btn btn-wide btn-default btn-teacher dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
+                    '<span class="text-left">Teacher</span>' + '<span class="pull-right caret-down caret"></span>' +
                 '</button>' +
-                '<ul class="dropdown-menu" role="menu" id="teacher" aria-labelledby="availableTeacher">' +
-                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
+                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" id="teacher" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">' +
+                    '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
                 '</ul>' +
             '</div>' +
             '</form>' );
