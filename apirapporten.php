@@ -85,7 +85,7 @@ Class RapportAPI {
 
     //save dropdowns from ASSESS
     public static function saveDropdownChoiceRapport($location, $locationid, $training, $trainingid, $course, $courseid, $user) {
-        $id = RapportenDAO::saveDropdownChoiceRapport($location, $locationid, $training, $trainingid, $course, $courseid, $user);
+        $id = rapportenDAO::saveDropdownChoiceRapport($location, $locationid, $training, $trainingid, $course, $courseid, $user);
 
         if($id != false) {
             return array(
