@@ -74,21 +74,21 @@ $location = "jsrapport/competencerapporten";
             <div class="col-md-12 compPanel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <input type="text" placeholder="Competence-Code" class="form-control form-name" data-bind="value: name">
-                        <input type="text" placeholder="Name of the competence" class="form-control form-desc" data-bind="value: description">
+                        <input type="text" placeholder="Competence name" class="form-control form-name" data-bind="value: name">
+                        <input type="text" placeholder="Competence description" class="form-control form-desc" data-bind="value: description">
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
                             <div class="panel panel-default">
                                 <div class="panel-heading color-subcomp">
-                                    <input type="text" placeholder="SubCompetence-Code" class="form-control form-name" data-bind="value: name">
-                                    <input type="text" placeholder="Name of the subcompetence" class="form-control form-desc" data-bind="value: description">
+                                    <input type="text" placeholder="Subcompetence name" class="form-control form-name" data-bind="value: name">
+                                    <input type="text" placeholder="Subcompetence description" class="form-control form-desc" data-bind="value: description">
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
                                         <li class="list-group-item">
-                                            <input type="text" placeholder="Indicatorname" class="form-control form-name" data-bind="value: name">
-                                            <input type="text" placeholder="Description" class="form-control form-desc" data-bind="value: description">
+                                            <input type="text" placeholder="Indicator name" class="form-control form-name" data-bind="value: name">
+                                            <input type="text" placeholder="Indicator description" class="form-control form-desc" data-bind="value: description">
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
                                     </ul>
