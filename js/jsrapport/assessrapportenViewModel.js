@@ -116,7 +116,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("course");
+                    $(".btn-submodule span:first").text("submodule");
                 });
             });
         });
