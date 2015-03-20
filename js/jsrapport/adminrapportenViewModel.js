@@ -65,39 +65,9 @@ function pageViewModel(gvm) {
         gvm.tabledata.removeAll();
     }
     
-    gvm.updateDropdowns = function() {
-        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
-            if(!$.isEmptyObject(data)) {
-                $.each(data, function(i, item) {
-                    $(".btn-teacher span:first").text(item.teacher);
-                    gvm.currentteacherid = item.id;
-                    gvm.updateTeacher(item.id);
-                });
-            } else {
-                
-            }
-        });
+
     }
-    
-    gvm.updateTeacher = function(id) {
-        console.log("updateteacherfunctie1");
-    $.getJSON('/api/teacherrapport/' + id, function(data) {
-        gvm.availableTeacher.removeAll();
-        $.each(data, function(i, item) {
-            gvm.availableTeacher.push(item);
-                console.log("updateteacherfunctie");
-                console.log(item);
-            /* Add listener to listitem */
-            $("#teacherbtn-" + item.id).click(function(){
-                $(".btn-teacher span:first").text($(this).text());
-                gvm.currentteacherid = item.id;
-                gvm.saveLastSelectedDropdowns();
-                loadTablePage(item.id, 1);
-            });
-        });
-    });
-    }
-    }
+
 /*
  * Delete item from table given the id. 
  */
