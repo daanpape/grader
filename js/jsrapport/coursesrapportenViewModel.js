@@ -87,8 +87,8 @@ function pageViewModel(gvm) {
                 console.log(item)
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
-                $(".btn-teacher span:first").text($(this).text());
                 gvm.currentteacherid = item.id;
+                $(".btn-teacher span:first").text($(this).text());
                 loadTablePage(item.id, 1);
             });
         });
