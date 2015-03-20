@@ -94,6 +94,7 @@ function pageViewModel(gvm) {
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(null);
                     gvm.updateGoals(null);
+                    gvm.saveLastSelectedDropdowns();
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
@@ -120,6 +121,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = null;
                     gvm.updateSubmodules(item.id);
                     gvm.updateGoals(null);
+                    gvm.saveLastSelectedDropdowns();
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
