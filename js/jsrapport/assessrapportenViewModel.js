@@ -75,13 +75,13 @@ function pageViewModel(gvm) {
         })
     }
 
- 
+
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/courserapportdrop', function(data) {
             gvm.availableCoursesRapport.removeAll();
             $.each(data, function(i, item) {
-              //  Put item in list
+                //  Put item in list
                 gvm.availableCoursesRapport.push(item);
 
                 // Add listener to listitem
@@ -92,9 +92,9 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = null;
                     gvm.updateModules(item.id);
                     $(".btn-courseRapport span:first").text($(this).text());
-                    $(".btn-module span:first").text("module");
-                    $(".btn-submodule span:first").text("sub-module");
-                    $(".btn-goal span:first").text("goal");
+                    $(".btn-module span:first").text("Module");
+                    $(".btn-submodule span:first").text("Sub-module");
+                    $(".btn-goal span:first").text("Goal");
                 });
             });
         });
@@ -118,6 +118,7 @@ function pageViewModel(gvm) {
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
+                    $(".btn-goal span:first").text("Goal");
                 });
             });
         });
@@ -137,8 +138,10 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentSubmoduleId = item.id;
                     gvm.currentGoalId = null;
+                    gvm.updateGoals(gvm.currentGoalId);
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
+                    $(".btn-goal span:first").text("Goal");
                 });
             });
         });
