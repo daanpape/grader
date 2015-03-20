@@ -39,13 +39,13 @@ function pageViewModel(gvm) {
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
                     gvm.currentTrainingid = item.trainingid;
-                    gvm.currentSubmoduleId = item.submoduleid;
+                    gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
                     gvm.updateTrainings(item.locationid);
                     gvm.updateSubmodules(item.trainingid);
-                    gvm.updateGoals(item.submoduleid);
-                    loadTablePage(item.submoduleid, 1);
+                    gvm.updateGoals(item.courseid);
+                    loadTablePage(item.courseid, 1);
                 });
             } else {
                 gvm.updateLocations();
@@ -60,7 +60,7 @@ function pageViewModel(gvm) {
         data["training"] = $(".btn-training span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
         data["course"] = $(".btn-submodule span:first").text();
-        data["submoduleid"] = gvm.currentSubmoduleId;
+        data["courseid"] = gvm.currentSubmoduleId;
         data["goal"] = $(".btn-goal span:first").text();
         data["goalid"] = gvm.currentGoalId;
         data["user"] = gvm.userId;
@@ -177,9 +177,9 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(submoduleid, pagenr)
+function loadTablePage(courseid, pagenr)
 {
-    $.getJSON('/api/projects/' + submoduleid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable()
@@ -234,7 +234,7 @@ function loadTablePage(submoduleid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(submoduleid, thispagenr);
+                    loadTablePage(courseid, thispagenr);
                 });
             }
         });
