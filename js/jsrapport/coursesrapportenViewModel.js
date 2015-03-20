@@ -84,7 +84,7 @@ function pageViewModel(gvm) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
-                console.log(item)
+                console.log(item);
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
