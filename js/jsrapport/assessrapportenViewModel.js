@@ -33,16 +33,16 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    $(".btn-courseRapport span:first").text(item.location);
+                    $(".btn-courseRapport span:first").text(item.);
                     $(".btn-module span:first").text(item.training);
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
-                    gvm.currentCourseRapportId = item.locationid;
+                    gvm.currentCourseRapportId = item.id;
                     gvm.currentModuleid = item.trainingid;
                     gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateCourseRapport();
-                    gvm.updateModules(item.locationid);
+                    gvm.updateModules(item.id);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
@@ -55,8 +55,8 @@ function pageViewModel(gvm) {
 
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
-        data["location"] = $(".btn-courseRapport span:first").text();
-        data["locationid"] = gvm.currentCourseRapportId;
+        data[""] = $(".btn-courseRapport span:first").text();
+        data["id"] = gvm.currentCourseRapportId;
         data["training"] = $(".btn-module span:first").text();
         data["trainingid"] = gvm.currentModuleid;
         data["course"] = $(".btn-submodule span:first").text();
@@ -114,6 +114,7 @@ function pageViewModel(gvm) {
                 $("#modulebtn-" + item.id).click(function(){
                     gvm.currentModuleid = item.id;
                     gvm.currentSubmoduleId = null;
+                    gvm.currentGoalId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
@@ -135,6 +136,7 @@ function pageViewModel(gvm) {
                 $("#submodulebtn-" + item.id).click(function(){
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentSubmoduleId = item.id;
+                    gvm.currentGoalId = null;
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                 });
