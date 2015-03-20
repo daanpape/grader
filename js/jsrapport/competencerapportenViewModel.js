@@ -103,7 +103,6 @@ function fetchProjectStructure() {
     viewModel.clearStructure();
     
     $.getJSON("/api/coursestructure/" + courseid, function(data){
-        console.log(data);
         $.each(data, function(i, item){
             var competence = viewModel.updateCompetence(item.id, item.name, item.description);
             

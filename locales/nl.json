@@ -87,5 +87,10 @@
     "studentrapportRapportTitle":"Rapport van studenten",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
     "EditProjectTitle2" : "Wijzig vak",
-  "AdminTitle":"Gebruikerslijst"
+  "AdminTitle":"Gebruikerslijst",
+  "AdminCodeTableTitle": "ID",
+  " AdminNameTableTitle":"Naam",
+  " AdminDescTableTitle":"E-mail",
+  " AdminActionTableTitle":"Acties"
+}
 }

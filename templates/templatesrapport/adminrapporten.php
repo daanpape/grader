@@ -30,9 +30,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: descTableTitle">Description</th>
+                        <th data-bind="text: codeTableTitle">Id</th>
+                        <th data-bind="text: nameTableTitle">Naam</th>
+                        <th data-bind="text: descTableTitle">E-mail</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
                 </thead>
