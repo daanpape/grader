@@ -388,6 +388,7 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
+        console.log("initpage");
     });
     
     loadTablePage(1);
