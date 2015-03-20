@@ -205,6 +205,86 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function putNewCompetence($name, $description, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO competence_rapport (name, description, course) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $course));
+            $pid = $conn->lastInsertId();
+
+            return $pid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    public static function updateCompetence($id, $name, $description, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE competence_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $course, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+    public static function putNewSubCompetence($name, $description, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO subcompetence_rapport (name, description, competence) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $competenceid));
+            $sid = $conn->lastInsertId();
+
+            return $sid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    public static function updateSubCompetence($id, $name, $description, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE subcompetence_rapport SET name = ?, description = ?, competence = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $competenceid, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+    public static function putNewIndicator($name, $description, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO indicator_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $subcompetenceid));
+            $iid = $conn->lastInsertId();
+
+            return $iid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+    
+    public static function updateIndicator($id, $name, $description, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE indicator_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $subcompetenceid, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+		}
+	}
 }
 
 ?>
