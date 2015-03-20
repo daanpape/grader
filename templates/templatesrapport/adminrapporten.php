@@ -30,10 +30,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th data-bind="text: AdminCodeTableTitle">Id</th>
-                        <th data-bind="text: AdminNameTableTitle">Naam</th>
-                        <th data-bind="text: AdminDescTableTitle">E-mail</th>
-                        <th data-bind="text: AdminActionTableTitle">Actions</th>
+                        <th data-bind="text: codeTableTitle">Id</th>
+                        <th data-bind="text: nameTableTitle">Naam</th>
+                        <th data-bind="text: descTableTitle">E-mail</th>
+                        <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
