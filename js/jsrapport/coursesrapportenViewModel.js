@@ -253,7 +253,7 @@ function showNewProjectTypeModal()
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
-            \'<div class="form-group">' +
+            <div class="form-group">' +
                 '<button class="btn btn-default dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
                     '<span class="text-left">Teacher</span>' +
                 '</button>' +
