@@ -69,7 +69,7 @@ $location = "jsrapport/competencerapporten";
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: name">
-                        <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: description">
+                        <input type="text" placeholder="Name of the competence" class="form-control form-next col-md-5" data-bind="value: description">
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
