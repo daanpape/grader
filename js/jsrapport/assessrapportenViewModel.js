@@ -92,7 +92,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateModules(item.id);
-                    gvm.updateGoals(null);
+                    gvm.updateGoals(item.id);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
@@ -118,6 +118,7 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateSubmodules(item.id);
+                    gvm.updateGoals(item.id);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
