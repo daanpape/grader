@@ -21,7 +21,7 @@ function pageViewModel(gvm) {
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
     gvm.availableLocations = ko.observableArray([]);
-    gvm.availableTrainings = ko.observableArray([]);
+    gvm.availableModules = ko.observableArray([]);
     gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
 
@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-location span:first").text(item.location);
-                    $(".btn-training span:first").text(item.training);
+                    $(".btn-module span:first").text(item.training);
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
@@ -57,7 +57,7 @@ function pageViewModel(gvm) {
         data = {};
         data["location"] = $(".btn-location span:first").text();
         data["locationid"] = gvm.currentLocationId;
-        data["training"] = $(".btn-training span:first").text();
+        data["training"] = $(".btn-module span:first").text();
         data["trainingid"] = gvm.currentTrainingid;
         data["course"] = $(".btn-submodule span:first").text();
         data["courseid"] = gvm.currentSubmoduleId;
@@ -92,7 +92,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = null;
                     gvm.updateTrainings(item.id);
                     $(".btn-location span:first").text($(this).text());
-                    $(".btn-training span:first").text("module");
+                    $(".btn-module span:first").text("module");
                     $(".btn-submodule span:first").text("sub-module");
                     $(".btn-goal span:first").text("goal");
                 });
@@ -106,17 +106,17 @@ function pageViewModel(gvm) {
      */
     gvm.updateTrainings = function(id) {
         $.getJSON('/api/coursesrapport/' + id, function(data) {
-            gvm.availableTrainings.removeAll();
+            gvm.availableModules.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableTrainings.push(item);
+                gvm.availableModules.push(item);
 
                 /* Add listener to listitem */
-                $("#trainingbtn-" + item.id).click(function(){
+                $("#modulebtn-" + item.id).click(function(){
                     gvm.currentTrainingid = item.id;
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
-                    $(".btn-training span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("course");
+                    $(".btn-module span:first").text($(this).text());
+                    $(".btn-submodule span:first").text("Sub-module");
                 });
             });
         });
