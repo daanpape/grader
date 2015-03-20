@@ -95,11 +95,11 @@ function pageViewModel(gvm) {
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(null);
                     gvm.updateGoals(null);
-                    gvm.saveLastSelectedDropdowns();
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
