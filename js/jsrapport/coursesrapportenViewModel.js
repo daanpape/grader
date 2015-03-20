@@ -65,6 +65,20 @@ function pageViewModel(gvm) {
         gvm.tabledata.removeAll();
     }
     
+    gvm.updateDropdowns = function() {
+        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    $(".btn-teacher span:first").text(item.teacher);
+                    gvm.currentteacherid = item.id;
+                    gvm.updateTeacher(item.id);
+                });
+            } else {
+                
+            }
+        });
+    }
+    
     gvm.updateTeacher = function(id) {
         console.log("updateteacherfunctie1");
     $.getJSON('/api/teacherrapport/' + id, function(data) {
@@ -372,6 +386,7 @@ function initPage() {
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
+        viewModel.updateDropdowns();
     });
     
     loadTablePage(1);
