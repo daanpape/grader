@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
-                    gvm.updateTeacher(item.id);
+                    gvm.updateTeacher(item.username);
                 });
             } else {
                 
