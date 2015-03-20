@@ -114,10 +114,6 @@ function pageViewModel(gvm) {
             gvm.availableModules.removeAll();
             $.each(data, function(i, item) {
                 gvm.availableModules.push(item);
-                for (var i = 0; gvm.availableModules.length; i++)
-                {
-                    console.log('hi');
-                }
 
                 /* Add listener to listitem */
                 $("#modulebtn-" + item.id).click(function(){
