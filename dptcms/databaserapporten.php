@@ -193,19 +193,6 @@ class rapportenDAO {
         }
     }
 
-    public static function saveDropdownChoiceRapport($location, $locationid, $training, $trainingid, $course, $courseid, $user) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, locationid, training, trainingid, course, courseid) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, locationid = ?, training = ?, trainingid = ?, course = ?, courseid = ?");
-            $stmt->execute(array($user, $location, $locationid, $training, $trainingid, $course, $courseid, $location, $locationid, $training, $trainingid, $course, $courseid));
-
-            return true;
-        } catch (PDOException $err) {
-            Logger::logError('Could not create new coupling between a project and a studentlist', $err);
-            return false;
-        }
-    }
-    
     public static function putNewCompetence($name, $description, $course) {
         try {
             $conn = Db::getConnection();
