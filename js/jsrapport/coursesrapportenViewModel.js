@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
-                    gvm.updateTeacher(item.username);
+                    gvm.updateTeacher(item.id);
                 });
             } else {
                 
@@ -80,15 +80,18 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateTeacher = function(id) {
+        console.log("updateteacherfunctie1");
     $.getJSON('/api/teacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
             gvm.availableTeacher.push(item);
+                console.log("updateteacherfunctie");
                 console.log(item);
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
                 gvm.currentteacherid = item.id;
+                gvm.saveLastSelectedDropdowns();
                 loadTablePage(item.id, 1);
             });
         });
@@ -267,7 +270,7 @@ function showNewProjectTypeModal()
                 '<button class="btn btn-wide btn-default btn-teacher dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
                     '<span class="text-left">Teacher</span>' + '<span class="pull-right caret-down caret"></span>' +
                 '</button>' +
-                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" id="teacher" aria-labelledby="teacher" data-bind="foreach: availableTeacher">' +
+                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" id="teacher" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">' +
                     '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-\' + id}"><span data-bind="text: name"></span></a> </li>' +
                 '</ul>' +
             '</div>' +

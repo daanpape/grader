@@ -100,4 +100,74 @@ Class RapportAPI {
         }
     }
 
+    public static function updateCourseCompetences($courseid, $courseStructure) {
+        $data = json_decode($courseStructure);
+        
+        var_dump($data);
+        
+        foreach ($data as $competence) {
+            // Insert a competence
+            $competenceid = self::putCompetence(
+                property_exists($competence, "id") ? $competence->id : -1,
+                property_exists($competence, "name") ? $competence->name : "",
+                property_exists($competence, "description") ? $competence->description : "",
+                $courseid);
+
+            // Insert subcompetences if any
+            if (property_exists($competence, "subcompetences")) {
+                foreach ($competence->subcompetences as $subcompetence) {
+                    // Insert a subcomptence
+                    $subcompetenceid = self::putSubCompetence(
+                        property_exists($subcompetence, "id") ? $subcompetence->id : -1,
+                        property_exists($subcompetence, "name") ? $subcompetence->name : "",
+                        property_exists($subcompetence, "description") ? $subcompetence->description : "",
+                        $competenceid);
+
+                    // Insert indicators if any
+                    if (property_exists($subcompetence, "indicators")) {
+                        foreach ($subcompetence->indicators as $indicator) {
+                            self::putIndicator(
+                                property_exists($indicator, "id") ? $indicator->id : -1,
+                                property_exists($indicator, "name") ? $indicator->name : "",
+                                property_exists($indicator, "description") ? $indicator->description : "",
+                                $subcompetenceid);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Return saved data
+        return self::getAllDataFromCourse($courseid);
+    }
+    
+    public static function putCompetence($id = -1, $name, $description, $courseid) {
+        if($id == -1) {
+            return rapportenDAO::putNewCompetence($name, $description, $courseid);
+        } else {
+            rapportenDAO::updateCompetence($id, $name, $description, $courseid);
+            return $id;
+        }
+    }
+    
+    public static function putSubCompetence($id = -1, $name, $description, $competenceid) {
+        if($id == -1){
+            return rapportenDAO::putNewSubCompetence($name, $description, $competenceid);
+        } else {
+            // Update a subcompetence
+            rapportenDAO::updateSubCompetence($id, $name, $description, $competenceid);
+            return $id;
+        }
+    }
+    
+    public static function putIndicator($id = -1, $name, $description, $subcompetence) {
+        if($id == -1){
+            // Insert a new indicator
+            return rapportenDAO::putNewIndicator($name, $description, $subcompetence);
+        } else {
+            // Update an indicator
+            rapportenDAO::updateIndicator($id, $name, $description, $subcompetence);
+            return $id;
+        }
+    }
 }

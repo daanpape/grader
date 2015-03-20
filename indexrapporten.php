@@ -139,6 +139,11 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     echo json_encode(RapportAPI::saveDropdownChoiceRapport($app->request->post('location'), $app->request->post('locationid'), $app->request->post('training'), $app->request->post('trainingid'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
 });
 
+$app->post('/api/savecompetences/:id', function($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::updateCourseCompetences($id, file_get_contents('php://input')));
+});
+
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     // Use json headers
