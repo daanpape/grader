@@ -92,7 +92,6 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateModules(item.id);
-                    gvm.updateGoals(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
