@@ -26,7 +26,7 @@ function pageViewModel(gvm) {
     gvm.availableGoals = ko.observableArray([]);
 
     gvm.currentLocationId = null;
-    gvm.currentTrainingid = null;
+    gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
 
     gvm.updateDropdowns = function() {
@@ -38,7 +38,7 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text(item.course);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentLocationId = item.locationid;
-                    gvm.currentTrainingid = item.trainingid;
+                    gvm.currentModuleid = item.trainingid;
                     gvm.currentSubmoduleId = item.courseid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateLocations();
@@ -58,7 +58,7 @@ function pageViewModel(gvm) {
         data["location"] = $(".btn-location span:first").text();
         data["locationid"] = gvm.currentLocationId;
         data["training"] = $(".btn-module span:first").text();
-        data["trainingid"] = gvm.currentTrainingid;
+        data["trainingid"] = gvm.currentModuleid;
         data["course"] = $(".btn-submodule span:first").text();
         data["courseid"] = gvm.currentSubmoduleId;
         data["goal"] = $(".btn-goal span:first").text();
@@ -87,7 +87,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentLocationId = item.id;
-                    gvm.currentTrainingid = null;
+                    gvm.currentModuleid = null;
                     gvm.currentSubmoduleId = null;
                     gvm.currentGoalId = null;
                     gvm.updateModules(item.id);
@@ -112,7 +112,7 @@ function pageViewModel(gvm) {
 
                 /* Add listener to listitem */
                 $("#modulebtn-" + item.id).click(function(){
-                    gvm.currentTrainingid = item.id;
+                    gvm.currentModuleid = item.id;
                     gvm.currentSubmoduleId = null;
                     gvm.updateSubmodules(item.id);
                     $(".btn-module span:first").text($(this).text());
