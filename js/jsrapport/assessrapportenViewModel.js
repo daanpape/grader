@@ -20,7 +20,7 @@ function pageViewModel(gvm) {
     gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
-    gvm.availableLocations = ko.observableArray([]);
+    gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);
     gvm.availableSubmodules = ko.observableArray([]);
     gvm.availableGoals = ko.observableArray([]);
@@ -79,10 +79,10 @@ function pageViewModel(gvm) {
 
     gvm.updateLocations = function() {
         $.getJSON('/api/courserapportdrop', function(data) {
-            gvm.availableLocations.removeAll();
+            gvm.availableCoursesRapport.removeAll();
             $.each(data, function(i, item) {
               //  Put item in list
-                gvm.availableLocations.push(item);
+                gvm.availableCoursesRapport.push(item);
 
                 // Add listener to listitem
                 $("#locbtn-" + item.id).click(function(){

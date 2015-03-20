@@ -34,7 +34,7 @@
                         <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-location ul-wide" role="menu" aria-labelledby="locations" data-bind="foreach: availableLocations" id="testcliker">
+                    <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="locations" data-bind="foreach: availableCoursesRapport" id="testcliker">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>

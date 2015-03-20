@@ -33,7 +33,7 @@ class rapportenDAO {
     public static function getAllCourse() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport  ");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE  active = '1' ");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
