@@ -86,5 +86,6 @@
     "TeacherTableTitle":"Leerkracht",
     "studentrapportRapportTitle":"Rapport van studenten",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
-    "EditProjectTitle2" : "Wijzig vak"
+    "EditProjectTitle2" : "Wijzig vak",
+  "AdminTitle":"Gebruikerslijst"
 }
