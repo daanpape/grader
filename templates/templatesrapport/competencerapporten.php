@@ -28,7 +28,7 @@ $location = "jsrapport/competencerapporten";
             .form-desc {
                 display: inline-block !important;
                 margin-right: 10px;
-                width: 530px !important;
+                width: 520px !important;
             }
 
             .validationSummary
