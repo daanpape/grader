@@ -56,7 +56,7 @@ function pageViewModel(gvm) {
 
 
     //Houdt bij wat geselecteerd wordt
-    //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL
+    //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
         data[""] = $(".btn-courseRapport span:first").text();
@@ -95,11 +95,11 @@ function pageViewModel(gvm) {
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(null);
                     gvm.updateGoals(null);
-                    gvm.saveLastSelectedDropdowns();
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
