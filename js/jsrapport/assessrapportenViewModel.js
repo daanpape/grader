@@ -138,7 +138,7 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentSubmoduleId = item.id;
                     gvm.currentGoalId = null;
-                    gvm.updateGoals(gvm.currentGoalId);
+                    gvm.updateGoals(item.id);
                     gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                     $(".btn-goal span:first").text("Goal");
