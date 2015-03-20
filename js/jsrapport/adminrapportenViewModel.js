@@ -18,10 +18,10 @@ function pageViewModel(gvm) {
     // Pagination i18n bindings
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
-    gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
-    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
-    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
-    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
+    gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminCodeTableTitle");}, gvm);
+    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminNameTableTitle");}, gvm);
+    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminDescTableTitle");}, gvm);
+    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminActionTableTitle");}, gvm);
 
 
     // The table data observable array
@@ -64,40 +64,43 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-    
-    gvm.updateDropdowns = function() {
-        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
-            if(!$.isEmptyObject(data)) {
-                $.each(data, function(i, item) {
-                    $(".btn-teacher span:first").text(item.teacher);
-                    gvm.currentteacherid = item.id;
-                    gvm.updateTeacher(item.id);
-                });
-            } else {
-                
+        gvm.updateDropdowns = function() {
+                $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+                        if(!$.isEmptyObject(data)) {
+                                $.each(data, function(i, item) {
+                                        $(".btn-teacher span:first").text(item.teacher);
+                                        gvm.currentteacherid = item.id;
+                                        gvm.updateTeacher(item.id);
+                                    });
+                            } else {
+
+                                }
+                    });
             }
-        });
+
+        gvm.updateTeacher = function(id) {
+                console.log("updateteacherfunctie1");
+            $.getJSON('/api/teacherrapport/' + id, function(data) {
+                    gvm.availableTeacher.removeAll();
+                    $.each(data, function(i, item) {
+                            gvm.availableTeacher.push(item);
+                                console.log("updateteacherfunctie");
+                                console.log(item);
+                            /* Add listener to listitem */
+                               $("#teacherbtn-" + item.id).click(function(){
+                                        $(".btn-teacher span:first").text($(this).text());
+                                        gvm.currentteacherid = item.id;
+                                        gvm.saveLastSelectedDropdowns();
+                                        loadTablePage(item.id, 1);
+                                    });
+                        });
+                });
+            }
+
+
+
     }
-    
-    gvm.updateTeacher = function(id) {
-        console.log("updateteacherfunctie1");
-    $.getJSON('/api/teacherrapport/' + id, function(data) {
-        gvm.availableTeacher.removeAll();
-        $.each(data, function(i, item) {
-            gvm.availableTeacher.push(item);
-                console.log("updateteacherfunctie");
-                console.log(item);
-            /* Add listener to listitem */
-            $("#teacherbtn-" + item.id).click(function(){
-                $(".btn-teacher span:first").text($(this).text());
-                gvm.currentteacherid = item.id;
-                gvm.saveLastSelectedDropdowns();
-                loadTablePage(item.id, 1);
-            });
-        });
-    });
-    }
-    }
+
 /*
  * Delete item from table given the id. 
  */
