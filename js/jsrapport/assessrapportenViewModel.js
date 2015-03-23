@@ -59,8 +59,8 @@ function pageViewModel(gvm) {
     //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
-        data[""] = $(".btn-courseRapport span:first").text();
-        data["id"] = gvm.currentCourseRapportId;
+        data["course"] = $(".btn-courseRapport span:first").text();
+        data["courseid"] = gvm.currentCourseRapportId;
         data["module"] = $(".btn-module span:first").text();
         data["moduleid"] = gvm.currentModuleid;
         data["submodule"] = $(".btn-submodule span:first").text();
