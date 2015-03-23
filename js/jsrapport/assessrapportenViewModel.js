@@ -58,20 +58,19 @@ function pageViewModel(gvm) {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
-                    console.log(item);
-                    /*$(".btn-courseRapport span:first").text(item.location);
-                    $(".btn-module span:first").text(item.training);
-                    $(".btn-submodule span:first").text(item.course);
+                    $(".btn-courseRapport span:first").text(item.course);
+                    $(".btn-module span:first").text(item.module);
+                    $(".btn-submodule span:first").text(item.submodule);
                     $(".btn-goal span:first").text(item.goal);
-                    gvm.currentCourseRapportId = item.id;
-                    gvm.currentModuleid = item.trainingid;
-                    gvm.currentSubmoduleId = item.courseid;
+                    gvm.currentCourseRapportId = item.courseid;
+                    gvm.currentModuleid = item.moduleid;
+                    gvm.currentSubmoduleId = item.submoduleid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
-                    loadTablePage(item.courseid, 1);*/
+                    loadTablePage(item.courseid, 1);
                 });
             } else {
                 gvm.updateCourseRapport();
