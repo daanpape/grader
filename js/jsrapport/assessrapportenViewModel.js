@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     gvm.currentSubmoduleId = null;
     gvm.currentGoalId = null;
     
-    gvm.updateDropdowns = function() {
+    /*gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
@@ -47,6 +47,31 @@ function pageViewModel(gvm) {
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
+                });
+            } else {
+                gvm.updateCourseRapport();
+            }
+        });
+    }*/
+    
+    gvm.updateDropdowns2 = function() {
+        $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    console.log(item);
+                    /*$(".btn-courseRapport span:first").text(item.location);
+                    $(".btn-module span:first").text(item.training);
+                    $(".btn-submodule span:first").text(item.course);
+                    $(".btn-goal span:first").text(item.goal);
+                    gvm.currentCourseRapportId = item.id;
+                    gvm.currentModuleid = item.trainingid;
+                    gvm.currentSubmoduleId = item.courseid;
+                    gvm.currentGoalId = item.goalid;
+                    gvm.updateCourseRapport();
+                    gvm.updateModules(item.id);
+                    gvm.updateSubmodules(item.trainingid);
+                    gvm.updateGoals(item.courseid);
+                    loadTablePage(item.courseid, 1);*/
                 });
             } else {
                 gvm.updateCourseRapport();
@@ -261,5 +286,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         //viewModel.updateDropdowns();
+        viewModel.updateDropdowns2();
     });
 }

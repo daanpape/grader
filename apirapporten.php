@@ -36,6 +36,10 @@ Class RapportAPI {
         /* Return teacher from users */
         return rapportenDAO::getTeacher($id);
     }
+    
+    public static function getLastDropdownFromUser($id) {
+        return rapportenDAO::getLastDropdownFromUser($id);
+    }
 
     public static function createCourse($code, $name, $description) {
         $id = rapportenDAO::insertCourse($code, $name, $description);

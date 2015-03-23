@@ -104,6 +104,19 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function getLastDropdownFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM lastdropdownRapport WHERE user = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get last dropdowns from the database', $err);
+            return null;
+        }
+    }
 
     public static function getCourseCount() {
         try {
