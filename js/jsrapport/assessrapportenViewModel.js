@@ -100,6 +100,7 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
                     gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this course
                 });
             });
         });
@@ -126,6 +127,7 @@ function pageViewModel(gvm) {
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
                     gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this module
                 });
             });
         });
@@ -149,6 +151,7 @@ function pageViewModel(gvm) {
                     loadTablePage(item.id, 1);
                     $(".btn-goal span:first").text("Goal");
                     gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this submodule
                 });
             });
         });
@@ -169,6 +172,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.id;
                     loadTablePage(item.id, 1);
                     gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this goal
                 });
             });
         });
@@ -256,6 +260,6 @@ function loadTablePage(courseid, pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateDropdowns();
+        //viewModel.updateDropdowns();
     });
 }
