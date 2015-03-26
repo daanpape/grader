@@ -320,7 +320,8 @@ $app->get('/api/projectrules/:id', function($id) use ($app)
 
 $app->get('api/projectscore/:projectid/:studentid/currentuser', function($projectid,$studentid) use ($app)
 {
-    $app->response->headers->set('Content-Type','application/json');
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
     echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
 });
 
