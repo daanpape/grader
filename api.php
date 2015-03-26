@@ -67,6 +67,11 @@ class GraderAPI {
         return ClassDAO::removeProjectRule($id);
     }
 
+    public static function getScoresForStudentByUser($projectid,$studentid,$userid)
+    {
+        return ClassDAO::getScoresForStudentByUser($projectid,$studentid,$userid);
+    }
+
     /*
      * Delete a projecttype from the database
      */
