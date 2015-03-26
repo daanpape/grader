@@ -48,7 +48,7 @@ function initPage() {
 
 function fetchProjectScore()
 {
-    $.getJSON("/api/projectscore/" + projectid + "/" + studentid + "/currentuser", function(data)
+    $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
         console.log(data);
     });
