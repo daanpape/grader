@@ -834,17 +834,15 @@ class ClassDAO {
             $stmt->execute(array($projectid, $studentid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            /*$data = array();
+            $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['id'], $data)) {
                     $score = new stdClass();
                     $score->id = $row['id'];
                     $score->indicator = $row['indicator'];
                     $score->score = $row['score'];
 
                     $data[$score['id']] = $score;
-                }
-            }*/
+            }
 
             return $dataFromDb;
         }
