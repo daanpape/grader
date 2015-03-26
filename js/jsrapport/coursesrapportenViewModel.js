@@ -83,8 +83,8 @@ function pageViewModel(gvm) {
         console.log("updateteacherfunctie1");
     $.getJSON('/api/teacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
-        console.log(data);
         $.each(data, function(i, item) {
+            console.log(item);
             gvm.availableTeacher.push(item);
             for (var i = 0; i < gvm.availableTeacher.length; i++) {
                 console.log('hi');
