@@ -189,12 +189,10 @@ function pageViewModel(gvm) {
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
     }
-
-
+    
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-
 }
 
 function loadTablePage(courseid, pagenr)
