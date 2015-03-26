@@ -194,7 +194,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(pagenr)
+function loadTablePage(courseid, pagenr)
 {
     $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
 
@@ -203,7 +203,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
         });
 
         /* Let previous en next buttons work */

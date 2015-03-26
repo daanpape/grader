@@ -12,9 +12,9 @@ Class RapportAPI {
         return rapportenDAO::getAllCourses($start, $count);
     }
 
-    public static function getAllStudentsFromCourse($start, $count) {
+    public static function getStudentsFromCourse($start, $count) {
         /* Return the requested pages */
-        return rapportenDAO::getAllCourses($start, $count);
+        return rapportenDAO::getStudentsFromCourse($start, $count);
     }
 
     public static function getAllCourse() {
@@ -80,7 +80,11 @@ Class RapportAPI {
     public static function getCourseCount() {
         return rapportenDAO::getCourseCount();
     }
-    
+
+    public static function getStudentsCountFromCourse() {
+        return rapportenDAO::getStudentsCountFromCourse();
+    }
+
     /*
      * Delete a course from the database
      */
