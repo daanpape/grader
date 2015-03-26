@@ -38,7 +38,8 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    fetchProjectStructure();
+    fetchProjectStructure()
+    fetchProjectScore();
 
     $(".savePageBtn").click(function(){
 
@@ -47,7 +48,7 @@ function initPage() {
 
 function fetchProjectScore()
 {
-    $.getJSON("/api/projectscore/" + projectid + "/" + studentid + "/currentuser", function(data)
+    $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
         console.log(data);
     });
@@ -70,8 +71,6 @@ function fetchProjectStructure() {
             });
         })
     });
-
-    fetchProjectScore();
 }
 
 function Competence(viewmodel, id, code, name, subcompetences) {
