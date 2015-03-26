@@ -20,8 +20,8 @@ $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
 
-$app->get('/coursecompetence/:id', function ($id) use($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id));
+$app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
+    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
