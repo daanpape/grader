@@ -847,7 +847,7 @@ class ClassDAO {
             }*/
 
             //return $data;
-            return json_decode($userid);
+            return $userid;
         }
         catch (PDOException $ex)
         {
