@@ -98,6 +98,7 @@
   "UserlistsTitle2": "My Studentlists",
   "AddNewList": "Add new list",
 
+    //Rapporten --> Asses students
     "studIDTableTitleRapport":"Student ID",
     "nameTableTitleRapport":"Name",
     "lastNameTableTitleRapport":"Last name",
