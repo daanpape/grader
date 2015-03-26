@@ -22,7 +22,7 @@ $location = "jsrapport/editstudentlist";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" id="page-header" data-bind="attr{'data-value': <?php echo $studentlistid?>}"><span data-bind="text: pageHeader">List: </span><span><?php echo $studentlistname ?></span></h1>
+    <h1 class="page-header" id="page-header" data-bind="attr{'data-value': <?php echo $studentlistid ?>}"><span data-bind="text: pageHeader">List: </span><?php echo $studentlistname ?></h1>
 </div>
 
 <!-- Content container -->
