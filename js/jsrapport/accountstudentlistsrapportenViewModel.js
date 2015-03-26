@@ -114,7 +114,7 @@ function addNewStudentList(serialData, callback) {
             type: "POST",
             data: serialData,
             success: function(data) {
-                //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                viewModel.addTableData(data['id'], data['name']);
                 callback(true);
             },
             error: function(data) {
