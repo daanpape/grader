@@ -336,6 +336,19 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    //update/edit studentlist
+        public static function updateStudentList($id, $code) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_rapport SET name = ? WHERE id = ?");
+            $stmt->execute(array($code, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update course', $err);
+            return false;
+        }
+    }
 
 }
 
