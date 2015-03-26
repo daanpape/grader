@@ -18,7 +18,7 @@ $location = "accountstudentlists";
 </head>
 
 <body>
-<?php include_once('menu.php') ?>
+<?php include_once('menurapporten.php') ?>
 
 <!-- Header container -->
 <div class="container">
