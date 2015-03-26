@@ -14,11 +14,11 @@ $location = "accountstudentlists";
 
     <title data-bind="text: title"></title>
 
-    <?php include_once('hddepends.php') ?>
+    <?php include_once('templates/hddepends.php') ?>
 </head>
 
 <body>
-<?php include_once('menurapporten.php') ?>
+<?php include_once('templatesrapport/menurapporten.php') ?>
 
 <!-- Header container -->
 <div class="container">
