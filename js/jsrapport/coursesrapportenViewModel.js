@@ -111,9 +111,8 @@ function pageViewModel(gvm) {
             });
         });
     }
-
-
     }
+
 /*
  * Delete item from table given the id. 
  */
