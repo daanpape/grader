@@ -76,7 +76,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: studIDTableTitle">Student ID</th>
+                    <th data-bind="text: studITableTitle">Student ID</th>
                     <th data-bind="text: nameTableTitle">Name</th>
                     <th data-bind="text: lastNameTableTitle">Last name</th>
                     <th data-bind="text: mailTableTitle">Mail</th>
