@@ -93,12 +93,5 @@
   " AdminDescTableTitle":"E-mail",
   " AdminActionTableTitle":"Acties",
   "UserlistsTitle2": "Mijn Studentenlijsten",
-  "AddNewList": "Voeg nieuwe lijst toe",
-
-    //Rapporten --> Asses students
-    "studIDTableTitleRapport":"Student ID",
-    "nameTableTitleRapport":"Naam",
-    "lastNameTableTitleRapport":"Familienaam",
-    "mailTableTitleRapport":"Mail",
-    "scoreTableTitleRapport":"Punten"
+  "AddNewList": "Voeg nieuwe lijst toe"
 }
