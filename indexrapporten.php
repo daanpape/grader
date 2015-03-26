@@ -98,6 +98,18 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     echo json_encode($pagedata);
 });
 
+//get users from database
+$app->get('/api/teacherrapport/', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::getTeacher($trainingId);
+
+    echo json_encode($pagedata);
+});
+
 //add teacher to dropdown
 $app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
     // Use json headers
@@ -105,7 +117,7 @@ $app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getTeacher($trainingId);
+    $pagedata = RapportAPI::addTeacher($trainingId);
 
     echo json_encode($pagedata);
 });
