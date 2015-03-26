@@ -32,6 +32,10 @@ $app->get('/account/studentlistsrapporten', function () use($app) {
     $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
 
+$app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
+    $app->render('editstudentlist.php', array('studentlistid' =>$id, 'studentlistname' => $name));
+});
+
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -49,6 +53,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
+
 //get module from course
 $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
     // Use json headers
@@ -60,6 +65,7 @@ $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
 
     echo json_encode($pagedata);
 });
+
 
 //getsubmodule from module
 $app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
