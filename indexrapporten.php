@@ -23,8 +23,13 @@ $app->get('/studentrapportrapporten', function () use ($app) {
 $app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
     $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
+
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
+});
+
+$app->get('/accountrapporten/studentlists', function () use($app) {
+    $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
 
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
