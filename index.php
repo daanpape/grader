@@ -318,11 +318,11 @@ $app->get('/api/projectrules/:id', function($id) use ($app)
     echo json_encode(GraderAPI::getProjectRules($id));
 });
 
-$app->get('api/projectscore/:projectid/:studentid/currentuser', function($projectid,$studentid) use ($app)
+$app->get('api/projectscore/:projectid/:studentid', function($projectid,$studentid) use ($app)
 {
     $response = $app->response();
     $response->headers('Content-Type','application/json');
-    echo json_encode(/*GraderAPI::getScoresForStudentByUser($projectid,$studentid,*/Security::getLoggedInId());//));
+    echo json_encode(/*GraderAPI::getScoresForStudentByUser($projectid,$studentid,*/"Test");//));
 });
 
 // API PUT routes
@@ -459,6 +459,13 @@ $app->post('/api/projectrules/:id', function($id) use ($app)
 {
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(GraderAPI::putProjectRules($id, file_get_contents('php://input')));
+});
+
+$app->post('api/projectscore/:projectid/:studentid', function($projectid,$studentid) use ($app)
+{
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
+    echo json_encode(/*GraderAPI::getScoresForStudentByUser($projectid,$studentid,*/"Test");//));
 });
 
 $app->post('/api/projectrules/:id/remove', function($id) use ($app)
