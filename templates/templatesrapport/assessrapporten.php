@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <?php include_once('menu.php') ?>
+        <?php include_once('templates/menu.php') ?>
         
         <!-- Header container -->
         <div class="container">
