@@ -108,6 +108,21 @@ function loadTable(id) {
     });
 }
 
+function addNewStudentList(serialData, callback) {
+    $.ajax({
+            url: "/api/newstudentlistrapport/" + viewModel.userId,
+            type: "POST",
+            data: serialData,
+            success: function(data) {
+                //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                callback(true);
+            },
+            error: function(data) {
+                callback(false);
+            }
+        });
+}
+
 function showNewStudentListModal()
 {
     resetGeneralModal();
@@ -119,7 +134,7 @@ function showNewStudentListModal()
             </form>' );
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-       addNewProjecttypeForm($('#newlistform').serialize(), function(result){
+       addNewStudentList($('#newlistform').serialize(), function(result){
             hideModal();
         });
     });

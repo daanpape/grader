@@ -175,6 +175,15 @@ $app->post('/api/savecompetences/:id', function($id) use ($app) {
     echo json_encode(RapportAPI::updateCourseCompetences($id, file_get_contents('php://input')));
 });
 
+$app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Add list
+    echo json_encode(RapportAPI::createStudentList($app->request->post('name'), $userid));    //null moet nog ingelogde userid worden!
+});
+
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     // Use json headers

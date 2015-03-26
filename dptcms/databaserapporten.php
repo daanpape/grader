@@ -28,6 +28,20 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function insertStudentList($name, $ownerid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name) VALUES (?, ?)");
+            $stmt->execute(array($ownerid, $name));
+
+            // Return the id of the newly inserted item on success.
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+            return null;
+        }
+    }
 
     //Get all courses
     public static function getAllCourse() {

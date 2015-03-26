@@ -60,6 +60,19 @@ Class RapportAPI {
         }
     }
     
+    public static function createStudentList($name, $ownerid) {
+        $id = rapportenDAO::insertStudentList($name, $ownerid);
+
+        if ($id != null) {
+            return array(
+                "id" => $id,
+                "owner" => $owner,
+                "name" => $name);
+        } else {
+            return -1;
+        }
+    }
+    
     public static function getCourseCount() {
         return rapportenDAO::getCourseCount();
     }
