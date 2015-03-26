@@ -98,8 +98,8 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     echo json_encode($pagedata);
 });
 
-//get users from database
-$app->get('/api/teacherrapport/', function ($trainingId) use ($app) {
+//get teacher from database
+$app->get('/api/teacherrapport/id', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
