@@ -196,7 +196,7 @@ function pageViewModel(gvm) {
 
 function loadTablePage(courseid, pagenr)
 {
-    $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
+    $.getJSON('/api/studentscourse/' + courseid + '/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();

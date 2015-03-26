@@ -15,7 +15,7 @@ class rapportenDAO {
         }
     }
 
-    public static function getStudentsFromCourse($start, $count) {
+    public static function getStudentsFromCourse($start, $count, $courseid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM students LIMIT :start,:count  ");
@@ -182,7 +182,7 @@ class rapportenDAO {
         }
     }
 
-    public static function getStudentsCountFromCourse() {
+    public static function getStudentsCountFromCourse($courseid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM students");
