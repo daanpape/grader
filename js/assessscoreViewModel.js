@@ -41,7 +41,7 @@ function initPage() {
     fetchProjectStructure();
 
     $(".savePageBtn").click(function(){
-
+        saveProjectScore();
     });
 }
 
