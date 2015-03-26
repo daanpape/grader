@@ -20,11 +20,16 @@ $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
 
-$app->get('/coursecompetence/:id', function ($id) use($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id));
+$app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
+    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
+
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
+});
+
+$app->get('/accountrapporten/studentlists', function () use($app) {
+    $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
 
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
@@ -98,14 +103,26 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     echo json_encode($pagedata);
 });
 
-//add teacher to dropdown
-$app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
+//get teacher from database
+$app->get('/api/getteacherrapport/:id', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Get all courses by the trainingsid
     $pagedata = RapportAPI::getTeacher($trainingId);
+
+    echo json_encode($pagedata);
+});
+
+//add teacher to dropdown
+$app->get('/api/teacherrapport/:id', function ($trainingId) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $pagedata = RapportAPI::addTeacher($trainingId);
 
     echo json_encode($pagedata);
 });

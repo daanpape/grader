@@ -44,7 +44,7 @@ require_once '../dptcms/config.php';
                     echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/account"><span class="navspan">Account</span></a></li>
-                                <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
+                                <li><a href="/accountrapporten/studentlists"><span class="navspan">Student Lists</span></a></li>
                             </ul>
                         </li>';
                     echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';

@@ -33,8 +33,13 @@ Class RapportAPI {
     }
     
     public static function getTeacher($id) {
-        /* Return teacher from users */
+        /* get teacher from database */
         return rapportenDAO::getTeacher($id);
+    }
+    
+    public static function addTeacher($id) {
+        /* Return teacher from users */
+        return rapportenDAO::addTeacher($id);
     }
     
     public static function getLastDropdownFromUser($id) {
