@@ -76,11 +76,11 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: studIDTableTitleRapport">Student ID</th>
-                    <th data-bind="text: nameTableTitleRapport">Name</th>
-                    <th data-bind="text: lastNameTableTitleRapport">Last name</th>
-                    <th data-bind="text: mailTableTitleRapport">Mail</th>
-                    <th data-bind="text: scoreTableTitleRapport">Score</th>
+                    <th data-bind="text: studIDTableTitle">Student ID</th>
+                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: lastNameTableTitle">Last name</th>
+                    <th data-bind="text: mailTableTitle">Mail</th>
+                    <th data-bind="text: scoreTableTitle">Score</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
