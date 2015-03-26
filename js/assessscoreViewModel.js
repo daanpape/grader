@@ -55,7 +55,10 @@ function fetchProjectScore()
             {
                 $.each(subcomp.indicators(),function(i,indic)
                 {
-                    console.log(data[0].indicator);
+                    if(indic.id() == data[0].indicator)
+                    {
+                        console.log("Triggered");
+                    }
                 });
             });
         });
