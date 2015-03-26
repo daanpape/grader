@@ -81,8 +81,8 @@ Class RapportAPI {
         return rapportenDAO::getCourseCount();
     }
 
-    public static function getStudentsCountFromCourse($courseid) {
-        return rapportenDAO::getStudentsCountFromCourse($courseid);
+    public static function getStudentsCountFromCourse() {
+        return rapportenDAO::getStudentsCountFromCourse();
     }
 
     /*

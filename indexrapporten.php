@@ -33,7 +33,7 @@ $app->get('/account/studentlistsrapporten', function () use($app) {
 });
 
 $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
-    $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
+    $app->render('editstudentlist.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
 
 //get all courses with pages
@@ -66,7 +66,7 @@ $app->get('/api/studentscourse/page/:courseid/:pagenr', function ($courseid, $pa
     // Get total number of projecttypes in the database
     //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
     $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count, $courseid);
-    $totalcourses = RapportAPI::getStudentsCountFromCourse($courseid);
+    $totalcourses = RapportAPI::getStudentsCountFromCourse();
 
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
