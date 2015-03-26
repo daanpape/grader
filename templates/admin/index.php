@@ -268,10 +268,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-fire fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-home fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="rechten.html"><i class="fa fa-bar-chart-o fa-fw"></i> Rechten</span></a>
+                            <a href="rechten.html"><i class="fa fa-wrench fa-fw"></i> Rechten</span></a>
+                        </li>
+                        <li>
+                            <a href="users.html"><i class="fa fa-user fa-fw"></i> User</span></a>
                         </li>
                     </ul>
                 </div>
