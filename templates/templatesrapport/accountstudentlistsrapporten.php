@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "accountstudentlists";
+$location = "accountstudentlistsrapporten";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">

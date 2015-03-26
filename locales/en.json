@@ -94,5 +94,6 @@
   "AdminCodeTableTitle": "ID",
   " AdminNameTableTitle":"Name",
   " AdminDescTableTitle":"E-mail",
-  " AdminActionTableTitle":"Actions"
+  " AdminActionTableTitle":"Actions",
+  "UserlistsTitle2": "My Studentlists"
 }
