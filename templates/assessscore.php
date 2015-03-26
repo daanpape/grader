@@ -159,6 +159,7 @@ $location = "assessscore";
 <?php include_once('jsdepends.php') ?>
 <script>
     var projectid = <?php echo $projectid ?>
+    var studentid = <?php echo $studentid ?>
 </script>
 </body>
 </html>

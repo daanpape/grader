@@ -318,6 +318,12 @@ $app->get('/api/projectrules/:id', function($id) use ($app)
     echo json_encode(GraderAPI::getProjectRules($id));
 });
 
+$app->get('api/projectscore/:projectid/:studentid/currentuser', function($projectid,$studentid) use ($app)
+{
+    $app->response->headers->set('Content-Type','application/json');
+    echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInUsername()));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
