@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "jsrapport/accountstudentlistsrapporten";
+$location = "jsrapport/editstudentlist";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
@@ -22,27 +22,29 @@ $location = "jsrapport/accountstudentlistsrapporten";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header"><span data-bind="text: pageHeader">My User lists</span>: <?php echo Security::getLoggedInName() ?></h1>
+    <h1 class="page-header" id="page-header" data-bind="attr{'data-value': <?php echo $studentlistid?>}"><span data-bind="text: pageHeader">List: </span><span><?php echo $studentlistname ?></span></h1>
 </div>
 
 <!-- Content container -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="big-info"><span data-bind="text: myLists">My Studentlists</span>:</div>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: email">Username</th>
+                    <th data-bind="text: firstname">Firstname</th>
+                    <th data-bind="text: lastname">Lastname</th>
                     <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: tusername">--</td>
+                    <td data-bind="text: tfirstname">--</td>
+                    <td data-bind="text: tlastname">--</td>
                     <td>
                         <span class="glyphicon glyphicon-edit glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                        <a data-bind="attr:{'href': '/account/studentlistsrapporten/edit/' + tid + '/' + tname}"><span class="glyphicon glyphicon-pencil glyphicon-user" data-bind="attr:{'id': 'userbtn-' + tid}"></span></a>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                     </td>
                 </tr>
@@ -54,8 +56,8 @@ $location = "jsrapport/accountstudentlistsrapporten";
 
 <div class="container">
     <div class="row">
-        <button type="button" class="btn btn-default pagination-button" id="addStudentList">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addStudListBtn"></span>
+        <button type="button" class="btn btn-default pagination-button" id="addStudent">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
         </button>
     </div>
 </div>
