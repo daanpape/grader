@@ -182,7 +182,6 @@ function pageViewModel(gvm) {
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
-
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
         // Push data
@@ -190,11 +189,9 @@ function pageViewModel(gvm) {
         gvm.tabledata.push(tblOject);
     }
 
-
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-
 }
 
 function loadTablePage(courseid, pagenr)
