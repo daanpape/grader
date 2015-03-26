@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     gvm.currentSubmoduleId = null;
     gvm.currentGoalId = null;
     
-    gvm.updateDropdowns = function() {
+    /*gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
@@ -52,15 +52,39 @@ function pageViewModel(gvm) {
                 gvm.updateCourseRapport();
             }
         });
+    }*/
+    
+    gvm.updateDropdowns2 = function() {
+        $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
+            if(!$.isEmptyObject(data)) {
+                $.each(data, function(i, item) {
+                    $(".btn-courseRapport span:first").text(item.course);
+                    $(".btn-module span:first").text(item.module);
+                    $(".btn-submodule span:first").text(item.submodule);
+                    $(".btn-goal span:first").text(item.goal);
+                    gvm.currentCourseRapportId = item.courseid;
+                    gvm.currentModuleid = item.moduleid;
+                    gvm.currentSubmoduleId = item.submoduleid;
+                    gvm.currentGoalId = item.goalid;
+                    gvm.updateCourseRapport();
+                    gvm.updateModules(item.id);
+                    gvm.updateSubmodules(item.trainingid);
+                    gvm.updateGoals(item.courseid);
+                    loadTablePage(item.courseid, 1);
+                });
+            } else {
+                gvm.updateCourseRapport();
+            }
+        });
     }
 
 
     //Houdt bij wat geselecteerd wordt
-    //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL
+    //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
-        data[""] = $(".btn-courseRapport span:first").text();
-        data["id"] = gvm.currentCourseRapportId;
+        data["course"] = $(".btn-courseRapport span:first").text();
+        data["courseid"] = gvm.currentCourseRapportId;
         data["module"] = $(".btn-module span:first").text();
         data["moduleid"] = gvm.currentModuleid;
         data["submodule"] = $(".btn-submodule span:first").text();
@@ -95,11 +119,12 @@ function pageViewModel(gvm) {
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(null);
                     gvm.updateGoals(null);
-                    gvm.saveLastSelectedDropdowns();
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this course
                 });
             });
         });
@@ -122,10 +147,11 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = null;
                     gvm.updateSubmodules(item.id);
                     gvm.updateGoals(null);
-                    gvm.saveLastSelectedDropdowns();
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this module
                 });
             });
         });
@@ -146,9 +172,10 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = item.id;
                     gvm.currentGoalId = null;
                     gvm.updateGoals(item.id);
-                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
                     $(".btn-goal span:first").text("Goal");
+                    gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this submodule
                 });
             });
         });
@@ -167,8 +194,9 @@ function pageViewModel(gvm) {
                 $("#goalbtn-" + item.id).click(function(){
                     $(".btn-goal span:first").text($(this).text());
                     gvm.currentGoalId = item.id;
-                    gvm.saveLastSelectedDropdowns();
                     loadTablePage(item.id, 1);
+                    gvm.saveLastSelectedDropdowns();
+                    //method to get all students who follow this goal
                 });
             });
         });
@@ -256,6 +284,7 @@ function loadTablePage(courseid, pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateDropdowns();
+        //viewModel.updateDropdowns();
+        viewModel.updateDropdowns2();
     });
 }

@@ -110,6 +110,16 @@ $app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 
+//get last selected dropdown list
+$app->get('/api/lastdropdownrapporten/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = RapportAPI::getLastDropdownFromUser($id);
+
+    echo json_encode($data);
+});
+
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Use json headers
