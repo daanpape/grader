@@ -182,7 +182,7 @@ class rapportenDAO {
         }
     }
 
-    public static function getStudentCountFromCourse() {
+    public static function getStudentsCountFromCourse() {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM course_rapport");

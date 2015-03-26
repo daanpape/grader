@@ -82,7 +82,7 @@ Class RapportAPI {
     }
 
     public static function getStudentsCountFromCourse() {
-        return rapportenDAO::getStudentCountFromCourse();
+        return rapportenDAO::getStudentsCountFromCourse();
     }
 
     /*
