@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "jsrapport/editstudentlist";
+$location = "jsrapport/editstudentlistrapporten";
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
