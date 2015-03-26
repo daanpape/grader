@@ -72,10 +72,10 @@ function pageViewModel(gvm) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
                     gvm.updateTeacher(item.id);
-                    LoadTablePage(item.teacherid, 1);
+                    LoadTablePage(item.id, 1);
                 });
             } else {
-                
+                gvm.updateTeacher();
             }
         });
     }
@@ -86,9 +86,6 @@ function pageViewModel(gvm) {
         $.each(data, function(i, item) {
             console.log(item);
             gvm.availableTeacher.push(item);
-            for (var i = 0; i < gvm.availableTeacher.length; i++) {
-                console.log('hi');
-            }
             /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
