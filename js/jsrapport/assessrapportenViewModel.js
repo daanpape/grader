@@ -15,10 +15,11 @@ function pageViewModel(gvm) {
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     // Table i18n bindings
-    gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
+    gvm.studIDTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitle");}, gvm);
     gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
-    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
-    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
+    gvm.lastNameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitle");}, gvm);
+    gvm.mailTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitle");}, gvm);
+    gvm.scoreTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);
@@ -181,18 +182,19 @@ function pageViewModel(gvm) {
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
-    /*
+
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
         // Push data
         var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
     }
-*/
-    
+
+
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+
 }
 
 function loadTablePage(courseid, pagenr)
@@ -200,12 +202,12 @@ function loadTablePage(courseid, pagenr)
     $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
 
         /* Clear current table page */
-        viewModel.clearTable()
+         viewModel.clearTable()
 
         // Load table data
-       /* $.each(data.data, function(i, item) {
+        $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description);
-        });*/
+        });
 
         /* Let previous en next buttons work */
         if(data.prev == "none"){
