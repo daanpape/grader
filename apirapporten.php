@@ -14,7 +14,7 @@ Class RapportAPI {
 
     public static function getStudentsFromCourse($start, $count) {
         /* Return the requested pages */
-        return rapportenDAO::getAllStudentsFromCourse($start, $count);
+        return rapportenDAO::getStudentsFromCourse($start, $count);
     }
 
     public static function getAllCourse() {
