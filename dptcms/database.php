@@ -842,6 +842,39 @@ class ClassDAO {
         }
     }
 
+    public static function saveScoresForStudentByUser($projectid,$studentid,$userid, $scores)
+    {
+        try
+        {
+            $data = json_decode($scores);
+            $conn = Db::getConnection();
+
+            foreach ($data as $competences) {
+                foreach($competences->subcompetences as $subcompetences)
+                {
+                    foreach($subcompetences->indicators as $indicators)
+                    {
+                        if(!isset($indicators->scoreid)) {
+                            $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
+                            $stmt->execute(array($projectid,$studentid,$userid,$competences->id,$subcompetences->id,$indicators->id, $indicators->score));
+                        }
+                        else
+                        {
+                            $stmt = $conn->prepare("UPDATE assess_score SET score= ? WHERE id= ?");
+                            $stmt->execute(array($indicators->score,$indicators->scoreid));
+                        }
+                    }
+                }
+
+
+            }
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError("could not save project rules. ".$ex);
+        }
+    }
+
 }
 
 /*

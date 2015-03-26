@@ -57,11 +57,27 @@ function fetchProjectScore()
                     for(var i = 0; i < data.length; i++) {
                         if (indic.id() == data[i].indicator) {
                             indic.score(data[i].score);
+                            indic.scoreid(data[i].id);
                         }
                     }
                 });
             });
         });
+    });
+}
+
+function saveProjectScore()
+{
+    $.ajax({
+        type: "POST",
+        url: "/api/projectscore/" + projectid + "/" + studentid,
+        data: ko.toJSON(viewModel.competences),
+        success: function(){
+            // TODO make multilangual and with modals
+            alert("Saved projectscore to server");
+
+            fetchProjectStructure();
+        }
     });
 }
 
@@ -103,11 +119,12 @@ function SubCompetence(parent, id, code, name, indicators) {
     };
 }
 
-function Indicator(parent, id, name, description, score) {
+function Indicator(parent, id, name, description, score, scoreid) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        score: ko.observable(score)
+        score: ko.observable(score),
+        scoreid: ko.observable(scoreid)
     };
 }
