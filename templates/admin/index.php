@@ -30,12 +30,15 @@
     <div id="wrapper">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <!--an class="icon-bar"></span>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">Grader Admin</a>
-            </div> -->
-            <?php include_once('../menu.php') ?>
+            </div>
             <!-- /.navbar-header -->
 
             <div class="navbar-default sidebar" role="navigation">
