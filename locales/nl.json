@@ -92,5 +92,6 @@
   " AdminNameTableTitle":"Naam",
   " AdminDescTableTitle":"E-mail",
   " AdminActionTableTitle":"Acties",
-  "UserlistsTitle2": "Mijn Studentenlijsten"
+  "UserlistsTitle2": "Mijn Studentenlijsten",
+  "AddNewList": "Voeg nieuwe lijst toe"
 }

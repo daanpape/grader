@@ -108,6 +108,25 @@ function loadTable(id) {
     });
 }
 
+function showNewStudentListModal()
+{
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("AddNewList"));
+    setGeneralModalBody('<form id="newlistform"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name"> \
+            </div> \
+            </form>' );
+
+    addGeneralModalButton(i18n.__("AddBtn"), function(){
+       addNewProjecttypeForm($('#newlistform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    showGeneralModal();
+}
+
 function initPage() {
     // Fetch userdata
     $.getJSON('/api/currentuser', function(data) {
@@ -116,17 +135,6 @@ function initPage() {
     });
     
     $('#addStudentList').click(function(){
-        showUploadModal(function(src, id){    
-            // Save new picture in database
-            $.ajax({
-               type: "POST",
-               url: '/api/csv/studentlist',
-               data: "fileid="+id,
-               success: function(data){
-                   location.reload();
-                   // Do something with student list
-               }
-            });
-        });
+        showNewStudentListModal();
     })
 }
