@@ -57,9 +57,11 @@ function fetchProjectScore()
                 {
                     $.each(data, function(i, score)
                     {
-                        console.log(score.id);
-                        if(indic.id() == score.id)
+                        console.log(score.indicator);
+                        console.log(indic.id());
+                        if(indic.id() == score.inidcator)
                         {
+
                             console.log("Triggered");
                             indic.score = score.score();
                         }
