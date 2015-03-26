@@ -54,6 +54,23 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
+//get all student form a selected course with pages
+$app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+
+    // Get total number of projecttypes in the database
+    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
+    $totalcourses = RapportAPI::getCourseCount();
+
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+});
 
 //get module from course
 $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
