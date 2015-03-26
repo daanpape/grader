@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
     gvm.currentGoalId = null;
-    
+
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
