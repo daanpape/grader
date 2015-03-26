@@ -322,7 +322,7 @@ $app->get('api/projectscore/:projectid/:studentid', function($projectid,$student
 {
     $response = $app->response();
     $response->headers('Content-Type','application/json');
-    echo json_encode(/*GraderAPI::getScoresForStudentByUser($projectid,$studentid,*/"Test");//));
+    echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
 });
 
 // API PUT routes
