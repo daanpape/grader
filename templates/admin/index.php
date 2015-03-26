@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl" id="htmldoc">
 
 <head>
     <meta charset="utf-8">
@@ -31,7 +31,7 @@
     <?php include_once('../menu.php') ?>
     <div id="wrapper">
         <!-- Navigation -->
-        <!--<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
