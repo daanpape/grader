@@ -830,7 +830,7 @@ class ClassDAO {
         try
         {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ?");
+            $stmt = $conn->prepare("SELECT * FROM assess_score");
             $stmt->execute(array($projectid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
