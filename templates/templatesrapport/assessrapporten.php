@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <?php include_once('menurapporten.php') ?>
+        <?php include_once('templates/menu.php') ?>
         
         <!-- Header container -->
         <div class="container">
@@ -80,13 +80,15 @@
                         <th data-bind="text: nameTableTitle">Name</th>
                         <th data-bind="text: lastNameTableTitle">Description</th>
                         <th data-bind="text: mailTableTitle">mail</th>
+                        <th data-bind="text: actionTableTitle">mail</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                     <tr>
-                        <td data-bind="text: tcode">--</td>
+                        <td data-bind="text: tstudid">--</td>
                         <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
+                        <td data-bind="text: tlastn">--</td>
+                        <td data-bind="text: tmail">--</td>
                         <td>
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                                 <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
