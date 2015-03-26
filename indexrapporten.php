@@ -32,6 +32,10 @@ $app->get('/account/studentlistsrapporten', function () use($app) {
     $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
 
+$app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
+    $app->render('editstudentlist.php', array('studentlistid' =>$id, 'studentlistname' => $name));
+});
+
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
