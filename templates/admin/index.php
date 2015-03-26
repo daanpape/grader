@@ -274,7 +274,7 @@
                             <a href="rechten.html"><i class="fa fa-wrench fa-fw"></i> Rechten</span></a>
                         </li>
                         <li>
-                                <a href="users.html"><i class="fa fa-user fa-fw"></i> User</span></a>
+                            <a href="users.html"><i class="fa fa-users fa-fw"></i> Gebruikers</span></a>
                         </li>
                     </ul>
                 </div>
