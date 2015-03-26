@@ -38,8 +38,7 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    fetchProjectStructure()
-    fetchProjectScore();
+    fetchProjectStructure();
 
     $(".savePageBtn").click(function(){
 
@@ -81,7 +80,8 @@ function fetchProjectStructure() {
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0));
                 });
             });
-        })
+        });
+        fetchProjectScore();
     });
 }
 
