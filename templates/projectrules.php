@@ -26,7 +26,7 @@ $location = "projectRules";
 </head>
 
 <body>
-
+<?php include_once('menu.php') ?>
 
 <!-- Header container -->
 <div class="container">
