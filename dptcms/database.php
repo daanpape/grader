@@ -829,7 +829,7 @@ class ClassDAO {
     {
         try
         {
-            $conn = Db::getConnection();
+            /*$conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT score FROM assess_score WHERE project = ? AND student = ? AND user = ? ");
             $stmt->execute(array($projectid, $studentid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -844,9 +844,10 @@ class ClassDAO {
 
                     $data[$score['id']] = $score;
                 }
-            }
+            }*/
 
-            return $data;
+            //return $data;
+            return $userid;
         }
         catch (PDOException $ex)
         {
