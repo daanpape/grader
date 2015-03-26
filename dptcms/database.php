@@ -825,6 +825,35 @@ class ClassDAO {
         }
     }
 
+    public static function getScoresForStudentByUser($projectid,$studentid,$userid)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT score FROM assess_score WHERE project = ? AND student = ? AND user = ? ");
+            $stmt->execute(array($projectid, $studentid, $userid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $data = array();
+            foreach ($dataFromDb as $row) {
+                if (!array_key_exists($row['id'], $data)) {
+                    $score = new stdClass();
+                    $score->id = $row['id'];
+                    $score->indicator = $row['indicator'];
+                    $score->score = $row['score'];
+
+                    $data[$score['id']] = $score;
+                }
+            }
+
+            return $data;
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError(("could not get scores. ".$ex));
+        }
+    }
+
 }
 
 /*
