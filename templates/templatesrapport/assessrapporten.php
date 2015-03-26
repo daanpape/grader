@@ -85,11 +85,11 @@
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tstudidRapport">--</td>
-                    <td data-bind="text: tnameRapport">--</td>
-                    <td data-bind="text: tlnameRapport">--</td>
-                    <td data-bind="text: tmailRapport">--</td>
-                    <td data-bind="text: tscoreRapport">--</td>
+                    <td data-bind="text: tstudid">--</td>
+                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: tlname">--</td>
+                    <td data-bind="text: tmail">--</td>
+                    <td data-bind="text: tscore">--</td>
                 </tr>
                 </tbody>
             </table>
