@@ -72,6 +72,7 @@ function pageViewModel(gvm) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
                     gvm.updateTeacher(item.id);
+                    LoadTablePage(item.teacherid, 1);
                 });
             } else {
                 
@@ -80,7 +81,6 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateTeacher = function(id) {
-        console.log("updateteacherfunctie1");
     $.getJSON('/api/getteacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
