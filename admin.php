@@ -1,12 +1,17 @@
 <?php
 
 // GET routes
-$app->get('/admin/', function () use ($app) {
+
+$app->get('/account/admin', function() use ($app) {
     $app->render('admin/index.php');
 });
 
-$app->get('/admin/home', function () use ($app) {
-    $app->render('admin/index.php');
+$app->get('/account/admin/', function () use ($app) {
+    $app->render('templates/admin/index.php');
+});
+
+$app->get('/account/admin/home', function () use ($app) {
+    $app->render('templates/admin/index.php');
 });
 
 ?>

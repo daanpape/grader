@@ -28,7 +28,7 @@ $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
 });
 
-$app->get('/accountrapporten/studentlists', function () use($app) {
+$app->get('/account/studentlistsrapporten', function () use($app) {
     $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
 
