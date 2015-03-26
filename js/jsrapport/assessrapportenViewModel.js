@@ -44,6 +44,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.goalid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.id);
+                    console.log(item.id);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
