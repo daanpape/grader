@@ -99,7 +99,7 @@ function deleteTableItem(id, tblObject){
 }
 
 function loadTable(id) {
-    $.getJSON('/api/studentlists/' + id, function(data) {
+    $.getJSON('/api/studentlistsrapporten/' + id, function(data) {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {

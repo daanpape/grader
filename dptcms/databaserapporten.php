@@ -55,6 +55,19 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function getStudentListsFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist_rapport WHERE owner = :owner");
+            $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id' . $id, $err);
+            return null;
+        }
+    }
 
     /*
      * Get all competence by course

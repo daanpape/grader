@@ -137,6 +137,15 @@ $app->get('/api/lastdropdownrapporten/:id', function($id) use ($app) {
     echo json_encode($data);
 });
 
+$app->get('/api/studentlistsrapporten/:id', function($id) use($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = RapportAPI::getStudentListsFromUser($id);
+
+    echo json_encode($data);
+});
+
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Use json headers

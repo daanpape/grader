@@ -103,6 +103,10 @@ Class RapportAPI {
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);
     }
+    
+    public static function getStudentListsFromUser($id) {
+        return rapportenDAO::getStudentListsFromUser($id);
+    }
 
    public static function updateCourseCompetences($courseid, $courseStructure) {
         $data = json_decode($courseStructure);
