@@ -55,17 +55,7 @@ function fetchProjectScore()
             {
                 $.each(subcomp.indicators(),function(i,indic)
                 {
-                    $.each(data, function(i, score)
-                    {
-                        console.log(score.indicator);
-                        console.log(indic.id());
-                        if(indic.id() == score.inidcator)
-                        {
-
-                            console.log("Triggered");
-                            indic.score = score.score();
-                        }
-                    });
+                    console.log(data[0].indicator);
 
                 });
             });
