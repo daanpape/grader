@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <?php include_once('menurapporten.php') ?>
+        <?php include_once('templates/menu.php') ?>
         
         <!-- Header container -->
         <div class="container">
@@ -70,27 +70,26 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Content container -->
         <div class="container">
-            <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: codeTableTitle">Code</th>
+                    <th data-bind="text: studIDTableTitle">Student ID</th>
                     <th data-bind="text: nameTableTitle">Name</th>
-                    <th data-bind="text: descTableTitle">Description</th>
-                    <th data-bind="text: actionTableTitle">Actions</th>
+                    <th data-bind="text: lastNameTableTitle">Last name</th>
+                    <th data-bind="text: mailTableTitle">Mail</th>
+                    <th data-bind="text: scoreTableTitle">Score</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tcode">--</td>
+                    <td data-bind="text: tstudid">--</td>
                     <td data-bind="text: tname">--</td>
-                    <td data-bind="text: tdesc">--</td>
-                    <td>
-                        <a data-bind="attr:{'href': '/assess/project/' + tid + '/students'}"><span class="glyphicon glyphicon-list-alt glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
-                    </td>
+                    <td data-bind="text: tlname">--</td>
+                    <td data-bind="text: tmail">--</td>
+                    <td data-bind="text: tscore">--</td>
                 </tr>
                 </tbody>
             </table>

@@ -318,12 +318,11 @@ $app->get('/api/projectrules/:id', function($id) use ($app)
     echo json_encode(GraderAPI::getProjectRules($id));
 });
 
-$app->get('api/projectscore/:projectid/:studentid', function($projectid,$studentid) use ($app)
+$app->get('/api/projectscore/:projectid/:studentid', function($projectid,$studentid) use ($app)
 {
     $response = $app->response();
     $response->headers('Content-Type','application/json');
-    //echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
-    echo json_encode("Test");
+    echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
 });
 
 // API PUT routes
