@@ -279,7 +279,7 @@
                 <a href="index.php"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
             </li>
             <li>
-                <a href="rechten.html"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
+                <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
             </li>
             <li>
                 <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</span></a>
