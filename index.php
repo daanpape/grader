@@ -44,6 +44,14 @@ class DPTSecurityMiddleware extends \Slim\Middleware
 }
 $app->add(new DPTSecurityMiddleware());
 
+
+/* Rapporten routering */
+require_once 'indexrapporten.php';
+
+/* Admin router */
+require_once 'admin.php';
+
+
 // GET routes
 $app->get('/', function () use ($app) {
     $app->render('home.php');
@@ -520,12 +528,6 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
 
-
-/* Rapporten routering */
-require_once 'indexrapporten.php';
-
-/* Admin router */
-require_once 'admin.php';
 
 
 /* Run the application */
