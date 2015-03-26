@@ -266,7 +266,7 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group">' +
-                '<select data-bind="foreach: availableTeacher, value: action" class="form-control form-next">' +
+                '<select data-bind="foreach: viewModel.availableTeacher, value: action" class="form-control form-next">' +
                 '<option data-bind="text: firstname"></option>'+
                 '</select>' +
             '</div>' +
