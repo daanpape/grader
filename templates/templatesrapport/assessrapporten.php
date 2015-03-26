@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <?php include_once('menu.php') ?>
+        <?php include_once('templates/menu.php') ?>
         
         <!-- Header container -->
         <div class="container">
@@ -76,17 +76,20 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: codeTableTitle">Code</th>
+                    <th data-bind="text: studIDTableTitle">Student ID</th>
                     <th data-bind="text: nameTableTitle">Name</th>
-                    <th data-bind="text: descTableTitle">Description</th>
-                    <th data-bind="text: actionTableTitle">Actions</th>
+                    <th data-bind="text: lastNameTableTitle">Last name</th>
+                    <th data-bind="text: mailTableTitle">Mail</th>
+                    <th data-bind="text: scoreTableTitle">Score</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tcode">--</td>
+                    <td data-bind="text: tstudid">--</td>
                     <td data-bind="text: tname">--</td>
-                    <td data-bind="text: tdesc">--</td>
+                    <td data-bind="text: tlname">--</td>
+                    <td data-bind="text: tmail">--</td>
+                    <td data-bind="text: tscore">--</td>
                     <td>
                         <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                         <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
