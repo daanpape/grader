@@ -98,5 +98,9 @@
   "UserlistsTitle2": "My Studentlists",
   "AddNewList": "Add new list",
 
-    "studIDTableTitleRapport":"test"
+    "studIDTableTitleRapport":"Student ID",
+    "nameTableTitleRapport":"Name",
+    "lastNameTableTitleRapport":"Last name",
+    "mailTableTitleRapport":"Mail",
+    "scoreTableTitleRapport":"Score"
 }
