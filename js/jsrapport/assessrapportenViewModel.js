@@ -15,7 +15,7 @@ function pageViewModel(gvm) {
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     // Table i18n bindings
-    gvm.studIDTableTitleR = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleR");}, gvm);
+    gvm.studIDTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleRapport");}, gvm);
     gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
     gvm.lastNameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitle");}, gvm);
     gvm.mailTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitle");}, gvm);
