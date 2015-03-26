@@ -50,7 +50,9 @@ function fetchProjectScore()
 {
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
-        console.log(data[0].score);
+        $.each(viewModel.competences, function(i,item){
+            console.log(item.id);
+        });
     });
 }
 
