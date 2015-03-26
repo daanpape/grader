@@ -107,6 +107,14 @@ Class RapportAPI {
     public static function getStudentListsFromUser($id) {
         return rapportenDAO::getStudentListsFromUser($id);
     }
+    
+    public static function deleteStudentList($id) {
+        if(rapportenDAO::deleteStudentList($id) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
    public static function updateCourseCompetences($courseid, $courseStructure) {
         $data = json_decode($courseStructure);
