@@ -829,12 +829,12 @@ class ClassDAO {
     {
         try
         {
-            /*$conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT score FROM assess_score WHERE project = ? AND student = ? AND user = ? ");
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ? AND student = ? AND user = ?");
             $stmt->execute(array($projectid, $studentid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $data = array();
+            /*$data = array();
             foreach ($dataFromDb as $row) {
                 if (!array_key_exists($row['id'], $data)) {
                     $score = new stdClass();
@@ -846,8 +846,7 @@ class ClassDAO {
                 }
             }*/
 
-            //return $data;
-            return $userid;
+            return $dataFromDb;
         }
         catch (PDOException $ex)
         {
