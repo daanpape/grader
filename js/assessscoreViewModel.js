@@ -57,7 +57,7 @@ function fetchProjectScore()
                 {
                     for(var i = 0; i < data.length; i++) {
                         if (indic.id() == data[i].indicator) {
-                            console.log("Triggered");
+                            indic.score(data[i].score);
                         }
                     }
                 });
