@@ -15,7 +15,7 @@ class rapportenDAO {
         }
     }
 
-    public static function getAllStudentsFromCourse($start, $count) {
+    public static function getStudentsFromCourse($start, $count) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count  ");
