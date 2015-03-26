@@ -45,7 +45,7 @@ $location = "jsrapport/competencerapporten";
     </head>
 
     <body>
-        <?php include_once('templatesrapport/menurapporten.php') ?>
+        <?php include_once('menurapporten.php') ?>
 
         <!-- Header container -->
         <div class="container">
