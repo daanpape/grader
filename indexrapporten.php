@@ -163,6 +163,7 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
 
+/*
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers
@@ -172,6 +173,7 @@ $app->post('/api/courserapport', function () use ($app) {
     // Insert the data
     echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+*/
 
 $app->post('/api/savedropdownsRapport', function() use ($app) {
     //Use json header
