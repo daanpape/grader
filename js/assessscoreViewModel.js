@@ -51,7 +51,22 @@ function fetchProjectScore()
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
         $.each(viewModel.competences(), function(i,item){
-            console.log(item.id());
+            $.each(item.subcompetences(), function(i, subcomp)
+            {
+                $.each(subcomp.indicators(),function(i,indic)
+                {
+                    $.each(data, function(i, score)
+                    {
+                        console.log(score.id);
+                        if(indic.id() == score.id)
+                        {
+                            console.log("Triggered");
+                            indic.score = score.score();
+                        }
+                    });
+
+                });
+            });
         });
     });
 }
