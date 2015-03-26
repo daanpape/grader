@@ -36,6 +36,7 @@ $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) 
     $app->render('editstudentlist.php', array('studentlistid' =>$id, 'studentlistname' => $name));
 });
 
+/*
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -52,6 +53,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
+*/
 
 
 //get module from course
