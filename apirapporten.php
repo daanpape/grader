@@ -66,7 +66,6 @@ Class RapportAPI {
         if ($id != null) {
             return array(
                 "id" => $id,
-                "owner" => $owner,
                 "name" => $name);
         } else {
             return -1;

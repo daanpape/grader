@@ -74,7 +74,7 @@ function updateStudentsList(id, name, callback) {
         type: "PUT",
         data: name,
         success: function(data) {
-            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+            viewModel.addTableData(data['id'], data['name']);
             loadTable(viewModel.userId); //TODO now it is refreshing table after updating but it redirects to pagenr 1
             callback(true);
         },
