@@ -194,12 +194,12 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(courseid, pagenr)
+function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
-         viewModel.clearTable()
+        viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
@@ -251,7 +251,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(courseid, thispagenr);
+                    loadTablePage(thispagenr);
                 });
             }
         });
