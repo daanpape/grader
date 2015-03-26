@@ -55,7 +55,7 @@ function fetchProjectScore()
             {
                 $.each(subcomp.indicators(),function(i,indic)
                 {
-                    data[0].indicator;
+                    console.log(data[0].indicator);
 
                 });
             });
