@@ -36,6 +36,7 @@ $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) 
     $app->render('editstudentlist.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
 
+//get all courses with pages
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -53,6 +54,23 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
 
+//get all student form a selected course with pages
+$app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+
+    // Get total number of projecttypes in the database
+    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $pagedata = RapportAPI::getAllStudentsFromCourse($pg->start, $pg->count);
+    $totalcourses = RapportAPI::getCourseCount();
+
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+});
 
 //get module from course
 $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
@@ -162,6 +180,7 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     echo json_encode(RapportAPI::updateCourse(
     $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+
 
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
