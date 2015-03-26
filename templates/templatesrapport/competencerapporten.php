@@ -49,7 +49,7 @@ $location = "jsrapport/competencerapporten";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" id="projectHeader" data-value="<?php echo $courseid ?>" data-bind="text: pageHeader">Course</h1>
+            <h1 class="page-header" id="projectHeader" data-value="<?php echo $courseid ?>"><?php echo $coursename ?></h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
                     <button class="btn btn-lg addCompetenceBtn" data-bind="text: addCompetenceBtn">
