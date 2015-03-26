@@ -57,7 +57,7 @@ function fetchProjectScore()
                 {
                     $.each(data, function(i, score)
                     {
-                        if(indic.id() == score.id())
+                        if(indic.id() == score.id)
                         {
                             indic.score = score.score();
                         }
