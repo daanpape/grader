@@ -91,5 +91,6 @@
   "AdminCodeTableTitle": "ID",
   " AdminNameTableTitle":"Naam",
   " AdminDescTableTitle":"E-mail",
-  " AdminActionTableTitle":"Acties"
+  " AdminActionTableTitle":"Acties",
+  "UserlistsTitle2": "Mijn Studentenlijsten"
 }
