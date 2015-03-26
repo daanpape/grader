@@ -55,7 +55,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
 });
 
 //get all student form a selected course with pages
-$app->get('/api/studentscourse/page/:courseid/:pagenr', function ($courseid, $pagenr) use ($app) {
+$app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
