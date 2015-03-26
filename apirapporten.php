@@ -80,7 +80,11 @@ Class RapportAPI {
     public static function getCourseCount() {
         return rapportenDAO::getCourseCount();
     }
-    
+
+    public static function getStudentsCountFromCourse() {
+        return rapportenDAO::getCourseCount();
+    }
+
     /*
      * Delete a course from the database
      */
