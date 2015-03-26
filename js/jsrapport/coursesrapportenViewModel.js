@@ -66,7 +66,7 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateDropdowns = function() {
-        $.getJSON('api/teacherrapport/' + gvm.userId, function(data) {
+        $.getJSON('api/getteacherrapport/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-teacher span:first").text(item.teacher);
