@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
 
     // Table i18n bindings
     gvm.studIDTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleRapport");}, gvm);
-    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitleRapport");}, gvm);
+    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("nameTableTitleRapport");}, gvm);
     gvm.lastNameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitleRapport");}, gvm);
     gvm.mailTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitleRapport");}, gvm);
     gvm.scoreTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitleRapport");}, gvm);
@@ -182,7 +182,6 @@ function pageViewModel(gvm) {
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
-
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc) {
         // Push data
@@ -190,11 +189,9 @@ function pageViewModel(gvm) {
         gvm.tabledata.push(tblOject);
     }
 
-
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-
 }
 
 function loadTablePage(courseid, pagenr)

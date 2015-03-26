@@ -93,5 +93,11 @@
   " AdminDescTableTitle":"E-mail",
   " AdminActionTableTitle":"Acties",
   "UserlistsTitle2": "Mijn Studentenlijsten",
-  "AddNewList": "Voeg nieuwe lijst toe"
+  "AddNewList": "Voeg nieuwe lijst toe",
+
+    "studIDTableTitleRapport":"Student ID",
+    "nameTableTitleRapport":"Naam",
+    "lastNameTableTitleRapport":"Familienaam",
+    "mailTableTitleRapport":"Mail",
+    "scoreTableTitleRapport":"Punten"
 }

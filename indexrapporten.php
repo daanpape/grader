@@ -202,15 +202,12 @@ $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     echo json_encode(RapportAPI::deleteCourse($id));
 });
 
-//API EDIT/UPDATTE STUDENLIST
-$app->put('/api/studentlist/:id', function($id) use ($app){
+$app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
-    
-    // Update the existing resource
-    echo json_encode(RapportAPI::updateStudentList(
-    $id, $app->request->post('name')));
+
+    echo json_encode(RapportAPI::deleteStudentList($id));
 });
 
 ?>
