@@ -38,8 +38,7 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    fetchProjectStructure()
-    fetchProjectScore();
+    fetchProjectStructure();
 
     $(".savePageBtn").click(function(){
 
@@ -55,18 +54,11 @@ function fetchProjectScore()
             {
                 $.each(subcomp.indicators(),function(i,indic)
                 {
-                    $.each(data, function(i, score)
-                    {
-                        console.log(score.indicator);
-                        console.log(indic.id());
-                        if(indic.id() == score.inidcator)
-                        {
-
-                            console.log("Triggered");
-                            indic.score = score.score();
+                    for(var i = 0; i < data.length; i++) {
+                        if (indic.id() == data[i].indicator) {
+                            indic.score(data[i].score);
                         }
-                    });
-
+                    }
                 });
             });
         });
@@ -88,7 +80,8 @@ function fetchProjectStructure() {
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0));
                 });
             });
-        })
+        });
+        fetchProjectScore();
     });
 }
 
