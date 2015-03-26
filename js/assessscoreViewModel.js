@@ -38,11 +38,10 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    fetchProjectStructure()
-    fetchProjectScore();
+    fetchProjectStructure();
 
     $(".savePageBtn").click(function(){
-
+        saveProjectScore();
     });
 }
 
@@ -50,7 +49,35 @@ function fetchProjectScore()
 {
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
-        console.log(data[0].score);
+        $.each(viewModel.competences(), function(i,item){
+            $.each(item.subcompetences(), function(i, subcomp)
+            {
+                $.each(subcomp.indicators(),function(i,indic)
+                {
+                    for(var i = 0; i < data.length; i++) {
+                        if (indic.id() == data[i].indicator) {
+                            indic.score(data[i].score);
+                            indic.scoreid(data[i].id);
+                        }
+                    }
+                });
+            });
+        });
+    });
+}
+
+function saveProjectScore()
+{
+    $.ajax({
+        type: "POST",
+        url: "/api/projectscore/" + projectid + "/" + studentid,
+        data: ko.toJSON(viewModel.competences),
+        success: function(){
+            // TODO make multilangual and with modals
+            alert("Saved projectscore to server");
+
+            fetchProjectStructure();
+        }
     });
 }
 
@@ -69,7 +96,8 @@ function fetchProjectStructure() {
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0));
                 });
             });
-        })
+        });
+        fetchProjectScore();
     });
 }
 
@@ -91,11 +119,12 @@ function SubCompetence(parent, id, code, name, indicators) {
     };
 }
 
-function Indicator(parent, id, name, description, score) {
+function Indicator(parent, id, name, description, score, scoreid) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        score: ko.observable(score)
+        score: ko.observable(score),
+        scoreid: ko.observable(scoreid)
     };
 }

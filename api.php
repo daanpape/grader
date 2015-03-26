@@ -271,6 +271,11 @@ class GraderAPI {
         return ClassDAO::saveProjectRules($id,$projectrules);
     }
 
+    public static function saveScoresForStudentByUser($projectid,$studentid,$userid, $scores)
+    {
+        return ClassDAO::saveScoresForStudentByUser($projectid,$studentid,$userid, $scores);
+    }
+
     public static function getLocationsTrainingsAndCourses($locationId, $trainingId) {
         $result[] = array();
 

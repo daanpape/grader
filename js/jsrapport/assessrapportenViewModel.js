@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
 
     // Table i18n bindings
     gvm.studIDTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleRapport");}, gvm);
-    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitleRapport");}, gvm);
+    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("nameTableTitleRapport");}, gvm);
     gvm.lastNameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitleRapport");}, gvm);
     gvm.mailTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitleRapport");}, gvm);
     gvm.scoreTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitleRapport");}, gvm);
@@ -182,27 +182,24 @@ function pageViewModel(gvm) {
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
-
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc) {
+    gvm.addTableData = function(id, name, lastname, mail, score) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
+        var tblOject = {tstudid: id, tname: name, tlname: lastname, tmail: mail, tscore: score};
         gvm.tabledata.push(tblOject);
     }
-
 
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-
 }
 
-function loadTablePage(courseid, pagenr)
+function loadTablePage(pagenr)
 {
-    $.getJSON('/api/projects/' + courseid + '/page/' + pagenr, function(data){
+    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
-         viewModel.clearTable()
+        viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
@@ -254,7 +251,7 @@ function loadTablePage(courseid, pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(courseid, thispagenr);
+                    loadTablePage(thispagenr);
                 });
             }
         });
