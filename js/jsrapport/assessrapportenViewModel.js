@@ -202,7 +202,7 @@ function loadTablePage(courseid, pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name);
+            viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
 
         /* Let previous en next buttons work */
