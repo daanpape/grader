@@ -72,7 +72,7 @@ function pageViewModel(gvm) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
                     gvm.updateTeacher(item.id);
-                    //LoadTablePage(item.currentteacherid, 1);
+                    LoadTablePage(item.currentteacherid, 1);
                 });
             } else {
                 gvm.updateTeacher();
@@ -101,7 +101,7 @@ function pageViewModel(gvm) {
             gvm.availableTeacher.removeAll();
             $.each(data, function(i, item) {
                 console.log(item);
-                gvm.availableTeacher.push(new Teacher(item.id,item.firstname,item.lastname));
+                gvm.availableTeacher.push(item);
                 $("#teacherbtn-" + item.id).click(function(){
                     $(".btn-teacher span:first").text($(this).text());
                     gvm.currentteacherid = item.id;
@@ -283,9 +283,12 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group">' +
-                '<select data-bind="foreach: availableTeacher" class="form-control form-next">' +
-                '<option data-bind="text: firstname"></option>'+
-                '</select>' +
+                '<button class="btn btn-wide btn-default btn-teacher dropdown-toggle" type="button" id="availableTeacher" data-toggle="dropdown" aria-expanded="true" placeholder="' + i18n.__('TeacherTableTitle') + '">' +
+                '<span class="text-left">Teacher</span>' + '<span class="pull-right caret-down caret"></span>' +
+                '</button>' +
+                '<ul class="dropdown-menu dropdown-teacher ul-wide" role="menu" id="teacher" aria-labelledby="availableTeacher" data-bind="foreach: availableTeacher">' +
+                '<li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{\'id\': \'teacherbtn-id\'}"><span data-bind="value: firstname"></span></a> </li>' +
+                '</ul>' +
             '</div>' +
             '</form>' );
 
@@ -406,11 +409,3 @@ function initPage() {
     loadTablePage(1);
 }
 
-function Teacher(id,firstname,lastname)
-{
-    return  {
-        id:ko.observable(id),
-        firstname: ko.observable(firstname),
-        lastname: ko.observable(lastname)
-    }
-}
