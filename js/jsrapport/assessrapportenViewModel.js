@@ -36,6 +36,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-module span:first").text(item.module);
+                    console.log("module " + item.module);
                     $(".btn-submodule span:first").text(item.submodule);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentCourseRapportId = item.courseid;
@@ -44,6 +45,7 @@ function pageViewModel(gvm) {
                     gvm.currentGoalId = item.goalid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.id);
+                    console.log(item.id);
                     gvm.updateSubmodules(item.trainingid);
                     gvm.updateGoals(item.courseid);
                     loadTablePage(item.courseid, 1);
