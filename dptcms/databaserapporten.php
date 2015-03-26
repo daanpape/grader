@@ -362,7 +362,7 @@ class rapportenDAO {
         public static function updateStudentList($id, $code) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE course_rapport SET name = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE studentlist_rapport SET name = ? WHERE id = ?");
             $stmt->execute(array($code, $id));
             return true;
         } catch (PDOException $err) {
