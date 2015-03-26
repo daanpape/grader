@@ -13,7 +13,7 @@ require_once '../dptcms/config.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home.php" data-bind="text: projectname">Grader</a>
+            <a class="navbar-brand" href="/home" data-bind="text: projectname">Grader</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -21,19 +21,35 @@ require_once '../dptcms/config.php';
                 if ($location == 'home') {
                     echo 'class="active"';
                 }
-                ?>><a href="home.php" data-bind="text: homeBtn">Home</a></li>
-                <li <?php 
-                if ($location == 'assess') {
-                    echo 'class="active"';
-                }
-                ?>><a href="assess.php" data-bind="text: assessBtn">Assess</a></li>
-                <li <?php 
-                if ($location == 'courses') {
-                    echo 'class="active"';
+                ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
+                <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
+                <li class="<?php if ($location == 'projects') {
+                        echo 'active';
+                    } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                
+                <!---------- RapportSysteem ---------->
+                
+                <li class="<?php if ($location == 'jsrapport/homerapporten') {
+                    echo 'active';
                 } 
-                ?>> <a href="courses.php" data-bind="text: projecttypeBtn">Courses</a></li>
-            </ul>
-            </li>
+                ?>"> <a href="homerapporten" >Home</a></li>
+                
+                <li class="<?php if ($location == 'jsrapport/assessrapporten') {
+                    echo 'active';
+                } 
+                ?>"> <a href="/assessrapporten" >Assess</a></li>
+                
+                <li class="<?php if ($location == 'jsrapport/coursesrapporten') {
+                    echo 'active';
+                }
+                ?>"> <a href="/coursesrapporten" >Courses</a></li>
+                <li class="<?php if ($location == 'jsrapport/studentrapportrapporten') {
+                    echo 'active';
+                }
+                ?>"> <a href="/studentrapportrapporten" >Rapport</a></li>
+
+                <!----------  RapportSysteem ---------->
+                    
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -44,7 +60,8 @@ require_once '../dptcms/config.php';
                     echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/account"><span class="navspan">Account</span></a></li>
-                                <li><a href="/accountrapporten/studentlists"><span class="navspan">Student Lists</span></a></li>
+                                <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
+                                 <li><a href="/account/admin"><span class="navspan">Admin Panel</span></a></li>
                             </ul>
                         </li>';
                     echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
