@@ -43,10 +43,9 @@ function pageViewModel(gvm) {
                     gvm.currentSubmoduleId = item.submoduleid;
                     gvm.currentGoalId = item.goalid;
                     gvm.updateCourseRapport();
-                    gvm.updateModules(item.id);
-                    console.log(item.id);
-                    gvm.updateSubmodules(item.trainingid);
-                    gvm.updateGoals(item.courseid);
+                    gvm.updateModules(item.moduleid);
+                    gvm.updateSubmodules(item.submoduleid);
+                    gvm.updateGoals(item.goalid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {

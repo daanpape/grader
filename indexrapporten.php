@@ -104,7 +104,7 @@ $app->get('/api/courserapportdrop', function () use ($app) {
 });
 
 //get teacher from database
-$app->get('/api/teacherrapport/id', function ($trainingId) use ($app) {
+$app->get('/api/getteacherrapport/:id', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -116,7 +116,7 @@ $app->get('/api/teacherrapport/id', function ($trainingId) use ($app) {
 });
 
 //add teacher to dropdown
-$app->get('/api/teacherrapport/:teacherId', function ($trainingId) use ($app) {
+$app->get('/api/teacherrapport/:id', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
