@@ -18,7 +18,7 @@
     </head>
     
     <body>
-        <?php include_once('templates/menu.php') ?>
+        <?php include_once('menurapporten.php') ?>
         
         <!-- Header container -->
         <div class="container">
@@ -73,28 +73,25 @@
         
         <!-- Content container -->
         <div class="container">
+            <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th data-bind="text: StudentIDTableTitle">StudentID</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: lastNameTableTitle">Description</th>
-                        <th data-bind="text: mailTableTitle">mail</th>
-                    </tr>
+                <tr>
+                    <th data-bind="text: codeTableTitle">Code</th>
+                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: descTableTitle">Description</th>
+                    <th data-bind="text: actionTableTitle">Actions</th>
+                </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
-                    <tr>
-                        <td data-bind="text: tcode">--</td>
-                        <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                                <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
-                                <a data-bind="attr:{'href': '/project/students/' + tid}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
-                                <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
-                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
-                        </td>
-                    </tr>
+                <tr>
+                    <td data-bind="text: tcode">--</td>
+                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: tdesc">--</td>
+                    <td>
+                        <a data-bind="attr:{'href': '/assess/project/' + tid + '/students'}"><span class="glyphicon glyphicon-list-alt glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
