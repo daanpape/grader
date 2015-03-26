@@ -66,7 +66,7 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateDropdowns = function() {
-        $.getJSON('api/lastdropdownchoice/' + gvm.userId, function(data) {
+        $.getJSON('api/teacherrapport/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-teacher span:first").text(item.teacher);
@@ -84,6 +84,7 @@ function pageViewModel(gvm) {
     $.getJSON('/api/teacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
+            console.log(item);
             gvm.availableTeacher.push(item);
             for (var i = 0; i < gvm.availableTeacher.length; i++) {
                 console.log('hi');
