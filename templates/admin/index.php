@@ -268,7 +268,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-home fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="rechten.html"><i class="fa fa-wrench fa-fw"></i> Rechten</span></a>
