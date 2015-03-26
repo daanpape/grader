@@ -50,7 +50,7 @@ function fetchProjectScore()
 {
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
-        console.log(data);
+        console.log(data[0].score);
     });
 }
 
