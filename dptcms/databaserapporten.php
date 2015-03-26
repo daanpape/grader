@@ -1,188 +1,372 @@
 <?php
-require_once 'apirapporten.php';
-//GET routes
-$app->get('/coursesrapporten', function () use ($app) {
-    $app->render('templatesrapport/coursesrapporten.php');
-});
-$app->get('/homerapporten', function () use ($app) {
-    $app->render('templatesrapport/homerapporten.php');
-});
-$app->get('/assessrapporten', function () use ($app) {
-    $app->render('templatesrapport/assessrapporten.php');
-});
-$app->get('/studentrapportrapporten', function () use ($app) {
-    $app->render('templatesrapport/studentrapportrapporten.php');
-});
-$app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
-});
-$app->get('/account/admin', function () use($app) {
-    $app->render('templatesrapport/adminrapporten.php');
-});
-$app->get('/account/studentlistsrapporten', function () use($app) {
-    $app->render('templatesrapport/accountstudentlistsrapporten.php');
-});
-$app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
-    $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
-});
-//get all courses with pages
-$app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Calculate start and count
-    $pg = Pager::pageToStartStop($pagenr);
-    // Get total number of projecttypes in the database
-    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
-    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
-    $totalcourses = RapportAPI::getCourseCount();
-    // Get the page
-    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
-});
-//get all student form a selected course with pages
-$app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Calculate start and count
-    $pg = Pager::pageToStartStop($pagenr);
-    // Get total number of projecttypes in the database
-    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
-    $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count);
-    $totalcourses = RapportAPI::getStudentsCountFromCourse();
-    // Get the page
-    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
-});
-//get module from course
-$app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all trainings by locationsid
-    $pagedata = RapportAPI::getCompetenceByCourse($locationId);
-    echo json_encode($pagedata);
-});
-//getsubmodule from module
-$app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
-    echo json_encode($pagedata);
-});
-//getgoals from submodule
-$app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getGoalBySubCompetence($trainingId);
-    echo json_encode($pagedata);
-});
-//get all subcompetences
-$app->get('/api/coursestructure/:id', function($id) use ($app) {
-    $app->response->headers->set('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::getAllDataFromCourse($id));
-});
-$app->get('/api/courserapportdrop', function () use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all locations
-    $pagedata = RapportAPI::getAllCourse();
-    echo json_encode($pagedata);
-});
-//get teacher from database
-$app->get('/api/getteacherrapport/:id', function ($trainingId) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getTeacher($trainingId);
-    echo json_encode($pagedata);
-});
-//add teacher to dropdown
-$app->get('/api/teacherrapport/:id', function ($trainingId) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all courses by the trainingsid
-    $pagedata = RapportAPI::addTeacher($trainingId);
-    echo json_encode($pagedata);
-});
-//get last selected dropdown list
-$app->get('/api/lastdropdownrapporten/:id', function($id) use ($app) {
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    $data = RapportAPI::getLastDropdownFromUser($id);
-    echo json_encode($data);
-});
-$app->get('/api/studentlistsrapporten/:id', function($id) use($app) {
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    $data = RapportAPI::getStudentListsFromUser($id);
-    echo json_encode($data);
-});
-//PUT routes
-$app->put('/api/courseupdate/:id', function($id) use ($app){
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
+class rapportenDAO {
+    public static function getAllCourses($start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count  ");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all courses', $err);
+            return null;
+        }
+    }
+    public static function getStudentsFromCourse($start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM students LIMIT :start,:count  ");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all courses', $err);
+            return null;
+        }
+    }
 
-    // Update the existing resource
-    echo json_encode(RapportAPI::updateCourse(
-        $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
-});
-//POST routes
-$app->post('/api/courserapport', function () use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Insert the data
-    echo json_encode(RapportAPI::createCourse($app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
-});
-$app->post('/api/savedropdownsRapport', function() use ($app) {
-    //Use json header
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    //Insert the data
-    echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
-        $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-        $app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
-        $app->request->post('user')));
-});
-$app->post('/api/savecompetences/:id', function($id) use ($app) {
-    $app->response->headers->set('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::updateCourseCompetences($id, file_get_contents('php://input')));
-});
-$app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Add list
-    echo json_encode(RapportAPI::createStudentList($app->request->post('name'), $userid));    //null moet nog ingelogde userid worden!
-});
-// API DELETE routes
-$app->delete('/api/coursedelete/:id', function ($id) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::deleteCourse($id));
-});
-$app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::deleteStudentList($id));
-});
-$app->put('/api/studentlistupdate/:id', function($id) use ($app){
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
+    public static function insertCourse($code, $name, $description) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_rapport (code, name, description) VALUES (?, ?, ?)");
+            $stmt->execute(array($code, $name, $description));
+            // Return the id of the newly inserted item on success.
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new course', $err);
+            return null;
+        }
+    }
 
-    // Update the existing resource
-    echo json_encode(RapportAPI::updateStudentList(
-        $id, $app->request->post('name')));
-});
+    public static function insertStudentList($name, $ownerid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name) VALUES (?, ?)");
+            $stmt->execute(array($ownerid, $name));
+            // Return the id of the newly inserted item on success.
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+            return null;
+        }
+    }
+    //Get all courses
+    public static function getAllCourse() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE  active = '1' ");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get courses', $err);
+            return false;
+        }
+    }
+
+    public static function getStudentListsFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist_rapport WHERE owner = :owner");
+            $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id' . $id, $err);
+            return null;
+        }
+    }
+    /*
+     * Get all competence by course
+     * @id the course
+     */
+    public static function getCompetenceByCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM competence_rapport WHERE course = :course");
+            $stmt->bindValue(':course', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get competences', $err);
+            return false;
+        }
+    }
+    /**
+     * Get a list of subcompetence associated with a cometenxe.
+     * @param type $id the module id to get the submodule information from.
+     */
+    public static function getCoursesByTraining($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM subcompetence_rapport WHERE competence = $id");
+            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get subcompetences', $err);
+            return null;
+        }
+    }
+    /**
+     * Get a list of goals associated with a subcompetence.
+     * @param type $id the module id to get the goal information from.
+     */
+    public static function getGoalsBySubcompetence($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM indicator_rapport WHERE subcompetence = $id");
+            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get subcompetences', $err);
+            return null;
+        }
+    }
+    public static function getTeacher($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM users");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not find teacher', $err);
+            return null;
+        }
+    }
+
+    public static function addTeacher($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM users");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not find teacher', $err);
+            return null;
+        }
+    }
+
+    public static function getLastDropdownFromUser($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM lastdropdownRapport WHERE user = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get last dropdowns from the database', $err);
+            return null;
+        }
+    }
+    public static function getCourseCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_rapport");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all courses in the database', $err);
+            return 0;
+        }
+    }
+    public static function getStudentsCountFromCourse() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM students");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all courses in the database', $err);
+            return 0;
+        }
+    }
+
+    public static function updateCourse($id, $code, $name, $description) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_rapport SET code = ?, name = ?, description = ? WHERE id = ?");
+            $stmt->execute(array($code, $name, $description, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update course', $err);
+            return false;
+        }
+    }
+
+    public static function deleteCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
+    public static function deleteStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist_rapport WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            /*$stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
+            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt2->execute();*/
+            /*$stmt3 = $conn->prepare("DELETE FROM project_studentlist WHERE studentlist =:id");
+            $stmt3->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt3->execute();*/
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete studentlist', $err);
+            return null;
+        }
+    }
+
+    public static function getAllDataFromCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription FROM competence_rapport 
+                                    LEFT JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
+                                    LEFT JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence 
+                                    WHERE competence_rapport.course = :courseid
+                                    ORDER BY cid, sid, iid ASC");
+            $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $data = array();
+            foreach ($dataFromDb as $row) {
+                if (!array_key_exists($row['cid'], $data)) {
+                    $competence = new stdClass();
+                    $competence->id = $row['cid'];
+                    $competence->name = $row['cname'];
+                    $competence->description = $row['cdescription'];
+                    $competence->subcompetences = array();
+                    $data[$row['cid']] = $competence;
+                }
+                if (!array_key_exists($row['sid'], $competence->subcompetences)) {
+                    $subcompetence = new stdClass();
+                    $subcompetence->id = $row['sid'];
+                    $subcompetence->name = $row['sname'];
+                    $subcompetence->description = $row['sdescription'];
+                    $subcompetence->indicators = array();
+                    $competence->subcompetences[$row['sid']] = $subcompetence;
+                }
+                if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
+                    $indicator = new stdClass();
+                    $indicator->id = $row['iid'];
+                    $indicator->name = $row['iname'];
+                    $indicator->description = $row['idescription'];
+                    $subcompetence->indicators[$row['iid']] = $indicator;
+                }
+            }
+            return $data;
+        } catch (PDOException $err) {
+            Logger::logError('Could not get all data from course with id ' . $id, $err);
+            return null;
+        }
+    }
+    public static function putNewCompetence($name, $description, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO competence_rapport (name, description, course) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $course));
+            $pid = $conn->lastInsertId();
+            return $pid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+
+    public static function updateCompetence($id, $name, $description, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE competence_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $course, $id));
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+
+    public static function putNewSubCompetence($name, $description, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO subcompetence_rapport (name, description, competence) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $competenceid));
+            $sid = $conn->lastInsertId();
+            return $sid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+
+    public static function updateSubCompetence($id, $name, $description, $competenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE subcompetence_rapport SET name = ?, description = ?, competence = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $competenceid, $id));
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+
+    public static function putNewIndicator($name, $description, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO indicator_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $subcompetenceid));
+            $iid = $conn->lastInsertId();
+            return $iid;
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+
+    public static function updateIndicator($id, $name, $description, $subcompetenceid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE indicator_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $subcompetenceid, $id));
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+        }
+    }
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, submodule, submoduleid, goal, goalid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, submodule = ?, submoduleid = ?, goal = ?, goalid = ?");
+            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a Course and a studentlist', $err);
+            return false;
+        }
+    }
+
+    //update/edit studentlist
+    public static function updateStudentList($id, $code) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE studentlist_rapport SET name = ? WHERE id = ?");
+            $stmt->execute(array($code, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update course', $err);
+            return false;
+        }
+    }
+}
 ?>
