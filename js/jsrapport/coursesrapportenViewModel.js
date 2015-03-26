@@ -100,6 +100,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/getteacherrapport/' + id, function(data) {
             gvm.availableTeacher.removeAll();
             $.each(data, function(i, item) {
+                console.log("updateTeacher");
                 console.log(item);
                 gvm.availableTeacher.push(item);
                 $("#teacherbtn-" + item.id).click(function(){
