@@ -80,13 +80,12 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.updateTeacher = function(id) {
+    /*gvm.updateTeacher = function(id) {
     $.getJSON('/api/getteacherrapport/' + id, function(data) {
         gvm.availableTeacher.removeAll();
         $.each(data, function(i, item) {
             console.log(item);
             gvm.availableTeacher.push(item);
-            /* Add listener to listitem */
             $("#teacherbtn-" + item.id).click(function(){
                 $(".btn-teacher span:first").text($(this).text());
                 gvm.currentteacherid = item.id;
@@ -95,7 +94,25 @@ function pageViewModel(gvm) {
             });
         });
     });
+    }*/
+
+    gvm.updateTeacher = function(id) {
+        $.getJSON('/api/getteacherrapport/' + id, function(data) {
+            gvm.availableTeacher.removeAll();
+            $.each(data, function(i, item) {
+                console.log(item);
+                gvm.availableTeacher.push(new Teacher(item.id,item.firstname,item.lastname));
+                $("#teacherbtn-" + item.id).click(function(){
+                    $(".btn-teacher span:first").text($(this).text());
+                    gvm.currentteacherid = item.id;
+                    gvm.saveLastSelectedDropdowns();
+                    loadTablePage(item.id, 1);
+                });
+            });
+        });
     }
+
+
     }
 /*
  * Delete item from table given the id. 
@@ -266,7 +283,7 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div class="form-group">' +
-                '<select data-bind="foreach: viewModel.availableTeacher" class="form-control form-next">' +
+                '<select data-bind="foreach: availableTeacher" class="form-control form-next">' +
                 '<option data-bind="text: firstname"></option>'+
                 '</select>' +
             '</div>' +
@@ -387,4 +404,13 @@ function initPage() {
     });
     
     loadTablePage(1);
+}
+
+function Teacher(id,firstname,lastname)
+{
+    return  {
+        id:ko.observable(id),
+        firstname: ko.observable(firstname),
+        lastname: ko.observable(lastname)
+    }
 }
