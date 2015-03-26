@@ -175,7 +175,7 @@ class rapportenDAO {
     public static function getStudentsCountFromCourse() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM students");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_rapport");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
