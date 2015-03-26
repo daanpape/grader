@@ -33,7 +33,7 @@ $app->get('/account/studentlistsrapporten', function () use($app) {
 });
 
 $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
-    $app->render('editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
+    $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
 
 //get all courses with pages
