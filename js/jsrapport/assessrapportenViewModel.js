@@ -36,11 +36,6 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-module span:first").text(item.module);
-                    console.log("module " + item.module);
-                    console.log("Course id " + item.courseid)
-                    console.log("Module id " + item.moduleid);
-                    console.log("Subodule id " + item.submoduleid);
-                    console.log("Goal id " + item.goalid);
                     $(".btn-submodule span:first").text(item.submodule);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentCourseRapportId = item.courseid;
@@ -50,7 +45,7 @@ function pageViewModel(gvm) {
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.moduleid);
                     gvm.updateSubmodules(item.submoduleid);
-                    gvm.updateGoals(item.goal);
+                    gvm.updateGoals(item.goalid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
