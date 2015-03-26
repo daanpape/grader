@@ -202,4 +202,15 @@ $app->request->post('user')));
             return $id;
         }
     }
+    
+    //update/edit Studenlist
+    public static function updateStudentList($id, $name) {
+        if(rapportenDAO::updateStudentList($id, $name)){
+            return array(
+                "id" => $id,
+                "code" => $name);
+        } else {
+            return -1;
+        }
+    }
 }
