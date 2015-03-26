@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <?php include_once('hddepends.php') ?>
 
     <title>Grader - Administrator panel</title>
 
@@ -27,6 +28,7 @@
 </head>
 
 <body>
+    <?php include_once('../menu.php') ?>
     <div id="wrapper">
         <!-- Navigation -->
         <!--<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
