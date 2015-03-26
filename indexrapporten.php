@@ -65,7 +65,7 @@ $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
 
     // Get total number of projecttypes in the database
     //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
-    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
+    $pagedata = RapportAPI::getAllStudentsFromCourse($pg->start, $pg->count);
     $totalcourses = RapportAPI::getCourseCount();
 
     // Get the page
