@@ -72,7 +72,7 @@ function pageViewModel(gvm) {
                     $(".btn-teacher span:first").text(item.teacher);
                     gvm.currentteacherid = item.id;
                     gvm.updateTeacher(item.id);
-                    LoadTablePage(item.currentteacherid, 1);
+                    //LoadTablePage(item.currentteacherid, 1);
                 });
             } else {
                 gvm.updateTeacher();
