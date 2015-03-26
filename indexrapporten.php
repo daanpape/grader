@@ -54,7 +54,7 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
 });
 
 //get module from course
-$app->get('/api/coursesrapportf/:courseId', function ($locationId) use ($app) {
+$app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
