@@ -99,7 +99,7 @@ $app->get('/api/courserapportdrop', function () use ($app) {
 });
 
 //get teacher from database
-$app->get('/api/getteacherrapport/id', function ($trainingId) use ($app) {
+$app->get('/api/getteacherrapport/:id', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
