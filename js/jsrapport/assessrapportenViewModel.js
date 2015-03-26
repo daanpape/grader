@@ -36,6 +36,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-module span:first").text(item.module);
+                    console.log("module " + item.module);
                     $(".btn-submodule span:first").text(item.submodule);
                     $(".btn-goal span:first").text(item.goal);
                     gvm.currentCourseRapportId = item.courseid;
