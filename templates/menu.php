@@ -61,7 +61,7 @@ require_once 'dptcms/config.php';
                             <ul class="dropdown-menu">
                                 <li><a href="/account"><span class="navspan">Account</span></a></li>
                                 <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
-                                 <li><a href="/account/admin"><span class="navspan">Admin Panel</span></a></li>
+                                 <li><a href="/templates/admin"><span class="navspan">Admin Panel</span></a></li>
                             </ul>
                         </li>';
                     echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
