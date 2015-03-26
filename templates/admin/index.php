@@ -259,7 +259,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
+                                <span class="input  -group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -268,7 +268,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-fire fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="rechten.html"><i class="fa fa-bar-chart-o fa-fw"></i> Rechten</span></a>
