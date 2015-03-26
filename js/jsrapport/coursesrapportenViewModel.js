@@ -289,14 +289,14 @@ function showNewProjectTypeModal()
             '</div>' +
             '</form>' );
 
-    /*addGeneralModalButton(i18n.__("AddBtn"), function(){
+    addGeneralModalButton(i18n.__("AddBtn"), function(){
         console.log($('#newprojectform').serialize());
        addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
             hideModal();
         });
     });
 
-    showGeneralModal();*/
+    showGeneralModal();
 }
 
 /**
