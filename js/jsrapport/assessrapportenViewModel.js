@@ -195,16 +195,16 @@ function pageViewModel(gvm) {
 }
 
 
-function loadTablePage(courseid, pagenr)
+function loadTablePage(pagenr)
 {
-    $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
+    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+            viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
 
         /* Let previous en next buttons work */
@@ -229,7 +229,7 @@ function loadTablePage(courseid, pagenr)
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
 
-        // Calculate for the pager buttons
+        /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
 
         $('.pager-nr-btn').each(function() {
@@ -257,6 +257,8 @@ function loadTablePage(courseid, pagenr)
             }
         });
     });
+
+
 }
 
 
