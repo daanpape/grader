@@ -111,8 +111,9 @@ function pageViewModel(gvm) {
             });
         });
     }
-    }
 
+
+    }
 /*
  * Delete item from table given the id. 
  */
@@ -199,14 +200,14 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  */
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
+    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id,  item.firstname, item.lastname, item.mail);
+            viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
 
         /* Let previous en next buttons work */
