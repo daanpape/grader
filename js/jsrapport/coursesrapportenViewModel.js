@@ -206,7 +206,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.id,  item.firstname, item.lastname, item.mail);
         });
 
         /* Let previous en next buttons work */
