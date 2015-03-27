@@ -198,17 +198,17 @@ function updateProjecttypeRaw(id, code, name, description, callback) {
  * Load page of the table
  */
 function loadTablePage(pagenr)
-{    
-    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
-        
+{
+    $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
+
         /* Clear current table page */
         viewModel.clearTable();
-        
-        // Load table data 
+
+        // Load table data
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
-        
+
         /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
@@ -227,27 +227,27 @@ function loadTablePage(pagenr)
                 loadTablePage(data.next);
             });
         }
-        
-        // Number of pager buttons 
+
+        // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
-        
+
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
-        
+
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
             var thispagenr = lowPage++;
-            
+
             /* Add the page number */
             $(this).html('<a href="#">' + thispagenr + '</a>');
-            
+
             /* Add active class to current page */
             if(thispagenr == pagenr) {
                 $(this).addClass('active');
             } else {
                 $(this).removeClass('active');
             }
-            
+
             /* Disable inactive classes and bind handlers to active classes */
             if(thispagenr > data.pagecount) {
                 $(this).addClass('disabled');
@@ -259,8 +259,8 @@ function loadTablePage(pagenr)
             }
         });
     });
-    
-    
+
+
 }
 
 /**
