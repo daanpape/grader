@@ -95,7 +95,7 @@
                         <td>Test FirstName</td>
                         <td>Test LastName</td>
                         <td>Test Status</td>
-                        <td><i class="fa fa-user-times"></i></td>
+                        <td><i class="fa fa-times"></i><i class="fa fa-toggle-off"></i></td>
                     </tbody>
             </div>
         </div>
