@@ -91,11 +91,13 @@
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: users">
+                    <tr>
                         <td>jonas.vanalderweireldt@student.howest.be</td>
                         <td>Jonas</td>
                         <td>Vanalderweireldt</td>
                         <td>ACTIVE</td>
                         <td><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
+                    </tr>
                     </tbody>
             </div>
         </div>

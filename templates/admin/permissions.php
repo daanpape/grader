@@ -88,20 +88,28 @@
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: users">
+                    <tr>
                         <td>Guest</td>
                         <td>When not logged in you get the GUEST role.</td>
+                    </tr>
                     </tbody>
                     <tbody data-bind="foreach: users">
+                    <tr>
                         <td>SuperUser</td>
                         <td>The superuser role must have access to everything...</td>
+                    </tr>
                     </tbody>
                     <tbody data-bind="foreach: users">
+                    <tr>
                         <td>User</td>
                         <td>Contains rights for every USER in the system.</td>
+                    </tr>
                     </tbody>
                     <tbody data-bind="foreach: users">
+                    <tr>
                         <td>STUDENT</td>
                         <td>Can only do studentactions</td>
+                    </tr>
                     </tbody>
             </div>
 
@@ -117,11 +125,13 @@
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: userPermission">
-                    <td>jonas.vanalderweireldt@student.howest.be</td>
-                    <td>Jonas</td>
-                    <td>Vanalderweireldt</td>
-                    <td>SUPERUSER</td>
-                    <td><i class="fa fa-wrench fa-lg"></i></td>
+                    <tr>
+                        <td>jonas.vanalderweireldt@student.howest.be</td>
+                        <td>Jonas</td>
+                        <td>Vanalderweireldt</td>
+                        <td>SUPERUSER</td>
+                        <td><i class="fa fa-wrench fa-lg"></i></td>
+                    </tr>
                     </tbody>
             </div>
         </div>
