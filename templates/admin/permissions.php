@@ -78,7 +78,52 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Rechten</h1>
             </div>
-            <!-- /.col-lg-12 -->
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th data-bind="text: permissionRole">Role</th>
+                        <th data-bind="text: permissionDescription">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: users">
+                    <td>Guest</td>
+                    <td>When not logged in you get the GUEST role.</td>
+                    </tbody>
+                    <tbody data-bind="foreach: users">
+                    <td>SuperUser</td>
+                    <td>The superuser role must have access to everything...</td>
+                    </tbody>
+                    <tbody data-bind="foreach: users">
+                    <td>User</td>
+                    <td>Contains rights for every USER in the system.</td>
+                    </tbody>
+                    <tbody data-bind="foreach: users">
+                    <td>STUDENT</td>
+                    <td>Can only do studentactions</td>
+                    </tbody>
+            </div>
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th data-bind="text: userName">Username</th>
+                        <th data-bind="text: firstName">Name</th>
+                        <th data-bind="text: lastName">Lastname</th>
+                        <th data-bind="text: userPermissions">Permissions</th>
+                        <th data-bind="text: userActions">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: users">
+                    <td>jonas.vanalderweireldt@student.howest.be</td>
+                    <td>Jonas</td>
+                    <td>Vanalderweireldt</td>
+                    <td></td>
+                    <td><i class="fa fa-times fa-2x"></i><i class="fa fa-toggle-off fa-2x"></i></td>
+                    </tbody>
+            </div>
         </div>
         <!-- /.row -->
     </div>
