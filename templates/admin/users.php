@@ -95,7 +95,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><span class="fa fa-user-times"></span></td>
+                        <td><span class="fa fa-user-times"> test </span></td>
                     </tbody>
             </div>
         </div>
