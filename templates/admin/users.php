@@ -95,7 +95,7 @@
                         <td>Jonas</td>
                         <td>Vanalderweireldt</td>
                         <td>ACTIVE</td>
-                        <td><i class="fa fa-times fa-2x"></i><i class="fa fa-toggle-off fa-2x"></i></td>
+                        <td><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
                     </tbody>
             </div>
         </div>
