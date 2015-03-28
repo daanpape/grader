@@ -77,6 +77,10 @@
                     <h1 class="page-header">Dashboard</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div>
+                    <p>Change the permissions of an user in the Permissions-tab</p>
+                    <p>Change an user in the Users-tab</p>
+                </div>
             </div>
             <!-- /.row -->
         </div>
