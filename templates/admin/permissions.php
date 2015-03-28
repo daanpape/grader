@@ -82,26 +82,26 @@
             <div>
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th data-bind="text: permissionRole">Role</th>
-                        <th data-bind="text: permissionDescription">Description</th>
-                    </tr>
+                        <tr>
+                            <th data-bind="text: permissionRole">Role</th>
+                            <th data-bind="text: permissionDescription">Description</th>
+                        </tr>
                     </thead>
                     <tbody data-bind="foreach: users">
-                    <td>Guest</td>
-                    <td>When not logged in you get the GUEST role.</td>
+                        <td>Guest</td>
+                        <td>When not logged in you get the GUEST role.</td>
                     </tbody>
                     <tbody data-bind="foreach: users">
-                    <td>SuperUser</td>
-                    <td>The superuser role must have access to everything...</td>
+                        <td>SuperUser</td>
+                        <td>The superuser role must have access to everything...</td>
                     </tbody>
                     <tbody data-bind="foreach: users">
-                    <td>User</td>
-                    <td>Contains rights for every USER in the system.</td>
+                        <td>User</td>
+                        <td>Contains rights for every USER in the system.</td>
                     </tbody>
                     <tbody data-bind="foreach: users">
-                    <td>STUDENT</td>
-                    <td>Can only do studentactions</td>
+                        <td>STUDENT</td>
+                        <td>Can only do studentactions</td>
                     </tbody>
             </div>
 
@@ -120,7 +120,7 @@
                     <td>jonas.vanalderweireldt@student.howest.be</td>
                     <td>Jonas</td>
                     <td>Vanalderweireldt</td>
-                    <td></td>
+                    <td>SUPERUSER</td>
                     <td><i class="fa fa-times fa-2x"></i><i class="fa fa-toggle-off fa-2x"></i></td>
                     </tbody>
             </div>
