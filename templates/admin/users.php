@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Grader Admin</a>
+            <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -78,7 +78,21 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Gebruikers</h1>
             </div>
-            <!-- /.col-lg-12 -->
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th data-bind="text: userName">Username</th>
+                        <th data-bind="text: firstName">Name</th>
+                        <th data-bind="text: lastName">Lastname</th>
+                        <th data-bind="text: userStatus">Status</th>
+                        <th data-bind="text: userActions">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: tabledata">
+                    </tbody>
+            </div>
         </div>
         <!-- /.row -->
     </div>
