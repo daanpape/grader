@@ -90,11 +90,11 @@
                         <th data-bind="text: userActions">Actions</th>
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: tabledata">
-                        <td>Test usernaam</td>
-                        <td>Test FirstName</td>
-                        <td>Test LastName</td>
-                        <td>Test Status</td>
+                    <tbody data-bind="foreach: users">
+                        <td>jonas.vanalderweireldt@student.howest.be</td>
+                        <td>Jonas</td>
+                        <td>Vanalderweireldt</td>
+                        <td>ACTIVE</td>
                         <td><i class="fa fa-times fa-2x"></i><i class="fa fa-toggle-off fa-2x"></i></td>
                     </tbody>
             </div>
