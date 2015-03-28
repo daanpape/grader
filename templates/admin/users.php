@@ -91,6 +91,11 @@
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: tabledata">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="fa fa-user-times"></span></td>
                     </tbody>
             </div>
         </div>
