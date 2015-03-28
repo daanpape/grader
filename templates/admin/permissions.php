@@ -121,7 +121,7 @@
                     <td>Jonas</td>
                     <td>Vanalderweireldt</td>
                     <td>SUPERUSER</td>
-                    <td><i class="fa fa-times fa-2x"></i><i class="fa fa-wrench fa-2x"></i></td>
+                    <td><i class="fa fa-wrench fa-2x"></i></td>
                     </tbody>
             </div>
         </div>
