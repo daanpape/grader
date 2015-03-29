@@ -4,8 +4,8 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserPermissionsTitle");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
-    gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FirstName");}, gvm);
-    gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("LastName");}, gvm);
+    gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
+    gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
     gvm.userPermissions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserPermissions");}, gvm);
     gvm.userActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserActions");}, gvm);
 
