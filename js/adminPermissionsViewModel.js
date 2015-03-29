@@ -36,7 +36,7 @@ function fetchUsersData()
                 }
             });
             console.log(item);
-            viewModel.updateUsers(new User(item.username, item.firstname, item.lastname, permissions));
+            viewModel.updateUsers(new User(item.username, item.firstname, item.lastname, permissions.toString()));
         });
     });
 }
