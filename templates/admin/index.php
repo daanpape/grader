@@ -45,17 +45,15 @@ $location = "adminIndex";
             <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
 
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><span class="navspan" onclick="setLang('en')">English</span></li>
-                        <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                    <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                </ul>
+            </li>
+        </ul>
 
         <!-- /.navbar-header -->
 
@@ -125,7 +123,7 @@ $location = "adminIndex";
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
 
-<!--<?php include_once('jsdepends.php') ?>-->
+<?php include_once('jsdepends.php') ?>
 </body>
 
 </html>
