@@ -883,8 +883,7 @@ class ClassDAO {
 class UserDAO {
     /**
      * Get all users.
-     * @param type $token the users token.
-     * @return stdClass the user associated with a token or null on error.
+     * @return stdClass the users.
      */
     public static function getAllUsers() {
         try {
