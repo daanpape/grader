@@ -31,7 +31,7 @@ $location = "adminPermissions";
 
 </head>
 
-<body style="padding-top: 0px">
+<body>
 
 <div id="wrapper">
 
