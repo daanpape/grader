@@ -13,15 +13,9 @@ function pageViewModel(gvm) {
 
     gvm.users = ko.observableArray([]);
 
-    gvm.updateUserList = function(id, username, firstname, lastname, status) {
-        var user = new User(this, id, username, firstname, lastname, status);
-        gvm.users.push(user);
-        return users;
-    };
-
     gvm.updateUsers = function(user)
     {
-        gvm.projectRules.push(user);
+        gvm.users.push(user);
         console.log(user);
     }
 }
