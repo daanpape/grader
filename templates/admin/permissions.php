@@ -145,7 +145,7 @@ $location = "adminPermissions";
                         <td data-bind="text: username"></td>
                         <td data-bind="text: firstname"></td>
                         <td data-bind="text: lastname"></td>
-                        <td data-bind="text: status"></td>
+                        <td data-bind="text: permissions"></td>
                         <td><i class="fa fa-wrench fa-lg"></i></td>
                     </tr>
                     </tbody>
