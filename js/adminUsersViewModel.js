@@ -25,7 +25,7 @@ function fetchUsersData()
     $.getJSON("/api/allusers/", function(data)
     {
         $.each(data, function(i, item){
-            console.log(item);
+            console.log(item.username);
             viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
         });
     });
@@ -34,7 +34,7 @@ function fetchUsersData()
 function User(viewmodel, id, username, firstname, lastname, status) {
     return {
         id: ko.observable(id),
-        userMail: ko.observable(username),
+        username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status)
