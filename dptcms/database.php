@@ -881,6 +881,21 @@ class ClassDAO {
  * Database Access Object for accessing account information
  */
 class UserDAO {
+    /**
+     * Get all users.
+     * @param type $token the users token.
+     * @return stdClass the user associated with a token or null on error.
+     */
+    public static function getAllUsers() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM users");
+            $stmt->execute();
+            return $stmt->fetchObject();
+        } catch (PDOException $err) {
+            return null;
+        }
+    }
 
     /**
      * Get account information given the users username.

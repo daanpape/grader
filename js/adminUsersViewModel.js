@@ -9,3 +9,24 @@ function pageViewModel(gvm) {
     gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
     gvm.userActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserActions");}, gvm);
 }
+
+function fetchUsersData()
+{
+    $.getJSON("/api//" + projectid + "/" + studentid, function(data)
+    {
+        $.each(viewModel.competences(), function(i,item){
+            $.each(item.subcompetences(), function(i, subcomp)
+            {
+                $.each(subcomp.indicators(),function(i,indic)
+                {
+                    for(var i = 0; i < data.length; i++) {
+                        if (indic.id() == data[i].indicator) {
+                            indic.score(data[i].score);
+                            indic.scoreid(data[i].id);
+                        }
+                    }
+                });
+            });
+        });
+    });
+}

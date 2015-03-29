@@ -295,6 +295,13 @@ class GraderAPI {
         return UserDAO::getUserByUsername($username, true);
     }
 
+    /*
+     * Get all users
+     */
+    public static function getAllUsersData() {
+        return UserDAO::getAllUsers();
+    }
+
     /**
      * Put a project structure into the database.
      * @param type $projectid the projectid to save the structure for.

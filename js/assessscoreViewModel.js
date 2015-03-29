@@ -47,8 +47,9 @@ function initPage() {
 
 function fetchProjectScore()
 {
-    $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
+    $.getJSON("/api/allusers/", function(data)
     {
+        console.log(data);
         $.each(viewModel.competences(), function(i,item){
             $.each(item.subcompetences(), function(i, subcomp)
             {
