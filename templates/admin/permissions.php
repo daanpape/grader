@@ -20,6 +20,7 @@ $location = "adminPermissions";
     <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/grader.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
