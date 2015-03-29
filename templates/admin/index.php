@@ -44,7 +44,7 @@ $location = "adminIndex";
                 <a class="navbar-brand" href="index.php">Grader Admin</a>
             </div>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                     <ul class="dropdown-menu">
