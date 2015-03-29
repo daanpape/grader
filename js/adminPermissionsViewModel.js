@@ -35,8 +35,10 @@ function fetchUsersData()
                     permissions += item.role + "\n";
                 }
             });
-            console.log(item);
-            viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
+
+            if(current != item.username){
+                viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
+            }
         });
     });
 }
