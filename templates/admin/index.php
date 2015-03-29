@@ -123,7 +123,6 @@ $location = "adminIndex";
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
 
-<?php include_once('jsdepends.php') ?>
 </body>
 
 </html>
