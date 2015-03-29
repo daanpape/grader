@@ -26,6 +26,7 @@ function fetchUsersData()
 {
     $.getJSON("/api/alluserswithroles/", function(data)
     {
+        var addedUsername = "";
         $.each(data, function(i, item){
             var permissions = "";
             var current = item.username;
@@ -35,6 +36,7 @@ function fetchUsersData()
                     permissions += item.role + "\n";
                 }
             });
+
             if (addedUsername != current){
                 addedUsername = item.username;
                 viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
