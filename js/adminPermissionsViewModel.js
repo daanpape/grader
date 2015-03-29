@@ -32,10 +32,10 @@ function fetchUsersData()
             $.each(data, function(i, item)
             {
                 if(item.username == current){
-                    permissions += item.role + " ";
-                    console.log(permissions);
+                    permissions += item.role + "\n";
                 }
             });
+            console.log(item);
             viewModel.updateUsers(new User(item.username, item.firstname, item.lastname, permissions));
         });
     });
