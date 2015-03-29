@@ -18,19 +18,10 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
         return users;
     };
-
-    gvm.clearStructure = function() {
-        gvm.users.destroyAll();
-    };
-
-
-
 }
 
 function fetchUsersData()
 {
-    viewModel.clearStructure();
-
     $.getJSON("/api/allusers/", function(data)
     {
         console.log(data);
