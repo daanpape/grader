@@ -33,6 +33,7 @@ function fetchUsersData()
             {
                 if(item.username == current){
                     permissions += item.role + " ";
+                    console.log(permissions);
                 }
             });
             viewModel.updateUsers(new User(item.username, item.firstname, item.lastname, permissions));
