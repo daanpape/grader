@@ -1,3 +1,3 @@
-function pageViewModel(gvm) {
+function adminUsersViewModel(gvm) {
 
 }

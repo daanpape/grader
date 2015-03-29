@@ -107,6 +107,7 @@
 
     "AdminTitle" : "Admin page",
     "UserPermissionsTitle" : "Permissions",
+    "UserDashboardTitle" : "Dashboard",
     "UserTitle" : "Users",
     "UserName" : "Username",
     "UserPermissions" : "Permissions",
