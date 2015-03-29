@@ -890,7 +890,7 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users");
             $stmt->execute();
-            return $stmt->fetchObject();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             return null;
         }
