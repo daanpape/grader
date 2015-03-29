@@ -141,12 +141,12 @@ $location = "adminPermissions";
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: usersPermissions">
-                    <tr>
-                        <td data-bind="text: username"></td>
-                        <td data-bind="text: firstname"></td>
-                        <td data-bind="text: lastname"></td>
-                        <td data-bind="text: permissions"></td>
-                        <td><i class="fa fa-wrench fa-lg"></i></td>
+                    <tr style="width: 100%">
+                        <td style="width: 25%" data-bind="text: username"></td>
+                        <td style="width: 15%" data-bind="text: firstname"></td>
+                        <td style="width: 15%" data-bind="text: lastname"></td>
+                        <td style="width: 30%" data-bind="text: permissions"></td>
+                        <td style="width: 15%"><i class="fa fa-wrench fa-lg"></i></td>
                     </tr>
                     </tbody>
             </div>
