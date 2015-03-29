@@ -32,7 +32,7 @@ $location = "adminPermissions";
 
 </head>
 
-<<body style="padding-top: 0px">
+<body style="padding-top: 0px">
 
 <div id="wrapper">
 
