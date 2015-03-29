@@ -111,5 +111,7 @@
     "UserTitle" : "Users",
     "UserName" : "Username",
     "UserPermissions" : "Permissions",
-    "UserActions" : "Actions"
+    "UserActions" : "Actions",
+    "PermissionRole" : "Role",
+    "PermissionDescription" : "Description"
 }

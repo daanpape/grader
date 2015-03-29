@@ -102,25 +102,25 @@ $location = "adminPermissions";
                         <th data-bind="text: permissionDescription">Description</th>
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: users">
+                    <tbody>
                     <tr>
                         <td>Guest</td>
                         <td>When not logged in you get the GUEST role.</td>
                     </tr>
                     </tbody>
-                    <tbody data-bind="foreach: users">
+                    <tbody>
                     <tr>
                         <td>SuperUser</td>
                         <td>The superuser role must have access to everything...</td>
                     </tr>
                     </tbody>
-                    <tbody data-bind="foreach: users">
+                    <tbody>
                     <tr>
                         <td>User</td>
                         <td>Contains rights for every USER in the system.</td>
                     </tr>
                     </tbody>
-                    <tbody data-bind="foreach: users">
+                    <tbody>
                     <tr>
                         <td>STUDENT</td>
                         <td>Can only do studentactions</td>
@@ -139,7 +139,7 @@ $location = "adminPermissions";
                         <th data-bind="text: userActions">Actions</th>
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: userPermission">
+                    <tbody>
                     <tr>
                         <td>jonas.vanalderweireldt@student.howest.be</td>
                         <td>Jonas</td>

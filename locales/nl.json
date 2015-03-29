@@ -107,5 +107,7 @@
     "UserTitle" : "Gebruikers",
     "UserName" : "Gebruikersnaam",
     "UserPermissions" : "Rechten",
-    "UserActions" : "Acties"
+    "UserActions" : "Acties",
+    "PermissionRole" : "Rol",
+    "PermissionDescription" : "Beschrijving"
 }
