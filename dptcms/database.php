@@ -888,7 +888,7 @@ class UserDAO {
     public static function getAllUsers() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM users ORDER BY firstname, lastname");
+            $stmt = $conn->prepare("SELECT * FROM users ORDER BY lastname, firstname");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
