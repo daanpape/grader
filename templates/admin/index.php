@@ -45,6 +45,9 @@ $location = "adminIndex";
             <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
 
+        <span class="navspan" onclick="setLang('en')">English</span>
+        <span class="navspan" onclick="setLang('nl')">Nederlands</span>
+
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
@@ -106,6 +109,7 @@ $location = "adminIndex";
 </div>
 <!-- /#wrapper -->
 
+<?php include_once('../jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 

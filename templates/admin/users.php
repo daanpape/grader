@@ -48,6 +48,10 @@ $location = "adminUsers";
         </div>
         <!-- /.navbar-header -->
 
+
+        <span class="navspan" onclick="setLang('en')">English</span>
+        <span class="navspan" onclick="setLang('nl')">Nederlands</span>
+
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
@@ -123,6 +127,7 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
+<?php include_once('../jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -140,7 +145,6 @@ $location = "adminUsers";
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
 
-<?php include_once('../jsdepends.php') ?>
 </body>
 
 </html>

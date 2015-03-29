@@ -49,6 +49,10 @@ $location = "adminPermissions";
         </div>
         <!-- /.navbar-header -->
 
+
+        <span class="navspan" onclick="setLang('en')">English</span>
+        <span class="navspan" onclick="setLang('nl')">Nederlands</span>
+
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
@@ -158,15 +162,7 @@ $location = "adminPermissions";
 </div>
 <!-- /#wrapper -->
 
-<!-- Javascript -->
-<script src="../../js/i18n.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/knockout-3.1.0.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/ie10-viewport-bug-workaround.js"></script>
-<script src="../../js/modals.js"></script>
-<script src="../../js/global.js"></script>
-<script src="../../js/<?php echo $location ?>ViewModel.js"></script>
+<?php include_once('../jsdepends.php') ?>
 
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
