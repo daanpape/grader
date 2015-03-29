@@ -1,3 +1,7 @@
+<?php
+// Page initialisation
+$location = "adminPermissions";
+?>
 <!DOCTYPE html>
 <html lang="en">
 

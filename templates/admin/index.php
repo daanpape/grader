@@ -1,3 +1,7 @@
+<?php
+// Page initialisation
+$location = "adminIndex";
+?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
 
@@ -39,6 +43,17 @@
                 </button>
                 <a class="navbar-brand" href="index.php">Grader Admin</a>
             </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                        <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                    </ul>
+                </li>
+            </ul>
+
             <!-- /.navbar-header -->
 
             <div class="navbar-default sidebar" role="navigation">

@@ -1,3 +1,7 @@
+<?php
+// Page initialisation
+$location = "adminUsers";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
