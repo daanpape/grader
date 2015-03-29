@@ -31,7 +31,7 @@ $location = "adminPermissions";
 
 </head>
 
-<body>
+<body style="padding-top: 0px">
 
 <div id="wrapper">
 
@@ -97,10 +97,10 @@ $location = "adminPermissions";
             <div>
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            <th data-bind="text: permissionRole">Role</th>
-                            <th data-bind="text: permissionDescription">Description</th>
-                        </tr>
+                    <tr>
+                        <th data-bind="text: permissionRole">Role</th>
+                        <th data-bind="text: permissionDescription">Description</th>
+                    </tr>
                     </thead>
                     <tbody data-bind="foreach: users">
                     <tr>
