@@ -94,65 +94,65 @@ $location = "adminPermissions";
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Rechten</h1>
             </div>
-
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th data-bind="text: permissionRole">Role</th>
-                        <th data-bind="text: permissionDescription">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>GUEST</td>
-                        <td>When not logged in you get the GUEST role.</td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td>SUPERUSER</td>
-                        <td>The superuser role must have access to everything...</td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td>USER</td>
-                        <td>Contains rights for every USER in the system.</td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td>STUDENT</td>
-                        <td>Can only do studentactions</td>
-                    </tr>
-                    </tbody>
-            </div>
-
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th data-bind="text: userName">Username</th>
-                        <th data-bind="text: firstName">Name</th>
-                        <th data-bind="text: lastName">Lastname</th>
-                        <th data-bind="text: userPermissions">Permissions</th>
-                        <th data-bind="text: userActions">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody data-bind="foreach: usersPermissions">
-                    <tr style="width: 100%">
-                        <td style="width: 30%" data-bind="text: username"></td>
-                        <td style="width: 15%" data-bind="text: firstname"></td>
-                        <td style="width: 15%" data-bind="text: lastname"></td>
-                        <td style="width: 25%" data-bind="text: permissions"></td>
-                        <td style="width: 15%"><i class="fa fa-wrench fa-lg"></i></td>
-                    </tr>
-                    </tbody>
-            </div>
         </div>
-        <!-- /.row -->
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: permissionRole">Role</th>
+                    <th data-bind="text: permissionDescription">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GUEST</td>
+                    <td>When not logged in you get the GUEST role.</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>SUPERUSER</td>
+                    <td>The superuser role must have access to everything...</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>USER</td>
+                    <td>Contains rights for every USER in the system.</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>STUDENT</td>
+                    <td>Can only do studentactions</td>
+                </tr>
+            </tbody>
+        </div>
+
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: userName">Username</th>
+                    <th data-bind="text: firstName">Name</th>
+                    <th data-bind="text: lastName">Lastname</th>
+                    <th data-bind="text: userPermissions">Permissions</th>
+                    <th data-bind="text: userActions">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: usersPermissions">
+                <tr style="width: 100%">
+                    <td style="width: 30%" data-bind="text: username"></td>
+                    <td style="width: 15%" data-bind="text: firstname"></td>
+                    <td style="width: 15%" data-bind="text: lastname"></td>
+                    <td style="width: 25%" data-bind="text: permissions"></td>
+                    <td style="width: 15%"><i class="fa fa-wrench fa-lg"></i></td>
+                </tr>
+                </tbody>
+        </div>
     </div>
+    <!-- /.row -->
+</div>
     <!-- /#page-wrapper -->
 
 </div>

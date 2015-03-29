@@ -93,28 +93,28 @@ $location = "adminUsers";
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
+        </div>
 
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th data-bind="text: userName">Username</th>
-                        <th data-bind="text: firstName">Name</th>
-                        <th data-bind="text: lastName">Lastname</th>
-                        <th data-bind="text: userStatus">Status</th>
-                        <th data-bind="text: userActions">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody data-bind="foreach: users">
-                    <tr style="width: 100%">
-                        <td style="width: 40%" data-bind="text: username"></td>
-                        <td style="width: 15%" data-bind="text: firstname"></td>
-                        <td style="width: 15%" data-bind="text: lastname"></td>
-                        <td style="width: 15%" data-bind="text: status"></td>
-                        <td style="width: 15%"><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
-                    </tr>
-                    </tbody>
-            </div>
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: userName">Username</th>
+                    <th data-bind="text: firstName">Name</th>
+                    <th data-bind="text: lastName">Lastname</th>
+                    <th data-bind="text: userStatus">Status</th>
+                    <th data-bind="text: userActions">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: users">
+                <tr style="width: 100%">
+                    <td style="width: 40%" data-bind="text: username"></td>
+                    <td style="width: 15%" data-bind="text: firstname"></td>
+                    <td style="width: 15%" data-bind="text: lastname"></td>
+                    <td style="width: 15%" data-bind="text: status"></td>
+                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
+                </tr>
+                </tbody>
         </div>
         <!-- /.row -->
     </div>
