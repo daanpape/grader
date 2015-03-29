@@ -20,6 +20,7 @@ $location = "adminPermissions";
     <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../css/grader.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,6 +47,16 @@ $location = "adminPermissions";
             <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
         <!-- /.navbar-header -->
+
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                    <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                </ul>
+            </li>
+        </ul>
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
