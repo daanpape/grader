@@ -107,7 +107,7 @@ $location = "adminUsers";
                     </thead>
                     <tbody data-bind="foreach: users">
                     <tr>
-                        <td data-bind="text: username"></td>
+                        <td data-bind="text: userMail"></td>
                         <td data-bind="text: firstname"></td>
                         <td data-bind="text: lastname"></td>
                         <td data-bind="text: status"></td>

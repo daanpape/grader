@@ -33,7 +33,7 @@ function fetchUsersData()
 function User(viewmodel, id, username, firstname, lastname, status) {
     return {
         id: ko.observable(id),
-        username: ko.observable(username),
+        userMail: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status)
