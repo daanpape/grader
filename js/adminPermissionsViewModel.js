@@ -33,7 +33,7 @@ function fetchUsersData()
             $.each(data, function(i, item)
             {
                 if(item.username == current){
-                    permissions.append(item.role + "\n");
+                    permissions += item.role + "\n");
                 }
             });
 
