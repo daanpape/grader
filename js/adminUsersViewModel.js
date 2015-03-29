@@ -25,8 +25,8 @@ function fetchUsersData()
     $.getJSON("/api/allusers/", function(data)
     {
         $.each(data, function(i, item){
-            console.log(item.userName);
-            viewModel.updateUsers(new User(item.id, item.userName, item.firstname, item.lastname, item.status));
+            console.log(item);
+            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
         });
     });
 }
