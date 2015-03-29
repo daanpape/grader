@@ -35,8 +35,8 @@ function fetchUsersData()
                     permissions += item.role + "\n";
                 }
             });
-
-            if(current != item.username){
+            if (addedUsername != current){
+                addedUsername = item.username;
                 viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
             }
         });
