@@ -41,7 +41,7 @@ function User(viewmodel, id, username, firstname, lastname, status) {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
-        lastname: ko.observableArray(lastname),
-        status: ko.observableArray(status)
+        lastname: ko.observable(lastname),
+        status: ko.observable(status)
     };
 }
