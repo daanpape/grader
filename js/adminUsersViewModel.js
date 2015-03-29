@@ -18,17 +18,20 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
         return users;
     };
+
+    gvm.updateUsers = function(user)
+    {
+        gvm.projectRules.push(user);
+        console.log(user);
+    }
 }
 
 function fetchUsersData()
 {
     $.getJSON("/api/allusers/", function(data)
     {
-        console.log(data);
         $.each(data, function(i, item){
-            console.log(i);
-            console.log(item.username);
-            var user = viewModel.updateUserList(item.id, item.username, item.firstname, item.lastname, item.status);
+            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
         });
     });
 }
