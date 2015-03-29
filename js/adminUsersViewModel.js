@@ -10,12 +10,42 @@ function pageViewModel(gvm) {
     gvm.userActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserActions");}, gvm);
 
     fetchUsersData();
+
+    gvm.users = ko.observableArray([]);
+
+    gvm.updateUserList = function(id, username, firstname, lastname, status) {
+        var user = new User(this, id, username, firstname, lastname, status);
+        gvm.users.push(user);
+        return users;
+    };
+
+    gvm.clearStructure = function() {
+        gvm.users.destroyAll();
+    };
+
+
+
 }
 
 function fetchUsersData()
 {
+    viewModel.clearStructure();
+
     $.getJSON("/api/allusers/", function(data)
     {
         console.log(data);
+        $.each(data, function(i, item){
+            var user = viewModel.updateUserList(item.id, item.username, item.firstname, item.lastname, item.status);
+        });
     });
+}
+
+function User(viewmodel, id, username, firstname, lastname, status) {
+    return {
+        id: ko.observable(id),
+        username: ko.observable(username),
+        firstname: ko.observable(firstname),
+        lastname: ko.observableArray(lastname),
+        status: ko.observableArray(status)
+    };
 }
