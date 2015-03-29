@@ -11,4 +11,40 @@ function pageViewModel(gvm) {
 
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
+    fetchUsersData();
+
+    gvm.usersPermissions = ko.observableArray([]);
+
+    gvm.updateUsersPermissions = function(user)
+    {
+        console.log(user);
+        gvm.usersPermissions.push(user);
+    }
+}
+
+function fetchUsersData()
+{
+    $.getJSON("/api/alluserswithroles/", function(data)
+    {
+        $.each(data, function(i, item){
+            var permissions = "";
+            var current = item.username;
+            $.each(data, function(i, item)
+            {
+                if(item.username == current){
+                    permissions += item.role + " ";
+                }
+            });
+            viewModel.updateUsers(new User(item.username, item.firstname, item.lastname, permissions));
+        });
+    });
+}
+
+function User(username, firstname, lastname, permissions) {
+    return {
+        username: ko.observable(username),
+        firstname: ko.observable(firstname),
+        lastname: ko.observable(lastname),
+        permissions: ko.observable(permissions)
+    };
 }

@@ -49,10 +49,6 @@ $location = "adminPermissions";
         </div>
         <!-- /.navbar-header -->
 
-
-        <span class="navspan" onclick="setLang('en')">English</span>
-        <span class="navspan" onclick="setLang('nl')">Nederlands</span>
-
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
@@ -144,12 +140,12 @@ $location = "adminPermissions";
                         <th data-bind="text: userActions">Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody data-bind="foreach: usersPermissions">
                     <tr>
-                        <td>jonas.vanalderweireldt@student.howest.be</td>
-                        <td>Jonas</td>
-                        <td>Vanalderweireldt</td>
-                        <td>SUPERUSER</td>
+                        <td data-bind="text: username"></td>
+                        <td data-bind="text: firstname"></td>
+                        <td data-bind="text: lastname"></td>
+                        <td data-bind="text: status"></td>
                         <td><i class="fa fa-wrench fa-lg"></i></td>
                     </tr>
                     </tbody>

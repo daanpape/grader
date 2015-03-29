@@ -897,6 +897,21 @@ class UserDAO {
     }
 
     /**
+     * Get all users with roles.
+     * @return stdClass the users.
+     */
+    public static function getAllUsersWithRoles() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT r.role, u.username, u.firstname, u.lastname FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY ur.user_id, ur.role_id");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            return null;
+        }
+    }
+
+    /**
      * Get account information given the users username.
      * @param type $username the username to get information from.
      * @param type $clean if clean is true the output will be filtered for public use. 
