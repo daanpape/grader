@@ -106,12 +106,12 @@ $location = "adminUsers";
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: users">
-                    <tr>
-                        <td data-bind="text: username"></td>
-                        <td data-bind="text: firstname"></td>
-                        <td data-bind="text: lastname"></td>
-                        <td data-bind="text: status"></td>
-                        <td><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
+                    <tr style="width: 100%">
+                        <td style="width: 25%" data-bind="text: username"></td>
+                        <td style="width: 15%" data-bind="text: firstname"></td>
+                        <td style="width: 15%" data-bind="text: lastname"></td>
+                        <td style="width: 30%" data-bind="text: status"></td>
+                        <td style="width: 15%"><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
                     </tr>
                     </tbody>
             </div>

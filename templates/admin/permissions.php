@@ -105,19 +105,19 @@ $location = "adminPermissions";
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Guest</td>
+                        <td>GUEST</td>
                         <td>When not logged in you get the GUEST role.</td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td>SuperUser</td>
+                        <td>SUPERUSER</td>
                         <td>The superuser role must have access to everything...</td>
                     </tr>
                     </tbody>
                     <tbody>
                     <tr>
-                        <td>User</td>
+                        <td>USER</td>
                         <td>Contains rights for every USER in the system.</td>
                     </tr>
                     </tbody>
