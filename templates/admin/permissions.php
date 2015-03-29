@@ -91,7 +91,7 @@ $location = "adminPermissions";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Rechten</h1>
+                <h1 class="page-header" data-bind="text: pageHeader">Rechten</h1>
             </div>
 
             <div>

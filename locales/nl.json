@@ -99,5 +99,12 @@
     "nameTableTitleRapport":"Naam",
     "lastNameTableTitleRapport":"Familienaam",
     "mailTableTitleRapport":"Mail",
-    "scoreTableTitleRapport":"Punten"
+    "scoreTableTitleRapport":"Punten",
+
+    "AdminTitle" : "Admin pagina",
+    "UserPermissionsTitle" : "Rechten",
+    "UserTitle" : "Gebruikers",
+    "UserName" : "Gebruikersnaam",
+    "UserPermissions" : "Rechten",
+    "UserActions" : "Acties"
 }
