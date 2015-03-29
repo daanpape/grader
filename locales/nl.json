@@ -108,6 +108,7 @@
     "UserName" : "Gebruikersnaam",
     "UserPermissions" : "Rechten",
     "UserActions" : "Acties",
+    "UserStatus" : "Status",
     "PermissionRole" : "Rol",
     "PermissionDescription" : "Beschrijving"
 }

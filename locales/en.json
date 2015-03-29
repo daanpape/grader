@@ -112,6 +112,7 @@
     "UserName" : "Username",
     "UserPermissions" : "Permissions",
     "UserActions" : "Actions",
+    "UserStatus" : "Status",
     "PermissionRole" : "Role",
     "PermissionDescription" : "Description"
 }
