@@ -112,7 +112,7 @@ $location = "adminUsers";
                     <td style="width: 15%" data-bind="text: firstname"></td>
                     <td style="width: 15%" data-bind="text: lastname"></td>
                     <td style="width: 15%" data-bind="text: status"></td>
-                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i><i class="fa fa-toggle-off fa-lg"></i></td>
+                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
                 </tr>
                 </tbody>
         </div>
