@@ -26,6 +26,8 @@ function fetchUsersData()
     {
         console.log(data);
         $.each(data, function(i, item){
+            console.log(i);
+            console.log(item.username);
             var user = viewModel.updateUserList(item.id, item.username, item.firstname, item.lastname, item.status);
         });
     });
