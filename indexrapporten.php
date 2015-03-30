@@ -4,24 +4,30 @@ require_once 'apirapporten.php';
 $app->get('/coursesrapporten', function () use ($app) {
     $app->render('templatesrapport/coursesrapporten.php');
 });
+
 $app->get('/homerapporten', function () use ($app) {
     $app->render('templatesrapport/homerapporten.php');
 });
+
 $app->get('/assessrapporten', function () use ($app) {
     $app->render('templatesrapport/assessrapporten.php');
 });
+
 $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
+
 $app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
     $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
 });
+
 $app->get('/account/studentlistsrapporten', function () use($app) {
     $app->render('templatesrapport/accountstudentlistsrapporten.php');
 });
+
 $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) use($app) {
     $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
