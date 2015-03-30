@@ -1,7 +1,3 @@
-<?php
-// Page initialisation
-$location = "jsrapport/coursestudentsrapporten";
-?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
 <head>
