@@ -1,8 +1,3 @@
-/**
- * Created by Matthieu on 11/12/2014.
- */
-
-// View model for the courses page
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
     gvm.userId = -1;
