@@ -1,5 +1,4 @@
 <?php
-
 class rapportenDAO {
     public static function getAllCourses($start, $count) {
         try {
@@ -14,7 +13,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function getStudentsFromCourse($start, $count) {
         try {
             $conn = Db::getConnection();
@@ -28,13 +26,12 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function insertCourse($code, $name, $description) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO course_rapport (code, name, description) VALUES (?, ?, ?)");
             $stmt->execute(array($code, $name, $description));
-
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
         } catch (PDOException $err) {
@@ -42,13 +39,12 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function insertStudentList($name, $ownerid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name) VALUES (?, ?)");
             $stmt->execute(array($ownerid, $name));
-
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
         } catch (PDOException $err) {
@@ -56,7 +52,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     //Get all courses
     public static function getAllCourse() {
         try {
@@ -69,7 +64,7 @@ class rapportenDAO {
             return false;
         }
     }
-    
+
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -82,7 +77,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     /*
      * Get all competence by course
      * @id the course
@@ -99,11 +93,10 @@ class rapportenDAO {
             return false;
         }
     }
-
     /**
- * Get a list of subcompetence associated with a cometenxe.
- * @param type $id the module id to get the submodule information from.
- */
+     * Get a list of subcompetence associated with a cometenxe.
+     * @param type $id the module id to get the submodule information from.
+     */
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
@@ -116,7 +109,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     /**
      * Get a list of goals associated with a subcompetence.
      * @param type $id the module id to get the goal information from.
@@ -133,7 +125,7 @@ class rapportenDAO {
             return null;
         }
     }
-        public static function getTeacher($id) {
+    public static function getTeacher($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users");
@@ -144,7 +136,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function addTeacher($id) {
         try {
             $conn = Db::getConnection();
@@ -156,7 +148,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function getLastDropdownFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -169,7 +161,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function getCourseCount() {
         try {
             $conn = Db::getConnection();
@@ -181,7 +172,6 @@ class rapportenDAO {
             return 0;
         }
     }
-
     public static function getStudentsCountFromCourse() {
         try {
             $conn = Db::getConnection();
@@ -193,7 +183,7 @@ class rapportenDAO {
             return 0;
         }
     }
-    
+
     public static function updateCourse($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
@@ -205,7 +195,7 @@ class rapportenDAO {
             return false;
         }
     }
-    
+
     public static function deleteCourse($id) {
         try {
             $conn = Db::getConnection();
@@ -218,18 +208,16 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function deleteStudentList($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM studentlist_rapport WHERE id = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
-
             /*$stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt2->execute();*/
-
             /*$stmt3 = $conn->prepare("DELETE FROM project_studentlist WHERE studentlist =:id");
             $stmt3->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt3->execute();*/
@@ -239,7 +227,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
@@ -251,7 +239,6 @@ class rapportenDAO {
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             $data = array();
             foreach ($dataFromDb as $row) {
                 if (!array_key_exists($row['cid'], $data)) {
@@ -260,132 +247,117 @@ class rapportenDAO {
                     $competence->name = $row['cname'];
                     $competence->description = $row['cdescription'];
                     $competence->subcompetences = array();
-
                     $data[$row['cid']] = $competence;
                 }
-
                 if (!array_key_exists($row['sid'], $competence->subcompetences)) {
                     $subcompetence = new stdClass();
                     $subcompetence->id = $row['sid'];
                     $subcompetence->name = $row['sname'];
                     $subcompetence->description = $row['sdescription'];
                     $subcompetence->indicators = array();
-
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
-
                 if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
                     $indicator = new stdClass();
                     $indicator->id = $row['iid'];
                     $indicator->name = $row['iname'];
                     $indicator->description = $row['idescription'];
-
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
             }
-
             return $data;
         } catch (PDOException $err) {
             Logger::logError('Could not get all data from course with id ' . $id, $err);
             return null;
         }
     }
-
     public static function putNewCompetence($name, $description, $course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO competence_rapport (name, description, course) VALUES (?, ?, ?)");
             $stmt->execute(array($name, $description, $course));
             $pid = $conn->lastInsertId();
-
             return $pid;
         } catch (PDOException $err) {
             echo $err;
             return null;
         }
     }
-    
+
     public static function updateCompetence($id, $name, $description, $course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE competence_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $course, $id));
-
             return true;
         } catch (PDOException $err) {
             echo $err;
             return false;
         }
     }
-    
+
     public static function putNewSubCompetence($name, $description, $competenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO subcompetence_rapport (name, description, competence) VALUES (?, ?, ?)");
             $stmt->execute(array($name, $description, $competenceid));
             $sid = $conn->lastInsertId();
-
             return $sid;
         } catch (PDOException $err) {
             echo $err;
             return null;
         }
     }
-    
+
     public static function updateSubCompetence($id, $name, $description, $competenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE subcompetence_rapport SET name = ?, description = ?, competence = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $competenceid, $id));
-
             return true;
         } catch (PDOException $err) {
             echo $err;
             return false;
         }
     }
-    
+
     public static function putNewIndicator($name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO indicator_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
             $stmt->execute(array($name, $description, $subcompetenceid));
             $iid = $conn->lastInsertId();
-
             return $iid;
         } catch (PDOException $err) {
             echo $err;
             return null;
         }
     }
-    
+
     public static function updateIndicator($id, $name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE indicator_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $subcompetenceid, $id));
-
             return true;
         } catch (PDOException $err) {
             echo $err;
-		}
-	}
-
+        }
+    }
     public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, submodule, submoduleid, goal, goalid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, submodule = ?, submoduleid = ?, goal = ?, goalid = ?");
             $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid));
-
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a Course and a studentlist', $err);
             return false;
         }
     }
-    
+
     //update/edit studentlist
-        public static function updateStudentList($id, $code) {
+    public static function updateStudentList($id, $code) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE studentlist_rapport SET name = ? WHERE id = ?");
@@ -396,7 +368,5 @@ class rapportenDAO {
             return false;
         }
     }
-
 }
-
 ?>

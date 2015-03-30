@@ -1,3 +1,7 @@
+<?php
+// Page initialisation
+$location = "adminUsers";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +20,7 @@
     <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../css/grader.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +31,7 @@
 
 </head>
 
-<body>
+<body style="padding-top: 0px">
 
 <div id="wrapper">
 
@@ -39,9 +44,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Grader Admin</a>
+            <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
         <!-- /.navbar-header -->
+
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                    <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                </ul>
+            </li>
+        </ul>
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -58,13 +73,13 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
+                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</span></a>
+                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</a>
                     </li>
                 </ul>
             </div>
@@ -76,9 +91,30 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Gebruikers</h1>
+                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
-            <!-- /.col-lg-12 -->
+        </div>
+
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: userName">Username</th>
+                    <th data-bind="text: firstName">Name</th>
+                    <th data-bind="text: lastName">Lastname</th>
+                    <th data-bind="text: userStatus">Status</th>
+                    <th data-bind="text: userActions">Actions</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: users">
+                <tr style="width: 100%">
+                    <td style="width: 40%" data-bind="text: username"></td>
+                    <td style="width: 15%" data-bind="text: firstname"></td>
+                    <td style="width: 15%" data-bind="text: lastname"></td>
+                    <td style="width: 15%" data-bind="text: status"></td>
+                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
+                </tr>
+                </tbody>
         </div>
         <!-- /.row -->
     </div>
@@ -87,6 +123,7 @@
 </div>
 <!-- /#wrapper -->
 
+<?php include_once('../jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 

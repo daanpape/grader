@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
     gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
     gvm.currentGoalId = null;
-    
+
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
@@ -194,7 +194,8 @@ function pageViewModel(gvm) {
     }
 }
 
-function loadTablePage(courseid, pagenr)
+
+function loadTablePage(pagenr)
 {
     $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
 
@@ -203,7 +204,7 @@ function loadTablePage(courseid, pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+            viewModel.addTableData(item.id,  item.firstname, item.lastname, item.mail);
         });
 
         /* Let previous en next buttons work */
@@ -256,7 +257,10 @@ function loadTablePage(courseid, pagenr)
             }
         });
     });
+
+
 }
+
 
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
