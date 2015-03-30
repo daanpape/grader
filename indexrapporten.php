@@ -33,7 +33,7 @@ $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) 
 });
 
 $app->get('/coursestudents/:id/:name', function($id, $name) use ($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
+    $app->render('templatesrapport/coursestudentsrapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
 
 //get all courses with pages
