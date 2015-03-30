@@ -7,8 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
-    <title data-bind="text: title"></title>
-        <?php include_once('templates/hddepends.php') ?>
+    <?php include_once('templates/hddepends.php') ?>
 </head>
 
 <body>
