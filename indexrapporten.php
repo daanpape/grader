@@ -36,6 +36,10 @@ $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) 
     $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
 
+$app->get('/courses/students/:id/:name', function($id, $name) use ($app) {
+    $app->render('coursestudentsrapporten.php', array('courseid' => $id, 'coursename' => $name));
+});
+
 //get all courses with pages
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
