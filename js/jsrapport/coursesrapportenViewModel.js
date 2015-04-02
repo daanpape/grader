@@ -31,12 +31,7 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc, teach) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach: 
-                            function(id)
-                            {
-                                getTeacher(id);
-                            }
-                       };
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach: teach};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -111,21 +106,6 @@ function pageViewModel(gvm) {
 
 
     }
-    
-/*
- * Getteacher
- */
-function getTeacher(id)
-{
-    $.ajax({
-        url: "/api/getTeacherAPI/" + id,
-        type: "POST",
-        success: function()
-            {
-                viewModel.addTableData(item.firstname);
-            }
-        })
-}
     
 /*
  * Delete item from table given the id. 
