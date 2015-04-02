@@ -216,9 +216,9 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 ");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
-            $stmt2= $conn->prepare(	"INSERT INTO subcompetence_rapport(name,description,competence)
- SELECT (select name  FROM  subcompetence_rapport  WHERE  competence = :id) as name,
- (select description  FROM  subcompetence_rapport  WHERE  competence = :id) as decription,
+            $stmt2= $conn->prepare(	"INSERT INTO competence_rapport(name,description,competence)
+ SELECT (select name  FROM  competence_rapport  WHERE  competence = :id) as name,
+ (select description  FROM  competence_rapport  WHERE  competence = :id) as decription,
  (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS competence"
 );
 
