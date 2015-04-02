@@ -242,11 +242,11 @@ class rapportenDAO {
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
 
-            $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
- SELECT (select name  FROM  module_rapport  WHERE  module = :id) as name,
- (select description  FROM  module_rapport  WHERE  module = :id) as description,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
-);
+            $stmt2= $conn->prepare(	/*"INSERT INTO module_rapport(name,description,course)
+ SELECT  name, description from module_rapport where module=:id, (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
+*/
+              "  INSERT INTO module_rapport(name,description,course)
+                select name,description,course from module_rapport where module = :id");
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
@@ -423,11 +423,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function updateStudent($id, $firstname, $lastname, $username) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE students SET mail = ?, firstname = ?, lastname = ? WHERE id = ?");
-            $stmt->execute(array($username, $firstname, $lastname, $id));
+            $stmt = $conn->prepare("UPDATE users SET firstname = ?, lastname = ?, username = ? WHERE id = ?");
+            $stmt->execute(array($firstname, $lastname, $username, $id));
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not update project', $err);
+            Logger::logError('Could not update student', $err);
             return false;
         }
     }
