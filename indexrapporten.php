@@ -198,4 +198,11 @@ $app->put('/api/studentlistupdate/:id', function($id) use ($app){
         $id, $app->request->post('name')));
 });
 
+$app->copy('/api/coursecopy/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::copyCourse($id));
+});
+
 ?>
