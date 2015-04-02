@@ -243,9 +243,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 ");
 
             $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
- SELECT (select name  FROM  module_rapport  WHERE  module = :id) as name,
- (select description  FROM  module_rapport  WHERE  module = :id) as description,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
+ SELECT  name, description from module_rapport where module=:id, (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
 );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
