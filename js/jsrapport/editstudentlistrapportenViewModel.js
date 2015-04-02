@@ -171,12 +171,12 @@ function initPage() {
       "Strawberry",
       "Pineapple"
     ];
+    
+    $('#fruitlist').autocomplete(fruits);
 
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
-    
-    $('#fruitlist').autocomplete({ source: fruits });
     
     loadStudentTable();
     
