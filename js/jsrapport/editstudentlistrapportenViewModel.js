@@ -163,9 +163,9 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    var fruits = ["Appple", "Banana", "Pear", "Strawberry", "Mango", "Pineapple"];
+    var fruits = ["Apple", "Banana", "Pear", "Strawberry", "Mango", "Pineapple"];
     
-    $('#searchstudent').autocomplete({ source: fruits });
+    //$('#searchstudent').autocomplete({ source: fruits });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
