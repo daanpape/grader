@@ -164,11 +164,8 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    $('#fruitlist').autocomplete( ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] );
+    $('#fruitlist').autocomplete( viewModel.tabledata );     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
-    if ($.fn.autocomplete) {
-        console.log('Autocomlete is a valid function');
-    }
     console.log(options.toArray().length);
     console.log(options.length);
 
