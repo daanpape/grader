@@ -7,10 +7,14 @@ function pageViewModel(gvm) {
 
 
     gvm.AvailableStatus = ko.observableArray([]);
+}
+
+
+function initPage() {
     LoadAllStatus();
 }
 
 function LoadAllStatus() {
-    viewModel.AvaailableStatus.push("Active");
+    viewModel.AvailableStatus.push("Active");
     viewModel.AvailableStatus.push("Non-Active");
 }
