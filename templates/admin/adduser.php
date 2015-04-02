@@ -122,11 +122,11 @@ $location = "adminAddUser";
                 </tr>
             </table>
 
-            <div class="container">
-                <div class="row">
-                    <button class="btn btn-default pagination-button" data-bind="text: savePage">Save</button>
-                </div>
-            </div>
+
+
+            <a class="btn btn-default pagination-button" id="saveUserBtn">
+                <span data-bind="text: saveBtn"></span>
+            </a>
         </div>
     </div>
     <!-- /.row -->
