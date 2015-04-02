@@ -146,7 +146,7 @@ function copyTableItem(id, tblOject) {
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,
-                type: "COPY",
+                type: "post",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);
                 }
