@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, code, name, desc, teach) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach:teach};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach: teach};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -88,22 +88,6 @@ function pageViewModel(gvm) {
         });
     }*/
     
-    /*gvm.updateTeacher = function(id) {
-    $.getJSON('/api/getteacherrapport/' + id, function(data) {
-        gvm.availableTeacher.removeAll();
-        $.each(data, function(i, item) {
-            console.log(item);
-            gvm.availableTeacher.push(item);
-            $("#teacherbtn-" + item.id).click(function(){
-                $(".btn-teacher span:first").text($(this).text());
-                gvm.currentteacherid = item.id;
-                gvm.saveLastSelectedDropdowns();
-                loadTablePage(item.id, 1);
-            });
-        });
-    });
-    }*/
-
     gvm.updateTeacher = function(id) {
         $.getJSON('/api/getteacherrapport/' + id, function(data) {
             gvm.availableTeacher.removeAll();
@@ -122,6 +106,7 @@ function pageViewModel(gvm) {
 
 
     }
+    
 /*
  * Delete item from table given the id. 
  */
