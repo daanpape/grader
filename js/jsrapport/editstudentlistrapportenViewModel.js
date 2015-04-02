@@ -83,13 +83,7 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="E-mail" name="username"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="First Name" name="firstname"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="Last Name" name="lastname"> \
+                <input type="text" class="form-control input-lg" placeholder="Search student..." name="username"> \
             </div> \
         </form>');
     $.getJSON()
