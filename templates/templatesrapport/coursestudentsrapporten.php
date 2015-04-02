@@ -15,7 +15,7 @@
 
     <!-- Header container -->
     <div class="container">
-        <h1 class="page-header" id="projectHeader" data-value="<?php echo $courseid ?>"><?php echo $coursename ?></h1>
+        <h1 class="page-header" id="projectHeader" data-value="<?php echo $coursestudentsid ?>"><?php echo $coursestudentsname ?></h1>
     </div>
 
     <!-- Content container -->
