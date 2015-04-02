@@ -86,8 +86,8 @@ $location = "adminAddUser";
             <div>
                 <table class="table table-striped">
                     <tr>
-                        <td>username</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Username" data-bind="value: value"></td>
+                        <td>Email</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Email" data-bind="value: value"></td>
                     </tr>
                     <tr>
                         <td>firstname</td>
@@ -116,11 +116,13 @@ $location = "adminAddUser";
                     </tr>
                 </table>
 
-
-
-                <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-                </a>
+                <div class="container">
+                    <div class="row">
+                        <div id="bottom-col" class="col-md-12">
+                            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->
