@@ -115,6 +115,12 @@ $location = "adminAddUser";
                         </td>
                     </tr>
                 </table>
+
+
+
+                <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                </a>
             </div>
         </div>
         <!-- /.row -->
