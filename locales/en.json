@@ -42,6 +42,7 @@
     "CodeTableTitle" : "Code",
     "NameTableTitle" : "Name",
     "DescTableTitle" : "Description",
+    "teacherTableTitle" : "Teacher",
     "ActionTableTitle" : "Actions",
     "firstNameTableTitle": "First Name",
     "lastNameTableTitle": "Last Name",
