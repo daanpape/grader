@@ -117,13 +117,12 @@ $location = "adminUsers";
                 </tbody>
         </div>
 
-
-        <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </button>
-
         <!-- /.row -->
     </div>
+
+    <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+        <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+    </button>
     <!-- /#page-wrapper -->
 
 </div>
