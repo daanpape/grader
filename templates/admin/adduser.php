@@ -84,7 +84,28 @@ $location = "adminAddUser";
 
             <!-- /.col-lg-12 -->
             <div>
-
+                <table class="table table-striped">
+                    <tr>
+                        <td>username</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                    </tr>
+                    <tr>
+                        <td>firstname</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                    </tr>
+                    <tr>
+                        <td>lastname</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td><input type="checkbox" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!-- /.row -->
