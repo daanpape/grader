@@ -17,8 +17,8 @@ $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
 
-$app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
+$app->get('/coursemodule/:id/:name', function ($id, $name) use($app) {
+    $app->render('templatesrapport/modulerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
@@ -88,28 +88,28 @@ $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all trainings by locationsid
-    $pagedata = RapportAPI::getCompetenceByCourse($locationId);
+    $pagedata = RapportAPI::getmoduleByCourse($locationId);
     echo json_encode($pagedata);
 });
-//getsubmodule from module
-$app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
+//getdoelstelling from module
+$app->get('/api/doelstellingrapport/:moduleId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
+    $pagedata = RapportAPI::getdoelstellingBymodule($trainingId);
     echo json_encode($pagedata);
 });
-//getcriterias from submodule
-$app->get('/api/criteriarapport/:submoduleId', function ($trainingId) use ($app) {
+//getcriterias from doelstelling
+$app->get('/api/criteriarapport/:doelstellingId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getcriteriaBySubCompetence($trainingId);
+    $pagedata = RapportAPI::getcriteriaBydoelstelling($trainingId);
     echo json_encode($pagedata);
 });
-//get all subcompetences
+//get all doelstellingen
 $app->get('/api/coursestructure/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(RapportAPI::getAllDataFromCourse($id));
@@ -177,13 +177,13 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     $response->header('Content-Type', 'application/json');
     //Insert the data
     echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
-        $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-        $app->request->post('submoduleid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
+        $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('doelstelling'),
+        $app->request->post('doelstellingid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
         $app->request->post('user')));
 });
-$app->post('/api/savecompetences/:id', function($id) use ($app) {
+$app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::updateCourseCompetences($id, file_get_contents('php://input')));
+    echo json_encode(RapportAPI::updateCoursemodules($id, file_get_contents('php://input')));
 });
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers
