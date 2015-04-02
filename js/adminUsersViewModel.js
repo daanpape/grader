@@ -41,3 +41,10 @@ function User(id, username, firstname, lastname, status) {
         status: ko.observable(status)
     };
 }
+
+function initPage() {
+    // Add button handlers
+    $('#addProjectTypeBtn').click(function(){
+
+    });
+}
