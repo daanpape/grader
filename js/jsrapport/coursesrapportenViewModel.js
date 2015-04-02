@@ -65,7 +65,7 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-    
+    /*
     gvm.updateDropdowns = function() {
         $.getJSON('api/teacherrapport/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
@@ -79,7 +79,7 @@ function pageViewModel(gvm) {
                 gvm.updateTeacher();
             }
         });
-    }
+    }*/
     
     /*gvm.updateTeacher = function(id) {
     $.getJSON('/api/getteacherrapport/' + id, function(data) {
