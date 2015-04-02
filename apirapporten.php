@@ -229,4 +229,17 @@ $app->request->post('user')));
             return -1;
         }
     }
+    
+    public static function updateStudent($id, $firstname, $lastname, $username) {
+        if(rapportenDAO::updateStudent($id, $firstname, $lastname, $username)) {
+            return array(
+                "id" => $id,
+                "firstname" => $firstname,
+                "lastname" => $lastname,
+                "username" => $username,
+            );
+        } else {
+            return -1;
+        }
+    }
 }
