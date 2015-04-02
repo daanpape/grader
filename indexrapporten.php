@@ -32,7 +32,7 @@ $app->get('/account/studentlistsrapporten/edit/:id/:name', function($id, $name) 
     $app->render('templatesrapport/editstudentlistrapporten.php', array('studentlistid' => $id, 'studentlistname' => $name));
 });
 
-$app->get('/coursestudents/:id/:name', function($id, $name) use ($app) {
+$app->get('/api/coursestudents/:id/:name', function($id, $name) use ($app) {
     $app->render('templatesrapport/coursestudentsrapporten.php', array('coursestudentsid' => $id, 'coursestudentsname' => $name));
 });
 
