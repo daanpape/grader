@@ -123,6 +123,19 @@ class rapportenDAO {
         }
     }
     
+    public static function getStudentsFromStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT users.id, users.username, users.firstname, users.lastname FROM users JOIN studentlist_students_rapport ON users.id = studentlist_students_rapport.user WHERE studentlist_students_rapport.studentlist = :id ");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select studentlist by id ' . $id, $err);
+            return null;
+        }
+    }
+    
     /**
      * Get a list of goals associated with a doelstelling.
      * @param type $id the module id to get the goal information from.
