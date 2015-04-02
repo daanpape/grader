@@ -172,7 +172,7 @@ function initPage() {
       "Pineapple"
     ];
     
-    $('#fruitlist').autocomplete({ source: fruits });
+    console.log($('#fruitlist').autocomplete({ source: fruits }));
 
     $('#addStudent').click(function(){
         showNewStudentModal();
