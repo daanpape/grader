@@ -242,12 +242,12 @@ class rapportenDAO {
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
 
-            $stmt2= $conn->prepare(	"  INSERT INTO module_rapport(name,description,course)
+            $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
 
-                select (select name from module_rapport where course = :id) as name,
-                (select description from module_rapport where course= :id)as description,
-                (select course from module_rapport where course = :id ) as course
-                 from course");
+            VALUES (select name from module_rapport where course = :id) as name,
+              (select description from module_rapport where course= :id)as description,
+              (select course from module_rapport where course = :id ) as course)
+         "  );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
