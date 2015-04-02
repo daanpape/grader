@@ -29,9 +29,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc,teach) {
+    gvm.addTableData = function(id, code, name, desc, teach) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc,tteach:teach};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach:teach};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -215,7 +215,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.id, item.code, item.name, item.description, item.teacher);
         });
 
         /* Let previous en next buttons work */
