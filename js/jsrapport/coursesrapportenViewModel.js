@@ -113,21 +113,6 @@ function pageViewModel(gvm) {
     }
     
 /*
- * Getteacher
- */
-function getTeacher(id)
-{
-    $.ajax({
-        url: "/api/getTeacherAPI/" + id,
-        type: "POST",
-        success: function()
-            {
-                viewModel.addTableData(item.firstname);
-            }
-        })
-}
-    
-/*
  * Delete item from table given the id. 
  */
 function deleteTableItem(id, tblOject) {
