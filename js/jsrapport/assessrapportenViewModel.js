@@ -24,12 +24,12 @@ function pageViewModel(gvm) {
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);
     gvm.availableSubmodules = ko.observableArray([]);
-    gvm.availableGoals = ko.observableArray([]);
+    gvm.availablecriterias = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
     gvm.currentModuleid = null;
     gvm.currentSubmoduleId = null;
-    gvm.currentGoalId = null;
+    gvm.currentcriteriaId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
@@ -38,15 +38,15 @@ function pageViewModel(gvm) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-module span:first").text(item.module);
                     $(".btn-submodule span:first").text(item.submodule);
-                    $(".btn-goal span:first").text(item.goal);
+                    $(".btn-criteria span:first").text(item.criteria);
                     gvm.currentCourseRapportId = item.courseid;
                     gvm.currentModuleid = item.moduleid;
                     gvm.currentSubmoduleId = item.submoduleid;
-                    gvm.currentGoalId = item.goalid;
+                    gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.moduleid);
                     gvm.updateSubmodules(item.submoduleid);
-                    gvm.updateGoals(item.goalid);
+                    gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
@@ -66,8 +66,8 @@ function pageViewModel(gvm) {
         data["moduleid"] = gvm.currentModuleid;
         data["submodule"] = $(".btn-submodule span:first").text();
         data["submoduleid"] = gvm.currentSubmoduleId;
-        data["goal"] = $(".btn-goal span:first").text();
-        data["goalid"] = gvm.currentGoalId;
+        data["criteria"] = $(".btn-criteria span:first").text();
+        data["criteriaid"] = gvm.currentcriteriaId;
         data["user"] = gvm.userId;
         console.log(data);
         $.ajax({
@@ -92,14 +92,14 @@ function pageViewModel(gvm) {
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentModuleid = null;
                     gvm.currentSubmoduleId = null;
-                    gvm.currentGoalId = null;
+                    gvm.currentcriteriaId = null;
                     gvm.updateModules(item.id);
                     gvm.updateSubmodules(null);
-                    gvm.updateGoals(null);
+                    gvm.updatecriterias(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
                     $(".btn-submodule span:first").text("Sub-module");
-                    $(".btn-goal span:first").text("Goal");
+                    $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this course
                 });
@@ -121,12 +121,12 @@ function pageViewModel(gvm) {
                 $("#modulebtn-" + item.id).click(function(){
                     gvm.currentModuleid = item.id;
                     gvm.currentSubmoduleId = null;
-                    gvm.currentGoalId = null;
+                    gvm.currentcriteriaId = null;
                     gvm.updateSubmodules(item.id);
-                    gvm.updateGoals(null);
+                    gvm.updatecriterias(null);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-submodule span:first").text("Sub-module");
-                    $(".btn-goal span:first").text("Goal");
+                    $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this module
                 });
@@ -147,10 +147,10 @@ function pageViewModel(gvm) {
                 $("#submodulebtn-" + item.id).click(function(){
                     $(".btn-submodule span:first").text($(this).text());
                     gvm.currentSubmoduleId = item.id;
-                    gvm.currentGoalId = null;
-                    gvm.updateGoals(item.id);
+                    gvm.currentcriteriaId = null;
+                    gvm.updatecriterias(item.id);
                     loadTablePage(item.id, 1);
-                    $(".btn-goal span:first").text("Goal");
+                    $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this submodule
                 });
@@ -159,21 +159,21 @@ function pageViewModel(gvm) {
     }
 
     /*
-     * Update goals
+     * Update criterias
      */
-    gvm.updateGoals = function(id) {
-        $.getJSON('/api/goalrapport/' + id, function(data) {
-            gvm.availableGoals.removeAll();
+    gvm.updatecriterias = function(id) {
+        $.getJSON('/api/criteriarapport/' + id, function(data) {
+            gvm.availablecriterias.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableGoals.push(item);
+                gvm.availablecriterias.push(item);
 
                 /* Add listener to listitem */
-                $("#goalbtn-" + item.id).click(function(){
-                    $(".btn-goal span:first").text($(this).text());
-                    gvm.currentGoalId = item.id;
+                $("#criteriabtn-" + item.id).click(function(){
+                    $(".btn-criteria span:first").text($(this).text());
+                    gvm.currentcriteriaId = item.id;
                     loadTablePage(item.id, 1);
                     gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this goal
+                    //method to get all students who follow this criteria
                 });
             });
         });
