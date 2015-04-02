@@ -29,9 +29,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc) {
+    gvm.addTableData = function(id, code, name, desc,teach) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc,tteach:teach};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
