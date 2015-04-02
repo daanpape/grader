@@ -164,36 +164,19 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
+    var fruits = [
+      "Apple",
+      "Pear",
+      "Mango",
+      "Strawberry",
+      "Pineapple"
     ];
 
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
     
-    $('#fruitlist').autocomplete({ source: availableTags });
+    $('#fruitlist').autocomplete({ source: fruits });
     
     loadStudentTable();
     
