@@ -83,7 +83,7 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="form-group"> \
-                <input list="fruits" type="text" class="form-control input-lg" placeholder="Search student..." name="username"> \
+                <input type="text" class="form-control input-lg" placeholder="Search student..." name="username" id="searchstudents"> \
             </div> \
         </form>');
     $.getJSON()
@@ -163,9 +163,7 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    var fruits = ["Apple", "Strawberry", "Pineapple", "Pear", "Banana", "Mango"];
-    
-    //$('#searchstudent').autocomplete({ source: fruits });
+    $('#searchstudent').typeahead({ name: 'fruits', local: ["Apple", "Mango", "Banana", "Strawberry", "Pear", "Pineapple"] });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
