@@ -27,7 +27,7 @@ Class RapportAPI {
     }
     public static function getGoalBySubCompetence($id) {
         /* Return module from selected course */
-        return rapportenDAO::getGoalsBySubcompetence($id);
+        return rapportenDAO::getGoalsBydoelstelling($id);
     }
 
     public static function getTeacher($id) {
@@ -138,23 +138,23 @@ Class RapportAPI {
                 property_exists($competence, "name") ? $competence->name : "",
                 property_exists($competence, "description") ? $competence->description : "",
                 $courseid);
-            // Insert subcompetences if any
-            if (property_exists($competence, "subcompetences")) {
-                foreach ($competence->subcompetences as $subcompetence) {
+            // Insert doelstellingen if any
+            if (property_exists($competence, "doelstellingen")) {
+                foreach ($competence->doelstellingen as $doelstelling) {
                     // Insert a subcomptence
-                    $subcompetenceid = self::putSubCompetence(
-                        property_exists($subcompetence, "id") ? $subcompetence->id : -1,
-                        property_exists($subcompetence, "name") ? $subcompetence->name : "",
-                        property_exists($subcompetence, "description") ? $subcompetence->description : "",
+                    $doelstellingid = self::putdoelstelling(
+                        property_exists($doelstelling, "id") ? $doelstelling->id : -1,
+                        property_exists($doelstelling, "name") ? $doelstelling->name : "",
+                        property_exists($doelstelling, "description") ? $doelstelling->description : "",
                         $competenceid);
                     // Insert criterias if any
-                    if (property_exists($subcompetence, "criterias")) {
-                        foreach ($subcompetence->criterias as $criteria) {
+                    if (property_exists($doelstelling, "criterias")) {
+                        foreach ($doelstelling->criterias as $criteria) {
                             self::putcriteria(
                                 property_exists($criteria, "id") ? $criteria->id : -1,
                                 property_exists($criteria, "name") ? $criteria->name : "",
                                 property_exists($criteria, "description") ? $criteria->description : "",
-                                $subcompetenceid);
+                                $doelstellingid);
                         }
                     }
                 }
@@ -196,21 +196,21 @@ $app->request->post('user')));
 
     public static function putSubCompetence($id = -1, $name, $description, $competenceid) {
         if($id == -1){
-            return rapportenDAO::putNewSubCompetence($name, $description, $competenceid);
+            return rapportenDAO::putNewdoelstelling($name, $description, $competenceid);
         } else {
-            // Update a subcompetence
-            rapportenDAO::updateSubCompetence($id, $name, $description, $competenceid);
+            // Update a doelstelling
+            rapportenDAO::updatedoelstelling($id, $name, $description, $competenceid);
             return $id;
         }
     }
 
-    public static function putIndicator($id = -1, $name, $description, $subcompetence) {
+    public static function putIndicator($id = -1, $name, $description, $doelstelling) {
         if($id == -1){
             // Insert a new criteria
-            return rapportenDAO::putNewcriteria($name, $description, $subcompetence);
+            return rapportenDAO::putNewcriteria($name, $description, $doelstelling);
         } else {
             // Update an criteria
-            rapportenDAO::updatecriteria($id, $name, $description, $subcompetence);
+            rapportenDAO::updatecriteria($id, $name, $description, $doelstelling);
             return $id;
         }
     }
