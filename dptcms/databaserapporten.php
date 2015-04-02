@@ -322,7 +322,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-    public static function putNewCompetence($name, $description, $course) {
+    public static function putNewmodule($name, $description, $course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO module_rapport (name, description, course) VALUES (?, ?, ?)");
@@ -335,7 +335,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function updateCompetence($id, $name, $description, $course) {
+    public static function updatemodule($id, $name, $description, $course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE module_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
