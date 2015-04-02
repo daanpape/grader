@@ -3,7 +3,11 @@ class rapportenDAO {
     public static function getAllCourses($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count  ");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport"
+                    . "join teacherlist_rapport on  course_rapport.id on teacherlist_rapport.courseid"
+                    . "join users on teacherlist_rapport.userid on users.id"
+                    . "where ACTIVE = '1'"
+                    . " LIMIT :start,:count  ");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
