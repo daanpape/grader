@@ -101,7 +101,7 @@ $app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
     echo json_encode($pagedata);
 });
 //getcriterias from submodule
-$app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
+$app->get('/api/criteriarapport/:submoduleId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
