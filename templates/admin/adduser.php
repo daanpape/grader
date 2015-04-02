@@ -104,8 +104,9 @@ $location = "adminAddUser";
                     <tr>
                         <td>Status</td>
                         <td>
-                            <select data-bind="foreach: viewModel.AvailableStatus, value: status" class="form-control form-next">
-                                <option data-bind="text: $data"></option>
+                            <select class="form-control form-next">
+                                <option>Active</option>
+                                <option>Non-Active</option>
                             </select>
                         </td>
                     </tr>
