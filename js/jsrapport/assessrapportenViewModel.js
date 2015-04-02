@@ -23,12 +23,12 @@ function pageViewModel(gvm) {
 
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);
-    gvm.availableSubmodules = ko.observableArray([]);
+    gvm.availabledoelstellings = ko.observableArray([]);
     gvm.availablecriterias = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
     gvm.currentModuleid = null;
-    gvm.currentSubmoduleId = null;
+    gvm.currentdoelstellingId = null;
     gvm.currentcriteriaId = null;
 
     gvm.updateDropdowns = function() {
@@ -37,15 +37,15 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-module span:first").text(item.module);
-                    $(".btn-submodule span:first").text(item.submodule);
+                    $(".btn-doelstelling span:first").text(item.doelstelling);
                     $(".btn-criteria span:first").text(item.criteria);
                     gvm.currentCourseRapportId = item.courseid;
                     gvm.currentModuleid = item.moduleid;
-                    gvm.currentSubmoduleId = item.submoduleid;
+                    gvm.currentdoelstellingId = item.doelstellingid;
                     gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.moduleid);
-                    gvm.updateSubmodules(item.submoduleid);
+                    gvm.updatedoelstellings(item.doelstellingid);
                     gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
@@ -64,8 +64,8 @@ function pageViewModel(gvm) {
         data["courseid"] = gvm.currentCourseRapportId;
         data["module"] = $(".btn-module span:first").text();
         data["moduleid"] = gvm.currentModuleid;
-        data["submodule"] = $(".btn-submodule span:first").text();
-        data["submoduleid"] = gvm.currentSubmoduleId;
+        data["doelstelling"] = $(".btn-doelstelling span:first").text();
+        data["doelstellingid"] = gvm.currentdoelstellingId;
         data["criteria"] = $(".btn-criteria span:first").text();
         data["criteriaid"] = gvm.currentcriteriaId;
         data["user"] = gvm.userId;
@@ -91,14 +91,14 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentModuleid = null;
-                    gvm.currentSubmoduleId = null;
+                    gvm.currentdoelstellingId = null;
                     gvm.currentcriteriaId = null;
                     gvm.updateModules(item.id);
-                    gvm.updateSubmodules(null);
+                    gvm.updatedoelstellings(null);
                     gvm.updatecriterias(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
-                    $(".btn-submodule span:first").text("Sub-module");
+                    $(".btn-doelstelling span:first").text("Sub-module");
                     $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this course
@@ -120,12 +120,12 @@ function pageViewModel(gvm) {
                 /* Add listener to listitem */
                 $("#modulebtn-" + item.id).click(function(){
                     gvm.currentModuleid = item.id;
-                    gvm.currentSubmoduleId = null;
+                    gvm.currentdoelstellingId = null;
                     gvm.currentcriteriaId = null;
-                    gvm.updateSubmodules(item.id);
+                    gvm.updatedoelstellings(item.id);
                     gvm.updatecriterias(null);
                     $(".btn-module span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("Sub-module");
+                    $(".btn-doelstelling span:first").text("Sub-module");
                     $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this module
@@ -137,22 +137,22 @@ function pageViewModel(gvm) {
     /*
      * Update sub-module
      */
-    gvm.updateSubmodules = function(id) {
-        $.getJSON('/api/submodulerapport/' + id, function(data) {
-            gvm.availableSubmodules.removeAll();
+    gvm.updatedoelstellings = function(id) {
+        $.getJSON('/api/doelstellingrapport/' + id, function(data) {
+            gvm.availabledoelstellings.removeAll();
             $.each(data, function(i, item) {
-                gvm.availableSubmodules.push(item);
+                gvm.availabledoelstellings.push(item);
 
                 /* Add listener to listitem */
-                $("#submodulebtn-" + item.id).click(function(){
-                    $(".btn-submodule span:first").text($(this).text());
-                    gvm.currentSubmoduleId = item.id;
+                $("#doelstellingbtn-" + item.id).click(function(){
+                    $(".btn-doelstelling span:first").text($(this).text());
+                    gvm.currentdoelstellingId = item.id;
                     gvm.currentcriteriaId = null;
                     gvm.updatecriterias(item.id);
                     loadTablePage(item.id, 1);
                     $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this submodule
+                    //method to get all students who follow this doelstelling
                 });
             });
         });
