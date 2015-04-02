@@ -119,12 +119,14 @@ $location = "adminUsers";
 
         <!-- /.row -->
     </div>
+    <!-- /#page-wrapper -->
+</div>
 
-    <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+<!-- Pagination and action container -->
+<div class="container">
+    <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
         <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
     </button>
-    <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 
