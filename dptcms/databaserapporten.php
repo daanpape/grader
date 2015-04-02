@@ -242,9 +242,9 @@ class rapportenDAO {
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
 
-            $stmt2= $conn->prepare(	"INSERT INTO competence_rapport(name,description,course)
- SELECT (select name  FROM  competence_rapport  WHERE  competence = :id) as name,
- (select description  FROM  competence_rapport  WHERE  competence = :id) as description,
+            $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
+ SELECT (select name  FROM  module_rapport  WHERE  competence = :id) as name,
+ (select description  FROM  module_rapport WHERE  competence = :id) as description,
  (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
 );
 
