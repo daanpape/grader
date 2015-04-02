@@ -83,7 +83,14 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="Search student..." name="username" id="searchstudents"> \
+                <input type="text" class="form-control input-lg" placeholder="Search student..." name="username" list="fruitlist" /> \\n\
+                <datalist id="fruitlist"> \
+                    <option value="Apple"> \
+                    <option value="Pear"> \
+                    <option value="Mango"> \
+                    <option value="Pineapple"> \
+                    <option value="Strawberry"> \
+                </datalist> \
             </div> \
         </form>');
     $.getJSON()
@@ -162,8 +169,6 @@ function initPage() {
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });
-    
-    $('#searchstudent').typeahead({ name: 'fruits', local: ["Apple", "Mango", "Banana", "Strawberry", "Pear", "Pineapple"] });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
