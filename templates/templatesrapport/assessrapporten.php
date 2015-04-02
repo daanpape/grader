@@ -50,22 +50,22 @@
                 </div>
 
                 <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-submodule dropdown-toggle" type="button" id="availableSubmodules" data-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-wide btn-default btn-doelstelling dropdown-toggle" type="button" id="availabledoelstellingen" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Sub-module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-submodule ul-wide" role="menu" aria-labelledby="availableSubmodules" data-bind="foreach: availableSubmodules">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'submodulebtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                    <ul class="dropdown-menu dropdown-doelstelling ul-wide" role="menu" aria-labelledby="availabledoelstellingen" data-bind="foreach: availabledoelstellingen">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'doelstellingbtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
 
                 <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-goal dropdown-toggle" type="button" id="availableGoals" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Goal</span>
+                    <button class="btn btn-wide btn-default btn-criteria dropdown-toggle" type="button" id="availablecriterias" data-toggle="dropdown" aria-expanded="true">
+                        <span class="text-center">criteria</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-goal ul-wide" role="menu" aria-labelledby="availableGoals" data-bind="foreach: availableGoals">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'goalbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                    <ul class="dropdown-menu dropdown-criteria ul-wide" role="menu" aria-labelledby="availablecriterias" data-bind="foreach: availablecriterias">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'criteriabtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
             </div>
