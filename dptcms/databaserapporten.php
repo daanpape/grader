@@ -78,18 +78,18 @@ class rapportenDAO {
         }
     }
     /*
-     * Get all module by course
+     * Get all competence by course
      * @id the course
      */
     public static function getCompetenceByCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM module_rapport WHERE course = :course");
+            $stmt = $conn->prepare("SELECT * FROM competence_rapport WHERE course = :course");
             $stmt->bindValue(':course', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get modules', $err);
+            Logger::logError('Could not get competences', $err);
             return false;
         }
     }
@@ -119,6 +119,19 @@ class rapportenDAO {
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
+    
+    public static function getStudentsFromStudentList($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT users.id, users.username, users.firstname, users.lastname FROM users JOIN studentlist_students_rapport ON users.id = studentlist_students_rapport.user WHERE studentlist_students_rapport.studentlist = :id ");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select studentlist by id ' . $id, $err);
             return null;
         }
     }
@@ -236,11 +249,12 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+           $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
+            $stmt2->execute();
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not delete project', $err);
+            Logger::logError('Could not copy course', $err);
             return null;
         }
     }
