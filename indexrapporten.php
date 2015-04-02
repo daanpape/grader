@@ -45,6 +45,15 @@ $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
     echo json_encode($data);
 });
 
+$app->get('/api/studentlistrapporten/students/:id', function($id) use($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    $data = RapportAPI::getStudentsFromStudentList($id);
+
+    echo json_encode($data);
+});
+
 //get all courses with pages
 $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
