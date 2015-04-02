@@ -189,11 +189,12 @@ function initPage() {
       "Scheme"
     ];
 
-    $('#fruitlist').autocomplete({ source: availableTags });
-
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
+    
+    $('#fruitlist').autocomplete({ source: availableTags });
+    
     loadStudentTable();
     
     
