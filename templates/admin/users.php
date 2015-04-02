@@ -104,15 +104,11 @@ $location = "adminUsers";
                     <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
                 </tr>
                 </tbody>
-
-                <div class="container">
-                    <div class="row">
-                        <div id="bottom-col" class="col-md-12">
-                            <button class="btn btn-lg addUserBtn pull-right" data-bind="text: addBtn">Add user</button>
-                        </div>
-                    </div>
-                </div>
         </div>
+
+        <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+        </a>
 
         <!-- /.row -->
     </div>
