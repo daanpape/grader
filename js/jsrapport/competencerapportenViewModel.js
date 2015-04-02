@@ -1,32 +1,32 @@
 /**
  * module class
  */
-function module(viewmodel, id, name, description, submodules) {
+function module(viewmodel, id, name, description, doelstellingen) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        submodules: ko.observableArray(submodules),
+        doelstellingen: ko.observableArray(doelstellingen),
 
-        addSubmodule: function() {
-            this.submodules.push(new Submodule(this));
+        adddoelstelling: function() {
+            this.doelstellingen.push(new doelstelling(this));
         },
 
         removeThis: function() {
             viewmodel.removemodule(this);
         },
 
-        removeSubmodule: function(submodule) {
-            this.submodules.remove(submodule);
+        removedoelstelling: function(doelstelling) {
+            this.doelstellingen.remove(doelstelling);
         }
     };
 
 }
 
 /**
- * Submodule class
+ * doelstelling class
  */
-function Submodule(parent, id, name, description, criterias) {
+function doelstelling(parent, id, name, description, criterias) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
@@ -38,7 +38,7 @@ function Submodule(parent, id, name, description, criterias) {
         },
 
         removeThis: function() {
-            parent.removeSubmodule(this);
+            parent.removedoelstelling(this);
 
         },
         
@@ -106,12 +106,12 @@ function fetchProjectStructure() {
         $.each(data, function(i, item){
             var module = viewModel.updatemodule(item.id, item.name, item.description);
             
-            $.each(item.submodules, function(i, subcomp){
-               var submodule = new Submodule(module, subcomp.id, subcomp.name, subcomp.description);
-                module.submodules.push(submodule);
+            $.each(item.doelstellingen, function(i, subcomp){
+               var doelstelling = new doelstelling(module, subcomp.id, subcomp.name, subcomp.description);
+                module.doelstellingen.push(doelstelling);
                
                $.each(subcomp.criterias, function(i, indic){
-                  submodule.criterias.push(new criteria(submodule, indic.id, indic.name, indic.description));
+                  doelstelling.criterias.push(new criteria(doelstelling, indic.id, indic.name, indic.description));
                });
             });
         })
@@ -154,7 +154,7 @@ function saveProjectStructure() {
 function validationCheck()
 {
     var allmodulesValid = true;
-    var allSubmodulesValid = true;
+    var alldoelstellingenValid = true;
     var allcriteriasValid = true;
 
     for(var indexmodules =0; indexmodules < viewModel.modules().length; indexmodules++)
@@ -168,20 +168,20 @@ function validationCheck()
             }
             allmodulesValid = false;
         }
-        for(var indexSubmodule = 0; indexSubmodule < viewModel.modules()[indexmodules].submodules().length; indexSubmodule++)
+        for(var indexdoelstelling = 0; indexdoelstelling < viewModel.modules()[indexmodules].doelstellingen().length; indexdoelstelling++)
         {
-            if(!viewModel.modules()[indexmodules].submodules()[indexSubmodule].name() && !viewModel.modules()[indexmodules].submodules()[indexSubmodule].description())
+            if(!viewModel.modules()[indexmodules].doelstellingen()[indexdoelstelling].name() && !viewModel.modules()[indexmodules].doelstellingen()[indexdoelstelling].description())
             {
-                if(allSubmodulesValid)
+                if(alldoelstellingenValid)
                 {
-                    $(".validationSummary ul").append("<li>Code or name in submodules is empty</li>");
+                    $(".validationSummary ul").append("<li>Code or name in doelstellingen is empty</li>");
                     $(".validationSummary").removeClass("hide");
                 }
-                allSubmodulesValid = false;
+                alldoelstellingenValid = false;
             }
-            for(var indexcriterias = 0; indexcriterias < viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias().length; indexcriterias++)
+            for(var indexcriterias = 0; indexcriterias < viewModel.modules()[indexmodules].doelstellingen()[indexdoelstelling].criterias().length; indexcriterias++)
             {
-                if(!viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias()[indexcriterias].name() && !viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias()[indexcriterias].description())
+                if(!viewModel.modules()[indexmodules].doelstellingen()[indexdoelstelling].criterias()[indexcriterias].name() && !viewModel.modules()[indexmodules].doelstellingen()[indexdoelstelling].criterias()[indexcriterias].description())
                 {
                     if(allcriteriasValid)
                     {
@@ -193,5 +193,5 @@ function validationCheck()
             }
         }
     }
-    return allmodulesValid && allSubmodulesValid && allcriteriasValid;
+    return allmodulesValid && alldoelstellingenValid && allcriteriasValid;
 }

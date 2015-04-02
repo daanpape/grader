@@ -17,8 +17,8 @@ $app->get('/studentrapportrapporten', function () use ($app) {
     $app->render('templatesrapport/studentrapportrapporten.php');
 });
 
-$app->get('/coursecompetence/:id/:name', function ($id, $name) use($app) {
-    $app->render('templatesrapport/competencerapporten.php', array('courseid' => $id, 'coursename' => $name));
+$app->get('/coursemodule/:id/:name', function ($id, $name) use($app) {
+    $app->render('templatesrapport/modulerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });
 $app->get('/account/admin', function () use($app) {
     $app->render('templatesrapport/adminrapporten.php');
@@ -88,7 +88,7 @@ $app->get('/api/coursesrapport/:courseId', function ($locationId) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all trainings by locationsid
-    $pagedata = RapportAPI::getCompetenceByCourse($locationId);
+    $pagedata = RapportAPI::getmoduleByCourse($locationId);
     echo json_encode($pagedata);
 });
 //getdoelstelling from module
@@ -97,7 +97,7 @@ $app->get('/api/doelstellingrapport/:moduleId', function ($trainingId) use ($app
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getdoelstellingByCompetence($trainingId);
+    $pagedata = RapportAPI::getdoelstellingBymodule($trainingId);
     echo json_encode($pagedata);
 });
 //getcriterias from doelstelling
@@ -181,9 +181,9 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
         $app->request->post('doelstellingid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
         $app->request->post('user')));
 });
-$app->post('/api/savecompetences/:id', function($id) use ($app) {
+$app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
-    echo json_encode(RapportAPI::updateCourseCompetences($id, file_get_contents('php://input')));
+    echo json_encode(RapportAPI::updateCoursemodules($id, file_get_contents('php://input')));
 });
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers

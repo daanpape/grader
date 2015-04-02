@@ -55,7 +55,7 @@ function pageViewModel(gvm) {
             event.stopPropagation();
         });
         
-        //Attach manage handler to manage modules, submodules and criterias to manage button
+        //Attach manage handler to manage modules, doelstellingen and criterias to manage button
         $('#managebtn-' + id).bind('click', function(event, data) {
             //TODO
         });
