@@ -242,4 +242,12 @@ $app->request->post('user')));
             return -1;
         }
     }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        if(rapportenDAO::deleteStudentFromStudentList($studlistid, $studid) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -242,10 +242,9 @@ class rapportenDAO {
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
 
-            $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
- SELECT  (select name from module_rapport where course=:id) as name,( select description from module_rapport where course=:id) as description, (select id from course_rapport ORDER BY course_rapport.id DESC LIMIT     1  ) AS course"
+            $stmt2= $conn->prepare(	"  INSERT INTO module_rapport(name,description)
 
-            );
+                select name,description from module_rapport where module = :id" );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
@@ -428,6 +427,20 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         } catch (PDOException $err) {
             Logger::logError('Could not update student', $err);
             return false;
+        }
+    }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist_students_rapport WHERE studentlist = :studlist AND user = :user");
+            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':user', (int) $studid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete student', $err);
+            return null;
         }
     }
 }
