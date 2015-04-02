@@ -109,6 +109,20 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function getStudentListInfoFromListId($listid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM studentlist_rapport where id = :id ");
+            $stmt->bindValue(':id', (int) $listid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get data', $err);
+            return null;
+        }
+    }
+    
     /**
      * Get a list of goals associated with a subcompetence.
      * @param type $id the module id to get the goal information from.
