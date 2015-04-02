@@ -38,6 +38,10 @@ Class RapportAPI {
     public static function getStudentListInfoFromListId($id) {
         return rapportenDAO::getStudentListInfoFromListId($id);
     }
+    
+    public static function getStudentsFromStudentList($id) {
+        return rapportenDAO::getStudentsFromStudentList($id);
+    }
 
     public static function addTeacher($id) {
         /* Return teacher from users */
