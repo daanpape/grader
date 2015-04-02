@@ -143,13 +143,13 @@ Class RapportAPI {
                         property_exists($subcompetence, "name") ? $subcompetence->name : "",
                         property_exists($subcompetence, "description") ? $subcompetence->description : "",
                         $competenceid);
-                    // Insert indicators if any
-                    if (property_exists($subcompetence, "indicators")) {
-                        foreach ($subcompetence->indicators as $indicator) {
-                            self::putIndicator(
-                                property_exists($indicator, "id") ? $indicator->id : -1,
-                                property_exists($indicator, "name") ? $indicator->name : "",
-                                property_exists($indicator, "description") ? $indicator->description : "",
+                    // Insert criterias if any
+                    if (property_exists($subcompetence, "criterias")) {
+                        foreach ($subcompetence->criterias as $criteria) {
+                            self::putcriteria(
+                                property_exists($criteria, "id") ? $criteria->id : -1,
+                                property_exists($criteria, "name") ? $criteria->name : "",
+                                property_exists($criteria, "description") ? $criteria->description : "",
                                 $subcompetenceid);
                         }
                     }
@@ -202,11 +202,11 @@ $app->request->post('user')));
 
     public static function putIndicator($id = -1, $name, $description, $subcompetence) {
         if($id == -1){
-            // Insert a new indicator
-            return rapportenDAO::putNewIndicator($name, $description, $subcompetence);
+            // Insert a new criteria
+            return rapportenDAO::putNewcriteria($name, $description, $subcompetence);
         } else {
-            // Update an indicator
-            rapportenDAO::updateIndicator($id, $name, $description, $subcompetence);
+            // Update an criteria
+            rapportenDAO::updatecriteria($id, $name, $description, $subcompetence);
             return $id;
         }
     }
