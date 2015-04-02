@@ -137,10 +137,10 @@ class rapportenDAO {
     }
     
     /**
-     * Get a list of competences associated with a doelstelling.
-     * @param type $id the module id to get the competence information from.
+     * Get a list of modules associated with a doelstelling.
+     * @param type $id the module id to get the module information from.
      */
-    public static function getcompetencesBydoelstelling($id) {
+    public static function getmodulesBydoelstelling($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM criteria_rapport WHERE doelstelling = $id");
@@ -393,11 +393,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             echo $err;
         }
     }
-    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $competence, $competenceid, $user) {
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid, $user) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, doelstelling, doelstellingid, competence, competenceid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, doelstelling = ?, doelstellingid = ?, competence = ?, competenceid = ?");
-            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $competence, $competenceid, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $competence, $competenceid));
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, doelstelling, doelstellingid, module, moduleid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, doelstelling = ?, doelstellingid = ?, module = ?, moduleid = ?");
+            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a Course and a studentlist', $err);
