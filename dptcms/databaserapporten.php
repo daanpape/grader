@@ -211,16 +211,12 @@ class rapportenDAO {
     public static function copyCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
-SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
+            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid) AS c1
+SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport AS c2 WHERE id = :id
 
-
-	INSERT INTO subcompetence_rapport(name,description,competence)
- SELECT (select name  FROM  subcompetence_rapport  WHERE  competence = :id) as name,
- (select description  FROM  subcompetence_rapport  WHERE  competence = :id) as decription,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS competence
-
-");
+INSERT INTO subcompetence_rapport(name,description,competence)
+ SELECT name,description,(c1.id) AS competence FROM  subcompetence_rapport WHERE  competence = :id
+ ");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
@@ -343,7 +339,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function putNewcriteria($name, $description, $subcompetenceid) {
+    public static function putNewindicator($name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO criteria_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
@@ -356,7 +352,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function updatecriteria($id, $name, $description, $subcompetenceid) {
+    public static function updateindicator($id, $name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE criteria_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
