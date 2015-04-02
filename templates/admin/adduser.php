@@ -72,13 +72,13 @@ $location = "adminAddUser";
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
+                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</span></a>
                     </li>
                 </ul>
             </div>
@@ -90,11 +90,7 @@ $location = "adminAddUser";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
-            </div>
-
-            <div class="col-lg-12">
-                <h2 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h2>
+                <h1 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h1>
             </div>
 
             <!-- /.col-lg-12 -->
