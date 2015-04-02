@@ -41,7 +41,7 @@
     "CodeTableTitle" : "Code",
     "NameTableTitle" : "Naam",
     "DescTableTitle" : "Beschrijving",
-    "TeacherTableTitle" : "Leerkracht",
+    "teacherTableTitle" : "Leerkracht",
     "ActionTableTitle" : "Acties",
     "firstNameTableTitle": "Voornaam",
     "lastNameTableTitle": "Naam",
