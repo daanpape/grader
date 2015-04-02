@@ -90,8 +90,13 @@ $location = "adminAddUser";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Dashboard</h1>
+                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
+
+            <div class="col-lg-12">
+                <h2 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h2>
+            </div>
+
             <!-- /.col-lg-12 -->
             <div>
 
