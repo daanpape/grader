@@ -166,7 +166,8 @@ function initPage() {
     
     $('#fruitlist').autocomplete({ source: ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] });
     var options = $('#fruitlist').autocomplete("option");
-    console.log(options.toArray());
+    console.log(options.toArray().length);
+    console.log(options.length);
 
     $('#addStudent').click(function(){
         showNewStudentModal();
