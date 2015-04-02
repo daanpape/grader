@@ -1,9 +1,9 @@
 <?php
 // Page initialisation
-$location = "adminUsers";
+$location = "adminIndex";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl" id="htmldoc">
 
 <head>
     <meta charset="utf-8">
@@ -32,9 +32,7 @@ $location = "adminUsers";
 </head>
 
 <body style="padding-top: 0px">
-
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -46,7 +44,6 @@ $location = "adminUsers";
             </button>
             <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
-        <!-- /.navbar-header -->
 
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
@@ -57,6 +54,8 @@ $location = "adminUsers";
                 </ul>
             </li>
         </ul>
+
+        <!-- /.navbar-header -->
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -73,13 +72,13 @@ $location = "adminUsers";
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</a>
+                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</a>
+                        <a href="users.php"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
                     </li>
                 </ul>
             </div>
@@ -91,34 +90,12 @@ $location = "adminUsers";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
+                <h1 class="page-header" data-bind="text: pageHeader">Dashboard</h1>
             </div>
-        </div>
+            <!-- /.col-lg-12 -->
+            <div>
 
-        <div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: userName">Username</th>
-                    <th data-bind="text: firstName">Name</th>
-                    <th data-bind="text: lastName">Lastname</th>
-                    <th data-bind="text: userStatus">Status</th>
-                    <th data-bind="text: userActions">Actions</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: users">
-                <tr style="width: 100%">
-                    <td style="width: 40%" data-bind="text: username"></td>
-                    <td style="width: 15%" data-bind="text: firstname"></td>
-                    <td style="width: 15%" data-bind="text: lastname"></td>
-                    <td style="width: 15%" data-bind="text: status"></td>
-                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
-                </tr>
-                </tbody>
-
-                <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-                </button>
+            </div>
         </div>
         <!-- /.row -->
     </div>
