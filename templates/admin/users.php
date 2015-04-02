@@ -95,11 +95,6 @@ $location = "adminUsers";
             </div>
         </div>
 
-
-        <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </button>
-
         <div>
             <table class="table table-striped">
                 <thead>
@@ -121,6 +116,12 @@ $location = "adminUsers";
                 </tr>
                 </tbody>
         </div>
+
+
+        <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+        </button>
+
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
