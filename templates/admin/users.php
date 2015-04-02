@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "adminAddUsers";
+$location = "adminUsers";
 ?>
 <!DOCTYPE html>
 <html lang="en">
