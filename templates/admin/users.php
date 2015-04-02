@@ -79,7 +79,7 @@ $location = "adminUsers";
 
     <div id="page-wrapper">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="display: inline-block">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
                 <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
                     <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
