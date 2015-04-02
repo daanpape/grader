@@ -166,6 +166,9 @@ function initPage() {
     
     $('#fruitlist').autocomplete( ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] );
     var options = $('#fruitlist').autocomplete("option");
+    if ($.fn.autocomplete) {
+        console.log('Autocomlete is a valid function');
+    }
     console.log(options.toArray().length);
     console.log(options.length);
 
