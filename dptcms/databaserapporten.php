@@ -238,9 +238,9 @@ class rapportenDAO {
     public static function copyCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
+          /*  $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
-");
+");*/
 
             $stmt2= $conn->prepare(	"INSERT INTO competence_rapport(name,description,course)
  SELECT (select name  FROM  competence_rapport  WHERE  competence = :id) as name,
@@ -249,8 +249,9 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
-            $stmt->execute();
+           /* $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();*/
+            $stmt2->execute();
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not delete project', $err);
