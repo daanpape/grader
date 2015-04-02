@@ -233,6 +233,8 @@ function loadTablePage(pagenr)
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
+        
+        var html = "<p>Mathias</p>"
 
         /* Let previous en next buttons work */
         if(data.prev == "none"){
