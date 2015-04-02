@@ -48,6 +48,7 @@
                             <a data-bind="attr:{'href': '/coursecompetence/' + tid + '/' + tname}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
                             <a data-bind="attr:{'href': '/coursestudents/' + tid + '/' + tname}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                            <span class="glyphicon glyphicons-copy glyphicon-btn" ></span>
                             </td>
                     </tr>
                 </tbody>
