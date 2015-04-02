@@ -103,7 +103,11 @@ $location = "adminAddUser";
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td><input type="checkbox" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td>
+                            <select data-bind="foreach: viewModel.AvailableStatus, value: status" class="form-control form-next">
+                                <option data-bind="text: $data"></option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
             </div>
