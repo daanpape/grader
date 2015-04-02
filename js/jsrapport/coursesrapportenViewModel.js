@@ -40,7 +40,7 @@ function pageViewModel(gvm) {
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-        
+
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
             // Edit the table item
@@ -48,6 +48,13 @@ function pageViewModel(gvm) {
             event.stopPropagation();
         });
 
+        // Attach copy handler to copy button
+        $('# copybtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, tblOject);
+            event.stopPropagation();
+        });
+        
         //Attach manage handler to manage competences, subcompetences and indicators to manage button
         $('#managebtn-' + id).bind('click', function(event, data) {
             //TODO
