@@ -150,3 +150,7 @@ body {
     width: auto;
     display: inline;
 }
+.glyphicon-btn:hover {
+    width: 14px;
+    height: 14px;
+}
