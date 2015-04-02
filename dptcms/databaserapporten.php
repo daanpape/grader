@@ -213,16 +213,16 @@ class rapportenDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
-
-
-	INSERT INTO subcompetence_rapport(name,description,competence)
+");
+            $stmt2= $conn->prepare(	"INSERT INTO subcompetence_rapport(name,description,competence)
  SELECT (select name  FROM  subcompetence_rapport  WHERE  competence = :id) as name,
  (select description  FROM  subcompetence_rapport  WHERE  competence = :id) as decription,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS competence
-
-");
+ (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS competence"
+);
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
+            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt2->execute();
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not delete project', $err);
