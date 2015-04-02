@@ -33,6 +33,7 @@
                         <th data-bind="text: codeTableTitle">Code</th>
                         <th data-bind="text: nameTableTitle">Name</th>
                         <th data-bind="text: descTableTitle">Description</th>
+                        <th data-bind="text: teacherTableTitle">Teacher</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
                 </thead>
@@ -41,11 +42,13 @@
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
+                        <td data-bind="text: tteach">--</td>
                         <td>
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                             <a data-bind="attr:{'href': '/coursecompetence/' + tid + '/' + tname}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
                             <a data-bind="attr:{'href': '/coursestudents/' + tid + '/' + tname}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                            <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
                             </td>
                     </tr>
                 </tbody>

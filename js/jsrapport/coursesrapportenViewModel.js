@@ -21,6 +21,7 @@ function pageViewModel(gvm) {
     gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
     gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
     gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
+    gvm.teacherTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TeacherTableTitle");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
 
@@ -28,9 +29,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc) {
+    gvm.addTableData = function(id, code, name, desc, teach) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach:teach};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -39,7 +40,7 @@ function pageViewModel(gvm) {
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-        
+
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
             // Edit the table item
@@ -47,6 +48,13 @@ function pageViewModel(gvm) {
             event.stopPropagation();
         });
 
+        // Attach copy handler to copy button
+        $('#copybtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            copyTableItem(id, tblOject);
+            event.stopPropagation();
+        });
+        
         //Attach manage handler to manage competences, subcompetences and indicators to manage button
         $('#managebtn-' + id).bind('click', function(event, data) {
             //TODO
@@ -64,7 +72,7 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-    
+    /*
     gvm.updateDropdowns = function() {
         $.getJSON('api/teacherrapport/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
@@ -78,7 +86,7 @@ function pageViewModel(gvm) {
                 gvm.updateTeacher();
             }
         });
-    }
+    }*/
     
     /*gvm.updateTeacher = function(id) {
     $.getJSON('/api/getteacherrapport/' + id, function(data) {
@@ -118,6 +126,22 @@ function pageViewModel(gvm) {
  * Delete item from table given the id. 
  */
 function deleteTableItem(id, tblOject) {
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        if(val){
+            $.ajax({
+                url: "/api/coursedelete/" + id,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblOject);
+                }
+            });
+        }
+    });
+}
+/*
+ * Delete item from table given the id.
+ */
+function copyTableItem(id, tblOject) {
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
         if(val){
             $.ajax({
@@ -207,7 +231,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.id, item.code, item.name, item.description, item.leerkracht);
         });
 
         /* Let previous en next buttons work */
@@ -403,7 +427,7 @@ function initPage() {
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateDropdowns();
+        /*viewModel.updateDropdowns();*/
     });
     
     loadTablePage(1);
