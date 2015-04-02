@@ -423,11 +423,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function updateStudent($id, $firstname, $lastname, $username) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE students SET mail = ?, firstname = ?, lastname = ? WHERE id = ?");
-            $stmt->execute(array($username, $firstname, $lastname, $id));
+            $stmt = $conn->prepare("UPDATE users SET firstname = ?, lastname = ?, username = ? WHERE id = ?");
+            $stmt->execute(array($firstname, $lastname, $username, $id));
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not update project', $err);
+            Logger::logError('Could not update student', $err);
             return false;
         }
     }
