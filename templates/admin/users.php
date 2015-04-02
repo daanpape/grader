@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "adminUsers";
+$location = "adminAddUsers";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,6 +95,11 @@ $location = "adminUsers";
             </div>
         </div>
 
+
+        <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+        </button>
+
         <div>
             <table class="table table-striped">
                 <thead>
@@ -115,10 +120,6 @@ $location = "adminUsers";
                     <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
                 </tr>
                 </tbody>
-
-                <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-                </button>
         </div>
         <!-- /.row -->
     </div>
