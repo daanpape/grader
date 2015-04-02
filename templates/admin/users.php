@@ -115,13 +115,14 @@ $location = "adminUsers";
                     <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
                 </tr>
                 </tbody>
-
-                <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-                </button>
         </div>
+
         <!-- /.row -->
     </div>
+
+    <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+        <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+    </button>
     <!-- /#page-wrapper -->
 
 </div>
