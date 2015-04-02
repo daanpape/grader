@@ -164,7 +164,7 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    $('#fruitlist').autocomplete({ source: ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] });
+    $('#fruitlist').autocomplete( ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] );
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);
     console.log(options.length);
