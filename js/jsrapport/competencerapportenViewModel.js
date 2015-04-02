@@ -26,15 +26,15 @@ function Competence(viewmodel, id, name, description, subcompetences) {
 /**
  * SubCompetence class
  */
-function SubCompetence(parent, id, name, description, indicators) {
+function SubCompetence(parent, id, name, description, criterias) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        indicators: ko.observableArray(indicators),
+        criterias: ko.observableArray(criterias),
         
-        addIndicator: function() {
-            this.indicators.push(new Indicator(this));
+        addcriteria: function() {
+            this.criterias.push(new criteria(this));
         },
 
         removeThis: function() {
@@ -42,23 +42,23 @@ function SubCompetence(parent, id, name, description, indicators) {
 
         },
         
-        removeIndicator: function(indicator) {
-            this.indicators.remove(indicator);
+        removecriteria: function(criteria) {
+            this.criterias.remove(criteria);
         }
     };
 }
 
 /**
- * Indicator class
+ * criteria class
  */
-function Indicator(parent, id, name, description) {
+function criteria(parent, id, name, description) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description : ko.observable(description),
 
         removeThis: function() {
-            parent.removeIndicator(this);
+            parent.removecriteria(this);
         }
     };
 }
@@ -110,8 +110,8 @@ function fetchProjectStructure() {
                var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.name, subcomp.description);
                competence.subcompetences.push(subcompetence);
                
-               $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description));
+               $.each(subcomp.criterias, function(i, indic){
+                  subcompetence.criterias.push(new criteria(subcompetence, indic.id, indic.name, indic.description));
                });
             });
         })
@@ -155,7 +155,7 @@ function validationCheck()
 {
     var allCompetencesValid = true;
     var allSubcompetencesValid = true;
-    var allIndicatorsValid = true;
+    var allcriteriasValid = true;
 
     for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
     {
@@ -179,19 +179,19 @@ function validationCheck()
                 }
                 allSubcompetencesValid = false;
             }
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
+            for(var indexcriterias = 0; indexcriterias < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias().length; indexcriterias++)
             {
-                if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].description())
+                if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias()[indexcriterias].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias()[indexcriterias].description())
                 {
-                    if(allIndicatorsValid)
+                    if(allcriteriasValid)
                     {
-                        $(".validationSummary ul").append("<li>Description or name in indicators is empty</li>");
+                        $(".validationSummary ul").append("<li>Description or name in criterias is empty</li>");
                         $(".validationSummary").removeClass("hide");
                     }
-                    allIndicatorsValid = false;
+                    allcriteriasValid = false;
                 }
             }
         }
     }
-    return allCompetencesValid && allSubcompetencesValid && allIndicatorsValid;
+    return allCompetencesValid && allSubcompetencesValid && allcriteriasValid;
 }

@@ -82,18 +82,18 @@ class rapportenDAO {
         }
     }
     /*
-     * Get all competence by course
+     * Get all module by course
      * @id the course
      */
-    public static function getCompetenceByCourse($id) {
+    public static function getmoduleByCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM competence_rapport WHERE course = :course");
+            $stmt = $conn->prepare("SELECT * FROM module_rapport WHERE course = :course");
             $stmt->bindValue(':course', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get competences', $err);
+            Logger::logError('Could not get modules', $err);
             return false;
         }
     }
@@ -104,7 +104,7 @@ class rapportenDAO {
     public static function getCoursesByTraining($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM doelstelling_rapport WHERE competence = $id");
+            $stmt = $conn->prepare("SELECT * FROM doelstelling_rapport WHERE module = $id");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -141,10 +141,10 @@ class rapportenDAO {
     }
     
     /**
-     * Get a list of goals associated with a doelstelling.
-     * @param type $id the module id to get the goal information from.
+     * Get a list of competences associated with a doelstelling.
+     * @param type $id the module id to get the competence information from.
      */
-    public static function getGoalsBydoelstelling($id) {
+    public static function getcompetencesBydoelstelling($id) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM criteria_rapport WHERE doelstelling = $id");
@@ -247,10 +247,9 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 ");
 
             $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
- SELECT (select name  FROM  module_rapport  WHERE  competence = :id) as name,
- (select description  FROM  module_rapport WHERE  competence = :id) as description,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
-);
+ SELECT  (select name from module_rapport where course=:id) as name,( select description from module_rapport where course=:id) as description"
+
+            );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
@@ -286,10 +285,10 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, doelstelling_rapport.id sid, doelstelling_rapport.name sname, doelstelling_rapport.description sdescription, criteria_rapport.id iid, criteria_rapport.name iname, criteria_rapport.description idescription FROM competence_rapport
-                                    LEFT JOIN doelstelling_rapport ON competence_rapport.id = doelstelling_rapport.competence
+            $stmt = $conn->prepare("SELECT module_rapport.id cid, module_rapport.name cname, module_rapport.description cdescription, doelstelling_rapport.id sid, doelstelling_rapport.name sname, doelstelling_rapport.description sdescription, criteria_rapport.id iid, criteria_rapport.name iname, criteria_rapport.description idescription FROM module_rapport
+                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                    WHERE competence_rapport.course = :courseid
+                                    WHERE module_rapport.course = :courseid
                                     ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -297,20 +296,20 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             $data = array();
             foreach ($dataFromDb as $row) {
                 if (!array_key_exists($row['cid'], $data)) {
-                    $competence = new stdClass();
-                    $competence->id = $row['cid'];
-                    $competence->name = $row['cname'];
-                    $competence->description = $row['cdescription'];
-                    $competence->doelstellingen = array();
-                    $data[$row['cid']] = $competence;
+                    $module = new stdClass();
+                    $module->id = $row['cid'];
+                    $module->name = $row['cname'];
+                    $module->description = $row['cdescription'];
+                    $module->doelstellingen = array();
+                    $data[$row['cid']] = $module;
                 }
-                if (!array_key_exists($row['sid'], $competence->doelstellingen)) {
+                if (!array_key_exists($row['sid'], $module->doelstellingen)) {
                     $doelstelling = new stdClass();
                     $doelstelling->id = $row['sid'];
                     $doelstelling->name = $row['sname'];
                     $doelstelling->description = $row['sdescription'];
                     $doelstelling->criterias = array();
-                    $competence->doelstellingen[$row['sid']] = $doelstelling;
+                    $module->doelstellingen[$row['sid']] = $doelstelling;
                 }
                 if (!array_key_exists($row['iid'], $doelstelling->criterias)) {
                     $criteria = new stdClass();
@@ -326,10 +325,10 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-    public static function putNewCompetence($name, $description, $course) {
+    public static function putNewmodule($name, $description, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO competence_rapport (name, description, course) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO module_rapport (name, description, course) VALUES (?, ?, ?)");
             $stmt->execute(array($name, $description, $course));
             $pid = $conn->lastInsertId();
             return $pid;
@@ -339,10 +338,10 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function updateCompetence($id, $name, $description, $course) {
+    public static function updatemodule($id, $name, $description, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE competence_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE module_rapport SET name = ?, description = ?, course = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $course, $id));
             return true;
         } catch (PDOException $err) {
@@ -351,11 +350,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function putNewdoelstelling($name, $description, $competenceid) {
+    public static function putNewdoelstelling($name, $description, $moduleid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO doelstelling_rapport (name, description, competence) VALUES (?, ?, ?)");
-            $stmt->execute(array($name, $description, $competenceid));
+            $stmt = $conn->prepare("INSERT INTO doelstelling_rapport (name, description, module) VALUES (?, ?, ?)");
+            $stmt->execute(array($name, $description, $moduleid));
             $sid = $conn->lastInsertId();
             return $sid;
         } catch (PDOException $err) {
@@ -364,11 +363,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function updatedoelstelling($id, $name, $description, $competenceid) {
+    public static function updatedoelstelling($id, $name, $description, $moduleid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE doelstelling_rapport SET name = ?, description = ?, competence = ? WHERE id = ?");
-            $stmt->execute(array($name, $description, $competenceid, $id));
+            $stmt = $conn->prepare("UPDATE doelstelling_rapport SET name = ?, description = ?, module = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $moduleid, $id));
             return true;
         } catch (PDOException $err) {
             echo $err;
@@ -399,11 +398,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             echo $err;
         }
     }
-    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $competence, $competenceid, $user) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, submodule, submoduleid, goal, goalid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, submodule = ?, submoduleid = ?, goal = ?, goalid = ?");
-            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid));
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, submodule, submoduleid, competence, competenceid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, submodule = ?, submoduleid = ?, competence = ?, competenceid = ?");
+            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $competence, $competenceid, $course, $courseid, $module, $moduleid, $submodule, $submoduleid, $competence, $competenceid));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a Course and a studentlist', $err);
@@ -421,6 +420,32 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         } catch (PDOException $err) {
             Logger::logError('Could not update course', $err);
             return false;
+        }
+    }
+    
+    public static function updateStudent($id, $firstname, $lastname, $username) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE users SET firstname = ?, lastname = ?, username = ? WHERE id = ?");
+            $stmt->execute(array($firstname, $lastname, $username, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update student', $err);
+            return false;
+        }
+    }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist_students_rapport WHERE studentlist = :studlist AND user = :user");
+            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':user', (int) $studid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete student', $err);
+            return null;
         }
     }
 }

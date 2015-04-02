@@ -100,13 +100,13 @@ $app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
     $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
     echo json_encode($pagedata);
 });
-//getgoals from submodule
-$app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
+//getcriterias from submodule
+$app->get('/api/criteriarapport/:submoduleId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getGoalBySubCompetence($trainingId);
+    $pagedata = RapportAPI::getcriteriaBySubCompetence($trainingId);
     echo json_encode($pagedata);
 });
 //get all subcompetences
@@ -178,7 +178,7 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     //Insert the data
     echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
         $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-        $app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+        $app->request->post('submoduleid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
         $app->request->post('user')));
 });
 $app->post('/api/savecompetences/:id', function($id) use ($app) {
@@ -206,6 +206,15 @@ $app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
     echo json_encode(RapportAPI::deleteStudentList($id));
 });
+
+$app->delete('/api/studentlistrapport/:studlistid/delete/student/:studid', function ($studlistid, $studid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(RapportAPI::deleteStudentFromStudentList($studlistid, $studid));
+});
+
 $app->put('/api/studentlistupdate/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();
@@ -214,6 +223,16 @@ $app->put('/api/studentlistupdate/:id', function($id) use ($app){
     // Update the existing resource
     echo json_encode(RapportAPI::updateStudentList(
         $id, $app->request->post('name')));
+});
+
+$app->put('/api/studentrapport/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+   echo json_encode(RapportAPI::updateStudent(
+        $id, $app->request->post('firstname'), $app->request->post('lastname'), $app->request->post('username')));
 });
 
 $app->post('/api/coursecopy/:id', function ($id) use ($app) {

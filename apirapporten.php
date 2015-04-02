@@ -19,15 +19,15 @@ Class RapportAPI {
     }
     public static function getCompetenceByCourse($id) {
         /* Return module from selected course */
-        return rapportenDAO::getCompetenceByCourse($id);
+        return rapportenDAO::getmoduleByCourse($id);
     }
     public static function getSubCompetenceByCompetence($id) {
         /* Return module from selected course */
         return rapportenDAO::getCoursesByTraining($id);
     }
-    public static function getGoalBySubCompetence($id) {
+    public static function getcriteriaBySubCompetence($id) {
         /* Return module from selected course */
-        return rapportenDAO::getGoalsBydoelstelling($id);
+        return rapportenDAO::getcriteriasBydoelstelling($id);
     }
 
     public static function getTeacher($id) {
@@ -135,22 +135,22 @@ Class RapportAPI {
 
         var_dump($data);
 
-        foreach ($data as $competence) {
-            // Insert a competence
-            $competenceid = self::putCompetence(
-                property_exists($competence, "id") ? $competence->id : -1,
-                property_exists($competence, "name") ? $competence->name : "",
-                property_exists($competence, "description") ? $competence->description : "",
+        foreach ($data as $module) {
+            // Insert a module
+            $moduleid = self::putmodule(
+                property_exists($module, "id") ? $module->id : -1,
+                property_exists($module, "name") ? $module->name : "",
+                property_exists($module, "description") ? $module->description : "",
                 $courseid);
             // Insert doelstellingen if any
-            if (property_exists($competence, "doelstellingen")) {
-                foreach ($competence->doelstellingen as $doelstelling) {
+            if (property_exists($module, "doelstellingen")) {
+                foreach ($module->doelstellingen as $doelstelling) {
                     // Insert a subcomptence
                     $doelstellingid = self::putdoelstelling(
                         property_exists($doelstelling, "id") ? $doelstelling->id : -1,
                         property_exists($doelstelling, "name") ? $doelstelling->name : "",
                         property_exists($doelstelling, "description") ? $doelstelling->description : "",
-                        $competenceid);
+                        $moduleid);
                     // Insert criterias if any
                     if (property_exists($doelstelling, "criterias")) {
                         foreach ($doelstelling->criterias as $criteria) {
@@ -170,19 +170,19 @@ Class RapportAPI {
     }
     /*
 $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-$app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+$app->request->post('submoduleid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
 $app->request->post('user')));
     */
     //save dropdowns asses
-    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
-        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user);
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $criteria, $criteriaid, $user) {
+        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $criteria, $criteriaid, $user);
         if($id != false) {
             return array(
                 "course" => $course,
                 "module" => $module,
                 "submodule" => $submodule,
-                "goal" => $goal,
-                "goalid" => $goalid,
+                "criteria" => $criteria,
+                "criteriaid" => $criteriaid,
                 "user" => $user
             );
         } else {
@@ -191,24 +191,24 @@ $app->request->post('user')));
     }
     public static function putCompetence($id = -1, $name, $description, $courseid) {
         if($id == -1) {
-            return rapportenDAO::putNewCompetence($name, $description, $courseid);
+            return rapportenDAO::putNewmodule($name, $description, $courseid);
         } else {
-            rapportenDAO::updateCompetence($id, $name, $description, $courseid);
+            rapportenDAO::updatemodule($id, $name, $description, $courseid);
             return $id;
         }
     }
 
-    public static function putSubCompetence($id = -1, $name, $description, $competenceid) {
+    public static function putSubCompetence($id = -1, $name, $description, $moduleid) {
         if($id == -1){
-            return rapportenDAO::putNewdoelstelling($name, $description, $competenceid);
+            return rapportenDAO::putNewdoelstelling($name, $description, $moduleid);
         } else {
             // Update a doelstelling
-            rapportenDAO::updatedoelstelling($id, $name, $description, $competenceid);
+            rapportenDAO::updatedoelstelling($id, $name, $description, $moduleid);
             return $id;
         }
     }
 
-    public static function putIndicator($id = -1, $name, $description, $doelstelling) {
+    public static function putcriteria($id = -1, $name, $description, $doelstelling) {
         if($id == -1){
             // Insert a new criteria
             return rapportenDAO::putNewcriteria($name, $description, $doelstelling);
@@ -227,6 +227,27 @@ $app->request->post('user')));
                 "code" => $name);
         } else {
             return -1;
+        }
+    }
+    
+    public static function updateStudent($id, $firstname, $lastname, $username) {
+        if(rapportenDAO::updateStudent($id, $firstname, $lastname, $username)) {
+            return array(
+                "id" => $id,
+                "firstname" => $firstname,
+                "lastname" => $lastname,
+                "username" => $username,
+            );
+        } else {
+            return -1;
+        }
+    }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        if(rapportenDAO::deleteStudentFromStudentList($studlistid, $studid) == true) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

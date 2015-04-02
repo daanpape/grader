@@ -54,13 +54,13 @@ function showEditStudentModal(tblObject) {
     setGeneralModalTitle("Edit Student");
     setGeneralModalBody('<form id="updateStudent"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" name="firstname" value="' + tblObject.tfirstname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="firstname" value="' + tblObject.tfirstname + '"> \
             </div> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" name="lastname" value="' + tblObject.tlastname + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" name="username" value="' + tblObject.tusername + '"> \
             </div> \
         </form>');
     $.getJSON()
@@ -120,7 +120,7 @@ function addNewStudent(serialData, callback) {
 
 function updateStudent(id, object, callback) {
     $.ajax({
-        url: "/api/student/" + id,
+        url: "/api/studentrapport/" + id,
         type: "PUT",
         data: object,
         success: function(data) {
@@ -137,7 +137,7 @@ function deleteTableItem(id, tblObject){
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
         if(val){
             $.ajax({
-                url: '/api/studentlist/' + $("#page-header").data('value') + '/delete/student/' + id,
+                url: '/api/studentlistrapport/' + $("#page-header").data('value') + '/delete/student/' + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblObject);
