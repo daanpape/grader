@@ -164,7 +164,7 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    $('#fruitlist').autocomplete( viewModel.tabledata );     //autocomplete works, 100% sure
+    $('#fruitlist').autocomplete({ source: viewModel.tabledata });     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);
     console.log(options.length);
