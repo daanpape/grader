@@ -215,10 +215,10 @@ class rapportenDAO {
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
 
-            $stmt2= $conn->prepare(	"INSERT INTO competence_rapport(name,description,competence)
+            $stmt2= $conn->prepare(	"INSERT INTO competence_rapport(name,description,course)
  SELECT (select name  FROM  competence_rapport  WHERE  competence = :id) as name,
  (select description  FROM  competence_rapport  WHERE  competence = :id) as decription,
- (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS competence"
+ (select id from course_rapport ORDER BY id DESC LIMIT     1  ) AS course"
 );
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
