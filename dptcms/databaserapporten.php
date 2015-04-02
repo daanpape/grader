@@ -246,7 +246,8 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 
                 select (select name from module_rapport where course = :id) as name,
                 (select description from module_rapport where course= :id)as description,
-                (select course from module_rapport where course = :id ) as course" );
+                (select course from module_rapport where course = :id ) as course
+                 from course");
 
             $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
