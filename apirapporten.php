@@ -83,6 +83,16 @@ Class RapportAPI {
             return false;
         }
     }
+    /*
+       * copy a course from the database
+       */
+    public static function copyCourse($id) {
+        if (rapportenDAO::copyCourse($id) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*update a course*/
     public static function updateCourse($id, $code, $name, $description) {
