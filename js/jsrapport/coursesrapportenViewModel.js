@@ -49,7 +49,7 @@ function pageViewModel(gvm) {
         });
 
         // Attach copy handler to copy button
-        $('# copybtn-' + id).bind('click', function(event, data){
+        $('#copybtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
