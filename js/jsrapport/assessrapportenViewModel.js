@@ -98,7 +98,7 @@ function pageViewModel(gvm) {
                     gvm.updatecriterias(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
-                    $(".btn-doelstelling span:first").text("Sub-module");
+                    $(".btn-doelstelling span:first").text("doelstelling");
                     $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this course
@@ -125,7 +125,7 @@ function pageViewModel(gvm) {
                     gvm.updatedoelstellingen(item.id);
                     gvm.updatecriterias(null);
                     $(".btn-module span:first").text($(this).text());
-                    $(".btn-doelstelling span:first").text("Sub-module");
+                    $(".btn-doelstelling span:first").text("doelstelling");
                     $(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                     //method to get all students who follow this module
@@ -135,7 +135,7 @@ function pageViewModel(gvm) {
     }
 
     /*
-     * Update sub-module
+     * Update doelstelling
      */
     gvm.updatedoelstellingen = function(id) {
         $.getJSON('/api/doelstellingrapport/' + id, function(data) {

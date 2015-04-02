@@ -1,32 +1,32 @@
 /**
- * Competence class
+ * module class
  */
-function Competence(viewmodel, id, name, description, subcompetences) {
+function module(viewmodel, id, name, description, submodules) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        subcompetences: ko.observableArray(subcompetences),
+        submodules: ko.observableArray(submodules),
 
-        addSubCompetence: function() {
-            this.subcompetences.push(new SubCompetence(this));
+        addSubmodule: function() {
+            this.submodules.push(new Submodule(this));
         },
 
         removeThis: function() {
-            viewmodel.removeCompetence(this);
+            viewmodel.removemodule(this);
         },
 
-        removeSubCompetence: function(subCompetence) {
-            this.subcompetences.remove(subCompetence);
+        removeSubmodule: function(submodule) {
+            this.submodules.remove(submodule);
         }
     };
 
 }
 
 /**
- * SubCompetence class
+ * Submodule class
  */
-function SubCompetence(parent, id, name, description, criterias) {
+function Submodule(parent, id, name, description, criterias) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
@@ -38,7 +38,7 @@ function SubCompetence(parent, id, name, description, criterias) {
         },
 
         removeThis: function() {
-            parent.removeSubCompetence(this);
+            parent.removeSubmodule(this);
 
         },
         
@@ -67,7 +67,7 @@ function criteria(parent, id, name, description) {
 function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
-    //gvm.competences = 0;
+    //gvm.modules = 0;
     gvm.subcomp = 0;
     
     // Page specific i18n bindings
@@ -75,27 +75,27 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
 
-    gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
+    gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
-    gvm.competences = ko.observableArray([]);
+    gvm.modules = ko.observableArray([]);
 
-    gvm.addCompetence = function() {
-        gvm.competences.push(new Competence(this));
+    gvm.addmodule = function() {
+        gvm.modules.push(new module(this));
     };
     
-    gvm.removeCompetence = function(competence) {
-        gvm.competences.remove(competence);
+    gvm.removemodule = function(module) {
+        gvm.modules.remove(module);
     }
     
-    gvm.updateCompetence = function(id, name, description) {
-        var comp = new Competence(this, id, name, description);
-        gvm.competences.push(comp);
+    gvm.updatemodule = function(id, name, description) {
+        var comp = new module(this, id, name, description);
+        gvm.modules.push(comp);
         return comp;
     }
     
     gvm.clearStructure = function() {
-        gvm.competences.destroyAll();
+        gvm.modules.destroyAll();
     }
 }
 
@@ -104,14 +104,14 @@ function fetchProjectStructure() {
     
     $.getJSON("/api/coursestructure/" + courseid, function(data){
         $.each(data, function(i, item){
-            var competence = viewModel.updateCompetence(item.id, item.name, item.description);
+            var module = viewModel.updatemodule(item.id, item.name, item.description);
             
-            $.each(item.subcompetences, function(i, subcomp){
-               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.name, subcomp.description);
-               competence.subcompetences.push(subcompetence);
+            $.each(item.submodules, function(i, subcomp){
+               var submodule = new Submodule(module, subcomp.id, subcomp.name, subcomp.description);
+                module.submodules.push(submodule);
                
                $.each(subcomp.criterias, function(i, indic){
-                  subcompetence.criterias.push(new criteria(subcompetence, indic.id, indic.name, indic.description));
+                  submodule.criterias.push(new criteria(submodule, indic.id, indic.name, indic.description));
                });
             });
         })
@@ -121,9 +121,9 @@ function fetchProjectStructure() {
 function initPage() {
     fetchProjectStructure();
 
-    $(".addCompetenceBtn").click(function() {
-        console.log('clicked on add competence');
-        viewModel.addCompetence();
+    $(".addmoduleBtn").click(function() {
+        console.log('clicked on add module');
+        viewModel.addmodule();
     });
 
     $(".savePageBtn").click(function(){
@@ -140,8 +140,8 @@ function initPage() {
 function saveProjectStructure() {
     $.ajax({
         type: "POST",
-        url: "/api/savecompetences/" + courseid,
-        data: ko.toJSON(viewModel.competences),
+        url: "/api/savemodules/" + courseid,
+        data: ko.toJSON(viewModel.modules),
         success: function(){
             // TODO make multilangual and with modals
             alert("Saved projectstructure to server");
@@ -153,35 +153,35 @@ function saveProjectStructure() {
 
 function validationCheck()
 {
-    var allCompetencesValid = true;
-    var allSubcompetencesValid = true;
+    var allmodulesValid = true;
+    var allSubmodulesValid = true;
     var allcriteriasValid = true;
 
-    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
+    for(var indexmodules =0; indexmodules < viewModel.modules().length; indexmodules++)
     {
-        if(!viewModel.competences()[indexCompetences].name() && !viewModel.competences()[indexCompetences].description())
+        if(!viewModel.modules()[indexmodules].name() && !viewModel.modules()[indexmodules].description())
         {
-            if(allCompetencesValid)
+            if(allmodulesValid)
             {
-                $(".validationSummary ul").append("<li>Code or name in competences is empty</li>");
+                $(".validationSummary ul").append("<li>Code or name in modules is empty</li>");
                 $(".validationSummary").removeClass("hide");
             }
-            allCompetencesValid = false;
+            allmodulesValid = false;
         }
-        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
+        for(var indexSubmodule = 0; indexSubmodule < viewModel.modules()[indexmodules].submodules().length; indexSubmodule++)
         {
-            if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].description())
+            if(!viewModel.modules()[indexmodules].submodules()[indexSubmodule].name() && !viewModel.modules()[indexmodules].submodules()[indexSubmodule].description())
             {
-                if(allSubcompetencesValid)
+                if(allSubmodulesValid)
                 {
-                    $(".validationSummary ul").append("<li>Code or name in subcompetences is empty</li>");
+                    $(".validationSummary ul").append("<li>Code or name in submodules is empty</li>");
                     $(".validationSummary").removeClass("hide");
                 }
-                allSubcompetencesValid = false;
+                allSubmodulesValid = false;
             }
-            for(var indexcriterias = 0; indexcriterias < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias().length; indexcriterias++)
+            for(var indexcriterias = 0; indexcriterias < viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias().length; indexcriterias++)
             {
-                if(!viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias()[indexcriterias].name() && !viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].criterias()[indexcriterias].description())
+                if(!viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias()[indexcriterias].name() && !viewModel.modules()[indexmodules].submodules()[indexSubmodule].criterias()[indexcriterias].description())
                 {
                     if(allcriteriasValid)
                     {
@@ -193,5 +193,5 @@ function validationCheck()
             }
         }
     }
-    return allCompetencesValid && allSubcompetencesValid && allcriteriasValid;
+    return allmodulesValid && allSubmodulesValid && allcriteriasValid;
 }
