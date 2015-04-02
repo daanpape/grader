@@ -165,7 +165,7 @@ function initPage() {
     
     var fruits = ["Apple", "Banana", "Pear", "Strawberry", "Mango", "Pineapple"];
     
-    //$('#searchstudent').autocomplete({ source: fruits });
+    $('#searchstudent').autocomplete({ source: fruits });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
