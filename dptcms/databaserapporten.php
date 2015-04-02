@@ -3,7 +3,11 @@ class rapportenDAO {
     public static function getAllCourses($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count  ");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport"
+                    . "join teacherlist_rapport on  course_rapport.id on teacherlist_rapport.courseid"
+                    . "join users on teacherlist_rapport.userid on users.id"
+                    . "where ACTIVE = '1'"
+                    . " LIMIT :start,:count  ");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
@@ -427,6 +431,20 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         } catch (PDOException $err) {
             Logger::logError('Could not update student', $err);
             return false;
+        }
+    }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist_students_rapport WHERE studentlist = :studlist AND user = :user");
+            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':user', (int) $studid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete student', $err);
+            return null;
         }
     }
 }
