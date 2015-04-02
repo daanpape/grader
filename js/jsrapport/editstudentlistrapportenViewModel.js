@@ -82,7 +82,7 @@ function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="form-group"> \
+            <div class="form-group ui-widget"> \
                 <label for="fruitlist">Student: </label> \
                 <input id="fruitlist" /> \
             </div> \
@@ -172,7 +172,7 @@ function initPage() {
       "Pineapple"
     ];
     
-    $('#fruitlist').autocomplete(fruits);
+    $('#fruitlist').autocomplete({ source: fruits });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
