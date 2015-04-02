@@ -5,16 +5,4 @@ function pageViewModel(gvm) {
 
     gvm.pageHeaderAddUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("UserAddTitle");}, gvm);
 
-
-    gvm.AvailableStatus = ko.observableArray([]);
-}
-
-
-function initPage() {
-    LoadAllStatus();
-}
-
-function LoadAllStatus() {
-    viewModel.AvailableStatus.push("Active");
-    viewModel.AvailableStatus.push("Non-Active");
 }
