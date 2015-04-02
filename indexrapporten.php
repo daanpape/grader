@@ -100,13 +100,13 @@ $app->get('/api/submodulerapport/:moduleId', function ($trainingId) use ($app) {
     $pagedata = RapportAPI::getSubCompetenceByCompetence($trainingId);
     echo json_encode($pagedata);
 });
-//getgoals from submodule
+//getcriterias from submodule
 $app->get('/api/goalrapport/:submoduleId', function ($trainingId) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getGoalBySubCompetence($trainingId);
+    $pagedata = RapportAPI::getcriteriaBySubCompetence($trainingId);
     echo json_encode($pagedata);
 });
 //get all subcompetences
@@ -178,7 +178,7 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     //Insert the data
     echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
         $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-        $app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+        $app->request->post('submoduleid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
         $app->request->post('user')));
 });
 $app->post('/api/savecompetences/:id', function($id) use ($app) {

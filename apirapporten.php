@@ -25,9 +25,9 @@ Class RapportAPI {
         /* Return module from selected course */
         return rapportenDAO::getCoursesByTraining($id);
     }
-    public static function getGoalBySubCompetence($id) {
+    public static function getcriteriaBySubCompetence($id) {
         /* Return module from selected course */
-        return rapportenDAO::getGoalsBydoelstelling($id);
+        return rapportenDAO::getcriteriasBydoelstelling($id);
     }
 
     public static function getTeacher($id) {
@@ -170,19 +170,19 @@ Class RapportAPI {
     }
     /*
 $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('submodule'),
-$app->request->post('submoduleid'), $app->request->post('goal'), $app->request->post('goalid'),
+$app->request->post('submoduleid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
 $app->request->post('user')));
     */
     //save dropdowns asses
-    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user) {
-        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $goal, $goalid, $user);
+    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $criteria, $criteriaid, $user) {
+        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $module, $moduleid, $submodule, $submoduleid, $criteria, $criteriaid, $user);
         if($id != false) {
             return array(
                 "course" => $course,
                 "module" => $module,
                 "submodule" => $submodule,
-                "goal" => $goal,
-                "goalid" => $goalid,
+                "criteria" => $criteria,
+                "criteriaid" => $criteriaid,
                 "user" => $user
             );
         } else {
@@ -208,7 +208,7 @@ $app->request->post('user')));
         }
     }
 
-    public static function putIndicator($id = -1, $name, $description, $doelstelling) {
+    public static function putcriteria($id = -1, $name, $description, $doelstelling) {
         if($id == -1){
             // Insert a new criteria
             return rapportenDAO::putNewcriteria($name, $description, $doelstelling);
