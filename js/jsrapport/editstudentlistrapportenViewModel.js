@@ -165,6 +165,8 @@ function initPage() {
     });
     
     $('#fruitlist').autocomplete({ source: ["Apple", "Pear", "Mango", "Strawberry", "Pineapple"] });
+    var options = $('#fruitlist').autocomplete("option");
+    console.log(options);
 
     $('#addStudent').click(function(){
         showNewStudentModal();
