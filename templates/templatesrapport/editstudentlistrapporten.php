@@ -40,9 +40,9 @@ $location = "jsrapport/editstudentlistrapporten";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="text: tusername">--</td>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
+                    <td data-bind="text: tusername">--</td>
                     <td>
                         <span class="glyphicon glyphicon-edit glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
