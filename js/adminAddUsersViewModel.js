@@ -7,6 +7,10 @@ function pageViewModel(gvm) {
 
 
     gvm.AvailableStatus = ko.observableArray([]);
+}
+
+
+function initPage() {
     LoadAllStatus();
 }
 
