@@ -83,13 +83,8 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="E-mail" name="username"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="First Name" name="firstname"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="Last Name" name="lastname"> \
+                <label for="fruitlist">Student: </label> \
+                <input id="fruitlist" /> \
             </div> \
         </form>');
     $.getJSON()
@@ -168,10 +163,38 @@ function initPage() {
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });
+    
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
 
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
+    
+    $('#fruitlist').autocomplete({ source: availableTags });
+    
     loadStudentTable();
     
     

@@ -32,9 +32,9 @@ $location = "jsrapport/editstudentlistrapporten";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: email">Username</th>
                     <th data-bind="text: firstname">Firstname</th>
                     <th data-bind="text: lastname">Lastname</th>
+                    <th data-bind="text: email">Username</th>
                     <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
