@@ -26,9 +26,9 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
-    gvm.addTableData = function(id, username, firstname, lastname) {
+    gvm.addTableData = function(id, username, firstname, lastname, email) {
         // Push data
-        var tblOject = {tid: id, tusername: username, tfirstname: firstname, tlastname: lastname};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, temail: email};
         gvm.tabledata.push(tblOject);
 
         $('#editbtn-' + id).bind('click', function(event, data) {
@@ -109,7 +109,7 @@ function addNewStudent(serialData, callback) {
         type: "POST",
         data: serialData,
         success: function(data) {
-            viewModel.addTableData(data['id'], data['mail'], data['firstname'], data['lastname']);
+            viewModel.addTableData(data['id'], data['firstname'], data['lastname'], data['mail']);
             callback(true);
         },
         error: function(data) {
@@ -152,13 +152,13 @@ function loadStudentTable() {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {
-            viewModel.addTableData(item.id, item.mail, item.firstname, item.lastname);
+            viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
         });
     });
 }
 
 function initPage() {
-    $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
+    $.getJSON('/api/studentlistrapport/info/' + $("#page-header").data('value'), function(data) {
         console.log(data[0].id);
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
