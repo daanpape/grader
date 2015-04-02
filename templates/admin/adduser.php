@@ -86,20 +86,24 @@ $location = "adminAddUser";
             <div>
                 <table class="table table-striped">
                     <tr>
-                        <td>username</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td>Email</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Email" data-bind="value: value"></td>
                     </tr>
                     <tr>
                         <td>firstname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Firstname" data-bind="value: value"></td>
                     </tr>
                     <tr>
                         <td>lastname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" data-bind="value: value"></td>
                     </tr>
                     <tr>
                         <td>password</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Password" data-bind="value: value"></td>
+                    </tr>
+                    <tr>
+                        <td>Confirm password</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Confirm password" data-bind="value: value"></td>
                     </tr>
                     <tr>
                         <td>Status</td>
@@ -111,6 +115,14 @@ $location = "adminAddUser";
                         </td>
                     </tr>
                 </table>
+
+                <div class="container">
+                    <div class="row">
+                        <div id="bottom-col" class="col-md-12">
+                            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->
