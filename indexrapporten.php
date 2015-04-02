@@ -206,6 +206,15 @@ $app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
     echo json_encode(RapportAPI::deleteStudentList($id));
 });
+
+$app->delete('/api/studentlistrapport/:studlistid/delete/student/:studid', function ($studlistid, $studid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(RapportAPI::deleteStudentFromStudentList($studlistid, $studid));
+});
+
 $app->put('/api/studentlistupdate/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();

@@ -137,7 +137,7 @@ function deleteTableItem(id, tblObject){
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
         if(val){
             $.ajax({
-                url: '/api/studentlist/' + $("#page-header").data('value') + '/delete/student/' + id,
+                url: '/api/studentlistrapport/' + $("#page-header").data('value') + '/delete/student/' + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblObject);

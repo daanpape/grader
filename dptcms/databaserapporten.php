@@ -431,5 +431,19 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
+    
+    public static function deleteStudentFromStudentList($studlistid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM studentlist_students_rapport WHERE studentlist = :studlist AND user = :user");
+            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':user', (int) $studid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete student', $err);
+            return null;
+        }
+    }
 }
 ?>
