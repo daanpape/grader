@@ -23,7 +23,7 @@ function pageViewModel(gvm) {
 
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);
-    gvm.availabledoelstellings = ko.observableArray([]);
+    gvm.availabledoelstellingen = ko.observableArray([]);
     gvm.availablecriterias = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
@@ -45,7 +45,7 @@ function pageViewModel(gvm) {
                     gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
                     gvm.updateModules(item.moduleid);
-                    gvm.updatedoelstellings(item.doelstellingid);
+                    gvm.updatedoelstellingen(item.doelstellingid);
                     gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
@@ -94,7 +94,7 @@ function pageViewModel(gvm) {
                     gvm.currentdoelstellingId = null;
                     gvm.currentcriteriaId = null;
                     gvm.updateModules(item.id);
-                    gvm.updatedoelstellings(null);
+                    gvm.updatedoelstellingen(null);
                     gvm.updatecriterias(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-module span:first").text("Module");
@@ -122,7 +122,7 @@ function pageViewModel(gvm) {
                     gvm.currentModuleid = item.id;
                     gvm.currentdoelstellingId = null;
                     gvm.currentcriteriaId = null;
-                    gvm.updatedoelstellings(item.id);
+                    gvm.updatedoelstellingen(item.id);
                     gvm.updatecriterias(null);
                     $(".btn-module span:first").text($(this).text());
                     $(".btn-doelstelling span:first").text("Sub-module");
@@ -137,11 +137,11 @@ function pageViewModel(gvm) {
     /*
      * Update sub-module
      */
-    gvm.updatedoelstellings = function(id) {
+    gvm.updatedoelstellingen = function(id) {
         $.getJSON('/api/doelstellingrapport/' + id, function(data) {
-            gvm.availabledoelstellings.removeAll();
+            gvm.availabledoelstellingen.removeAll();
             $.each(data, function(i, item) {
-                gvm.availabledoelstellings.push(item);
+                gvm.availabledoelstellingen.push(item);
 
                 /* Add listener to listitem */
                 $("#doelstellingbtn-" + item.id).click(function(){
