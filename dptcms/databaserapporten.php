@@ -211,8 +211,12 @@ class rapportenDAO {
     public static function copyCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
-SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id");
+            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid) AS c1
+SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport AS c2 WHERE id = :id
+
+INSERT INTO subcompetence_rapport(name,description,competence)
+ SELECT name,description,(c1.id) AS competence FROM  subcompetence_rapport WHERE  competence = :id
+ ");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
