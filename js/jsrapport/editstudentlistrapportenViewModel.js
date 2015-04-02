@@ -26,9 +26,9 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
-    gvm.addTableData = function(id, username, firstname, lastname, email) {
+    gvm.addTableData = function(id, firstname, lastname, username) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, temail: email};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tusername: username};
         gvm.tabledata.push(tblOject);
 
         $('#editbtn-' + id).bind('click', function(event, data) {
@@ -148,11 +148,11 @@ function deleteTableItem(id, tblObject){
 }
 
 function loadStudentTable() {
-    $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
+    $.getJSON('/api/studentlistrapporten/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
         // Load table data
         $.each(data, function(i, item) {
-            viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+            viewModel.addTableData(item.id, item.firstname, item.lastname, item.username);
         });
     });
 }
