@@ -88,7 +88,7 @@ $location = "adminUsers";
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper" class="container">
+    <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
@@ -117,16 +117,14 @@ $location = "adminUsers";
                 </tbody>
         </div>
 
+        <button type="button" class="btn btn-default pagination-button" id="addUserBtn">
+            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+        </button>
+
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
-</div>
 
-<!-- Pagination and action container -->
-<div class="container">
-    <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
-        <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-    </button>
 </div>
 <!-- /#wrapper -->
 
