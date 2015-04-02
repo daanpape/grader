@@ -116,7 +116,7 @@ class rapportenDAO {
     public static function getGoalsBySubcompetence($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM indicator_rapport WHERE subcompetence = $id");
+            $stmt = $conn->prepare("SELECT * FROM criteria_rapport WHERE subcompetence = $id");
             $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -253,9 +253,9 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, indicator_rapport.id iid, indicator_rapport.name iname, indicator_rapport.description idescription FROM competence_rapport 
+            $stmt = $conn->prepare("SELECT competence_rapport.id cid, competence_rapport.name cname, competence_rapport.description cdescription, subcompetence_rapport.id sid, subcompetence_rapport.name sname, subcompetence_rapport.description sdescription, criteria_rapport.id iid, criteria_rapport.name iname, criteria_rapport.description idescription FROM competence_rapport
                                     LEFT JOIN subcompetence_rapport ON competence_rapport.id = subcompetence_rapport.competence
-                                    LEFT JOIN indicator_rapport ON subcompetence_rapport.id = indicator_rapport.subcompetence 
+                                    LEFT JOIN criteria_rapport ON subcompetence_rapport.id = criteria_rapport.subcompetence
                                     WHERE competence_rapport.course = :courseid
                                     ORDER BY cid, sid, iid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
@@ -276,15 +276,15 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                     $subcompetence->id = $row['sid'];
                     $subcompetence->name = $row['sname'];
                     $subcompetence->description = $row['sdescription'];
-                    $subcompetence->indicators = array();
+                    $subcompetence->criterias = array();
                     $competence->subcompetences[$row['sid']] = $subcompetence;
                 }
-                if (!array_key_exists($row['iid'], $subcompetence->indicators)) {
-                    $indicator = new stdClass();
-                    $indicator->id = $row['iid'];
-                    $indicator->name = $row['iname'];
-                    $indicator->description = $row['idescription'];
-                    $subcompetence->indicators[$row['iid']] = $indicator;
+                if (!array_key_exists($row['iid'], $subcompetence->criterias)) {
+                    $criteria = new stdClass();
+                    $criteria->id = $row['iid'];
+                    $criteria->name = $row['iname'];
+                    $criteria->description = $row['idescription'];
+                    $subcompetence->criterias[$row['iid']] = $criteria;
                 }
             }
             return $data;
@@ -343,10 +343,10 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function putNewIndicator($name, $description, $subcompetenceid) {
+    public static function putNewcriteria($name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO indicator_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO criteria_rapport (name, description, subcompetence) VALUES (?, ?, ?)");
             $stmt->execute(array($name, $description, $subcompetenceid));
             $iid = $conn->lastInsertId();
             return $iid;
@@ -356,10 +356,10 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         }
     }
 
-    public static function updateIndicator($id, $name, $description, $subcompetenceid) {
+    public static function updatecriteria($id, $name, $description, $subcompetenceid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE indicator_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE criteria_rapport SET name = ?, description = ?, subcompetence = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $subcompetenceid, $id));
             return true;
         } catch (PDOException $err) {
