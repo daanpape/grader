@@ -26,7 +26,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>Coupled list</p>
                 <table class="table table-striped">
                     <thead>
                     <tr>
