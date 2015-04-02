@@ -7,3 +7,4 @@
 <script src="/js/modals.js"></script>
 <script src="/js/global.js"></script>
 <script src="/js/<?php echo $location ?>ViewModel.js"></script>
+<script src="/js/jsrapport/jquery-ui.min.js"></script>
