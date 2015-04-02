@@ -419,5 +419,17 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
+    
+    public static function updateStudent($id, $firstname, $lastname, $username) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE students SET mail = ?, firstname = ?, lastname = ? WHERE id = ?");
+            $stmt->execute(array($username, $firstname, $lastname, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update project', $err);
+            return false;
+        }
+    }
 }
 ?>

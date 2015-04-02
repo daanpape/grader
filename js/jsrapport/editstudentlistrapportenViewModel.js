@@ -54,13 +54,13 @@ function showEditStudentModal(tblObject) {
     setGeneralModalTitle("Edit Student");
     setGeneralModalBody('<form id="updateStudent"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="username" value="' + tblObject.tfirstname + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" name="firstname" value="' + tblObject.tfirstname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" name="firstname" value="' + tblObject.tlastname + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" name="lastname" value="' + tblObject.tlastname + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" name="lastname" value="' + tblObject.tusername + '"> \
             </div> \
         </form>');
     $.getJSON()
@@ -120,7 +120,7 @@ function addNewStudent(serialData, callback) {
 
 function updateStudent(id, object, callback) {
     $.ajax({
-        url: "/api/student/" + id,
+        url: "/api/studentrapport/" + id,
         type: "PUT",
         data: object,
         success: function(data) {
