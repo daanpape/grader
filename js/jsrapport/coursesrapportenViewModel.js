@@ -233,7 +233,7 @@ function loadTablePage(pagenr)
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description, item.leerkracht);
         });
-
+        
         /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');

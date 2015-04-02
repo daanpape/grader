@@ -103,7 +103,12 @@ $location = "adminAddUser";
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td><input type="checkbox" class="form-control form-next" placeholder="Value" data-bind="value: value"></td>
+                        <td>
+                            <select class="form-control form-next">
+                                <option>Active</option>
+                                <option>Non-Active</option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
             </div>
