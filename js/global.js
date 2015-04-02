@@ -1,3 +1,5 @@
+console.log('Arrived in global.js');
+
 // Page wide variables  
 var viewModel = null;
 
