@@ -68,7 +68,7 @@ function pageViewModel(gvm) {
     // projecttitle
     gvm.projecttitle = ko.observable("");
     //gvm.modules = 0;
-    gvm.subcomp = 0;
+    gvm.doelstelling = 0;
     
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -106,11 +106,11 @@ function fetchProjectStructure() {
         $.each(data, function(i, item){
             var module = viewModel.updatemodule(item.id, item.name, item.description);
             
-            $.each(item.doelstellingen, function(i, subcomp){
-               var doelstelling = new doelstelling(module, subcomp.id, subcomp.name, subcomp.description);
+            $.each(item.doelstellingen, function(i, doelstelling){
+               var doelstelling = new doelstelling(module, doelstelling.id, doelstelling.name, doelstelling.description);
                 module.doelstellingen.push(doelstelling);
                
-               $.each(subcomp.criterias, function(i, indic){
+               $.each(doelstelling.criterias, function(i, indic){
                   doelstelling.criterias.push(new criteria(doelstelling, indic.id, indic.name, indic.description));
                });
             });
