@@ -51,7 +51,7 @@
 
                 <div class="dropdown col-md-3">
                     <button class="btn btn-wide btn-default btn-doelstelling dropdown-toggle" type="button" id="availabledoelstellingen" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Sub-module</span>
+                        <span class="text-center">doelstelling</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-doelstelling ul-wide" role="menu" aria-labelledby="availabledoelstellingen" data-bind="foreach: availabledoelstellingen">
