@@ -26,12 +26,12 @@ function module(viewmodel, id, name, description, doelstellingen) {
 /**
  * doelstelling class
  */
-function doelstelling(parent, id, name, description, criteria) {
+function doelstelling(parent, id, name, description, crit) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        criterias: ko.observableArray(criteria),
+        criterias: ko.observableArray(crit),
         
         addCriteria: function() {
             this.criterias.push(new criteria(this));
