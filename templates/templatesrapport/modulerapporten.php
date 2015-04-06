@@ -93,7 +93,7 @@ $location = "jsrapport/modulerapporten";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button class="btn" value="NaN-0" data-bind="click: addcriteria">Add an criteria</button>
+                                    <button class="btn" value="NaN-0" data-bind="click: addCriteria">Add an criteria</button>
                                     <button class="btn pull-right" data-bind="click: removeThis">Remove this doelstelling</button>
                                 </div>
                             </div>
