@@ -309,7 +309,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                     $doelstelling->criterias = array();
                     $module->doelstellingen[$row['did']] = $doelstelling;
                 }
-                if (!array_key_exists($row['cid'], $doelstelling->criteria)) {
+                if (!array_key_exists($row['cid'], $doelstelling->criterias)) {
                     $criteria = new stdClass();
                     $criteria->id = $row['cid'];
                     $criteria->name = $row['cname'];
