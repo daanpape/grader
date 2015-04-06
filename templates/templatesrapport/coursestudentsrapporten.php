@@ -23,7 +23,7 @@
     </div>
 
     <div class="container">
-        <h4 class="page-header">Students</h4>
+        <h3 class="page-header">Students</h3>
     </div>
     <!-- Content container -->
     <div class="container">
@@ -50,7 +50,7 @@
     </div>
     
     <div class="container">
-        <h4 class="page-header">Teachers</h4>
+        <h3 class="page-header">Teachers</h3>
     </div>
     <!-- Content container -->
     <div class="container">
