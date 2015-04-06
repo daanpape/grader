@@ -80,8 +80,8 @@ $location = "jsrapport/modulerapporten";
                         <div class="subcompPanel">
                             <div class="panel panel-default">
                                 <div class="panel-heading color-subcomp">
-                                    <input type="text" placeholder="doelstelling name" class="form-control form-name" data-bind="value: name">
-                                    <input type="text" placeholder="doelstelling description" class="form-control form-desc" data-bind="value: description">
+                                    <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: name">
+                                    <input type="text" placeholder="competence description" class="form-control form-desc" data-bind="value: description">
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: criteria">
@@ -93,14 +93,14 @@ $location = "jsrapport/modulerapporten";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button class="btn" value="NaN-0" data-bind="click: addCriteria">Add an criteria</button>
-                                    <button class="btn pull-right" data-bind="click: removeThis">Remove this doelstelling</button>
+                                    <button class="btn" value="NaN-0" data-bind="click: addCriteria">Add a criteria</button>
+                                    <button class="btn pull-right" data-bind="click: removeThis">Remove this competence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn" value="NaN" data-bind="click: addDoelstelling">Add a doelstelling</button>
+                        <button class="btn" value="NaN" data-bind="click: addDoelstelling">Add a competence</button>
                         <button class="btn pull-right" value="NaN" data-bind="click: removeThis">Remove this module</button>
                     </div>
                 </div>
