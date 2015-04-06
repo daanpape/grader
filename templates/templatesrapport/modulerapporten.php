@@ -63,7 +63,7 @@ $location = "jsrapport/modulerapporten";
             </div>
             <!-- Validation Summary -->
             <div class="validationSummary hide">
-                <h2>Project was not saved!</h2>
+                <h2>Course was not saved!</h2>
                 <ul></ul>
             </div>
         </div>

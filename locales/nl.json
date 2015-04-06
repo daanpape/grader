@@ -112,5 +112,6 @@
     "UserActions" : "Acties",
     "UserStatus" : "Status",
     "PermissionRole" : "Rol",
-    "PermissionDescription" : "Beschrijving"
+    "PermissionDescription" : "Beschrijving",
+    "Addmodule" : "Voeg module toe"
 }

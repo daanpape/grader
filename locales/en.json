@@ -116,5 +116,6 @@
     "UserActions" : "Actions",
     "UserStatus" : "Status",
     "PermissionRole" : "Role",
-    "PermissionDescription" : "Description"
+    "PermissionDescription" : "Description",
+    "Addmodule" : "Add module"
 }

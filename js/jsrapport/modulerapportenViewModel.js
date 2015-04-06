@@ -8,15 +8,15 @@ function module(viewmodel, id, name, description, doelstellingen) {
         description: ko.observable(description),
         doelstellingen: ko.observableArray(doelstellingen),
 
-        adddoelstelling: function() {
+        addDoelstelling: function() {
             this.doelstellingen.push(new doelstelling(this));
         },
 
         removeThis: function() {
-            viewmodel.removemodule(this);
+            viewModel.removeModule(this);
         },
 
-        removedoelstelling: function(doelstelling) {
+        removeDoelstelling: function(doelstelling) {
             this.doelstellingen.remove(doelstelling);
         }
     };
@@ -26,24 +26,24 @@ function module(viewmodel, id, name, description, doelstellingen) {
 /**
  * doelstelling class
  */
-function doelstelling(parent, id, name, description, criterias) {
+function doelstelling(parent, id, name, description, criteria) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        criterias: ko.observableArray(criterias),
+        criteria: ko.observableArray(criteria),
         
-        addcriteria: function() {
-            this.criterias.push(new criteria(this));
+        addCriteria: function() {
+            this.criteria.push(new criteria(this));
         },
 
         removeThis: function() {
-            parent.removedoelstelling(this);
+            parent.removeDoelstelling(this);
 
         },
         
-        removecriteria: function(criteria) {
-            this.criterias.remove(criteria);
+        removeCriteria: function(criteria) {
+            this.criteria.remove(criteria);
         }
     };
 }
@@ -58,7 +58,7 @@ function criteria(parent, id, name, description) {
         description : ko.observable(description),
 
         removeThis: function() {
-            parent.removecriteria(this);
+            parent.removeCriteria(this);
         }
     };
 }
@@ -80,15 +80,15 @@ function pageViewModel(gvm) {
 
     gvm.modules = ko.observableArray([]);
 
-    gvm.addmodule = function() {
+    gvm.addModule = function() {
         gvm.modules.push(new module(this));
     };
     
-    gvm.removemodule = function(module) {
+    gvm.removeModule = function(module) {
         gvm.modules.remove(module);
     }
     
-    gvm.updatemodule = function(id, name, description) {
+    gvm.updateModule = function(id, name, description) {
         var comp = new module(this, id, name, description);
         gvm.modules.push(comp);
         return comp;
@@ -99,19 +99,19 @@ function pageViewModel(gvm) {
     }
 }
 
-function fetchProjectStructure() {
+function fetchCourseStructure() {
     viewModel.clearStructure();
     
     $.getJSON("/api/coursestructure/" + courseid, function(data){
         $.each(data, function(i, item){
-            var module = viewModel.updatemodule(item.id, item.name, item.description);
+            var module = viewModel.updateModule(item.id, item.name, item.description);
             
-            $.each(item.doelstellingen, function(i, subcomp){
-               var doelstelling = new doelstelling(module, subcomp.id, subcomp.name, subcomp.description);
+            $.each(item.doelstellingen, function(i, doel){
+               var doelstelling = new doelstelling(module, doel.id, doel.name, doel.description);
                 module.doelstellingen.push(doelstelling);
                
-               $.each(subcomp.criterias, function(i, indic){
-                  doelstelling.criterias.push(new criteria(doelstelling, indic.id, indic.name, indic.description));
+               $.each(doel.criteria, function(i, crit){
+                  doelstelling.criteria.push(new criteria(doelstelling, crit.id, crit.name, crit.description));
                });
             });
         })
@@ -119,16 +119,16 @@ function fetchProjectStructure() {
 }
 
 function initPage() {
-    fetchProjectStructure();
+    fetchCourseStructure();
 
     $(".addmoduleBtn").click(function() {
         console.log('clicked on add module');
-        viewModel.addmodule();
+        viewModel.addModule();
     });
 
     $(".savePageBtn").click(function(){
         if(validationCheck()) {
-            saveProjectStructure();
+            saveCourseStructure();
             console.log("Saved");
         } else {
             window.scrollTo(0,0);
@@ -137,16 +137,16 @@ function initPage() {
     });
 }
 
-function saveProjectStructure() {
+function saveCourseStructure() {
     $.ajax({
         type: "POST",
         url: "/api/savemodules/" + courseid,
         data: ko.toJSON(viewModel.modules),
         success: function(){
             // TODO make multilangual and with modals
-            alert("Saved projectstructure to server");
+            alert("Saved coursestructure to server");
 
-            fetchProjectStructure();
+            fetchCourseStructure();
         }
     });
 }

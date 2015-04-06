@@ -283,38 +283,38 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function getAllDataFromCourse($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT module_rapport.id cid, module_rapport.name cname, module_rapport.description cdescription, doelstelling_rapport.id sid, doelstelling_rapport.name sname, doelstelling_rapport.description sdescription, criteria_rapport.id iid, criteria_rapport.name iname, criteria_rapport.description idescription FROM module_rapport
+            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
-                                    ORDER BY cid, sid, iid ASC");
+                                    ORDER BY mid, did, cid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['cid'], $data)) {
+                if (!array_key_exists($row['mid'], $data)) {
                     $module = new stdClass();
-                    $module->id = $row['cid'];
-                    $module->name = $row['cname'];
-                    $module->description = $row['cdescription'];
+                    $module->id = $row['mid'];
+                    $module->name = $row['mname'];
+                    $module->description = $row['mdescription'];
                     $module->doelstellingen = array();
-                    $data[$row['cid']] = $module;
+                    $data[$row['mid']] = $module;
                 }
-                if (!array_key_exists($row['sid'], $module->doelstellingen)) {
+                if (!array_key_exists($row['did'], $module->doelstellingen)) {
                     $doelstelling = new stdClass();
-                    $doelstelling->id = $row['sid'];
-                    $doelstelling->name = $row['sname'];
-                    $doelstelling->description = $row['sdescription'];
-                    $doelstelling->criterias = array();
-                    $module->doelstellingen[$row['sid']] = $doelstelling;
+                    $doelstelling->id = $row['did'];
+                    $doelstelling->name = $row['dname'];
+                    $doelstelling->description = $row['ddescription'];
+                    $doelstelling->criteria = array();
+                    $module->doelstellingen[$row['did']] = $doelstelling;
                 }
-                if (!array_key_exists($row['iid'], $doelstelling->criterias)) {
+                if (!array_key_exists($row['cid'], $doelstelling->criteria)) {
                     $criteria = new stdClass();
-                    $criteria->id = $row['iid'];
-                    $criteria->name = $row['iname'];
-                    $criteria->description = $row['idescription'];
-                    $doelstelling->criterias[$row['iid']] = $criteria;
+                    $criteria->id = $row['cid'];
+                    $criteria->name = $row['cname'];
+                    $criteria->description = $row['cdescription'];
+                    $doelstelling->criteria[$row['cid']] = $criteria;
                 }
             }
             return $data;
@@ -323,6 +323,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
+    
     public static function putNewmodule($name, $description, $course) {
         try {
             $conn = Db::getConnection();
