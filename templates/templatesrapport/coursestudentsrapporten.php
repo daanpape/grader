@@ -22,6 +22,7 @@
         <h1 class="page-header" id="projectHeader" data-value="<?php echo $coursestudentsid ?>"><?php echo $coursestudentsname ?></h1>
     </div>
 
+    <h2>Students</h2>
     <!-- Content container -->
     <div class="container">
         <div class="row">
@@ -42,6 +43,15 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    
+    <h2>Teachers</h2>
+    <!-- Content container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -49,11 +59,11 @@
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody data-bind="foreach: availableLists">
+                    <tbody data-bind="foreach: coupledLists">
                     <tr>
                         <td data-bind="text: tname">--</td>
                         <td>
-                            <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}">Couple</button>
+                            <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">Uncouple</button>
                         </td>
                     </tr>
                     </tbody>
