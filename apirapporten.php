@@ -152,8 +152,8 @@ Class RapportAPI {
                         property_exists($doelstelling, "description") ? $doelstelling->description : "",
                         $moduleid);
                     // Insert criterias if any
-                    if (property_exists($doelstelling, "criteria")) {
-                        foreach ($doelstelling->criteria as $criteria) {
+                    if (property_exists($doelstelling, "criterias")) {
+                        foreach ($doelstelling->criterias as $criteria) {
                             self::putcriteria(
                                 property_exists($criteria, "id") ? $criteria->id : -1,
                                 property_exists($criteria, "name") ? $criteria->name : "",

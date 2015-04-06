@@ -306,7 +306,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                     $doelstelling->id = $row['did'];
                     $doelstelling->name = $row['dname'];
                     $doelstelling->description = $row['ddescription'];
-                    $doelstelling->criteria = array();
+                    $doelstelling->criterias = array();
                     $module->doelstellingen[$row['did']] = $doelstelling;
                 }
                 if (!array_key_exists($row['cid'], $doelstelling->criteria)) {
@@ -314,7 +314,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                     $criteria->id = $row['cid'];
                     $criteria->name = $row['cname'];
                     $criteria->description = $row['cdescription'];
-                    $doelstelling->criteria[$row['cid']] = $criteria;
+                    $doelstelling->criterias[$row['cid']] = $criteria;
                 }
             }
             return $data;

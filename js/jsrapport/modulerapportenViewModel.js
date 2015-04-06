@@ -31,10 +31,10 @@ function doelstelling(parent, id, name, description, criteria) {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
-        criteria: ko.observableArray(criteria),
+        criterias: ko.observableArray(criteria),
         
         addCriteria: function() {
-            this.criteria.push(new criteria(this));
+            this.criterias.push(new criteria(this));
         },
 
         removeThis: function() {
@@ -43,7 +43,7 @@ function doelstelling(parent, id, name, description, criteria) {
         },
         
         removeCriteria: function(criteria) {
-            this.criteria.remove(criteria);
+            this.criterias.remove(criteria);
         }
     };
 }
@@ -110,8 +110,8 @@ function fetchCourseStructure() {
                var doelst = new doelstelling(module, doel.id, doel.name, doel.description);
                 module.doelstellingen.push(doelst);
                
-               $.each(doel.criteria, function(i, crit){
-                  doelst.criteria.push(new criteria(doelst, crit.id, crit.name, crit.description));
+               $.each(doel.criterias, function(i, crit){
+                  doelst.criterias.push(new criteria(doelst, crit.id, crit.name, crit.description));
                });
             });
         })

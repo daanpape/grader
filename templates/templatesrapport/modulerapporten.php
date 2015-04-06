@@ -84,7 +84,7 @@ $location = "jsrapport/modulerapporten";
                                     <input type="text" placeholder="competence description" class="form-control form-desc" data-bind="value: description">
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group" data-bind="foreach: criteria">
+                                    <ul class="list-group" data-bind="foreach: criterias">
                                         <li class="list-group-item">
                                             <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: name">
                                             <input type="text" placeholder="criteria description" class="form-control form-desc" data-bind="value: description">
