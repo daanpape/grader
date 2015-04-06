@@ -89,9 +89,9 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateModule = function(id, name, description) {
-        var comp = new module(this, id, name, description);
-        gvm.modules.push(comp);
-        return comp;
+        var mod = new module(this, id, name, description);
+        gvm.modules.push(mod);
+        return mod;
     }
     
     gvm.clearStructure = function() {
@@ -107,11 +107,11 @@ function fetchCourseStructure() {
             var module = viewModel.updateModule(item.id, item.name, item.description);
             
             $.each(item.doelstellingen, function(i, doel){
-               var doelstelling = new doelstelling(module, doel.id, doel.name, doel.description);
-                module.doelstellingen.push(doelstelling);
+               var doelst = new doelstelling(module, doel.id, doel.name, doel.description);
+                module.doelstellingen.push(doelst);
                
                $.each(doel.criteria, function(i, crit){
-                  doelstelling.criteria.push(new criteria(doelstelling, crit.id, crit.name, crit.description));
+                  doelst.criteria.push(new criteria(doelst, crit.id, crit.name, crit.description));
                });
             });
         })
