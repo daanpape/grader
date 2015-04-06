@@ -84,7 +84,7 @@ $location = "jsrapport/modulerapporten";
                                     <input type="text" placeholder="doelstelling description" class="form-control form-desc" data-bind="value: description">
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group" data-bind="foreach: criterias">
+                                    <ul class="list-group" data-bind="foreach: criteria">
                                         <li class="list-group-item">
                                             <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: name">
                                             <input type="text" placeholder="criteria description" class="form-control form-desc" data-bind="value: description">
@@ -100,7 +100,7 @@ $location = "jsrapport/modulerapporten";
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn" value="NaN" data-bind="click: adddoelstelling">Add a doelstelling</button>
+                        <button class="btn" value="NaN" data-bind="click: addDoelstelling">Add a doelstelling</button>
                         <button class="btn pull-right" value="NaN" data-bind="click: removeThis">Remove this module</button>
                     </div>
                 </div>
