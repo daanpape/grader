@@ -83,7 +83,6 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
             <div class="ui-widget"> \
-                <label for="fruitlist">Student: </label> \
                 <input id="fruitlist" /> \
             </div> \
         </form>');
@@ -164,7 +163,14 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    $('#fruitlist').autocomplete({ source: viewModel.tabledata });     //autocomplete works, 100% sure
+    var fruits = [
+        "Apple",
+        "Pear",
+        "Strawberry",
+        "Pineapple"
+    ];
+    
+    $('#fruitlist').autocomplete({ source: fruits });     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);
     console.log(options.length);
