@@ -29,7 +29,7 @@
         <div class="container">
             <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
             <div class="row">
-                <div class="dropdown col-md-3">
+                <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-courseRapport dropdown-toggle" type="button" id="courseRapport" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
@@ -39,7 +39,7 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-5">
+                <div class="dropdown col-md-7">
                     <button class="btn btn-wide btn-default btn-module dropdown-toggle" type="button" id="modules" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Module</span>
                         <span class="pull-right caret-down caret"></span>
