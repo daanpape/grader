@@ -167,7 +167,7 @@ function initPage() {
     $('#fruitlist').autocomplete({ source: viewModel.tabledata });     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);
-    console.log(options.length);
+    console.log(options[0].length);
 
     $('#addStudent').click(function(){
         showNewStudentModal();
