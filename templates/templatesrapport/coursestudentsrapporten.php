@@ -45,7 +45,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div><br />
     
     <!-- Content container -->
     <div class="container">
