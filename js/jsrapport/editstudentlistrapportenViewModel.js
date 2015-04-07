@@ -170,7 +170,8 @@ function initPage() {
         "Pineapple"
     ];
     
-    $('#fruitlist').autocomplete({ source: fruits });     //autocomplete works, 100% sure
+    $('#fruitlist').slider();
+    //$('#fruitlist').autocomplete({ source: fruits });     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);
     console.log(options.length);
