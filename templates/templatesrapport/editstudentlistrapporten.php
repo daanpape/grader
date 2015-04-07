@@ -62,6 +62,8 @@ $location = "jsrapport/editstudentlistrapporten";
     </div>
 </div>
 
+<input type="text" id="fruittest" />
+
 <?php include_once('templates/jsdepends.php') ?>
 </body>
 </html>
