@@ -22,11 +22,9 @@
         <h1 class="page-header" id="projectHeader" data-value="<?php echo $coursestudentsid ?>"><?php echo $coursestudentsname ?></h1>
     </div>
 
-    <div class="container">
-        <h3 class="page-header">Students</h3>
-    </div>
     <!-- Content container -->
     <div class="container">
+        <div class="big-info">Students:</div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">
@@ -49,11 +47,9 @@
         </div>
     </div>
     
-    <div class="container">
-        <h3 class="page-header">Teachers</h3>
-    </div>
     <!-- Content container -->
     <div class="container">
+        <div class="big-info">Teachers:</div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-striped">
