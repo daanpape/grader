@@ -11,6 +11,9 @@ $location = "jsrapport/editstudentlistrapporten";
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/cssrapport/jquery-ui.min.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jsrapport/jquery-ui.min.js"></script>
 
     <title data-bind="text: title"></title>
 
