@@ -39,33 +39,13 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-3">
+                <div class="dropdown col-md-2">
                     <button class="btn btn-wide btn-default btn-module dropdown-toggle" type="button" id="modules" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Module</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="modules" data-bind="foreach: availableModules">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'modulebtn-' + id}"><span data-bind="text: name"></span></a></li>
-                    </ul>
-                </div>
-
-                <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-doelstelling dropdown-toggle" type="button" id="availabledoelstellingen" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">doelstelling</span>
-                        <span class="pull-right caret-down caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-doelstelling ul-wide" role="menu" aria-labelledby="availabledoelstellingen" data-bind="foreach: availabledoelstellingen">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'doelstellingbtn-' + id}"><span data-bind="text: name"></span></a> </li>
-                    </ul>
-                </div>
-
-                <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-criteria dropdown-toggle" type="button" id="availablecriterias" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">criteria</span>
-                        <span class="pull-right caret-down caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-criteria ul-wide" role="menu" aria-labelledby="availablecriterias" data-bind="foreach: availablecriterias">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'criteriabtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
             </div>
