@@ -56,20 +56,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: studIDTableTitleRapport">Student ID</th>
-                    <th data-bind="text: nameTableTitleRapport">Name</th>
-                    <th data-bind="text: lastNameTableTitleRapport">Last name</th>
-                    <th data-bind="text: mailTableTitleRapport">Mail</th>
-                    <th data-bind="text: scoreTableTitleRapport">Score</th>
+                    <th data-bind="text: werkficheID">Werkfiche ID</th>
+                    <th data-bind="text: werkficheName">Name</th>
+                    <th data-bind="text: werkficheDate">Date</th>
+                    <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: tabledata">
+                <tbody>       <!-- data-bind="foreach: tabledata" -->
                 <tr>
-                    <td data-bind="text: tstudid">--</td>
-                    <td data-bind="text: tname">--</td>
-                    <td data-bind="text: tlname">--</td>
-                    <td data-bind="text: tmail">--</td>
-                    <td data-bind="text: tscore">--</td>
+                    <td>--</td>     <!-- data-bind="text: tstudid" -->
+                    <td>--</td>     <!-- data-bind="text: tname" -->
+                    <td>--</td>     <!-- data-bind="text: tlname" -->
+                    <td>--</td>     <!-- data-bind="text: tscore" -->
                 </tr>
                 </tbody>
             </table>

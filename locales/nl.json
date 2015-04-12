@@ -96,11 +96,10 @@
   "UserlistsTitle2": "Mijn Studentenlijsten",
   "AddNewList": "Voeg nieuwe lijst toe",
 
-    "studIDTableTitleRapport":"Student ID",
-    "nameTableTitleRapport":"Naam",
-    "lastNameTableTitleRapport":"Familienaam",
-    "mailTableTitleRapport":"Mail",
-    "scoreTableTitleRapport":"Punten",
+    "werkficheID":"Werkfiche ID",
+    "werkficheName":"Naam",
+    "werkficheDate":"Datum",
+    "werkficheAction":"Acties",
 
     "AdminTitle" : "Admin pagina",
     "UserPermissionsTitle" : "Rechten",

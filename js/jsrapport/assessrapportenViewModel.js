@@ -15,11 +15,10 @@ function pageViewModel(gvm) {
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     // Table i18n bindings
-    gvm.studIDTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleRapport");}, gvm);
-    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("nameTableTitleRapport");}, gvm);
-    gvm.lastNameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitleRapport");}, gvm);
-    gvm.mailTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitleRapport");}, gvm);
-    gvm.scoreTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitleRapport");}, gvm);
+    gvm.werkficheID = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheID");}, gvm);
+    gvm.werkficheName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheName");}, gvm);
+    gvm.werkficheDate = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheDate");}, gvm);
+    gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableModules = ko.observableArray([]);

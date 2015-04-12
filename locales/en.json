@@ -99,11 +99,10 @@
   "UserlistsTitle2": "My Studentlists",
   "AddNewList": "Add new list",
 
-    "studIDTableTitleRapport":"Student ID",
-    "nameTableTitleRapport":"Name",
-    "lastNameTableTitleRapport":"Last name",
-    "mailTableTitleRapport":"Mail",
-    "scoreTableTitleRapport":"Score",
+    "werkficheID":"Worksheet ID",
+    "werkficheName":"Name",
+    "werkficheDate":"Date",
+    "werkficheAction":"Actions",
 
 
     "AdminTitle" : "Admin page",
