@@ -21,7 +21,7 @@ function pageViewModel(gvm) {
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
-    gvm.availableStudents = ko.observableArra([]);
+    gvm.availableStudents = ko.observableArray([]);
     //deze 3 hieronder worden niet meer gebruikt, moeten samen met bijhorende functies en databinds in php file verwijderd worden
     gvm.availableModules = ko.observableArray([]);
     gvm.availabledoelstellingen = ko.observableArray([]);
