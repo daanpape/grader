@@ -21,11 +21,15 @@ function pageViewModel(gvm) {
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
+    gvm.availableStudents = ko.observableArra([]);
+    //deze 3 hieronder worden niet meer gebruikt, moeten samen met bijhorende functies en databinds in php file verwijderd worden
     gvm.availableModules = ko.observableArray([]);
     gvm.availabledoelstellingen = ko.observableArray([]);
     gvm.availablecriterias = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
+    gvm.currentStudentId = null;
+    //deze 3 worden ook niet meer gebruikt, alle references moeten verwijderd worden
     gvm.currentModuleid = null;
     gvm.currentdoelstellingId = null;
     gvm.currentcriteriaId = null;
@@ -39,13 +43,13 @@ function pageViewModel(gvm) {
                     $(".btn-doelstelling span:first").text(item.doelstelling);
                     $(".btn-criteria span:first").text(item.criteria);
                     gvm.currentCourseRapportId = item.courseid;
-                    gvm.currentModuleid = item.moduleid;
-                    gvm.currentdoelstellingId = item.doelstellingid;
-                    gvm.currentcriteriaId = item.criteriaid;
+                    //gvm.currentModuleid = item.moduleid;
+                    //gvm.currentdoelstellingId = item.doelstellingid;
+                    //gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
-                    gvm.updateModules(item.moduleid);
-                    gvm.updatedoelstellingen(item.doelstellingid);
-                    gvm.updatecriterias(item.criteriaid);
+                    //gvm.updateModules(item.moduleid);
+                    //gvm.updatedoelstellingen(item.doelstellingid);
+                    //gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
@@ -264,7 +268,6 @@ function loadTablePage(pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        //viewModel.updateDropdowns();
         viewModel.updateDropdowns();
     });
 }
