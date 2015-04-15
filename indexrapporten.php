@@ -153,6 +153,18 @@ $app->get('/api/studentlistsrapporten/:id', function($id) use($app) {
     $data = RapportAPI::getStudentListsFromUser($id);
     echo json_encode($data);
 });
+
+//GET all students from a course
+$app->get('/api/coursesstudents/:id', function ($Id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all students bij the id of a course
+    $pagedata = RapportAPI::getStudentFromCourseID($Id);
+    echo json_encode($pagedata);
+});
+
+
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Use json headers
