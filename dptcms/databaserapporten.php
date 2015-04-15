@@ -79,7 +79,16 @@ class rapportenDAO {
     }
 
     public static function getStudentsFromCourseID($id) {
-        
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get studentlists from ower with id' . $id, $err);
+            return null;
+        }
     }
 
     /*
