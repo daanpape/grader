@@ -22,13 +22,15 @@ function pageViewModel(gvm) {
 
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableStudents = ko.observableArray([]);
-    //deze 3 hieronder worden niet meer gebruikt, moeten samen met bijhorende functies en databinds in php file verwijderd worden
+
+    //deze 3 hieronder worden niet meer gebruikt, moeten samen met bijhorende functies en databinds in php file verwijderd worden :'(
     gvm.availableModules = ko.observableArray([]);
     gvm.availabledoelstellingen = ko.observableArray([]);
     gvm.availablecriterias = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
     gvm.currentStudentId = null;
+
     //deze 3 worden ook niet meer gebruikt, alle references moeten verwijderd worden
     gvm.currentModuleid = null;
     gvm.currentdoelstellingId = null;
@@ -108,6 +110,8 @@ function pageViewModel(gvm) {
             });
         });
     };
+
+   /*
     
     
     /*
@@ -115,6 +119,19 @@ function pageViewModel(gvm) {
      */
     gvm.updateStudents = function(id) {
         //get all students who follow that course
+        $.getJSON('api/coursesstudents/' + id, function(data) {
+            gvm.availableStudents.removeAll();
+            $.each(data, function(i,item) {
+                // Put item in list
+                gvm.availableStudents.push(item);
+
+                //update
+                $(".btn-student span:first").text($(this).text());
+
+                //save
+                gvm.saveLastSelectedDropdowns();
+            })
+        })
     }
 
 
