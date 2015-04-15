@@ -77,6 +77,11 @@ class rapportenDAO {
             return null;
         }
     }
+
+    public static function getStudentsFromCourseID($id) {
+        
+    }
+
     /*
      * Get all module by course
      * @id the course

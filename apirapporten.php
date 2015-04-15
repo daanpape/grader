@@ -123,6 +123,10 @@ Class RapportAPI {
         return rapportenDAO::getStudentListsFromUser($id);
     }
 
+    public static function getStudentFromCourseID($id) {
+        return rapportenDAO::getStudentsFromCourseID($id);
+    }
+
     public static function deleteStudentList($id) {
         if(rapportenDAO::deleteStudentList($id) == true) {
             return true;
