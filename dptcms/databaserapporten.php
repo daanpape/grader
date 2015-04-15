@@ -81,7 +81,8 @@ class rapportenDAO {
     public static function getStudentsFromCourseID($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE id = :id");
+            $stmt = $conn->prepare("select * from studentlist_students_rapport where studentlist =
+                                          (select studentlistid from course_rapport where id = :id)");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
