@@ -163,12 +163,14 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
+    $('#addStudentForm').hide();
+    
     $('#addStudent').click(function(){
-        $("#addStudentForm").removeAttr("style");
+        $("#addStudentForm").show();
     });
     
     $('#addStudentBtn').click(function() {
-        $('#addStudentForm').prop('style', 'display: none');
+        $('#addStudentForm').hide();
     });
     
     var availableTags = [

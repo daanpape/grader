@@ -62,7 +62,7 @@ $location = "jsrapport/editstudentlistrapporten";
     </div>
 </div>
 
-<div id="addStudentForm" class="container" style="display: none">
+<div id="addStudentForm" class="container">
     <div class="row">
         <label>Student name:</label>
         <input id="studentsComplete" />
