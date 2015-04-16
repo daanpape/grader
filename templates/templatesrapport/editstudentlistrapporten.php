@@ -62,9 +62,12 @@ $location = "jsrapport/editstudentlistrapporten";
     </div>
 </div>
 
-<div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
+<div class="container" style="display: none">
+    <div class="row">
+        <label>Student name:</label>
+        <input id="studentsComplete" />
+        <button class="btn btn-default">Add</button>
+    </div>
 </div>
 
 <?php include_once('templates/jsdepends.php') ?>
