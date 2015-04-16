@@ -99,9 +99,6 @@ function pageViewModel(gvm) {
 
                 //update
                 $(".btn-student span:first").text($(this).text());
-
-                //save
-                gvm.saveLastSelectedDropdowns();
             })
         })
     }
