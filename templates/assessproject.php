@@ -11,6 +11,7 @@ $location = "assessproject";
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
+    <script src="/jsPDF/dist/jspdf.debug.js"></script>
 
     <title data-bind="text: title"></title>
 
