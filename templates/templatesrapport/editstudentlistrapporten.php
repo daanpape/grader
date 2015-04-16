@@ -66,7 +66,7 @@ $location = "jsrapport/editstudentlistrapporten";
     <div class="row">
         <label>Student name:</label>
         <input id="studentsComplete" />
-        <button id=addStudentBtn" class="btn btn-default">Add</button>
+        <button id="addStudentBtn" class="btn btn-default">Add</button>
     </div>
 </div>
 
