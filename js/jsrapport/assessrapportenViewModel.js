@@ -23,18 +23,11 @@ function pageViewModel(gvm) {
     gvm.availableCoursesRapport = ko.observableArray([]);
     gvm.availableStudents = ko.observableArray([]);
 
-    //deze 3 hieronder worden niet meer gebruikt, moeten samen met bijhorende functies en databinds in php file verwijderd worden :'(
-    gvm.availableModules = ko.observableArray([]);
-    gvm.availabledoelstellingen = ko.observableArray([]);
-    gvm.availablecriterias = ko.observableArray([]);
-
     gvm.currentCourseRapportId = null;
     gvm.currentStudentId = null;
 
-    //deze 3 worden ook niet meer gebruikt, alle references moeten verwijderd worden
+    //dit wordt niet meer gebruikt, alle references moeten verwijderd worden
     gvm.currentModuleid = null;
-    gvm.currentdoelstellingId = null;
-    gvm.currentcriteriaId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
@@ -42,16 +35,8 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-student span:first").text(item.module);
-                    //$(".btn-doelstelling span:first").text(item.doelstelling);
-                    //$(".btn-criteria span:first").text(item.criteria);
                     gvm.currentCourseRapportId = item.courseid;
-                    //gvm.currentModuleid = item.moduleid;
-                    //gvm.currentdoelstellingId = item.doelstellingid;
-                    //gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
-                    //gvm.updateModules(item.moduleid);
-                    //gvm.updatedoelstellingen(item.doelstellingid);
-                    //gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
@@ -67,12 +52,8 @@ function pageViewModel(gvm) {
         data = {};
         data["course"] = $(".btn-courseRapport span:first").text();
         data["courseid"] = gvm.currentCourseRapportId;
-        data["module"] = $(".btn-student span:first").text();
+        data["module"] = $(".btn-student span:first").text();    //module en moduleid moeten veranderd worden naar student en studentid
         data["moduleid"] = gvm.currentModuleid;
-        //data["doelstelling"] = $(".btn-doelstelling span:first").text();
-        //data["doelstellingid"] = gvm.currentdoelstellingId;
-        //data["criteria"] = $(".btn-criteria span:first").text();
-        //data["criteriaid"] = gvm.currentcriteriaId;
         data["user"] = gvm.userId;
         console.log(data);
         $.ajax({
@@ -96,15 +77,9 @@ function pageViewModel(gvm) {
                 $("#locbtn-" + item.id).click(function(){
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentStudentId = null;
-                    //gvm.currentdoelstellingId = null;
-                    //gvm.currentcriteriaId = null;
                     gvm.updateStudents(item.id);
-                    //gvm.updatedoelstellingen(null);
-                    //gvm.updatecriterias(null);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-student span:first").text("Student");
-                    //$(".btn-doelstelling span:first").text("doelstelling");
-                    //$(".btn-criteria span:first").text("criteria");
                     gvm.saveLastSelectedDropdowns();
                 });
             });
@@ -133,77 +108,6 @@ function pageViewModel(gvm) {
             })
         })
     }
-
-
-    /*
-     * Update the module data
-     */
-    /*gvm.updateModules = function(id) {
-        $.getJSON('/api/coursesrapport/' + id, function(data) {
-            gvm.availableModules.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availableModules.push(item);
-
-                //Add listener to listitem
-                $("#modulebtn-" + item.id).click(function(){
-                    gvm.currentModuleid = item.id;
-                    gvm.currentdoelstellingId = null;
-                    gvm.currentcriteriaId = null;
-                    gvm.updatedoelstellingen(item.id);
-                    gvm.updatecriterias(null);
-                    $(".btn-module span:first").text($(this).text());
-                    $(".btn-doelstelling span:first").text("doelstelling");
-                    $(".btn-criteria span:first").text("criteria");
-                    gvm.saveLastSelectedDropdowns();
-                });
-            });
-        });
-    }*/
-
-    /*
-     * Update doelstelling
-     */
-    /*gvm.updatedoelstellingen = function(id) {
-        $.getJSON('/api/doelstellingrapport/' + id, function(data) {
-            gvm.availabledoelstellingen.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availabledoelstellingen.push(item);
-
-                // Add listener to listitem
-                $("#doelstellingbtn-" + item.id).click(function(){
-                    $(".btn-doelstelling span:first").text($(this).text());
-                    gvm.currentdoelstellingId = item.id;
-                    gvm.currentcriteriaId = null;
-                    gvm.updatecriterias(item.id);
-                    loadTablePage(item.id, 1);
-                    $(".btn-criteria span:first").text("criteria");
-                    gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this doelstelling
-                });
-            });
-        });
-    }*/
-
-    /*
-     * Update criterias
-     */
-    /*gvm.updatecriterias = function(id) {
-        $.getJSON('/api/criteriarapport/' + id, function(data) {
-            gvm.availablecriterias.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availablecriterias.push(item);
-
-                // Add listener to listitem
-                $("#criteriabtn-" + item.id).click(function(){
-                    $(".btn-criteria span:first").text($(this).text());
-                    gvm.currentcriteriaId = item.id;
-                    loadTablePage(item.id, 1);
-                    gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this criteria
-                });
-            });
-        });
-    }*/
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
