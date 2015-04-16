@@ -20,7 +20,7 @@ $location = "assessproject";
     <style>
         a:hover
         {
-
+            text-decoration: none;
         }
     </style>
 </head>
