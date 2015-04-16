@@ -78,7 +78,7 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
-function showNewStudentModal() {
+/*function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
@@ -99,7 +99,7 @@ function showNewStudentModal() {
     })
 
     showGeneralModal();
-}
+}*/
 
 function addNewStudent(serialData, callback) {
     console.log(serialData);
@@ -164,7 +164,11 @@ function initPage() {
     });
     
     $('#addStudent').click(function(){
-        showNewStudentModal();
+        $("#addStudentForm").removeAttr("style");
+    });
+    
+    $('#addStudentBtn').click(function() {
+        $('#addStudentForm').attr("style", "display: none");
     });
     
     var availableTags = [
@@ -194,6 +198,4 @@ function initPage() {
     $('#studentsComplete').autocomplete({ source: availableTags });
     
     loadStudentTable();
-    
-    
 }
