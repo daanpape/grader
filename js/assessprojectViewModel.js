@@ -55,7 +55,7 @@ function initPage() {
     viewModel.getStudentList();
 }
 
-function createPDF(tid)
+function createPDF(name,lastname,email)
 {
     console.log(tid);
 
