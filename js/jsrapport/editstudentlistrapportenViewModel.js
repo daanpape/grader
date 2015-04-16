@@ -123,16 +123,11 @@ function deleteTableItem(id, tblObject){
     });
 }
 
-function getAllStudents() {
-    $.ajax({
-        url: "/api/allstudents",
-        type: "GET",
-        success: function(data) {
-            console.log(data);
-        },
-        error: function(data) {
-            console.log('Failed to get all students');
-        }
+function getAllStudents() {    
+    $.getJSON('/api/allstudents', function(data) {
+        $.each(data, function(i, item) {
+            console.log(item);
+        });
     });
 }
 
