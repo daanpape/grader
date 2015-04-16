@@ -62,8 +62,6 @@ $location = "jsrapport/editstudentlistrapporten";
     </div>
 </div>
 
-<div id="slider"></div>
-
 <?php include_once('templates/jsdepends.php') ?>
 </body>
 </html>
