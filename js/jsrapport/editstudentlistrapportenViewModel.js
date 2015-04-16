@@ -86,7 +86,7 @@ function showNewStudentModal() {
                 <input id="fruitlist" /> \
             </div> \
         </form>');
-    $.getJSON()
+    $.getJSON();
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
         addNewStudent($('#newStudentFrom').serialize(), function(result){
@@ -170,7 +170,7 @@ function initPage() {
         "Pineapple"
     ];
     
-    $('#fruittest').slider();
+    $('#slider').slider();
     //$('#fruitlist').autocomplete({ source: fruits });     //autocomplete works, 100% sure
     var options = $('#fruitlist').autocomplete("option");
     console.log(options.toArray().length);

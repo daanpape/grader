@@ -62,7 +62,7 @@ $location = "jsrapport/editstudentlistrapporten";
     </div>
 </div>
 
-<input type="text" id="fruittest" placeholder="Ignore this, just testing" />
+<div id="slider"></div>
 
 <?php include_once('templates/jsdepends.php') ?>
 </body>
