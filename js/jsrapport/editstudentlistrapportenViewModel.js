@@ -172,8 +172,7 @@ function initPage() {
         console.log('Clicked search');
     });
     
-    console.log(jQuery.ui);
-    console.log(jQuery.ui.version);
+    $('#slider').slider();
     
     loadStudentTable();
     
