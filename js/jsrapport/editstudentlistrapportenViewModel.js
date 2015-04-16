@@ -82,8 +82,9 @@ function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="ui-widget"> \
-                <input id="fruitlist" /> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \\n\
+                <button id="searchStudent" class="btn btn-default">Search</button> \
             </div> \
         </form>');
     $.getJSON();
@@ -162,22 +163,13 @@ function initPage() {
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });
-    
-    var fruits = [
-        "Apple",
-        "Pear",
-        "Strawberry",
-        "Pineapple"
-    ];
-    
-    $('#slider').slider();
-    //$('#fruitlist').autocomplete({ source: fruits });     //autocomplete works, 100% sure
-    var options = $('#fruitlist').autocomplete("option");
-    console.log(options.toArray().length);
-    console.log(options.length);
 
     $('#addStudent').click(function(){
         showNewStudentModal();
+    });
+    
+    $('#searchStudent').click(function() {
+        console.log('Clicked search');
     });
     
     loadStudentTable();
