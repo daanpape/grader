@@ -168,7 +168,7 @@ function initPage() {
     });
     
     $('#addStudentBtn').click(function() {
-        $('#addStudentForm').attr("style", "display: none");
+        $('#addStudentForm').prop('style', 'display: none');
     });
     
     var availableTags = [
