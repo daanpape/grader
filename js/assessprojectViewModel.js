@@ -107,5 +107,5 @@ function createPDF(e)
     doc.text(100,130, '25%');
     doc.text(128,130, '50');
 
-    doc.save('Niels_Verhaegen.pdf');
+    //doc.save('Niels_Verhaegen.pdf');
 }
