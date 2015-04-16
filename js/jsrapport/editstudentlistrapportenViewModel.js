@@ -163,6 +163,10 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
+    $('#addStudent').click(function(){
+        showNewStudentModal();
+    });
+    
     var availableTags = [
         "ActionScript",
         "AppleScript",
@@ -188,10 +192,6 @@ function initPage() {
         "Scheme"
     ];
     $('#studentComplete').autocomplete({ source: availableTags });
-
-    $('#addStudent').click(function(){
-        showNewStudentModal();
-    });
     
     loadStudentTable();
     
