@@ -191,7 +191,7 @@ function initPage() {
         "Scala",
         "Scheme"
     ];
-    $('#studentComplete').autocomplete({ source: availableTags });
+    $('#tags').autocomplete({ source: availableTags });
     
     loadStudentTable();
     
