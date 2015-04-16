@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
                 gvm.availableCoursesRapport.push(item);
 
                 // Add listener to listitem
-                $("#locbtn-" + item.id).click(function(){
+                $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentStudentId = null;
                     gvm.updateStudents(item.id);
@@ -97,8 +97,12 @@ function pageViewModel(gvm) {
                 // Put item in list
                 gvm.availableStudents.push(item);
 
-                //update
-                $(".btn-student span:first").text($(this).text());
+                // Add listener to listitem
+                $("#studentbtn-" + item.id).click(function(){
+                    gvm.currentStudentId = item.id;
+                    $(".btn-student span:first").text($(this).text());
+                    gvm.saveLastSelectedDropdowns();
+                });
             })
         })
     }
