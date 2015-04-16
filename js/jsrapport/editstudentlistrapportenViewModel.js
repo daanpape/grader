@@ -78,30 +78,7 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
-/*function showNewStudentModal() {
-    resetGeneralModal();
-    setGeneralModalTitle("Add Student");
-    setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="ui-widget"> \
-                <input id="studentComplete"> \
-            </div> \
-        </form>');
-    $.getJSON();
-
-    addGeneralModalButton(i18n.__("AddBtn"), function(){
-        addNewStudent($('#newStudentFrom').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}*/
-
-function addNewStudent(serialData, callback) {
+function addNewStudent(serialData, callback) {             //MOET NOG GEDAAN WORDEN!
     console.log(serialData);
     $.ajax({
         url: "/api/newstudent/" + viewModel.listId,
@@ -146,6 +123,20 @@ function deleteTableItem(id, tblObject){
     });
 }
 
+function getAllStudents() {
+    $.ajax({
+        url: "/api/allstudents",
+        type: "GET",
+        success: function(data) {
+            console.log(data);
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+}
+
 function loadStudentTable() {
     $.getJSON('/api/studentlistrapporten/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
@@ -170,34 +161,13 @@ function initPage() {
     });
     
     $('#addStudentBtn').click(function() {
+        //add student
         $('#addStudentForm').hide();
     });
     
-    var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-    ];
-    $('#studentsComplete').autocomplete({ source: availableTags });
+    var allStudents = getAllStudents();
+    
+    $('#studentsComplete').autocomplete({ source: allStudents });
     
     loadStudentTable();
 }

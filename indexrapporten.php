@@ -164,6 +164,15 @@ $app->get('/api/coursesstudents/:id', function ($Id) use ($app) {
     echo json_encode($pagedata);
 });
 
+//get all students
+$app->get('/api/allstudents', function () use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    
+    $data = RapportAPI::getAllStudents();
+    echo json_encode($data);
+});
 
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){

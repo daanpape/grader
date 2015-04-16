@@ -26,6 +26,18 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function getAllStudents() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT firstname, lastname FROM users");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all students', $err);
+            return null;
+        }
+    }
 
     public static function insertCourse($code, $name, $description) {
         try {
