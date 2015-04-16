@@ -16,6 +16,13 @@ $location = "assessproject";
     <title data-bind="text: title"></title>
 
     <?php include_once('hddepends.php') ?>
+
+    <style>
+        a:hover
+        {
+
+        }
+    </style>
 </head>
 
 <body>
