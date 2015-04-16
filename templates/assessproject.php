@@ -49,7 +49,7 @@ $location = "assessproject";
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
-                    <td><a data-bind="click: createPDF($data)" class="glyphicon glyphicon-file"></a></td>
+                    <td><a data-bind="click: createPDF($data.Name)" class="glyphicon glyphicon-file"></a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>

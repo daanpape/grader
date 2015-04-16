@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
                 console.log(item);
-                viewModel.addTableData(item.id, item.firstname, item.lastname);
+                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
             });
         });
     };
@@ -33,9 +33,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, firstname, lastname) {
+    gvm.addTableData = function(id, firstname, lastname, email) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email};
         gvm.tabledata.push(tblOject);
     };
 
