@@ -81,10 +81,9 @@ function showEditStudentModal(tblObject) {
 function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
-    setGeneralModalBody('<form id="newStudentFrom" class="form-inline"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name" style="width: 350px"> \
-                <button id="searchStudent" class="btn btn-default" style="margin-left: 20px; height: 40px">Search</button> \
+    setGeneralModalBody('<form id="newStudentFrom"> \
+            <div class="ui-widget"> \
+                <input id="studentComplete"> \
             </div> \
         </form>');
     $.getJSON();
@@ -163,17 +162,36 @@ function initPage() {
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });
+    
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+    $('#studentComplete').autocomplete({ source: availableTags });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
-    
-    $('#searchStudent').click(function() {
-        console.log('Clicked search');
-    });
-    
-    console.log(jQuery.ui);
-    console.log(jQuery.ui.version);
     
     loadStudentTable();
     
