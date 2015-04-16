@@ -18,13 +18,14 @@ function pageViewModel(gvm) {
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
+            console.log(data);
         });
     };
 
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
-                console.log(item);
+                //console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
             });
         });
@@ -74,9 +75,9 @@ function createPDF(name,lastname,email)
     doc.setLineWidth(0.1);
     doc.line(10, 50, 200, 50);
 
-    doc.text(20, 60, 'Niels Verhaegen');
+    doc.text(20, 60, name + ' ' + lastname);
     doc.setFontType('normal');
-    doc.text(20, 65, 'niels.verhaegen@student.howest.be');
+    doc.text(20, 65, email);
 
     doc.setFontType('bold');
     doc.text(10,80, 'Uitvoeringsdossier met uitvoeringsdetails');
