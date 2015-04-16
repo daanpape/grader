@@ -118,7 +118,7 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
-    // Get all locations
+    // Get all courses
     $pagedata = RapportAPI::getAllCourse();
     echo json_encode($pagedata);
 });
