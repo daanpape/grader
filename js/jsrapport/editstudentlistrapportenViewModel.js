@@ -129,10 +129,9 @@ function getAllStudents() {
         type: "GET",
         success: function(data) {
             console.log(data);
-            callback(true);
         },
         error: function(data) {
-            callback(false);
+            console.log('Failed to get all students');
         }
     });
 }
