@@ -189,9 +189,7 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     $response->header('Content-Type', 'application/json');
     //Insert the data
     echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('course'), $app->request->post('courseid'),
-        $app->request->post('module'), $app->request->post('moduleid'), $app->request->post('doelstelling'),
-        $app->request->post('doelstellingid'), $app->request->post('criteria'), $app->request->post('criteriaid'),
-        $app->request->post('user')));
+        $app->request->post('student'), $app->request->post('studentid'), $app->request->post('user')));
 });
 $app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');

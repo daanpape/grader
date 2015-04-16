@@ -26,9 +26,6 @@ function pageViewModel(gvm) {
     gvm.currentCourseRapportId = null;
     gvm.currentStudentId = null;
 
-    //dit wordt niet meer gebruikt, alle references moeten verwijderd worden
-    gvm.currentModuleid = null;
-
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
@@ -52,8 +49,8 @@ function pageViewModel(gvm) {
         data = {};
         data["course"] = $(".btn-courseRapport span:first").text();
         data["courseid"] = gvm.currentCourseRapportId;
-        data["module"] = $(".btn-student span:first").text();    //module en moduleid moeten veranderd worden naar student en studentid
-        data["moduleid"] = gvm.currentModuleid;
+        data["student"] = $(".btn-student span:first").text();
+        data["studentid"] = gvm.currentStudentId;
         data["user"] = gvm.userId;
         console.log(data);
         $.ajax({

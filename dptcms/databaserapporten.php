@@ -413,14 +413,14 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             echo $err;
         }
     }
-    public static function saveDropdownChoice($course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid, $user) {
+    public static function saveDropdownChoice($course, $courseid, $student, $studentid, $user) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, module, moduleid, doelstelling, doelstellingid, module, moduleid) VALUES (?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, module = ?, moduleid = ?, doelstelling = ?, doelstellingid = ?, module = ?, moduleid = ?");
-            $stmt->execute(array($user, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid, $course, $courseid, $module, $moduleid, $doelstelling, $doelstellingid, $module, $moduleid));
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, student, studentid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, student = ?, studentid = ?");
+            $stmt->execute(array($user, $course, $courseid, $student, $studentid, $course, $courseid, $student, $studentid));
             return true;
         } catch (PDOException $err) {
-            Logger::logError('Could not create new coupling between a Course and a studentlist', $err);
+            Logger::logError('Could not save dropdown list', $err);
             return false;
         }
     }
