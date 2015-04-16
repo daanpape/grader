@@ -83,8 +83,8 @@ function showNewStudentModal() {
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom" class="form-inline"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg col-md-5" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \
-                <button id="searchStudent" class="btn btn-default">Search</button> \
+                <input type="text" class="form-control input-lg col-md-6" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \
+                <button id="searchStudent" class="btn btn-default" style="margin-left: 20px">Search</button> \
             </div> \
         </form>');
     $.getJSON();
