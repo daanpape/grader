@@ -81,7 +81,7 @@ function showEditStudentModal(tblObject) {
 function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
-    setGeneralModalBody('<form id="newStudentFrom"> \
+    setGeneralModalBody('<form id="newStudentFrom" class="form-inline"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg col-md-5" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \
                 <button id="searchStudent" class="btn btn-default">Search</button> \
