@@ -82,7 +82,7 @@ function showNewStudentModal() {
     resetGeneralModal();
     setGeneralModalTitle("Add Student");
     setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="form-group"> \
+            <div class="ui-widget"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name" id="studentComplete"> \
             </div> \
         </form>');
@@ -187,7 +187,7 @@ function initPage() {
         "Scala",
         "Scheme"
     ];
-    $( "#studentComplete" ).autocomplete({ source: availableTags });
+    $('#studentComplete').autocomplete({ source: availableTags });
 
     $('#addStudent').click(function(){
         showNewStudentModal();
