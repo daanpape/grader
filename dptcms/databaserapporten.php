@@ -55,7 +55,7 @@ class rapportenDAO {
     public static function insertStudentList($name, $ownerid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name) VALUES (?, ?)");
+            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name, Active) VALUES (?, ?, 1)");
             $stmt->execute(array($ownerid, $name));
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
