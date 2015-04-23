@@ -80,7 +80,7 @@ class rapportenDAO {
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM studentlist_rapport WHERE owner = :owner");
+            $stmt = $conn->prepare("SELECT * FROM studentlist_rapport WHERE owner = :owner AND Active ='1'");
             $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
@@ -292,7 +292,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function deleteStudentList($id) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("DELETE FROM studentlist_rapport WHERE id = :id");
+            $stmt = $conn->prepare("UPDATE studentlist_rapport SET active = '0' WHERE id = :id");
             $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             /*$stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
