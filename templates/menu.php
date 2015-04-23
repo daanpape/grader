@@ -119,7 +119,9 @@ require_once 'dptcms/config.php';
             <button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
             <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
         </div>
+        <!-- copy modal -->
     </div>
+
 
     <!-- Upload modal -->
     <div id="upload_modal" class="modal_box extrapadding">
