@@ -71,6 +71,22 @@
             </div>
         </div>
     </div>
+    
+    <div class="container">
+        <div class="row">
+            <button type="button" class="btn btn-default pagination-button" id="addTeacher">
+                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+            </button>
+        </div>
+    </div>
+    
+    <div id="addTeacherForm" class="container">
+    <div class="row">
+        <label>Teacher name:</label>
+        <input id="teachersComplete" />
+        <button id="addTeacherBtn" class="btn btn-default">Add</button>
+    </div>
+</div>
 
     <?php include_once('templates/jsdepends.php') ?>
 </body>

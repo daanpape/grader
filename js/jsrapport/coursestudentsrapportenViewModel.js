@@ -7,6 +7,8 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
+    
+    gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
@@ -79,10 +81,30 @@ function pageViewModel(gvm) {
         });
     }
  }
+ 
+ function getAllTeachers() {
+     $.getJSON('/api/getteacherrapport', function(data) {
+        $.each(data, function(i, item) {
+            console.log(item);
+        });
+    });
+ }
 
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
+    
+    $('#addTeacherForm').hide();
+    
+    $('#addTeacher').click(function(){
+        $("#addTeacherForm").show();
+        getAllTeachers();
+    });
+    
+    $('#addTeacherBtn').click(function() {
+        //add teacher
+        $('#addTeacherForm').hide();
+    });
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;

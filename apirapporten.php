@@ -34,9 +34,9 @@ Class RapportAPI {
         return rapportenDAO::getcriteriasBydoelstelling($id);
     }
 
-    public static function getTeacher($id) {
+    public static function getTeacher() {
         /* get teacher from database */
-        return rapportenDAO::getTeacher($id);
+        return rapportenDAO::getTeacher();
     }
     
     public static function getStudentListInfoFromListId($id) {

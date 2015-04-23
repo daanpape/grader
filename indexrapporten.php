@@ -123,12 +123,12 @@ $app->get('/api/courserapportdrop', function () use ($app) {
     echo json_encode($pagedata);
 });
 //get teacher from database
-$app->get('/api/getteacherrapport/:id', function ($trainingId) use ($app) {
+$app->get('/api/getteacherrapport', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses by the trainingsid
-    $pagedata = RapportAPI::getTeacher($trainingId);
+    $pagedata = RapportAPI::getTeacher();
     echo json_encode($pagedata);
 });
 //add teacher to dropdown

@@ -180,7 +180,7 @@ class rapportenDAO {
             return null;
         }
     }
-    public static function getTeacher($id) {
+    public static function getTeacher() {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users");
