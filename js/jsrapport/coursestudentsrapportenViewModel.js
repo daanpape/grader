@@ -94,7 +94,7 @@ function pageViewModel(gvm) {
  
  function addTeacher(serialData) {
      console.log(serialData);
-     $.ajax({
+     /*$.ajax({
             url: "/api/addcourseteacher",
             type: "POST",
             data: serialData,
@@ -104,7 +104,7 @@ function pageViewModel(gvm) {
             error: function(data) {
                 console.log('Failed to add teacher');
             }
-    });
+    });*/
  }
 
 function initPage() {
@@ -121,8 +121,8 @@ function initPage() {
     });
     
     $('#addTeacherBtn').click(function() {
-        console.log($('#addTeacherForm').serialize());
-        addTeacher($('#addTeacherForm').serialize());
+        console.log($('#teachersComplete').val());
+        //addTeacher($('#addTeacherForm').serialize());
         $('#addTeacherForm').hide();
     });
 
