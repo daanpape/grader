@@ -79,7 +79,7 @@ $location = "adminUsers";
 
     <div id="page-wrapper">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-11">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
         </div>
