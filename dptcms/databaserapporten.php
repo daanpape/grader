@@ -306,7 +306,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
-                                        AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'
+                                        OR module_rapport.active ='1' OR doelstelling_rapport.active = '1' OR criteria_rapport.active ='1'
                                     ORDER BY mid, did, cid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
