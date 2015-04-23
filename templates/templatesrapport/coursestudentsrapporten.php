@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+        <button type="button" class="btn btn-default pagination-button" id="addStudentListBtn">
             <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
         </button>
 
