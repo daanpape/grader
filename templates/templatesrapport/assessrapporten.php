@@ -29,43 +29,23 @@
         <div class="container">
             <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
             <div class="row">
-                <div class="dropdown col-md-3">
+                <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-courseRapport dropdown-toggle" type="button" id="courseRapport" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="courseRapport" data-bind="foreach: availableCoursesRapport" id="testcliker">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'locbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-module dropdown-toggle" type="button" id="modules" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Module</span>
+                <div class="dropdown col-md-8">
+                    <button class="btn btn-wide btn-default btn-student dropdown-toggle" type="button" id="students" data-toggle="dropdown" aria-expanded="true">
+                        <span class="text-center">Student</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="modules" data-bind="foreach: availableModules">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'modulebtn-' + id}"><span data-bind="text: name"></span></a></li>
-                    </ul>
-                </div>
-
-                <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-submodule dropdown-toggle" type="button" id="availableSubmodules" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Sub-module</span>
-                        <span class="pull-right caret-down caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-submodule ul-wide" role="menu" aria-labelledby="availableSubmodules" data-bind="foreach: availableSubmodules">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'submodulebtn-' + id}"><span data-bind="text: name"></span></a> </li>
-                    </ul>
-                </div>
-
-                <div class="dropdown col-md-3">
-                    <button class="btn btn-wide btn-default btn-goal dropdown-toggle" type="button" id="availableGoals" data-toggle="dropdown" aria-expanded="true">
-                        <span class="text-center">Goal</span>
-                        <span class="pull-right caret-down caret"></span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-goal ul-wide" role="menu" aria-labelledby="availableGoals" data-bind="foreach: availableGoals">
-                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'goalbtn-' + id}"><span data-bind="text: name"></span></a> </li>
+                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="students" data-bind="foreach: availableStudents">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'studentbtn-' + id}"><span data-bind="text: (firstname + ' ' + lastname)"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -76,20 +56,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: studIDTableTitleRapport">Student ID</th>
-                    <th data-bind="text: nameTableTitleRapport">Name</th>
-                    <th data-bind="text: lastNameTableTitleRapport">Last name</th>
-                    <th data-bind="text: mailTableTitleRapport">Mail</th>
-                    <th data-bind="text: scoreTableTitleRapport">Score</th>
+                    <th data-bind="text: werkficheID">Werkfiche ID</th>
+                    <th data-bind="text: werkficheName">Name</th>
+                    <th data-bind="text: werkficheDate">Date</th>
+                    <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>
-                <tbody data-bind="foreach: tabledata">
+                <tbody>       <!-- data-bind="foreach: tabledata" -->
                 <tr>
-                    <td data-bind="text: tstudid">--</td>
-                    <td data-bind="text: tname">--</td>
-                    <td data-bind="text: tlname">--</td>
-                    <td data-bind="text: tmail">--</td>
-                    <td data-bind="text: tscore">--</td>
+                    <td>--</td>     <!-- data-bind="text: tstudid" -->
+                    <td>--</td>     <!-- data-bind="text: tname" -->
+                    <td>--</td>     <!-- data-bind="text: tlname" -->
+                    <td>--</td>     <!-- data-bind="text: tscore" -->
                 </tr>
                 </tbody>
             </table>
@@ -107,6 +85,10 @@
                 <li class="pager-nr-btn"><a href="#">5</a></li>
                 <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
             </ul>
+            
+            <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+            </button>
         </div>
 
         <?php include_once('templates/jsdepends.php') ?>

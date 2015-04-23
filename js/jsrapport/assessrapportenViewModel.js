@@ -15,38 +15,25 @@ function pageViewModel(gvm) {
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
     // Table i18n bindings
-    gvm.studIDTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("studIDTableTitleRapport");}, gvm);
-    gvm.nameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("nameTableTitleRapport");}, gvm);
-    gvm.lastNameTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("lastNameTableTitleRapport");}, gvm);
-    gvm.mailTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("mailTableTitleRapport");}, gvm);
-    gvm.scoreTableTitleRapport = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitleRapport");}, gvm);
+    gvm.werkficheID = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheID");}, gvm);
+    gvm.werkficheName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheName");}, gvm);
+    gvm.werkficheDate = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheDate");}, gvm);
+    gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
-    gvm.availableModules = ko.observableArray([]);
-    gvm.availableSubmodules = ko.observableArray([]);
-    gvm.availablecriterias = ko.observableArray([]);
+    gvm.availableStudents = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
-    gvm.currentModuleid = null;
-    gvm.currentSubmoduleId = null;
-    gvm.currentcriteriaId = null;
+    gvm.currentStudentId = null;
 
     gvm.updateDropdowns = function() {
         $.getJSON('api/lastdropdownrapporten/' + gvm.userId, function(data) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
-                    $(".btn-module span:first").text(item.module);
-                    $(".btn-submodule span:first").text(item.submodule);
-                    $(".btn-criteria span:first").text(item.criteria);
+                    $(".btn-student span:first").text(item.module);
                     gvm.currentCourseRapportId = item.courseid;
-                    gvm.currentModuleid = item.moduleid;
-                    gvm.currentSubmoduleId = item.submoduleid;
-                    gvm.currentcriteriaId = item.criteriaid;
                     gvm.updateCourseRapport();
-                    gvm.updateModules(item.moduleid);
-                    gvm.updateSubmodules(item.submoduleid);
-                    gvm.updatecriterias(item.criteriaid);
                     loadTablePage(item.courseid, 1);
                 });
             } else {
@@ -62,12 +49,8 @@ function pageViewModel(gvm) {
         data = {};
         data["course"] = $(".btn-courseRapport span:first").text();
         data["courseid"] = gvm.currentCourseRapportId;
-        data["module"] = $(".btn-module span:first").text();
-        data["moduleid"] = gvm.currentModuleid;
-        data["submodule"] = $(".btn-submodule span:first").text();
-        data["submoduleid"] = gvm.currentSubmoduleId;
-        data["criteria"] = $(".btn-criteria span:first").text();
-        data["criteriaid"] = gvm.currentcriteriaId;
+        data["student"] = $(".btn-student span:first").text();
+        data["studentid"] = gvm.currentStudentId;
         data["user"] = gvm.userId;
         console.log(data);
         $.ajax({
@@ -88,95 +71,40 @@ function pageViewModel(gvm) {
                 gvm.availableCoursesRapport.push(item);
 
                 // Add listener to listitem
-                $("#locbtn-" + item.id).click(function(){
+                $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseRapportId = item.id;
-                    gvm.currentModuleid = null;
-                    gvm.currentSubmoduleId = null;
-                    gvm.currentcriteriaId = null;
-                    gvm.updateModules(item.id);
-                    gvm.updateSubmodules(null);
-                    gvm.updatecriterias(null);
+                    gvm.currentStudentId = null;
+                    gvm.updateStudents(item.id);
                     $(".btn-courseRapport span:first").text($(this).text());
-                    $(".btn-module span:first").text("Module");
-                    $(".btn-submodule span:first").text("Sub-module");
-                    $(".btn-criteria span:first").text("criteria");
+                    $(".btn-student span:first").text("Student");
                     gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this course
                 });
             });
         });
     };
 
-
+   /*
+    
+    
     /*
-     * Update the module data
+     * Update the student data
      */
-    gvm.updateModules = function(id) {
-        $.getJSON('/api/coursesrapport/' + id, function(data) {
-            gvm.availableModules.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availableModules.push(item);
+    gvm.updateStudents = function(id) {
+        //get all students who follow that course
+        $.getJSON('api/coursesstudents/' + id, function(data) {
+            gvm.availableStudents.removeAll();
+            $.each(data, function(i,item) {
+                // Put item in list
+                gvm.availableStudents.push(item);
 
-                /* Add listener to listitem */
-                $("#modulebtn-" + item.id).click(function(){
-                    gvm.currentModuleid = item.id;
-                    gvm.currentSubmoduleId = null;
-                    gvm.currentcriteriaId = null;
-                    gvm.updateSubmodules(item.id);
-                    gvm.updatecriterias(null);
-                    $(".btn-module span:first").text($(this).text());
-                    $(".btn-submodule span:first").text("Sub-module");
-                    $(".btn-criteria span:first").text("criteria");
+                // Add listener to listitem
+                $("#studentbtn-" + item.id).click(function(){
+                    gvm.currentStudentId = item.id;
+                    $(".btn-student span:first").text($(this).text());
                     gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this module
                 });
-            });
-        });
-    }
-
-    /*
-     * Update sub-module
-     */
-    gvm.updateSubmodules = function(id) {
-        $.getJSON('/api/submodulerapport/' + id, function(data) {
-            gvm.availableSubmodules.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availableSubmodules.push(item);
-
-                /* Add listener to listitem */
-                $("#submodulebtn-" + item.id).click(function(){
-                    $(".btn-submodule span:first").text($(this).text());
-                    gvm.currentSubmoduleId = item.id;
-                    gvm.currentcriteriaId = null;
-                    gvm.updatecriterias(item.id);
-                    loadTablePage(item.id, 1);
-                    $(".btn-criteria span:first").text("criteria");
-                    gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this submodule
-                });
-            });
-        });
-    }
-
-    /*
-     * Update criterias
-     */
-    gvm.updatecriterias = function(id) {
-        $.getJSON('/api/criteriarapport/' + id, function(data) {
-            gvm.availablecriterias.removeAll();
-            $.each(data, function(i, item) {
-                gvm.availablecriterias.push(item);
-
-                /* Add listener to listitem */
-                $("#criteriabtn-" + item.id).click(function(){
-                    $(".btn-criteria span:first").text($(this).text());
-                    gvm.currentcriteriaId = item.id;
-                    loadTablePage(item.id, 1);
-                    gvm.saveLastSelectedDropdowns();
-                    //method to get all students who follow this criteria
-                });
-            });
-        });
+            })
+        })
     }
 
     // The table data observable array
@@ -265,7 +193,6 @@ function loadTablePage(pagenr)
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        //viewModel.updateDropdowns();
         viewModel.updateDropdowns();
     });
 }

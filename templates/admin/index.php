@@ -95,7 +95,7 @@ $location = "adminIndex";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../jsdepends.php') ?>
+
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 

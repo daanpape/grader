@@ -7,8 +7,10 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
     gvm.pageHeader = ko.observable("Project");
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
+    
+    gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
-    gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
+    gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
     gvm.getProjectInfo = function() {
@@ -79,10 +81,32 @@ function pageViewModel(gvm) {
         });
     }
  }
+ 
+ function getAllTeachers() {
+     var teachers = [];
+     $.getJSON('/api/getteacherrapport', function(data) {
+        $.each(data, function(i, item) {
+            teachers.push(item.firstname + " " + item.lastname);
+            return teachers;
+        });
+    });
+ }
 
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
+    
+    $('#addTeacherForm').hide();
+    
+    $('#addTeacher').click(function(){
+        $("#addTeacherForm").show();
+        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+    });
+    
+    $('#addTeacherBtn').click(function() {
+        //add teacher
+        $('#addTeacherForm').hide();
+    });
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;

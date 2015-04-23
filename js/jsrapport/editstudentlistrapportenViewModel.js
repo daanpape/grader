@@ -78,31 +78,7 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
-function showNewStudentModal() {
-    resetGeneralModal();
-    setGeneralModalTitle("Add Student");
-    setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="ui-widget"> \
-                <label for="fruitlist">Student: </label> \
-                <input id="fruitlist" /> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("AddBtn"), function(){
-        addNewStudent($('#newStudentFrom').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}
-
-function addNewStudent(serialData, callback) {
+function addNewStudent(serialData, callback) {             //MOET NOG GEDAAN WORDEN!
     console.log(serialData);
     $.ajax({
         url: "/api/newstudent/" + viewModel.listId,
@@ -147,6 +123,14 @@ function deleteTableItem(id, tblObject){
     });
 }
 
+function getAllStudents() {    
+    $.getJSON('/api/allstudents', function(data) {
+        $.each(data, function(i, item) {
+            console.log(item);
+        });
+    });
+}
+
 function loadStudentTable() {
     $.getJSON('/api/studentlistrapporten/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
@@ -164,21 +148,20 @@ function initPage() {
         viewModel.listId = (data[0].id);
     });
     
-    var fruits = [
-      "Apple",
-      "Pear",
-      "Mango",
-      "Strawberry",
-      "Pineapple"
-    ];
+    $('#addStudentForm').hide();
     
-    $('#fruitlist').autocomplete({ source: fruits });
-
     $('#addStudent').click(function(){
-        showNewStudentModal();
+        $("#addStudentForm").show();
     });
     
+    $('#addStudentBtn').click(function() {
+        //add student
+        $('#addStudentForm').hide();
+    });
+    
+    var allStudents = getAllStudents();
+    
+    $('#studentsComplete').autocomplete({ source: allStudents });
+    
     loadStudentTable();
-    
-    
 }

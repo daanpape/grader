@@ -11,10 +11,18 @@ $location = "assessproject";
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="/img/favicon.ico">
+    <script src="/jsPDF/dist/jspdf.debug.js" ></script>
 
     <title data-bind="text: title"></title>
 
     <?php include_once('hddepends.php') ?>
+
+    <style>
+        a:hover
+        {
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -41,7 +49,7 @@ $location = "assessproject";
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
-                    <td></td>
+                    <td><a href="#" data-bind="click: function() { createPDF($data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
