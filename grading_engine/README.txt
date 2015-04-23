@@ -21,7 +21,7 @@ The structure of a rule is as follows:
                   on which you can apply rules.
  
   - OPERATOR: the operator can be (<, <=, ==, >=, >=) or anything
-              else that compares two values with a booelan outcome.
+              else that compares two values with a boolean outcome.
  
  - USER_VALUE: this is a value the user can set, it will have a
                large impact on the outcome of the rule comparison.
