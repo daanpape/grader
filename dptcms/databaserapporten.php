@@ -380,7 +380,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function putNewdoelstelling($name, $description, $moduleid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO doelstelling_rapport (name, description, module) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO doelstelling_rapport (name, description, module, active) VALUES (?, ?, ?, 1)");
             $stmt->execute(array($name, $description, $moduleid));
             $sid = $conn->lastInsertId();
             return $sid;
