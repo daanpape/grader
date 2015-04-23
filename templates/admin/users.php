@@ -85,7 +85,7 @@ $location = "adminUsers";
         </div>
 
         <div>
-            <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
+            <a href="adduser.php" class="btn btn-default" id="addUserBtn">
                 <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
             </a>
         </div>
