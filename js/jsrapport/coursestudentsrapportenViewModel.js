@@ -126,6 +126,22 @@ function initPage() {
         $('#addTeacherForm').hide();
     });
 
+
+    //Add StudentList
+
+    $('#addStudentListForm').hide();
+
+    $('#addStudentList').click(function(){
+        $("#addStudentListForm").show();
+        //$('#teachersComplete').autocomplete({ source: getAllTeachers() });
+    });
+
+    $('#addStudentListBtn').click(function() {
+        //console.log($('#addStudentListForm').serialize());
+        //addStudentList($('#addStudentListForm').serialize());
+        $('#addStudentListForm').hide();
+    });
+
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.getAvailableLists(data.id);
