@@ -92,7 +92,7 @@ function pageViewModel(gvm) {
     return teachers;
  }
  
- function addTeacher(serialData) {
+ function addTeacher(event, serialData) {
      console.log(serialData);
      /*$.ajax({
             url: "/api/addcourseteacher",
@@ -105,6 +105,7 @@ function pageViewModel(gvm) {
                 console.log('Failed to add teacher');
             }
     });*/
+     event.preventDefault();
  }
 
 function initPage() {
@@ -124,6 +125,20 @@ function initPage() {
         console.log($('#addTeacherForm').serialize());
         addTeacher($('#addTeacherForm').serialize());
         $('#addTeacherForm').hide();
+    });
+
+
+    //Add StudentList
+
+    $('#addStudentListForm').hide();
+
+    $('#addStudentList').click(function(){
+        $("#addStudentListForm").show();
+        //$('#teachersComplete').autocomplete({ source: getAllTeachers() });
+    });
+
+    $('#addStudentListBtn').click(function() {
+        $('#addStudentListForm').hide();
     });
 
     $.getJSON('/api/currentuser', function(data) {
