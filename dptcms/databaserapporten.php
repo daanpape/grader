@@ -262,31 +262,21 @@ class rapportenDAO {
             Logger::logError('Could not delete project', $err);
             return null;
         }
-    }
-    public static function copyCourse($id) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
+    }  public static function copyCourse($id) {
+    try {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
 SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
 ");
+        $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+        $stmt->execute();
 
-            $stmt2= $conn->prepare(	"INSERT INTO module_rapport(name,description,course)
-
-            VALUES (select name from module_rapport where course = :id) as name,
-              (select description from module_rapport where course= :id)as description,
-              (select course from module_rapport where course = :id ) as course)
-         "  );
-
-            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
-           $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
-            $stmt->execute();
-            $stmt2->execute();
-            return true;
-        } catch (PDOException $err) {
-            Logger::logError('Could not copy course', $err);
-            return null;
-        }
+        return true;
+    } catch (PDOException $err) {
+        Logger::logError('Could not copy course', $err);
+        return null;
     }
+}
 
 
     public static function deleteStudentList($id) {
