@@ -94,13 +94,16 @@ function pageViewModel(gvm) {
 
 function getAllStudentLists() {
     var studentLists = [];
-    $.getJSON('/api/getStudentListsFromUser/' + gvm.userId, function(data) {
-        $.each(data, function(i, item) {
-            studentLists.push(item.name);
+    gvm.getAvailableLists = function () {
+        $.getJSON('/api/studentlists/' + gvm.userId, function (data) {
+            $.each(data, function (i, item) {
+                studentLists.push(item.name);
+            });
         });
-    });
-    return studentLists;
+        return studentLists;
+    }
 }
+
 
  function addTeacher(event, serialData) {
      $.ajax({
