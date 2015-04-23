@@ -95,7 +95,9 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
-    
+
+    //Add Teacher
+
     $('#addTeacherForm').hide();
     
     $('#addTeacher').click(function(){
@@ -107,6 +109,21 @@ function initPage() {
     $('#addTeacherBtn').click(function() {
         //add teacher
         $('#addTeacherForm').hide();
+    });
+
+    //Add StudentList
+
+    $('#addStudentListForm').hide();
+
+    $('#addStudentListBtn').click(function(){
+        $("#addStudentListForm").show();
+        console.log(getAllTeachers());
+        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+    });
+
+    $('#addStudentListBtn').click(function() {
+        //add studentList
+        $('#addStudentListForm').hide();
     });
 
     $.getJSON('/api/currentuser', function(data) {
