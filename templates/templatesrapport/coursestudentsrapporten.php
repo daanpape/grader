@@ -52,8 +52,8 @@
 
     </div><br />
 
-    <div id="addStudentListForm" class="container">
-    <div class="row">
+    <div class="container">
+    <div id="addStudentListForm" class="row">
         <label>StudentList:</label>
         <input id="StudentList" />
         <button id="addStudentListBtn" class="btn btn-default">Add</button>
