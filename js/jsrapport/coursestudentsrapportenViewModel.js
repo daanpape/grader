@@ -111,21 +111,6 @@ function initPage() {
         $('#addTeacherForm').hide();
     });
 
-    //Add StudentList
-
-    $('#addStudentListForm').hide();
-
-    $('#addStudentListBtn').click(function(){
-        $("#addStudentListForm").show();
-        console.log(getAllTeachers());
-        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
-    });
-
-    $('#addStudentListBtn').click(function() {
-        //add studentList
-        $('#addStudentListForm').hide();
-    });
-
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.getAvailableLists(data.id);
