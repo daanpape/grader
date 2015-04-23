@@ -58,6 +58,7 @@
         <input id="StudentList" />
         <button id="addStudentListBtn" class="btn btn-default">Add</button>
     </div>
+    </div>
 
     <br />
 
