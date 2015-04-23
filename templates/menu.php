@@ -119,6 +119,19 @@ require_once 'dptcms/config.php';
             <button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
             <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
         </div>
+        <!-- copy modal -->
+    </div>
+    <div id="copy_modal" class="modal_box extrapadding">
+        <div class="modal_title" data-bind="text: CopyModaltitle">
+            Are you sure?
+        </div>
+        <div id="modal_title_body" data-bind="text: CopyModalBody">
+            Bent u zeker dat u dit wenst te kopiëren?
+        </div>
+        <div class="form-inline rightbtns">
+            <button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
+            <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
+        </div>
     </div>
 
     <!-- Upload modal -->

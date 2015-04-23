@@ -88,6 +88,27 @@ function showYesNoModal(body, callback) {
         hideModal();
     });
 
+    /*
+     * Show the copy modal with callback
+     */
+    function showCopyModal(body, callback) {
+        // Hide the login window
+        $('#login_modal').hide();
+        $('#general_modal').hide();
+        $('#upload_modal').hide();
+        $('#copy_modal').show();
+
+        // Fill up the body
+        $('#modal_title_body').html = body;
+
+        // Show the modal
+        $('#modaloverlay').show();
+
+        $('#ynmodel-y-btn').click(function () {
+            callback(true);
+            hideModal();
+        });
+
     $('#ynmodal-n-btn').click(function () {
         callback(false);
         hideModal();

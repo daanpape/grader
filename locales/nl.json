@@ -36,6 +36,9 @@
     "Yes" : "Ja",
     "No" : "Nee",
 
+  "CopyModaltitle" : "Bent u zeker?",
+  "CopyModalBody" : "Bent u zeker dat u dit item wilt Kopiëren?",
+
     "AddBtn" : "Maak nieuw",
     "SaveBtn" : "Sla op",
     "CodeTableTitle" : "Code",
