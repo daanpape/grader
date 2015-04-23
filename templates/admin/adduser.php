@@ -121,7 +121,7 @@ $location = "adminAddUser";
                     </td>
                 </tr>
                 <tr>
-                    <td>Status</td>
+                    <td>Permission</td>
                     <td>
                         <select class="form-control form-next">
                             <option>GUEST</option>
