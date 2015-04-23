@@ -52,11 +52,12 @@
 
     </div><br />
 
-    <div class="container">
-    <div id="addStudentListForm" class="row">
+    <div id="addStudentListForm" class="container">
+    <div class="row">
         <label>StudentList:</label>
         <input id="StudentList" />
         <button id="addStudentListBtn" class="btn btn-default">Add</button>
+    </div>
     </div>
 
     <br />
@@ -93,7 +94,7 @@
     
     <div id="addTeacherForm" class="container">
     <div class="row">
-        <form method="get">
+        <form method="form">
             <label>Teacher name:</label>
             <input id="teachersComplete" name="teachername" />
             <button id="addTeacherBtn" class="btn btn-default">Add</button>
