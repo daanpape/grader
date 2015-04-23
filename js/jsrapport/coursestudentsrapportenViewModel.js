@@ -104,9 +104,9 @@ function getAllStudentLists() {
         return studentLists;
 }
 
- function addTeacher(event, serialData, userid) {
+ function addTeacher(event, serialData) {
      $.ajax({
-            url: "/api/addcourseteacher/" + userid,
+            url: "/api/addcourseteacher",
             type: "POST",
             data: serialData,
             success: function(data) {
@@ -133,7 +133,7 @@ function initPage() {
     });
     
     $('#addTeacherBtn').click(function() {
-        addTeacher($('#addTeacherForm').serialize(), userid);
+        addTeacher($('#addTeacherForm').serialize());
         $('#addTeacherForm').hide();
     });
 
