@@ -82,7 +82,14 @@ $location = "adminUsers";
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
+            <div>
+                <a href="adduser.php" class="btn btn-default" id="addUserBtn">
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                </a>
+            </div>
         </div>
+
+
 
         <div>
             <table class="table table-striped">
@@ -96,19 +103,17 @@ $location = "adminUsers";
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: users">
-                <tr style="width: 100%">
-                    <td style="width: 40%" data-bind="text: username"></td>
-                    <td style="width: 15%" data-bind="text: firstname"></td>
-                    <td style="width: 15%" data-bind="text: lastname"></td>
-                    <td style="width: 15%" data-bind="text: status"></td>
-                    <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
-                </tr>
+                    <tr style="width: 100%">
+                        <td style="width: 40%" data-bind="text: username"></td>
+                        <td style="width: 15%" data-bind="text: firstname"></td>
+                        <td style="width: 15%" data-bind="text: lastname"></td>
+                        <td style="width: 15%" data-bind="text: status"></td>
+                        <td style="width: 15%"><i class="fa fa-times fa-lg"></i> <i class="fa fa-toggle-off fa-lg"></i></td>
+                    </tr>
                 </tbody>
         </div>
 
-        <a href="adduser.php" class="btn btn-default pagination-button" id="addUserBtn">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </a>
+
 
         <!-- /.row -->
     </div>

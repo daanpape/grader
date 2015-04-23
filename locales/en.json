@@ -36,8 +36,7 @@
     "YesNoModalBody" : "Are you sure you want to delete this item?",
     "Yes" : "Yes",
     "No" : "No",
-  "CopyModaltitle" : "Are you sure?",
-  "CopyModalBody" : "Are you sure you want to copy this item?",
+
     "AddBtn" : "Add new",
     "SaveBtn" : "Save",
     "CodeTableTitle" : "Code",
