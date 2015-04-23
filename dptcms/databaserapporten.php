@@ -405,7 +405,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function putNewcriteria($name, $description, $doelstellingid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO criteria_rapport (name, description, doelstelling) VALUES (?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO criteria_rapport (name, description, doelstelling, active) VALUES (?, ?, ?, 1)");
             $stmt->execute(array($name, $description, $doelstellingid));
             $iid = $conn->lastInsertId();
             return $iid;

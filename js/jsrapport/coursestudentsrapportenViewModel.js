@@ -91,6 +91,21 @@ function pageViewModel(gvm) {
     });
     return teachers;
  }
+ 
+ function addTeacher(serialData) {
+     console.log(serialData);
+     $.ajax({
+            url: "/api/addcourseteacher",
+            type: "POST",
+            data: serialData,
+            success: function(data) {
+                //show teacher in list
+            },
+            error: function(data) {
+                console.log('Failed to add teacher');
+            }
+    });
+ }
 
 function initPage() {
     viewModel.getProjectInfo();
@@ -102,12 +117,12 @@ function initPage() {
     
     $('#addTeacher').click(function(){
         $("#addTeacherForm").show();
-        console.log(getAllTeachers());
         $('#teachersComplete').autocomplete({ source: getAllTeachers() });
     });
     
     $('#addTeacherBtn').click(function() {
-        //add teacher
+        console.log($('#addTeacherForm').serialize());
+        addTeacher($('#addTeacherForm').serialize());
         $('#addTeacherForm').hide();
     });
 
