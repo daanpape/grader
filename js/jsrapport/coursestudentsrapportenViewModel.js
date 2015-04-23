@@ -87,10 +87,9 @@ function pageViewModel(gvm) {
      $.getJSON('/api/getteacherrapport', function(data) {
         $.each(data, function(i, item) {
             teachers.push(item.firstname + " " + item.lastname);
-            console.log(teachers);
-            return teachers;
         });
     });
+    return teachers;
  }
 
 function initPage() {
