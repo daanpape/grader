@@ -27,18 +27,23 @@ function fetchUsersData()
     {
         $.each(data, function(i, item){
             console.log(item.username);
-            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            var active = false;
+            if(item.status == "ACTIVE")
+            {
+                active = true;
+            }
+            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, active));
         });
     });
 }
 
-function User(id, username, firstname, lastname, status) {
+function User(id, username, firstname, lastname, active) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        status: ko.observable(status)
+        active: ko.observable(active)
     };
 }
 
