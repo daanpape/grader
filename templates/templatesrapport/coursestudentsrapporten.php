@@ -94,7 +94,7 @@
     
     <div id="addTeacherForm" class="container">
     <div class="row">
-        <form method="get">
+        <form method="form">
             <label>Teacher name:</label>
             <input id="teachersComplete" name="teachername" />
             <button id="addTeacherBtn" class="btn btn-default">Add</button>
