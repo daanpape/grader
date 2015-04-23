@@ -218,6 +218,14 @@ $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Add list
     echo json_encode(RapportAPI::createStudentList($app->request->post('name'), $userid));    //null moet nog ingelogde userid worden!
 });
+$app->post('/api/project/:projectid/studentlist/:studlistid', function($courseid, $studlistid) use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(RapportAPI::API::createCourseStudentlistCouple($courseid, $studlistid));
+});
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     // Use json headers

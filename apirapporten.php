@@ -83,6 +83,19 @@ Class RapportAPI {
         }
     }
 
+    public static function createCourseStudentlistCouple($courseid, $studlistid) {
+        $id = ClassDAO::insertCourseStudlistCouple($courseid, $studlistid);
+
+        if($id != null) {
+            return array(
+                "projectid" => $courseid,
+                "studentlistid" => $studlistid
+            );
+        } else {
+            return -1;
+        }
+    }
+
     public static function getCourseCount() {
         return rapportenDAO::getCourseCount();
     }
