@@ -132,10 +132,7 @@ function copyTableItem(id) {
             $.ajax({
                 url: "/api/coursecopy/" + id,
                 type: "post",
-                success: function(data) {
-                    viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-                    callback(true);
-                }
+               
             });
         }
     });
