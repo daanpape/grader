@@ -121,6 +121,7 @@ function initPage() {
     });
     
     $('#addTeacherBtn').click(function() {
+        console.log(userid);
         addTeacher($('#addTeacherForm').serialize());
         $('#addTeacherForm').hide();
     });
