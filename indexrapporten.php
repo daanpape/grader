@@ -204,12 +204,12 @@ $app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(RapportAPI::updateCoursemodules($id, file_get_contents('php://input')));
 });
-$app->post('/api/addcourseteacher', function () use ($app) {
+$app->post('/api/addcourseteacher/:userid', function ($teacherid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Insert the data
-    //echo json_encode(RapportAPI::createCourse($app->request->post('teachername')));
+    echo json_encode(RapportAPI::addTeacherToCourse($teacherid, $app->request->post('teachername')));
 });
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers

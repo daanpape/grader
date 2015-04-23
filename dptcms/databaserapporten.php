@@ -27,6 +27,22 @@ class rapportenDAO {
         }
     }
     
+    public static function addTeacherToCourse($teacherid, $teachername) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid) VALUES (?, "
+                    . "             (SELECT id FROM users
+                                     WHERE id IN (SELECT id FROM users
+                                                  WHERE CONCAT(firstname, ' ', lastname) = :teachername) LIMLIT 1))");
+            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
+            $stmt->execute($teacherid);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not add teacher to course', $err);
+            return null;
+        }
+    }
+    
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
@@ -320,17 +336,13 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         try {
             
             $conn = Db::getConnection();
-            $stmt = $conn->prepare(" SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription FROM module_rapport
-                                            WHERE module_rapport.course = :courseid AND module_rapport.active ='1'
-                                     UNION
-                                     SELECT doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription FROM module_rapport 
-                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                            WHERE module_rapport.course = :courseid AND doelstelling_rapport.active = '1'
-                                     UNION
-                                     SELECT criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
-                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                            LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                            WHERE module_rapport.course = :courseid AND criteria_rapport.active ='1'");
+            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
+                                    WHERE module_rapport.course = :courseid
+                                        
+                                    ORDER BY mid, did, cid ASC");
+                                    /*AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'*/
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);

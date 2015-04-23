@@ -104,4 +104,7 @@
 
     <?php include_once('templates/jsdepends.php') ?>
 </body>
+<script>
+    var userid = <?php echo $coursestudentsid ?>
+</script>
 </html>
