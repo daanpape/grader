@@ -131,8 +131,8 @@ function copyTableItem(id) {
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,
-                type: "post",
-               
+                type: "post"
+
             });
         }
     });
