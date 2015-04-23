@@ -100,6 +100,7 @@ function initPage() {
     
     $('#addTeacher').click(function(){
         $("#addTeacherForm").show();
+        console.log(getAllTeachers());
         $('#teachersComplete').autocomplete({ source: getAllTeachers() });
     });
     
