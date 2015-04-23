@@ -71,7 +71,7 @@ class rapportenDAO {
     public static function insertStudentList($name, $ownerid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name) VALUES (?, ?)");
+            $stmt = $conn->prepare("INSERT INTO studentlist_rapport (owner, name, Active) VALUES (?, ?, 1)");
             $stmt->execute(array($ownerid, $name));
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
@@ -316,6 +316,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 
     public static function getAllDataFromCourse($id) {
         try {
+            
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
