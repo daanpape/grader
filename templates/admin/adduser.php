@@ -103,12 +103,12 @@ $location = "adminAddUser";
                 </tr>
                 <tr>
                     <td>password</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Password"
+                    <td><input type="password" class="form-control form-next" placeholder="Password"
                                data-bind="value: value"></td>
                 </tr>
                 <tr>
                     <td>Confirm password</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Confirm password"
+                    <td><input type="password" class="form-control form-next" placeholder="Confirm password"
                                data-bind="value: value"></td>
                 </tr>
                 <tr>
@@ -117,6 +117,17 @@ $location = "adminAddUser";
                         <select class="form-control form-next">
                             <option>Active</option>
                             <option>Non-Active</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Permission</td>
+                    <td>
+                        <select class="form-control form-next">
+                            <option>GUEST</option>
+                            <option>STUDENT</option>
+                            <option>USER</option>
+                            <option>SUPERUSER</option>
                         </select>
                     </td>
                 </tr>
