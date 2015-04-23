@@ -239,6 +239,24 @@ class rapportenDAO {
         }
     }
 
+    /*
+     * Koppelingen maken tussen studentenlijst en Course
+     * Maar Course moet meerdere studentlijsen
+     */
+    public static function insertCourseStudlistCouple($courseid, $studlistid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_studentlist_rapport (course, studentlist) VALUES (?,?)");
+
+            $stmt->execute(array($courseid, $studlistid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a course and a studentlist', $err);
+            return null;
+        }
+    }
+
     public static function updateCourse($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
