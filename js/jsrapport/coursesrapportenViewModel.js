@@ -127,7 +127,7 @@ function deleteTableItem(id, tblOject) {
  * Delete item from table given the id.
  */
 function copyTableItem(id) {
-    showCopyModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
+    showYesNoModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,

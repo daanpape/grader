@@ -87,7 +87,7 @@ function showYesNoModal(body, callback) {
         callback(true);
         hideModal();
     });
-    
+
 
     $('#ynmodal-n-btn').click(function () {
         callback(false);
