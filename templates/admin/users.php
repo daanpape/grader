@@ -108,7 +108,7 @@ $location = "adminUsers";
                         <td data-bind="text: firstname"></td>
                         <td data-bind="text: lastname"></td>
                         <td data-bind="text: status"></td>
-                        <td style="width: 15%" data-bind="if:status=='ACTIVE'"><i class="fa fa-toggle-on fa-lg"></i></td>
+                        <td style="width: 15%" data-bind="if:status=='ACTIVE'"><i class="fa fa-toggle-off fa-lg"></i></td>
 
                     </tr>
                 </tbody>
