@@ -55,7 +55,7 @@
     <div id="addStudentListForm" class="container">
     <div class="row">
         <label>StudentList:</label>
-        <input id="StudentList" />
+        <input id="studentListComplete" />
         <button id="addStudentListBtn" class="btn btn-default">Add</button>
     </div>
     </div>
