@@ -302,12 +302,18 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
         try {
             
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
-                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                    WHERE module_rapport.course = :courseid
-                                        AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'
-                                    ORDER BY mid, did, cid ASC");
+            $stmt = $conn->prepare(" SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription FROM module_rapport
+                                            WHERE module_rapport.course = :courseid AND module_rapport.active ='1'
+                                            ORDER BY mid ASC
+                                     SELECT module_rapport.course, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription FROM module_rapport 
+                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                            WHERE module_rapport.course = :courseid AND doelstelling_rapport.active = '1'
+                                            ORDER BY did ASC
+                                     SELECT module_rapport.course, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                            LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
+                                            WHERE module_rapport.course = :courseid AND criteria_rapport.active ='1'
+                                            ORDER BY cid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
