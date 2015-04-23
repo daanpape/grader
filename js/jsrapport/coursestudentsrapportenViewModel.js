@@ -137,8 +137,6 @@ function initPage() {
     });
 
     $('#addStudentListBtn').click(function() {
-        //console.log($('#addStudentListForm').serialize());
-        //addStudentList($('#addStudentListForm').serialize());
         $('#addStudentListForm').hide();
     });
 
