@@ -94,7 +94,7 @@ function pageViewModel(gvm) {
  
  function addTeacher(serialData) {
      console.log(serialData);
-     $.ajax({
+     /*$.ajax({
             url: "/api/addcourseteacher",
             type: "POST",
             data: serialData,
@@ -104,7 +104,7 @@ function pageViewModel(gvm) {
             error: function(data) {
                 console.log('Failed to add teacher');
             }
-    });
+    });*/
  }
 
 function initPage() {
