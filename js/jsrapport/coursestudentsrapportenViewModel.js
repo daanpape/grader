@@ -83,9 +83,11 @@ function pageViewModel(gvm) {
  }
  
  function getAllTeachers() {
+     var teachers = [];
      $.getJSON('/api/getteacherrapport', function(data) {
         $.each(data, function(i, item) {
-            console.log(item);
+            teachers.push(item.firstname + " " + item.lastname);
+            return teachers;
         });
     });
  }
@@ -98,7 +100,7 @@ function initPage() {
     
     $('#addTeacher').click(function(){
         $("#addTeacherForm").show();
-        getAllTeachers();
+        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
     });
     
     $('#addTeacherBtn').click(function() {
