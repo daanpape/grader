@@ -96,7 +96,7 @@ function pageViewModel(gvm) {
 
 function getAllStudentLists() {
     var studentLists = [];
-        $.getJSON('/api/studentlists/' + userid, function (data) {
+        $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
             $.each(data, function (i, item) {
                 studentLists.push(item.name);
             });
