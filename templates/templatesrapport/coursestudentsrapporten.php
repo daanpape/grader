@@ -51,7 +51,16 @@
         </button>
 
     </div><br />
-    
+
+    <div id="addStudentListForm" class="container">
+    <div class="row">
+        <label>StudentList name:</label>
+        <input id="StudentList" />
+        <button id="addStudentListBtn" class="btn btn-default">Add</button>
+    </div>
+
+    <br />
+
     <!-- Content container -->
     <div class="container">
         <div class="big-info">Teachers:</div>
