@@ -120,6 +120,17 @@ $location = "adminAddUser";
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select class="form-control form-next">
+                            <option>GUEST</option>
+                            <option>STUDENT</option>
+                            <option>USER</option>
+                            <option>SUPERUSER</option>
+                        </select>
+                    </td>
+                </tr>
             </table>
 
             <div class="container">
