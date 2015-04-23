@@ -133,7 +133,7 @@ function initPage() {
 
     $('#addStudentList').click(function(){
         $("#addStudentListForm").show();
-        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+        //$('#teachersComplete').autocomplete({ source: getAllTeachers() });
     });
 
     $('#addStudentListBtn').click(function() {
