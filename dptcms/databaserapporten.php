@@ -27,6 +27,22 @@ class rapportenDAO {
         }
     }
     
+    public static function addTeacherToCourse($teacherid, $teachername) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid) VALUES (?, "
+                    . "             (SELECT id FROM users
+                                     WHERE id IN (SELECT id FROM users
+                                                  WHERE CONCAT(firstname, ' ', lastname) = :teachername) LIMLIT 1))");
+            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
+            $stmt->execute($teacherid);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not add teacher to course', $err);
+            return null;
+        }
+    }
+    
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
