@@ -91,7 +91,17 @@ function pageViewModel(gvm) {
     });
     return teachers;
  }
- 
+
+function getAllStudentLists() {
+    var studentLists = [];
+    $.getJSON('/api/getStudentListsFromUser', function(data) {
+        $.each(data, function(i, item) {
+            studentLists.push(item.name);
+        });
+    });
+    return studentLists;
+}
+
  function addTeacher(event, serialData) {
      $.ajax({
             url: "/api/addcourseteacher",
@@ -132,7 +142,7 @@ function initPage() {
 
     $('#addStudentList').click(function(){
         $("#addStudentListForm").show();
-        //$('#studentListComplete').autocomplete({ source: getAllStudentLists() });
+        $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
     });
 
     $('#addStudentListBtn').click(function() {
