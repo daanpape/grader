@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+        <button type="button" class="btn btn-default pagination-button" id="addStudentListBtn">
             <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
         </button>
 
@@ -93,9 +93,11 @@
     
     <div id="addTeacherForm" class="container">
     <div class="row">
-        <label>Teacher name:</label>
-        <input id="teachersComplete" />
-        <button id="addTeacherBtn" class="btn btn-default">Add</button>
+        <form method="post">
+            <label>Teacher name:</label>
+            <input id="teachersComplete" name="teachername" />
+            <button id="addTeacherBtn" class="btn btn-default">Add</button>
+        </form>
     </div>
 </div>
 
