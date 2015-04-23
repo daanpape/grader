@@ -93,7 +93,7 @@
     
     <div id="addTeacherForm" class="container">
     <div class="row">
-        <form method="post">
+        <form method="get">
             <label>Teacher name:</label>
             <input id="teachersComplete" name="teachername" />
             <button id="addTeacherBtn" class="btn btn-default">Add</button>
