@@ -84,9 +84,12 @@ $location = "adminUsers";
             </div>
         </div>
 
-        <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </button>
+        <div>
+            <button href="adduser.php" type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+            </button>
+
+        </div>
 
         <div>
             <table class="table table-striped">
@@ -109,8 +112,6 @@ $location = "adminUsers";
                     </tr>
                 </tbody>
         </div>
-
-
 
         <!-- /.row -->
     </div>
