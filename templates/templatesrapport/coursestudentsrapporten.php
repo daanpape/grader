@@ -87,14 +87,14 @@
     </div>
     
     <div id="addTeacherForm" class="container">
-    <div class="row">
-        <form method="form">
-            <label>Teacher name:</label>
-            <input id="teachersComplete" name="teachername" />
-            <button id="addTeacherBtn" class="btn btn-default">Add</button>
-        </form>
+        <div class="row">
+            <form method="form">
+                <label>Teacher name:</label>
+                <input id="teachersComplete" name="teachername" />
+                <button id="addTeacherBtn" class="btn btn-default">Add</button>
+            </form>
+        </div>
     </div>
-</div>
 
     <?php include_once('templates/jsdepends.php') ?>
 </body>

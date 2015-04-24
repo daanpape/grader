@@ -27,6 +27,23 @@ class rapportenDAO {
         }
     }
     
+    public static function addTeacherToCourse($teachername) {
+        try {
+            $conn = Db::getConnection();
+            /*$stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid) VALUES ("
+                                   . "(SELECT id FROM users
+                                       WHERE id IN (SELECT id FROM users
+                                       WHERE CONCAT(firstname, ' ', lastname) = :teachername) LIMLIT 1),"
+                                   . "(SELECT ))");
+            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
+            $stmt->execute($teacherid);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);*/
+        } catch (PDOException $err) {
+            Logger::logError('could not add teacher to course', $err);
+            return null;
+        }
+    }
+    
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
@@ -239,6 +256,24 @@ class rapportenDAO {
         }
     }
 
+    /*
+     * Koppelingen maken tussen studentenlijst en Course
+     * Maar Course moet meerdere studentlijsen
+     */
+    public static function insertCourseStudlistCouple($courseid, $studlistid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_studentlist_rapport (course, studentlist) VALUES (?,?)");
+
+            $stmt->execute(array($courseid, $studlistid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a course and a studentlist', $err);
+            return null;
+        }
+    }
+
     public static function updateCourse($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
@@ -306,8 +341,9 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
-                                        AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'
+                                        
                                     ORDER BY mid, did, cid ASC");
+                                    /*AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'*/
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);

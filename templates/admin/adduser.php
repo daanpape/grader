@@ -12,7 +12,7 @@ $location = "adminAddUser";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grader - Administrator panel</title>
+    <title>Grader - Admin panel</title>
 
     <link href="/admin_static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/admin_static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
