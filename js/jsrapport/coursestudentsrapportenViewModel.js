@@ -126,13 +126,14 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
-    //Add Teacher
+    //Add Course members
 
-    $('#addTeacherForm').hide();
+    $('#addTeacherForm, #addStudentListForm').hide();
     
-    $('#addTeacher').click(function(){
-        $("#addTeacherForm").show();
+    $('#addCoursemembers').click(function() {
+        $("#addTeacherForm, #addStudentListForm").show();
         $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+        $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
     });
     
     $('#addTeacherBtn').click(function() {
@@ -141,17 +142,7 @@ function initPage() {
             $('#addTeacherForm').hide();
         });
     });
-
-
-    //Add StudentList
-
-    $('#addStudentListForm').hide();
-
-    $('#addStudentList').click(function(){
-        $("#addStudentListForm").show();
-        $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
-    });
-
+    
     $('#addStudentListBtn').click(function() {
         $('#addStudentListForm').hide();
     });
