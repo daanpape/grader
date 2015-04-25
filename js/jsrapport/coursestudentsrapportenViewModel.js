@@ -105,6 +105,7 @@ function getAllStudentLists() {
 }
 
  function addTeacher(serialData, courseid, callback) {
+     console.log('AddTeacher(), ' + serialData + ", " + courseid + ", " + callback);
      $.ajax({
             url: "/api/addcourseteacher/" + courseid,
             type: "POST",
