@@ -116,7 +116,7 @@ function getAllStudentLists() {
                 console.log('Failed to add teacher');
             }
     });
-     event.preventDefault();   //to stay on the same page
+    //event.preventDefault();   //to stay on the same page
  }
 
 function initPage() {
