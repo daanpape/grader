@@ -111,6 +111,7 @@ function getAllStudentLists() {
             data: serialData,
             success: function(data) {
                 //show teacher in list
+                console.log(data);
             },
             error: function(data) {
                 console.log('Failed to add teacher');
