@@ -5,15 +5,8 @@ $location = "assessproject";
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/img/favicon.ico">
-    <script src="/jsPDF/dist/jspdf.debug.js" ></script>
 
-    <title data-bind="text: title"></title>
+    <script src="/jsPDF/dist/jspdf.debug.js" ></script>
 
     <?php include_once('hddepends.php') ?>
 
