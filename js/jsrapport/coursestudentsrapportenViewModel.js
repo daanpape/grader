@@ -96,15 +96,15 @@ function pageViewModel(gvm) {
 
 function getAllStudentLists() {
     var studentLists = [];
-        $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
-            $.each(data, function (i, item) {
-                studentLists.push(item.name);
-            });
+    $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
+        $.each(data, function (i, item) {
+            studentLists.push(item.name);
         });
-        return studentLists;
+    });
+    return studentLists;
 }
 
- function addTeacher(event, serialData, courseid) {
+ function addTeacher(serialData, courseid, callback) {
      $.ajax({
             url: "/api/addcourseteacher/" + courseid,
             type: "POST",
@@ -112,12 +112,13 @@ function getAllStudentLists() {
             success: function(data) {
                 //show teacher in list
                 console.log(data);
+                callback(true);
             },
             error: function(data) {
                 console.log('Failed to add teacher');
+                callback(false);
             }
     });
-    //event.preventDefault();   //to stay on the same page
  }
 
 function initPage() {
@@ -135,8 +136,9 @@ function initPage() {
     
     $('#addTeacherBtn').click(function() {
         var courseid = $('#projectHeader').attr("data-value");
-        addTeacher($('#addTeacherForm').serialize(), courseid);
-        $('#addTeacherForm').hide();
+        addTeacher($('#addTeacherForm').serialize(), courseid, function(result) {
+            $('#addTeacherForm').hide();
+        });
     });
 
 
