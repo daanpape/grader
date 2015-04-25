@@ -134,8 +134,7 @@ function initPage() {
     
     $('#addTeacherBtn').click(function() {
         var courseid = $('#projectHeader').attr("data-value");
-        console.log(courseid);
-        //addTeacher($('#addTeacherForm').serialize(), courseid);
+        addTeacher($('#addTeacherForm').serialize(), courseid);
         $('#addTeacherForm').hide();
     });
 
