@@ -33,8 +33,8 @@ class rapportenDAO {
             $stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid)
                                     SELECT id, :courseid FROM users 
                                     WHERE CONCAT(firstname, ' ', lastname) = :teachername LIMIT 1");
-            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {

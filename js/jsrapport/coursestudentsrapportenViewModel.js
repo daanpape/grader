@@ -87,7 +87,7 @@ function pageViewModel(gvm) {
  function getAllTeachers() {
      var teachers = [];
      $.getJSON('/api/getteacherrapport', function(data) {
-        $.each(data, function(i, item) {
+        $.each(data, function(i, item) {     
             teachers.push(item.firstname + " " + item.lastname);
         });
     });
@@ -104,9 +104,9 @@ function getAllStudentLists() {
         return studentLists;
 }
 
- function addTeacher(event, serialData) {
+ function addTeacher(event, serialData, courseid) {
      $.ajax({
-            url: "/api/addcourseteacher",
+            url: "/api/addcourseteacher/" + courseid,
             type: "POST",
             data: serialData,
             success: function(data) {
@@ -133,7 +133,9 @@ function initPage() {
     });
     
     $('#addTeacherBtn').click(function() {
-        addTeacher($('#addTeacherForm').serialize());
+        var courseid = $('#projectHeader').attr("data-value");
+        console.log(courseid);
+        //addTeacher($('#addTeacherForm').serialize(), courseid);
         $('#addTeacherForm').hide();
     });
 
