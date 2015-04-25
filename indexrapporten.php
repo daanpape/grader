@@ -209,7 +209,7 @@ $app->post('/api/addcourseteacher', function () use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Insert the data
-    echo json_encode(RapportAPI::addTeacherToCourse($app->request->post('teachername')));
+    //echo json_encode(RapportAPI::addTeacherToCourse($app->request->post('teachername'), COURSEID));
 });
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers
