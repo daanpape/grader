@@ -1,4 +1,5 @@
 var userid;
+var studentLists;
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -95,7 +96,7 @@ function pageViewModel(gvm) {
  }
 
 function getAllStudentLists() {
-    var studentLists = [];
+    studentLists = [];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
@@ -129,7 +130,13 @@ function getStudentListID($name) {
  function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
-       console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
+     //var studentLists
+
+     studentLists.forEach(function(entry) {
+         console.log(entry.item.id);
+     });
+
+       // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
 
      console.log("En als leerkracht  " + "0");
 
