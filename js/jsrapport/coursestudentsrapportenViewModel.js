@@ -151,9 +151,7 @@ function getGroupid() {
          $.ajax({
             url: "/api/coursecouple/" + $courseid + "/studlist/" + $studlijstid + "/" + $teacherid,
              type: "PUT",
-             data: serialData,
              success: function(data) {
-                 //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                  loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1     WERKT NIET
                  callback(true);
              },
