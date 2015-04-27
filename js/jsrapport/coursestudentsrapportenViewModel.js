@@ -168,7 +168,7 @@ function getGroupid() {
      console.log("En met studentenlijst " + studlijstid);
 
          $.ajax({
-            url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + $teacherid,
+            url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
              type: "POST",
              data: {'course': studentname, 'teacher': teacherid, 'studentlist': listid},
              success: function(data) {
