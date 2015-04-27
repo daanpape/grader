@@ -465,11 +465,11 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             echo $err;
         }
     }
-    public static function saveDropdownChoice($course, $courseid, $student, $studentid, $user) {
+    public static function saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, student, studentid) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, student = ?, studentid = ?");
-            $stmt->execute(array($user, $course, $courseid, $student, $studentid, $course, $courseid, $student, $studentid));
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, course, courseid, studentlist, studentlistid, student, studentid) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE course = ?, courseid = ?, studentlist = ?, studentlistid = ?, student = ?, studentid = ?");
+            $stmt->execute(array($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid, $course, $courseid, $studentlist, $studentlistid, $student, $studentid));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not save dropdown list', $err);

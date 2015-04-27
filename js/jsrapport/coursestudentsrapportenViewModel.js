@@ -1,4 +1,5 @@
 var userid;
+var studentLists;
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -95,7 +96,7 @@ function pageViewModel(gvm) {
  }
 
 function getAllStudentLists() {
-    var studentLists = [];
+    studentLists = [];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
@@ -111,7 +112,7 @@ function getTeacherID($firstname, $lastname) {
             teacherid = item.id;
         }); */
 
-        console.log(item);
+        //console.log(item);
 
     });
     //return teacherid;
@@ -120,21 +121,29 @@ function getTeacherID($firstname, $lastname) {
 function getStudentListID($name) {
     var studListid = "";
     $.getJSON('/api/studID/' + userid + '/' + $name, function (data) {
-        studListid = item.id;
+       // studListid = item.id;
     });
     console.log(studListid);
-    return studListid;
+   // return studListid;
 }
 
- function addGroup($courseid,$studlistid,$teacherid) {
+ function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
-        console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')),
-            $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
+     //var studentLists
+
+     studentLists.forEach(function(entry) {
+         console.log(entry);
+     });
+
+       // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
+
+     console.log("En als leerkracht  " + "0");
 
         // console.log(getStudentListID($('#studentListComplete').val()));
 
-     console.log("En als leerkracht  " + $teacherid);
+     console.log("En met studentenlijst " + "0");
+
  }
 
 function initPage() {
@@ -152,7 +161,7 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-         addGroup($('#projectHeader').attr("data-value"),0,0);
+         addGroup($('#projectHeader').attr("data-value"));
 
         $('addGroupForm').hide();
     });
