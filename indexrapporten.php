@@ -189,7 +189,7 @@ $app->get('/api/allstudents', function () use ($app) {
 });
 
 //get teacher ID with coursename
-$app->get('/api/teacherID/:firstname/lastname/:lastname', function($firstname, $lastname) use($app) {
+$app->get('/api/teacherID/:firstname/:lastname', function($firstname, $lastname) use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
