@@ -11,7 +11,7 @@ function pageViewModel(gvm) {
 function createUser()
 {
     console.log("Fired");
-    $.ajax({
+    /*$.ajax({
         type: "POST",
         url: "register",
         data: $('#addUserForm').serialize(),
@@ -20,5 +20,5 @@ function createUser()
         },
         error: function() {
         }
-    });
+    });*/
 }
