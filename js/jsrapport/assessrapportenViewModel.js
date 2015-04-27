@@ -21,9 +21,11 @@ function pageViewModel(gvm) {
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
     gvm.availableCoursesRapport = ko.observableArray([]);
+    gvm.availableStudentlists = ko.observableArray([]);
     gvm.availableStudents = ko.observableArray([]);
 
     gvm.currentCourseRapportId = null;
+    gvm.currentStudentlistId = null;
     gvm.currentStudentId = null;
 
     gvm.updateDropdowns = function() {
