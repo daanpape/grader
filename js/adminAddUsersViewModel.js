@@ -6,3 +6,19 @@ function pageViewModel(gvm) {
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("SaveBtn");}, gvm);
 
 }
+
+
+function createUser()
+{
+    console.log("Fired");
+    $.ajax({
+        type: "POST",
+        url: "register",
+        data: $('#addUserForm').serialize(),
+        success: function() {
+
+        },
+        error: function() {
+        }
+    });
+}
