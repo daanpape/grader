@@ -147,6 +147,7 @@ function getStudentListID($name) {
 
          if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
             console.log(i);
+             console.log(studentListsid[i]);
          }
          i+= 1;
              })     ;
