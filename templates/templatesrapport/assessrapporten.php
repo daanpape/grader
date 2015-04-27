@@ -30,7 +30,17 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-8">
+                <div class="dropdown col-md-4">
+                    <button class="btn btn-wide btn-default btn-studentlist dropdown-toggle" type="button" id="studentlist" data-toggle="dropdown" aria-expanded="true">
+                        <span class="text-center">Studentlist</span>
+                        <span class="pull-right caret-down caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="studentlist" data-bind="foreach: availableStudentlists">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'studentlistbtn-' + id}"><span></span></a></li>  <!-- span needs data-bind! -->
+                    </ul>
+                </div>
+                
+                <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-student dropdown-toggle" type="button" id="students" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Student</span>
                         <span class="pull-right caret-down caret"></span>
