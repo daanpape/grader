@@ -39,7 +39,6 @@ function doelstelling(parent, id, name, description, crit) {
 
         removeThis: function() {
             parent.removeDoelstelling(this);
-
         },
         
         removeCriteria: function(criteria) {
