@@ -38,11 +38,7 @@ Class RapportAPI {
         /* get teacher from database */
         return rapportenDAO::getTeacher();
     }
-    
-    public static function addTeacherToCourse($teachername, $courseid) {
-        return rapportenDAO::addTeacherToCourse($teachername, $courseid);
-    }
-    
+
     public static function getStudentListInfoFromListId($id) {
         return rapportenDAO::getStudentListInfoFromListId($id);
     }
@@ -83,13 +79,14 @@ Class RapportAPI {
         }
     }
 
-    public static function createCourseStudentlistCouple($courseid, $studlistid) {
-        $id = ClassDAO::insertCourseStudlistCouple($courseid, $studlistid);
+    public static function createCourseStudentlistCouple($courseid, $studlistid, $teacherid) {
+        $id = ClassDAO::insertCourseStudlistCouple($courseid, $studlistid, $teacherid);
 
         if($id != null) {
             return array(
                 "projectid" => $courseid,
-                "studentlistid" => $studlistid
+                "studentlistid" => $studlistid,
+                "teacherid" => $teacherid
             );
         } else {
             return -1;

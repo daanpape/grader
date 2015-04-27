@@ -45,22 +45,14 @@
 
     </div>
 
-    <div id="addStudentListForm" class="container">
-        <div class="row">
-            <label>StudentList:</label>
-            <input id="studentListComplete" />
-            <button id="addStudentListBtn" class="btn btn-default">Add</button>
-        </div>
-    </div>
-
-    <br />
-    
-    <div id="addTeacherForm" class="container">
+    <div id="addGroupForm" class="container">
         <div class="row">
             <form method="form">
-                <label>Teacher name:</label>
-                <input id="teachersComplete" name="teachername" />
-                <button id="addTeacherBtn" class="btn btn-default">Add</button>
+                <label>Teacher name:</label> <input id="teachersComplete" name="teachername" />
+                <br />
+                <label>StudentList:</label> <input id="studentListComplete" name="studentlistname"/>
+                <br />
+                <button id="addGroupBtn" class="btn btn-default">Add</button>
             </form>
         </div>
     </div>

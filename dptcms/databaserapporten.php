@@ -26,23 +26,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
-    public static function addTeacherToCourse($teachername, $courseid) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid)
-                                    SELECT id, :courseid FROM users 
-                                    WHERE CONCAT(firstname, ' ', lastname) = :teachername LIMIT 1");
-            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
-            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (PDOException $err) {
-            Logger::logError('could not add teacher to course', $err);
-            return null;
-        }
-    }
-    
+
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
@@ -256,19 +240,19 @@ class rapportenDAO {
     }
 
     /*
-     * Koppelingen maken tussen studentenlijst en Course
+     * Koppelingen maken tussen studentenlijst ,Course & Teacher
      * Maar Course moet meerdere studentlijsen
      */
-    public static function insertCourseStudlistCouple($courseid, $studlistid) {
+    public static function insertCourseStudlistCouple($courseid, $studlistid, $teacherid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_studentlist_rapport (course, studentlist) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO course_studentlist_teacher_rapport (course, studentlist, teacher) VALUES (?,?,?)");
 
-            $stmt->execute(array($courseid, $studlistid));
+            $stmt->execute(array($courseid, $studlistid, $teacherid));
 
             return $conn->lastInsertId();
         } catch (PDOException $err) {
-            Logger::logError('Could not create new coupling between a course and a studentlist', $err);
+            Logger::logError('Could not create new coupling between a course, studentlist and a teacher', $err);
             return null;
         }
     }
