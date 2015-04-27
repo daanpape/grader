@@ -9,6 +9,7 @@ function pageViewModel(gvm) {
 function createNewUser()
 {
     console.log("Fired");
+
     $.ajax({
      type: "POST",
      url: "register",

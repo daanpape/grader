@@ -86,6 +86,7 @@ $location = "adminAddUser";
         <!-- /.col-lg-12 -->
         <div>
             <form id="userForm" action="users.php">
+            <input type="hidden" name="lang" value="EN"/>
             <table class="table table-striped">
                 <tr>
                     <td>Firstname</td>
