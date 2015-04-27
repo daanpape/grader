@@ -107,12 +107,14 @@ function getAllStudentLists() {
 function getTeacherID($firstname, $lastname) {
     var teacherid = "";
     $.getJSON('/api/teacherID/' + $firstname + '/' + $lastname , function (data) {
-        $.each(data, function (i, item) {
+       /* $.each(data, function (i, item) {
             teacherid = item.id;
-        });
+        }); */
+
+        console.log(item);
+
     });
-    console.log(teacherid);
-    return teacherid;
+    //return teacherid;
 }
 
 function getStudentListID($name) {
