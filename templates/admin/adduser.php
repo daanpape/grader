@@ -137,7 +137,7 @@ $location = "adminAddUser";
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button type="submit" class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage, click: createUser">Save</button>
+                        <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage, click: createUser">Save</button>
                     </div>
                 </div>
             </div>
