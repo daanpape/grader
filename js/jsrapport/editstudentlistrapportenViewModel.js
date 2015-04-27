@@ -172,6 +172,8 @@ function initPage() {
         change: function(event, ui) {
             if (ui.item) {
                 $('#addStudentBtn').prop('disabled', false);
+            } else {
+                $('#addStudentBtn').prop('disabled', true);
             }
         }
     });
