@@ -83,11 +83,11 @@ function pageViewModel(gvm) {
         });
     }
  }
- 
+
  function getAllTeachers() {
      var teachers = [];
      $.getJSON('/api/getteacherrapport', function(data) {
-        $.each(data, function(i, item) {
+        $.each(data, function(i, item) {     
             teachers.push(item.firstname + " " + item.lastname);
         });
     });
@@ -96,62 +96,42 @@ function pageViewModel(gvm) {
 
 function getAllStudentLists() {
     var studentLists = [];
-        $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
-            $.each(data, function (i, item) {
-                studentLists.push(item.name);
-            });
+    $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
+        $.each(data, function (i, item) {
+            studentLists.push(item.name);
         });
-        return studentLists;
+    });
+    return studentLists;
 }
 
- function addTeacher(event, serialData) {
-     $.ajax({
-            url: "/api/addcourseteacher",
-            type: "POST",
-            data: serialData,
-            success: function(data) {
-                //show teacher in list
-            },
-            error: function(data) {
-                console.log('Failed to add teacher');
-            }
-    });
-     event.preventDefault();   //to stay on the same page
+ function addGroup($courseid) {
+     console.log("Groep toevoegen  voor vak " + $courseid);
+
  }
 
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
-    //Add Teacher
+    //Add Course members
 
-    $('#addTeacherForm').hide();
+    $('#addGroupForm').hide();
     
-    $('#addTeacher').click(function(){
-        $("#addTeacherForm").show();
+    $('#addCoursemembers').click(function() {
+        $("#addGroupForm").show();
         $('#teachersComplete').autocomplete({ source: getAllTeachers() });
-    });
-    
-    $('#addTeacherBtn').click(function() {
-        console.log(userid);
-        addTeacher($('#addTeacherForm').serialize());
-        $('#addTeacherForm').hide();
-    });
-
-
-    //Add StudentList
-
-    $('#addStudentListForm').hide();
-
-    $('#addStudentList').click(function(){
-        $("#addStudentListForm").show();
         $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
     });
+    
+    $('#addGroupBtn').click(function() {
+        console.log($('#projectHeader').attr("data-value"));
 
-    $('#addStudentListBtn').click(function() {
-        $('#addStudentListForm').hide();
+        addGroup($('#projectHeader').attr("data-value"));
+
+        $('addGroupForm').hide();
+
     });
-
+    
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         userid = data.id;

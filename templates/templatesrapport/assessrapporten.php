@@ -5,15 +5,6 @@
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="/img/favicon.ico">
-
-        <title data-bind="text: title"></title>
-        
         <?php include_once('templates/hddepends.php') ?>
     </head>
     
@@ -39,7 +30,17 @@
                     </ul>
                 </div>
 
-                <div class="dropdown col-md-8">
+                <div class="dropdown col-md-4">
+                    <button class="btn btn-wide btn-default btn-studentlist dropdown-toggle" type="button" id="studentlist" data-toggle="dropdown" aria-expanded="true">
+                        <span class="text-center">Studentlist</span>
+                        <span class="pull-right caret-down caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-module ul-wide" role="menu" aria-labelledby="studentlist" data-bind="foreach: availableStudentlists">
+                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'studentlistbtn-' + id}"><span></span></a></li>  <!-- span needs data-bind! -->
+                    </ul>
+                </div>
+                
+                <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-student dropdown-toggle" type="button" id="students" data-toggle="dropdown" aria-expanded="true">
                         <span class="text-center">Student</span>
                         <span class="pull-right caret-down caret"></span>

@@ -26,23 +26,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
-    public static function addTeacherToCourse($teacherid, $teachername) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO teacherlist_rapport (userid, courseid) VALUES (?, "
-                    . "             (SELECT id FROM users
-                                     WHERE id IN (SELECT id FROM users
-                                                  WHERE CONCAT(firstname, ' ', lastname) = :teachername) LIMLIT 1))");
-            $stmt->bindValue(':teachername', (string) $teachername, PDO::PARAM_STR);
-            $stmt->execute($teacherid);
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (PDOException $err) {
-            Logger::logError('could not add teacher to course', $err);
-            return null;
-        }
-    }
-    
+
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
@@ -252,6 +236,24 @@ class rapportenDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not count all courses in the database', $err);
             return 0;
+        }
+    }
+
+    /*
+     * Koppelingen maken tussen studentenlijst ,Course & Teacher
+     * Maar Course moet meerdere studentlijsen
+     */
+    public static function insertCourseStudlistCouple($courseid, $studlistid, $teacherid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_studentlist_teacher_rapport (course, studentlist, teacher) VALUES (?,?,?)");
+
+            $stmt->execute(array($courseid, $studlistid, $teacherid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a course, studentlist and a teacher', $err);
+            return null;
         }
     }
 
