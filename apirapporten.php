@@ -90,6 +90,10 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function addStudentToList($name) {
+        rapportenDAO::addStudentToList($name);
+    }
 
     public static function createCourseStudentlistCouple($courseid, $studlistid, $teacherid) {
         $id = ClassDAO::insertCourseStudlistCouple($courseid, $studlistid, $teacherid);
