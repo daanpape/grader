@@ -154,6 +154,7 @@ function initPage() {
     });
     
     $('#addStudentForm').hide();
+    $('#addStudentBtn').prop('disabled', true);
     
     $('#addStudent').click(function(){
         $("#addStudentForm").show();
@@ -166,7 +167,14 @@ function initPage() {
         });
     });
     
-    $('#studentsComplete').autocomplete({ source: getAllStudents() });
+    $('#studentsComplete').autocomplete({ 
+        source: getAllStudents(),
+        change: function(event, ui) {
+            if (ui.item) {
+                $('#addStudentBtn').prop('disabled', false);
+            }
+        }
+    });
     
     loadStudentTable();
 }
