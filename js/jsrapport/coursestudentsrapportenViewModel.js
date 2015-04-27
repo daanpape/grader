@@ -105,7 +105,7 @@ function getAllStudentLists() {
 }
 
  function addGroup($courseid) {
-     alert("Groep toevoegen  voor vak " + $courseid);
+     console("Groep toevoegen  voor vak " + $courseid);
 
  }
 
@@ -127,7 +127,7 @@ function initPage() {
         var courseid;
         courseid = $('#projectHeader').attr("data-value");
 
-        alert($courseid);
+        console($courseid);
 
         addGroup($courseid);
 
