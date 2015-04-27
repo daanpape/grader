@@ -115,9 +115,9 @@ function getTeacherID() {
     return teacherid;
 }
 
-function getStudentListID( $name) {
+function getStudentListID($name) {
     var studListid = "";
-    $.getJSON('/api/studID/' + $userid + '/name/' + $name, function (data) {
+    $.getJSON('/api/studID/' + userid + '/name/' + $name, function (data) {
 
         studListid = item.id;
 
