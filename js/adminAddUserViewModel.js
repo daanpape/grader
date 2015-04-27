@@ -27,6 +27,8 @@ function initPage() {
     {
         console.log("Bound");
         createNewUser();
+
+        e.preventDefault();
     });
 }
 
