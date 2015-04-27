@@ -114,7 +114,7 @@ $app->get('/api/coursestructure/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(RapportAPI::getAllDataFromCourse($id));
 });
-$app->get('/api/courserapportdrop', function () use ($app) {
+$app->get('/api/coursedrop', function () use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -155,13 +155,23 @@ $app->get('/api/studentlistsrapporten/:id', function($id) use($app) {
 });
 
 //GET all students from a course
-$app->get('/api/coursesstudents/:id', function ($Id) use ($app) {
+$app->get('/api/studentdrop/:id', function ($Id) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all students bij the id of a course
     $pagedata = RapportAPI::getStudentFromCourseID($Id);
     echo json_encode($pagedata);
+});
+
+//GET all studentlists from a course
+$app->get('/api/studentlistdrop/:id', function ($Id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all students bij the id of a course
+    //$pagedata = RapportAPI::getStudentFromCourseID($Id);
+    //echo json_encode($pagedata);
 });
 
 //get all students
