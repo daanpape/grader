@@ -107,7 +107,9 @@ function getAllStudentLists() {
 function getTeacherID($firstname, $lastname) {
     var teacherid = "";
     $.getJSON('/api/teacherID/' + $firstname + '/' + $lastname , function (data) {
-        teacherid = item.id;
+        $.each(data, function (i, item) {
+            teacherid = item.id;
+        });
     });
     console.log(teacherid);
     return teacherid;
@@ -124,13 +126,6 @@ function getStudentListID($name) {
 
  function addGroup($courseid,$studlistid,$teacherid) {
      console.log("Groep toevoegen voor vak " + $courseid);
-
-     /*
-     //Split selected name on first space
-     var teacherName =  $('#teachersComplete').val();
-     var firstname = $('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' '));
-     var lastname = $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1);
-        */
 
         console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')),
             $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
