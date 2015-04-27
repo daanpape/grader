@@ -172,7 +172,7 @@ function loadTablePage(courseid)
     $.getJSON('/api/getStudentGroupTeacherByCourseID/' + courseid, function(data){
 
         /* Clear current table page */
-        viewModel.clearTable();
+        //viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
