@@ -14,9 +14,10 @@ function createNewUser()
      url: "register",
      data: $('#addUserForm').serialize(),
      success: function() {
-
+        console.log('Success');
      },
      error: function() {
+         console.log('error');
      }
      });
 }
@@ -29,7 +30,7 @@ function initPage() {
 
         createNewUser();
 
-        window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
+        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
 }
 
