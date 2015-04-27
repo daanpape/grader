@@ -184,6 +184,11 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
+//get teacher ID with coursename
+
+//get StudentlistID from a specific owner with the name of the list.
+
+
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Use json headers
@@ -229,15 +234,6 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($courseid
     //Insert the data
     echo json_encode(RapportAPI::createCourseStudentlistCouple($courseid, $studlistid, $teacherid));
 });
-/*
-$app->post('/api/addcourseteacher/:courseid', function ($courseid) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Insert the data
-    echo json_encode(RapportAPI::addTeacherToCourse($app->request->post('teachername'), $courseid));
-});
-*/
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     // Use json headers
