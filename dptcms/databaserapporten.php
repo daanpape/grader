@@ -258,6 +258,11 @@ class rapportenDAO {
         }
     }
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromTeacherByName($firstname, $lastname) {
         try {
             $conn = Db::getConnection();
@@ -270,7 +275,13 @@ class rapportenDAO {
             return null;
         }
     }
+    */
 
+    /*
+     *
+     * Wordt momenteel niet langer gebruikt
+     *
+     *
     public static function getIDFromStudentlistByName($id, $name) {
         try {
             $conn = Db::getConnection();
@@ -283,6 +294,7 @@ class rapportenDAO {
             return null;
         }
     }
+    */
 
     /*
      * Koppelingen maken tussen studentenlijst ,Course & Teacher

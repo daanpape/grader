@@ -1,4 +1,5 @@
 var userid;
+var studentLists = [];
 var studentListsid = [];
 
 function pageViewModel(gvm) {
@@ -96,8 +97,8 @@ function pageViewModel(gvm) {
  }
 
 function getAllStudentLists() {
-    var studentLists = [];
-    studentListsid = [,];
+    studentLists = [];
+    studentListsid = [];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
@@ -107,51 +108,20 @@ function getAllStudentLists() {
     return studentLists;
 }
 
-function getTeacherID($firstname, $lastname) {
-    var teacherid = "";
-    $.getJSON('/api/teacherID/' + $firstname + '/' + $lastname , function (data) {
-       /* $.each(data, function (i, item) {
-            teacherid = item.id;
-        }); */
-
-        //console.log(item);
-
-    });
-    //return teacherid;
-}
-
-function getStudentListID($name) {
-    var studListid = "";
-    $.getJSON('/api/studID/' + userid + '/' + $name, function (data) {
-       // studListid = item.id;
-    });
-    console.log(studListid);
-   // return studListid;
-}
-
  function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
-       // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
-
      console.log("En als leerkracht  " + "0");
 
-        // console.log(getStudentListID($('#studentListComplete').val()));
-
-     //var studentLists
-
-     /*
-     studentListsid.forEach(function(entry) {
-
-
-         if (new String(entry[,0]).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
-             console.log();
+     var i = 0;
+     var studlijst;
+     studentLists.forEach(function(entry) {
+         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
+             studlijst = (studentListsid[i]);
          }
-             });
-        */
-
-         console.log("En met studentenlijst " + "0");
-
+         i+= 1;
+     });
+         console.log("En met studentenlijst " + studlijst);
  }
 
 function initPage() {

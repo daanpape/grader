@@ -188,6 +188,11 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
+/*
+ *
+ * Momenteel niet langer gebruikt!
+ *
+ *
 //get teacher ID with coursename
 $app->get('/api/teacherID/:firstname/:lastname', function($firstname, $lastname) use($app) {
     //Use json header
@@ -197,7 +202,13 @@ $app->get('/api/teacherID/:firstname/:lastname', function($firstname, $lastname)
     $data = RapportAPI::getIDFromTeacherByName($firstname, $lastname);
     echo json_encode($data);
 });
+*/
 
+/*
+ *
+ * Momenteel niet langer gebruikt!
+ *
+ *
 //get StudentlistID from a specific owner with the name of the list.
 $app->get('/api/studID/:id/:name', function($id, $name) use($app) {
     //Use json header
@@ -207,6 +218,7 @@ $app->get('/api/studID/:id/:name', function($id, $name) use($app) {
     $data = RapportAPI::getIDFromStudentlistByName($id, $name);
     echo json_encode($data);
 });
+*/
 
 //PUT routes
 $app->put('/api/courseupdate/:id', function($id) use ($app){

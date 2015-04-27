@@ -6,6 +6,8 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetNameRapport");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetRapportManual");}, gvm);
     
+    gvm.availableCourses = ko.observableArray([]);
+    
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
     
     
@@ -29,8 +31,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    };
-    
+    };    
 }
 
 function initPage() {
