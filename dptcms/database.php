@@ -1053,6 +1053,14 @@ class UserDAO {
             return null;
         }
     }
+
+    public static function removeUser($userid)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare("DELETE FROM users WHERE id=?");
+        $stmt->execute(array($userid));
+        return true;
+    }
     
     /**
      * Update the uers avatar. 
