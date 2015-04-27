@@ -139,7 +139,8 @@ function getStudentListID($name) {
      //var studentLists
 
      studentLists.forEach(function(entry) {
-         if (entry.equals($('#studentListComplete').val())) {
+
+         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
              console.log(entry);
          }
              });
