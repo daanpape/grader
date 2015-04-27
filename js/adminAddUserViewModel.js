@@ -4,14 +4,9 @@ function pageViewModel(gvm) {
     gvm.pageHeaderAddUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("UserAddTitle");}, gvm);
 
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("SaveBtn");}, gvm);
-
-    gvm.createUser = function ()
-    {
-        createUser();
-    }
 }
 
-function createUser()
+function createNewUser()
 {
     console.log("Fired");
     /*$.ajax({
@@ -24,6 +19,14 @@ function createUser()
      error: function() {
      }
      });*/
+}
+
+function initPage() {
+    // Form submit
+    $('#userForm').on('submit', function(e)
+    {
+        createNewUser();
+    });
 }
 
 

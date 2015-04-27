@@ -85,6 +85,7 @@ $location = "adminAddUser";
 
         <!-- /.col-lg-12 -->
         <div>
+            <form id="userForm">
             <table class="table table-striped">
                 <tr>
                     <td>Firstname</td>
@@ -136,10 +137,11 @@ $location = "adminAddUser";
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" data-bind="click: createUser">Save</button>
+                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </div>
     <!-- /.row -->
