@@ -206,6 +206,18 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function addStudentToList($name) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("");        //toevoegen aan studentlist_students_rapport tabel
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not add student to list', $err);
+            return null;
+        }
+    }
 
     public static function getLastDropdownFromUser($id) {
         try {

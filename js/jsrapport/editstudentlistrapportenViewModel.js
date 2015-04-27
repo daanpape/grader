@@ -80,12 +80,13 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
-function addNewStudent(studentname, callback) {
+function addNewStudent(studentname, listid, callback) {
     console.log(studentname);
+    console.log(listid);
     $.ajax({
-        url: "/api/newstudent/" + studentname,
+        url: "/api/newstudent/" + studentname + "/" + listid,
         type: "POST",
-        data: studentname,
+        data: {'name': studentname, 'list': listid},
         success: function(data) {
             //console.log(data);
             callback(true);
@@ -159,7 +160,8 @@ function initPage() {
     });
     
     $('#addStudentBtn').click(function() {
-        addNewStudent($('#studentsComplete').val(), function() {
+        var listid = $('page-header').attr('data-value');
+        addNewStudent($('#studentsComplete').val(), listid, function() {
             $('#addStudentForm').hide();
         });
     });
