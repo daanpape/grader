@@ -125,12 +125,16 @@ function getStudentListID($name) {
  function addGroup($courseid,$studlistid,$teacherid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
+     /*
      //Split selected name on first space
      var teacherName =  $('#teachersComplete').val();
-     var firstname = teacherName.substr(0,teacherName.indexOf(' '));
-     var lastname = teacherName.substr(teacherName.indexOf(' ')+1);
+     var firstname = $('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' '));
+     var lastname = $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1);
+        */
 
-        console.log(getTeacherID($firstname, $lastname));
+        console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')),
+            $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
+
         // console.log(getStudentListID($('#studentListComplete').val()));
 
      console.log("En als leerkracht  " + $teacherid);
