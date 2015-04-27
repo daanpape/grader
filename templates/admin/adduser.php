@@ -85,7 +85,7 @@ $location = "adminAddUser";
 
         <!-- /.col-lg-12 -->
         <div>
-            <form id="userForm">
+            <form id="userForm" action="users.php">
             <table class="table table-striped">
                 <tr>
                     <td>Firstname</td>
