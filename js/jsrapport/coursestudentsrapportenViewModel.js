@@ -141,28 +141,9 @@ function getGroupid() {
     return studlijst;
 }
 
-/*
- function addNewStudent(studentname, listid, callback) {
-     console.log(studentname);
-     console.log(listid);
-         $.ajax({
-         url: "/api/newstudent/" + studentname + "/" + listid,
-         type: "POST",
-         data: {'name': studentname, 'list': listid},
-         success: function(data) {
-         //console.log(data);
-         callback(true);
-         },
-         error: function(data) {
-         console.log('Failed to add new student');
-         callback(false);
-         }
-     });
- }
- */
-
  function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
+     //TODO momenteel nog mogelijk om meer als 1 maal zelfde velden in te voeren.
      console.log("En als leerkracht " + teacherid);
      console.log("Groep toevoegen voor vak " + courseid);
      console.log("En met studentenlijst " + studlijstid);
@@ -182,6 +163,8 @@ function getGroupid() {
          });
 
  }
+
+
 
 function initPage() {
     viewModel.getProjectInfo();

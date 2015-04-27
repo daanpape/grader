@@ -226,7 +226,6 @@ function loadTablePage(courseid, pagenr)
             }
         });
     });
-
 }
 
 function initPage() {
