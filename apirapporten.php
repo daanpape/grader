@@ -50,6 +50,15 @@ Class RapportAPI {
     public static function getStudentsFromStudentList($id) {
         return rapportenDAO::getStudentsFromStudentList($id);
     }
+    public static function getCourseCount() {
+        return rapportenDAO::getCourseCount();
+    }
+    public static function getStudentsCountFromCourse() {
+        return rapportenDAO::getStudentsCountFromCourse();
+    }
+    public static function getStudentGroupTeacherByCourseID($courseid) {
+        return rapportenDAO::getStudentGroupTeacherByCourseID($courseid);
+    }
 
     /*
      *
@@ -121,12 +130,6 @@ Class RapportAPI {
         }
     }
 
-    public static function getCourseCount() {
-        return rapportenDAO::getCourseCount();
-    }
-    public static function getStudentsCountFromCourse() {
-        return rapportenDAO::getStudentsCountFromCourse();
-    }
     /*
      * Delete a course from the database
      */

@@ -188,6 +188,15 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
+$app->get('/api/getStudentGroupTeacherByCourseID/:courseid/', function ($courseid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all students bij the id of a course
+    $pagedata = RapportAPI::getStudentlistFromCourseID($courseid);
+    echo json_encode($pagedata);
+});
+
 /*
  *
  * Momenteel niet langer gebruikt!
