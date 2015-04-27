@@ -32,13 +32,20 @@ function fetchUsersData()
     });
 }
 
+
+
 function User(id, username, firstname, lastname, status) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        status: ko.observable(status)
+        status: ko.observable(status),
+
+        removeThisUser: function() {
+            viewModel.removeRule(this);
+            console.log("success");
+        }
     };
 }
 
