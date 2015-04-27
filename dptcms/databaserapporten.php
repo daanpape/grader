@@ -427,7 +427,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
     public static function updatecriteria($id, $name, $description, $doelstellingid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE criteria_rapport SET name = ?, description = ?, doelstelling = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE criteria_rapport SET name = ?, description = ?, doelstelling = ?, active = '1' WHERE id = ?");
             $stmt->execute(array($name, $description, $doelstellingid, $id));
             return true;
         } catch (PDOException $err) {
