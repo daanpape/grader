@@ -225,4 +225,8 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
     });
+    $(window).on('hashchange', function() {
+        console.log('Left page');
+        //save dropdowns
+    });
 }

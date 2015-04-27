@@ -19,6 +19,10 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
         console.log(user);
     }
+
+    gvm.removeUser = function(user) {
+        gvm.users.remove(user);
+    }
 }
 
 function fetchUsersData()
@@ -35,19 +39,36 @@ function fetchUsersData()
 
 
 function User(id, username, firstname, lastname, status) {
-    // Attach delete handler to delete button
-    $('#removebtn-' + id).bind('click', function(event, data){
-        // Delete the table item
-        alert("hey");
-    });
-
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        status: ko.observable(status)
+        status: ko.observable(status),
 
+        removeThisUser: function() {
+            viewModel.removeUser(this);
+
+
+            //WORDT NOG NIET OPGESLAAN OP DB
+            console.log("success");
+        },
+
+        changeStatus: function() {
+            if(status == "ACTIVE"){
+                this.status = "NON-ACTIVE";
+            } else if (status == "NON-ACTIVE") {
+                this.status = "ACTIVE";
+            } else {
+                console.log("waiting for activation");
+            }
+
+            viewModel.removeUser(this);
+            viewModel.updateUsers(this);
+
+            //WORDT NOG NIET OPGESLAAN OP DB
+            console.log(status);
+        }
     };
 }
 

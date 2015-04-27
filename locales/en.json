@@ -116,5 +116,7 @@
     "UserStatus" : "Status",
     "PermissionRole" : "Role",
     "PermissionDescription" : "Description",
-    "Addmodule" : "Add module"
+    "Addmodule" : "Add module",
+    
+    "WorksheetNameRapport" : "Worksheets"
 }

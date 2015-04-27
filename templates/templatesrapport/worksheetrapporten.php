@@ -20,7 +20,7 @@
         <!-- Content container -->
         <div class="container">
             <div class="starter-template" data-bind="html: homeManual">
-                <p class="lead">Lijst van worksheets</p>
+                <p class="lead">List van worksheets</p>
             </div>
         </div>
 

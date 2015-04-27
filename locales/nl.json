@@ -113,5 +113,7 @@
     "UserStatus" : "Status",
     "PermissionRole" : "Rol",
     "PermissionDescription" : "Beschrijving",
-    "Addmodule" : "Voeg module toe"
+    "Addmodule" : "Voeg module toe",
+    
+    "WorksheetNameRapport" : "Werkfiche"
 }
