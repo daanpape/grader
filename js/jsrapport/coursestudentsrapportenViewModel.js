@@ -97,9 +97,11 @@ function pageViewModel(gvm) {
 
 function getAllStudentLists() {
     var studentLists = [];
+    studentListsid = [,];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
+            studentListsid.push(item.name, item.id)
         });
     });
     return studentLists;
@@ -138,12 +140,15 @@ function getStudentListID($name) {
 
      //var studentLists
 
-     studentLists.forEach(function(entry) {
+     /*
+     studentListsid.forEach(function(entry) {
 
-         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
+
+         if (new String(entry[,0]).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
              console.log();
          }
              });
+        */
 
          console.log("En met studentenlijst " + "0");
 
