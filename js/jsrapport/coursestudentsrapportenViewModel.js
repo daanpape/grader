@@ -105,8 +105,7 @@ function getAllStudentLists() {
 }
 
  function addGroup() {
-
-    console.log("Groep toevoegen")
+     alert("Groep toevoegen")
 
  }
 
@@ -130,7 +129,7 @@ function initPage() {
         addGroup();
 
         $('addGroupForm').hide();
-                
+
     });
     
     $.getJSON('/api/currentuser', function(data) {
