@@ -22,6 +22,7 @@ function pageViewModel(gvm) {
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
+        removeUser(user);
     }
 }
 
@@ -36,7 +37,14 @@ function fetchUsersData()
     });
 }
 
-
+function removeUser(user)
+{
+    $.getJSON("/api/removeuser/" + user.id, function(data)
+    {
+        console.log("User was removed");
+        fetchUsersData();
+    });
+}
 
 function User(id, username, firstname, lastname, status) {
     return {
@@ -47,10 +55,10 @@ function User(id, username, firstname, lastname, status) {
         status: ko.observable(status),
 
         removeThisUser: function() {
-            viewModel.removeUser(this);
-
-            //WORDT NOG NIET OPGESLAAN OP DB
-            console.log("success");
+            if(confirm('Are you sure you want to remove this user?'))
+            {
+                viewModel.removeUser(this);
+            }
         },
 
         changeStatus: function() {
