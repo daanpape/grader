@@ -147,9 +147,9 @@ function getGroupid() {
      console.log("En als leerkracht " + $teacherid);
      console.log("Groep toevoegen voor vak " + $courseid);
      console.log("En met studentenlijst " + $studlijstid);
-     
+
          $.ajax({
-            url: "/api/coursecouple/" + $courseid + "/studlist/" + $listid + "/" + $teacherid,
+            url: "/api/coursecouple/" + $courseid + "/studlist/" + $studlijstid + "/" + $teacherid,
              type: "PUT",
              data: serialData,
              success: function(data) {
