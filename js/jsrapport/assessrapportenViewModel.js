@@ -24,7 +24,7 @@ function pageViewModel(gvm) {
     gvm.availableStudentlists = ko.observableArray([]);
     gvm.availableStudents = ko.observableArray([]);
 
-    gvm.currentCourseRapportId = null;
+    gvm.currentCourseId = null;
     gvm.currentStudentlistId = null;
     gvm.currentStudentId = null;
 
@@ -35,16 +35,13 @@ function pageViewModel(gvm) {
                     $(".btn-courseRapport span:first").text(item.course);
                     $(".btn-studentlist span:first").text(item.studentlist);
                     $('.btn-student span:first').text(item.student);
-                    gvm.currentCourseRapportId = item.courseid;
+                    gvm.currentCourseId = item.courseid;
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.currentStudentId = item.studentid;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
             } else {
-                $(".btn-courseRapport span:first").text("Course");
-                $(".btn-studentlist span:first").text("Studentlist");
-                $('.btn-student span:first').text("Student");
                 gvm.updateCourseRapport();
             }
         });
@@ -56,7 +53,7 @@ function pageViewModel(gvm) {
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
         data["course"] = $(".btn-courseRapport span:first").text();
-        data["courseid"] = gvm.currentCourseRapportId;
+        data["courseid"] = gvm.currentCourseId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
         data["user"] = gvm.userId;
@@ -80,7 +77,7 @@ function pageViewModel(gvm) {
 
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
-                    gvm.currentCourseRapportId = item.id;
+                    gvm.currentCourseId = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -227,5 +224,9 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
+    });
+    $(document).unload(function() {
+        console.log('Left page');
+        //save dropdowns
     });
 }

@@ -19,6 +19,10 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
         console.log(user);
     }
+
+    gvm.removeUser = function(user) {
+        gvm.users.remove(user);
+    }
 }
 
 function fetchUsersData()
@@ -32,13 +36,31 @@ function fetchUsersData()
     });
 }
 
+
+
 function User(id, username, firstname, lastname, status) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        status: ko.observable(status)
+        status: ko.observable(status),
+
+        removeThisUser: function() {
+            viewModel.removeUser(this);
+
+
+            //WORDT NOG NIET OPGESLAAN OP DB
+            console.log("success");
+        },
+
+        changeStatus: function() {
+
+
+
+            //WORDT NOG NIET OPGESLAAN OP DB
+            console.log(status);
+        }
     };
 }
 
