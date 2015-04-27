@@ -195,7 +195,7 @@ $app->get('/api/teacherID/:firstname/lastname/:lastname', function($firstname, $
 });
 
 //get StudentlistID from a specific owner with the name of the list.
-$app->get('/api/studID/:id/name/:name', function($id, $name) use($app) {
+$app->get('/api/studID/:id/:name', function($id, $name) use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

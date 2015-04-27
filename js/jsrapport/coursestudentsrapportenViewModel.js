@@ -104,12 +104,10 @@ function getAllStudentLists() {
     return studentLists;
 }
 
-function getTeacherID() {
+function getTeacherID($firstname, $lastname) {
     var teacherid = "";
-    $.getJSON('/api/studentlistsrapporten/' + userid , function (data) {
-
+    $.getJSON('/api/teacherID/' + $firstname + '/lastname/' + $lastname , function (data) {
         teacherid = item.id;
-
     });
     console.log(teacherid);
     return teacherid;
@@ -117,10 +115,8 @@ function getTeacherID() {
 
 function getStudentListID($name) {
     var studListid = "";
-    $.getJSON('/api/studID/' + userid + '/name/' + $name, function (data) {
-
+    $.getJSON('/api/studID/' + userid + '/' + $name, function (data) {
         studListid = item.id;
-
     });
     console.log(studListid);
     return studListid;
