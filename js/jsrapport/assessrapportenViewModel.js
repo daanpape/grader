@@ -20,7 +20,7 @@ function pageViewModel(gvm) {
     gvm.werkficheDate = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheDate");}, gvm);
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
 
-    gvm.availableCoursesRapport = ko.observableArray([]);
+    gvm.availableCourses = ko.observableArray([]);
     gvm.availableStudentlists = ko.observableArray([]);
     gvm.availableStudents = ko.observableArray([]);
 
@@ -33,8 +33,11 @@ function pageViewModel(gvm) {
             if(!$.isEmptyObject(data)) {
                 $.each(data, function(i, item) {
                     $(".btn-courseRapport span:first").text(item.course);
-                    $(".btn-student span:first").text(item.module);
+                    $(".btn-studentlist span:first").text(item.studentlist);
+                    $('.btn-student span:first').text(item.student);
                     gvm.currentCourseRapportId = item.courseid;
+                    gvm.currentStudentlistId = item.studentlistid;
+                    gvm.currentStudentId = item.studentid;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
@@ -66,34 +69,34 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateCourseRapport = function() {
-        $.getJSON('/api/courserapportdrop', function(data) {
-            gvm.availableCoursesRapport.removeAll();
+        $.getJSON('/api/coursedrop', function(data) {
+            gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
-                gvm.availableCoursesRapport.push(item);
+                gvm.availableCourses.push(item);
 
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseRapportId = item.id;
+                    gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
-                    gvm.updateStudents(item.id);
+                    gvm.updateStudentlists(item.id);
                     $(".btn-courseRapport span:first").text($(this).text());
-                    $(".btn-student span:first").text("Student");
-                    gvm.saveLastSelectedDropdowns();
+                    $(".btn-studentlist span:first").text("Studentlist");
+                    $('.btn-student span:first').text("Student");
+                    //gvm.saveLastSelectedDropdowns();
                 });
             });
         });
     };
 
-   /*
-    
-    
+
     /*
      * Update the student data
      */
-    gvm.updateStudents = function(id) {
-        //get all students who follow that course
-        $.getJSON('api/coursesstudents/' + id, function(data) {
+    gvm.updateStudentlists = function(id) {
+        //get all studentlists
+        $.getJSON('api/studentlistdrop/' + id, function(data) {
             gvm.availableStudents.removeAll();
             $.each(data, function(i,item) {
                 // Put item in list
@@ -103,7 +106,29 @@ function pageViewModel(gvm) {
                 $("#studentbtn-" + item.id).click(function(){
                     gvm.currentStudentId = item.id;
                     $(".btn-student span:first").text($(this).text());
-                    gvm.saveLastSelectedDropdowns();
+                    //gvm.saveLastSelectedDropdowns();
+                });
+            })
+        })
+    }
+    
+    
+    /*
+     * Update the student data
+     */
+    gvm.updateStudents = function(id) {
+        //get all students who follow that course
+        $.getJSON('api/studentdrop/' + id, function(data) {
+            gvm.availableStudents.removeAll();
+            $.each(data, function(i,item) {
+                // Put item in list
+                gvm.availableStudents.push(item);
+
+                // Add listener to listitem
+                $("#studentbtn-" + item.id).click(function(){
+                    gvm.currentStudentId = item.id;
+                    $(".btn-student span:first").text($(this).text());
+                    //gvm.saveLastSelectedDropdowns();
                 });
             })
         })
