@@ -23,10 +23,16 @@ function pageViewModel(gvm) {
         gvm.users.remove(user);
         removeUser(user);
     }
+
+    gvm.refreshUsers = function()
+    {
+        gvm.users.destroyAll();
+    }
 }
 
 function fetchUsersData()
 {
+    viewModel.refreshUsers();
     $.getJSON("/api/allusers/", function(data)
     {
         $.each(data, function(i, item){
