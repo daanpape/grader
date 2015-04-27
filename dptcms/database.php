@@ -1057,8 +1057,14 @@ class UserDAO {
     public static function removeUser($userid)
     {
         $conn = Db::getConnection();
+        // Delete from users
         $stmt = $conn->prepare("DELETE FROM users WHERE id=?");
         $stmt->execute(array($userid));
+
+        // Delete email
+        $stmt = $conn->prepare("DELETE FROM email WHERE user_id=?");
+        $stmt->execute(array($userid));
+
         return true;
     }
     
