@@ -30,7 +30,27 @@
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
                     </ul>
                 </div>            
+            </div>
         </div>
+        
+        <!-- Content container -->
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: werkficheID">Werkfiche ID</th>
+                    <th data-bind="text: werkficheName">Name</th>
+                    <th data-bind="text: werkficheAction">Actions</th>
+                </tr>
+                </thead>
+                <tbody>       <!-- data-bind="foreach: tabledata" -->
+                <tr>
+                    <td>--</td>     
+                    <td>--</td>     
+                    <td>--</td>     
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <?php include_once('templates/jsdepends.php') ?>
