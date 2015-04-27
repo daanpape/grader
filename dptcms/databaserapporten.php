@@ -26,7 +26,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function getAllStudents() {
         try {
             $conn = Db::getConnection();
@@ -38,7 +37,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function insertCourse($code, $name, $description) {
         try {
             $conn = Db::getConnection();
@@ -51,7 +49,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function insertStudentList($name, $ownerid) {
         try {
             $conn = Db::getConnection();
@@ -76,7 +73,6 @@ class rapportenDAO {
             return false;
         }
     }
-
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -89,7 +85,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function getStudentsFromCourseID($id) {
         try {
             $conn = Db::getConnection();
@@ -104,7 +99,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     /*
      * Get all module by course
      * @id the course
@@ -137,7 +131,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function getStudentListInfoFromListId($listid) {
         try {
             $conn = Db::getConnection();
@@ -150,7 +144,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     public static function getStudentsFromStudentList($id) {
         try {
             $conn = Db::getConnection();
@@ -163,7 +157,7 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
     /**
      * Get a list of modules associated with a doelstelling.
      * @param type $id the module id to get the module information from.
@@ -191,7 +185,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function addTeacher($id) {
         try {
             $conn = Db::getConnection();
@@ -203,7 +196,6 @@ class rapportenDAO {
             return null;
         }
     }
-
     public static function getLastDropdownFromUser($id) {
         try {
             $conn = Db::getConnection();
@@ -238,7 +230,6 @@ class rapportenDAO {
             return 0;
         }
     }
-
     /*
      * Koppelingen maken tussen studentenlijst ,Course & Teacher
      * Maar Course moet meerdere studentlijsen
@@ -247,16 +238,13 @@ class rapportenDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO course_studentlist_teacher_rapport (course, studentlist, teacher) VALUES (?,?,?)");
-
             $stmt->execute(array($courseid, $studlistid, $teacherid));
-
             return $conn->lastInsertId();
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a course, studentlist and a teacher', $err);
             return null;
         }
     }
-
     public static function updateCourse($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
@@ -268,7 +256,6 @@ class rapportenDAO {
             return false;
         }
     }
-
     public static function deleteCourse($id) {
         try {
             $conn = Db::getConnection();
@@ -288,15 +275,12 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
 ");
         $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $stmt->execute();
-
         return true;
     } catch (PDOException $err) {
         Logger::logError('Could not copy course', $err);
         return null;
     }
 }
-
-
     public static function deleteStudentList($id) {
         try {
             $conn = Db::getConnection();
@@ -315,18 +299,23 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-
     public static function getAllDataFromCourse($id) {
         try {
-            
+
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
-                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                    WHERE module_rapport.course = :courseid
-                                        
-                                    ORDER BY mid, did, cid ASC");
-                                    /*AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'*/
+            $stmt = $conn->prepare(" SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription FROM module_rapport
+                                            WHERE module_rapport.course = 46 AND module_rapport.active ='1'
+                                     UNION
+                                     SELECT doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription FROM module_rapport
+                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                            WHERE module_rapport.course = 46 AND doelstelling_rapport.active = '1'
+                                     UNION
+                                     SELECT criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+                                            LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                            LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
+                                            WHERE module_rapport.course = 46 AND criteria_rapport.active ='1'
+                                     ORDER BY mid, did, cid ASC LIMIT 0 , 30");
+            /*AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'*/
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -362,7 +351,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-    
+
     public static function putNewmodule($name, $description, $course) {
         try {
             $conn = Db::getConnection();
@@ -375,7 +364,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-
     public static function updatemodule($id, $name, $description, $course) {
         try {
             $conn = Db::getConnection();
@@ -387,7 +375,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
-
     public static function putNewdoelstelling($name, $description, $moduleid) {
         try {
             $conn = Db::getConnection();
@@ -400,7 +387,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-
     public static function updatedoelstelling($id, $name, $description, $moduleid) {
         try {
             $conn = Db::getConnection();
@@ -412,7 +398,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
-
     public static function putNewcriteria($name, $description, $doelstellingid) {
         try {
             $conn = Db::getConnection();
@@ -425,7 +410,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return null;
         }
     }
-
     public static function updatecriteria($id, $name, $description, $doelstellingid) {
         try {
             $conn = Db::getConnection();
@@ -447,7 +431,6 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
-
     //update/edit studentlist
     public static function updateStudentList($id, $code) {
         try {
@@ -460,7 +443,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
-    
+
     public static function updateStudent($id, $firstname, $lastname, $username) {
         try {
             $conn = Db::getConnection();
@@ -472,7 +455,7 @@ SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport
             return false;
         }
     }
-    
+
     public static function deleteStudentFromStudentList($studlistid, $studid) {
         try {
             $conn = Db::getConnection();

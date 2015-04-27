@@ -104,9 +104,10 @@ function getAllStudentLists() {
     return studentLists;
 }
 
- function addGroup($courseid) {
-     console.log("Groep toevoegen  voor vak " + $courseid);
-
+ function addGroup($courseid,$studlistid,$teacherid) {
+     console.log("Groep toevoegen voor vak " + $courseid);
+     console.log("Met als studentenlijst  " + $studlistid);
+     console.log("En als leerkracht  " + $teacherid);
  }
 
 function initPage() {
@@ -124,12 +125,9 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-        console.log($('#projectHeader').attr("data-value"));
-
-        addGroup($('#projectHeader').attr("data-value"));
+         addGroup($('#projectHeader').attr("data-value"),0,0);
 
         $('addGroupForm').hide();
-
     });
     
     $.getJSON('/api/currentuser', function(data) {
