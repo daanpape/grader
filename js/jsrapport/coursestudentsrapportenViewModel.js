@@ -144,9 +144,24 @@ function getGroupid() {
  function addGroup($courseid, $teacherid, $studlijstid) {
 
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
-         console.log("En als leerkracht " + $teacherid);
-         console.log("Groep toevoegen voor vak " + $courseid);
-         console.log("En met studentenlijst " + $studlijstid);
+     console.log("En als leerkracht " + $teacherid);
+     console.log("Groep toevoegen voor vak " + $courseid);
+     console.log("En met studentenlijst " + $studlijstid);
+     
+         $.ajax({
+            url: "/api/coursecouple/" + $courseid + "/studlist/" + $listid + "/" + $teacherid,
+             type: "PUT",
+             data: serialData,
+             success: function(data) {
+                 //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                 loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1     WERKT NIET
+                 callback(true);
+             },
+             error: function(data) {
+                 callback(false);
+             }
+         });
+
  }
 
 function initPage() {
