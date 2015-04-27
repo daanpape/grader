@@ -160,7 +160,7 @@ function initPage() {
     });
     
     $('#addStudentBtn').click(function() {
-        var listid = $('page-header').attr('data-value');
+        var listid = $('#page-header').attr('data-value');
         addNewStudent($('#studentsComplete').val(), listid, function() {
             $('#addStudentForm').hide();
         });
