@@ -170,7 +170,7 @@ function getGroupid() {
          $.ajax({
             url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
              type: "POST",
-             data: {'course': studentname, 'teacher': teacherid, 'studentlist': listid},
+             data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
              success: function(data) {
                  //console.log(data);
                  callback(true);
