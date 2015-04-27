@@ -38,11 +38,7 @@ Class RapportAPI {
         /* get teacher from database */
         return rapportenDAO::getTeacher();
     }
-    
-    public static function addTeacherToCourse($teachername, $courseid) {
-        return rapportenDAO::addTeacherToCourse($teachername, $courseid);
-    }
-    
+
     public static function getStudentListInfoFromListId($id) {
         return rapportenDAO::getStudentListInfoFromListId($id);
     }
