@@ -123,7 +123,7 @@ function getAllStudentLists() {
      var teacher = 0;
      teachers.forEach(function(entry) {
          if (new String(entry).valueOf() == new String($('#teachersComplete').val()).valueOf()) {
-             teacher = studentListsid[i];
+             teacher = teachersid[i];
          }
          i+= 1;
      });
