@@ -19,6 +19,10 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
         console.log(user);
     }
+
+    gvm.removeUser = function(user) {
+        gvm.users.remove(user);
+    }
 }
 
 function fetchUsersData()
@@ -43,7 +47,7 @@ function User(id, username, firstname, lastname, status) {
         status: ko.observable(status),
 
         removeThisUser: function() {
-            viewModel.removeRule(this);
+            viewModel.removeUser(this);
             console.log("success");
         }
     };
