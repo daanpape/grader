@@ -89,18 +89,21 @@ class rapportenDAO {
             return null;
         }
     }
-
-    public static function getStudentsFromCourseID($id) {
+    
+    public static function getStudentlistFromCourseID($cid, $uid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT users.id, users.firstname, users.lastname FROM users
-                                    JOIN studentlist_students_rapport ON studentlist_students_rapport.user = users.id
-                                    WHERE studentlist = (SELECT studentlistid FROM course_rapport WHERE id = :id)");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt = $conn->prepare("SELECT studentlist_rapport.id, studentlist_rapport.owner, studentlist_rapport.name FROM studentlist_rapport
+                                    JOIN course_studentlist_teacher_rapport ON studentlist_rapport.id = course_studentlist_teacher_rapport.studentlist
+                                    WHERE course_studentlist_teacher_rapport.teacher = :uid
+                                    AND course_studentlist_teacher_rapport.course = :cid
+                                    AND studentlist_rapport.Active = 1");
+            $stmt->bindValue(':cid', (int) $cid, PDO::PARAM_INT);
+            $stmt->bindValue(':uid', (int) $uid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get studentlists from ower with id' . $id, $err);
+            Logger::logError('Could not get studentlists from owner with id' . $id, $err);
             return null;
         }
     }

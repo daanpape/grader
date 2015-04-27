@@ -80,7 +80,7 @@ function pageViewModel(gvm) {
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
-                    gvm.updateStudentlists(item.id);
+                    gvm.updateStudentlists(item.id, gvm.userId);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-studentlist span:first").text("Studentlist");
                     $('.btn-student span:first').text("Student");
@@ -94,18 +94,21 @@ function pageViewModel(gvm) {
     /*
      * Update the student data
      */
-    gvm.updateStudentlists = function(id) {
+    gvm.updateStudentlists = function(cid, uid) {
         //get all studentlists
-        $.getJSON('api/studentlistdrop/' + id, function(data) {
-            gvm.availableStudents.removeAll();
+        $.getJSON('api/studentlistdrop/' + cid + '/' + uid, function(data) {
+            gvm.availableStudentlists.removeAll();
             $.each(data, function(i,item) {
                 // Put item in list
-                gvm.availableStudents.push(item);
+                gvm.availableStudentlists.push(item);
 
                 // Add listener to listitem
-                $("#studentbtn-" + item.id).click(function(){
-                    gvm.currentStudentId = item.id;
-                    $(".btn-student span:first").text($(this).text());
+                $("#studentlistbtn-" + item.id).click(function(){
+                    gvm.currentStudentlistId = item.id;
+                    gvm.currentStudentId = null;
+                    gvm.updateStudents(item.id);
+                    $(".btn-studentlist span:first").text($(this).text());
+                    $('.btn-student span:first').text("Student");
                     //gvm.saveLastSelectedDropdowns();
                 });
             })
