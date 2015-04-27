@@ -193,7 +193,7 @@ $app->get('/api/getStudentGroupTeacherByCourseID/:courseid/', function ($coursei
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all students bij the id of a course
-    $pagedata = RapportAPI::getStudentlistFromCourseID($courseid);
+    $pagedata = RapportAPI::getStudentGroupTeacherByCourseID($courseid);
     echo json_encode($pagedata);
 });
 
