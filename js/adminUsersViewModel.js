@@ -17,12 +17,10 @@ function pageViewModel(gvm) {
     gvm.updateUsers = function(user)
     {
         gvm.users.push(user);
-        console.log(user);
     }
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
-        removeUser(user);
     }
 }
 
@@ -31,7 +29,6 @@ function fetchUsersData()
     $.getJSON("/api/allusers/", function(data)
     {
         $.each(data, function(i, item){
-            console.log(item.username);
             viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
         });
     });
@@ -39,7 +36,7 @@ function fetchUsersData()
 
 function removeUser(user)
 {
-    $.getJSON("/api/removeuser/" + user.id, function(data)
+    $.getJSON("/api/removeuser/" + user.id(), function(data)
     {
         console.log("User was removed");
         fetchUsersData();
