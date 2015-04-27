@@ -12,7 +12,7 @@ function createNewUser()
 
     $.ajax({
      type: "POST",
-     url: "register",
+     url: "/register",
      data: $('#addUserForm').serialize(),
      success: function() {
         console.log('Success');
