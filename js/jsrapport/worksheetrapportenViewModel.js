@@ -10,7 +10,6 @@ function pageViewModel(gvm) {
     
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
     
-    
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
@@ -27,7 +26,6 @@ function pageViewModel(gvm) {
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-studentlist span:first").text("Studentlist");
                     $('.btn-student span:first').text("Student");
-                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
@@ -35,5 +33,8 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateCourseRapport();
+    });    
 }
