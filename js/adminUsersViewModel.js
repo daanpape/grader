@@ -59,7 +59,7 @@ function User(id, username, firstname, lastname, status) {
 
 
             //WORDT NOG NIET OPGESLAAN OP DB
-            console.log(this.status);
+            console.log(status);
         }
     };
 }
