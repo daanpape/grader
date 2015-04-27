@@ -6,10 +6,12 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetNameRapport");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetRapportManual");}, gvm);
     
+    gvm.availableCourses = ko.observableArray([]);
+    
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
     
     
-    /*/gvm.updateCourseRapport = function() {
+    gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
@@ -29,8 +31,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    };*/
-    
+    };    
 }
 
 function initPage() {
