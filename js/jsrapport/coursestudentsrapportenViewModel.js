@@ -133,7 +133,7 @@ function getStudentListID($name) {
      //var studentLists
 
      studentLists.forEach(function(entry) {
-         console.log(entry.item.id);
+         console.log(entry);
      });
 
        // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
