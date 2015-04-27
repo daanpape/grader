@@ -127,8 +127,8 @@ function getStudentListID($name) {
 
      var teacherName =  $('#teachersComplete').val();
 
-     var firstname = teacherName.substr(0,str.indexOf(' '));
-     var lastname = teacherName.substr(str.indexOf(' ')+1);
+     var firstname = teacherName.substr(0,teacherName.indexOf(' '));
+     var lastname = teacherName.substr(teacherName.indexOf(' ')+1);
 
      console.log("Voornaam " + firstname);
      console.log("Achternaam " + lastname)
