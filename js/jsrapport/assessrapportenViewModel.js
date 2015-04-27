@@ -225,4 +225,8 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
     });
+    $(document).on("unload", function() {
+        console.log('Left page');
+        //save dropdowns
+    });
 }
