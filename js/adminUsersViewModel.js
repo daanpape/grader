@@ -55,8 +55,13 @@ function User(id, username, firstname, lastname, status) {
         },
 
         changeStatus: function() {
-
-
+            if(status == "ACTIVE"){
+                this.status = "NON-ACTIVE";
+            } else if (status == "NON-ACTIVE") {
+                this.status = "ACTIVE";
+            } else {
+                console.log("waiting for activation");
+            }
 
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log(status);
