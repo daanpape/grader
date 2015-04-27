@@ -87,7 +87,7 @@ function addNewStudent(studentname, callback) {
         type: "POST",
         data: studentname,
         success: function(data) {
-            console.log(data);
+            //console.log(data);
             callback(true);
         },
         error: function(data) {
