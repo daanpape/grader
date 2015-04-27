@@ -142,18 +142,15 @@ function getStudentListID($name) {
      //var studentLists
 
 
-     i = 0;
+     var i = 0;
+     var studlijst;
      studentLists.forEach(function(entry) {
-
          if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
-            console.log(i);
-             console.log(studentListsid[i]);
+             studlijst = (studentListsid[i]);
          }
          i+= 1;
-             })     ;
-
-
-         console.log("En met studentenlijst " + "0");
+     });
+         console.log("En met studentenlijst " + studlijst);
 
  }
 
