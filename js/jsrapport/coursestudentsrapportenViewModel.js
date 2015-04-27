@@ -104,9 +104,10 @@ function getAllStudentLists() {
     return studentLists;
 }
 
- function addTeacher(serialData, courseid, callback) {
-     console.log('AddTeacher(), ' + serialData + ", " + courseid + ", " + callback);
-     $.ajax({
+ function addGroup(serialData, courseid, callback) {
+
+    console.log("Groep toevoegen")
+    /* $.ajax({
             url: "/api/addcourseteacher/" + courseid,
             type: "POST",
             data: serialData,
@@ -120,6 +121,7 @@ function getAllStudentLists() {
                 callback(false);
             }
     });
+    */
  }
 
 function initPage() {
@@ -138,15 +140,11 @@ function initPage() {
     
     $('#addGroupBtn').click(function() {
         var courseid = $('#projectHeader').attr("data-value");
-        addTeacher($('addGroupForm').serialize(), courseid, function(result) {
+        addGroup($('addGroupForm').serialize(), courseid, function(result) {
             $('addGroupForm').hide();
         });
     });
     
-    $('#addStudentListBtn').click(function() {
-        $('#addStudentListForm').hide();
-    });
-
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         userid = data.id;
