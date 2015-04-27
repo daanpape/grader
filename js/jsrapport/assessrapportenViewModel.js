@@ -80,7 +80,7 @@ function pageViewModel(gvm) {
                     gvm.currentCourseRapportId = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
-                    gvm.updateStudentlists(item.id);
+                    gvm.updateStudentlists(item.id, gvm.userId);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-studentlist span:first").text("Studentlist");
                     $('.btn-student span:first').text("Student");
