@@ -266,8 +266,6 @@ function loadTablePage(pagenr)
             }
         });
     });
-
-
 }
 
 /**
