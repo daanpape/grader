@@ -9,7 +9,7 @@ function pageViewModel(gvm) {
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
     
     
-    gvm.updateCourseRapport = function() {
+    /*/gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
@@ -29,7 +29,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
-    };
+    };*/
     
 }
 
