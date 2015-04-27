@@ -38,6 +38,10 @@ Class RapportAPI {
         /* get teacher from database */
         return rapportenDAO::getTeacher();
     }
+    
+    public static function getStudentlistFromCourseID($cid, $uid) {
+        return rapportenDAO::getStudentlistFromCourseID($cid, $uid);
+    }
 
     public static function getStudentListInfoFromListId($id) {
         return rapportenDAO::getStudentListInfoFromListId($id);
@@ -139,10 +143,6 @@ Class RapportAPI {
 
     public static function getStudentListsFromUser($id) {
         return rapportenDAO::getStudentListsFromUser($id);
-    }
-
-    public static function getStudentFromCourseID($id) {
-        return rapportenDAO::getStudentsFromCourseID($id);
     }
 
     public static function deleteStudentList($id) {
