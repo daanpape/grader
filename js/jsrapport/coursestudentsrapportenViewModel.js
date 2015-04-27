@@ -129,7 +129,7 @@ function getStudentListID($name) {
  function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
-       // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
+       console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
 
      console.log("En als leerkracht  " + "0");
 
