@@ -124,7 +124,10 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-        alert($('#projectHeader').attr("data-value"));
+        var courseid;
+        courseid = $('#projectHeader').attr("data-value");
+
+        alert($courseid);
 
         addGroup($courseid);
 
