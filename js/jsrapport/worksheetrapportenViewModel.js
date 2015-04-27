@@ -10,12 +10,16 @@ function pageViewModel(gvm) {
     
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
     
+     // Table i18n bindings
+    gvm.werkficheID = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheID");}, gvm);
+    gvm.werkficheName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheName");}, gvm);
+    gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
+    
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
-                console.log(item);
                 gvm.availableCourses.push(item);
 
                 // Add listener to listitem
@@ -23,7 +27,6 @@ function pageViewModel(gvm) {
                     gvm.currentCourseId = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
-                    gvm.updateStudentlists(item.id, gvm.userId);
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-studentlist span:first").text("Studentlist");
                     $('.btn-student span:first').text("Student");
@@ -34,5 +37,8 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateCourseRapport();
+    });    
 }
