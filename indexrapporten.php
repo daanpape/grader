@@ -272,6 +272,7 @@ $app->post('/api/newstudent/:name/:list', function($name, $listid) use($app) {
 
     //Insert the data
     //echo json_encode(RapportAPI::createCourseStudentlistCouple($courseid, $studlistid, $teacherid));
+    echo json_encode(RapportAPI::addStudentToList($name, $listid));
 });
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
