@@ -49,23 +49,12 @@ function User(id, username, firstname, lastname, status) {
         removeThisUser: function() {
             viewModel.removeUser(this);
 
-
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log("success");
         },
 
         changeStatus: function() {
-            if(status == "ACTIVE"){
-                this.status = "NON-ACTIVE";
-            } else if (status == "NON-ACTIVE") {
-                this.status = "ACTIVE";
-            } else {
-                console.log("waiting for activation");
-            }
-
-            viewModel.removeUser(this);
-            viewModel.updateUsers(this);
-
+            //WORDT NOG NIET VERANDERD
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log(status);
         }
