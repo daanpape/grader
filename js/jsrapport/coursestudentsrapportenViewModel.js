@@ -111,7 +111,7 @@ function getTeacherID($firstname, $lastname) {
             teacherid = item.id;
         }); */
 
-        console.log(item);
+        //console.log(item);
 
     });
     //return teacherid;
@@ -120,10 +120,10 @@ function getTeacherID($firstname, $lastname) {
 function getStudentListID($name) {
     var studListid = "";
     $.getJSON('/api/studID/' + userid + '/' + $name, function (data) {
-        studListid = item.id;
+       // studListid = item.id;
     });
     console.log(studListid);
-    return studListid;
+   // return studListid;
 }
 
  function addGroup($courseid,$studlistid,$teacherid) {
