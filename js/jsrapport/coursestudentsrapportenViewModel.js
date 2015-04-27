@@ -106,7 +106,7 @@ function getAllStudentLists() {
 
 function getTeacherID($firstname, $lastname) {
     var teacherid = "";
-    $.getJSON('/api/teacherID/' + $firstname + '/lastname/' + $lastname , function (data) {
+    $.getJSON('/api/teacherID/' + $firstname + '/' + $lastname , function (data) {
         teacherid = item.id;
     });
     console.log(teacherid);
@@ -124,9 +124,18 @@ function getStudentListID($name) {
 
  function addGroup($courseid,$studlistid,$teacherid) {
      console.log("Groep toevoegen voor vak " + $courseid);
+
+     var teacherName =  $('#teachersComplete').val();
+
+     var firstname = teacherName.substr(0,teacherName.indexOf(' '));
+     var lastname = teacherName.substr(teacherName.indexOf(' ')+1);
+
+     console.log("Voornaam " + firstname);
+     console.log("Achternaam " + lastname)
+
      console.log("Met als studentenlijst  " + $studlistid);
 
-     console.log(getStudentListID($('#studentListComplete').val()));
+        // console.log(getStudentListID($('#studentListComplete').val()));
 
      console.log("En als leerkracht  " + $teacherid);
  }
