@@ -163,9 +163,9 @@ function getGroupid() {
 
  function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
-     console.log("En als leerkracht " + $teacherid);
-     console.log("Groep toevoegen voor vak " + $courseid);
-     console.log("En met studentenlijst " + $studlijstid);
+     console.log("En als leerkracht " + teacherid);
+     console.log("Groep toevoegen voor vak " + courseid);
+     console.log("En met studentenlijst " + studlijstid);
 
          $.ajax({
             url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + $teacherid,
