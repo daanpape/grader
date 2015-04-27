@@ -104,9 +104,35 @@ function getAllStudentLists() {
     return studentLists;
 }
 
- function addGroup($courseid) {
-     console.log("Groep toevoegen  voor vak " + $courseid);
+function getTeacherID() {
+    var teacherid = "";
+    $.getJSON('/api/studentlistsrapporten/' + userid , function (data) {
 
+        teacherid = item.id;
+
+    });
+    console.log(teacherid);
+    return teacherid;
+}
+
+function getStudentListID($name) {
+    var studListid = "";
+    $.getJSON('/api/studID/' + userid + '/name/' + $name, function (data) {
+
+        studListid = item.id;
+
+    });
+    console.log(studListid);
+    return studListid;
+}
+
+ function addGroup($courseid,$studlistid,$teacherid) {
+     console.log("Groep toevoegen voor vak " + $courseid);
+     console.log("Met als studentenlijst  " + $studlistid);
+
+     console.log(getStudentListID($('#studentListComplete').val()));
+
+     console.log("En als leerkracht  " + $teacherid);
  }
 
 function initPage() {
@@ -124,12 +150,9 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-        console.log($('#projectHeader').attr("data-value"));
-
-        addGroup($('#projectHeader').attr("data-value"));
+         addGroup($('#projectHeader').attr("data-value"),0,0);
 
         $('addGroupForm').hide();
-
     });
     
     $.getJSON('/api/currentuser', function(data) {
