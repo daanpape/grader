@@ -1,4 +1,4 @@
-var userid;
+
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -85,7 +85,7 @@ function pageViewModel(gvm) {
 
     gvm.getAllTeachers = function() {
         var studentLists = [];
-        $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
+        $.getJSON('/api/studentlistsrapporten/' + gvm.userId, function (data) {
             $.each(data, function (i, item) {
                 studentLists.push(item.name);
             });
@@ -104,18 +104,6 @@ function pageViewModel(gvm) {
     });
     return teachers;
  }
-
-/*
-function getAllStudentLists() {
-    var studentLists = [];
-    $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
-        $.each(data, function (i, item) {
-            studentLists.push(item.name);
-        });
-    });
-    return studentLists;
-}
-*/
 
  function addTeacher(serialData, courseid, callback) {
      console.log('AddTeacher(), ' + serialData + ", " + courseid + ", " + callback);
