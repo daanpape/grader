@@ -173,11 +173,11 @@ function getGroupid() {
              data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
              success: function(data) {
                  //console.log(data);
-                 callback(true);
+                 //callback(true);
              },
              error: function(data) {
                  console.log('Failed to add new student');
-                 callback(false);
+                 //callback(false);
              }
          });
 
