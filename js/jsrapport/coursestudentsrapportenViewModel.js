@@ -138,6 +138,7 @@ function getGroupid() {
         }
         i+= 1;
     });
+    return studlijst;
 }
 
  function addGroup($courseid, $teacherid, $studlijstid) {
