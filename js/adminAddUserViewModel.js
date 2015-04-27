@@ -9,7 +9,7 @@ function pageViewModel(gvm) {
 function createNewUser()
 {
     console.log("Fired");
-    /*$.ajax({
+    $.ajax({
      type: "POST",
      url: "register",
      data: $('#addUserForm').serialize(),
@@ -18,7 +18,7 @@ function createNewUser()
      },
      error: function() {
      }
-     });*/
+     });
 }
 
 function initPage() {
