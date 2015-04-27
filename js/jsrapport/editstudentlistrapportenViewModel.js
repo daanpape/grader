@@ -1,3 +1,5 @@
+var students = [];
+
 // View model for the courses page
 function pageViewModel(gvm) {
     gvm.userId = -1;
@@ -126,9 +128,10 @@ function deleteTableItem(id, tblObject){
 function getAllStudents() {    
     $.getJSON('/api/allstudents', function(data) {
         $.each(data, function(i, item) {
-            console.log(item);
+            students.push(item.firstname + " " + item.lastname);
         });
     });
+    return students;
 }
 
 function loadStudentTable() {
@@ -159,9 +162,7 @@ function initPage() {
         $('#addStudentForm').hide();
     });
     
-    var allStudents = getAllStudents();
-    
-    $('#studentsComplete').autocomplete({ source: allStudents });
+    $('#studentsComplete').autocomplete({ source: getAllStudents() });
     
     loadStudentTable();
 }
