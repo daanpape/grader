@@ -68,8 +68,5 @@ function User(id, username, firstname, lastname, status) {
 }
 
 function initPage() {
-    // Add button handlers
-    $('#addProjectTypeBtn').click(function(){
 
-    });
 }

@@ -1030,7 +1030,7 @@ class UserDAO {
      * @param type $username the users username, may be equal to email.
      * @param type $firstname the firstname of the user.
      * @param type $lastname the lastname of the user.
-     * @param type $password the users password, must allready be hashed. 
+     * @param type $password the users password, must already be hashed.
      * @param type $token the users token if any. 
      * @param type $status the users activation status. 
      * @return type the userid of the newly created user or null on error.
