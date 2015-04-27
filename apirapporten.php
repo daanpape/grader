@@ -91,8 +91,8 @@ Class RapportAPI {
         }
     }
     
-    public static function addStudentToList($name) {
-        rapportenDAO::addStudentToList($name);
+    public static function addStudentToList($name, $listid) {
+        rapportenDAO::addStudentToList($name, $listid);
     }
 
     public static function createCourseStudentlistCouple($courseid, $studlistid, $teacherid) {
