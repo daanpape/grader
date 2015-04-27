@@ -1,5 +1,5 @@
 var userid;
-var studentListsid = [,];
+var studentListsid = [];
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -101,7 +101,7 @@ function getAllStudentLists() {
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
-            studentListsid.push(item.name, item.id)
+            studentListsid.push(item.id);
         });
     });
     return studentLists;
