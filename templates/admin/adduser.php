@@ -90,12 +90,12 @@ $location = "adminAddUser";
                 <tr>
                     <td>Firstname</td>
                     <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname"
-                               data-bind="value: value"></td>
+                               ></td>
                 </tr>
                 <tr>
                     <td>Lastname</td>
                     <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"
-                               data-bind="value: value"></td>
+                               ></td>
                 </tr>
                 <tr>
                     <td>Email</td>
@@ -105,12 +105,12 @@ $location = "adminAddUser";
                 <tr>
                     <td>password</td>
                     <td><input type="password" class="form-control form-next" placeholder="Password" name="pass"
-                               data-bind="value: value"></td>
+                               ></td>
                 </tr>
                 <tr>
                     <td>Confirm password</td>
                     <td><input type="password" class="form-control form-next" placeholder="Confirm password" name="passconfirm"
-                               data-bind="value: value"></td>
+                               ></td>
                 </tr>
                 <tr>
                     <td>Status</td>

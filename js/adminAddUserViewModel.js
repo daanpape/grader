@@ -22,6 +22,7 @@ function createNewUser()
 }
 
 function initPage() {
+    console.log("Init");
     // Form submit
     $('#userForm').on('submit', function(e)
     {
