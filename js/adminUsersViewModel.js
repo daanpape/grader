@@ -35,19 +35,17 @@ function fetchUsersData()
 
 
 function User(id, username, firstname, lastname, status) {
-    // Attach delete handler to delete button
-    $('#removebtn-' + id).bind('click', function(event, data){
-        // Delete the table item
-        alert("hey");
-    });
-
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        status: ko.observable(status)
+        status: ko.observable(status),
 
+        removeThisUser: function() {
+            viewModel.removeRule(this);
+            console.log("success");
+        }
     };
 }
 
