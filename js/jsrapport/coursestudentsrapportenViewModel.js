@@ -148,9 +148,8 @@ function getStudentListID($name) {
          if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
             console.log(i);
          }
-             })
-     i+= 1;
-     ;
+         i+= 1;
+             })     ;
 
 
          console.log("En met studentenlijst " + "0");
