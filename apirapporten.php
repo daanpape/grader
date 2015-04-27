@@ -55,9 +55,15 @@ Class RapportAPI {
         return rapportenDAO::getIDFromTeacherByName($firstname, $lastname);
     }
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromStudentlistByName($id, $name) {
         return rapportenDAO::getIDFromStudentlistByName($id, $name);
     }
+    */
 
     public static function addTeacher($id) {
         /* Return teacher from users */

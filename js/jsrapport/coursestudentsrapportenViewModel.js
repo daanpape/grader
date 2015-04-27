@@ -121,26 +121,12 @@ function getTeacherID($firstname, $lastname) {
     //return teacherid;
 }
 
-function getStudentListID($name) {
-    var studListid = "";
-    $.getJSON('/api/studID/' + userid + '/' + $name, function (data) {
-       // studListid = item.id;
-    });
-    console.log(studListid);
-   // return studListid;
-}
-
  function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
        // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
 
      console.log("En als leerkracht  " + "0");
-
-     // console.log(getStudentListID($('#studentListComplete').val()));
-
-     //var studentLists
-
 
      var i = 0;
      var studlijst;
@@ -151,7 +137,6 @@ function getStudentListID($name) {
          i+= 1;
      });
          console.log("En met studentenlijst " + studlijst);
-
  }
 
 function initPage() {
