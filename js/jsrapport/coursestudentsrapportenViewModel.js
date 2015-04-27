@@ -125,16 +125,12 @@ function getStudentListID($name) {
  function addGroup($courseid,$studlistid,$teacherid) {
      console.log("Groep toevoegen voor vak " + $courseid);
 
+     //Split selected name on first space
      var teacherName =  $('#teachersComplete').val();
-
      var firstname = teacherName.substr(0,teacherName.indexOf(' '));
      var lastname = teacherName.substr(teacherName.indexOf(' ')+1);
 
-     console.log("Voornaam " + firstname);
-     console.log("Achternaam " + lastname)
-
-     console.log("Met als studentenlijst  " + $studlistid);
-
+        console.log(getTeacherID($firstname, $lastname));
         // console.log(getStudentListID($('#studentListComplete').val()));
 
      console.log("En als leerkracht  " + $teacherid);
