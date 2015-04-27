@@ -25,10 +25,12 @@ function initPage() {
     // Form submit
     $('#userForm').on('submit', function(e)
     {
+        e.preventDefault();
+
         console.log("Bound");
         createNewUser();
 
-        e.preventDefault();
+
     });
 }
 
