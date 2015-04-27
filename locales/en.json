@@ -118,5 +118,6 @@
     "PermissionDescription" : "Description",
     "Addmodule" : "Add module",
     
-    "WorksheetNameRapport" : "Worksheets"
+    "WorksheetNameRapport" : "Worksheets",
+    "WorksheetRapportManual" : "Summary of the worksheets"
 }
