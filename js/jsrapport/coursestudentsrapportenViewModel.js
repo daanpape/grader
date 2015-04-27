@@ -115,7 +115,7 @@ function getTeacherID() {
     return teacherid;
 }
 
-function getStudentListID($userid, $name) {
+function getStudentListID( $name) {
     var studListid = "";
     $.getJSON('/api/studID/' + $userid + '/name/' + $name, function (data) {
 
@@ -130,7 +130,7 @@ function getStudentListID($userid, $name) {
      console.log("Groep toevoegen voor vak " + $courseid);
      console.log("Met als studentenlijst  " + $studlistid);
 
-     console.log($('#studentListComplete').val());
+     console.log(getStudentListID($('#studentListComplete').val()));
 
      console.log("En als leerkracht  " + $teacherid);
  }
