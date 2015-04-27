@@ -207,10 +207,14 @@ class rapportenDAO {
         }
     }
     
-    public static function addStudentToList($name) {
+    public static function addStudentToList($name, $listid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("");        //toevoegen aan studentlist_students_rapport tabel
+            $stmt = $conn->prepare("INSERT INTO studentlist_students_rapport (studentlist, user)
+                                    SELECT :list, users.id FROM users
+                                    WHERE CONCAT(firstname, ' ', lastname) = :name LIMIT 1");
+            $stmt->bindValue(':list', (int) $listid, PDO::PARAM_INT);
+            $stmt->bindValue(':name', (string) $name, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -254,6 +258,11 @@ class rapportenDAO {
         }
     }
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromTeacherByName($firstname, $lastname) {
         try {
             $conn = Db::getConnection();
@@ -266,7 +275,13 @@ class rapportenDAO {
             return null;
         }
     }
+    */
 
+    /*
+     *
+     * Wordt momenteel niet langer gebruikt
+     *
+     *
     public static function getIDFromStudentlistByName($id, $name) {
         try {
             $conn = Db::getConnection();
@@ -279,6 +294,7 @@ class rapportenDAO {
             return null;
         }
     }
+    */
 
     /*
      * Koppelingen maken tussen studentenlijst ,Course & Teacher

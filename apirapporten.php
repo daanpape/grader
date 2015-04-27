@@ -51,13 +51,25 @@ Class RapportAPI {
         return rapportenDAO::getStudentsFromStudentList($id);
     }
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromTeacherByName($firstname, $lastname) {
         return rapportenDAO::getIDFromTeacherByName($firstname, $lastname);
     }
+    */
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromStudentlistByName($id, $name) {
         return rapportenDAO::getIDFromStudentlistByName($id, $name);
     }
+    */
 
     public static function addTeacher($id) {
         /* Return teacher from users */
@@ -91,8 +103,8 @@ Class RapportAPI {
         }
     }
     
-    public static function addStudentToList($name) {
-        rapportenDAO::addStudentToList($name);
+    public static function addStudentToList($name, $listid) {
+        rapportenDAO::addStudentToList($name, $listid);
     }
 
     public static function createCourseStudentlistCouple($courseid, $studlistid, $teacherid) {
