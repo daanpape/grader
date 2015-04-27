@@ -188,6 +188,11 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
+/*
+ *
+ * Momenteel niet langer gebruikt!
+ *
+ *
 //get teacher ID with coursename
 $app->get('/api/teacherID/:firstname/:lastname', function($firstname, $lastname) use($app) {
     //Use json header
@@ -197,6 +202,7 @@ $app->get('/api/teacherID/:firstname/:lastname', function($firstname, $lastname)
     $data = RapportAPI::getIDFromTeacherByName($firstname, $lastname);
     echo json_encode($data);
 });
+*/
 
 /*
  *

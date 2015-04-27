@@ -254,6 +254,11 @@ class rapportenDAO {
         }
     }
 
+    /*
+     *
+     * Momenteel niet langer gebruikt.
+     *
+     *
     public static function getIDFromTeacherByName($firstname, $lastname) {
         try {
             $conn = Db::getConnection();
@@ -266,6 +271,7 @@ class rapportenDAO {
             return null;
         }
     }
+    */
 
     /*
      *

@@ -108,23 +108,8 @@ function getAllStudentLists() {
     return studentLists;
 }
 
-function getTeacherID($firstname, $lastname) {
-    var teacherid = "";
-    $.getJSON('/api/teacherID/' + $firstname + '/' + $lastname , function (data) {
-       /* $.each(data, function (i, item) {
-            teacherid = item.id;
-        }); */
-
-        //console.log(item);
-
-    });
-    //return teacherid;
-}
-
  function addGroup($courseid) {
      console.log("Groep toevoegen voor vak " + $courseid);
-
-       // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
 
      console.log("En als leerkracht  " + "0");
 
