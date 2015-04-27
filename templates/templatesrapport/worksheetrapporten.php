@@ -31,6 +31,7 @@
                     </ul>
                 </div>            
         </div>
+        </div>
 
         <?php include_once('templates/jsdepends.php') ?>
     </body>

@@ -1,6 +1,9 @@
 var userid;
+//arrays gebruikt voor autocompletes en selecteren waarde hiervan.
 var studentLists = [];
 var studentListsid = [];
+var teachers = []
+var teachersid = []
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -87,10 +90,12 @@ function pageViewModel(gvm) {
  }
 
  function getAllTeachers() {
-     var teachers = [];
+     teachers = [];
+     teachersid = [];
      $.getJSON('/api/getteacherrapport', function(data) {
         $.each(data, function(i, item) {     
             teachers.push(item.firstname + " " + item.lastname);
+            teachersid.push(item.id);
         });
     });
     return teachers;
@@ -108,20 +113,40 @@ function getAllStudentLists() {
     return studentLists;
 }
 
- function addGroup($courseid) {
-     console.log("Groep toevoegen voor vak " + $courseid);
+function getTeacherid() {
 
-     console.log("En als leerkracht  " + "0");
+    // functie voor het opsplitsen van naam indien gewenst.
+    // console.log(getTeacherID($('#teachersComplete').val().substr(0,$('#teachersComplete').val().indexOf(' ')), $('#teachersComplete').val().substr($('#teachersComplete').val().indexOf(' ')+1)));
 
-     var i = 0;
-     var studlijst;
-     studentLists.forEach(function(entry) {
-         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
-             studlijst = (studentListsid[i]);
-         }
-         i+= 1;
-     });
-         console.log("En met studentenlijst " + studlijst);
+    var i = 0;
+    var teacher = 0;
+    teachers.forEach(function(entry) {
+        if (new String(entry).valueOf() == new String($('#teachersComplete').val()).valueOf()) {
+            teacher = teachersid[i];
+        }
+        i+= 1;
+    });
+    return teacher
+}
+
+function getGroupid() {
+    var i = 0;
+    var studlijst;
+    studentLists.forEach(function(entry) {
+        if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
+            studlijst = (studentListsid[i]);
+        }
+        i+= 1;
+    });
+    return studlijst;
+}
+
+ function addGroup($courseid, $teacherid, $studlijstid) {
+
+     //TODO if teacher or studlijst = 0 dan bestaat deze niet!
+         console.log("En als leerkracht " + $teacherid);
+         console.log("Groep toevoegen voor vak " + $courseid);
+         console.log("En met studentenlijst " + $studlijstid);
  }
 
 function initPage() {
@@ -139,7 +164,7 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-         addGroup($('#projectHeader').attr("data-value"));
+         addGroup($('#projectHeader').attr("data-value"), getTeacherid(), getGroupid());
 
         $('addGroupForm').hide();
     });
