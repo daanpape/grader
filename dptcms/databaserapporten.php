@@ -256,19 +256,19 @@ class rapportenDAO {
     }
 
     /*
-     * Koppelingen maken tussen studentenlijst en Course
+     * Koppelingen maken tussen studentenlijst ,Course & Teacher
      * Maar Course moet meerdere studentlijsen
      */
-    public static function insertCourseStudlistCouple($courseid, $studlistid) {
+    public static function insertCourseStudlistCouple($courseid, $studlistid, $teacherid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO course_studentlist_rapport (course, studentlist) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO course_studentlist_teacher_rapport (course, studentlist, teacher) VALUES (?,?,?)");
 
-            $stmt->execute(array($courseid, $studlistid));
+            $stmt->execute(array($courseid, $studlistid, $teacherid));
 
             return $conn->lastInsertId();
         } catch (PDOException $err) {
-            Logger::logError('Could not create new coupling between a course and a studentlist', $err);
+            Logger::logError('Could not create new coupling between a course, studentlist and a teacher', $err);
             return null;
         }
     }
