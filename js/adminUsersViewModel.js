@@ -63,6 +63,9 @@ function User(id, username, firstname, lastname, status) {
                 console.log("waiting for activation");
             }
 
+            viewModel.removeUser(this);
+            viewModel.updateUsers(this);
+
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log(status);
         }
