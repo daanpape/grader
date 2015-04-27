@@ -52,11 +52,13 @@ function pageViewModel(gvm) {
     //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
     gvm.saveLastSelectedDropdowns = function() {
         data = {};
+        data["user"] = gvm.userId;
         data["course"] = $(".btn-courseRapport span:first").text();
         data["courseid"] = gvm.currentCourseId;
+        data["studentlist"] = $('.btn-studentlist span:first').text();
+        data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        data["user"] = gvm.userId;
         console.log(data);
         $.ajax({
             type: "POST",
@@ -84,7 +86,7 @@ function pageViewModel(gvm) {
                     $(".btn-courseRapport span:first").text($(this).text());
                     $(".btn-studentlist span:first").text("Studentlist");
                     $('.btn-student span:first').text("Student");
-                    //gvm.saveLastSelectedDropdowns();
+                    gvm.saveLastSelectedDropdowns();
                 });
             });
         });
@@ -109,7 +111,7 @@ function pageViewModel(gvm) {
                     gvm.updateStudents(item.id);
                     $(".btn-studentlist span:first").text($(this).text());
                     $('.btn-student span:first').text("Student");
-                    //gvm.saveLastSelectedDropdowns();
+                    gvm.saveLastSelectedDropdowns();
                 });
             })
         })
@@ -131,7 +133,7 @@ function pageViewModel(gvm) {
                 $("#studentbtn-" + item.id).click(function(){
                     gvm.currentStudentId = item.id;
                     $(".btn-student span:first").text($(this).text());
-                    //gvm.saveLastSelectedDropdowns();
+                    gvm.saveLastSelectedDropdowns();
                 });
             })
         })
@@ -224,9 +226,5 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
-    });
-    $(window).on('hashchange', function() {
-        console.log('Left page');
-        //save dropdowns
     });
 }

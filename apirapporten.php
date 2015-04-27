@@ -204,8 +204,8 @@ $app->request->post('doelstellingid'), $app->request->post('criteria'), $app->re
 $app->request->post('user')));
     */
     //save dropdowns asses
-    public static function saveDropdownChoice($course, $courseid, $student, $studentid, $user) {
-        $id = rapportenDAO::saveDropdownChoice($course, $courseid, $student, $studentid, $user);
+    public static function saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid) {
+        $id = rapportenDAO::saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid);
         if($id != false) {
             return array(
                 "course" => $course,
