@@ -1,4 +1,5 @@
 var userid;
+var studentLists = [];
 var studentListsid = [];
 
 function pageViewModel(gvm) {
@@ -96,8 +97,8 @@ function pageViewModel(gvm) {
  }
 
 function getAllStudentLists() {
-    var studentLists = [];
-    studentListsid = [,];
+    studentLists = [];
+    studentListsid = [];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
@@ -136,19 +137,20 @@ function getStudentListID($name) {
 
      console.log("En als leerkracht  " + "0");
 
-        // console.log(getStudentListID($('#studentListComplete').val()));
+     // console.log(getStudentListID($('#studentListComplete').val()));
 
      //var studentLists
 
-     /*
-     studentListsid.forEach(function(entry) {
 
+     i = 0;
+     studentLists.forEach(function(entry) {
 
-         if (new String(entry[,0]).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
-             console.log();
+         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
+            console.log(i);
          }
-             });
-        */
+         i+= 1;
+             })     ;
+
 
          console.log("En met studentenlijst " + "0");
 
