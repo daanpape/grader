@@ -104,9 +104,34 @@ function getAllStudentLists() {
     return studentLists;
 }
 
+function getTeacherID() {
+    var teacherid = "";
+    $.getJSON('/api/studentlistsrapporten/' + userid , function (data) {
+
+        teacherid = item.id;
+
+    });
+    console.log(teacherid);
+    return teacherid;
+}
+
+function getStudentListID($userid, $name) {
+    var studListid = "";
+    $.getJSON('/api/studID/' + $userid + '/name/' + $name, function (data) {
+
+        studListid = item.id;
+
+    });
+    console.log(studListid);
+    return studListid;
+}
+
  function addGroup($courseid,$studlistid,$teacherid) {
      console.log("Groep toevoegen voor vak " + $courseid);
      console.log("Met als studentenlijst  " + $studlistid);
+
+     console.log($('#studentListComplete').val());
+
      console.log("En als leerkracht  " + $teacherid);
  }
 
