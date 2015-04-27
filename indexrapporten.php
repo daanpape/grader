@@ -257,7 +257,7 @@ $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Add list
     echo json_encode(RapportAPI::createStudentList($app->request->post('name'), $userid));    //null moet nog ingelogde userid worden!
 });
-$app->post('/api/coursecouple/:courseid/studentlist/:studlistid/:teacherid', function($courseid, $studlistid, $teacherid) use($app) {
+$app->post('/api/coursecouple/:courseid/:studlistid/:teacherid', function($courseid, $studlistid, $teacherid) use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

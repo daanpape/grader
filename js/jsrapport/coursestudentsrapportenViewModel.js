@@ -141,21 +141,42 @@ function getGroupid() {
     return studlijst;
 }
 
- function addGroup($courseid, $teacherid, $studlijstid) {
+/*
+ function addNewStudent(studentname, listid, callback) {
+     console.log(studentname);
+     console.log(listid);
+         $.ajax({
+         url: "/api/newstudent/" + studentname + "/" + listid,
+         type: "POST",
+         data: {'name': studentname, 'list': listid},
+         success: function(data) {
+         //console.log(data);
+         callback(true);
+         },
+         error: function(data) {
+         console.log('Failed to add new student');
+         callback(false);
+         }
+     });
+ }
+ */
 
+ function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
      console.log("En als leerkracht " + $teacherid);
      console.log("Groep toevoegen voor vak " + $courseid);
      console.log("En met studentenlijst " + $studlijstid);
 
          $.ajax({
-            url: "/api/coursecouple/" + $courseid + "/studlist/" + $studlijstid + "/" + $teacherid,
-             type: "PUT",
+            url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + $teacherid,
+             type: "POST",
+             data: {'course': studentname, 'teacher': teacherid, 'studentlist': listid},
              success: function(data) {
-                 loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1     WERKT NIET
+                 //console.log(data);
                  callback(true);
              },
              error: function(data) {
+                 console.log('Failed to add new student');
                  callback(false);
              }
          });
