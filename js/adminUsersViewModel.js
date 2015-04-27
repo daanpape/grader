@@ -49,13 +49,12 @@ function User(id, username, firstname, lastname, status) {
         removeThisUser: function() {
             viewModel.removeUser(this);
 
-
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log("success");
         },
 
         changeStatus: function() {
-
+            //WORDT NOG NIET VERANDERD
             //WORDT NOG NIET OPGESLAAN OP DB
             console.log(status);
         }
