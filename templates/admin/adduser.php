@@ -85,7 +85,7 @@ $location = "adminAddUser";
 
         <!-- /.col-lg-12 -->
         <div>
-        <form id="addUserForm" autocomplete="off" action="users.php">
+        <form id="addUserForm" autocomplete="off">
             <table class="table table-striped">
                 <tr>
                     <td>Firstname</td>
