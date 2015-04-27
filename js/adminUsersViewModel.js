@@ -21,6 +21,7 @@ function pageViewModel(gvm) {
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
+        removeUser(user);
     }
 }
 

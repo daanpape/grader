@@ -332,13 +332,6 @@ $app->get('/api/allusers/', function() use ($app)
     echo json_encode(GraderAPI::getAllUsersData(Security::getLoggedInId()));
 });
 
-$app->get('/api/removeuser/:userid', function($userid) use ($app) {
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-
-    echo json_encode(GraderAPI::removeUser($userid));
-});
-
 $app->get('/api/alluserswithroles/', function() use ($app)
 {
     $response = $app->response();
@@ -539,6 +532,14 @@ $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', func
 
     echo json_encode(GraderAPI::uncoupleProjectStudentlist($projectid, $studentlistid));
 });
+
+$app->delete('/api/removeuser/:userid', function($userid) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::removeUser($userid));
+});
+
 
 /* Rapporten routering */
 require_once 'indexrapporten.php';
