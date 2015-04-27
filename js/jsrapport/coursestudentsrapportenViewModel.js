@@ -105,7 +105,7 @@ function getAllStudentLists() {
 }
 
  function addGroup($courseid) {
-     console("Groep toevoegen  voor vak " + $courseid);
+     console.log("Groep toevoegen  voor vak " + $courseid);
 
  }
 
@@ -124,7 +124,7 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-        console($('#projectHeader').attr("data-value"));
+        console.log($('#projectHeader').attr("data-value"));
 
         addGroup($('#projectHeader').attr("data-value"));
 
