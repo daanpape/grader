@@ -85,7 +85,6 @@ $location = "adminAddUser";
 
         <!-- /.col-lg-12 -->
         <div>
-        <form id="addUserForm" autocomplete="off">
             <table class="table table-striped">
                 <tr>
                     <td>Firstname</td>
@@ -141,7 +140,6 @@ $location = "adminAddUser";
                     </div>
                 </div>
             </div>
-        </form>
         </div>
     </div>
     <!-- /.row -->
