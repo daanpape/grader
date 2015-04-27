@@ -52,6 +52,14 @@ function User(username, firstname, lastname, permissions) {
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        permissions: ko.observable(permissions)
+        permissions: ko.observable(permissions),
+
+        editPermissions: function() {
+
+
+            //WORDT NOG NIET OPGESLAAN OP DB
+            console.log("edit");
+        }
+
     };
 }
