@@ -15,7 +15,6 @@ function pageViewModel(gvm) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
-                console.log(item);
                 gvm.availableCourses.push(item);
 
                 // Add listener to listitem
@@ -34,5 +33,8 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    
+    $.getJSON('/api/currentuser', function(data) {
+        viewModel.userId = data.id;
+        viewModel.updateCourseRapport();
+    });    
 }
