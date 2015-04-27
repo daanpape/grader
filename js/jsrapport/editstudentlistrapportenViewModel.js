@@ -80,17 +80,18 @@ function showEditStudentModal(tblObject) {
     showGeneralModal();
 }
 
-function addNewStudent(serialData, callback) {             //MOET NOG GEDAAN WORDEN!
-    console.log(serialData);
+function addNewStudent(studentname, callback) {
+    console.log(studentname);
     $.ajax({
-        url: "/api/newstudent/" + viewModel.listId,
+        url: "/api/newstudent/" + studentname,
         type: "POST",
-        data: serialData,
+        data: studentname,
         success: function(data) {
-            viewModel.addTableData(data['id'], data['firstname'], data['lastname'], data['mail']);
+            console.log(data);
             callback(true);
         },
         error: function(data) {
+            console.log('Failed to add new student');
             callback(false);
         }
     });
@@ -158,8 +159,9 @@ function initPage() {
     });
     
     $('#addStudentBtn').click(function() {
-        //add student
-        $('#addStudentForm').hide();
+        addNewStudent($('#studentsComplete').val(), function() {
+            $('#addStudentForm').hide();
+        });
     });
     
     $('#studentsComplete').autocomplete({ source: getAllStudents() });
