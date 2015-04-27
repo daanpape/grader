@@ -88,6 +88,7 @@ function pageViewModel(gvm) {
                 });
             });
         });
+        $('btn-studentlist span:first').text("Studentlist");
     };
 
 
@@ -107,8 +108,7 @@ function pageViewModel(gvm) {
                     gvm.currentStudentlistId = item.id;
                     gvm.currentStudentId = null;
                     gvm.updateStudents(item.id);
-                    //$(".btn-studentlist span:first").text($(this).text());
-                    $('.btn-studentlist span:first').text("Studentlist");
+                    $(".btn-studentlist span:first").text($(this).text());
                     $('.btn-student span:first').text("Student");
                     //gvm.saveLastSelectedDropdowns();
                 });
