@@ -108,7 +108,7 @@ Class RapportAPI {
     }
 
     public static function createCourseStudentlistCouple($courseid, $studlistid, $teacherid) {
-        $id = ClassDAO::insertCourseStudlistCouple($courseid, $studlistid, $teacherid);
+        $id = rapportenDAO::insertCourseStudlistCouple($courseid, $studlistid, $teacherid);
 
         if($id != null) {
             return array(
