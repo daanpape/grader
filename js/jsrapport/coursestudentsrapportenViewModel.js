@@ -121,9 +121,9 @@ function getAllStudentLists() {
 
      var i = 0;
      var teacher = 0;
-     studentLists.forEach(function(entry) {
+     teachers.forEach(function(entry) {
          if (new String(entry).valueOf() == new String($('#teachersComplete').val()).valueOf()) {
-             teacher = studentListsid[i];
+             teacher = teachersid[i];
          }
          i+= 1;
      });
