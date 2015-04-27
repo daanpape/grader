@@ -89,13 +89,13 @@
     "studentrapportRapportTitle":"Rapport van studenten",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
     "EditProjectTitle2" : "Wijzig vak",
-  "AdminTitle":"Gebruikerslijst",
-  "AdminCodeTableTitle": "ID",
-  " AdminNameTableTitle":"Naam",
-  " AdminDescTableTitle":"E-mail",
-  " AdminActionTableTitle":"Acties",
-  "UserlistsTitle2": "Mijn Studentenlijsten",
-  "AddNewList": "Voeg nieuwe lijst toe",
+    "AdminTitle":"Gebruikerslijst",
+    "AdminCodeTableTitle": "ID",
+    "AdminNameTableTitle":"Naam",
+    "AdminDescTableTitle":"E-mail",
+    "AdminActionTableTitle":"Acties",
+    "UserlistsTitle2": "Mijn Studentenlijsten",
+    "AddNewList": "Voeg nieuwe lijst toe",
 
     "werkficheID":"Werkfiche ID",
     "werkficheName":"Naam",
@@ -115,5 +115,6 @@
     "PermissionDescription" : "Beschrijving",
     "Addmodule" : "Voeg module toe",
     
-    "WorksheetNameRapport" : "Werkfiche"
+    "WorksheetNameRapport" : "Werkfiches",
+    "WorksheetRapportManual" : "Overzicht van de werfiches"
 }

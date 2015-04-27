@@ -1,4 +1,5 @@
 var userid;
+var studentLists;
 
 function pageViewModel(gvm) {
     gvm.projecttitle = ko.observable("");
@@ -95,7 +96,7 @@ function pageViewModel(gvm) {
  }
 
 function getAllStudentLists() {
-    var studentLists = [];
+    studentLists = [];
     $.getJSON('/api/studentlistsrapporten/' + userid, function (data) {
         $.each(data, function (i, item) {
             studentLists.push(item.name);
@@ -135,7 +136,16 @@ function getStudentListID($name) {
 
         // console.log(getStudentListID($('#studentListComplete').val()));
 
-     console.log("En met studentenlijst " + "0");
+     //var studentLists
+
+     studentLists.forEach(function(entry) {
+
+         if (new String(entry).valueOf() == new String($('#studentListComplete').val()).valueOf()) {
+             console.log();
+         }
+             });
+
+         console.log("En met studentenlijst " + "0");
 
  }
 

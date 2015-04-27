@@ -19,9 +19,8 @@
         
         <!-- Content container -->
         <div class="container">
-            <div class="starter-template" data-bind="html: homeManual">
-                <p class="lead">List van worksheets</p>
-            </div>
+            <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
+            
         </div>
 
         <?php include_once('templates/jsdepends.php') ?>
