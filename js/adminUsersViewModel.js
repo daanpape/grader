@@ -10,19 +10,17 @@ function pageViewModel(gvm) {
     gvm.userActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserActions");}, gvm);
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn");}, gvm);
 
-    fetchUsersData();
-
     gvm.users = ko.observableArray([]);
 
     gvm.updateUsers = function(user)
     {
         gvm.users.push(user);
-    }
+    },
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
         removeUser(user);
-    }
+    },
 
     gvm.refreshUsers = function()
     {
@@ -74,5 +72,5 @@ function User(id, username, firstname, lastname, status) {
 }
 
 function initPage() {
-
+    fetchUsersData();
 }
