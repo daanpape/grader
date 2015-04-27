@@ -104,24 +104,9 @@ function getAllStudentLists() {
     return studentLists;
 }
 
- function addGroup(serialData, courseid, callback) {
+ function addGroup($courseid) {
+     console.log("Groep toevoegen  voor vak " + $courseid);
 
-    console.log("Groep toevoegen")
-    /* $.ajax({
-            url: "/api/addcourseteacher/" + courseid,
-            type: "POST",
-            data: serialData,
-            success: function(data) {
-                //show teacher in list
-                console.log(data);
-                callback(true);
-            },
-            error: function(data) {
-                console.log('Failed to add teacher');
-                callback(false);
-            }
-    });
-    */
  }
 
 function initPage() {
@@ -139,10 +124,12 @@ function initPage() {
     });
     
     $('#addGroupBtn').click(function() {
-        var courseid = $('#projectHeader').attr("data-value");
-        addGroup($('addGroupForm').serialize(), courseid, function(result) {
-            $('addGroupForm').hide();
-        });
+        console.log($('#projectHeader').attr("data-value"));
+
+        addGroup($('#projectHeader').attr("data-value"));
+
+        $('addGroupForm').hide();
+
     });
     
     $.getJSON('/api/currentuser', function(data) {
