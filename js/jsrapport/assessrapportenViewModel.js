@@ -42,6 +42,9 @@ function pageViewModel(gvm) {
                     loadTablePage(item.courseid, 1);
                 });
             } else {
+                $(".btn-courseRapport span:first").text("Course");
+                $(".btn-studentlist span:first").text("Studentlist");
+                $('.btn-student span:first').text("Student");
                 gvm.updateCourseRapport();
             }
         });
@@ -88,7 +91,6 @@ function pageViewModel(gvm) {
                 });
             });
         });
-        $('btn-studentlist span:first').text("Studentlist");
     };
 
 
