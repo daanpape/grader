@@ -31,17 +31,16 @@
                     </tr>
                     -->
                     <tr>
-                        <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: descTableTitle">Description</th>
+                        <th>StudentList</th>
+                        <th>Teachers</th>
+                        <th>Actions</th>
                     </tr>
 
                     </thead>
-                    <tbody data-bind="foreach: coupledLists">
+                    <tbody data-bind="foreach: tabledata">
                     <tr>
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
                     </tr>
                     </tbody>
                     </table>
