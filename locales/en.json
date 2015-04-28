@@ -122,5 +122,6 @@
     "actionTableTitle" : "actions",
 
     "WorksheetNameRapport" : "Worksheets",
-    "WorksheetRapportManual" : "Summary of the worksheets"
+    "WorksheetRapportManual" : "Summary of the worksheets",
+    "AddNewWorksheet" : "Add worksheet"
 }
