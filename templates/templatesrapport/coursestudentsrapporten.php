@@ -62,17 +62,12 @@
                     <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
                 </ul>
 
-                <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+                <button type="button" class="btn btn-default pagination-button" id="addCoursemembers">
                     <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
                 </button>
             </div>
 
         </div>
-
-        <button type="button" class="btn btn-default pagination-button" id="addCoursemembers">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </button>
-
     </div>
 
     <div id="addGroupForm" class="container">
