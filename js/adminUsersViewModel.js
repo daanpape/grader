@@ -17,6 +17,12 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
     },
 
+    gvm.updateUserStatus = function(user)
+    {
+        gvm.users.get(user).status("test");
+        console.log(gvm.users.get(user).status());
+    },
+
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
         removeUser(user);

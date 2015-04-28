@@ -1079,7 +1079,7 @@ class UserDAO {
             $conn = Db::getConnection();
             //Update user status
             $stmt = $conn->prepare("UPDATE users SET status=? WHERE id=?");
-            $stmt->execute(array($status,$userid));
+            $stmt->execute(array($status, $userid));
 
             return true;
         } catch (PDOException $err) {
