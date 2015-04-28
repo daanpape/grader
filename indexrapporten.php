@@ -91,8 +91,8 @@ $app->get('/api/getStudentGroupTeacherByCourseID/page/:pagenr/', function ($page
     $pg = Pager::pageToStartStop($pagenr);
     // Get total number of projecttypes in the database
     //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
-    $pagedata = RapportAPI::getAllCourses($pg->start, $pg->count);
-    $totalcourses = RapportAPI::getCourseCount();
+    $pagedata = RapportAPI::getStudentGroupTeacherByCourseID($pg->start, $pg->count);
+    $totalcourses = RapportAPI::getStudentGroupTeacherByCourseCount();
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
