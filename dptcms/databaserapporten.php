@@ -337,11 +337,12 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(*) FROM course_studentlist_teacher_rapport
-                                      LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
-                                      LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
-                                      WHERE course_studentlist_teacher_rapport.active =  '1'
-                                    AND course =  :course");
+            $stmt = $conn->prepare("SELECT count(*)
+                                      FROM course_studentlist_teacher_rapport
+                                        LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                        LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1'
+                                        AND course =  :course");
             $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
