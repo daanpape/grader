@@ -25,17 +25,17 @@
                     <tr>
                         <th>Studentlists</th>
                         <th>Teachers</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: coupledLists">
                     <tr>
                         <td data-bind="text: tname">--</td>
-                        <td>
-                            <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">Uncouple</button>
-                        </td>
+                        <td data-bind="text: tname">--</td>
+                        <td data-bind="text: tname">--</td>
                     </tr>
                     </tbody>
-                </table>
+                    </table>
             </div>
         </div>
 
