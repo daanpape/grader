@@ -176,7 +176,7 @@ function loadTablePage(courseid)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.name, item.firstname + " " + item.lastname);
+            viewModel.addTableData(item.firstname, item.lastname);
         });
     });
 }
@@ -208,4 +208,5 @@ function initPage() {
         viewModel.getAvailableLists(data.id);
     });
 
+    loadTablePage(1);
 }
