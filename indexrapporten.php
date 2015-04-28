@@ -253,6 +253,14 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     echo json_encode(RapportAPI::updateCourse(
         $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
 });
+$app->put('/api/updateworksheet/:id', function($id) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(RapportAPI::updateWorksheet($id, $app->request->post('name')));
+});
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers

@@ -179,6 +179,16 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function updateWorksheet($id, $name) {
+        if(rapportenDAO::updateWorksheet($id, $name)){
+            return array(
+                "id" => $id,
+                "name" => $name);
+        } else {
+            return -1;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);

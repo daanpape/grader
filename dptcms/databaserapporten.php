@@ -412,6 +412,18 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function updateWorksheet($id, $name) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET Name = ? WHERE id = ?");
+            $stmt->execute(array($name, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update worksheet', $err);
+            return false;
+        }
+    }
 
     public static function deleteCourse($id) {
         try {
