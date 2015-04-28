@@ -31,9 +31,9 @@
                     </tr>
                     -->
                     <tr>
-                        <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: descTableTitle">Description</th>
+                        <th>StudentList</th>
+                        <th>Teachers</th>
+                        <th>Actions</th>
                     </tr>
 
                     </thead>
