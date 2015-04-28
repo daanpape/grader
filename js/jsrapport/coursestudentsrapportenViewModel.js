@@ -197,7 +197,6 @@ function loadTablePage(pagenr,course)
            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
-        console.log(data.prev);
         /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
@@ -208,7 +207,6 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        console.log(data.next);
         if(data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
