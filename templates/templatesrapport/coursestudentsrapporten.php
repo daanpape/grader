@@ -23,9 +23,9 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th data-bind="text: studlistTableTitle">StudentList</th>
+                        <th data-bind="text: Addmodule">StudentList</th>
                         <th data-bind="text: teacherTableTitle">Teachers</th>
-                        <th data-bind="text: actionTableTitle">Actions</th>
+                        <th data-bind="text: Addmodule">Actions</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: coupledLists">
