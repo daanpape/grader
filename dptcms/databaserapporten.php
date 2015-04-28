@@ -201,7 +201,7 @@ class rapportenDAO {
             $stmt = $conn->prepare("SELECT *FROM  `course_studentlist_teacher_rapport`
                                       LEFT JOIN `studentlist_rapport` ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                       LEFT JOIN 'users' ON course_studentlist_teacher_rapport.teacher = user.id
-                                    WHERE  `course` = 1");
+                                    WHERE  course = :course");
             $stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
