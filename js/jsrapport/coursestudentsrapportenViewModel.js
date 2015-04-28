@@ -198,8 +198,8 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
+            console.log(data.data);
             viewModel.addTableData(item.id, item.code, item.name);
-            console.log(item.id);
         });
 
         /* Let previous en next buttons work */
