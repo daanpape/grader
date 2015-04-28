@@ -56,7 +56,7 @@ function removeUser(user)
 
 function updateUserStatus(user)
 {
-    $.getJSON("/api/updateUserStatus/" + user.id(), function(data)
+    $.getJSON("/api/updateUserStatus/" + user.id() + "/" + user.status(), function(data)
     {
         console.log("User was removed");
         fetchUsersData();
