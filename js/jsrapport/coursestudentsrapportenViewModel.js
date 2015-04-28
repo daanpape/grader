@@ -78,7 +78,7 @@ function pageViewModel(gvm) {
                 gvm.addCoupledList(item.id, item.name);
             });
         });
-    }
+}
 
     gvm.getAvailableLists = function() {
         $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
@@ -87,6 +87,28 @@ function pageViewModel(gvm) {
             });
         });
     }
+
+    // The table data observable array
+    gvm.tabledata = ko.observableArray([]);
+
+    // Add data to the table
+    gvm.addTableData = function(id, code, name, desc, teach) {
+        // Push data
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach: teach};
+        gvm.tabledata.push(tblOject);
+
+        // Attach delete handler to delete button
+        $('#removebtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, tblOject);
+            event.stopPropagation();
+        });
+            }
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
+
  }
 
  function getAllTeachers() {
