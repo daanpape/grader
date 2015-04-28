@@ -320,7 +320,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport  WHERE active = '1' AND course = '1'");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport WHERE active = '1' AND course = '1'");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
