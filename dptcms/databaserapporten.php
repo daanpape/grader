@@ -30,7 +30,7 @@ class rapportenDAO {
     public static function addWorksheetToCourse($name, $courseid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO werkfiche_rapport (Naam, Course)
+            $stmt = $conn->prepare("INSERT INTO werkfiche_rapport (Name, Course)
                                     VALUES (:name, :courseid)");
             $stmt->bindValue(':name', (string) $name, PDO::PARAM_STR);
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
