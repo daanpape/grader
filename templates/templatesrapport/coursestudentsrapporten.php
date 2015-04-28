@@ -22,11 +22,20 @@
             <div class="col-md-12">
                 <table class="table table-striped">
                     <thead>
+                    <!-- TODO taalfunctie invoeren
+
                     <tr>
                         <th data-bind="text: studlistTableTitle">StudentList</th>
                         <th data-bind="text: teacherTableTitle">Teachers</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
+                    -->
+                    <tr>
+                        <th>StudentList</th>
+                        <th>Teachers</th>
+                        <th>Actions</th>
+                    </tr>
+
                     </thead>
                     <tbody data-bind="foreach: coupledLists">
                     <tr>
