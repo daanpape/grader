@@ -202,7 +202,9 @@ function loadTablePage(pagenr)
            //viewModel.addTableData(item.id, item.code, item.name);
         });
 
+
         /* Let previous en next buttons work */
+
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
