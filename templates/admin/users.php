@@ -84,7 +84,7 @@ $location = "adminUsers";
             </div>
             <div class="col-lg-1">
                 <a type="button" class="btn btn-default pagination-button" id="addUser">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn, click: addNewUser"></span>
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="click: addNewUser"></span>
                 </a>
             </div>
         </div>
