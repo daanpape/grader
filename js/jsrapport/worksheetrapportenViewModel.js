@@ -36,18 +36,19 @@ function pageViewModel(gvm) {
 }
 
 function addNewWorksheet(serialData, callback) {
-    $.ajax({
-            url: "/api/courserapport",
-            type: "POST",
-            data: serialData,
-            success: function(data) {
-                console.log(data);
-                callback(true);
-            },
-            error: function(data) {
-                callback(false);
-            }
-        });
+    console.log(serialData);
+    /*$.ajax({
+        url: "/api/courserapport",
+        type: "POST",
+        data: serialData,
+        success: function(data) {
+            console.log(data);
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });*/
 } 
 
 function showNewWorksheetModal() {
@@ -69,6 +70,10 @@ function showNewWorksheetModal() {
 }
 
 function initPage() {
+    $('#addWorksheetBtn').click(function() {
+        showNewWorksheetModal();
+    });
+    
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateCourseRapport();
