@@ -70,8 +70,14 @@ function User(id, username, firstname, lastname, status) {
         },
 
         changeStatus: function() {
-            this.status("dis");
-            console.log(status);
+            if (this.status() == "ACTIVE"){
+                this.status("DISABLED");
+            } else if (this.status() == "DISABLED") {
+                this.status("ACTIVE");
+            } else {
+                this.status("WAIT_ACTIVATION");
+            }
+            console.log(this.status());
         }
     };
 }
