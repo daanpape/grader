@@ -75,6 +75,7 @@ function User(id, username, firstname, lastname, status) {
         },
 
         addNewUser: function(){
+            console.log("ok");
             // Edit the table item
             showAddUserModal(id, username, firstname, lastname, status);
             event.stopPropagation();
