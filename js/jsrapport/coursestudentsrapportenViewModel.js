@@ -97,7 +97,6 @@ function pageViewModel(gvm) {
         var tblOject = {tid: studid, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
 
-
         // Attach delete handler to delete button
         $('#removebtn-' + studid).bind('click', function(event, data){
             // Delete the table item
@@ -173,7 +172,6 @@ function getGroupid() {
              type: "POST",
              data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
              success: function(data) {
-                 //console.log(data);
                  //callback(true);
              },
              error: function(data) {
@@ -254,7 +252,7 @@ function loadTablePage(pagenr,course)
 /*
  * Delete item from table given the id.
  */
-function deleteTableItem(id, tblOject) {
+function deleteTableItem(studid, tblOject) {
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
         if(val){
             /*
@@ -266,7 +264,7 @@ function deleteTableItem(id, tblOject) {
                 }
             });
             */
-            console.log(id);
+            console.log("studid: " + id);
         }
     });
 }
