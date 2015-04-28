@@ -199,6 +199,7 @@ function loadTablePage(pagenr,course)
 
 
         /* Let previous en next buttons work */
+        /*
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
@@ -216,6 +217,7 @@ function loadTablePage(pagenr,course)
                 loadTablePage(data.next);
             });
         }
+        */
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
