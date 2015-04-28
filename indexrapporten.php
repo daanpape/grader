@@ -13,10 +13,6 @@ $app->get('/assessrapporten', function () use ($app) {
     $app->render('templatesrapport/assessrapporten.php');
 });
 
-$app->get('/studentrapportrapporten', function () use ($app) {
-    $app->render('templatesrapport/studentrapportrapporten.php');
-});
-
 $app->get('/worksheetrapporten', function () use ($app) {
     $app->render('templatesrapport/worksheetrapporten.php');
 });
