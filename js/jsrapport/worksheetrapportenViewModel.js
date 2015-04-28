@@ -35,6 +35,39 @@ function pageViewModel(gvm) {
     };    
 }
 
+function addNewWorksheet(serialData, callback) {
+    $.ajax({
+            url: "/api/courserapport",
+            type: "POST",
+            data: serialData,
+            success: function(data) {
+                console.log(data);
+                callback(true);
+            },
+            error: function(data) {
+                callback(false);
+            }
+        });
+} 
+
+function showNewWorksheetModal() {
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("AddNewWorksheet"));
+    setGeneralModalBody('<form id="newworksheetform"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \
+            </div> \
+            </form>' );
+
+    addGeneralModalButton(i18n.__("AddBtn"), function(){
+       addNewProjecttypeForm($('#newworksheetform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    showGeneralModal();
+}
+
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;

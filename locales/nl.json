@@ -116,5 +116,6 @@
     "Addmodule" : "Voeg module toe",
     
     "WorksheetNameRapport" : "Werkfiches",
-    "WorksheetRapportManual" : "Overzicht van de werfiches"
+    "WorksheetRapportManual" : "Overzicht van de werfiches",
+    "AddNewWorksheet" : "Voeg werkfiche toe"
 }
