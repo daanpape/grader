@@ -13,7 +13,7 @@
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: <?php echo $sheetname ?>">Sheet</h1>
+            <h1 class="page-header" data-bind="attr:{'data-value': <?php echo $sheetid ?>}"><?php echo $sheetname ?></h1>
         </div>
 
         <?php include_once('templates/jsdepends.php') ?>
