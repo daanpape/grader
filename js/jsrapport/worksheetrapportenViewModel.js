@@ -68,16 +68,8 @@ function addNewWorksheet(serialData, courseid, callback) {
         type: "POST",
         data: serialData,
         success: function(data) {
-            /*$.ajax({
-                url: "/api/worksheet/" + data['id'] + "/" + data["Name"],
-                type: "GET",
-                success: function(data) {
-                    //loadTablePage(1);
-                    callback(true);
-                }
-            })*/
-            console.log(data);
-            console.log(data["id"] + ", " + data["name"]);
+            callback(true);
+            window.location = "/api/worksheet/" + data['id'] + "/" + data['name'];
         },
         error: function(data) {
             callback(false);
