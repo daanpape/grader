@@ -195,6 +195,22 @@ class rapportenDAO {
         }
     }
 
+    public static function getStudentGroupTeacherByCourseID($courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT *FROM  `course_studentlist_teacher_rapport`
+                                      LEFT JOIN `studentlist_rapport` ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                      LEFT JOIN 'users' ON course_studentlist_teacher_rapport.teacher = user.id
+                                    WHERE  course = :course");
+            $stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not find teacher', $err);
+            return null;
+        }
+    }
+
     public static function addTeacher($id) {
         try {
             $conn = Db::getConnection();

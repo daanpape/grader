@@ -188,6 +188,15 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
+$app->get('/api/getStudentGroupTeacherByCourseID/:courseid/', function ($courseid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all students bij the id of a course
+    $pagedata = RapportAPI::getStudentGroupTeacherByCourseID($courseid);
+    echo json_encode($pagedata);
+});
+
 /*
  *
  * Momenteel niet langer gebruikt!
@@ -257,7 +266,7 @@ $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Add list
     echo json_encode(RapportAPI::createStudentList($app->request->post('name'), $userid));    //null moet nog ingelogde userid worden!
 });
-$app->post('/api/project/:projectid/studentlist/:studlistid', function($courseid, $studlistid, $teacherid) use($app) {
+$app->post('/api/coursecouple/:courseid/:studlistid/:teacherid', function($courseid, $studlistid, $teacherid) use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

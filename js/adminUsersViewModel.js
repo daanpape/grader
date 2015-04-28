@@ -10,23 +10,27 @@ function pageViewModel(gvm) {
     gvm.userActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserActions");}, gvm);
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn");}, gvm);
 
-    fetchUsersData();
-
     gvm.users = ko.observableArray([]);
 
     gvm.updateUsers = function(user)
     {
         gvm.users.push(user);
-    }
+    },
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
         removeUser(user);
+    },
+
+    gvm.refreshUsers = function()
+    {
+        gvm.users.destroyAll();
     }
 }
 
 function fetchUsersData()
 {
+    viewModel.refreshUsers();
     $.getJSON("/api/allusers/", function(data)
     {
         $.each(data, function(i, item){
@@ -68,8 +72,5 @@ function User(id, username, firstname, lastname, status) {
 }
 
 function initPage() {
-    // Add button handlers
-    $('#addProjectTypeBtn').click(function(){
-
-    });
+    fetchUsersData();
 }

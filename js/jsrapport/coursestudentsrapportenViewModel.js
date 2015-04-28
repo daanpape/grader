@@ -141,13 +141,45 @@ function getGroupid() {
     return studlijst;
 }
 
- function addGroup($courseid, $teacherid, $studlijstid) {
-
+ function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
-         console.log("En als leerkracht " + $teacherid);
-         console.log("Groep toevoegen voor vak " + $courseid);
-         console.log("En met studentenlijst " + $studlijstid);
+     //TODO momenteel nog mogelijk om meer als 1 maal zelfde velden in te voeren.
+     console.log("En als leerkracht " + teacherid);
+     console.log("Groep toevoegen voor vak " + courseid);
+     console.log("En met studentenlijst " + studlijstid);
+
+         $.ajax({
+            url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
+             type: "POST",
+             data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
+             success: function(data) {
+                 //console.log(data);
+                 //callback(true);
+             },
+             error: function(data) {
+                 console.log('Failed to add new student');
+                 //callback(false);
+             }
+         });
+
  }
+
+/*
+ * Load page of the table
+ */
+function loadTablePage(courseid)
+{
+    $.getJSON('/api/getStudentGroupTeacherByCourseID/' + courseid, function(data){
+
+        /* Clear current table page */
+        //viewModel.clearTable();
+
+        // Load table data
+        $.each(data.data, function(i, item) {
+            viewModel.addTableData(item.name, item.firstname + " " + item.lastname);
+        });
+    });
+}
 
 function initPage() {
     viewModel.getProjectInfo();
@@ -174,4 +206,6 @@ function initPage() {
         userid = data.id;
         viewModel.getAvailableLists(data.id);
     });
+
+    loadTablePage(1);
 }

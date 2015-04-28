@@ -85,31 +85,33 @@ $location = "adminAddUser";
 
         <!-- /.col-lg-12 -->
         <div>
+            <form id="userForm">
+            <input type="hidden" name="lang" value="EN"/>
             <table class="table table-striped">
                 <tr>
+                    <td>Firstname</td>
+                    <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname"
+                               ></td>
+                </tr>
+                <tr>
+                    <td>Lastname</td>
+                    <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"
+                               ></td>
+                </tr>
+                <tr>
                     <td>Email</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Email" data-bind="value: value">
+                    <td><input type="text" class="form-control form-next" placeholder="Email" name="email">
                     </td>
                 </tr>
                 <tr>
-                    <td>firstname</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Firstname"
-                               data-bind="value: value"></td>
-                </tr>
-                <tr>
-                    <td>lastname</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Lastname"
-                               data-bind="value: value"></td>
-                </tr>
-                <tr>
                     <td>password</td>
-                    <td><input type="password" class="form-control form-next" placeholder="Password"
-                               data-bind="value: value"></td>
+                    <td><input type="password" class="form-control form-next" placeholder="Password" name="pass"
+                               ></td>
                 </tr>
                 <tr>
                     <td>Confirm password</td>
-                    <td><input type="password" class="form-control form-next" placeholder="Confirm password"
-                               data-bind="value: value"></td>
+                    <td><input type="password" class="form-control form-next" placeholder="Confirm password" name="passconfirm"
+                               ></td>
                 </tr>
                 <tr>
                     <td>Status</td>
@@ -136,10 +138,11 @@ $location = "adminAddUser";
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">Save</button>
+                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
                     </div>
                 </div>
             </div>
+        </form>
         </div>
     </div>
     <!-- /.row -->
