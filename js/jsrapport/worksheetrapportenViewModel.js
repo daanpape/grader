@@ -168,7 +168,6 @@ function loadTablePage(pagenr)
         /* Clear current table page */
         viewModel.clearTable();
 
-        console.log(data.data);
         // Load table data
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.name);
