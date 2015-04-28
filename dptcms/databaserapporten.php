@@ -320,7 +320,9 @@ class rapportenDAO {
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                         WHERE course_studentlist_teacher_rapport.active =  '1'
-                                        AND course =  :course LIMIT :start,:count");
+                                        AND course =  :course
+                                        ORDER BY studentlist_rapport.name, users.firstname, users.lastname
+                                        LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
