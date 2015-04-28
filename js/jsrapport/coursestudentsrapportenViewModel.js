@@ -93,7 +93,6 @@ function pageViewModel(gvm) {
 
     // Add data to the table
     gvm.addTableData = function(id, studlist, name) {
-        console.log("addTableData")
         // Push data
         var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
@@ -182,7 +181,6 @@ function getGroupid() {
                  //callback(false);
              }
          });
-
  }
 
 /*
@@ -197,7 +195,8 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
-           viewModel.addTableData(item.studid, item.name , item.firstname + " " + item.lastname);
+            console.log("studid: " + item.studid + " en userid: " + item.userid);
+           viewModel.addTableData(item.studid + item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
 
@@ -290,6 +289,11 @@ function initPage() {
     
     $('#addGroupBtn').click(function() {
          addGroup($('#projectHeader').attr("data-value"), getTeacherid(), getGroupid());
+
+        $('#studentListComplete').val("");
+        $('#teachersComplete').val("");
+
+        loadTablePage(1,$('#projectHeader').attr("data-value"));
 
         $('addGroupForm').hide();
     });
