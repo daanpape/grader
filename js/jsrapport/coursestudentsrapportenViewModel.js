@@ -258,9 +258,12 @@ function deleteTableItem(id, tblOject) {
             console.log("id: " + id);
             console.log("studid " + id.substr(0,id.indexOf('-')));
             console.log("userid " + id.substr(id.indexOf('-')+1));
+            //courseid = $('#projectHeader').attr("data-value");
+            //studielijstid = "studid " + id.substr(0,id.indexOf('-'));
+            //teacherid = "userid " + id.substr(id.indexOf('-')+1);
             /*
             $.ajax({
-                url: "/api/coursedelete/" + id,
+                url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + "/" + "studid " + id.substr(0,id.indexOf('-') + "/" + "userid " + id.substr(id.indexOf('-')+1),
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);

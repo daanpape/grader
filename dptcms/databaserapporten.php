@@ -457,11 +457,13 @@ class rapportenDAO {
 
     //set link course - teacher - studlist inactive
     /*
-    public static function deleteCourse($id) {
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE course_rapport SET active = '0' WHERE id = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt = $conn->prepare("UPDATE course_studentlist_teacher_rapport SET active = '0' WHERE course = :course AND studentlist = :studentlist AND teacher = :teacher");
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':studentlist', (int) $studentlist, PDO::PARAM_INT);
+            $stmt->bindValue(':teacher', (int) $teacher, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {

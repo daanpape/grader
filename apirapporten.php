@@ -167,8 +167,8 @@ Class RapportAPI {
 
     //set link course - teacher - studlist inactive
     /*
-    public static function deleteCourse($id) {
-        if (rapportenDAO::deleteCourse($id) === true) {
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
+        if (rapportenDAO::setInactiveCourseStudlistCouple($course, $studentlist, $teacher) === true) {
             return true;
         } else {
             return false;
