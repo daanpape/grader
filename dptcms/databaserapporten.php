@@ -306,9 +306,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseID($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
-                                       WHERE active = '1' AND course_studentlist_teacher_rapport.course = '1' LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport WHERE active = '1' AND course = '1' LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
@@ -322,9 +320,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
-                                       WHERE active = '1' AND course_studentlist_teacher_rapport.course = '1'");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport  WHERE active = '1' AND course = '1'");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
