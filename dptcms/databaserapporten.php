@@ -303,10 +303,22 @@ class rapportenDAO {
         }
     }
 
+    /*
+                            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
+                                    WHERE module_rapport.course = :courseid
+
+                                    ORDER BY mid, did, cid ASC");
+    */
+
     public static function getStudentGroupTeacherByCourseID($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport WHERE active = '1' AND course = '1' LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport
+                                      LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                      WHERE course_studentlist_teacher_rapport.active =  '1'
+                                    AND course =  '1' LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
@@ -320,7 +332,11 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport WHERE active = '1' AND course = '1'");
+            $stmt = $conn->prepare("SELECT count(*)
+                                        FROM course_studentlist_teacher_rapport
+                                        LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1'
+                                      AND course =  '1'");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
