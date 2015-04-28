@@ -63,6 +63,8 @@ function pageViewModel(gvm) {
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
+    console.log(serialData);
+    console.log(courseid);
     $.ajax({
         url: "/api/addworksheet/" + courseid,
         type: "POST",
