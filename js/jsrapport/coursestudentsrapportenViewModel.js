@@ -196,7 +196,7 @@ function loadTablePage(pagenr,course)
         // Load table data
         $.each(data.data, function(i, item) {
             console.log("studid: " + item.studid + " en userid: " + item.userid);
-           viewModel.addTableData(item.studid + " " + item.userid , item.name , item.firstname + " " + item.lastname);
+           viewModel.addTableData(item.studid + item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
 
