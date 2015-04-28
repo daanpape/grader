@@ -43,10 +43,10 @@
                     <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>
-                <tbody>       <!-- data-bind="foreach: tabledata" -->
+                <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td>--</td>     
-                    <td>--</td>     
+                    <td data-bind="text: tid">--</td>     
+                    <td data-bind="text: tname">--</td>     
                     <td>
                         <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
