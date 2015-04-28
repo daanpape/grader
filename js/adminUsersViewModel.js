@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
 function fetchUsersData()
 {
     viewModel.refreshUsers();
-    $.getJSON("/api/alluserswithroles/", function(data)
+    $.getJSON("/api/allusers/", function(data)
     {
         var addedUsername = "";
         $.each(data, function(i, item){
