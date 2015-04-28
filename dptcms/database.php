@@ -1071,6 +1071,22 @@ class UserDAO {
 
         return true;
     }
+
+    public static function updateUserStatus($userid)
+    {
+        try {
+
+            $conn = Db::getConnection();
+            //Update user status
+            $stmt = $conn->prepare("UPDATE users SET password=? WHERE id=?");
+            $stmt->execute(array($userid));
+
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update user status', $err);
+            return false;
+        }
+    }
     
     /**
      * Update the uers avatar. 

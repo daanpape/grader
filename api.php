@@ -314,6 +314,21 @@ class GraderAPI {
         return UserDAO::getAllUsersWithRoles();
     }
 
+
+    /*
+     * Update user status
+     */
+    public static function updateUserStatus($uid) {
+        if(ClassDAO::updateUserStatus($uid)) {
+            return array(
+                "id" => $uid,
+            );
+        } else {
+            return -1;
+        }
+    }
+
+
     /**
      * Put a project structure into the database.
      * @param type $projectid the projectid to save the structure for.
