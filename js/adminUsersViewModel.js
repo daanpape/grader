@@ -57,9 +57,7 @@ function removeUser(user)
 function User(id, username, firstname, lastname, status) {
     // Attach edit handler to edit button
     $('#editbtn-' + id).bind('click', function(event, data){
-        // Edit the table item
-        showAddUserModal(id, username, firstname, lastname, status);
-        event.stopPropagation();
+
     });
 
     return {
@@ -76,6 +74,12 @@ function User(id, username, firstname, lastname, status) {
             }
         },
 
+        addNewUser: function(){
+            // Edit the table item
+            showAddUserModal(id, username, firstname, lastname, status);
+            event.stopPropagation();
+        },
+
         changeStatus: function() {
             //WORDT NOG NIET VERANDERD
             //WORDT NOG NIET OPGESLAAN OP DB
@@ -86,10 +90,11 @@ function User(id, username, firstname, lastname, status) {
 
 /**
  * Show the edit projecttype modal.
- * @param {type} code
- * @param {type} name
- * @param {type} description
- * @param {type} tid
+ * @param {type} id
+ * @param {type} username
+ * @param {type} firstname
+ * @param {type} lastname
+ * @param {type} status
  * @returns {undefined}
  */
 function showAddUserModal(id, username, firstname, lastname, status)

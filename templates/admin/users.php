@@ -82,9 +82,9 @@ $location = "adminUsers";
             <div class="col-lg-11">
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
-            <div class="col-lg-1">
+            <div class="col-lg-1">>
                 <a href="adduser.php" type="button" class="btn btn-default pagination-button" id="addUser">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn, click: addNewUser"></span>
                 </a>
             </div>
         </div>
