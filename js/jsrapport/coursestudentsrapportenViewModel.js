@@ -176,7 +176,7 @@ function loadTablePage(courseid)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description, item.leerkracht);
+            viewModel.addTableData(item.name, item.firstname + " " + item.lastname);
         });
     });
 }
