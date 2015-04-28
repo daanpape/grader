@@ -329,7 +329,6 @@ class rapportenDAO {
         }
     }
 
-
     /*
      *
      * Momenteel niet langer gebruikt.
