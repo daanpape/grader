@@ -190,7 +190,6 @@ function getGroupid() {
  */
 function loadTablePage(pagenr)
 {
-    console.log("loadTablePage");
     $.getJSON('/api/getStudentGroupTeacherByCourseID/' + pagenr, function(data){
 
         /* Clear current table page */
