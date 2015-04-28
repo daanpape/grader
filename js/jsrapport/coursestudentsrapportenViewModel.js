@@ -92,7 +92,7 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, studlist, name) {
+    gvm.addTableData = function(studid, userid, studlist, name) {
         // Push data
         var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
@@ -196,12 +196,10 @@ function loadTablePage(pagenr,course)
         // Load table data
         $.each(data.data, function(i, item) {
             console.log("studid: " + item.studid + " en userid: " + item.userid);
-           viewModel.addTableData(item.studid + item.userid , item.name , item.firstname + " " + item.lastname);
+           viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
-
         /* Let previous en next buttons work */
-
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
