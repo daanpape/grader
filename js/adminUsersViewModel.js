@@ -54,6 +54,15 @@ function removeUser(user)
     });
 }
 
+function updateUserStatus(user)
+{
+    $.getJSON("/api/updateUserStatus/" + user.id(), function(data)
+    {
+        console.log("User was removed");
+        fetchUsersData();
+    });
+}
+
 function User(id, username, firstname, lastname, status) {
     return {
         id: ko.observable(id),
