@@ -117,7 +117,10 @@
     "PermissionRole" : "Role",
     "PermissionDescription" : "Description",
     "Addmodule" : "Add module",
-    
+
+    "studlistTableTitle" : "Student list",
+    "actionTableTitle" : "actions",
+
     "WorksheetNameRapport" : "Worksheets",
     "WorksheetRapportManual" : "Summary of the worksheets",
     "AddNewWorksheet" : "Add worksheet"

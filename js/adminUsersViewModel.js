@@ -33,8 +33,14 @@ function fetchUsersData()
     viewModel.refreshUsers();
     $.getJSON("/api/allusers/", function(data)
     {
+        var addedUsername = "";
         $.each(data, function(i, item){
-            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            var current = item.username;
+
+            if (addedUsername != current){
+                addedUsername = item.username;
+                viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            }
         });
     });
 }
@@ -70,6 +76,45 @@ function User(id, username, firstname, lastname, status) {
         }
     };
 }
+
+/**
+ * Show the edit projecttype modal.
+ * @param {type} code
+ * @param {type} name
+ * @param {type} description
+ * @param {type} tid
+ * @returns {undefined}
+ */
+function showAddUserModal(id, username, firstname, lastname, status)
+{
+    resetGeneralModal();
+    setGeneralModalTitle(i18n.__("EditProjectTitle"));
+    setGeneralModalBody('<form id="updateprojectform"> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '"> \
+            </div> \
+            <div class="form-group"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
+            </div> \
+        </form>');
+    $.getJSON()
+
+    addGeneralModalButton(i18n.__("SaveBtn"), function(){
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+            hideModal();
+        });
+    });
+
+    addGeneralModalButton(i18n.__("CancelBtn"), function(){
+        hideModal();
+    })
+
+    showGeneralModal();
+}
+
 
 function initPage() {
     fetchUsersData();

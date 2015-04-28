@@ -23,16 +23,16 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Studentlists</th>
-                        <th>Teachers</th>
-                        <th>Actions</th>
+                        <th data-bind="text: studlistTableTitle">StudentList</th>
+                        <th data-bind="text: teacherTableTitle">Teachers</th>
+                        <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
                     </thead>
                     <tbody data-bind="foreach: coupledLists">
                     <tr>
+                        <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tname">--</td>
+                        <td data-bind="text: tdesc">--</td>
                     </tr>
                     </tbody>
                     </table>

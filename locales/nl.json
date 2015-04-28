@@ -114,7 +114,10 @@
     "PermissionRole" : "Rol",
     "PermissionDescription" : "Beschrijving",
     "Addmodule" : "Voeg module toe",
-    
+
+    "studlistTableTitle" : "Studenten lijst",
+    "actionTableTitle" : "acties",
+
     "WorksheetNameRapport" : "Werkfiches",
     "WorksheetRapportManual" : "Overzicht van de werfiches",
     "AddNewWorksheet" : "Voeg werkfiche toe"
