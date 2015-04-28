@@ -191,8 +191,7 @@ function getGroupid() {
 function loadTablePage(pagenr)
 {
     console.log("loadTablePage");
-    //$.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
-    $.getJSON('/api/getStudentGroupTeacherByCourseID/' + pagenr, function(data){
+    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
