@@ -55,6 +55,13 @@ function removeUser(user)
 }
 
 function User(id, username, firstname, lastname, status) {
+    // Attach edit handler to edit button
+    $('#editbtn-' + id).bind('click', function(event, data){
+        // Edit the table item
+        showAddUserModal(id, username, firstname, lastname, status);
+        event.stopPropagation();
+    });
+
     return {
         id: ko.observable(id),
         username: ko.observable(username),
@@ -91,13 +98,13 @@ function showAddUserModal(id, username, firstname, lastname, status)
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody('<form id="updateprojectform"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + username + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + firstname + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + lastname + '"> \
             </div> \
         </form>');
     $.getJSON()
@@ -118,4 +125,5 @@ function showAddUserModal(id, username, firstname, lastname, status)
 
 function initPage() {
     fetchUsersData();
+
 }
