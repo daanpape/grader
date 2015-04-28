@@ -205,6 +205,15 @@ Class RapportAPI {
             return false;
         }
     }
+    
+    public static function deleteWorksheet($id) {
+        if (rapportenDAO::deleteWorksheet($id) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static function updateCoursemodules($courseid, $courseStructure) {
         $data = json_decode($courseStructure);
 

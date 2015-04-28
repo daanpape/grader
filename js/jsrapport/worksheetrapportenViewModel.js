@@ -105,17 +105,17 @@ function copyTableItem(id, tblObject) {
 }
 
 function deleteTableItem(id, tblOject) {
-    /*showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
         if(val){
             $.ajax({
-                url: "/api/coursedelete/" + id,
+                url: "/api/deleteworksheet/" + id,
                 type: "DELETE",
                 success: function() {
                     viewModel.tabledata.remove(tblOject);
                 }
             });
         }
-    });*/
+    });
 }
 
 function showNewWorksheetModal() {
