@@ -456,7 +456,6 @@ class rapportenDAO {
     }
 
     //set link course - teacher - studlist inactive
-    /*
     public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
         try {
             $conn = Db::getConnection();
@@ -471,7 +470,6 @@ class rapportenDAO {
             return null;
         }
     }
-    */
 
     public static function copyCourse($id) {
         try {

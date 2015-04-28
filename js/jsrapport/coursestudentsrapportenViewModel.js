@@ -261,15 +261,15 @@ function deleteTableItem(id, tblOject) {
             //courseid = $('#projectHeader').attr("data-value");
             //studielijstid = "studid " + id.substr(0,id.indexOf('-'));
             //teacherid = "userid " + id.substr(id.indexOf('-')+1);
-            /*
-            $.ajax({
-                url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + "/" + "studid " + id.substr(0,id.indexOf('-') + "/" + "userid " + id.substr(id.indexOf('-')+1),
-                type: "DELETE",
-                success: function() {
-                    viewModel.tabledata.remove(tblOject);
-                }
-            });
-            */
+
+             $.ajax({
+             url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
+             type: "DELETE",
+             success: function() {
+             viewModel.tabledata.remove(tblOject);
+             }
+             });
+             
             }
     });
 }

@@ -347,14 +347,12 @@ $app->delete('/api/studentlistrapport/:studlistid/delete/student/:studid', funct
 });
 
 //set link course - teacher - studlist inactive
-/*
 $app->delete('/api/setInactiveCourseStudlistCouple/:course/:studentlist/:teacher', function ($course, $studentlist, $teacher) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     echo json_encode(RapportAPI::setInactiveCourseStudlistCouple($course, $studentlist, $teacher));
 });
-*/
 
 $app->put('/api/studentlistupdate/:id', function($id) use ($app){
     // Use json headers
