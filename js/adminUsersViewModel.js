@@ -70,8 +70,7 @@ function User(id, username, firstname, lastname, status) {
         },
 
         changeStatus: function() {
-            //WORDT NOG NIET VERANDERD
-            //WORDT NOG NIET OPGESLAAN OP DB
+            ko.status("DISABLED");
             console.log(status);
         }
     };
