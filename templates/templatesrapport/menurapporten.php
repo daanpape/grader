@@ -47,7 +47,7 @@ require_once '../dptcms/config.php';
                 <li class="<?php if ($location == 'jsrapport/worksheetrapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="/worksheetrapporten" >Worksheet</a></li>                
+                ?>"> <a href="/worksheetrapporten" >Worksheets</a></li>                
 
                 <!----------  RapportSysteem ---------->
                     
