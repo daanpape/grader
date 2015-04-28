@@ -123,5 +123,6 @@
 
     "WorksheetNameRapport" : "Worksheets",
     "WorksheetRapportManual" : "Summary of the worksheets",
-    "AddNewWorksheet" : "Add worksheet"
+    "AddNewWorksheet" : "Add worksheet",
+    "EditWorksheet" : "Edit worksheet"
 }
