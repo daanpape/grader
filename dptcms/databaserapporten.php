@@ -454,7 +454,23 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
+    //set link course - teacher - studlist inactive
+    /*
+    public static function deleteCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+    */
+
     public static function copyCourse($id) {
         try {
             $conn = Db::getConnection();

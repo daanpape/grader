@@ -164,6 +164,17 @@ Class RapportAPI {
             return false;
         }
     }
+
+    //set link course - teacher - studlist inactive
+    /*
+    public static function deleteCourse($id) {
+        if (rapportenDAO::deleteCourse($id) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    */
     /*
        * copy a course from the database
        */

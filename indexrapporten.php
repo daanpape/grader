@@ -346,6 +346,16 @@ $app->delete('/api/studentlistrapport/:studlistid/delete/student/:studid', funct
     echo json_encode(RapportAPI::deleteStudentFromStudentList($studlistid, $studid));
 });
 
+//set link course - teacher - studlist inactive
+/*
+$app->delete('/api/coursedelete/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::deleteCourse($id));
+});
+*/
+
 $app->put('/api/studentlistupdate/:id', function($id) use ($app){
     // Use json headers
     $response = $app->response();
