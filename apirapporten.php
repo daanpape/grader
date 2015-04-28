@@ -39,7 +39,7 @@ Class RapportAPI {
         if ($id != null) {
             return array(
                 "id" => $id,
-                "name" => $code,
+                "name" => $name,
                 "course" => $courseid);
         } else {
             return -1;
