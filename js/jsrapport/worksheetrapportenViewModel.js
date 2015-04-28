@@ -61,7 +61,7 @@ function showNewWorksheetModal() {
             </form>' );
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-       addNewProjecttypeForm($('#newworksheetform').serialize(), function(result){
+       addNewWorksheet($('#newworksheetform').serialize(), function(result){
             hideModal();
         });
     });
