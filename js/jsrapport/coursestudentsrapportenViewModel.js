@@ -283,6 +283,6 @@ function initPage() {
         viewModel.getAvailableLists(data.id);
     });
 
-    loadTablePage(1,1);
+    loadTablePage(1,$('#projectHeader').attr("data-value"));
 
 }
