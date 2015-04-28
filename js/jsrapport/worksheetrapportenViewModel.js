@@ -69,7 +69,7 @@ function addNewWorksheet(serialData, courseid, callback) {
         data: serialData,
         success: function(data) {
             callback(true);
-            window.location = "templates/templatesrapport/worksheetpropertiesrapport.php";
+            window.location = "/api/worksheet/" + data['id'] + "/" + data['name'];
         },
         error: function(data) {
             callback(false);
