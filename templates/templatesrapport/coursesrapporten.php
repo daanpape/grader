@@ -22,7 +22,7 @@
                 <thead>
                     <tr>
                         <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: studlistTableTitle">Name</th>
+                        <th data-bind="text: nameTableTitle">Name</th>
                         <th data-bind="text: descTableTitle">Description</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
                     </tr>
