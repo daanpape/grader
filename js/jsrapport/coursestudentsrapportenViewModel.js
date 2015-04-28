@@ -93,7 +93,6 @@ function pageViewModel(gvm) {
 
     // Add data to the table
     gvm.addTableData = function(id, studlist, name) {
-        console.log("addTableData")
         // Push data
         var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
@@ -196,6 +195,7 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
+            console.log("studid: " + studid + " en userid: " + userid);
            viewModel.addTableData(item.studid , item.name , item.firstname + " " + item.lastname);
         });
 
