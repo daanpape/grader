@@ -41,7 +41,6 @@
                     <tr>
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
                     </tr>
                     </tbody>
                     </table>
