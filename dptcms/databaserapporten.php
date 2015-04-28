@@ -91,6 +91,21 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function getAllWorksheets($courseid, $start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM werkfiche_rapport WHERE Course = :courseid AND Active = '1' LIMIT :start, :count");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets', $err);
+            return null;
+        }
+    }
 
     public static function getStudentListsFromUser($id) {
         try {
@@ -267,6 +282,7 @@ class rapportenDAO {
             return null;
         }
     }
+    
     public static function getCourseCount() {
         try {
             $conn = Db::getConnection();
@@ -278,6 +294,19 @@ class rapportenDAO {
             return 0;
         }
     }
+    
+    public static function getWorksheetCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM werkfiche_rapport");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all worksheets in the database', $err);
+            return 0;
+        }
+    }
+    
     public static function getStudentsCountFromCourse() {
         try {
             $conn = Db::getConnection();
