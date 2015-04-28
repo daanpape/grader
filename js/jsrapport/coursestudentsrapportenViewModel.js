@@ -256,6 +256,25 @@ function loadTablePage(pagenr,course)
     });
 }
 
+/*
+ * Delete item from table given the id.
+ */
+function deleteTableItem(id, tblOject) {
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        if(val){
+            /*
+            $.ajax({
+                url: "/api/coursedelete/" + id,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblOject);
+                }
+            });
+            */
+            console.log(id);
+        }
+    });
+}
 
 function initPage() {
     viewModel.getProjectInfo();
@@ -282,7 +301,5 @@ function initPage() {
         userid = data.id;
         viewModel.getAvailableLists(data.id);
     });
-
     loadTablePage(1,$('#projectHeader').attr("data-value"));
-
 }
