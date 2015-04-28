@@ -70,51 +70,11 @@ function User(id, username, firstname, lastname, status) {
         },
 
         changeStatus: function() {
-            //WORDT NOG NIET VERANDERD
-            //WORDT NOG NIET OPGESLAAN OP DB
+            this.status("dis");
             console.log(status);
         }
     };
 }
-
-/**
- * Show the edit projecttype modal.
- * @param {type} code
- * @param {type} name
- * @param {type} description
- * @param {type} tid
- * @returns {undefined}
- */
-function showAddUserModal(id, username, firstname, lastname, status)
-{
-    resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditProjectTitle"));
-    setGeneralModalBody('<form id="updateprojectform"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}
-
 
 function initPage() {
     fetchUsersData();

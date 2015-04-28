@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <table class="table table-striped">
                     <thead>
-                    <!-- TODO taalfunctie invoeren
+                    <!-- TODO data-bind aanmaken
 
                     <tr>
                         <th data-bind="text: studlistTableTitle">StudentList</th>
@@ -37,11 +37,10 @@
                     </tr>
 
                     </thead>
-                    <tbody data-bind="foreach: coupledLists">
+                    <tbody data-bind="foreach: tabledata">
                     <tr>
-                        <td data-bind="text: tcode">--</td>
-                        <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
+                        <td data-bind="text: tstudlist">--</td>
+                        <td data-bind="text: tteacher">--</td>
                     </tr>
                     </tbody>
                     </table>

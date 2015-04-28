@@ -95,17 +95,16 @@ function pageViewModel(gvm) {
     gvm.addTableData = function(id, code, name) {
         console.log("addTableData")
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name};
+        var tblOject = {tid: id, tstudlist: code, tteacher: name};
         gvm.tabledata.push(tblOject);
 
-        /*
+
         // Attach delete handler to delete button
         $('#removebtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-        */
             }
 
     gvm.clearTable = function() {
