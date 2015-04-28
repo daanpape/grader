@@ -63,12 +63,14 @@ function pageViewModel(gvm) {
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
+    console.log(serialData);
+    console.log(courseid);
     $.ajax({
         url: "/api/addworksheet/" + courseid,
         type: "POST",
         data: serialData,
         success: function(data) {
-            //loadTablePage
+            loadTablePage(1);
             callback(true);
         },
         error: function(data) {
