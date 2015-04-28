@@ -184,7 +184,7 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
-$app->get('/api/getStudentGroupTeacherByCourseID/:courseid/', function ($courseid) use ($app) {
+$app->get('/api/getStudentGroupTeacherByCourseID/:courseid', function ($courseid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
