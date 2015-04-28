@@ -320,6 +320,13 @@ $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     echo json_encode(RapportAPI::deleteCourse($id));
 });
 
+$app->delete('/api/deleteworksheet/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::deleteWorksheet($id));
+});
+
 $app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
