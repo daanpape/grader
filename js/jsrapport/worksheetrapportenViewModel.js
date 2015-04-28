@@ -60,7 +60,7 @@ function showNewWorksheetModal() {
             </form>' );
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-       addNewWorksheet($('#newworksheetform').serialize(), gvm.currentCourseId, function(result){
+       addNewWorksheet($('#newworksheetform').serialize(), viewModel.currentCourseId, function(result){
             hideModal();
         });
     });
