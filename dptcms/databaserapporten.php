@@ -209,16 +209,17 @@ class rapportenDAO {
             return null;
         }
     }
-
-    public static function getStudentGroupTeacherByCourseID($courseid) {
+    //public static function getStudentGroupTeacherByCourseID($courseid) {
+    public static function getStudentGroupTeacherByCourseID() {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT *FROM course_studentlist_teacher_rapport LEFT JOIN
                                       studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id LEFT JOIN
                                        users ON course_studentlist_teacher_rapport.teacher = users.id WHERE
-                                       course_studentlist_teacher_rapport.course = :course
+                                       course_studentlist_teacher_rapport.course = 1
                                        ORDER BY users.firstname");
-            $stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
+            //course_studentlist_teacher_rapport.course = :course
+            //$stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
