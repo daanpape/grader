@@ -87,6 +87,11 @@ function pageViewModel(gvm) {
             });
         });
     }
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
+
  }
 
  function getAllTeachers() {
@@ -168,11 +173,11 @@ function loadTablePage(pagenr) {
     $.getJSON('/api/coursesrapport/page/' + pagenr, function (data) {
 
         /* Clear current table page */
-       // viewModel.clearTable();
+            viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function (i, item) {
-            viewModel.addTableData(item.id, item.code);
+           // viewModel.addTableData(item.id, item.code);
         });
     });
 }
