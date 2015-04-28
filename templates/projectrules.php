@@ -57,11 +57,11 @@ $location = "projectRules";
                         </td>
                         <td>
                             <div>
-                                <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
-                                <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
+                                <select class="form-control">
                                     <option>+</option>
                                     <option>-</option>
                                 </select>
+                                <input type="text" class="form-control form-next" placeholder="Result on total score /100"  data-bind="value: result">
                                 <button class="btn deleteRuleBtn" data-bind="click: removeThisRule">
                                     Remove this rule
                                 </button>
