@@ -903,7 +903,7 @@ class UserDAO {
     public static function getAllUsersWithRoles() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT r.role, u.username, u.firstname, u.lastname FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
+            $stmt = $conn->prepare("SELECT r.role, u.username, u.firstname, u.lastname, u.status FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -1046,6 +1046,10 @@ class UserDAO {
             // Insert the email adress
             $stmt = $conn->prepare("INSERT INTO email (user_id, adress, type, registration) VALUES (?, ?, 'PERSONAL', 1)");
             $stmt->execute(array($uid, $email));
+
+            // Give user rights
+            $stmt = $conn->prepare("INSERT INTO user_roles (user_id, role_id) VALUES (?,1)");
+            $stmt->execute(array($uid));
 
             return $uid;
         } catch (PDOException $err) {

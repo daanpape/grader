@@ -370,8 +370,7 @@ function showNewProjectTypeModal()
  */
 function showEditProjectTypeModal(code, name, description, tid)
 {
-   console.log("tis hier");
-  resetGeneralModal();
+   resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody('<form id="updateprojectform"> \
             <div class="form-group"> \
