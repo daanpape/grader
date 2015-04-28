@@ -31,6 +31,8 @@
                     <tbody data-bind="foreach: coupledLists">
                     <tr>
                         <td data-bind="text: tname">--</td>
+                        <td data-bind="text: tname">--</td>
+                        <td data-bind="text: tname">--</td>
                     </tr>
                     </tbody>
                     </table>
