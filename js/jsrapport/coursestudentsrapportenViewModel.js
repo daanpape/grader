@@ -167,11 +167,12 @@ function getGroupid() {
 /*
  * Load page of the table
  */
+/*
 function loadTablePage(courseid)
 {
     $.getJSON('/api/getStudentGroupTeacherByCourseID/' + courseid, function(data){
 
-        /* Clear current table page */
+        /* Clear current table page
         //viewModel.clearTable();
 
         // Load table data
@@ -180,6 +181,7 @@ function loadTablePage(courseid)
         });
     });
 }
+ */
 
 function initPage() {
     viewModel.getProjectInfo();
@@ -207,5 +209,5 @@ function initPage() {
         viewModel.getAvailableLists(data.id);
     });
 
-    loadTablePage(1);
+   // loadTablePage(1);
 }
