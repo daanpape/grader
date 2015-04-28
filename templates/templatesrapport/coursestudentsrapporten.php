@@ -42,7 +42,7 @@
                         <td data-bind="text: tstudlist">--</td>
                         <td data-bind="text: tteacher">--</td>
                         <td>
-                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid + " " + tid2}"></span>
+                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                         </td>
                     </tr>
                     </tbody>
