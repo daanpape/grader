@@ -36,6 +36,8 @@ function fetchUsersData()
         var addedUsername = "";
         $.each(data, function(i, item){
 
+            var current = item.username;
+
             if (addedUsername != current){
                 addedUsername = item.username;
                 viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
