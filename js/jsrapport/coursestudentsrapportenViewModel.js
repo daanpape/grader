@@ -87,11 +87,6 @@ function pageViewModel(gvm) {
             });
         });
     }
-
-    gvm.clearTable = function() {
-        gvm.tabledata.removeAll();
-    }
-
  }
 
  function getAllTeachers() {
@@ -169,19 +164,6 @@ function getGroupid() {
 
  }
 
-function loadTablePage(pagenr) {
-    $.getJSON('/api/coursesrapport/page/' + pagenr, function (data) {
-
-        /* Clear current table page */
-            viewModel.clearTable();
-
-        // Load table data
-        $.each(data.data, function (i, item) {
-            viewModel.addTableData(item.id, item.code);
-        });
-    });
-}
-
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
@@ -207,7 +189,5 @@ function initPage() {
         userid = data.id;
         viewModel.getAvailableLists(data.id);
     });
-
-    loadTablePage(1);
 
 }
