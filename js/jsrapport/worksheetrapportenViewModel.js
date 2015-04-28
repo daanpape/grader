@@ -148,7 +148,7 @@ function showEditWorksheetModal(id, name)
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateWorksheet(tid, $('#updateworksheetform').serialize(), function(result){
+        updateWorksheet(id, $('#updateworksheetform').serialize(), function(result){
             hideModal();
         });
     });
