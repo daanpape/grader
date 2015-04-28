@@ -77,6 +77,19 @@ $location = "adminUsers";
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-11">
+                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
+            </div>
+            <div class="col-lg-1">
+                <a href="adduser.php" type="button" class="btn btn-default pagination-button" id="addUser">
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                </a>
+            </div>
+        </div>
+
+
 
         <div>
             <table class="table table-striped">
@@ -105,21 +118,6 @@ $location = "adminUsers";
                     </tr>
                 </tbody>
         </div>
-
-
-
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-11">
-                <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
-            </div>
-            <div class="col-lg-1">
-                <a type="button" class="btn btn-default pagination-button" id="addUser">
-                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="click: addNewUser"></span>
-                </a>
-            </div>
-        </div>
-
 
         <!-- /.row -->
     </div>

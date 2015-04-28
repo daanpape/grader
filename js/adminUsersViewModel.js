@@ -35,7 +35,6 @@ function fetchUsersData()
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-            var current = item.username;
 
             if (addedUsername != current){
                 addedUsername = item.username;
@@ -55,11 +54,6 @@ function removeUser(user)
 }
 
 function User(id, username, firstname, lastname, status) {
-    // Attach edit handler to edit button
-    $('#editbtn-' + id).bind('click', function(event, data){
-
-    });
-
     return {
         id: ko.observable(id),
         username: ko.observable(username),
@@ -74,13 +68,6 @@ function User(id, username, firstname, lastname, status) {
             }
         },
 
-        addNewUser: function(){
-            console.log("ok");
-            // Edit the table item
-            showAddUserModal(id, username, firstname, lastname, status);
-            event.stopPropagation();
-        },
-
         changeStatus: function() {
             //WORDT NOG NIET VERANDERD
             //WORDT NOG NIET OPGESLAAN OP DB
@@ -89,47 +76,6 @@ function User(id, username, firstname, lastname, status) {
     };
 }
 
-/**
- * Show the edit projecttype modal.
- * @param {type} id
- * @param {type} username
- * @param {type} firstname
- * @param {type} lastname
- * @param {type} status
- * @returns {undefined}
- */
-function showAddUserModal(id, username, firstname, lastname, status)
-{
-    resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditProjectTitle"));
-    setGeneralModalBody('<form id="updateprojectform"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + username + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + firstname + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + lastname + '"> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}
-
-
 function initPage() {
     fetchUsersData();
-
 }
