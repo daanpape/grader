@@ -70,7 +70,7 @@ function User(id, username, firstname, lastname, status) {
         },
 
         changeStatus: function() {
-            ko.status("DISABLED");
+            ko.observable("disabled")
             console.log(status);
         }
     };
