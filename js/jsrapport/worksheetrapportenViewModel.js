@@ -170,7 +170,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.name);
+            viewModel.addTableData(item.id, item.Name);
         });
         
         /* Let previous en next buttons work */
