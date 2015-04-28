@@ -109,7 +109,7 @@ $location = "adminUsers";
                         <td data-bind="text: lastname"></td>
                         <td data-bind="text: status"></td>
                         <!-- ko if: status() === 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a> <a><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a></td>
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a> <a><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a></td>
                         <!-- /ko -->
                         <!-- ko if: status() !== 'ACTIVE' -->
                         <td style="width: 15%" data-bind="if:status"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a> <a><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a></td>
