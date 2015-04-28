@@ -26,6 +26,15 @@ function pageViewModel(gvm) {
         });
     };
 
+
+    gvm.getAvailableLists = function() {
+        $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
+            $.each(data, function(i, item) {
+                gvm.addAvailableLists(item.id, item.name);
+            });
+        });
+    }
+
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
