@@ -1,10 +1,8 @@
 // View model for the page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
-    gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
-    gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("HomeRapportTitle");}, gvm);
-    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetNameRapport");}, gvm);
-    gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetRapportManual");}, gvm);
+    gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetNameRapport");}, gvm);
+    gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
     
     gvm.availableCourses = ko.observableArray([]);
@@ -16,6 +14,8 @@ function pageViewModel(gvm) {
     gvm.werkficheName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheName");}, gvm);
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
     
+    gvm.currentCourseId = null;
+    
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
@@ -26,11 +26,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
-                    gvm.currentStudentlistId = null;
-                    gvm.currentStudentId = null;
                     $(".btn-courseRapport span:first").text($(this).text());
-                    $(".btn-studentlist span:first").text("Studentlist");
-                    $('.btn-student span:first').text("Student");
                 });
             });
         });
