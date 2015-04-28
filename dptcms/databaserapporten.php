@@ -306,12 +306,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseID($start, $count) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist_rapport.id, studentlist_rapport.name, users.firstname, users.lastname, users.id FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id LEFT JOIN
-                                       users ON course_studentlist_teacher_rapport.teacher = users.id WHERE
-                                       course_studentlist_teacher_rapport.course = :course
-                                       ORDER BY users.firstname
-                                        LIMIT :start,:count");
+            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport.studentlist WHERE active = '1' LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->execute();
@@ -325,11 +320,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(*) FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id LEFT JOIN
-                                       users ON course_studentlist_teacher_rapport.teacher = users.id WHERE
-                                       course_studentlist_teacher_rapport.course = :course
-                                       ORDER BY users.firstname");
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_studentlist_teacher_rapport.studentlist WHERE active = '1'");
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
