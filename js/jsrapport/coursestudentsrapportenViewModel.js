@@ -92,9 +92,10 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(firstname, lastname) {
+    gvm.addTableData = function(id, code, name) {
+        console.log("addTableData")
         // Push data
-        var tblOject = {tfisrname: firstname, tlastname: lastname};
+        var tblOject = {tid: id, tcode: code, tname: name};
         gvm.tabledata.push(tblOject);
 
         /*
@@ -190,6 +191,7 @@ function getGroupid() {
  */
 function loadTablePage(pagenr)
 {
+    console.log("loadTablePage");
     $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
 
         /* Clear current table page */
@@ -197,7 +199,8 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description, item.leerkracht);
+            viewModel.addTableData(item.id, item.code, item.name);
+            console.log(item.id);
         });
 
         /* Let previous en next buttons work */
