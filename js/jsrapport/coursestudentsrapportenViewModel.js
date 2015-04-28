@@ -26,6 +26,59 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.coupledLists = ko.observableArray([]);
+    gvm.availableLists = ko.observableArray([]);
+
+    gvm.addCoupledList = function(id, name) {
+        // Push data
+        var tblOject = {tid: id, tname: name};
+        gvm.coupledLists.push(tblOject);
+
+        $("#uncouplebtn-" + id).click(function(){
+            showYesNoModal("Bent u zeker dat u dit item wil ontkoppelen?", function(val){
+                if(val){
+                    $.ajax({
+                        url: '/api/project/' + $("#projectHeader").data('value') +'/studentlist/uncouple/' + id,
+                        type: "DELETE",
+                        success: function() {
+                            gvm.coupledCount--;
+                            viewModel.coupledLists.remove(tblOject);
+                        }
+                    });
+
+                }
+            });
+        });
+    }
+
+    gvm.addAvailableLists = function(id, name) {
+        var tblOject = {tid: id, tname: name};
+        gvm.availableLists.push(tblOject);
+
+        $("#couplebtn-" + id).click(function(){
+            if(gvm.coupledCount == 0) {
+                $.ajax({
+                    url: '/api/project/' + $("#projectHeader").data('value') + '/studentlist/' + id,
+                    type: "POST",
+                    success: function() {
+                        gvm.coupledCount++;
+                        viewModel.coupledLists.push(tblOject);
+                    }
+                });
+            } else {
+                alert("list already coupled");
+            }
+        });
+    }
+
+    gvm.getCoupledLists = function() {
+        $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
+            $.each(data, function(i, item) {
+                gvm.coupledCount++;
+                gvm.addCoupledList(item.id, item.name);
+            });
+        });
+    }
 
     gvm.getAvailableLists = function() {
         $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
@@ -124,7 +177,7 @@ function loadTablePage(pagenr) {
 
         // Load table data
         $.each(data.data, function (i, item) {
-           // viewModel.addTableData(item.id, item.code);
+            viewModel.addTableData(item.id, item.code);
         });
     });
 }
