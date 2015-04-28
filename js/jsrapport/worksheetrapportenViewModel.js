@@ -14,6 +14,8 @@ function pageViewModel(gvm) {
     gvm.werkficheName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheName");}, gvm);
     gvm.werkficheAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("werkficheAction");}, gvm);
     
+    gvm.currentCourseId = null;
+    
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursedrop', function(data) {
             gvm.availableCourses.removeAll();
@@ -24,11 +26,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
-                    gvm.currentStudentlistId = null;
-                    gvm.currentStudentId = null;
                     $(".btn-courseRapport span:first").text($(this).text());
-                    $(".btn-studentlist span:first").text("Studentlist");
-                    $('.btn-student span:first').text("Student");
                 });
             });
         });
