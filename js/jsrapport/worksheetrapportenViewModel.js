@@ -30,6 +30,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
                     $(".btn-courseRapport span:first").text($(this).text());
+                    loadTablePage(1);
                 });
             });
         });
@@ -233,6 +234,4 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.updateCourseRapport();
     });
-    
-    loadTablePage(1);
 }
