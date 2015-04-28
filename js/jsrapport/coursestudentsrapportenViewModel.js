@@ -92,10 +92,10 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, studlist, name) {
+    gvm.addTableData = function(studid, studlist, name) {
         console.log("addTableData")
         // Push data
-        var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
+        var tblOject = {tid: studid, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
 
 
@@ -199,7 +199,7 @@ function loadTablePage(pagenr,course)
         // Load table data
         $.each(data.data, function(i, item) {
             console.log(data.data);
-           viewModel.addTableData(item.id, item.name , item.firstname + " " + item.lastname);
+           viewModel.addTableData(item.studid, item.name , item.firstname + " " + item.lastname);
         });
 
 
