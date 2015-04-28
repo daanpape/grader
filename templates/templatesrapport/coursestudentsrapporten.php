@@ -37,7 +37,7 @@
                     </tr>
 
                     </thead>
-                    <tbody data-bind="foreach: coupledLists">
+                    <tbody data-bind="foreach: tabledata">
                     <tr>
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>

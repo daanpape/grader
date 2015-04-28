@@ -105,7 +105,6 @@ function pageViewModel(gvm) {
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-        
             }
 
     gvm.clearTable = function() {
