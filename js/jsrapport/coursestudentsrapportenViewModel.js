@@ -98,14 +98,14 @@ function pageViewModel(gvm) {
         var tblOject = {tid: id, tcode: code, tname: name};
         gvm.tabledata.push(tblOject);
 
-        /*
+
         // Attach delete handler to delete button
         $('#removebtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-        */
+        
             }
 
     gvm.clearTable = function() {
