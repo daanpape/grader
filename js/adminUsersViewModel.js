@@ -17,12 +17,6 @@ function pageViewModel(gvm) {
         gvm.users.push(user);
     },
 
-    gvm.updateUserStatus = function(user)
-    {
-        gvm.users.get(user).status("test");
-        console.log(gvm.users.get(user).status());
-    },
-
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
         removeUser(user);
@@ -64,7 +58,7 @@ function updateUserStatus(user)
 {
     $.getJSON("/api/updateUserStatus/" + user.id() + "/" + user.status(), function(data)
     {
-        console.log("User was removed");
+        console.log("updated");
         fetchUsersData();
     });
 }
@@ -92,7 +86,7 @@ function User(id, username, firstname, lastname, status) {
             } else {
                 this.status("WAIT_ACTIVATION");
             }
-            viewModel.updateUserStatus(this);
+            updateUserStatus(user);
             console.log(this.status());
         }
     };

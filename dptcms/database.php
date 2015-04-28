@@ -1072,13 +1072,13 @@ class UserDAO {
         return true;
     }
 
-    public static function updateUserStatus($status, $userid)
+    public static function updateUserStatus($userid, $status)
     {
         try {
 
             $conn = Db::getConnection();
             //Update user status
-            $stmt = $conn->prepare("UPDATE users SET status=? WHERE id=?");
+            $stmt = $conn->prepare("UPDATE users SET status = ? WHERE id = ?");
             $stmt->execute(array($status, $userid));
 
             return true;
