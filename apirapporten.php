@@ -36,6 +36,16 @@ Class RapportAPI {
     
     public static function addWorksheetToCourse($name, $courseid) {
         return rapportenDAO::addWorksheetToCourse($name, $courseid);
+        
+        $id = rapportenDAO::addWorksheetToCourse($name, $courseid);
+        if ($id != null) {
+            return array(
+                "id" => $id,
+                "name" => $code,
+                "course" => $courseid);
+        } else {
+            return -1;
+        }
     }
     
     public static function getAllWorksheets($courseid, $start, $count) {

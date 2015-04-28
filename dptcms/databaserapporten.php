@@ -35,7 +35,7 @@ class rapportenDAO {
             $stmt->bindValue(':name', (string) $name, PDO::PARAM_STR);
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            return $conn->lastInsertId();
         } catch (PDOException $err) {
             Logger::logError('could not insert into worksheets table', $err);
             return null;
