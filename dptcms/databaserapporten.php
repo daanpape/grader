@@ -26,6 +26,21 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function addWorksheetToCourse($name, $courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_rapport (Naam, Course)
+                                    VALUES (:name, :courseid)");
+            $stmt->bindValue(':name', (string) $name, PDO::PARAM_STR);
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not insert into worksheets table', $err);
+            return null;
+        }
+    }
 
     public static function getAllStudents() {
         try {

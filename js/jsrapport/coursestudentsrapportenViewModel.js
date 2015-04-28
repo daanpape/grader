@@ -92,10 +92,10 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name) {
+    gvm.addTableData = function(id, studlist, name) {
         console.log("addTableData")
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name};
+        var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
 
 
@@ -191,15 +191,15 @@ function getGroupid() {
 function loadTablePage(pagenr)
 {
     console.log("loadTablePage");
-    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
+    $.getJSON('/api/getStudentGroupTeacherByCourseID/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name);
-            console.log(item.id);
+            viewModel.addTableData(item.id, item.firstname, item.lastname);
+            console.log(item.firstname);
         });
 
         /* Let previous en next buttons work */

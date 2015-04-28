@@ -35,10 +35,9 @@ function pageViewModel(gvm) {
     };    
 }
 
-function addNewWorksheet(serialData, callback) {
-    console.log(serialData);
-    /*$.ajax({
-        url: "/api/courserapport",
+function addNewWorksheet(serialData, courseid, callback) {
+    $.ajax({
+        url: "/api/addworksheet/" + courseid,
         type: "POST",
         data: serialData,
         success: function(data) {
@@ -48,7 +47,7 @@ function addNewWorksheet(serialData, callback) {
         error: function(data) {
             callback(false);
         }
-    });*/
+    });
 } 
 
 function showNewWorksheetModal() {
@@ -61,7 +60,7 @@ function showNewWorksheetModal() {
             </form>' );
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-       addNewWorksheet($('#newworksheetform').serialize(), function(result){
+       addNewWorksheet($('#newworksheetform').serialize(), viewModel.currentCourseId, function(result){
             hideModal();
         });
     });
