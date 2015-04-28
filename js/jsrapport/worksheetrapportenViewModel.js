@@ -76,6 +76,7 @@ function addNewWorksheet(serialData, courseid, callback) {
                     callback(true);
                 }
             })*/
+            console.log(data);
             console.log(data["id"] + ", " + data["name"]);
         },
         error: function(data) {
