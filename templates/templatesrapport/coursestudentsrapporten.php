@@ -39,8 +39,8 @@
                     </thead>
                     <tbody data-bind="foreach: tabledata">
                     <tr>
-                        <td data-bind="text: tcode">--</td>
-                        <td data-bind="text: tname">--</td>
+                        <td data-bind="text: tstudlist">--</td>
+                        <td data-bind="text: tteacher">--</td>
                     </tr>
                     </tbody>
                     </table>

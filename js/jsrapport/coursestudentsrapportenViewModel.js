@@ -95,7 +95,7 @@ function pageViewModel(gvm) {
     gvm.addTableData = function(id, code, name) {
         console.log("addTableData")
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name};
+        var tblOject = {tid: id, tstudlist: code, tteacher: name};
         gvm.tabledata.push(tblOject);
 
 
