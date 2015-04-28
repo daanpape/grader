@@ -92,6 +92,7 @@ function User(id, username, firstname, lastname, status) {
             } else {
                 this.status("WAIT_ACTIVATION");
             }
+            updateUserStatus(this);
             console.log(this.status());
         }
     };
