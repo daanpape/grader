@@ -224,23 +224,7 @@ class rapportenDAO {
             return null;
         }
     }
-    public static function getStudentGroupTeacherByCourseID($courseid) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist_rapport.id, studentlist_rapport.name, users.firstname, users.lastname, users.id FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id LEFT JOIN
-                                       users ON course_studentlist_teacher_rapport.teacher = users.id WHERE
-                                       course_studentlist_teacher_rapport.course = :course
-                                       ORDER BY users.firstname");
 
-            $stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (PDOException $err) {
-            Logger::logError('Could not find teacher', $err);
-            return null;
-        }
-    }
 
     public static function addTeacher($id) {
         try {
@@ -318,6 +302,33 @@ class rapportenDAO {
             return 0;
         }
     }
+
+    public static function getStudentGroupTeacherByCourseID($start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE active = '1' LIMIT :start,:count");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all courses', $err);
+            return null;
+        }
+    }
+
+    public static function getStudentGroupTeacherByCourseCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM course_rapport");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all courses in the database', $err);
+            return 0;
+        }
+    }
+
 
     /*
      *
