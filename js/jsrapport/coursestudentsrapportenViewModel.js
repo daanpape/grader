@@ -182,7 +182,6 @@ function getGroupid() {
                  //callback(false);
              }
          });
-
  }
 
 /*
@@ -290,6 +289,11 @@ function initPage() {
     
     $('#addGroupBtn').click(function() {
          addGroup($('#projectHeader').attr("data-value"), getTeacherid(), getGroupid());
+
+        $('#studentListComplete').val("");
+        $('#teachersComplete').val("");
+
+        loadTablePage(1,$('#projectHeader').attr("data-value"));
 
         $('addGroupForm').hide();
     });
