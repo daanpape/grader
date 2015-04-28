@@ -94,13 +94,13 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(studid, userid, studlist, name) {
         // Push data
-        var tblOject = {tid: studid + " " + userid, tstudlist: studlist, tteacher: name};
+        var tblOject = {tid: studid + "-" + userid, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
-        $('#removebtn-' + studid + " " + userid).bind('click', function(event, data){
+        $('#removebtn-' + studid + "-" + userid).bind('click', function(event, data){
             // Delete the table item
-            deleteTableItem(studid + " " + userid, tblOject);
+            deleteTableItem(studid + "-" + userid, tblOject);
             event.stopPropagation();
         });
             }
