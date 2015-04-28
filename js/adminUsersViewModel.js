@@ -33,8 +33,14 @@ function fetchUsersData()
     viewModel.refreshUsers();
     $.getJSON("/api/alluserswithroles/", function(data)
     {
+        var addedUsername = "";
         $.each(data, function(i, item){
-            viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            var current = item.username;
+
+            if (addedUsername != current){
+                addedUsername = item.username;
+                viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            }
         });
     });
 }
