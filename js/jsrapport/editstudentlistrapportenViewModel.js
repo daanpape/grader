@@ -81,14 +81,12 @@ function showEditStudentModal(tblObject) {
 }
 
 function addNewStudent(studentname, listid, callback) {
-    console.log(studentname);
-    console.log(listid);
     $.ajax({
         url: "/api/newstudent/" + studentname + "/" + listid,
         type: "POST",
         data: {'name': studentname, 'list': listid},
         success: function(data) {
-            //console.log(data);
+            loadStudentTable();
             callback(true);
         },
         error: function(data) {
