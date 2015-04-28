@@ -25,6 +25,8 @@ function pageViewModel(gvm) {
     gvm.refreshUsers = function()
     {
         gvm.users.destroyAll();
+        gvm.users.clear();
+
     }
 }
 
