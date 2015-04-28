@@ -92,7 +92,7 @@ function User(id, username, firstname, lastname, status) {
             } else {
                 this.status("WAIT_ACTIVATION");
             }
-            updateUserStatus(this);
+            viewModel.updateUserStatus(this);
             console.log(this.status());
         }
     };
