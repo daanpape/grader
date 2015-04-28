@@ -312,7 +312,7 @@ class rapportenDAO {
                                     ORDER BY mid, did, cid ASC");
     */
 
-    public static function getStudentGroupTeacherByCourseID($start, $count) {
+    public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT *
@@ -320,9 +320,10 @@ class rapportenDAO {
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                         WHERE course_studentlist_teacher_rapport.active =  '1'
-                                        AND course =  '1' LIMIT :start,:count");
+                                        AND course =  :course LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -331,14 +332,15 @@ class rapportenDAO {
         }
     }
 
-    public static function getStudentGroupTeacherByCourseCount() {
+    public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport
                                       LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                       LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                       WHERE course_studentlist_teacher_rapport.active =  '1'
-                                    AND course =  '1'");
+                                    AND course =  :course");
+            $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {

@@ -188,10 +188,10 @@ function getGroupid() {
 /*
  * Load page of the table
  */
-function loadTablePage(pagenr)
+function loadTablePage(pagenr,course)
 {
     console.log("loadTablePage");
-    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr, function(data){
+    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
@@ -283,6 +283,6 @@ function initPage() {
         viewModel.getAvailableLists(data.id);
     });
 
-    loadTablePage(1);
+    loadTablePage(1,1);
 
 }
