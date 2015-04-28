@@ -264,7 +264,7 @@ function deleteTableItem(studid, tblOject) {
                 }
             });
             */
-            console.log("studid: " + id);
+            console.log("studid: " + studid);
         }
     });
 }
