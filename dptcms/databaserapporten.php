@@ -30,12 +30,12 @@ class rapportenDAO {
     public static function addWorksheetToCourse($name, $courseid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO werkfiche_rapport (Naam, Course)
+            $stmt = $conn->prepare("INSERT INTO werkfiche_rapport (Name, Course)
                                     VALUES (:name, :courseid)");
             $stmt->bindValue(':name', (string) $name, PDO::PARAM_STR);
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            return $conn->lastInsertId();
         } catch (PDOException $err) {
             Logger::logError('could not insert into worksheets table', $err);
             return null;
@@ -89,6 +89,21 @@ class rapportenDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not get courses', $err);
             return false;
+        }
+    }
+    
+    public static function getAllWorksheets($courseid, $start, $count) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM werkfiche_rapport WHERE Course = :courseid AND Active = '1' LIMIT :start, :count");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets', $err);
+            return null;
         }
     }
 
@@ -210,22 +225,6 @@ class rapportenDAO {
         }
     }
 
-    public static function getStudentGroupTeacherByCourseID($courseid) {
-        try {
-            $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT *FROM course_studentlist_teacher_rapport LEFT JOIN
-                                      studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id LEFT JOIN
-                                       users ON course_studentlist_teacher_rapport.teacher = users.id WHERE
-                                       course_studentlist_teacher_rapport.course = :course
-                                       ORDER BY users.firstname");
-            $stmt->bindValue(':course', (int) $courseid, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
-        } catch (PDOException $err) {
-            Logger::logError('Could not find teacher', $err);
-            return null;
-        }
-    }
 
     public static function addTeacher($id) {
         try {
@@ -267,6 +266,7 @@ class rapportenDAO {
             return null;
         }
     }
+    
     public static function getCourseCount() {
         try {
             $conn = Db::getConnection();
@@ -278,10 +278,71 @@ class rapportenDAO {
             return 0;
         }
     }
+    
+    public static function getWorksheetCount() {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM werkfiche_rapport");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all worksheets in the database', $err);
+            return 0;
+        }
+    }
+    
     public static function getStudentsCountFromCourse() {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM students");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all courses in the database', $err);
+            return 0;
+        }
+    }
+
+    /*
+                            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
+                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
+                                    WHERE module_rapport.course = :courseid
+
+                                    ORDER BY mid, did, cid ASC");
+    */
+
+    public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname
+                                        FROM course_studentlist_teacher_rapport
+                                        LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                        LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1'
+                                        AND course =  :course
+                                        ORDER BY studentlist_rapport.name, users.firstname, users.lastname
+                                        LIMIT :start,:count");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all courses', $err);
+            return null;
+        }
+    }
+
+    public static function getStudentGroupTeacherByCourseCount($course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT count(*) FROM course_studentlist_teacher_rapport
+                                      LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                      LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
+                                      WHERE course_studentlist_teacher_rapport.active =  '1'
+                                    AND course =  :course");
+            $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
@@ -357,6 +418,18 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function updateWorksheet($id, $name) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET Name = ? WHERE id = ?");
+            $stmt->execute(array($name, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update worksheet', $err);
+            return false;
+        }
+    }
 
     public static function deleteCourse($id) {
         try {
@@ -369,21 +442,51 @@ class rapportenDAO {
             Logger::logError('Could not delete project', $err);
             return null;
         }
-    }  public static function copyCourse($id) {
-    try {
-        $conn = Db::getConnection();
-        $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
-SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id
-");
-        $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
-        $stmt->execute();
-
-        return true;
-    } catch (PDOException $err) {
-        Logger::logError('Could not copy course', $err);
-        return null;
     }
-}
+    
+    public static function deleteWorksheet($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET Active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete worksheet', $err);
+            return null;
+        }
+    }
+
+    //set link course - teacher - studlist inactive
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_studentlist_teacher_rapport SET active = '0' WHERE course = :course AND studentlist = :studentlist AND teacher = :teacher");
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':studentlist', (int) $studentlist, PDO::PARAM_INT);
+            $stmt->bindValue(':teacher', (int) $teacher, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
+    public static function copyCourse($id) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO course_rapport(code,name,description,leerkracht,active,studentlistid)
+                                    SELECT code,name,description,leerkracht,active,studentlistid FROM course_rapport WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not copy course', $err);
+            return null;
+        }
+    }
 
 
     public static function deleteStudentList($id) {

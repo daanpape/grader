@@ -34,8 +34,24 @@ Class RapportAPI {
         return rapportenDAO::getcriteriasBydoelstelling($id);
     }
     
-    public static function addWorksheetToCourse($name, $courseid) {
-        return rapportenDAO::addWorksheetToCourse($name, $courseid);
+    public static function addWorksheetToCourse($name, $courseid) {      
+        $id = rapportenDAO::addWorksheetToCourse($name, $courseid);
+        if ($id != null) {
+            return array(
+                "id" => $id,
+                "name" => $name,
+                "course" => $courseid);
+        } else {
+            return -1;
+        }
+    }
+    
+    public static function getAllWorksheets($courseid, $start, $count) {
+        return rapportenDAO::getAllWorksheets($courseid, $start, $count);
+    }
+    
+    public static function getWorksheetCount() {
+        return rapportenDAO::getWorksheetCount();
     }
 
     public static function getTeacher() {
@@ -60,8 +76,12 @@ Class RapportAPI {
     public static function getStudentsCountFromCourse() {
         return rapportenDAO::getStudentsCountFromCourse();
     }
-    public static function getStudentGroupTeacherByCourseID($courseid) {
-        return rapportenDAO::getStudentGroupTeacherByCourseID($courseid);
+    public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
+        /* Return the requested pages */
+        return rapportenDAO::getStudentGroupTeacherByCourseID($start, $count, $course);
+    }
+    public static function getStudentGroupTeacherByCourseCount($course) {
+        return rapportenDAO::getStudentGroupTeacherByCourseCount($course);
     }
 
     /*
@@ -144,6 +164,16 @@ Class RapportAPI {
             return false;
         }
     }
+
+    //set link course - teacher - studlist inactive
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
+        if (rapportenDAO::setInactiveCourseStudlistCouple($course, $studentlist, $teacher) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
        * copy a course from the database
        */
@@ -167,6 +197,16 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function updateWorksheet($id, $name) {
+        if(rapportenDAO::updateWorksheet($id, $name)){
+            return array(
+                "id" => $id,
+                "name" => $name);
+        } else {
+            return -1;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);
@@ -183,6 +223,15 @@ Class RapportAPI {
             return false;
         }
     }
+    
+    public static function deleteWorksheet($id) {
+        if (rapportenDAO::deleteWorksheet($id) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public static function updateCoursemodules($courseid, $courseStructure) {
         $data = json_decode($courseStructure);
 

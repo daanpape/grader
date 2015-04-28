@@ -120,5 +120,6 @@
 
     "WorksheetNameRapport" : "Werkfiches",
     "WorksheetRapportManual" : "Overzicht van de werfiches",
-    "AddNewWorksheet" : "Voeg werkfiche toe"
+    "AddNewWorksheet" : "Voeg werkfiche toe",
+    "EditWorksheet" : "Pas werkfiche aan"
 }

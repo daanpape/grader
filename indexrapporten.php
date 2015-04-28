@@ -36,6 +36,10 @@ $app->get('/api/coursestudents/:id/:name', function($id, $name) use ($app) {
     $app->render('templatesrapport/coursestudentsrapporten.php', array('coursestudentsid' => $id, 'coursestudentsname' => $name));
 });
 
+$app->get('/api/worksheet/:id/:name', function($id, $name) use ($app) {
+    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name));
+});
+
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -68,6 +72,18 @@ $app->get('/api/coursesrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
+$app->get('/api/worksheets/page/:pagenr/:courseid', function ($pagenr, $courseid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+
+    $pagedata = RapportAPI::getAllWorksheets($courseid, $pg->start, $pg->count);
+    $totalWorksheets = RapportAPI::getWorksheetCount();
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalWorksheets));
+});
 //get all student form a selected course with pages
 $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
@@ -79,6 +95,20 @@ $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
     $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count);
     $totalcourses = RapportAPI::getStudentsCountFromCourse();
+    // Get the page
+    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+});
+//get all combination teacher and studentlist with pages
+$app->get('/api/getStudentGroupTeacherByCourseID/page/:pagenr/:course', function ($pagenr, $course) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+    // Get total number of projecttypes in the database
+    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $pagedata = RapportAPI::getStudentGroupTeacherByCourseID($pg->start, $pg->count, $course);
+    $totalcourses = RapportAPI::getStudentGroupTeacherByCourseCount($course);
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
 });
@@ -184,14 +214,6 @@ $app->get('/api/allstudents', function () use ($app) {
     echo json_encode($data);
 });
 
-$app->get('/api/getStudentGroupTeacherByCourseID/:courseid/', function ($courseid) use ($app) {
-    // Use json headers
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
-    // Get all students bij the id of a course
-    $pagedata = RapportAPI::getStudentGroupTeacherByCourseID($courseid);
-    echo json_encode($pagedata);
-});
 
 /*
  *
@@ -234,6 +256,14 @@ $app->put('/api/courseupdate/:id', function($id) use ($app){
     // Update the existing resource
     echo json_encode(RapportAPI::updateCourse(
         $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+});
+$app->put('/api/updateworksheet/:id', function($id) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(RapportAPI::updateWorksheet($id, $app->request->post('name')));
 });
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
@@ -294,6 +324,13 @@ $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
     echo json_encode(RapportAPI::deleteCourse($id));
 });
 
+$app->delete('/api/deleteworksheet/:id', function ($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::deleteWorksheet($id));
+});
+
 $app->delete('/api/studentlistdelete/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
@@ -307,6 +344,14 @@ $app->delete('/api/studentlistrapport/:studlistid/delete/student/:studid', funct
     $response->header('Content-Type', 'application/json');
 
     echo json_encode(RapportAPI::deleteStudentFromStudentList($studlistid, $studid));
+});
+
+//set link course - teacher - studlist inactive
+$app->delete('/api/setInactiveCourseStudlistCouple/:course/:studentlist/:teacher', function ($course, $studentlist, $teacher) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::setInactiveCourseStudlistCouple($course, $studentlist, $teacher));
 });
 
 $app->put('/api/studentlistupdate/:id', function($id) use ($app){

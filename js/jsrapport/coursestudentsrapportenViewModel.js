@@ -92,17 +92,15 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, studlist, name) {
-        console.log("addTableData")
+    gvm.addTableData = function(studid, userid, studlist, name) {
         // Push data
-        var tblOject = {tid: id, tstudlist: studlist, tteacher: name};
+        var tblOject = {tid: studid + "-" + userid, tstudlist: studlist, tteacher: name};
         gvm.tabledata.push(tblOject);
 
-
         // Attach delete handler to delete button
-        $('#removebtn-' + id).bind('click', function(event, data){
+        $('#removebtn-' + studid + "-" + userid).bind('click', function(event, data){
             // Delete the table item
-            deleteTableItem(id, tblOject);
+            deleteTableItem(studid + "-" + userid, tblOject);
             event.stopPropagation();
         });
             }
@@ -174,7 +172,6 @@ function getGroupid() {
              type: "POST",
              data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
              success: function(data) {
-                 //console.log(data);
                  //callback(true);
              },
              error: function(data) {
@@ -182,24 +179,22 @@ function getGroupid() {
                  //callback(false);
              }
          });
-
  }
 
 /*
  * Load page of the table
  */
-function loadTablePage(pagenr)
+function loadTablePage(pagenr,course)
 {
-    console.log("loadTablePage");
-    $.getJSON('/api/coursesrapport/page/' + pagenr, function(data){
+    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            console.log(data.data);
-            viewModel.addTableData(item.id, item.code, item.name);
+            console.log("studid: " + item.studid + " en userid: " + item.userid);
+           viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
         /* Let previous en next buttons work */
@@ -254,6 +249,27 @@ function loadTablePage(pagenr)
     });
 }
 
+/*
+ * Delete item from table given the id.
+ */
+function deleteTableItem(id, tblOject) {
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        if(val){
+            //courseid = $('#projectHeader').attr("data-value");
+            //studielijstid = "studid " + id.substr(0,id.indexOf('-'));
+            //teacherid = "userid " + id.substr(id.indexOf('-')+1);
+
+             $.ajax({
+             url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
+             type: "DELETE",
+             success: function() {
+             viewModel.tabledata.remove(tblOject);
+             }
+             });
+
+            }
+    });
+}
 
 function initPage() {
     viewModel.getProjectInfo();
@@ -272,6 +288,11 @@ function initPage() {
     $('#addGroupBtn').click(function() {
          addGroup($('#projectHeader').attr("data-value"), getTeacherid(), getGroupid());
 
+        $('#studentListComplete').val("");
+        $('#teachersComplete').val("");
+
+        loadTablePage(1,$('#projectHeader').attr("data-value"));
+
         $('addGroupForm').hide();
     });
     
@@ -280,7 +301,5 @@ function initPage() {
         userid = data.id;
         viewModel.getAvailableLists(data.id);
     });
-
-    loadTablePage(1);
-
+    loadTablePage(1,$('#projectHeader').attr("data-value"));
 }
