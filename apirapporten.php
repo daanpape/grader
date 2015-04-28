@@ -33,6 +33,10 @@ Class RapportAPI {
         /* Return module from selected course */
         return rapportenDAO::getcriteriasBydoelstelling($id);
     }
+    
+    public static function addWorksheetToCourse($name, $courseid) {
+        return rapportenDAO::addWorksheetToCourse($name, $courseid);
+    }
 
     public static function getTeacher() {
         /* get teacher from database */
