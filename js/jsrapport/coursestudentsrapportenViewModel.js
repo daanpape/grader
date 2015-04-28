@@ -255,9 +255,6 @@ function loadTablePage(pagenr,course)
 function deleteTableItem(id, tblOject) {
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
         if(val){
-            console.log("id: " + id);
-            console.log("studid " + id.substr(0,id.indexOf('-')));
-            console.log("userid " + id.substr(id.indexOf('-')+1));
             //courseid = $('#projectHeader').attr("data-value");
             //studielijstid = "studid " + id.substr(0,id.indexOf('-'));
             //teacherid = "userid " + id.substr(id.indexOf('-')+1);
@@ -269,7 +266,7 @@ function deleteTableItem(id, tblOject) {
              viewModel.tabledata.remove(tblOject);
              }
              });
-             
+
             }
     });
 }
