@@ -60,15 +60,10 @@ Class RapportAPI {
     public static function getStudentsCountFromCourse() {
         return rapportenDAO::getStudentsCountFromCourse();
     }
-    /*
     public static function getStudentGroupTeacherByCourseID($courseid) {
         return rapportenDAO::getStudentGroupTeacherByCourseID($courseid);
     }
-    */
 
-    public static function getStudentGroupTeacherByCourseID() {
-        return rapportenDAO::getStudentGroupTeacherByCourseID();
-    }
     /*
      *
      * Momenteel niet langer gebruikt.
