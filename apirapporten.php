@@ -68,12 +68,12 @@ Class RapportAPI {
     public static function getStudentsCountFromCourse() {
         return rapportenDAO::getStudentsCountFromCourse();
     }
-    public static function getStudentGroupTeacherByCourseID($start, $count) {
+    public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         /* Return the requested pages */
-        return rapportenDAO::getStudentGroupTeacherByCourseID($start, $count);
+        return rapportenDAO::getStudentGroupTeacherByCourseID($start, $count, $course);
     }
-    public static function getStudentGroupTeacherByCourseCount() {
-        return rapportenDAO::getStudentGroupTeacherByCourseCount();
+    public static function getStudentGroupTeacherByCourseCount($course) {
+        return rapportenDAO::getStudentGroupTeacherByCourseCount($course);
     }
 
     /*
