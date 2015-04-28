@@ -68,7 +68,7 @@ function addNewWorksheet(serialData, courseid, callback) {
         type: "POST",
         data: serialData,
         success: function(data) {
-            //loadTablePage
+            loadTablePage(1);
             callback(true);
         },
         error: function(data) {
