@@ -35,7 +35,6 @@ function fetchUsersData()
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-
             var current = item.username;
 
             if (addedUsername != current){
