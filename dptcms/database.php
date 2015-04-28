@@ -1072,14 +1072,14 @@ class UserDAO {
         return true;
     }
 
-    public static function updateUserStatus($userid)
+    public static function updateUserStatus($status, $userid)
     {
         try {
 
             $conn = Db::getConnection();
             //Update user status
-            $stmt = $conn->prepare("UPDATE users SET password=? WHERE id=?");
-            $stmt->execute(array($userid));
+            $stmt = $conn->prepare("UPDATE users SET status=? WHERE id=?");
+            $stmt->execute(array($status,$userid));
 
             return true;
         } catch (PDOException $err) {

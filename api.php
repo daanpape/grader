@@ -318,9 +318,10 @@ class GraderAPI {
     /*
      * Update user status
      */
-    public static function updateUserStatus($uid) {
-        if(ClassDAO::updateUserStatus($uid)) {
+    public static function updateUserStatus($status, $uid) {
+        if(ClassDAO::updateUserStatus($status, $uid)) {
             return array(
+                "status" => "$status",
                 "id" => $uid,
             );
         } else {
