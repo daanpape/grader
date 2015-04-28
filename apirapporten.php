@@ -34,9 +34,7 @@ Class RapportAPI {
         return rapportenDAO::getcriteriasBydoelstelling($id);
     }
     
-    public static function addWorksheetToCourse($name, $courseid) {
-        return rapportenDAO::addWorksheetToCourse($name, $courseid);
-        
+    public static function addWorksheetToCourse($name, $courseid) {      
         $id = rapportenDAO::addWorksheetToCourse($name, $courseid);
         if ($id != null) {
             return array(
