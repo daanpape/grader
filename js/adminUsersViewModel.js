@@ -25,8 +25,6 @@ function pageViewModel(gvm) {
     gvm.refreshUsers = function()
     {
         gvm.users.destroyAll();
-        gvm.users.clear();
-
     }
 }
 
@@ -89,9 +87,7 @@ function User(id, username, firstname, lastname, status) {
             } else {
                 this.status("WAIT_ACTIVATION");
             }
-            console.log(this.status());
             updateUserStatus(this);
-            console.log(this.status());
         }
     };
 }
