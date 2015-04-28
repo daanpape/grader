@@ -339,11 +339,11 @@ $app->get('/api/removeuser/:userid', function($userid) use ($app) {
     echo json_encode(GraderAPI::removeUser($userid));
 });
 
-$app->get('/api/updateUserStatus/:userid', function($userid) use ($app) {
+$app->get('/api/updateUserStatus/:userid/:status', function($status, $userid) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    echo json_encode(GraderAPI::updateUserStatus($userid));
+    echo json_encode(GraderAPI::updateUserStatus($status, $userid));
 });
 
 $app->get('/api/alluserswithroles/', function() use ($app)
