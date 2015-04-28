@@ -339,7 +339,7 @@ $app->get('/api/removeuser/:userid', function($userid) use ($app) {
     echo json_encode(GraderAPI::removeUser($userid));
 });
 
-$app->get('/api/updateUserStatus/:userid/:status', function($userid, $status) use ($app) {
+$app->get('/api/updateuserstatus/:userid/:status', function($userid, $status) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
