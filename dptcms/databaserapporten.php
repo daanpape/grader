@@ -315,7 +315,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT *
+            $stmt = $conn->prepare("SELECT studentlist_rapport.course, studentlist_rapport.name, users.id, users.firstname, users.lastname
                                         FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
@@ -335,7 +335,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM course_studentlist_teacher_rapport
+            $stmt = $conn->prepare("SELECT count(*) FROM course_studentlist_teacher_rapport
                                       LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                       LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                       WHERE course_studentlist_teacher_rapport.active =  '1'
