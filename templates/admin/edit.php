@@ -105,11 +105,11 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <select class="form-control form-next">
-                                <!-- ko if: status() === 'ACTIVE' --> -->
+                                <!-- ko if: status() === 'ACTIVE' -->
                                 <option selected="true" data-bind="if:status">Active</option>
                                 <option data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() !== 'ACTIVE' --> -->
+                                <!-- ko if: status() !== 'ACTIVE' -->
                                 <option data-bind="if:status">Active</option>
                                 <option selected="true" data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
@@ -154,10 +154,10 @@ $location = "adminEdit";
                         </tr>
                         </tbody>
                         <tbody>
-                        <tr data-bind="foreach: user" >
+                        <tr>
                             <td>Permission</td>
-                            <td data-bind="foreach: permissions, value: permission" >
-                                <!-- ko if: status() === 'ACTIVE' --> -->
+                            <td data-bind="foreach: viewModel.allRights, value: allRights" >
+                                <!-- ko if: status() === 'ACTIVE' -->
                                 <input type="checkbox"><label data-bind="text: $data"></label><br />
                                 <!-- /ko -->
                             </td>
