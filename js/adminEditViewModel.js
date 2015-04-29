@@ -49,9 +49,8 @@ function getAllUserDataById(edituserid){
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-            console.log(item.username);
-
             var current = item.username;
+
             $.each(data, function(i, item)
             {
                 if(item.username == current){
@@ -61,9 +60,9 @@ function getAllUserDataById(edituserid){
             });
 
             if (addedUsername != current){
-                addedUsername = item.username;
-                console.log(addedUsername);
+                console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
+
             }
         });
     });
