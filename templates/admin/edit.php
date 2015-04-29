@@ -79,7 +79,7 @@ $location = "adminEdit";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Edit User</h1>
+                <h1 class="page-header" data-bind="text: pageHeaderEditUser">Edit User</h1>
             </div>
         </div>
 
@@ -94,11 +94,11 @@ $location = "adminEdit";
                     </tr>
                     <tr>
                         <td>Lastname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="text: lastname"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email">
+                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="text: username">
                         </td>
                     </tr>
                     <tr>

@@ -1,7 +1,7 @@
 function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
-    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserTitle");}, gvm);
+    gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("UserEditTitle");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -30,6 +30,10 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
+}
+
+function initPage() {
+    getAllUserDataById();
 }
 
 function getAllUserDataById(){
@@ -92,8 +96,4 @@ function User(id, username, firstname, lastname, status) {
             updateUserStatus(this);
         }
     };
-}
-
-function initPage() {
-    getAllUserDataById();
 }
