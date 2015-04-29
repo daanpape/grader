@@ -765,7 +765,7 @@ class ClassDAO {
                     $rule = new stdClass();
                     $rule->id = $row['id'];
                     $rule->name = $row['name'];
-                    $rule->action = array("id" => $row['subject_id'], "name"=>$row['action'], "subject"=>$row['subject']);
+                    $rule->action = json_encode(array("id" => $row['subject_id'], "name"=>$row['action'], "subject"=>$row['subject']));
                     $rule->operator = $row['operator'];
                     $rule->value = $row['value'];
                     $rule->sign = $row['sign'];
