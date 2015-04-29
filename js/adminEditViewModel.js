@@ -53,7 +53,7 @@ function getAllUserDataById(edituserid){
 
             $.each(data, function(i, item)
             {
-                if(item.username == current){
+                if(item.username == current && addedUsername != current){
                     console.log(current + " " + item.roleid + " " + item.role );
                     viewModel.updatePermissions(new Permission(item.roleid, item.role))
                 }
