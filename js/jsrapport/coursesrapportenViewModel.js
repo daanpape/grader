@@ -35,6 +35,7 @@ function pageViewModel(gvm) {
 
         // Attach delete handler to delete button
         $('#removebtn-' + id).bind('click', function(event, data){
+            console.log("delete")
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
@@ -42,7 +43,6 @@ function pageViewModel(gvm) {
 
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
-            console.log("delete")
             // Edit the table item
             showEditProjectTypeModal(code, name, desc, id);
             event.stopPropagation();
