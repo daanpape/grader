@@ -14,7 +14,7 @@ function pageViewModel(gvm) {
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
-            
+            console.log(data);
         });
     }
 }
@@ -38,9 +38,8 @@ function addWorksheetProperties(serialData, wid, callback) {
 function initPage() {     
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
-        console.log(courseid);
         viewModel.userId = data.id;
-        //viewModel.updateModules(courseid);
+        viewModel.updateModules(courseid);
     });
     
     
