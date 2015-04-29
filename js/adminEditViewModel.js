@@ -1,0 +1,76 @@
+function pageViewModel(gvm) {
+    // Page specific i18n bindings
+    gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
+    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserTitle");}, gvm);
+
+    gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
+    gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
+    gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
+    gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
+
+    gvm.rights = ko.observableArray([]);
+
+    gvm.updateUsers = function(user)
+    {
+        gvm.users.push(user);
+    },
+
+    gvm.removeUser = function(user) {
+        gvm.users.remove(user);
+        removeUser(user);
+    },
+
+    gvm.refreshUsers = function()
+    {
+        gvm.users.destroyAll();
+    }
+}
+
+function fetchUsersData()
+{
+    viewModel.refreshUsers();
+    $.getJSON("/api/allusers/", function(data)
+    {
+        var addedUsername = "";
+        $.each(data, function(i, item){
+            var current = item.username;
+
+            if (addedUsername != current){
+                addedUsername = item.username;
+                viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            }
+        });
+    });
+}
+
+function User(id, username, firstname, lastname, status) {
+    return {
+        id: ko.observable(id),
+        username: ko.observable(username),
+        firstname: ko.observable(firstname),
+        lastname: ko.observable(lastname),
+        status: ko.observable(status),
+
+        removeThisUser: function() {
+            if(confirm('Are you sure you want to remove this user?'))
+            {
+                viewModel.removeUser(this);
+            }
+        },
+
+        changeStatus: function() {
+            if (this.status() == "ACTIVE"){
+                this.status("DISABLED");
+            } else if (this.status() == "DISABLED") {
+                this.status("ACTIVE");
+            } else {
+                this.status("WAIT_ACTIVATION");
+            }
+            updateUserStatus(this);
+        }
+    };
+}
+
+function initPage() {
+    fetchUsersData();
+}

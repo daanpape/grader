@@ -301,6 +301,13 @@ class GraderAPI {
     }
 
     /*
+     * Get user information given a id
+     */
+    public static function getUserDataById($uid) {
+        return UserDAO::getUserById($uid);
+    }
+
+    /*
      * Get all users
      */
     public static function getAllUsersData() {
