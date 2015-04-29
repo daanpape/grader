@@ -1,3 +1,5 @@
+var $selectedcourseid;
+
 //viewmodel for the assess page
 function pageViewModel(gvm) {
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
@@ -81,6 +83,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
+                    $selectedcourseid = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -155,7 +158,7 @@ function pageViewModel(gvm) {
 }
 
 function getAllWorksheets() {
-    $.getJSON('/api/worksheets/' + gvm.courseid, function(data) {
+    $.getJSON('/api/worksheets/' + $selectedcourseid, function(data) {
         $.each(data, function(i, item) {
             console.log(data);
         });
