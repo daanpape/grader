@@ -147,6 +147,8 @@ $location = "adminEdit";
                                 </tr>
                                 </tbody>
                         </div>
+                    </tr>
+                    <tr>
 
                         <p class="h1">User Permissions</p>
                         <td>Permission</td>
