@@ -164,20 +164,20 @@ $location = "adminEdit";
                 </div>
             </form>
 
-
-            <div class="container">
-                <div class="row">
-                    <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
 
+
+<div class="container">
+    <div class="row">
+        <div id="bottom-col" class="col-md-12">
+            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+        </div>
+    </div>
+</div>
 </div>
 <!-- /#wrapper -->
 
