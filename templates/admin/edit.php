@@ -160,6 +160,16 @@ $location = "adminEdit";
                                 <input type="checkbox" data-bind="checked: isChecked"><label data-bind="text: item"></label><br />
                             </td>
                         </tr>
+                        <tr>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div id="bottom-col" class="col-md-12">
+                                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
                         </tbody>
                 </div>
             </form>
@@ -170,14 +180,6 @@ $location = "adminEdit";
 </div>
 <!-- /#page-wrapper -->
 
-
-<div class="container">
-    <div class="row">
-        <div id="bottom-col" class="col-md-12">
-            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-        </div>
-    </div>
-</div>
 </div>
 <!-- /#wrapper -->
 
