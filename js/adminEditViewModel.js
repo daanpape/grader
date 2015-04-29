@@ -9,26 +9,27 @@ function pageViewModel(gvm) {
     gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
 
     gvm.rights = ko.observableArray([]);
+    gvm.user = ko.observableArray([]);
 
-    gvm.updateUsers = function(user)
+    gvm.updateUser = function(user)
     {
-        gvm.users.push(user);
+        gvm.user.push(user);
     },
 
     gvm.removeUser = function(user) {
-        gvm.users.remove(user);
+        gvm.user.remove(user);
         removeUser(user);
     },
 
-    gvm.refreshUsers = function()
-    {
-        gvm.users.destroyAll();
+    gvm.clearStructure = function() {
+        gvm.rights.destroyAll();
+        gvm.user.destroyAll();
     }
 }
 
 function fetchUsersData()
 {
-    viewModel.refreshUsers();
+    viewModel.clearStructure();
     $.getJSON("/api/allusers/", function(data)
     {
         var addedUsername = "";
@@ -38,6 +39,33 @@ function fetchUsersData()
             if (addedUsername != current){
                 addedUsername = item.username;
                 viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
+            }
+        });
+    });
+}
+
+function getAllUserDataById(){
+    $.getJSON("/api/edituser/" + userid, function(data)
+    {
+        console.log("get user data");
+        var addedUsername = "";
+        $.each(data, function(i, item){
+            console.log(item.username);
+
+            var permissions = "";
+            var current = item.username;
+            $.each(data, function(i, item)
+            {
+                if(item.username == current){
+                    permissions += item.role + " - ";
+                }
+            });
+
+            permissions = permissions.substr(0, permissions.length - 3);
+
+            if (addedUsername != current){
+                addedUsername = item.username;
+                viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
             }
         });
     });
@@ -72,5 +100,5 @@ function User(id, username, firstname, lastname, status) {
 }
 
 function initPage() {
-    fetchUsersData();
+    getAllUserDataById();
 }

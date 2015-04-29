@@ -135,7 +135,7 @@ $location = "adminPermissions";
                     <td style="width: 15%" data-bind="text: firstname"></td>
                     <td style="width: 15%" data-bind="text: lastname"></td>
                     <td style="width: 25%" data-bind="text: permissions"></td>
-                    <td style="width: 15%"><a href="edit.php" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a></td>
+                    <td style="width: 15%"><a  data-bind="attr:{'href': '/edit/' + id}" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a></td>
                 </tr>
                 </tbody>
         </div>
