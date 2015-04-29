@@ -50,7 +50,6 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
-    getCheckedFields();
     $.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
