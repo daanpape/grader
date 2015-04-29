@@ -115,7 +115,7 @@ function showYesNoModalCopy(body, callback) {
         callback(true);
         hideModal();
     });
-    
+
     $('#ynmodal-n-btn').click(function () {
         callback(false);
         hideModal();

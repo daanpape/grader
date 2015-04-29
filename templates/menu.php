@@ -128,7 +128,7 @@ require_once 'dptcms/config.php';
         <div class="modal_title" data-bind="text: yesNoModaltitle">
             Are you sure?
         </div>
-        <div id="modal_title_body" data-bind="text: yesNoModalBody">
+        <div id="modal_title_bodyCopy" data-bind="text: yesNoModalBody">
             Bent u zeker dat u dit wenst te verwijderen?
         </div>
         <div class="form-inline rightbtns">
