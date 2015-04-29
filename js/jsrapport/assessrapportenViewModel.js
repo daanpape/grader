@@ -235,11 +235,11 @@ function initPage() {
         //$('#worksheetComplete').autocomplete({ source: getAllTeachers() });
     });
 
-    $('#addGroupBtn').click(function() {
+    $('#addNewWorksheetBtn').click(function() {
 
         //effectief toevoegen
         //table herladen
-        
+
         $('addGroupForm').hide();
     });
 }
