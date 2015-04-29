@@ -87,6 +87,7 @@ $location = "adminEdit";
         <div>
             <form id="userForm">
                 <input type="hidden" name="lang" value="EN"/>
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
@@ -159,7 +160,6 @@ $location = "adminEdit";
                             <td data-bind="foreach: viewModel.checkedRights">
                                 <input type="checkbox" data-bind="checked: isChecked"><label data-bind="text: item"></label><br />
                             </td>
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
 
                         </tr>
                         </tbody>
