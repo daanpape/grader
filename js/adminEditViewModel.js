@@ -60,6 +60,7 @@ function getAllUserDataById(edituserid){
             });
 
             if (addedUsername != current){
+                addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
 
