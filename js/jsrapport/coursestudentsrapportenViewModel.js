@@ -213,6 +213,7 @@ function loadTablePage(pagenr,course)
         }
 
         console.log("prev: " + data.next);
+        data.next = true;
         if (data.next != "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
