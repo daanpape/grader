@@ -88,7 +88,6 @@ function showYesNoModal(body, callback) {
         hideModal();
     });
 
-
     $('#ynmodal-n-btn').click(function () {
         callback(false);
         hideModal();
@@ -96,14 +95,14 @@ function showYesNoModal(body, callback) {
 }
 
 /*
- * Show the Yes and No modal with callback
+ * Show the Yes and No modal with callback to copy
  */
-function showYesNoModal(body, callback) {
+function showYesNoModalCopy(body, callback) {
     // Hide the login window
     $('#login_modal').hide();
     $('#general_modal').hide();
     $('#upload_modal').hide();
-    $('#yes_no_modal').show();
+    $('#yes_no_modalcopy').show();
 
     // Fill up the body
     $('#modal_title_body').html = body;
