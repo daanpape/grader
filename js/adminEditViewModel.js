@@ -48,7 +48,6 @@ function pageViewModel(gvm) {
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
-    checkPermissions();
 }
 
 function setRights(){
@@ -69,24 +68,25 @@ function getAllUserDataById(edituserid){
             $.each(data, function(i, item)
             {
                 if(item.username == current && addedUsername != current){
-                    console.log(current + " " + item.roleid + " " + item.role );
+                    console.log(current + " " + item.role);
                     viewModel.updatePermissions(item.role)
                 }
             });
 
-            if (addedUsername != current){
+            if (addedUsername != current) {
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
+
+        checkPermissions();
     });
 }
 
 function checkPermissions(){
 
-    console.log(viewModel.rights()[0]);
-    console.log(viewModel.allRights()[0]);
+    console.log(viewModel.rights()[1]);
     $.each(viewModel.allRights, function(i, item){
         console.log(viewModel.rights.size());
         $.each(viewModel.rights(), function(i, item){
