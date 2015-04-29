@@ -157,7 +157,7 @@ $app->get('/api/coursefromteacher/:userid', function ($userid) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
     // Get all courses
-    $pagedata = RapportAPI::getAllCourseFromTeacher();
+    $pagedata = RapportAPI::getAllCourseFromTeacher($userid);
     echo json_encode($pagedata);
 });
 //get teacher from database
