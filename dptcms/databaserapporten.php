@@ -145,7 +145,7 @@ class rapportenDAO {
                                     JOIN course_studentlist_teacher_rapport ON studentlist_rapport.id = course_studentlist_teacher_rapport.studentlist
                                     WHERE course_studentlist_teacher_rapport.teacher = :uid
                                     AND course_studentlist_teacher_rapport.course = :cid
-                                    AND studentlist_rapport.Active = 1");
+                                    AND studentlist_rapport.Active = 1 course_studentlist_teacher_rapport.Active = 1");
             $stmt->bindValue(':cid', (int) $cid, PDO::PARAM_INT);
             $stmt->bindValue(':uid', (int) $uid, PDO::PARAM_INT);
             $stmt->execute();
