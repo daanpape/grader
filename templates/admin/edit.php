@@ -160,7 +160,7 @@ $location = "adminEdit";
                                 <table class="table table-striped">
                                     <tr>
                                         <td data-bind="foreach: viewModel.allRights, value: userRights">
-                                            <!-- ko if: $data.allRights === userRights -->
+                                            <!-- ko if: $data.allRights === $data.userRights -->
                                             <input type="checkbox" checked="true"><label data-bind="text: $data.allRights"></label>
                                             <!-- /ko -->
                                             <!-- ko if: $data.allRights !== userRights -->
