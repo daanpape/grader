@@ -69,7 +69,7 @@ function addNewWorksheet(serialData, courseid, callback) {
         data: serialData,
         success: function(data) {
             callback(true);
-            window.location = "/api/worksheet/" + data['id'] + "/" + data['name'];
+            window.location = "/api/worksheet/" + data['id'] + "/" + data['name'] + '/' + courseid;
         },
         error: function(data) {
             callback(false);
