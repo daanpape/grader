@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
+            console.log(data);
             if (!$.isEmptyObject(data)) {
                 gvm.availableModules.removeAll();
                 
