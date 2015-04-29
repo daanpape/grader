@@ -63,13 +63,13 @@ $location = "adminPermissions";
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
+                        <a href="/admin/home"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
+                        <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
+                        <a href="/admin/users"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
                     </li>
                 </ul>
             </div>
