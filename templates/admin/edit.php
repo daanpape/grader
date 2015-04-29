@@ -153,20 +153,23 @@ $location = "adminEdit";
                             <td>Can only do studentactions</td>
                         </tr>
                         </tbody>
+                        <tbody>
+                        <tr>
+                            <td>Permission</td>
+                            <td>
+                                <table class="table table-striped"  data-bind="foreach: allRights">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox"><label date-bind="value: permissions"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
                 </div>
                 <table>
-                    <tr>
-                        <td>Permission</td>
-                        <td>
-                            <table class="table table-striped"  data-bind="foreach: allRights">
-                                <tr>
-                                    <td>
-                                        <input type="checkbox"><label date-bind="value: permissions"></label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
+
                 </table>
 
                 <div class="container">
