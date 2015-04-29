@@ -3,7 +3,7 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
-    gvm.edituserid = $("#projectHeader").data('value');
+    gvm.edituserid = $("#usereditHeader").data('value');
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -13,7 +13,7 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById();
+    getAllUserDataById(gvm.edituserid());
 
     gvm.rights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
@@ -43,7 +43,7 @@ function initPage() {
     getAllUserDataById();
 }
 
-function getAllUserDataById(){
+function getAllUserDataById(edituserid){
     console.log("get " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
