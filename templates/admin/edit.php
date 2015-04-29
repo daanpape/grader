@@ -78,14 +78,6 @@ $location = "adminEdit";
 
     <div id="page-wrapper">
         <div class="row">
-
-            <div class="container">
-                <div class="row">
-                    <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-12">
                 <h1 class="page-header" id="usereditHeader" data-value="<?php echo $edituserid ?>"  data-bind="text: pageHeaderEditUser">Edit User</h1>
             </div>
@@ -180,6 +172,13 @@ $location = "adminEdit";
 </div>
 <!-- /#page-wrapper -->
 
+<div class="container">
+    <div class="row">
+        <div id="bottom-col" class="col-md-12">
+            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+        </div>
+    </div>
+</div>
 </div>
 <!-- /#wrapper -->
 
