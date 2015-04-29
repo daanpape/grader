@@ -176,7 +176,7 @@ $location = "adminEdit";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../../templates/jsdepends.php') ?>
+<?php include_once('adminjsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
