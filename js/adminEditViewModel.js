@@ -83,6 +83,7 @@ function User(id, username, firstname, lastname, status, permission) {
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
+        permission: ko.observableArray(permission),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))
