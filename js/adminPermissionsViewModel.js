@@ -41,7 +41,7 @@ function fetchUsersData()
 
             if (addedUsername != current){
                 addedUsername = item.username;
-                viewModel.updateUsersPermissions(new User(item.id, item.username, item.firstname, item.lastname, permissions));
+                viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, permissions));
             }
         });
     });
