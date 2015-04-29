@@ -45,7 +45,7 @@ $location = "projectRules";
                         </td>
 
                         <td>
-                            <select data-bind="foreach: viewModel.projectActions, value: name" class="form-control form-next">
+                            <select data-bind="foreach: viewModel.projectActions, value: action.name" class="form-control form-next">
                                 <option data-bind="text: name"></option>
                             </select>
                             <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
