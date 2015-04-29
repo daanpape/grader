@@ -156,8 +156,14 @@ $location = "adminEdit";
 
                         <p class="h1">User Permissions</p>
                         <td>Permission</td>
-                        <td data-bind="foreach: rights">
-
+                        <td>
+                            <table class="table table-striped">
+                                <tr data-bind="foreach: allRights">
+                                    <td>
+                                        <input type="checkbox"><label date-bind="value: permissions"></label>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
