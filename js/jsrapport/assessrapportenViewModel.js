@@ -173,6 +173,7 @@ function getAllTeachers() {
 function getAllWorksheets() {
     worksheets = [];
     worksheetsid = [];
+    console.log("geselecteerd courseid " + selectedcourseid)
     $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
