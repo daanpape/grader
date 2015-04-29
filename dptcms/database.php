@@ -765,9 +765,7 @@ class ClassDAO {
                     $rule = new stdClass();
                     $rule->id = $row['id'];
                     $rule->name = $row['name'];
-                    $rule->subject = $row['subject'];
-                    $rule->subject_id = $row['subject_id'];
-                    $rule->action = $row['action'];
+                    $rule->action = array("id" => $row['subject_id'], "name"=>$row['action'], "subject"=>$row['subject']);
                     $rule->operator = $row['operator'];
                     $rule->value = $row['value'];
                     $rule->sign = $row['sign'];
