@@ -72,6 +72,7 @@ function pageViewModel(gvm) {
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursefromteacher/' + gvm.userid, function(data) {
+            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -156,7 +157,7 @@ function pageViewModel(gvm) {
 
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/studentsrapport/page/' + pagenr, function(data){
+    $.getJSON('/api/worksheets/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
