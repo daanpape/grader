@@ -33,6 +33,7 @@
     "AssessTitle" : "Beoordeel een Project",
     "YesNoModaltitle" : "Bent u zeker?",
     "YesNoModalBody" : "Bent u zeker dat u dit item wilt verwijderen?",
+    "YesNoModalBodyCopy" : "Bent u zeker dat u dit item wilt kopiëren?",
     "Yes" : "Ja",
     "No" : "Nee",
 
@@ -121,5 +122,9 @@
     "WorksheetNameRapport" : "Werkfiches",
     "WorksheetRapportManual" : "Overzicht van de werfiches",
     "AddNewWorksheet" : "Voeg werkfiche toe",
-    "EditWorksheet" : "Pas werkfiche aan"
+    "EditWorksheet" : "Pas werkfiche aan",
+    "FormEquip" : "Materiaal",
+    "FormMethod" : "Werkwijze",
+
+    "UserEditTitle": "Gebruiker wijzigen"
 }

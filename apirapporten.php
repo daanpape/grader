@@ -17,6 +17,10 @@ Class RapportAPI {
         /* Return the requested pages */
         return rapportenDAO::getAllCourse();
     }
+    public static function getAllCourseFromTeacher($userid) {
+        /* Return the requested pages */
+        return rapportenDAO::getAllCourseFromTeacher($userid);
+    }
     public static function getAllStudents() {
         /* Return all students */
         return rapportenDAO::getAllStudents();
@@ -49,6 +53,10 @@ Class RapportAPI {
     public static function getAllWorksheets($courseid, $start, $count) {
         return rapportenDAO::getAllWorksheets($courseid, $start, $count);
     }
+
+    public static function getAllWorksheetsNoPager($courseid) {
+        return rapportenDAO::getAllWorksheetsNoPager($courseid);
+    }
     
     public static function getWorksheetCount() {
         return rapportenDAO::getWorksheetCount();
@@ -58,7 +66,7 @@ Class RapportAPI {
         /* get teacher from database */
         return rapportenDAO::getTeacher();
     }
-    
+
     public static function getStudentlistFromCourseID($cid, $uid) {
         return rapportenDAO::getStudentlistFromCourseID($cid, $uid);
     }
@@ -203,6 +211,16 @@ Class RapportAPI {
             return array(
                 "id" => $id,
                 "name" => $name);
+        } else {
+            return -1;
+        }
+    }
+    
+    public static function updateWorksheetProperties($id, $equip, $method) {
+        if (rapportenDAO::updateWorksheetProperties($id, $equip, $method)) {
+            return array(
+                "equipment" => $equip,
+                "method" => $method);
         } else {
             return -1;
         }

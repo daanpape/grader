@@ -36,8 +36,8 @@ $app->get('/api/coursestudents/:id/:name', function($id, $name) use ($app) {
     $app->render('templatesrapport/coursestudentsrapporten.php', array('coursestudentsid' => $id, 'coursestudentsname' => $name));
 });
 
-$app->get('/api/worksheet/:id/:name', function($id, $name) use ($app) {
-    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name));
+$app->get('/api/worksheet/:id/:name/:courseid', function($id, $name, $courseid) use ($app) {
+    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid));
 });
 
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
@@ -84,6 +84,13 @@ $app->get('/api/worksheets/page/:pagenr/:courseid', function ($pagenr, $courseid
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalWorksheets));
 });
+$app->get('/api/worksheets/:courseid', function ($courseid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    $data = RapportAPI::getAllWorksheetsNoPager($courseid);
+    echo json_encode($data);
+});
 //get all student form a selected course with pages
 $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
@@ -91,13 +98,13 @@ $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     $response->header('Content-Type', 'application/json');
     // Calculate start and count
     $pg = Pager::pageToStartStop($pagenr);
-    // Get total number of projecttypes in the database
-    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+   // Get total number of projecttypes in the database
+   // $pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
     $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count);
     $totalcourses = RapportAPI::getStudentsCountFromCourse();
-    // Get the page
-    echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
-});
+ //Get the page
+  echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+   });
 //get all combination teacher and studentlist with pages
 $app->get('/api/getStudentGroupTeacherByCourseID/page/:pagenr/:course', function ($pagenr, $course) use ($app) {
     // Use json headers
@@ -150,6 +157,14 @@ $app->get('/api/coursedrop', function () use ($app) {
     $response->header('Content-Type', 'application/json');
     // Get all courses
     $pagedata = RapportAPI::getAllCourse();
+    echo json_encode($pagedata);
+});
+$app->get('/api/coursefromteacher/:userid', function ($userid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all courses
+    $pagedata = RapportAPI::getAllCourseFromTeacher($userid);
     echo json_encode($pagedata);
 });
 //get teacher from database
@@ -265,6 +280,14 @@ $app->put('/api/updateworksheet/:id', function($id) use ($app){
     // Update the existing resource
     echo json_encode(RapportAPI::updateWorksheet($id, $app->request->post('name')));
 });
+$app->put('/api/worksheetproperties/:id', function($id) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(RapportAPI::updateWorksheetProperties($id, $app->request->post('equipment'), $app->request->post('method')));
+});
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers
@@ -373,6 +396,7 @@ $app->put('/api/studentrapport/:id', function($id) use ($app) {
    echo json_encode(RapportAPI::updateStudent(
         $id, $app->request->post('firstname'), $app->request->post('lastname'), $app->request->post('username')));
 });
+
 
 $app->post('/api/coursecopy/:id', function ($id) use ($app) {
     // Use json headers

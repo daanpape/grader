@@ -91,6 +91,24 @@ class rapportenDAO {
             return false;
         }
     }
+
+    //Makes it possible to show a Teacher only the courses he teach
+    public static function getAllCourseFromTeacher($userid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT DISTINCT(course_rapport.id), course_rapport.name
+                                        FROM course_studentlist_teacher_rapport LEFT JOIN course_rapport
+                                        ON course_studentlist_teacher_rapport.course = course_rapport.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1' AND course_rapport.active =  '1'
+                                        AND teacher =  :teacher");
+            $stmt->bindValue(':teacher', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get courses', $err);
+            return false;
+        }
+    }
     
     public static function getAllWorksheets($courseid, $start, $count) {
         try {
@@ -99,6 +117,19 @@ class rapportenDAO {
             $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets', $err);
+            return null;
+        }
+    }
+
+    public static function getAllWorksheetsNoPager($courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM werkfiche_rapport WHERE Course = :courseid AND Active = '1'");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -127,7 +158,7 @@ class rapportenDAO {
                                     JOIN course_studentlist_teacher_rapport ON studentlist_rapport.id = course_studentlist_teacher_rapport.studentlist
                                     WHERE course_studentlist_teacher_rapport.teacher = :uid
                                     AND course_studentlist_teacher_rapport.course = :cid
-                                    AND studentlist_rapport.Active = 1");
+                                    AND studentlist_rapport.Active = 1 AND course_studentlist_teacher_rapport.Active = 1");
             $stmt->bindValue(':cid', (int) $cid, PDO::PARAM_INT);
             $stmt->bindValue(':uid', (int) $uid, PDO::PARAM_INT);
             $stmt->execute();
@@ -303,19 +334,10 @@ class rapportenDAO {
         }
     }
 
-    /*
-                            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
-                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                    WHERE module_rapport.course = :courseid
-
-                                    ORDER BY mid, did, cid ASC");
-    */
-
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname
+            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname,course_studentlist_teacher_rapport.id
                                         FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
@@ -329,7 +351,7 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select all courses', $err);
+            Logger::logError('could not select all connections between an studentlist an teachers', $err);
             return null;
         }
     }
@@ -337,7 +359,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(*)
+            $stmt = $conn->prepare("SELECT count(course_studentlist_teacher_rapport.id)
                                       FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
@@ -347,9 +369,9 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
-            Logger::logError('Could not count all courses in the database', $err);
+            Logger::logError('Could not count all connections between an studentlist an teachers', $err);
             return 0;
-        }
+                }
     }
 
     /*
@@ -425,6 +447,18 @@ class rapportenDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE werkfiche_rapport SET Name = ? WHERE id = ?");
             $stmt->execute(array($name, $id));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update worksheet', $err);
+            return false;
+        }
+    }
+    
+    public static function updateWorksheetProperties($id, $equip, $method) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET equipment = ?, method = ? WHERE id = ?");
+            $stmt->execute(array($equip, $method, $id));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update worksheet', $err);

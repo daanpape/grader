@@ -39,27 +39,24 @@ function fetchUsersData()
 
             permissions = permissions.substr(0, permissions.length - 3);
 
+            if (permissions == "null" || permissions == null){
+                permissions = "Nog geen rechten toegekend";
+            }
+
             if (addedUsername != current){
                 addedUsername = item.username;
-                viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
+                viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, permissions.toUpperCase()));
             }
         });
     });
 }
 
-function User(username, firstname, lastname, permissions) {
+function User(id, username, firstname, lastname, permissions) {
     return {
+        id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         permissions: ko.observable(permissions),
-
-        editPermissions: function() {
-
-
-            //WORDT NOG NIET OPGESLAAN OP DB
-            console.log("edit");
-        }
-
     };
 }

@@ -62,13 +62,13 @@ $location = "adminUsers";
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
+                        <a href="/admin/home"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</a>
+                        <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</a>
+                        <a href="/admin/users"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</a>
                     </li>
                 </ul>
             </div>
@@ -83,7 +83,7 @@ $location = "adminUsers";
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
             <div class="col-lg-1">
-                <a href="adduser.php" type="button" class="btn btn-default pagination-button" id="addUser">
+                <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
                     <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
                 </a>
             </div>
@@ -126,7 +126,7 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../jsdepends.php') ?>
+<?php include_once('templates/jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 

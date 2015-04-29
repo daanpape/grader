@@ -34,6 +34,7 @@
     "AssessTitle" : "Assess a project",
     "YesNoModaltitle" : "Are you sure?",
     "YesNoModalBody" : "Are you sure you want to delete this item?",
+    "YesNoModalBodyCopy" : "Are you sure you want to copy this item?",
     "Yes" : "Yes",
     "No" : "No",
 
@@ -124,5 +125,9 @@
     "WorksheetNameRapport" : "Worksheets",
     "WorksheetRapportManual" : "Summary of the worksheets",
     "AddNewWorksheet" : "Add worksheet",
-    "EditWorksheet" : "Edit worksheet"
+    "EditWorksheet" : "Edit worksheet",
+    "FormEquip" : "Equipment",
+    "FormMethod" : "Method",
+
+    "UserEditTitle": "Edit user"
 }

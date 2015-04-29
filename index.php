@@ -250,6 +250,16 @@ $app->get('/api/currentuser', function() use ($app) {
     echo json_encode($userdata);
 });
 
+$app->get('/api/edituser/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all user data by id
+    $userdata = GraderAPI::getEditUserDataById($id);
+
+    echo json_encode($userdata);
+});
+
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
