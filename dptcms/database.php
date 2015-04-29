@@ -962,10 +962,10 @@ class UserDAO {
      * @param type $id the user id
      * @return user details
      */
-    public static function getUserById($uid) {
+    public static function getEditUserById($uid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt = $conn->prepare("SELECT r.role, r.id AS roleid, u.id AS userid, u.username, u.firstname, u.lastname, u.status FROM users AS u LEFT JOIN user_roles AS ur ON u.id = ur.user_id LEFT JOIN roles AS r ON ur.role_id = r.id WHERE u.id = ?");
             $stmt->execute(array($uid));
             return $stmt->fetchObject();
         } catch (PDOException $err) {
