@@ -793,7 +793,7 @@ class ClassDAO {
             foreach ($data as $rule) {
                 if(!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
-                    $stmt->execute(array($id, $rule->name, $rule->action->name(), $rule->operator, (int)$rule->value, (int)$rule->result));
+                    $stmt->execute(array($id, $rule->name, $rule->action['name'], $rule->operator, (int)$rule->value, (int)$rule->result));
                     $count++;
                 }
                 else
@@ -967,7 +967,7 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT r.role, r.id AS roleid, u.id AS userid, u.username, u.firstname, u.lastname, u.status FROM users AS u LEFT JOIN user_roles AS ur ON u.id = ur.user_id LEFT JOIN roles AS r ON ur.role_id = r.id WHERE u.id = ?");
             $stmt->execute(array($uid));
-            return $stmt->fetchObject();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             return null;
         }

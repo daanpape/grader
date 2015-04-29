@@ -48,25 +48,11 @@ function getAllUserDataById(edituserid){
 
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
-        console.log(data);
         var addedUsername = "";
-        $.each(data, function(item, i){
-            console.log(item.username);
-
-            var current = item.username;
-            $.each(data, function(itemdata, i)
-            {
-                if(item.username == current){
-                    console.log(itemdata.roleid + " " + itemdata.role );
-                    viewModel.updatePermissions(new Permission(itemdata.roleid, itemdata.role))
-                }
-            });
-
-            if (addedUsername != current){
-                addedUsername = item.username
-                console.log(addedUsername);
-                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
-            }
+        $.each(data, function(i, item){
+            console.log(data);
+            console.log(i);
+            console.log(item);
         });
     });
 }
