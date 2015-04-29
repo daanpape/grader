@@ -793,7 +793,7 @@ class ClassDAO {
             foreach ($data as $rule) {
                 if(!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
-                    $stmt->execute(array($id, $rule->name, $rule->action->name(), $rule->operator, (int)$rule->value, (int)$rule->result));
+                    $stmt->execute(array($id, $rule->name, $rule->action->name, $rule->operator, (int)$rule->value, (int)$rule->result));
                     $count++;
                 }
                 else
