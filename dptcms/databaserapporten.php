@@ -96,11 +96,7 @@ class rapportenDAO {
     public static function getAllCourseFromTeacher($userid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT course_rapport.id, course_rapport.name
-                                        FROM course_studentlist_teacher_rapport LEFT JOIN course_rapport
-                                        ON course_studentlist_teacher_rapport.course = course_rapport.id
-                                        WHERE course_studentlist_teacher_rapport.active =  '1' AND course_rapport.active =  '1'
-                                        AND teacher =  :userid ");
+            $stmt = $conn->prepare("SELECT * FROM course_rapport WHERE  active = '1' ");
             $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
