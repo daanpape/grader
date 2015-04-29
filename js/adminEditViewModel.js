@@ -40,13 +40,14 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    getAllUserDataById();
+
 }
 
 function getAllUserDataById(edituserid){
     console.log("get " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
+        console.log(data);
         var addedUsername = "";
         $.each(data, function(i, item){
             console.log(item.username);

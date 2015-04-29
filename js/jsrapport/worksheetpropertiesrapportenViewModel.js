@@ -22,6 +22,7 @@ function pageViewModel(gvm) {
                 
                 $.each(data, function(i, item) {
                     var tblObject = {modname: item.name, competences: gvm.availableCompetences};
+                    console.log(tblObject);
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
                         gvm.updateCompetences(item.doelstellingen);
@@ -37,6 +38,7 @@ function pageViewModel(gvm) {
         
         $.each(data, function(i, item) {
             var tblObject = {comname: item.name, criterias: gvm.availableCriteria};
+            console.log(tblObject);
             gvm.availableCompetences.push(tblObject);
             if (item.criterias !== null) {
                 gvm.updateCriteria(item.criterias);
@@ -50,6 +52,7 @@ function pageViewModel(gvm) {
         
         $.each(data, function(i, item){
             var tblObject = {critname: item.name};
+            console.log(tblObject);
             gvm.availableCriteria.push(tblObject);
         });
         makeChecklist();
