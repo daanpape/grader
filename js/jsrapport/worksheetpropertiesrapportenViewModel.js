@@ -19,9 +19,12 @@ function pageViewModel(gvm) {
             console.log(data);
             if (!$.isEmptyObject(data)) {
                 gvm.availableModules.removeAll();
+                gvm.availableCompetences.removeAll();
+                gvm.availableCriteria.removeAll();
                 
                 $.each(data, function(i, item) {
                     var tblObject = {modname: item.name, competences: gvm.availableCompetences};
+                    console.log(tblObject);
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
                         gvm.updateCompetences(item.doelstellingen);
@@ -32,11 +35,10 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.updateCompetences = function(data) {
-        gvm.availableCompetences.removeAll();
-        
+    gvm.updateCompetences = function(data) {          
         $.each(data, function(i, item) {
             var tblObject = {comname: item.name, criterias: gvm.availableCriteria};
+            console.log(tblObject);
             gvm.availableCompetences.push(tblObject);
             if (item.criterias !== null) {
                 gvm.updateCriteria(item.criterias);
@@ -45,11 +47,10 @@ function pageViewModel(gvm) {
         makeChecklist();
     }
     
-    gvm.updateCriteria = function(data) {
-        gvm.availableCriteria.removeAll();
-        
+    gvm.updateCriteria = function(data) {     
         $.each(data, function(i, item){
             var tblObject = {critname: item.name};
+            console.log(tblObject);
             gvm.availableCriteria.push(tblObject);
         });
         makeChecklist();
