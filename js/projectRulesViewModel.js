@@ -161,7 +161,7 @@ function Rule(viewmodel,id, name, action, operator, value, sign, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
-        action: ko.observable(new Action(0,'Test',"Test")),
+        action: ko.observable(action),
         operator: ko.observable(operator),
         value: ko.observable(value),
         sign: ko.observable(sign),
