@@ -95,33 +95,6 @@ function showYesNoModal(body, callback) {
     });
 }
 
-/*
- * Show the Yes and No modal with callback
- */
-function showYesNoModalCopy(body, callback) {
-    // Hide the login window
-    $('#login_modal').hide();
-    $('#general_modal').hide();
-    $('#upload_modal').hide();
-    $('#yes_no_modalCopy').show();
-
-    // Fill up the body
-    $('#modal_title_body').html = body;
-
-    // Show the modal
-    $('#modaloverlay').show();
-
-    $('#ynmodel-y-btn').click(function () {
-        callback(true);
-        hideModal();
-    });
-
-    $('#ynmodal-n-btn').click(function () {
-        callback(false);
-        hideModal();
-    });
-}
-
 var uploadCallback;
 
 function showUploadModal(callback)

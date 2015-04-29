@@ -123,20 +123,6 @@ require_once 'dptcms/config.php';
         <!-- copy modal -->
     </div>
 
-    <!-- Yes no modalCopy -->
-    <div id="yes_no_modalCopy" class="modal_box extrapadding">
-        <div class="modal_title" data-bind="text: yesNoModaltitle">
-            Are you sure?
-        </div>
-        <div id="modal_title_bodyCopy" data-bind="text: yesNoModalBody">
-            Bent u zeker dat u dit wenst te verwijderen?
-        </div>
-        <div class="form-inline rightbtns">
-            <button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
-            <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
-        </div>
-        <!-- copy modal -->
-    </div>
 
     <!-- Upload modal -->
     <div id="upload_modal" class="modal_box extrapadding">
