@@ -132,6 +132,7 @@ function fetchProjectRules()
     {
         $.each(data, function(i, item) {
             var action = new Action(item.action.id,item.action.name,item.action.subject);
+            console.log(item.action.name);
             viewModel.updateRule(new Rule(viewModel,item.id,item.name,action,item.operator,item.value,item.sign, item.result));
         });
     });
