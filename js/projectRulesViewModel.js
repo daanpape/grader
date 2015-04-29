@@ -26,6 +26,7 @@ function pageViewModel(gvm) {
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
+    gvm.availableSigns = ko.observableArray([]);
 
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
@@ -78,6 +79,10 @@ function setOperators()
     viewModel.availableOperators.push("<=");
     viewModel.availableOperators.push(">");
     viewModel.availableOperators.push(">=");
+
+
+    viewModel.availableSigns.push("+");
+    viewModel.availableSigns.push("-");
 }
 
 function removeRuleFromDb(rule)
@@ -126,7 +131,9 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
+            var action = new Action(item.action.id,item.action.name,item.action.subject);
+            console.log(item.action.name);
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action,item.operator,item.value,item.sign, item.result));
         });
     });
 }
@@ -151,13 +158,14 @@ function saveProjectRules() {
  * Rule class
  */
 
-function Rule(viewmodel,id, name, action, operator, value, result) {
+function Rule(viewmodel,id, name, action, operator, value, sign, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
         action: ko.observable(action),
         operator: ko.observable(operator),
         value: ko.observable(value),
+        sign: ko.observable(sign),
         result: ko.observable(result),
 
         removeThisRule: function() {

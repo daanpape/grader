@@ -105,11 +105,11 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <select class="form-control form-next">
-                                <!-- ko if: status() === 'ACTIVE' --> -->
+                                <!-- ko if: status() === 'ACTIVE' -->
                                 <option selected="true" data-bind="if:status">Active</option>
                                 <option data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() !== 'ACTIVE' --> -->
+                                <!-- ko if: status() !== 'ACTIVE' -->
                                 <option data-bind="if:status">Active</option>
                                 <option selected="true" data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
@@ -117,56 +117,63 @@ $location = "adminEdit";
                         </td>
                     </tr>
                     <tr>
-
-                        <div>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th data-bind="text: permissionRole">Role</th>
-                                    <th data-bind="text: permissionDescription">Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>GUEST</td>
-                                    <td>When not logged in you get the GUEST role.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>SUPERUSER</td>
-                                    <td>The superuser role must have access to everything...</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>USER</td>
-                                    <td>Contains rights for every USER in the system.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>STUDENT</td>
-                                    <td>Can only do studentactions</td>
-                                </tr>
-                                </tbody>
-                        </div>
-                    </tr>
-                    <tr>
-
-                        <p class="h1">User Permissions</p>
-                        <td>Permission</td>
-                        <td>
-                            <table class="table table-striped">
-                                <tr data-bind="foreach: allRights">
-                                    <td>
-                                        <input type="checkbox"><label date-bind="value: permissions"></label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
                 </table>
+
+
+                <h2>User Permissions</h2>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th data-bind="text: permissionRole">Role</th>
+                            <th data-bind="text: permissionDescription">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>GUEST</td>
+                            <td>When not logged in you get the GUEST role.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>SUPERUSER</td>
+                            <td>The superuser role must have access to everything...</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>USER</td>
+                            <td>Contains rights for every USER in the system.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>STUDENT</td>
+                            <td>Can only do studentactions</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr >
+                            <td>Permission</td>
+                            <td data-bind="foreach: viewModel.allRights, value: allRights">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <td data-bind="foreach: viewModel.rights, value: rights">
+                                            <!-- ko if: $data.allRights === $data.rights -->
+                                            <input type="checkbox" checked="true"><label data-bind="text: $data.allRights"></label>
+                                            <!-- /ko -->
+                                            <!-- ko if: $data.allRights !== userRights -->
+                                            <input type="checkbox"><label data-bind="text: $data.allRights"></label>
+                                            <!-- /ko -->
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                </div>
 
                 <div class="container">
                     <div class="row">
