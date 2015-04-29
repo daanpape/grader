@@ -1,7 +1,7 @@
 function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
-    gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("UserEditTitle");}, gvm);
+    gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -37,6 +37,7 @@ function initPage() {
 }
 
 function getAllUserDataById(){
+    console.log("get user data");
     $.getJSON("/api/edituser/" + userid, function(data)
     {
         console.log("get user data");
