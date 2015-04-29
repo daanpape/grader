@@ -200,8 +200,11 @@ function loadTablePage(pagenr,course)
         //TODO pagers doen werken
         //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
         //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
+        //Om dt voorlopig te doen werken van == een != gemaakt
         /* Let previous en next buttons work */
-        if(data.prev == "none"){
+
+        //Om dt voorlopig te doen werken van == een != gemaakt
+        if(data.prev != "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
@@ -210,7 +213,8 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        if(data.next == "none"){
+        //Om dt voorlopig te doen werken van == een != gemaakt
+        if (data.next != "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
