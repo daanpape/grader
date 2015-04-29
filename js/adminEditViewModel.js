@@ -70,7 +70,7 @@ function getAllUserDataById(edituserid){
             {
                 if(item.username == current && addedUsername != current){
                     console.log(current + " " + item.roleid + " " + item.role );
-                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
+                    viewModel.updatePermissions(item.role)
                 }
             });
 
@@ -91,19 +91,11 @@ function checkPermissions(){
         console.log(viewModel.rights.size());
         $.each(viewModel.rights(), function(i, item){
             console.log(viewModel.rights());
-            console.log(i.permission() + " " + item.permission());
             console.log("rights");
 
 
         });
     });
-}
-
-function Permission(id, permissions) {
-    return {
-        id: ko.observable(id),
-        permission: ko.observable(permissions)
-    };
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
