@@ -113,7 +113,7 @@ function checkPermissions(){
     });
 
     $.each(viewModel.checkedRights(), function(i, item){
-        console.log(" - " + item["item"]);
+        console.log(" - " + item["item"] + " - " + item["checked"]);
     });
 }
 
