@@ -11,8 +11,6 @@ function pageViewModel(gvm) {
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
-    gvm.availableCompetences = ko.observableArray([]);
-    gvm.availableCriteria = ko.observableArray([]);
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
@@ -23,11 +21,10 @@ function pageViewModel(gvm) {
                 gvm.availableCriteria.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modname: item.name, competences: gvm.availableCompetences};
-                    console.log(tblObject);
+                    var tblObject = {modname: item.name, competences: new Array()};
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
-                        gvm.updateCompetences(item.doelstellingen);
+                        gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
                 });
                 makeChecklist();
@@ -35,23 +32,21 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.updateCompetences = function(data) {          
+    gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comname: item.name, criterias: gvm.availableCriteria};
-            console.log(tblObject);
-            gvm.availableCompetences.push(tblObject);
+            var tblObject = {comname: item.name, criterias: new Array()};
+            competences.push(tblObject);
             if (item.criterias !== null) {
-                gvm.updateCriteria(item.criterias);
+                gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
         });
         makeChecklist();
     }
     
-    gvm.updateCriteria = function(data) {     
+    gvm.updateCriteria = function(data, criteria) {     
         $.each(data, function(i, item){
             var tblObject = {critname: item.name};
-            console.log(tblObject);
-            gvm.availableCriteria.push(tblObject);
+            criteria.push(tblObject);
         });
         makeChecklist();
     }
