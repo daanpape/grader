@@ -63,7 +63,7 @@ $location = "projectRules";
                                     <option>-</option>
                                 </select>
                                 <input type="text" class="form-control form-next" placeholder="value"  data-bind="value: result"><span>%</span>
-                                <button class="btn deleteRuleBtn" data-bind="click: removeThisRule">
+                                <button class="btn deleteRuleBtn form-next"  data-bind="click: removeThisRule">
                                     Remove this rule
                                 </button>
                             </div>
