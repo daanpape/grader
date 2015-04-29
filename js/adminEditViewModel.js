@@ -94,6 +94,7 @@ function checkPermissions(){
     $.each(viewModel.allRights(), function(i, itemAllRights){
         checked = false;
         var data = [];
+        console.log(itemAllRights + viewModel.allRights().size());
         $.each(viewModel.rights(), function(i, itemRights){
             console.log(itemAllRights + " - " + itemRights);
             if(itemAllRights == itemRights && checked == false){
