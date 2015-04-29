@@ -42,6 +42,7 @@ function pageViewModel(gvm) {
 
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
+            console.log("delete")
             // Edit the table item
             showEditProjectTypeModal(code, name, desc, id);
             event.stopPropagation();
@@ -49,6 +50,7 @@ function pageViewModel(gvm) {
 
         // Attach copy handler to copy button
         $('#copybtn-' + id).bind('click', function(event, data){
+            console.log("copy")
             // Delete the table item
             copyTableItem(id, tblOject);
             event.stopPropagation();
