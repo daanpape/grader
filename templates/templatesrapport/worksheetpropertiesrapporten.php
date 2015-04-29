@@ -34,7 +34,7 @@
                         <br />
 
                         <div style="max-height: 300px;overflow: auto;">
-                            <ul class="list-group checked-list-box" data-bind="foreach: availableModules">
+                            <ul id="check-list-box" class="list-group checked-list-box" data-bind="foreach: availableModules">
                                 <li class="list-group-item" data-bind="text: modname">Module name</li>
                                 
                                 <ul class="list-group checked-list-box" data-bind="foreach: competences" style="margin-left: 50px">

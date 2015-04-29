@@ -50,6 +50,7 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
+    getCheckedFields();
     $.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
@@ -132,19 +133,19 @@ function makeChecklist() {
         }
         init();
     });
-
-    $('#get-checked-data').on('click', function(event) {
-        event.preventDefault(); 
-        var checkedItems = {}, counter = 0;
-        $("#check-list-box li.active").each(function(idx, li) {
-            checkedItems[counter] = $(li).text();
-            counter++;
-        });
-        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
-    });
 }
 
-function initPage() {     
+function getCheckedFields() {
+    var checkedItems = {}, counter = 0;
+    $("#check-list-box li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        counter++;
+    });
+    console.log(checkedItems);
+    console.log(counter);
+}
+
+function initPage() {       
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;
