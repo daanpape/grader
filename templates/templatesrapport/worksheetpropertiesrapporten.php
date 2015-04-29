@@ -47,7 +47,7 @@
                             </ul>
                         </div>
             
-                        <input type="submit" id="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>
                 </div>
