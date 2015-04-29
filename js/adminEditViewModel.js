@@ -43,6 +43,7 @@ function initPage() {
 
 function getAllUserDataById(){
     console.log("get user data");
+    console.log(userid);
     $.getJSON("/api/edituser/" + userid, function(data)
     {
         console.log("get user data");
