@@ -328,7 +328,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(*)
+            $stmt = $conn->prepare("SELECT count(studentlist_rapport.id)
                                       FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
