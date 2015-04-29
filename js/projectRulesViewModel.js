@@ -163,7 +163,7 @@ function Rule(viewmodel,id, name, action, operator, value, sign, result) {
         action: ko.observable(action),
         operator: ko.observable(operator),
         value: ko.observable(value),
-        sign: ko.observable(value),
+        sign: ko.observable(sign),
         result: ko.observable(result),
 
         removeThisRule: function() {
