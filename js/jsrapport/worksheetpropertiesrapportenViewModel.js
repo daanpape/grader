@@ -14,8 +14,26 @@ function pageViewModel(gvm) {
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
-            console.log(data);
+            if (!$.isEmptyObject(data)) {
+                gvm.availableModules.removeAll();
+                
+                $.each(data, function(i, item) {
+                    gvm.availableModules.push(item.name);
+                    if (item.doelstellingen !== null) {
+                        //updateCompetences(item.doelstellingen);
+                        console.log('going to updateCompetences()');
+                    }
+                });
+            }
         });
+    }
+    
+    gvm.updateCompetences = function(data) {
+        
+    }
+    
+    gvm.updateCriteria = function(data) {
+        
     }
 }
 
