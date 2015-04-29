@@ -131,7 +131,7 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.sign, item.result));
         });
     });
 }
