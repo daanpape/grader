@@ -98,13 +98,13 @@ function checkPermissions(){
             if(itemAllRights == itemRights && checked == false){
                 checked = true;
                 data["item"] = itemAllRights;
-                data["checked"] = "true";
+                data["isChecked"] = true;
                 viewModel.updateCheckedRights(data);
             }
         });
         if (checked == false){
             data["item"] = itemAllRights;
-            data["checked"] = "false";
+            data["isChecked"] = false;
             viewModel.updateCheckedRights(data);
         }
     });
