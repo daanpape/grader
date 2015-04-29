@@ -168,7 +168,7 @@ require_once 'dptcms/config.php';
         <div class="modal_title" data-bind="text: yesNoModaltitle">
             Are you sure?
         </div>
-        <div id="modal_title_body" data-bind="text: yesNoModalBodycopy">
+        <div id="modal_title_body" data-bind="text: yesNoModalBodyCopy">
             Bent u zeker dat u dit wenst te kopiëren ?
         </div>
         <div class="form-inline rightbtns">

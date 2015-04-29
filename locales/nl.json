@@ -33,7 +33,7 @@
     "AssessTitle" : "Beoordeel een Project",
     "YesNoModaltitle" : "Bent u zeker?",
     "YesNoModalBody" : "Bent u zeker dat u dit item wilt verwijderen?",
-    "YesNoModalBody" : "Bent u zeker dat u dit item wilt kopiëren?",
+    "YesNoModalBodyCopy" : "Bent u zeker dat u dit item wilt kopiëren?",
     "Yes" : "Ja",
     "No" : "Nee",
 
