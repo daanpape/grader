@@ -76,6 +76,14 @@ $location = "adminEdit";
         <!-- /.navbar-static-side -->
     </nav>
 
+    <div class="container">
+        <div class="row">
+            <div id="bottom-col" class="col-md-12">
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+            </div>
+        </div>
+    </div>
+
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -88,13 +96,6 @@ $location = "adminEdit";
             <form id="userForm">
                 <input type="hidden" name="lang" value="EN"/>
 
-                <div class="container">
-                    <div class="row">
-                        <div id="bottom-col" class="col-md-12">
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                        </div>
-                    </div>
-                </div>
 
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
