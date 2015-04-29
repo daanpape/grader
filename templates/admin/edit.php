@@ -159,8 +159,8 @@ $location = "adminEdit";
                             <td data-bind="foreach: viewModel.allRights, value: allRights">
                                 <table class="table table-striped">
                                     <tr>
-                                        <td data-bind="foreach: viewModel.allRights, value: userRights">
-                                            <!-- ko if: $data.allRights === $data.userRights -->
+                                        <td data-bind="foreach: viewModel.rights, value: rights">
+                                            <!-- ko if: $data.allRights === $data.rights -->
                                             <input type="checkbox" checked="true"><label data-bind="text: $data.allRights"></label>
                                             <!-- /ko -->
                                             <!-- ko if: $data.allRights !== userRights -->
