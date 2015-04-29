@@ -241,6 +241,7 @@ function initPage() {
         //effectief toevoegen
         //table herladen
 
+        //Indien gewenst toevoegformulier weer verbergen.
         $('#addGroupForm').hide();
     });
 }

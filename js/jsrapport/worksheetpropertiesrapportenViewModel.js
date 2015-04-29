@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
+            console.log(data);
             if (!$.isEmptyObject(data)) {
                 gvm.availableModules.removeAll();
                 
@@ -33,10 +34,25 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data) {
         gvm.availableCompetences.removeAll();
+        
+        $.each(data, function(i, item) {
+            var tblObject = {comname: item.name, criterias: gvm.availableCriteria};
+            gvm.availableCompetences.push(tblObject);
+            if (item.criterias !== null) {
+                gvm.updateCriteria(item.criterias);
+            }
+        });
+        makeChecklist();
     }
     
     gvm.updateCriteria = function(data) {
         gvm.availableCriteria.removeAll();
+        
+        $.each(data, function(i, item){
+            var tblObject = {critname: item.name};
+            gvm.availableCriteria.push(tblObject);
+        });
+        makeChecklist();
     }
 }
 
