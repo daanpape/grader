@@ -86,7 +86,7 @@ function pageViewModel(gvm) {
             }
         });
     }*/
-    
+
     gvm.updateTeacher = function(id) {
         $.getJSON('/api/getteacherrapport/' + id, function(data) {
             gvm.availableTeacher.removeAll();
@@ -130,8 +130,10 @@ function copyTableItem(id) {
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,
-                type: "post"
-
+                type: "post",
+                success: function() {
+                    //tabel refreshen met nieuwe toegevoegde waarde of pagina openen om deze waarde te wijzigen.
+                }
             });
         }
     });
