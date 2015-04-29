@@ -1,11 +1,7 @@
 <?php
 // Page initialisation
 $location = "adminPermissions";
-
-require_once 'dptcms/security.php';
-require_once 'dptcms/config.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,17 +20,8 @@ require_once 'dptcms/config.php';
     <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- CSS style includes -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/grader.css" rel="stylesheet">
-    <link href="../../css/cssrapport/jquery-ui.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="../../js/html5shiv.min.js"></script>
-    <script src="../../js/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="../../css/grader.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
