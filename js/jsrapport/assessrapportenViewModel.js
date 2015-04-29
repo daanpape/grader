@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateCourseRapport = function() {
-        $.getJSON('/api/coursedrop', function(data) {
+        $.getJSON('/api/coursefromteacher/' + gvm.userid, function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -91,7 +91,6 @@ function pageViewModel(gvm) {
             });
         });
     };
-
 
     /*
      * Update the student data
