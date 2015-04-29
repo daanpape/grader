@@ -164,7 +164,7 @@ require_once 'dptcms/config.php';
     </div>
 
     <!-- Yes no modal copy-->
-    <div id="yes_no_modalcopy" class="modal_box extrapadding">
+    <div id="#yes_no_modalCopy" class="modal_box extrapadding">
         <div class="modal_title" data-bind="text: yesNoModaltitle">
             Are you sure?
         </div>

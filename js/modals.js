@@ -102,7 +102,7 @@ function showYesNoModalCopy(body, callback) {
     $('#login_modal').hide();
     $('#general_modal').hide();
     $('#upload_modal').hide();
-    $('#yes_no_modalcopy').show();
+    $('#yes_no_modalCopy').show();
 
     // Fill up the body
     $('#modal_title_body').html = body;
@@ -114,7 +114,6 @@ function showYesNoModalCopy(body, callback) {
         callback(true);
         hideModal();
     });
-
 
     $('#ynmodal-n-btn').click(function () {
         callback(false);
