@@ -148,7 +148,7 @@ $location = "adminEdit";
                                 </tbody>
                         </div>
 
-                        <h2>User Permissions</h2>
+                        <p class="h1">User Permissions</p>
                         <td>Permission</td>
                         <td data-bind="foreach: rights">
                             <!-- ko if: checked() === 'true' -->
