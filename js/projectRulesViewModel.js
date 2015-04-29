@@ -26,6 +26,7 @@ function pageViewModel(gvm) {
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
+    gvm.availableSigns = ko.observableArray([]);
 
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
@@ -78,6 +79,10 @@ function setOperators()
     viewModel.availableOperators.push("<=");
     viewModel.availableOperators.push(">");
     viewModel.availableOperators.push(">=");
+
+
+    viewModel.availableSigns.push("+");
+    viewModel.availableSigns.push("-");
 }
 
 function removeRuleFromDb(rule)
@@ -126,7 +131,7 @@ function fetchProjectRules()
     $.getJSON('/api/projectrules/' + projectid, function(data)
     {
         $.each(data, function(i, item) {
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.result));
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,item.action,item.operator,item.value,item.sign, item.result));
         });
     });
 }
