@@ -9,4 +9,8 @@ $app->get('/admin/home', function () use ($app) {
     $app->render('admin/index.php');
 });
 
+$app->get('/admin/edit/:id', function ($id) use($app) {
+    $app->render('admin/edit.php', array('userid' => $id));
+});
+
 ?>
