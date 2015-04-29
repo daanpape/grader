@@ -87,16 +87,14 @@ $location = "adminEdit";
         <div>
             <form id="userForm">
                 <input type="hidden" name="lang" value="EN"/>
-                <table class="table table-striped">
+                <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname"
-                                ></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="text: firstname"></td>
                     </tr>
                     <tr>
                         <td>Lastname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"
-                                ></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
@@ -176,7 +174,7 @@ $location = "adminEdit";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('adminjsdepends.php') ?>
+<?php include_once('templates/jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
