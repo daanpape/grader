@@ -87,6 +87,8 @@ $location = "adminEdit";
         <div>
             <form id="userForm">
                 <input type="hidden" name="lang" value="EN"/>
+
+
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
@@ -154,35 +156,24 @@ $location = "adminEdit";
                         </tr>
                         </tbody>
                         <tbody>
-                        <tr >
+                        <tr>
                             <td>Permission</td>
-                            <td data-bind="foreach: viewModel.allRights, value: allRights">
-                                <table class="table table-striped">
-                                    <tr>
-                                        <td data-bind="foreach: viewModel.rights, value: rights">
-                                            <!-- ko if: $data.allRights === $data.rights -->
-                                            <input type="checkbox" checked="true"><label data-bind="text: $data.allRights"></label>
-                                            <!-- /ko -->
-                                            <!-- ko if: $data.allRights !== $data.rights -->
-                                            <input type="checkbox"><label data-bind="text: $data.allRights"></label>
-                                            <!-- /ko -->
-                                        </td>
-                                    </tr>
-                                </table>
-
+                            <td data-bind="foreach: viewModel.checkedRights">
+                                <input type="checkbox" data-bind="checked: isChecked"><label data-bind="text: item"></label><br />
                             </td>
                         </tr>
                         </tbody>
                 </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div id="bottom-col" class="col-md-12">
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                        </div>
-                    </div>
-                </div>
             </form>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="bottom-col" class="col-md-12">
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+            </div>
         </div>
     </div>
     <!-- /.row -->

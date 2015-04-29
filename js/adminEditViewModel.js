@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
+    gvm.checkedRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
 
     gvm.updateUser = function(user)
@@ -42,6 +43,10 @@ function pageViewModel(gvm) {
     gvm.clearStructure = function() {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
+    }
+
+    gvm.updateCheckedRights = function(item){
+        gvm.checkedRights.push(item);
     }
 }
 
@@ -84,11 +89,28 @@ function getAllUserDataById(edituserid){
     });
 }
 
-function checkPermissions(allRights){
-    $.each(viewModel.rights(), function(i, itemRights){
-        if(allRights == itemRights){
-            return true;
+function checkPermissions(){
+    var checked = false;
+    $.each(viewModel.allRights(), function(i, itemAllRights){
+        checked = false;
+        var data = [];
+        $.each(viewModel.rights(), function(i, itemRights){
+            if(itemAllRights == itemRights && checked == false){
+                checked = true;
+                data["item"] = itemAllRights;
+                data["isChecked"] = true;
+                viewModel.updateCheckedRights(data);
+            }
+        });
+        if (checked == false){
+            data["item"] = itemAllRights;
+            data["isChecked"] = false;
+            viewModel.updateCheckedRights(data);
         }
+    });
+
+    $.each(viewModel.checkedRights(), function(i, item){
+        console.log(" - " + item["item"] + " - " + item["checked"]);
     });
 }
 
