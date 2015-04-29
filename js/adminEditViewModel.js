@@ -16,6 +16,11 @@ function pageViewModel(gvm) {
         gvm.user.push(user);
     },
 
+    gvm.updatePermissions = function(permission)
+    {
+        gvm.rights.push(user);
+    },
+
     gvm.removeUser = function(user) {
         gvm.user.remove(user);
         removeUser(user);
@@ -27,23 +32,6 @@ function pageViewModel(gvm) {
     }
 }
 
-function fetchUsersData()
-{
-    viewModel.clearStructure();
-    $.getJSON("/api/allusers/", function(data)
-    {
-        var addedUsername = "";
-        $.each(data, function(i, item){
-            var current = item.username;
-
-            if (addedUsername != current){
-                addedUsername = item.username;
-                viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, item.status));
-            }
-        });
-    });
-}
-
 function getAllUserDataById(){
     $.getJSON("/api/edituser/" + userid, function(data)
     {
@@ -52,12 +40,12 @@ function getAllUserDataById(){
         $.each(data, function(i, item){
             console.log(item.username);
 
-            var permissions = "";
             var current = item.username;
             $.each(data, function(i, item)
             {
                 if(item.username == current){
-                    permissions += item.role + " - ";
+                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
+                    console.log(item.roleid + " " + item.role );
                 }
             });
 
@@ -65,10 +53,17 @@ function getAllUserDataById(){
 
             if (addedUsername != current){
                 addedUsername = item.username;
-                viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
+                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
             }
         });
     });
+}
+
+function Permission(id, permissions) {
+    return {
+        id: ko.observable(id),
+        permissions: ko.observable(permissions)
+    };
 }
 
 function User(id, username, firstname, lastname, status) {
