@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
+    gvm.allRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
 
     gvm.updateUser = function(user)
@@ -28,9 +29,15 @@ function pageViewModel(gvm) {
         gvm.rights.push(permission);
     },
 
+
+    gvm.updateAllPermissions = function(permission)
+    {
+        gvm.allRights.push(permission);
+    },
+
     gvm.removeUser = function(user) {
-        gvm.user.remove(user);
-        removeUser(user);
+    gvm.user.remove(user);
+    removeUser(user);
     },
 
     gvm.clearStructure = function() {
@@ -40,7 +47,14 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
+    setRights();
+}
 
+function setRights(){
+    viewModel.updateAllPermissions(new Permission(1, "GUEST"));
+    viewModel.updateAllPermissions(new Permission(4, "STUDENT"));
+    viewModel.updateAllPermissions(new Permission(3, "USER"));
+    viewModel.updateAllPermissions(new Permission(2, "SUPERUSER"));
 }
 
 function getAllUserDataById(edituserid){
@@ -62,7 +76,7 @@ function getAllUserDataById(edituserid){
             if (addedUsername != current){
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
-                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
+                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
     });
@@ -76,13 +90,14 @@ function Permission(id, permissions) {
     };
 }
 
-function User(id, username, firstname, lastname, status) {
+function User(id, username, firstname, lastname, status, permission) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
+        permission: ko.observableArray(permission),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))

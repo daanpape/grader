@@ -105,8 +105,14 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <select class="form-control form-next">
-                                <option>Active</option>
-                                <option>Non-Active</option>
+                                <!-- ko if: status() === 'ACTIVE' --> -->
+                                <option selected="true" data-bind="if:status">Active</option>
+                                <option data-bind="if:status">Non-Active</option>
+                                <!-- /ko -->
+                                <!-- ko if: status() !== 'ACTIVE' --> -->
+                                <option data-bind="if:status">Active</option>
+                                <option selected="true" data-bind="if:status">Non-Active</option>
+                                <!-- /ko -->
                             </select>
                         </td>
                     </tr>
@@ -150,8 +156,14 @@ $location = "adminEdit";
 
                         <p class="h1">User Permissions</p>
                         <td>Permission</td>
-                        <td data-bind="foreach: rights">
-
+                        <td>
+                            <table class="table table-striped">
+                                <tr data-bind="foreach: allRights">
+                                    <td>
+                                        <input type="checkbox"><label date-bind="value: permissions"></label>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
