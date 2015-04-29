@@ -28,9 +28,7 @@ function addWorksheetProperties(serialData, wid, callback) {
     //second ajax call for modules, competences and criteria
 }
 
-function initPage() { 
-    $('.list-group-item').css('background-color', 'white');
-    
+function initPage() {     
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
