@@ -255,7 +255,7 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all user data by id
-    $userdata = GraderAPI::getUserDataById($id);
+    $userdata = GraderAPI::getEditUserDataById($id);
 
     echo json_encode($userdata);
 });

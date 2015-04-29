@@ -151,8 +151,7 @@ $location = "adminEdit";
                         <p class="h1">User Permissions</p>
                         <td>Permission</td>
                         <td data-bind="foreach: rights">
-                            <!-- ko if: checked() === 'true' -->
-                            <input type="checkbox" checked="true" data-bind='attr: { name: "rights.Name"}'>
+
                         </td>
                     </tr>
                 </table>
