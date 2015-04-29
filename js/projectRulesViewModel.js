@@ -97,24 +97,24 @@ function fetchActions() {
     viewModel.clearActionsStructure();
 
     $.getJSON("/api/projectstructure/" + projectid, function(data){
-        viewModel.addProjectAction(new Action(0,"Total project score"))
+        viewModel.addProjectAction(new Action(0,"Total project score", "totalScore"));
         $.each(data, function(i, item){
-            viewModel.addProjectAction(new Action(item.id,item.description));
+            viewModel.addProjectAction(new Action(item.id,item.description,"competence"));
 
             $.each(item.subcompetences, function(i, subcomp){
-                viewModel.addProjectAction(new Action(subcomp.id,subcomp.description));
+                viewModel.addProjectAction(new Action(subcomp.id,subcomp.description,"subcompetence"));
 
                 $.each(subcomp.indicators, function(i, indic){
-                    viewModel.addProjectAction(new Action(indic.id, indic.description));
+                    viewModel.addProjectAction(new Action(indic.id, indic.description, "indicator"));
                 });
             });
         })
     });
 
     $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
-        viewModel.addProjectAction(new Action(0,"Total documents"));
+        viewModel.addProjectAction(new Action(0,"Total documents", "totalDocument"));
         $.each(data, function(i, item) {
-            viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description));
+            viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
         });
     });
 }
@@ -170,11 +170,12 @@ function Rule(viewmodel,id, name, action, operator, value, result) {
 /**
  * Action class
  **/
-function Action(id, name)
+function Action(id, name, subject)
 {
     return {
         id: ko.observable(id),
-        name: ko.observable(name)
+        name: ko.observable(name),
+        subject: ko.observable(subject)
     }
 }
 
