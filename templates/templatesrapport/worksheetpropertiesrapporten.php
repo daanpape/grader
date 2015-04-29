@@ -35,7 +35,7 @@
 
                         <div style="max-height: 300px;overflow: auto;">
                             <ul class="list-group checked-list-box" data-bind="foreach: availableModules">
-                                <li class="list-group-item">Module name</li>
+                                <li class="list-group-item" data-bind="text: name">Module name</li>
                             </ul>
                         </div>
                         <br />
