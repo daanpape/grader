@@ -284,8 +284,6 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
-    //Add Course members
-
     $('#addGroupForm').hide();
     
     $('#addCoursemembers').click(function() {

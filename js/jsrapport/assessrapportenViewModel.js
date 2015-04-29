@@ -227,4 +227,6 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
     });
+
+    $('#addGroupForm').hide();
 }
