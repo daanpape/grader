@@ -44,8 +44,8 @@ function initPage() {
 }
 
 function getAllUserDataById(){
-    console.log("get " + viewModel.edituserid);
-    $.getJSON("/api/edituser/" + viewModel.edituserid, function(data)
+    console.log("get " + edituserid);
+    $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         console.log("get user data");
         var addedUsername = "";
