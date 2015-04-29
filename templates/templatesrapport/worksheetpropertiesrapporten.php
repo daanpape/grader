@@ -34,25 +34,16 @@
                         <br />
 
                         <div style="max-height: 300px;overflow: auto;">
-                            <!--<ul class="list-group checked-list-box" data-bind="foreach: availableModules">
+                            <ul class="list-group checked-list-box" data-bind="foreach: availableModules">
                                 <li class="list-group-item" data-bind="text: modname">Module name</li>
                                 
-                                <ul class="list-group checked-list-box" data-bind="foreach: availableCompetences">
+                                <ul class="list-group checked-list-box" data-bind="foreach: competences">
                                     <li class="list-group-item" data-bind="text: comname">Competence name</li>
                                     
-                                    <ul class="list-group checked-list-box" data-bind="foreach: availableCriteria">
+                                    <ul class="list-group checked-list-box" data-bind="foreach: criterias">
                                         <li class="list-group-item" data-bind="text: critname">Criteria name</li>
                                     </ul>
                                 </ul>
-                            </ul>-->
-                            <ul class="list-group checked-list-box" data-bind="foreach: availableModules">
-                                <li class="list-group-item" data-bind="text: modname">Module name</li>
-                            </ul>
-                            <ul class="list-group checked-list-box" data-bind="foreach: availableCompetences">
-                                <li class="list-group-item" data-bind="text: comname">Competence name</li>
-                            </ul>
-                            <ul class="list-group checked-list-box" data-bind="foreach: availableCriteria">
-                                <li class="list-group-item" data-bind="text: critname">Criteria name</li>
                             </ul>
                         </div>
                         <br />
