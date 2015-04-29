@@ -46,6 +46,7 @@
                               <li class="list-group-item">Vestibulum at eros</li>
                             </ul>
                         </div>
+                        <br />
             
                         <input type="submit" id="submit" value="Save" class="btn btn-primary" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
