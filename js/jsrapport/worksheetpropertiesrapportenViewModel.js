@@ -6,6 +6,9 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("WorksheetRapportManual");}, gvm);
     
+    gvm.formequip = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormEquip");}, gvm);
+    gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
+    
     gvm.userId = null;
 }
 
