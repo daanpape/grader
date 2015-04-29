@@ -33,6 +33,8 @@ $location = "adminEdit";
 
 <body style="padding-top: 0px">
 <div id="wrapper">
+    <h1 class="page-header" id="projectHeader" data-value="<?php echo $edituserid ?>" data-bind="text: pageHeader">Project</h1>
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
