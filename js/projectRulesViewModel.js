@@ -26,6 +26,7 @@ function pageViewModel(gvm) {
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
+    gvm.availableSigns = ko.observableArray([]);
 
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
@@ -78,6 +79,10 @@ function setOperators()
     viewModel.availableOperators.push("<=");
     viewModel.availableOperators.push(">");
     viewModel.availableOperators.push(">=");
+
+
+    viewModel.availableSigns.push("+");
+    viewModel.availableSigns.push("-");
 }
 
 function removeRuleFromDb(rule)
