@@ -49,6 +49,7 @@ function fetchUsersData()
 
 function User(id, username, firstname, lastname, permissions) {
     return {
+        id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
