@@ -84,9 +84,9 @@ function getAllUserDataById(edituserid){
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
-    });
 
-    checkPermissions();
+        checkPermissions();
+    });
 }
 
 function checkPermissions(){
@@ -94,8 +94,8 @@ function checkPermissions(){
     $.each(viewModel.allRights(), function(i, itemAllRights){
         checked = false;
         var data = [];
-
         $.each(viewModel.rights(), function(i, itemRights){
+            console.log(itemAllRights + " - " + itemRights);
             if(itemAllRights == itemRights && checked == false){
                 checked = true;
                 data["item"] = itemAllRights;
