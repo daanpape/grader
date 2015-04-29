@@ -156,8 +156,8 @@ $location = "adminEdit";
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td data-bind="foreach: allRights">
-                                <input type="checkbox"><label date-bind="value: permissions"></label><br />
+                            <td data-bind="foreach: viewModel.allRights, value: permissions" >
+                                <input type="checkbox"><label data-bind="text: $data"></label><br />
                             </td>
                         </tr>
                         </tbody>
