@@ -58,11 +58,11 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <span>Total score:</span>
-                                <select class="form-control">
+                                <select class="form-control form-next">
                                     <option>+</option>
                                     <option>-</option>
                                 </select>
-                                <input type="text" class="form-control" placeholder="value"  data-bind="value: result"><span>%</span>
+                                <input type="text" class="form-control form-next" placeholder="value"  data-bind="value: result"><span>%</span>
                                 <button class="btn deleteRuleBtn" data-bind="click: removeThisRule">
                                     Remove this rule
                                 </button>
