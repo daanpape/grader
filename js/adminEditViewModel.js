@@ -46,7 +46,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateCheckedRights = function(item){
-        gvm.checkedRights.add(item);
+        gvm.checkedRights.push(item);
     }
 }
 
