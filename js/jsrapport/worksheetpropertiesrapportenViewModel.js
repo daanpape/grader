@@ -20,11 +20,10 @@ function pageViewModel(gvm) {
                 
                 $.each(data, function(i, item) {
                     var tblObject = {modname: item.name, competences: new Array()};
-                    gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
-                        console.log(tblObject.competences);
                     }
+                    gvm.availableModules.push(tblObject);
                 });
                 makeChecklist();
             }
@@ -33,11 +32,11 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comname: item.name, criterias: new Array()};
-            competences.push(tblObject);
+            var tblObject = {comname: item.name, criterias: new Array()}
             if (item.criterias !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
+            competences.push(tblObject);
         });
         makeChecklist();
     }

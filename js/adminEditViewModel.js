@@ -37,6 +37,12 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
+
+    gvm.viewUsers = function() {
+        $.each(gvm.user, function (i, item) {
+            console.log(i + " " + item);
+        })
+    }
 }
 
 function initPage() {
@@ -67,6 +73,7 @@ function getAllUserDataById(edituserid){
             }
         });
     });
+    viewModel.viewUsers();
 }
 
 function Permission(id, permissions) {
