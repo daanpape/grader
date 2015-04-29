@@ -48,7 +48,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     setRights();
-    checkPermissions
+    checkPermissions();
 }
 
 function setRights(){
