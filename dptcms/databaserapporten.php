@@ -125,6 +125,19 @@ class rapportenDAO {
         }
     }
 
+    public static function getAllWorksheetsNoPager($courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM werkfiche_rapport WHERE Course = :courseid AND Active = '1'");
+            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets', $err);
+            return null;
+        }
+    }
+
     public static function getStudentListsFromUser($id) {
         try {
             $conn = Db::getConnection();

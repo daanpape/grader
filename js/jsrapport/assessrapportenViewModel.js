@@ -1,3 +1,8 @@
+//Nodig voor autoincrement
+var selectedcourseid;
+var worksheets = [];
+var worksheetsid = [];
+
 //viewmodel for the assess page
 function pageViewModel(gvm) {
     gvm.app  = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName")}, gvm);
@@ -36,6 +41,7 @@ function pageViewModel(gvm) {
                     $(".btn-studentlist span:first").text(item.studentlist);
                     $('.btn-student span:first').text(item.student);
                     gvm.currentCourseId = item.courseid;
+                    selectedcourseid = item.courseid;
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.currentStudentId = item.studentid;
                     gvm.updateCourseRapport();
@@ -46,7 +52,6 @@ function pageViewModel(gvm) {
             }
         });
     }
-
 
     //Houdt bij wat geselecteerd wordt
     //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
@@ -81,6 +86,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
+                    selectedcourseid = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -154,6 +160,29 @@ function pageViewModel(gvm) {
     }
 }
 
+function getAllWorksheets() {
+    worksheets = [];
+    worksheetsid = [];
+    $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
+        $.each(data, function(i, item) {
+            worksheets.push(item.Name);
+            worksheets.push(item.id);
+        });
+    });
+    return worksheets;
+}
+
+function getWorksheetid() {
+    var i = 0;
+    var teacher = 0;
+    .forEach(function(entry) {
+        if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
+            teacher = teachersid[i];
+        }
+        i+= 1;
+    });
+    return teacher
+}
 
 function loadTablePage(pagenr)
 {
@@ -217,14 +246,29 @@ function loadTablePage(pagenr)
             }
         });
     });
-
-
 }
-
 
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
+    });
+
+    $('#addGroupForm').hide();
+
+    $('#addWorksheetBtn').click(function() {
+        $("#addGroupForm").show();
+        $('#worksheetComplete').autocomplete({ source: getAllWorksheets() });
+    });
+
+    $('#addNewWorksheetBtn').click(function() {
+
+        console.log("toevoegen van "+ getWorksheetid());
+        //addWorksheet($('#projectHeader').attr("data-value"), getWorksheetid());
+
+        //table herladen
+
+        //Indien gewenst toevoegformulier weer verbergen.
+        $('#addGroupForm').hide();
     });
 }

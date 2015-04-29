@@ -1,12 +1,19 @@
 function pageViewModel(gvm) {
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
-    gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserTitle");}, gvm);
+    gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
+
+    gvm.edituserid = $("#usereditHeader").data('value');
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
     gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
     gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
+
+    gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
+    gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
+
+    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
@@ -18,7 +25,7 @@ function pageViewModel(gvm) {
 
     gvm.updatePermissions = function(permission)
     {
-        gvm.rights.push(user);
+        gvm.rights.push(permission);
     },
 
     gvm.removeUser = function(user) {
@@ -32,28 +39,31 @@ function pageViewModel(gvm) {
     }
 }
 
-function getAllUserDataById(){
-    $.getJSON("/api/edituser/" + userid, function(data)
+function initPage() {
+
+}
+
+function getAllUserDataById(edituserid){
+    console.log("Get data from user with id " + edituserid);
+    $.getJSON("/api/edituser/" + edituserid, function(data)
     {
-        console.log("get user data");
         var addedUsername = "";
         $.each(data, function(i, item){
-            console.log(item.username);
-
             var current = item.username;
+
             $.each(data, function(i, item)
             {
                 if(item.username == current){
+                    console.log(current + " " + item.roleid + " " + item.role );
                     viewModel.updatePermissions(new Permission(item.roleid, item.role))
-                    console.log(item.roleid + " " + item.role );
                 }
             });
 
-            permissions = permissions.substr(0, permissions.length - 3);
-
             if (addedUsername != current){
-                addedUsername = item.username;
+                addedUsername = current;
+                console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
+
             }
         });
     });
@@ -92,8 +102,4 @@ function User(id, username, firstname, lastname, status) {
             updateUserStatus(this);
         }
     };
-}
-
-function initPage() {
-    getAllUserDataById();
 }

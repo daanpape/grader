@@ -11,19 +11,19 @@ function pageViewModel(gvm) {
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
-    gvm.availableCompetences = ko.observableArray([]);
-    gvm.availableCriteria = ko.observableArray([]);
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
+            console.log(data);
             if (!$.isEmptyObject(data)) {
                 gvm.availableModules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modname: item.name};
+                    var tblObject = {modname: item.name, competences: new Array()};
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
-                        //updateCompetences(item.doelstellingen);
+                        gvm.updateCompetences(item.doelstellingen, tblObject.competences);
+                        console.log(tblObject.competences);
                     }
                 });
                 makeChecklist();
@@ -31,12 +31,23 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.updateCompetences = function(data) {
-        gvm.availableCompetences.removeAll();
+    gvm.updateCompetences = function(data, competences) {          
+        $.each(data, function(i, item) {
+            var tblObject = {comname: item.name, criterias: new Array()};
+            competences.push(tblObject);
+            if (item.criterias !== null) {
+                gvm.updateCriteria(item.criterias, tblObject.criterias);
+            }
+        });
+        makeChecklist();
     }
     
-    gvm.updateCriteria = function(data) {
-        gvm.availableCriteria.removeAll();
+    gvm.updateCriteria = function(data, criteria) {     
+        $.each(data, function(i, item){
+            var tblObject = {critname: item.name};
+            criteria.push(tblObject);
+        });
+        makeChecklist();
     }
 }
 

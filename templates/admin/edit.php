@@ -79,7 +79,7 @@ $location = "adminEdit";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeaderAddUser">Edit User</h1>
+                <h1 class="page-header" id="usereditHeader" data-value="<?php echo $edituserid ?>"  data-bind="text: pageHeaderEditUser">Edit User</h1>
             </div>
         </div>
 
@@ -94,11 +94,11 @@ $location = "adminEdit";
                     </tr>
                     <tr>
                         <td>Lastname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="text: lastname"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email">
+                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="text: username">
                         </td>
                     </tr>
                     <tr>
@@ -151,8 +151,7 @@ $location = "adminEdit";
                         <p class="h1">User Permissions</p>
                         <td>Permission</td>
                         <td data-bind="foreach: rights">
-                            <!-- ko if: checked() === 'true' -->
-                            <input type="checkbox" checked="true" data-bind='attr: { name: "rights.Name"}'>
+
                         </td>
                     </tr>
                 </table>
@@ -174,7 +173,7 @@ $location = "adminEdit";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('adminjsdepends.php') ?>
+<?php include_once('templates/jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
