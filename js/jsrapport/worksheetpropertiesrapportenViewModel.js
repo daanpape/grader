@@ -93,6 +93,7 @@ function initPage() {
 
             // Initialization
             function init() {
+                $('.list-group-item').css('background-color', 'white');
 
                 if ($widget.data('checked') == true) {
                     $checkbox.prop('checked', !$checkbox.is(':checked'));
