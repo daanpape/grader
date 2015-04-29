@@ -36,8 +36,8 @@ function pageViewModel(gvm) {
     },
 
     gvm.removeUser = function(user) {
-    gvm.user.remove(user);
-    removeUser(user);
+        gvm.user.remove(user);
+        removeUser(user);
     },
 
     gvm.clearStructure = function() {
