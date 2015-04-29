@@ -86,18 +86,18 @@ function getAllUserDataById(edituserid){
 function Permission(id, permissions) {
     return {
         id: ko.observable(id),
-        permissions: ko.observable(permissions)
+        permission: ko.observable(permissions)
     };
 }
 
-function User(id, username, firstname, lastname, status, permission) {
+function User(id, username, firstname, lastname, status, permissions) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
-        permission: ko.observableArray(permission),
+        permissions: ko.observableArray(permissions),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))
