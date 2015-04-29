@@ -18,7 +18,7 @@ function pageViewModel(gvm) {
                 gvm.availableModules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modname: item.name, competences: new Array()};
+                    var tblObject = {modid: item.id, modname: item.name, competences: new Array()};
                     if (item.doelstellingen !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comname: item.name, criterias: new Array()}
+            var tblObject = {comid: item.id, comname: item.name, criterias: new Array()}
             if (item.criterias !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
@@ -42,7 +42,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCriteria = function(data, criteria) {     
         $.each(data, function(i, item){
-            var tblObject = {critname: item.name};
+            var tblObject = {critid: item.id, critname: item.name};
             criteria.push(tblObject);
         });
         makeChecklist();
