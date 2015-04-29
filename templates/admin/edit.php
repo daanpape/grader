@@ -33,8 +33,6 @@ $location = "adminEdit";
 
 <body style="padding-top: 0px">
 <div id="wrapper">
-    <h1 class="page-header" style="visibility: hidden" id="projectHeader" data-value="<?php echo $edituserid ?>" data-bind="text: pageHeader">Project</h1>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -81,7 +79,7 @@ $location = "adminEdit";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeaderEditUser">Edit User</h1>
+                <h1 class="page-header" id="projectHeader" data-value="<?php echo $edituserid ?>"  data-bind="text: pageHeaderEditUser">Edit User</h1>
             </div>
         </div>
 
