@@ -6,6 +6,7 @@
 <html lang="nl" id="htmldoc">
     <head>
         <?php include_once('templates/hddepends.php');  ?>
+        <link href="/css/cssrapport/report.css" rel="stylesheet">
     </head>
     
     <body>
