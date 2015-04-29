@@ -87,9 +87,16 @@
                 <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
             </ul>
             
-            <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
+            <button type="button" class="btn btn-default pagination-button" id="addWorksheetBtn">
                 <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
             </button>
+        </div>
+
+        <div id="addGroupForm" class="container">
+            <div class="row">
+                <label>Worksheet name:</label> <input id="worksheetComplete" name="teachername" />
+                <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
+            </div>
         </div>
 
         <?php include_once('templates/jsdepends.php') ?>

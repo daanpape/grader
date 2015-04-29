@@ -83,7 +83,7 @@ $location = "adminUsers";
                 <h1 class="page-header" data-bind="text: pageHeader">Gebruikers</h1>
             </div>
             <div class="col-lg-1">
-                <a href="adduser.php" type="button" class="btn btn-default pagination-button" id="addUser">
+                <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
                     <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
                 </a>
             </div>
@@ -126,6 +126,7 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
+<?php include_once('templates/jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -142,7 +143,6 @@ $location = "adminUsers";
 
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
-<?php include_once('../jsdepends.php') ?>
 
 </body>
 

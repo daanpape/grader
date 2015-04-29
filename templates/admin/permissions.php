@@ -30,6 +30,7 @@ $location = "adminPermissions";
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 
 <body style="padding-top: 0px">
@@ -135,7 +136,7 @@ $location = "adminPermissions";
                     <td style="width: 15%" data-bind="text: firstname"></td>
                     <td style="width: 15%" data-bind="text: lastname"></td>
                     <td style="width: 25%" data-bind="text: permissions"></td>
-                    <td style="width: 15%"><a  data-bind="attr:{'href': '/admin/edit/' + id()}" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a></td>
+                    <td style="width: 15%"><a  data-bind="attr:{'href': '/admin/permissions/edit/' + id()}" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a></td>
                 </tr>
                 </tbody>
         </div>
@@ -147,7 +148,7 @@ $location = "adminPermissions";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../jsdepends.php') ?>
+<?php include_once('templates/jsdepends.php') ?>
 
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>

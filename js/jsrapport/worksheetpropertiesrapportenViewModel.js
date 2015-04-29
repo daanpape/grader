@@ -11,6 +11,8 @@ function pageViewModel(gvm) {
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
+    gvm.availableCompetences = ko.observableArray([]);
+    gvm.availableCriteria = ko.observableArray([]);
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
@@ -18,11 +20,10 @@ function pageViewModel(gvm) {
                 gvm.availableModules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {name: item.name};
+                    var tblObject = {modname: item.name, competences: gvm.availableCompetences};
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
-                        //updateCompetences(item.doelstellingen);
-                        console.log('going to updateCompetences()');
+                        gvm.updateCompetences(item.doelstellingen);
                     }
                 });
                 makeChecklist();
@@ -31,11 +32,11 @@ function pageViewModel(gvm) {
     }
     
     gvm.updateCompetences = function(data) {
-        
+        gvm.availableCompetences.removeAll();
     }
     
     gvm.updateCriteria = function(data) {
-        
+        gvm.availableCriteria.removeAll();
     }
 }
 

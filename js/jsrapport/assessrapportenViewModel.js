@@ -227,4 +227,20 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
     });
+
+    $('#addGroupForm').hide();
+
+    $('#addWorksheetBtn').click(function() {
+        $("#addGroupForm").show();
+        //$('#worksheetComplete').autocomplete({ source: getAllTeachers() });
+    });
+
+    $('#addNewWorksheetBtn').click(function() {
+
+        console.log("toevoegen")
+        //effectief toevoegen
+        //table herladen
+
+        $('#addGroupForm').hide();
+    });
 }
