@@ -69,12 +69,12 @@ function getAllUserDataById(edituserid){
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
+                viewModel.viewUsers();
 
             }
         });
     });
 
-    viewModel.viewUsers();
 }
 
 function Permission(id, permissions) {
