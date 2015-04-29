@@ -79,8 +79,42 @@ $location = "adminEdit";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h1>
+                <h1 class="page-header" data-bind="text: pageHeaderAddUser">Edit User: </h1> <h1 class="page-header"> ** naam **</h1>
             </div>
+        </div>
+
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-bind="text: permissionRole">Role</th>
+                    <th data-bind="text: permissionDescription">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>GUEST</td>
+                    <td>When not logged in you get the GUEST role.</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>SUPERUSER</td>
+                    <td>The superuser role must have access to everything...</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>USER</td>
+                    <td>Contains rights for every USER in the system.</td>
+                </tr>
+                </tbody>
+                <tbody>
+                <tr>
+                    <td>STUDENT</td>
+                    <td>Can only do studentactions</td>
+                </tr>
+                </tbody>
         </div>
 
         <!-- /.col-lg-12 -->
