@@ -176,12 +176,13 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
+        console.log(entry + " " + $('worksheetComplete').val());
         if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
-            teacher = teachersid[i];
+            worksheet = worksheetsid[i];
         }
         i+= 1;
     });
-    return teacher
+    return worksheet;
 }
 
 function loadTablePage(pagenr)

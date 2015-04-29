@@ -94,7 +94,7 @@
 
         <div id="addGroupForm" class="container">
             <div class="row">
-                <label>Worksheet name:</label> <input id="worksheetComplete" name="teachername" />
+                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" />
                 <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
             </div>
         </div>

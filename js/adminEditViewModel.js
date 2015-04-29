@@ -62,11 +62,11 @@ function getAllUserDataById(edituserid){
             if (addedUsername != current){
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
-                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
-
+                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
     });
+
 }
 
 function Permission(id, permissions) {
@@ -76,13 +76,14 @@ function Permission(id, permissions) {
     };
 }
 
-function User(id, username, firstname, lastname, status) {
+function User(id, username, firstname, lastname, status, permission) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
+        permission: ko.observableArray(permission),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))
