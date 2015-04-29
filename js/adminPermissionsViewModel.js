@@ -39,7 +39,7 @@ function fetchUsersData()
 
             permissions = permissions.substr(0, permissions.length - 3);
 
-            if (permissions == null){
+            if (permissions == "null" || permissions == null){
                 permissions = "Nog geen rechten toegekend";
             }
 
