@@ -55,7 +55,7 @@ function setRights(){
     viewModel.updateAllPermissions(new Permission(4, "STUDENT"));
     viewModel.updateAllPermissions(new Permission(3, "USER"));
     viewModel.updateAllPermissions(new Permission(2, "SUPERUSER"));
-    console.log(viewModel.allRights().get(0));
+    console.log(viewModel.allRights);
 }
 
 function getAllUserDataById(edituserid){
