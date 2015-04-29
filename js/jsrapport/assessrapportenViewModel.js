@@ -229,4 +229,18 @@ function initPage() {
     });
 
     $('#addGroupForm').hide();
+
+    $('#addWorksheetBtn').click(function() {
+        $("#addGroupForm").show();
+        //$('#worksheetComplete').autocomplete({ source: getAllTeachers() });
+    });
+
+    $('#addNewWorksheetBtn').click(function() {
+
+        console.log("toevoegen")
+        //effectief toevoegen
+        //table herladen
+
+        $('#addGroupForm').hide();
+    });
 }

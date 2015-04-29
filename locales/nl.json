@@ -124,5 +124,7 @@
     "AddNewWorksheet" : "Voeg werkfiche toe",
     "EditWorksheet" : "Pas werkfiche aan",
     "FormEquip" : "Materiaal",
-    "FormMethod" : "Werkwijze"
+    "FormMethod" : "Werkwijze",
+
+    "UserEditTitle": "Gebruiker wijzigen"
 }

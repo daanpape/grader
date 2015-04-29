@@ -127,5 +127,7 @@
     "AddNewWorksheet" : "Add worksheet",
     "EditWorksheet" : "Edit worksheet",
     "FormEquip" : "Equipment",
-    "FormMethod" : "Method"
+    "FormMethod" : "Method",
+
+    "UserEditTitle": "Edit user"
 }
