@@ -201,7 +201,9 @@ function loadTablePage(pagenr,course)
         //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
         //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
-        if(data.prev == "none"){
+
+        console.log("prev: " + data.prev);
+        if(data.prev != "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
@@ -210,7 +212,8 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        if(data.next == "none"){
+        console.log("prev: " + data.next);
+        if (data.next != "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
@@ -219,11 +222,14 @@ function loadTablePage(pagenr,course)
             });
         }
 
+
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
+        console.log("numItems: " + numItems);
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
+        console.log("lowPage: " + lowPage);
 
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
