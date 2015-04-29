@@ -28,7 +28,9 @@ function addWorksheetProperties(serialData, wid, callback) {
     //second ajax call for modules, competences and criteria
 }
 
-function initPage() {    
+function initPage() { 
+    $('.list-group-item').css('background-color', 'white');
+    
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
@@ -93,7 +95,6 @@ function initPage() {
 
             // Initialization
             function init() {
-                $('.list-group-item').css('background-color', 'white');
 
                 if ($widget.data('checked') == true) {
                     $checkbox.prop('checked', !$checkbox.is(':checked'));
