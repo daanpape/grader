@@ -10,6 +10,13 @@ function pageViewModel(gvm) {
     gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
     
     gvm.userId = null;
+    gvm.availableModules = ko.observableArray([]);
+    
+    gvm.updateModules = function(courseid) {
+        $.getJSON('/api/coursestructure/' + courseid, function(data) {
+            
+        });
+    }
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
@@ -30,8 +37,13 @@ function addWorksheetProperties(serialData, wid, callback) {
 
 function initPage() {     
     $.getJSON('/api/currentuser', function(data) {
+        var courseid = $('#storage').attr('data-value');
+        console.log(courseid);
         viewModel.userId = data.id;
+        //viewModel.updateModules(courseid);
     });
+    
+    
     
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
