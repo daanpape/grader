@@ -51,11 +51,10 @@ function initPage() {
 }
 
 function setRights(){
-    viewModel.updateAllPermissions(new Permission(1, "GUEST"));
-    viewModel.updateAllPermissions(new Permission(4, "STUDENT"));
-    viewModel.updateAllPermissions(new Permission(3, "USER"));
-    viewModel.updateAllPermissions(new Permission(2, "SUPERUSER"));
-    console.log(viewModel.allRights);
+    viewModel.updateAllPermissions("GUEST");
+    viewModel.updateAllPermissions("STUDENT");
+    viewModel.updateAllPermissions("USER");
+    viewModel.updateAllPermissions("SUPERUSER");
 }
 
 function getAllUserDataById(edituserid){
