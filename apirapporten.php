@@ -61,6 +61,12 @@ Class RapportAPI {
     public static function getWorksheetCount() {
         return rapportenDAO::getWorksheetCount();
     }
+    
+    public static function addWorksheetModules($modules, $competences, $criteria) {
+        //addmodule
+        //addcompetence
+        //addcriteria
+    }
 
     public static function getTeacher() {
         /* get teacher from database */

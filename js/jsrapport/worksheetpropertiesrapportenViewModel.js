@@ -50,6 +50,7 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
+    getCheckedFields();
     $.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
@@ -62,7 +63,17 @@ function addWorksheetProperties(serialData, wid, callback) {
             callback(true);
         }
     });
-    //second ajax call for modules, competences and criteria
+    $.ajax({
+        url: "/api/worksheetmodules",
+        type: "POST",
+        data: {id: wid},  //ook nog de aangeduide modules, doelstellingen, criteria
+        success: function(data) {
+            console.log('Success');
+        },
+        error: function(data) {
+            console.log('Failure');
+        }
+    });
 }
 
 function makeChecklist() {
@@ -140,11 +151,20 @@ function getCheckedFields() {
         checkedItems[counter] = $(li).text();
         counter++;
     });
-    console.log(checkedItems);
-    console.log(counter);
+    filterModules(checkedItems);
 }
 
-function initPage() {       
+function filterModules(data) {
+    var collection = [];
+    var modules = [];
+    var comps = [];
+    var criteria = [];
+    $.each(data, function(i, item) {
+        console.log(item);
+    });
+}
+
+function initPage() {        
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;

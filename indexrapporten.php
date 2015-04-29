@@ -336,8 +336,15 @@ $app->post('/api/newstudent/:name/:list', function($name, $listid) use($app) {
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    //echo json_encode(RapportAPI::createCourseStudentlistCouple($courseid, $studlistid, $teacherid));
     echo json_encode(RapportAPI::addStudentToList($name, $listid));
+});
+$app->post('/api/worksheetmodules', function() use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(RapportAPI::addWorksheetModules());  //still needs 3 parameters (modules, competences and criteria)
 });
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {
