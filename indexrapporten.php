@@ -382,6 +382,7 @@ $app->put('/api/studentrapport/:id', function($id) use ($app) {
         $id, $app->request->post('firstname'), $app->request->post('lastname'), $app->request->post('username')));
 });
 
+
 $app->post('/api/coursecopy/:id', function ($id) use ($app) {
     // Use json headers
     $response = $app->response();

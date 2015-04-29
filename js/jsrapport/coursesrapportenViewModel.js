@@ -35,6 +35,7 @@ function pageViewModel(gvm) {
 
         // Attach delete handler to delete button
         $('#removebtn-' + id).bind('click', function(event, data){
+            console.log("delete")
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
@@ -49,6 +50,7 @@ function pageViewModel(gvm) {
 
         // Attach copy handler to copy button
         $('#copybtn-' + id).bind('click', function(event, data){
+            console.log("copy")
             // Delete the table item
             copyTableItem(id, tblOject);
             event.stopPropagation();
@@ -86,7 +88,7 @@ function pageViewModel(gvm) {
             }
         });
     }*/
-    
+
     gvm.updateTeacher = function(id) {
         $.getJSON('/api/getteacherrapport/' + id, function(data) {
             gvm.availableTeacher.removeAll();
@@ -109,9 +111,14 @@ function pageViewModel(gvm) {
 /*
  * Delete item from table given the id. 
  */
+/*
 function deleteTableItem(id, tblOject) {
-    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
-        if(val){
+    console.log('in delete functie voor id: ' + id);
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n " +
+    "Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. " +
+    "\r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        console.log("val " + val);
+                if(val){
             $.ajax({
                 url: "/api/coursedelete/" + id,
                 type: "DELETE",
@@ -122,16 +129,22 @@ function deleteTableItem(id, tblOject) {
         }
     });
 }
+*/
+
 /*
- * Delete item from table given the id.
+ * Copy item from table given the id.
  */
-function copyTableItem(id) {
+function copyTableItem(id, tblOject) {
+    console.log('in copy functie voor id: ' + id);
     showYesNoModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
+        console.log("val " + val);
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,
-                type: "post"
-
+                type: "post",
+                success: function() {
+                    //tabel refreshen met nieuwe toegevoegde waarde of pagina openen om deze waarde te wijzigen.
+                }
             });
         }
     });
