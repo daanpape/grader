@@ -207,6 +207,16 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function updateWorksheetProperties($id, $equip, $method) {
+        if (rapportenDAO::updateWorksheetProperties($id, $equip, $method)) {
+            return array(
+                "equipment" => $equip,
+                "method" => $method);
+        } else {
+            return -1;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);

@@ -18,11 +18,11 @@ function addWorksheetProperties(serialData, wid, callback) {
         type: "PUT",
         data: serialData,
         success: function(data) {
-            
-            callback(true);
+            console.log(data);
+            callback(false);
         },
         error: function(data) {
-            callback(false);
+            callback(true);
         }
     });
     //second ajax call for modules, competences and criteria
@@ -34,6 +34,9 @@ function initPage() {
     });
     
     $('#submit').click(function() {
-        console.log($('#worksheetform').serialize());
+        var wid = $('#header').attr('data-value');
+        addWorksheetProperties($('#worksheetform').serialize(), wid, function() {
+            $('#worksheetform').prepend("<p class='text-danger'>There was a problem submitting the form</p>");
+        });
     });
 }
