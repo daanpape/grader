@@ -161,7 +161,7 @@ $location = "adminEdit";
                             </td>
                         </tr>
                         <tr>
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+                            <button class="btn btn-lg savePageBtn" type="submit">Save</button>
                         </tr>
                         </tbody>
                 </div>
