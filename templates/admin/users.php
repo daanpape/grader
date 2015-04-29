@@ -29,6 +29,7 @@ $location = "adminUsers";
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <?php include_once('../jsdepends.php') ?>
 </head>
 
 <body style="padding-top: 0px">
@@ -126,7 +127,6 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
