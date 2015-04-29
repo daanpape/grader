@@ -12,8 +12,28 @@ function pageViewModel(gvm) {
     gvm.userId = null;
 }
 
+function addWorksheetProperties(serialData, wid, callback) {
+    $.ajax({
+        url: "/api/worksheetproperties/" + wid,
+        type: "PUT",
+        data: serialData,
+        success: function(data) {
+            
+            callback(true);
+        },
+        error: function(data) {
+            callback(false);
+        }
+    });
+    //second ajax call for modules, competences and criteria
+}
+
 function initPage() {    
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
+    });
+    
+    $('#submit').click(function() {
+        console.log($('#worksheetform').serialize());
     });
 }
