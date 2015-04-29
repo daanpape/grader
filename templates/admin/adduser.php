@@ -61,7 +61,7 @@ $location = "adminAddUser";
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/admin/index"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
+                        <a href="/admin/home"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
