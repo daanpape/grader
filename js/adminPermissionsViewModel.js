@@ -39,6 +39,10 @@ function fetchUsersData()
 
             permissions = permissions.substr(0, permissions.length - 3);
 
+            if (permissions == null){
+                permissions = "Nog geen rechten toegekend";
+            }
+
             if (addedUsername != current){
                 addedUsername = item.username;
                 viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, permissions));
