@@ -85,7 +85,7 @@ $app->get('/api/worksheets/page/:pagenr/:courseid', function ($pagenr, $courseid
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalWorksheets));
 });
 //get all student form a selected course with pages
-$app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
+$app->get('/api/studentsrapport/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
