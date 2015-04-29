@@ -237,9 +237,10 @@ function initPage() {
 
     $('#addNewWorksheetBtn').click(function() {
 
+        console.log("toevoegen")
         //effectief toevoegen
         //table herladen
 
-        $('addGroupForm').hide();
+        $('#addGroupForm').hide();
     });
 }
