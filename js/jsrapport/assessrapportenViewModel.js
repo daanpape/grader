@@ -174,8 +174,8 @@ function getAllWorksheets() {
 
 function getWorksheetid() {
     var i = 0;
-    var teacher = 0;
-    .forEach(function(entry) {
+    var worksheet = 0;
+    worksheets.forEach(function(entry) {
         if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
             teacher = teachersid[i];
         }
