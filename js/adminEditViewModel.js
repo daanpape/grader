@@ -3,6 +3,8 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
+    gvm.edituserid = $("#usereditHeader").data('value');
+
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
     gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
@@ -11,7 +13,7 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById();
+    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
@@ -38,15 +40,14 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    getAllUserDataById();
+
 }
 
-function getAllUserDataById(){
-    console.log("id:  " + userid);
-    console.log("get user data");
-    $.getJSON("/api/edituser/" + userid, function(data)
+function getAllUserDataById(edituserid){
+    console.log("get " + edituserid);
+    $.getJSON("/api/edituser/" + edituserid, function(data)
     {
-        console.log("get user data");
+        console.log(data);
         var addedUsername = "";
         $.each(data, function(i, item){
             console.log(item.username);
@@ -60,10 +61,9 @@ function getAllUserDataById(){
                 }
             });
 
-            permissions = permissions.substr(0, permissions.length - 3);
-
             if (addedUsername != current){
-                addedUsername = item.username;
+                addedUsername = item.username
+                console.log(addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
             }
         });

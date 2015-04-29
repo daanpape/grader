@@ -84,6 +84,13 @@ $app->get('/api/worksheets/page/:pagenr/:courseid', function ($pagenr, $courseid
     // Get the page
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalWorksheets));
 });
+$app->get('/api/worksheets/:courseid', function ($courseid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    $data = RapportAPI::getAllWorksheetsNoPager($courseid);
+    echo json_encode($data);
+});
 //get all student form a selected course with pages
 $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers

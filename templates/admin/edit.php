@@ -79,7 +79,7 @@ $location = "adminEdit";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeaderEditUser">Edit User</h1>
+                <h1 class="page-header" id="usereditHeader" data-value="<?php echo $edituserid ?>"  data-bind="text: pageHeaderEditUser">Edit User</h1>
             </div>
         </div>
 

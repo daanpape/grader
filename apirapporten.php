@@ -53,6 +53,10 @@ Class RapportAPI {
     public static function getAllWorksheets($courseid, $start, $count) {
         return rapportenDAO::getAllWorksheets($courseid, $start, $count);
     }
+
+    public static function getAllWorksheetsNoPager($courseid) {
+        return rapportenDAO::getAllWorksheetsNoPager($courseid);
+    }
     
     public static function getWorksheetCount() {
         return rapportenDAO::getWorksheetCount();
@@ -62,7 +66,7 @@ Class RapportAPI {
         /* get teacher from database */
         return rapportenDAO::getTeacher();
     }
-    
+
     public static function getStudentlistFromCourseID($cid, $uid) {
         return rapportenDAO::getStudentlistFromCourseID($cid, $uid);
     }
