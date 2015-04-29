@@ -18,7 +18,8 @@ function pageViewModel(gvm) {
                 gvm.availableModules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    gvm.availableModules.push(item.name);
+                    var tblObject = {name: item.name};
+                    gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
                         //updateCompetences(item.doelstellingen);
                         console.log('going to updateCompetences()');
