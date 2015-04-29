@@ -17,8 +17,6 @@ function pageViewModel(gvm) {
             console.log(data);
             if (!$.isEmptyObject(data)) {
                 gvm.availableModules.removeAll();
-                gvm.availableCompetences.removeAll();
-                gvm.availableCriteria.removeAll();
                 
                 $.each(data, function(i, item) {
                     var tblObject = {modname: item.name, competences: new Array()};
