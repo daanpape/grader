@@ -177,11 +177,11 @@ function getWorksheetid() {
     var worksheet = 0;
     worksheets.forEach(function(entry) {
         if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
-            teacher = teachersid[i];
+            worksheet = worksheetsid[i];
         }
         i+= 1;
     });
-    return teacher
+    return worksheet;
 }
 
 function loadTablePage(pagenr)
