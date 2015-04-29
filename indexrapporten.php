@@ -85,19 +85,19 @@ $app->get('/api/worksheets/page/:pagenr/:courseid', function ($pagenr, $courseid
     echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalWorksheets));
 });
 //get all student form a selected course with pages
-//$app->get('/api/studentsrapport/page/:pagenr', function ($pagenr) use ($app) {
-//    // Use json headers
-//    $response = $app->response();
-//    $response->header('Content-Type', 'application/json');
-//    // Calculate start and count
-//    $pg = Pager::pageToStartStop($pagenr);
- //   // Get total number of projecttypes in the database
-//    //$pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
-//    $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count);
-//    $totalcourses = RapportAPI::getStudentsCountFromCourse();
-// Get the page
-//  echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
-//   });
+$app->get('/api/studentsrapport/page/:pagenr', function ($pagenr) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Calculate start and count
+    $pg = Pager::pageToStartStop($pagenr);
+   // Get total number of projecttypes in the database
+   // $pagedata = RapportAPI::getAllCourses($pg->start, $pg->stop);
+    $pagedata = RapportAPI::getStudentsFromCourse($pg->start, $pg->count);
+    $totalcourses = RapportAPI::getStudentsCountFromCourse();
+ //Get the page
+  echo json_encode(Pager::genPaginatedAnswer($pagenr, $pagedata, $totalcourses));
+   });
 //get all combination teacher and studentlist with pages
 $app->get('/api/getStudentGroupTeacherByCourseID/page/:pagenr/:course', function ($pagenr, $course) use ($app) {
     // Use json headers
