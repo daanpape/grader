@@ -197,7 +197,9 @@ function loadTablePage(pagenr,course)
            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
-
+        //TODO pagers doen werken
+        //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
+        //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
