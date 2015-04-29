@@ -33,7 +33,6 @@ function pageViewModel(gvm) {
     gvm.updateAllPermissions = function(permission)
     {
         gvm.allRights.push(permission);
-        console.log(permission + " " + gvm.allRights().length);
     },
 
     gvm.removeUser = function(user) {
@@ -95,7 +94,6 @@ function checkPermissions(){
     $.each(viewModel.allRights(), function(i, itemAllRights){
         checked = false;
         var data = [];
-        console.log(itemAllRights + " " + viewModel.allRights().length);
         $.each(viewModel.rights(), function(i, itemRights){
             console.log(itemAllRights + " - " + itemRights);
             if(itemAllRights == itemRights && checked == false){
