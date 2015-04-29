@@ -48,6 +48,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     setRights();
+    checkPermissions
 }
 
 function setRights(){
@@ -80,7 +81,17 @@ function getAllUserDataById(edituserid){
             }
         });
     });
+}
 
+function checkPermissions(){
+
+    $.each(viewModel.allRights(), function(i, item){
+        console.log(i + " " + item)
+        $.each(viewModel.rights(), function(i, item){
+            console.log(i + " " + item)
+
+        });
+    });
 }
 
 function Permission(id, permissions) {
