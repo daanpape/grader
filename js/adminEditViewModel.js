@@ -41,7 +41,7 @@ function pageViewModel(gvm) {
     gvm.viewUsers = function() {
         $.each(gvm.user, function (i, item) {
             console.log(i + " " + item);
-        })
+        });
     }
 }
 
@@ -73,6 +73,7 @@ function getAllUserDataById(edituserid){
             }
         });
     });
+
     viewModel.viewUsers();
 }
 
