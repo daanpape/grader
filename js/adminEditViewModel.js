@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
+    gvm.allRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
 
     gvm.updateUser = function(user)
@@ -26,6 +27,12 @@ function pageViewModel(gvm) {
     gvm.updatePermissions = function(permission)
     {
         gvm.rights.push(permission);
+    },
+
+
+    gvm.updateAllPermissions = function(permission)
+    {
+        gvm.allRights.push(permission);
     },
 
     gvm.removeUser = function(user) {
@@ -44,10 +51,10 @@ function initPage() {
 }
 
 function setRights(){
-    viewModel.updatePermissions("GUEST");
-    viewModel.updatePermissions("STUDENT");
-    viewModel.updatePermissions("USER");
-    viewModel.updatePermissions("SUPERUSER");
+    viewModel.updateAllPermissions(new Permission(1, "GUEST"));
+    viewModel.updateAllPermissions(new Permission(4, "STUDENT"));
+    viewModel.updateAllPermissions(new Permission(3, "USER"));
+    viewModel.updateAllPermissions(new Permission(2, "SUPERUSER"));
 }
 
 function getAllUserDataById(edituserid){

@@ -117,49 +117,59 @@ $location = "adminEdit";
                         </td>
                     </tr>
                     <tr>
+                </table>
 
-                        <div>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th data-bind="text: permissionRole">Role</th>
-                                    <th data-bind="text: permissionDescription">Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>GUEST</td>
-                                    <td>When not logged in you get the GUEST role.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>SUPERUSER</td>
-                                    <td>The superuser role must have access to everything...</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>USER</td>
-                                    <td>Contains rights for every USER in the system.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>STUDENT</td>
-                                    <td>Can only do studentactions</td>
-                                </tr>
-                                </tbody>
-                        </div>
-                    </tr>
-                    <tr>
 
-                        <p class="h1">User Permissions</p>
-                        <td>Permission</td>
-                        <td data-bind="foreach: rights">
+                <h2>User Permissions</h2>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th data-bind="text: permissionRole">Role</th>
+                            <th data-bind="text: permissionDescription">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>GUEST</td>
+                            <td>When not logged in you get the GUEST role.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>SUPERUSER</td>
+                            <td>The superuser role must have access to everything...</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>USER</td>
+                            <td>Contains rights for every USER in the system.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>STUDENT</td>
+                            <td>Can only do studentactions</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>Permission</td>
+                            <td>
+                                <table class="table table-striped"  data-bind="foreach: allRights">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox"><label date-bind="value: permissions"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                </div>
+                <table>
 
-                        </td>
-                    </tr>
                 </table>
 
                 <div class="container">
