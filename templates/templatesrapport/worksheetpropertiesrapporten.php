@@ -24,6 +24,7 @@
                             <label data-bind="text: formequip"></label>
                             <textarea class="form-control" rows="5" cols="75" name="equipment" form="worksheetform"></textarea>
                         </div>
+                        <br />
                         <div class="form-group">
                             <label data-bind="text: formmethod"></label>
                             <textarea class="form-control" rows="5" cols="75" name="method" form="worksheetform"></textarea>
