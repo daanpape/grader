@@ -13,7 +13,7 @@
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="attr:{'data-value': <?php echo $sheetid ?>}"><?php echo $sheetname ?></h1>
+            <h1 id="header" class="page-header" data-bind="attr:{'data-value': <?php echo $sheetid ?>}"><?php echo $sheetname ?></h1>
         </div>
         
         <div class="container">
