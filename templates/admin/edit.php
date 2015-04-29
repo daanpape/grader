@@ -154,15 +154,11 @@ $location = "adminEdit";
                         </tr>
                         </tbody>
                         <tbody>
-                        <tr>
+                        <tr data-bind="foreach: viewModel.allRights, value: allRights" >
                             <td>Permission</td>
-                            <td data-bind="foreach: viewModel.allRights, value: allRights" >
-                                <!-- ko if: checkPermissions(allRights) === true -->
-                                <input type="checkbox" data-bind="if:checkPermissions(allRights)" checked="true"><label data-bind="text: $data"></label><br />
-                                <!-- /ko -->
-                                <!-- ko if: checkPermissions(allRights) !== true -->
-                                <input type="checkbox" data-bind="if:checkPermissions(allRights)"><label data-bind="text: $data"></label><br />
-                                <!-- /ko -->
+                            <td  data-bind="foreach: viewModel.rights" >
+                                <input type="checkbox" checked="true"><label data-bind="text: $data"></label>
+                                <input type="checkbox"><label data-bind="text: $data"></label>
 
                             </td>
                         </tr>
