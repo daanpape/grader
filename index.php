@@ -66,6 +66,9 @@ $app->get('/project/projectrules/:id', function($id) use ($app) {
 $app->get('/project/:id/completeness', function ($id) use ($app) {
     $app->render('projectcompleteness.php', array('projectid' => $id));
 });
+$app->get('/edit/:id', function ($id) use($app) {
+    $app->render('edit.php', array('userid' => $id));
+});
 $app->get('/register', function () use ($app) {
     $app->render('register.php');
 });
