@@ -40,7 +40,7 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    getAllUserDataById();
+
 }
 
 function getAllUserDataById(edituserid){
