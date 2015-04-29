@@ -40,7 +40,14 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
+    setRights();
+}
 
+function setRights(){
+    viewModel.updatePermissions("GUEST");
+    viewModel.updatePermissions("STUDENT");
+    viewModel.updatePermissions("USER");
+    viewModel.updatePermissions("SUPERUSER");
 }
 
 function getAllUserDataById(edituserid){

@@ -270,6 +270,7 @@ function initPage() {
         //table herladen
 
         //Indien gewenst toevoegformulier weer verbergen.
+        $('worksheetComplete').val("")
         $('#addGroupForm').hide();
     });
 }
