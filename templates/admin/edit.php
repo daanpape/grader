@@ -83,40 +83,6 @@ $location = "adminEdit";
             </div>
         </div>
 
-        <div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: permissionRole">Role</th>
-                    <th data-bind="text: permissionDescription">Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>GUEST</td>
-                    <td>When not logged in you get the GUEST role.</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>SUPERUSER</td>
-                    <td>The superuser role must have access to everything...</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>USER</td>
-                    <td>Contains rights for every USER in the system.</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>STUDENT</td>
-                    <td>Can only do studentactions</td>
-                </tr>
-                </tbody>
-        </div>
-
         <!-- /.col-lg-12 -->
         <div>
             <form id="userForm">
@@ -147,6 +113,40 @@ $location = "adminEdit";
                         </td>
                     </tr>
                     <tr>
+
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th data-bind="text: permissionRole">Role</th>
+                                    <th data-bind="text: permissionDescription">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>GUEST</td>
+                                    <td>When not logged in you get the GUEST role.</td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td>SUPERUSER</td>
+                                    <td>The superuser role must have access to everything...</td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td>USER</td>
+                                    <td>Contains rights for every USER in the system.</td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td>STUDENT</td>
+                                    <td>Can only do studentactions</td>
+                                </tr>
+                                </tbody>
+                        </div>
                         <td>Permission</td>
                         <td data-bind="foreach: rights">
                             <!-- ko if: checked() === 'true' -->
