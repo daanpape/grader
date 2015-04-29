@@ -967,7 +967,7 @@ class UserDAO {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT r.role, r.id AS roleid, u.id AS userid, u.username, u.firstname, u.lastname, u.status FROM users AS u LEFT JOIN user_roles AS ur ON u.id = ur.user_id LEFT JOIN roles AS r ON ur.role_id = r.id WHERE u.id = ?");
             $stmt->execute(array($uid));
-            return $stmt->fetchObject();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             return null;
         }
