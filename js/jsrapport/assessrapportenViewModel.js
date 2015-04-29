@@ -1,4 +1,7 @@
+//Nodig voor autoincrement
 var selectedcourseid;
+var worksheets = [];
+var worksheetsid = [];
 
 //viewmodel for the assess page
 function pageViewModel(gvm) {
@@ -49,7 +52,6 @@ function pageViewModel(gvm) {
             }
         });
     }
-
 
     //Houdt bij wat geselecteerd wordt
     //Wordt opgeroepen bij iedere wijziging (niet ingevulde velden = NULL)
@@ -158,19 +160,6 @@ function pageViewModel(gvm) {
     }
 }
 
-function getAllTeachers() {
-    teachers = [];
-    teachersid = [];
-    $.getJSON('/api/getteacherrapport', function(data) {
-        $.each(data, function(i, item) {
-            teachers.push(item.firstname + " " + item.lastname);
-            teachersid.push(item.id);
-        });
-    });
-    return teachers;
-}
-
-
 function getAllWorksheets() {
     worksheets = [];
     worksheetsid = [];
@@ -181,6 +170,18 @@ function getAllWorksheets() {
         });
     });
     return worksheets;
+}
+
+function getWorksheetid() {
+    var i = 0;
+    var worksheet = 0;
+    worksheets.forEach(function(entry) {
+        if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
+            worksheet = worksheetsid[i];
+        }
+        i+= 1;
+    });
+    return worksheet;
 }
 
 function loadTablePage(pagenr)
@@ -247,7 +248,6 @@ function loadTablePage(pagenr)
     });
 }
 
-
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
@@ -263,8 +263,9 @@ function initPage() {
 
     $('#addNewWorksheetBtn').click(function() {
 
-        console.log("toevoegen")
-        //effectief toevoegen
+        console.log("toevoegen van "+ getWorksheetid());
+        //addWorksheet($('#projectHeader').attr("data-value"), getWorksheetid());
+
         //table herladen
 
         //Indien gewenst toevoegformulier weer verbergen.
