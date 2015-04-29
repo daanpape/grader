@@ -100,8 +100,8 @@ class rapportenDAO {
                                         FROM course_studentlist_teacher_rapport LEFT JOIN course_rapport
                                         ON course_studentlist_teacher_rapport.course = course_rapport.id
                                         WHERE course_studentlist_teacher_rapport.active =  '1' AND course_rapport.active =  '1'
-                                        AND teacher =  '16'");
-            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+                                        AND teacher =  :teacher");
+            $stmt->bindValue(':teacher', (int) $userid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
