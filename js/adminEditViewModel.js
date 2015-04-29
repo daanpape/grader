@@ -50,8 +50,7 @@ function getAllUserDataById(edituserid){
     {
         console.log(data);
         var addedUsername = "";
-        $.each(data, function(i, item){
-            console.log(i + " " + item);
+        $.each(data, function(item, i){
             console.log(item.username);
 
             var current = item.username;
