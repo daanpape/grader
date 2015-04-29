@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
 
     gvm.updatePermissions = function(permission)
     {
-        gvm.rights.push(user);
+        gvm.rights.push(permission);
     },
 
     gvm.removeUser = function(user) {
