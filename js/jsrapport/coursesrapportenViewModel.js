@@ -110,8 +110,10 @@ function pageViewModel(gvm) {
  * Delete item from table given the id. 
  */
 function deleteTableItem(id, tblOject) {
-    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
-        if(val){
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n " +
+    "Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. " +
+    "\r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+                if(val){
             $.ajax({
                 url: "/api/coursedelete/" + id,
                 type: "DELETE",
@@ -123,10 +125,12 @@ function deleteTableItem(id, tblOject) {
     });
 }
 /*
- * Delete item from table given the id.
+ * Copy item from table given the id.
  */
 function copyTableItem(id) {
-    showYesNoModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
+    showYesNoModal("Bent u zeker ? \r\n " +
+    "Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. " +
+    "\r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
         if(val){
             $.ajax({
                 url: "/api/coursecopy/" + id,
