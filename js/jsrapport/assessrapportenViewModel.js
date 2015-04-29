@@ -154,6 +154,13 @@ function pageViewModel(gvm) {
     }
 }
 
+function getAllWorksheets() {
+    $.getJSON('/api/worksheets/' + gvm.courseid, function(data) {
+        $.each(data, function(i, item) {
+            console.log(data);
+        });
+    });
+}
 
 function loadTablePage(pagenr)
 {
@@ -217,8 +224,6 @@ function loadTablePage(pagenr)
             }
         });
     });
-
-
 }
 
 
@@ -232,7 +237,7 @@ function initPage() {
 
     $('#addWorksheetBtn').click(function() {
         $("#addGroupForm").show();
-        //$('#worksheetComplete').autocomplete({ source: getAllTeachers() });
+        $('#worksheetComplete').autocomplete({ source: getAllWorksheets() });
     });
 
     $('#addNewWorksheetBtn').click(function() {
