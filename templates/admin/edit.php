@@ -90,15 +90,15 @@ $location = "adminEdit";
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="text: firstname"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="value: firstname"></td>
                     </tr>
                     <tr>
                         <td>Lastname</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="text: lastname"></td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="value: lastname"></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="text: username">
+                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="value: username">
                         </td>
                     </tr>
                     <tr>
