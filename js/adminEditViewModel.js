@@ -100,7 +100,7 @@ function checkPermissions(){
                 checked = true;
                 data["item"] = itemAllRights;
                 data["checked"] = "true";
-                console.log(data["item"] + " - " + data["checked"]);
+                console.log(itemAllRights + " - " + data["item"] + " - " + data["checked"]);
                 viewModel.updateCheckedRights(data);
             }
         });
