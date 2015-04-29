@@ -84,13 +84,11 @@ function getAllUserDataById(edituserid){
     });
 }
 
-function checkPermissions(){
-    $.each(viewModel.allRights(), function(i, itemAllRights){
-        $.each(viewModel.rights(), function(i, itemRights){
-            if(itemAllRights == itemRights){
-                return true;
-            }
-        });
+function checkPermissions(allRights){
+    $.each(viewModel.rights(), function(i, itemRights){
+        if(allRights == itemRights){
+            return true;
+        }
     });
 }
 
