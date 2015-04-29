@@ -19,14 +19,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form method="POST" id="worksheetform" class="form-inline">
+                    <form method="POST" id="worksheetform">
                         <div class="form-group">
                             <label data-bind="text: formequip"></label>
-                            <textarea rows="5" cols="100" name="equipment" form="worksheetform"></textarea>
+                            <textarea class="form-control" rows="5" cols="75" name="equipment" form="worksheetform"></textarea>
                         </div>
                         <div class="form-group">
                             <label data-bind="text: formmethod"></label>
-                            <textarea rows="5" cols="100" name="method" form="worksheetform"></textarea>
+                            <textarea class="form-control" rows="5" cols="75" name="method" form="worksheetform"></textarea>
                         </div>
                         <input type="submit" id="submit" value="Save" class="btn btn-default" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
