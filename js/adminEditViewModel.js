@@ -13,7 +13,6 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
@@ -47,8 +46,9 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
+    getAllUserDataById(viewModel.edituserid);
     setRights();
-    checkPermissions
+    checkPermissions();
 }
 
 function setRights(){
