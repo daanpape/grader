@@ -42,9 +42,9 @@ function initPage() {
 }
 
 function getAllUserDataById(){
-    console.log("id:  " + userid);
-    console.log("get user data");
-    $.getJSON("/api/edituser/" + userid, function(data)
+    console.log("get");
+
+    $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         console.log("get user data");
         var addedUsername = "";
@@ -68,6 +68,8 @@ function getAllUserDataById(){
             }
         });
     });
+    console.log(edituserid)
+    console.log("end")
 }
 
 function Permission(id, permissions) {
