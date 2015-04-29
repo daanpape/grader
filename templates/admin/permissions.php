@@ -148,7 +148,7 @@ $location = "adminPermissions";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('../jsdepends.php') ?>
+<?php include_once('adminjsdepends.php') ?>
 
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
