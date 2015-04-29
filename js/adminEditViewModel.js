@@ -88,7 +88,7 @@ function checkPermissions(){
     $.each(viewModel.allRights(), function(i, item){
         $.each(viewModel.rights, function(i, item){
             console.log(viewModel.rights);
-            console.log(i.permission + " " + item.permission);
+            console.log(i.permission() + " " + item.permission());
             console.log("rights");
 
 
