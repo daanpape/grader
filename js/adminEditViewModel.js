@@ -44,12 +44,14 @@ function initPage() {
 }
 
 function getAllUserDataById(edituserid){
-    console.log("get " + edituserid);
+    console.log("Get data from user " + edituserid);
+
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         console.log(data);
         var addedUsername = "";
         $.each(data, function(i, item){
+            console.log(i + " " + item);
             console.log(item.username);
 
             var current = item.username;
