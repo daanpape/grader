@@ -30,6 +30,22 @@
                             <label data-bind="text: formmethod"></label>
                             <textarea class="form-control" rows="5" name="method" form="worksheetform"></textarea>
                         </div>
+
+                        <div style="max-height: 300px;overflow: auto;">
+                            <ul class="list-group checked-list-box">
+                              <li class="list-group-item">Cras justo odio</li>
+                              <li class="list-group-item" data-checked="true">Dapibus ac facilisis in</li>
+                              <li class="list-group-item">Morbi leo risus</li>
+                              <li class="list-group-item">Porta ac consectetur ac</li>
+                              <li class="list-group-item">Vestibulum at eros</li>
+                              <li class="list-group-item">Cras justo odio</li>
+                              <li class="list-group-item">Dapibus ac facilisis in</li>
+                              <li class="list-group-item">Morbi leo risus</li>
+                              <li class="list-group-item">Porta ac consectetur ac</li>
+                              <li class="list-group-item">Vestibulum at eros</li>
+                            </ul>
+                        </div>
+            
                         <input type="submit" id="submit" value="Save" class="btn btn-default" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>

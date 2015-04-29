@@ -111,7 +111,7 @@ function pageViewModel(gvm) {
 /*
  * Delete item from table given the id. 
  */
-/*
+
 function deleteTableItem(id, tblOject) {
     console.log('in delete functie voor id: ' + id);
     showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n " +
@@ -129,7 +129,6 @@ function deleteTableItem(id, tblOject) {
         }
     });
 }
-*/
 
 /*
  * Copy item from table given the id.
