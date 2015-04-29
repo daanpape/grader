@@ -222,13 +222,13 @@ function loadTablePage(pagenr,course)
             });
         }
 
-
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
         console.log("numItems: " + numItems);
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
+        console.log("pagenr: " + pagenr)
         console.log("lowPage: " + lowPage);
 
         $('.pager-nr-btn').each(function() {
