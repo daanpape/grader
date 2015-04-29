@@ -98,7 +98,7 @@ function showYesNoModal(body, callback) {
 /*
  * Show the Yes and No modal with callback
  */
-function showYesNoModalCopy(body, callback) {
+function showYesNoModal(body, callback) {
     // Hide the login window
     $('#login_modal').hide();
     $('#general_modal').hide();
