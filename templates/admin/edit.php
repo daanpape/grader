@@ -163,7 +163,7 @@ $location = "adminEdit";
                                             <!-- ko if: $data.allRights === $data.rights -->
                                             <input type="checkbox" checked="true"><label data-bind="text: $data.allRights"></label>
                                             <!-- /ko -->
-                                            <!-- ko if: $data.allRights !== userRights -->
+                                            <!-- ko if: $data.allRights !== $data.rights -->
                                             <input type="checkbox"><label data-bind="text: $data.allRights"></label>
                                             <!-- /ko -->
                                         </td>
