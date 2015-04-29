@@ -58,7 +58,7 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <span>Total score:</span>
-                                <select class="form-control form-next">
+                                <select class="form-control form-next" data-bind="value: sign">
                                     <option>+</option>
                                     <option>-</option>
                                 </select>
