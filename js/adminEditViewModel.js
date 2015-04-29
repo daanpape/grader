@@ -13,7 +13,7 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById(gvm.edituserid());
+    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
@@ -47,7 +47,6 @@ function getAllUserDataById(edituserid){
     console.log("get " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
-        console.log("get user data");
         var addedUsername = "";
         $.each(data, function(i, item){
             console.log(item.username);
@@ -61,16 +60,13 @@ function getAllUserDataById(edituserid){
                 }
             });
 
-            permissions = permissions.substr(0, permissions.length - 3);
-
             if (addedUsername != current){
-                addedUsername = item.username;
+                addedUsername = item.username
+                console.log(addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
             }
         });
     });
-    console.log(edituserid)
-    console.log("end")
 }
 
 function Permission(id, permissions) {
