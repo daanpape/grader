@@ -156,7 +156,7 @@ $location = "adminEdit";
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td data-bind="foreach: user.permissions, value: permission" >
+                            <td data-bind="foreach: user, value: permissions" >
                                 <!-- ko if: status() === 'ACTIVE' --> -->
                                 <input type="checkbox"><label data-bind="text: $data"></label><br />
                                 <!-- /ko -->
