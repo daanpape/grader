@@ -1,9 +1,9 @@
 <?php
 // Page initialisation
-$location = "adminPermissions";
+$location = "adminEdit";
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl" id="htmldoc">
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@ $location = "adminPermissions";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grader - Administrator panel</title>
+    <title>Grader - Admin panel</title>
 
     <link href="/admin_static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/admin_static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -20,7 +20,6 @@ $location = "adminPermissions";
     <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
     <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/grader.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,9 +32,7 @@ $location = "adminPermissions";
 </head>
 
 <body style="padding-top: 0px">
-
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -47,7 +44,6 @@ $location = "adminPermissions";
             </button>
             <a class="navbar-brand" href="index.php">Grader Admin</a>
         </div>
-        <!-- /.navbar-header -->
 
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             <li class="dropdown">
@@ -59,6 +55,8 @@ $location = "adminPermissions";
             </li>
         </ul>
 
+        <!-- /.navbar-header -->
+
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
@@ -66,10 +64,10 @@ $location = "adminPermissions";
                         <a href="index.php"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
+                        <a href="permissions.php"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
                     </li>
                     <li>
-                        <a href="users.php"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
+                        <a href="users.php"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</span></a>
                     </li>
                 </ul>
             </div>
@@ -81,74 +79,66 @@ $location = "adminPermissions";
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Rechten</h1>
+                <h1 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h1>
             </div>
         </div>
-        <div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: permissionRole">Role</th>
-                    <th data-bind="text: permissionDescription">Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>GUEST</td>
-                    <td>When not logged in you get the GUEST role.</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>SUPERUSER</td>
-                    <td>The superuser role must have access to everything...</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>USER</td>
-                    <td>Contains rights for every USER in the system.</td>
-                </tr>
-                </tbody>
-                <tbody>
-                <tr>
-                    <td>STUDENT</td>
-                    <td>Can only do studentactions</td>
-                </tr>
-            </tbody>
-        </div>
 
+        <!-- /.col-lg-12 -->
         <div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: userName">Username</th>
-                    <th data-bind="text: firstName">Name</th>
-                    <th data-bind="text: lastName">Lastname</th>
-                    <th data-bind="text: userPermissions">Permissions</th>
-                    <th data-bind="text: userActions">Actions</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: usersPermissions">
-                <tr style="width: 100%">
-                    <td style="width: 30%" data-bind="text: username"></td>
-                    <td style="width: 15%" data-bind="text: firstname"></td>
-                    <td style="width: 15%" data-bind="text: lastname"></td>
-                    <td style="width: 25%" data-bind="text: permissions"></td>
-                    <td style="width: 15%"><a href="edit.php" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a></td>
-                </tr>
-                </tbody>
+            <form id="userForm">
+                <input type="hidden" name="lang" value="EN"/>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Firstname</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname"
+                                ></td>
+                    </tr>
+                    <tr>
+                        <td>Lastname</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"
+                                ></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" class="form-control form-next" placeholder="Email" name="email">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <select class="form-control form-next">
+                                <option>Active</option>
+                                <option>Non-Active</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Permission</td>
+                        <td data-bind="foreach: rights">
+                            <!-- ko if: checked() === 'true' -->
+                            <input type="checkbox" checked="true" data-bind='attr: { name: "rights.Name"}'>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="container">
+                    <div class="row">
+                        <div id="bottom-col" class="col-md-12">
+                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <!-- /.row -->
 </div>
-    <!-- /#page-wrapper -->
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
 
 <?php include_once('../jsdepends.php') ?>
-
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -165,6 +155,7 @@ $location = "adminPermissions";
 
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
+
 </body>
 
 </html>
