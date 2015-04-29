@@ -86,7 +86,7 @@ function getAllUserDataById(edituserid){
 function checkPermissions(){
 
     $.each(viewModel.allRights(), function(i, item){
-        $.each(viewModel.rights.permissions, function(i, item){
+        $.each(viewModel.rights, function(i, item){
             console.log(i + " " + item);
             console.log("rights");
 
