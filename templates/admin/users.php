@@ -29,7 +29,6 @@ $location = "adminUsers";
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <?php include_once('../jsdepends.php') ?>
 </head>
 
 <body style="padding-top: 0px">
@@ -143,6 +142,7 @@ $location = "adminUsers";
 
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
+<?php include_once('../jsdepends.php') ?>
 
 </body>
 
