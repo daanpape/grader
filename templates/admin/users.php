@@ -126,6 +126,7 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
+<?php include_once('../jsdepends.php') ?>
 <!-- jQuery -->
 <script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -142,7 +143,6 @@ $location = "adminUsers";
 
 <!-- Custom Theme JavaScript -->
 <script src="/admin_static/dist/js/sb-admin-2.js"></script>
-<?php include_once('../jsdepends.php') ?>
 
 </body>
 
