@@ -1,4 +1,4 @@
-var $selectedcourseid;
+var selectedcourseid;
 
 //viewmodel for the assess page
 function pageViewModel(gvm) {
@@ -83,7 +83,7 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
-                    $selectedcourseid = item.id;
+                    selectedcourseid = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -173,11 +173,10 @@ function getAllTeachers() {
 function getAllWorksheets() {
     worksheets = [];
     worksheetsid = [];
-    $.getJSON('/api/worksheets/' + $selectedcourseid, function(data) {
+    $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
         $.each(data, function(i, item) {
-            //worksheets.push(item.Name);
-            //worksheets.push(item.id);
-            console.log(data);
+            worksheets.push(item.Name);
+            worksheets.push(item.id);
         });
     });
     return worksheets;
