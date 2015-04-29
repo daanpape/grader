@@ -151,13 +151,14 @@ function saveProjectRules() {
  * Rule class
  */
 
-function Rule(viewmodel,id, name, action, operator, value, result) {
+function Rule(viewmodel,id, name, action, operator, value, sign, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
         action: ko.observable(action),
         operator: ko.observable(operator),
         value: ko.observable(value),
+        sign: ko.observable(value),
         result: ko.observable(result),
 
         removeThisRule: function() {
