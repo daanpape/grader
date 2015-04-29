@@ -164,6 +164,16 @@ Class RapportAPI {
             return false;
         }
     }
+
+    //set link course - teacher - studlist inactive
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
+        if (rapportenDAO::setInactiveCourseStudlistCouple($course, $studentlist, $teacher) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
        * copy a course from the database
        */

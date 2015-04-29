@@ -303,15 +303,6 @@ class rapportenDAO {
         }
     }
 
-    /*
-                            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
-                                    LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
-                                    LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
-                                    WHERE module_rapport.course = :courseid
-
-                                    ORDER BY mid, did, cid ASC");
-    */
-
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
@@ -320,14 +311,16 @@ class rapportenDAO {
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                         WHERE course_studentlist_teacher_rapport.active =  '1'
-                                        AND course =  :course LIMIT :start,:count");
+                                        AND course =  :course
+                                        ORDER BY studentlist_rapport.name, users.firstname, users.lastname
+                                        LIMIT :start,:count");
             $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
             $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('could not select all courses', $err);
+            Logger::logError('could not select all connections between an studentlist an teachers', $err);
             return null;
         }
     }
@@ -335,18 +328,19 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(*) FROM course_studentlist_teacher_rapport
-                                      LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
-                                      LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
-                                      WHERE course_studentlist_teacher_rapport.active =  '1'
-                                    AND course =  :course");
+            $stmt = $conn->prepare("SELECT count(studentlist_rapport.id)
+                                      FROM course_studentlist_teacher_rapport
+                                        LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
+                                        LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1'
+                                        AND course =  :course");
             $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
-            Logger::logError('Could not count all courses in the database', $err);
+            Logger::logError('Could not count all connections between an studentlist an teachers', $err);
             return 0;
-        }
+                }
     }
 
     /*
@@ -454,7 +448,23 @@ class rapportenDAO {
             return null;
         }
     }
-    
+
+    //set link course - teacher - studlist inactive
+    public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE course_studentlist_teacher_rapport SET active = '0' WHERE course = :course AND studentlist = :studentlist AND teacher = :teacher");
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':studentlist', (int) $studentlist, PDO::PARAM_INT);
+            $stmt->bindValue(':teacher', (int) $teacher, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete project', $err);
+            return null;
+        }
+    }
+
     public static function copyCourse($id) {
         try {
             $conn = Db::getConnection();

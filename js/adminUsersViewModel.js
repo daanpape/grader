@@ -56,9 +56,10 @@ function removeUser(user)
 
 function updateUserStatus(user)
 {
-    $.getJSON("/api/updateUserStatus/" + user.id() + "/" + user.status(), function(data)
+    console.log(user.status());
+    $.getJSON("/api/updateuserstatus/" + user.id() + "/" + user.status(), function(data)
     {
-        console.log("User was removed");
+        console.log("updated");
         fetchUsersData();
     });
 }
@@ -86,7 +87,7 @@ function User(id, username, firstname, lastname, status) {
             } else {
                 this.status("WAIT_ACTIVATION");
             }
-            console.log(this.status());
+            updateUserStatus(this);
         }
     };
 }
