@@ -176,6 +176,7 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
+        console.log(entry + " " + $('worksheetComplete').val());
         if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
         }
