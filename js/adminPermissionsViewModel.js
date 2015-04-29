@@ -41,14 +41,15 @@ function fetchUsersData()
 
             if (addedUsername != current){
                 addedUsername = item.username;
-                viewModel.updateUsersPermissions(new User(item.username, item.firstname, item.lastname, permissions));
+                viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, permissions));
             }
         });
     });
 }
 
-function User(username, firstname, lastname, permissions) {
+function User(id, username, firstname, lastname, permissions) {
     return {
+        id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),

@@ -71,7 +71,8 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateCourseRapport = function() {
-        $.getJSON('/api/coursedrop', function(data) {
+        $.getJSON('/api/coursefromteacher/' + gvm.userId, function(data) {
+            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -91,7 +92,6 @@ function pageViewModel(gvm) {
             });
         });
     };
-
 
     /*
      * Update the student data
@@ -157,7 +157,7 @@ function pageViewModel(gvm) {
 
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/studentscourse/page/' + pagenr, function(data){
+    $.getJSON('/api/worksheets/page/' + pagenr, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();

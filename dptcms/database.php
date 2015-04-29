@@ -903,7 +903,7 @@ class UserDAO {
     public static function getAllUsersWithRoles() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT r.role, u.username, u.firstname, u.lastname, u.status FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
+            $stmt = $conn->prepare("SELECT r.role, r.id as roleid, u.id as userid, u.username, u.firstname, u.lastname, u.status FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {

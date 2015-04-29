@@ -13,6 +13,7 @@
         <?php include_once('templates/menu.php') ?>
 
         <!-- Header container -->
+        <p id="storage" data-bind="attr:{'data-value': <?php echo $courseid ?>}" style="display: none"></p>   <!-- veldje om courseid in op te slaan -->
         <div class="container">
             <h1 id="header" class="page-header" data-bind="attr:{'data-value': <?php echo $sheetid ?>}"><?php echo $sheetname ?></h1>
         </div>
@@ -33,17 +34,8 @@
                         <br />
 
                         <div style="max-height: 300px;overflow: auto;">
-                            <ul class="list-group checked-list-box">
-                              <li class="list-group-item">Cras justo odio</li>
-                              <li class="list-group-item" data-checked="true">Dapibus ac facilisis in</li>
-                              <li class="list-group-item">Morbi leo risus</li>
-                              <li class="list-group-item">Porta ac consectetur ac</li>
-                              <li class="list-group-item">Vestibulum at eros</li>
-                              <li class="list-group-item">Cras justo odio</li>
-                              <li class="list-group-item">Dapibus ac facilisis in</li>
-                              <li class="list-group-item">Morbi leo risus</li>
-                              <li class="list-group-item">Porta ac consectetur ac</li>
-                              <li class="list-group-item">Vestibulum at eros</li>
+                            <ul class="list-group checked-list-box" data-bind="foreach: availableModules">
+                                <li class="list-group-item">Module name</li>
                             </ul>
                         </div>
                         <br />

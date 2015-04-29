@@ -91,6 +91,24 @@ class rapportenDAO {
             return false;
         }
     }
+
+    //Makes it possible to show a Teacher only the courses he teach
+    public static function getAllCourseFromTeacher($userid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT DISTINCT(course_rapport.id), course_rapport.name
+                                        FROM course_studentlist_teacher_rapport LEFT JOIN course_rapport
+                                        ON course_studentlist_teacher_rapport.course = course_rapport.id
+                                        WHERE course_studentlist_teacher_rapport.active =  '1' AND course_rapport.active =  '1'
+                                        AND teacher =  :teacher");
+            $stmt->bindValue(':teacher', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not get courses', $err);
+            return false;
+        }
+    }
     
     public static function getAllWorksheets($courseid, $start, $count) {
         try {
