@@ -84,9 +84,9 @@ function getAllUserDataById(edituserid){
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
-
-        checkPermissions();
     });
+
+    checkPermissions();
 }
 
 function checkPermissions(){
