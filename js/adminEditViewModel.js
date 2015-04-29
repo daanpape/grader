@@ -95,19 +95,16 @@ function checkPermissions(){
         checked = false;
         var data = [];
         $.each(viewModel.rights(), function(i, itemRights){
-            console.log(itemAllRights + " - " + itemRights);
             if(itemAllRights == itemRights && checked == false){
                 checked = true;
                 data["item"] = itemAllRights;
                 data["checked"] = "true";
-                console.log(itemAllRights + " - " + data["item"] + " - " + data["checked"]);
                 viewModel.updateCheckedRights(data);
             }
         });
         if (checked == false){
             data["item"] = itemAllRights;
             data["checked"] = "false";
-            console.log(data["item"] + " - " + data["checked"]);
             viewModel.updateCheckedRights(data);
         }
     });
