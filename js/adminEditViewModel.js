@@ -37,12 +37,6 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
-
-    gvm.viewUsers = function() {
-        $.each(gvm.user, function (i, item) {
-            console.log(i + " " + item);
-        });
-    }
 }
 
 function initPage() {
@@ -69,8 +63,6 @@ function getAllUserDataById(edituserid){
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
-                viewModel.viewUsers();
-
             }
         });
     });
