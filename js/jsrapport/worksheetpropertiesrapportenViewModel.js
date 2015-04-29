@@ -23,7 +23,7 @@ function pageViewModel(gvm) {
                     var tblObject = {modname: item.name};
                     gvm.availableModules.push(tblObject);
                     if (item.doelstellingen !== null) {
-                        //updateCompetences(item.doelstellingen);
+                        updateCompetences(item.doelstellingen);
                     }
                 });
                 makeChecklist();
