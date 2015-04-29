@@ -30,6 +30,7 @@
                             <label data-bind="text: formmethod"></label>
                             <textarea class="form-control" rows="5" name="method" form="worksheetform"></textarea>
                         </div>
+                        <br />
 
                         <div style="max-height: 300px;overflow: auto;">
                             <ul class="list-group checked-list-box">
