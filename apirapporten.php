@@ -17,6 +17,10 @@ Class RapportAPI {
         /* Return the requested pages */
         return rapportenDAO::getAllCourse();
     }
+    public static function getAllCourseFromTeacher() {
+        /* Return the requested pages */
+        return rapportenDAO::getAllCourseFromTeacher();
+    }
     public static function getAllStudents() {
         /* Return all students */
         return rapportenDAO::getAllStudents();

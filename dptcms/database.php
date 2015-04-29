@@ -959,6 +959,22 @@ class UserDAO {
     }
 
     /**
+     * Get account information based on a id.
+     * @param type $id the user id
+     * @return user details
+     */
+    public static function getUserById($uid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt->execute(array($uid));
+            return $stmt->fetchObject();
+        } catch (PDOException $err) {
+            return null;
+        }
+    }
+
+    /**
      * Get account information based on a user token.
      * @param type $role the role of the users.
      * @return stdClass the users associated with the roles.

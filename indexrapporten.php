@@ -152,6 +152,14 @@ $app->get('/api/coursedrop', function () use ($app) {
     $pagedata = RapportAPI::getAllCourse();
     echo json_encode($pagedata);
 });
+$app->get('/api/coursefromteacher/:userid', function ($userid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    // Get all courses
+    $pagedata = RapportAPI::getAllCourseFromTeacher();
+    echo json_encode($pagedata);
+});
 //get teacher from database
 $app->get('/api/getteacherrapport', function () use ($app) {
     // Use json headers
