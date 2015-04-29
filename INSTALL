@@ -1,0 +1,112 @@
+Installing Grader
+
+Chapter 0:      For the impatient
+Chapter I:      System requirements
+Chapter II:     Webserver configuration
+Chapter III:    Installing webserver files
+Chapter IV:     Running setup
+Chapter V:      Upgrading from an earlier version
+
+
+*** Chapter 0: For the impatient
+
+yum install httpd php php-mysql
+tar -xf grader.tar.gz /var/www/html/grader
+cat << EOF
+<Directory /var/www/html/grader>
+    AllowOverride All
+</Directory>
+EOF > /etc/httpd/conf.d/grader.conf
+touch /var/www/html/grader/dptcms/config.php
+chmod 666 /var/www/html/grader/dptcms/config.php
+systemctl reload httpd
+
+Open browser to http://localhost/grader/setup.php and follow the steps
+
+
+*** Chapter I: System requirements
+
+Grader has been tested on CentOS 7 and is the recommended platform, however
+it should also work on other UNIX OS'es and Windows. This guide assumes you
+are using CentOS.
+
+Grader requires the following:
+
+0. Some free disk space
+1. A webserver
+   -> yum install httpd
+2. PHP >= 5.3.0
+   -> yum install php
+3. A MySQL (or compatible) server
+   -> yum install mariadb
+
+
+*** Chapter II: Webserver configuration
+
+Select a location to install grader. This guide assumes /var/www/html/grader
+and no other specific webserver configuration has been made.
+
+The source contains a .htaccess with all the necessary webserver configuration
+for Apache's httpd. You do have to allow the webserver to process .htaccess
+files, which you can do as following:
+
+<Directory /var/www/html/grader>
+    AllowOverride All
+</Directory>
+
+systemctl reload httpd
+
+
+*** Chapter III: Installing webserver files
+
+Extract the .tar.gz file to your wwwroot or a subdirectory thereof.
+
+tar -xf grader.tar.gz /var/www/html/grader
+
+*** Chapter IV: Running setup
+
+Go to http://localhost/grader/setup.php
+
+The setup will try to automatically create and write out the contents of the
+configuration file dptcms/config.php.
+
+touch dptcms/config.php
+chmod 666 dptcms/config.php
+
+If setup is unable to modify the config.php file, it will allow you to download
+it so you can manually upload it to the webserver. Setup will also try to modify
+the permissions of config.php to 664. If it was unable to do so, execute the
+following command:
+
+chmod 664 dptcms/config.php
+
+
+
+Setup steps
+
+0 Check system requirements (PHP version, MySQL lib, mod_rewrite works)
+1 Ask for database details
+ -> root user for creating database & grader user
+ -> grader user to be created and/or set random password
+2 Do connect test
+3 Check if installing or upgrading
+3.1 Install
+3.1.1 Create database
+3.1.2 Create user
+3.1.3 Import SQL file
+3.1.4 Write out new config file
+3.1.5 Change permissions on config.php
+3.2 Upgrade
+3.2.1 Ask for backup
+3.2.2 Apply SQL diff
+4 Delete setup.php and redirect to index.php
+
+
+
+*** Chapter V: Upgrading from an earlier version
+
+Remove all files except dptcms/config.php
+
+Extract the .tar.gz to the same directory of the old installation
+
+Go to http://your.url/setup.php
