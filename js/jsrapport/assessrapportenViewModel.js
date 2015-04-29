@@ -71,7 +71,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.updateCourseRapport = function() {
-        $.getJSON('/api/coursefromteacher', function(data) {
+        $.getJSON('/api/coursefromteacher/' + gvm.userid, function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list

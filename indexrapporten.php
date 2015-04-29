@@ -152,7 +152,7 @@ $app->get('/api/coursedrop', function () use ($app) {
     $pagedata = RapportAPI::getAllCourse();
     echo json_encode($pagedata);
 });
-$app->get('/api/coursefromteacher', function () use ($app) {
+$app->get('/api/coursefromteacher/:userid', function ($userid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
