@@ -44,15 +44,27 @@ function initPage() {
 }
 
 function getAllUserDataById(edituserid){
-    console.log("Get data from user " + edituserid);
-
+    console.log("Get data from user with id " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-            console.log(data);
-            console.log(i);
-            console.log(item);
+            console.log(item.username);
+
+            var current = item.username;
+            $.each(data, function(i, item)
+            {
+                if(item.username == current){
+                    console.log(current + " " + item.roleid + " " + item.role );
+                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
+                }
+            });
+
+            if (addedUsername != current){
+                addedUsername = item.username;
+                console.log(addedUsername);
+                viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, viewModel.rights()));
+            }
         });
     });
 }
