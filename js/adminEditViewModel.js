@@ -54,7 +54,7 @@ function getAllUserDataById(edituserid){
             console.log(item.username);
 
             var current = item.username;
-            $.each(data, function(i, itemdata)
+            $.each(data, function(itemdata, i)
             {
                 if(item.username == current){
                     console.log(itemdata.roleid + " " + itemdata.role );
