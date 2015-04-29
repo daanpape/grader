@@ -135,7 +135,7 @@ function deleteTableItem(id, tblOject) {
  */
 function copyTableItem(id, tblOject) {
     console.log('in copy functie voor id: ' + id);
-    showYesNoModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
+    showYesNoModalCopy("Bent u zeker dat u dit item wil kopiëren? ", function(val){
         console.log("val " + val);
         if(val){
             $.ajax({

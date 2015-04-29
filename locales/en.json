@@ -34,6 +34,7 @@
     "AssessTitle" : "Assess a project",
     "YesNoModaltitle" : "Are you sure?",
     "YesNoModalBody" : "Are you sure you want to delete this item?",
+    "YesNoModalBodyCopy" : "Are you sure you want to copy this item?",
     "Yes" : "Yes",
     "No" : "No",
 
