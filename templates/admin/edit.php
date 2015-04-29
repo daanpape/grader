@@ -105,8 +105,14 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <select class="form-control form-next">
-                                <option>Active</option>
+                                <!-- ko if: status() === 'ACTIVE' --> -->
+                                <option selected="true">Active</option>
                                 <option>Non-Active</option>
+                                <!-- /ko -->
+                                <!-- ko if: status() !== 'ACTIVE' --> -->
+                                <option>Active</option>
+                                <option selected="true">Non-Active</option>
+                                <!-- /ko -->
                             </select>
                         </td>
                     </tr>
