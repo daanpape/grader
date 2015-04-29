@@ -793,7 +793,7 @@ class ClassDAO {
             foreach ($data as $rule) {
                 if(!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, action, operator, value, result) VALUES (?,?,?,?,?,?)");
-                    $stmt->execute(array($id, $rule->name,$rule->action, $rule->operator, (int)$rule->value, (int)$rule->result));
+                    $stmt->execute(array($id, $rule->name, $rule->action['name'], $rule->operator, (int)$rule->value, (int)$rule->result));
                     $count++;
                 }
                 else
@@ -903,14 +903,13 @@ class UserDAO {
     public static function getAllUsersWithRoles() {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT r.role, r.id as roleid, u.id as userid, u.username, u.firstname, u.lastname, u.status FROM user_roles as ur JOIN roles as r ON ur.role_id = r.id JOIN users as u ON u.id = ur.user_id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
+            $stmt = $conn->prepare("SELECT r.role, r.id AS roleid, u.id AS userid, u.username, u.firstname, u.lastname, u.status FROM users AS u LEFT JOIN user_roles AS ur ON u.id = ur.user_id LEFT JOIN roles AS r ON ur.role_id = r.id ORDER BY u.lastname, u.firstname, ur.user_id, ur.role_id");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             return null;
         }
     }
-
     /**
      * Get account information given the users username.
      * @param type $username the username to get information from.
@@ -963,10 +962,10 @@ class UserDAO {
      * @param type $id the user id
      * @return user details
      */
-    public static function getUserById($uid) {
+    public static function getEditUserById($uid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt = $conn->prepare("SELECT r.role, r.id AS roleid, u.id AS userid, u.username, u.firstname, u.lastname, u.status FROM users AS u LEFT JOIN user_roles AS ur ON u.id = ur.user_id LEFT JOIN roles AS r ON ur.role_id = r.id WHERE u.id = ?");
             $stmt->execute(array($uid));
             return $stmt->fetchObject();
         } catch (PDOException $err) {

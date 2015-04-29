@@ -303,8 +303,8 @@ class GraderAPI {
     /*
      * Get user information given a id
      */
-    public static function getUserDataById($uid) {
-        return UserDAO::getUserById($uid);
+    public static function getEditUserDataById($uid) {
+        return UserDAO::getEditUserById($uid);
     }
 
     /*

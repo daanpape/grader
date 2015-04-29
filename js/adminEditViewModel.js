@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
 
     gvm.updatePermissions = function(permission)
     {
-        gvm.rights.push(user);
+        gvm.rights.push(permission);
     },
 
     gvm.removeUser = function(user) {
@@ -44,20 +44,21 @@ function initPage() {
 }
 
 function getAllUserDataById(edituserid){
-    console.log("get " + edituserid);
+    console.log("Get data from user " + edituserid);
+
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         console.log(data);
         var addedUsername = "";
-        $.each(data, function(i, item){
+        $.each(data, function(item, i){
             console.log(item.username);
 
             var current = item.username;
-            $.each(data, function(i, item)
+            $.each(data, function(itemdata, i)
             {
                 if(item.username == current){
-                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
-                    console.log(item.roleid + " " + item.role );
+                    console.log(itemdata.roleid + " " + itemdata.role );
+                    viewModel.updatePermissions(new Permission(itemdata.roleid, itemdata.role))
                 }
             });
 

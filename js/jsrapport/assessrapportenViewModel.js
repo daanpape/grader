@@ -38,6 +38,7 @@ function pageViewModel(gvm) {
                     $(".btn-studentlist span:first").text(item.studentlist);
                     $('.btn-student span:first').text(item.student);
                     gvm.currentCourseId = item.courseid;
+                    selectedcourseid = item.courseid;
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.currentStudentId = item.studentid;
                     gvm.updateCourseRapport();
@@ -177,7 +178,6 @@ function getAllWorksheets() {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
             worksheets.push(item.id);
-            console.log(data)
         });
     });
     return worksheets;
