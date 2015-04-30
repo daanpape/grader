@@ -176,17 +176,16 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
-        console.log(worksheetsid[i]);
         if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
-            console.log("hier " + worksheet);
         }
         i+= 1;
     });
     return worksheet;
 }
 
-function addWorksheet() {
+function addWorksheet($worksheetid) {
+    console.log("toe te voegenworksheet " + worksheetsid)
     /*
     $.ajax({
         url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
@@ -281,10 +280,9 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        console.log("toevoegen van "+ getWorksheetid($('#worksheetComplete').val()));
-        addWorksheet();
+        addWorksheet(getWorksheetid($('#worksheetComplete').val()));
 
-        //table
+        //table opnieuw laden
         loadTablePage(1);
 
         //Indien gewenst toevoegformulier weer verbergen.
