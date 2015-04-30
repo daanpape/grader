@@ -269,24 +269,16 @@ $app->post('/api/saveedit/:id', function($id) use ($app) {
     }
 });
 
-
-
 $app->get('/api/removeroles/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    // Get all courses by the trainingsid
-    $userdata = GraderAPI::removeUserRoles($id);
-
-    echo json_encode($userdata);
+    echo json_encode(GraderAPI::removeUserRoles($id));
 });
 
 $app->post('/api/addrole/:id', function($id) use ($app) {
-
-
-    echo "<script>console.log(".$_POST.")</script>";
     // Try to edit the user
-    if(!GraderAPI::addUserRole($id, $_POST['current'])) {
+    if(!GraderAPI::addUserRole($id, $_POST['currentRight'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }

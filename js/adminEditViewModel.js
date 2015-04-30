@@ -56,7 +56,7 @@ function initPage() {
 
     $('#userEditForm').on('submit', function(e)
     {
-        //e.preventDefault();
+        e.preventDefault();
 
         //saveChanges();
         saveUserPermissions();
@@ -70,7 +70,7 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions(viewModel.edituserid);
+    saveUserPermissions();
 }
 
 function saveUserEdits(id){
@@ -87,9 +87,10 @@ function saveUserEdits(id){
     });
 }
 
-function saveUserPermissions(id){
+function saveUserPermissions(){
+    console.log("Save user permissions for user: " + viewModel.edituserid);
     //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + id, function(){
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
         console.log("User permissions were removed");
     });
 
@@ -103,13 +104,13 @@ function saveUserPermissions(id){
         if(checkedValue[0].checked == true) {
             $.ajax({
                 type: "POST",
-                url: "/api/addrole/" + id,
-                data: { current: currentRights },
+                url: "/api/addrole/" + viewModel.edituserid,
+                data: { 'currentRight': currentRights },
                 success: function() {
                     console.log('Success saved user permission: ' + currentRights);
                 },
                 error: function() {
-                    console.log("Error saving user permission");
+                    console.log('Error saving user permission: ' + currentRights);
                 }
             });
         }

@@ -316,8 +316,9 @@ $app->post('/api/savemodules/:id', function($id) use ($app) {
     echo json_encode(RapportAPI::updateCoursemodules($id, file_get_contents('php://input')));
 });
 
-$app->get('/api/removecriteria/:id', function($id) use ($app) {
-    $app->response->headers->set('Content-Type', 'application/json');
+$app->delete('/api/removecriteria/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
     echo json_encode(RapportAPI::removeCriteriaFromDatabase($id));
 });
 
