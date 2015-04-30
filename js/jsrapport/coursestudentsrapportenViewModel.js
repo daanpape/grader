@@ -202,7 +202,7 @@ function loadTablePage(pagenr,course)
         /* Let previous en next buttons work */
 
 
-        if(data.prev != "none"){
+        if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
@@ -211,7 +211,7 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        if (data.next != "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
