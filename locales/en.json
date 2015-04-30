@@ -125,10 +125,9 @@
     "WorksheetNameRapport" : "Worksheets",
     "WorksheetRapportManual" : "Summary of the worksheets",
     "AddNewWorksheet" : "Add worksheet",
-    "AddBtnWorksheetUser" : "Add new worksheet for student",
     "EditWorksheet" : "Edit worksheet",
     "FormEquip" : "Equipment",
     "FormMethod" : "Method",
 
-    "UserEditTitle": "Edit user"
-  }
+    "UserEditTitle": "Edit user"z
+}
