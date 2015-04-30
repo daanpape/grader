@@ -128,12 +128,12 @@ class GradingEngine {
         //return $projectStructure[0]->subcompetences[0]->indicators[0]->score;
 
         $indicatorCount = 0;
-        /*foreach($score as $point)
+        foreach($score as $point)
         {
-            $projectStructure[$point->competence]->subcompetences[$point->subcompetence]->indicators[$point->indicator]->score = 1;
-        }*/
+            $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->score = 1;
+        }
 
-        return $score[0]['competence'];
+        return $projectStructure;
 
 
 
