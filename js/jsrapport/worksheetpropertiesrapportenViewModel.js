@@ -164,13 +164,23 @@ function filterModules(data) {
             modules.push(item.modid);
         } 
         $.each(item.competences, function(i, item) {
-            console.log(item.comname);
+            if (data.indexOf(item.comname) > -1) {
+                comps.push(item.comid);
+            }
+            $.each(item.criterias, function(i, item) {
+                if (data.indexOf(item.critname) > -1) {
+                    criteria.push(item.critid);
+                }
+            });
         });
     });
-    /*collection.push(modules);
+    collection.push(modules);
     collection.push(comps);
     collection.push(criteria);
-    return collection;*/
+    console.log(modules);
+    console.log(comps);
+    console.log(criteria);
+    return collection;
 }
 
 function initPage() {        
