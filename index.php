@@ -363,6 +363,13 @@ $app->get('/api/alluserswithroles/', function() use ($app)
     echo json_encode(GraderAPI::getAllUsersWithRolesData(Security::getLoggedInId()));
 });
 
+$app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use ($app)
+{
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
+    echo json_encode(GradingEngine::gradeProjectForStudent($projectid,$userid));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
