@@ -56,7 +56,7 @@ function initPage() {
 
     $('#userEditForm').on('submit', function(e)
     {
-        e.preventDefault();
+        //e.preventDefault();
 
         //saveChanges();
         saveUserPermissions();
@@ -98,10 +98,19 @@ function saveUserPermissions(id){
         var checkedValue = document.getElementsByName(currentRights);
 
         console.log(checkedValue[0].checked + " - " + currentRights);
+
         //SAVE NEW PERMISSIONS
         if(checkedValue[0].checked == true) {
-            $.getJSON("/api/addrole/" + id, function(){
-                console.log("User permission '" + currentRights + "' was added!");
+            $.ajax({
+                type: "POST",
+                url: "/api/addrole/" + id,
+                data: currentRights,
+                success: function() {
+                    console.log('Success saved user permission: ' + currentRights);
+                },
+                error: function() {
+                    console.log("Error saving user permission");
+                }
             });
         }
     });
