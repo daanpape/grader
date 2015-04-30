@@ -283,16 +283,17 @@ function initPage() {
     $('#addNewWorksheetBtn').click(function() {
         //TODO controle of er effectief een lijst / student geselecteerd is.
         //controleren of het voor 1 student is of voor alle studenten
-        console.log("Add")
-        if (new String ($('#studenten').val("")) == new String("student")) {
+        console.log($('#studenten').val());
+        if (new String ($('#studenten').val()) == new String("student")) {
             console.log("Add student");
             addWorksheet(getWorksheetid());
         }
-            else //studentlist
+            else if (new String ($('#studenten').val()) == new String("studentlist"))//studentlist
         {
             console.log("Add studentengroep");
-
         }
+        else
+        console.log("Niets geselecteerd");
         //table opnieuw laden
         loadTablePage(1);
 
