@@ -58,7 +58,7 @@ function initPage() {
     {
         e.preventDefault();
 
-        //saveChanges();
+        saveChanges();
         saveUserPermissions();
 
         window.location.href = "/admin/permissions/edit/" + viewModel.edituserid;
