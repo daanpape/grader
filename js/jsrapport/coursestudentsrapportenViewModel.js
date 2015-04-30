@@ -212,7 +212,8 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        console.log("prev: " + data.next);
+        console.log("prev: " + data.prev);
+        console.log("next: " + data.next);
         if (data.next != "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
@@ -221,7 +222,7 @@ function loadTablePage(pagenr,course)
                 loadTablePage(data.next);
             });
         }
-
+        console.log("next: " + data.next);
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
         console.log("numItems: " + numItems);
