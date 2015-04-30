@@ -146,7 +146,7 @@ function makeChecklist() {
 }
 
 function getCheckedFields() {
-    var checkedItems = {}, counter = 0;
+    var checkedItems = [], counter = 0;
     $("#check-list-box li.active").each(function(idx, li) {
         checkedItems[counter] = $(li).text();
         counter++;
@@ -159,12 +159,11 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    console.log(data);
-    /*$.each(viewModel.availableModules(), function(i, item) {
+    $.each(viewModel.availableModules(), function(i, item) {
         if (data.indexOf(item.modname) > -1) {
             console.log(item.modname);
         }
-    });*/
+    });
     /*$.each(data, function(i, item){
         if (viewModel.availableModules().indexOf(data[i]) > -1) {
             console.log(item.modname);
