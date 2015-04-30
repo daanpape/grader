@@ -368,16 +368,16 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname,course_studentlist_teacher_rapport.id as 'mainid'
+            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname,course_studentlist_teacher_rapport.id
                                         FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
                                         WHERE course_studentlist_teacher_rapport.active =  '1'
                                         AND course =  :course
                                         ORDER BY studentlist_rapport.name, users.firstname, users.lastname
-                                        ");
-         //   $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
-         //   $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+                                        LIMIT :start,:count");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
