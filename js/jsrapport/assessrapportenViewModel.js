@@ -280,7 +280,7 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        console.log("ingevoerd "+ $('worksheetComplete').val());
+        console.log("ingevoerd "+ $('#worksheetComplete').val());
         console.log("toevoegen van "+ getWorksheetid());
         addWorksheet();
 
@@ -288,7 +288,7 @@ function initPage() {
         loadTablePage(1);
 
         //Indien gewenst toevoegformulier weer verbergen.
-        $('worksheetComplete').val("")
+        $('#worksheetComplete').val("");
         $('#addGroupForm').hide();
     });
 }
