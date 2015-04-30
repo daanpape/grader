@@ -78,7 +78,8 @@ class GradingEngine {
      */
     public static function gradeProjectForStudent($project, $student) {
 
-        return ClassDAO::getAllScoresForStudentByProject($project,$student);
+        //return ClassDAO::getAllScoresForStudentByProject($project,$student);
+        return "data";
     }
 }
 

@@ -164,7 +164,7 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get studentlists from owner with id' . $id, $err);
+            Logger::logError('Could not get studentlists from owner with id' .  $err);
             return null;
         }
     }
