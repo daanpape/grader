@@ -477,7 +477,9 @@ class rapportenDAO {
     public static function insertWorksheetStudentListCouple($worksheetid, $studlijstid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user)
+                                      SELECT ?, user FROM studentlist_students_rapport
+                                        WHERE studentlist = ?");
 
             $stmt->execute(array($worksheetid, $studlijstid));
 
