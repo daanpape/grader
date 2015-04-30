@@ -70,7 +70,7 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions(viewModel.edituserid);
+    saveUserPermissions();
 }
 
 function saveUserEdits(id){
@@ -87,10 +87,10 @@ function saveUserEdits(id){
     });
 }
 
-function saveUserPermissions(id){
-    console.log("Save user permissions for user: " + id);
+function saveUserPermissions(){
+    console.log("Save user permissions for user: " + viewModel.edituserid);
     //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + id, function(){
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
         console.log("User permissions were removed");
     });
 
