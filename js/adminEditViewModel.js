@@ -58,10 +58,8 @@ function initPage() {
     {
         e.preventDefault();
 
-        //saveChanges();
+        saveChanges();
         saveUserPermissions();
-
-        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
 }
 
@@ -115,8 +113,6 @@ function saveUserPermissions(){
             });
         }
     });
-
-
 
 
 }

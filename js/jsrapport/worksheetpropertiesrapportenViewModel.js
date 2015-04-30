@@ -101,7 +101,8 @@ function makeChecklist() {
             $checkbox.prop('checked', !$checkbox.is(':checked'));
             $checkbox.triggerHandler('change');
             /* Expansion */
-            console.log($(this).parent('li'));
+            $(this).parent('li').prop('checked', true);
+            $(this).parent('li').triggerHandler('change');
             /* Expansion */
             updateDisplay();
         });

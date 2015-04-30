@@ -275,6 +275,10 @@ Class RapportAPI {
     public static function removeDoelstellingFromDatabase($id) {
         return rapportenDAO::removeDoelstellingFromDatabase($id);
     }
+    
+    public static function removeModuleFromDatabase($id) {
+        return rapportenDAO::removeModuleFromDatabase($id);
+    }
 
     public static function getStudentListsFromUser($id) {
         return rapportenDAO::getStudentListsFromUser($id);
