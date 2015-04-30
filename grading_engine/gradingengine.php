@@ -147,6 +147,24 @@ class GradingEngine {
             }
         }
 
+        // Calculate the weighted arithmetic mean of subcompetences
+
+        foreach($projectStructure as $competence)
+        {
+            foreach($competence->subcompetences as $subcompetence)
+            {
+                $score = 0;
+                $weight = 0;
+                foreach($subcompetence->indicators as $indicator)
+                {
+                    $score += $indicator->score * $indicator->weight;
+                    $weight += $indicator->weight;
+                }
+                $subcompetence->score = $score / $weight;
+            }
+        }
+
+
         return $projectStructure;
 
 
