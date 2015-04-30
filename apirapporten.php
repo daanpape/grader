@@ -97,11 +97,18 @@ Class RapportAPI {
         return rapportenDAO::getStudentsCountFromCourse();
     }
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
-        /* Return the requested pages */
-        return rapportenDAO::getStudentGroupTeacherByCourseID($start, $count, $course);
-    }
+    /* Return the requested pages */
+    return rapportenDAO::getStudentGroupTeacherByCourseID($start, $count, $course);
+}
     public static function getStudentGroupTeacherByCourseCount($course) {
         return rapportenDAO::getStudentGroupTeacherByCourseCount($course);
+    }
+    public static function getWorkficheCourseUser($start, $count, $userid, $course) {
+        /* Return the requested pages */
+        return rapportenDAO::getWorkficheCourseUser($start, $count, $userid, $course);
+    }
+    public static function getWorkficheCourseUserCount($userid, $course) {
+        return rapportenDAO::getWorkficheCourseUserCount($userid, $course);
     }
 
     /*
