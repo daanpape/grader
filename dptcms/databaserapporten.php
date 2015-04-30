@@ -474,6 +474,20 @@ class rapportenDAO {
         }
     }
 
+    public static function insertWorksheetStudentListCouple($worksheetid, $studlijstid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
+
+            $stmt->execute(array($worksheetid, $studlijstid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a worksheet and the students in a studentlist', $err);
+            return null;
+        }
+    }
+
     public static function updateCourse($id, $code, $name, $description) {
         try {
             $conn = Db::getConnection();
