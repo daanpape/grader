@@ -263,7 +263,7 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
 $app->post('/api/saveedit/:id', function($id) use ($app) {
 
     // Try to edit the user
-    if(!GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status'])) {
+    if(!GraderAPI::updateUser($id, $_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['status'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }
