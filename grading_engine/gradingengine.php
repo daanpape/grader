@@ -80,11 +80,9 @@ class GradingEngine {
 
         return createRules($rules);
 
-
-
     }
 
-    private function createRules($rules)
+    function createRules($rules)
     {
         // Create rule objects
         $projectRules = array();
