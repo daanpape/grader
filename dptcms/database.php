@@ -1133,8 +1133,8 @@ class UserDAO {
             return false;
         }
     }
-    
-    /**
+
+    /**updateUser
      * Update the uers avatar. 
      * @param type $userid the id of the user to update
      * @param type $imageid the id of the imagefile

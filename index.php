@@ -250,7 +250,6 @@ $app->get('/api/currentuser', function() use ($app) {
 
     echo json_encode($userdata);
 });
-
 $app->get('/api/edituser/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -262,13 +261,12 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
 });
 
 $app->post('/api/saveedit/:id', function($id) use ($app) {
-    $response = $app->response();
-    $response->header('Content-Type', 'application/json');
 
-    // Get all user data by id
-    $userdata = GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status']);
-
-    echo json_encode($userdata);
+    // Try to edit the user
+    if(!GraderAPI::updateUser($id, $_POST['email'], $_POST['firstname'], $_POST['lastname'], $_POST['status'])) {
+        // Edit failed, bad request
+        $app->response->setStatus(400);
+    }
 });
 
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
