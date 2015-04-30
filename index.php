@@ -367,8 +367,7 @@ $app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use
 {
     $response = $app->response();
     $response->headers('Content-Type','application/json');
-    //echo json_encode(GraderAPI::gradeProjectForStudent($projectid,$userid));
-    echo "Test";
+    echo json_encode(GraderAPI::gradeProjectForStudent($projectid,$userid));
 });
 
 // API PUT routes
