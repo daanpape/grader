@@ -165,7 +165,7 @@ function getGroupid() {
 
  function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
-     //TODO momenteel nog mogelijk om meer als 1 maal zelfde velden in te voeren.
+     //TODO momenteel niet mogelijk om meer als 1 maal zelfde velden in te voeren maar geen foutboodschap
 
          $.ajax({
             url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
