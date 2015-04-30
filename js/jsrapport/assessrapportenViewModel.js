@@ -49,6 +49,7 @@ function pageViewModel(gvm) {
                     gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
                     studid = item.studentid;
+                    studlijstid = gvm.currentStudentlistId;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
