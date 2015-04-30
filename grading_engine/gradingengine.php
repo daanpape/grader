@@ -92,9 +92,7 @@ class GradingEngine {
             array_push($projectRules, $newRule);
         }
 
-        return $projectRules;
-
-
+        return "data";
     }
 }
 
