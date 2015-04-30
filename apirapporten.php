@@ -289,7 +289,7 @@ Class RapportAPI {
                         property_exists($doelstelling, "id") ? $doelstelling->id : -1,
                         property_exists($doelstelling, "name") ? $doelstelling->name : "",
                         property_exists($doelstelling, "description") ? $doelstelling->description : "",
-                        property_exists($doelstelling, "Active") ? $doelstelling->Active: 1,
+                        //property_exists($doelstelling, "Active") ? $doelstelling->Active: 1,
                         $moduleid);
                     // Insert criterias if any
                     if (property_exists($doelstelling, "criterias")) {
@@ -298,7 +298,7 @@ Class RapportAPI {
                                 property_exists($criteria, "id") ? $criteria->id : -1,
                                 property_exists($criteria, "name") ? $criteria->name : "",
                                 property_exists($criteria, "description") ? $criteria->description : "",
-                                property_exists($criteria, "Active") ? $criteria->Active: 1,
+                                //property_exists($criteria, "Active") ? $criteria->Active: 1,
                                 $doelstellingid);
                         }
                     }
