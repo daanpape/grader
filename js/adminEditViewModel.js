@@ -4,8 +4,10 @@ function pageViewModel(gvm) {
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
     gvm.edituserid = $("#usereditHeader").data('value');
+
     gvm.loggedinuser = ko.observable();
 
+    getLoggedInUser();
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -54,8 +56,6 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
-
-    getLoggedInUser();
 
     $('#userEditForm').on('submit', function(e)
     {
