@@ -269,6 +269,27 @@ $app->post('/api/saveedit/:id', function($id) use ($app) {
     }
 });
 
+
+
+$app->get('/api/removeroles', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all courses by the trainingsid
+    $userdata = GraderAPI::removeUserRoles($id);
+
+    echo json_encode($userdata);
+});
+
+$app->post('/api/addrole/:id', function($id, $role) use ($app) {
+
+    // Try to edit the user
+    if(!GraderAPI::addUserRole($id, $role)) {
+        // Edit failed, bad request
+        $app->response->setStatus(400);
+    }
+});
+
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
