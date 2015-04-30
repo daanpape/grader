@@ -159,11 +159,14 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    $.each(data, function(i, item){
-        if (viewModel.availableModules().modname.indexOf(data[i]) > -1) {
+    $.each(viewModel.availableModules.modname(), function(i, item) {
+        console.log(item);
+    });
+    /*$.each(data, function(i, item){
+        if (viewModel.availableModules().indexOf(data[i]) > -1) {
             console.log(item.modname);
         }
-    });
+    });*/
     /*$.each(data, function(i, item) {
         if (viewModel.availableModules) {               //gvm.availableModules doorlopen
             modules.push(item);
