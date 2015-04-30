@@ -45,7 +45,7 @@ function pageViewModel(gvm) {
                     selectedcourseid = item.courseid;
                     gvm.updateStudentlists(item.courseid, gvm.userId);
                     gvm.currentStudentlistId = item.studentlistid;
-                    gvm.updateStudents;
+                    gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
                     studid = item.studentid;
                     gvm.updateCourseRapport();
