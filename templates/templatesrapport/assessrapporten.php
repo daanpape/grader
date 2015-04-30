@@ -65,7 +65,7 @@
                 </thead>
                 <tbody>       <!-- data-bind="foreach: tabledata" -->
                 <tr>
-                    <td >--</td>     <!-- data-bind="text: tstudid" -->
+                    <td data-bind="text: tworkid">--</td>     <!-- data-bind="text: tstudid" -->
                     <td data-bind="text: tname">--</td>     <!-- data-bind="text: tname" -->
                     <td data-bind="text: tdatum">--</td>     <!-- data-bind="text: tlname" -->
                     <td>--</td>     <!-- data-bind="text: tscore" -->

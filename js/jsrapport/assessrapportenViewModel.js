@@ -157,8 +157,8 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, Name , datum) {
         // Push data
-        var tblOject = {tworkid: id, tname: Name, tdatum: datum};
-        gvm.tabledata.push(tblOject);
+        var tblObject = {tworkid: id, tname: Name, tdatum: datum};
+        gvm.tabledata.push(tblObject);
     }
 
     gvm.clearTable = function() {
