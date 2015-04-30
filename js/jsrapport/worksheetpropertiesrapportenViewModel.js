@@ -81,7 +81,7 @@ function makeChecklist() {
 
         // Settings
         var $widget = $(this),
-            $checkbox = $('<input type="checkbox" class="checkbox" />'),
+            $checkbox = $('<input type="checkbox" class="hidden" />'),
             color = ($widget.data('color') ? $widget.data('color') : "primary"),
             style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
             settings = {
