@@ -51,7 +51,7 @@ function pageViewModel(gvm) {
                     studid = item.studentid;
                     studlijstid = gvm.currentStudentlistId;
                     gvm.updateCourseRapport();
-                    loadTablePage(item.courseid, 1);
+                    loadTablePage(1, gvm.currentCourseId);
                 });
             } else {
                 gvm.updateCourseRapport();
@@ -222,42 +222,49 @@ function addWorksheetStudentList(worksheetid) {
     });
 }
 
-function loadTablePage(pagenr)
+function loadTablePage(pagenr,course)
 {
-    $.getJSON('/api/worksheets/page/' + pagenr + '/' + selectedcourseid, function(data){
+    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id,  item.firstname, item.lastname, item.mail);
+            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
+        //TODO pagers doen werken
+        //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
+        //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
+
+
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
             $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev);
+                loadTablePage(data.prev,selectedcourseid);
             });
         }
 
-        if(data.next == "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
             $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next);
+                loadTablePage(data.next,selectedcourseid);
             });
         }
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
 
+
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
+
 
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
@@ -279,7 +286,7 @@ function loadTablePage(pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(thispagenr,selectedcourseid);
                 });
             }
         });
@@ -310,7 +317,7 @@ function initPage() {
             addWorksheetStudentList(getWorksheetid());
             }
         //table opnieuw laden
-        loadTablePage(1);
+        loadTablePage(1,selectedcourseid);
 
         //Indien gewenst toevoegformulier weer verbergen.
         $('#worksheetComplete').val("");
