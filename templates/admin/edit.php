@@ -106,6 +106,7 @@ $location = "adminEdit";
                     <tr>
                         <td>Status</td>
                         <td>
+                            <!-- ko if: status() === 'ACTIVE' || status() === 'DISABLED' -->
                             <select class="form-control form-next">
                                 <!-- ko if: status() === 'ACTIVE' -->
                                 <option selected="true" data-bind="if:status">Active</option>
@@ -115,12 +116,13 @@ $location = "adminEdit";
                                 <option data-bind="if:status">Active</option>
                                 <option selected="true" data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() === 'WAIT_ACTIVATION' -->
-                                <option data-bind="if:status">Active</option>
-                                <option selected="true" data-bind="if:status">Non-Active</option>
-                                <option selected="true" disabled data-bind="if:status">WAIT_ACTIVATION</option>
-                                <!-- /ko -->
                             </select>
+                            <!-- /ko -->
+                            <!-- ko if: status() === 'WAIT_ACTIVATION' -->
+                            <select class="form-control form-next" disabled>
+                                <option selected="true" data-bind="if:status">WAIT_ACTIVATION</option>
+                            </select>
+                            <!-- /ko -->
                         </td>
                     </tr>
                     <tr>
