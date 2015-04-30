@@ -50,7 +50,7 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
-    getCheckedFields();
+    console.log(getCheckedFields());
     /*$.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
@@ -151,7 +151,7 @@ function getCheckedFields() {
         checkedItems[counter] = $(li).text();
         counter++;
     });
-    filterModules(checkedItems);
+    return filterModules(checkedItems);
 }
 
 function filterModules(data) {
@@ -177,9 +177,7 @@ function filterModules(data) {
     collection.push(modules);
     collection.push(comps);
     collection.push(criteria);
-    console.log(modules);
-    console.log(comps);
-    console.log(criteria);
+    console.log(collection);
     return collection;
 }
 
