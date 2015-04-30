@@ -71,7 +71,7 @@ function saveChanges(){
             console.log('Success');
         },
         error: function(xhr, textStatus, errorThrown) {
-            console.log(xhr.responseText);
+            console.log(data);
         }
     });
 }
