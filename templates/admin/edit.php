@@ -85,7 +85,7 @@ $location = "adminEdit";
 
         <!-- /.col-lg-12 -->
         <div>
-            <form id="userForm">
+            <form id="userEditForm">
                 <input type="hidden" name="lang" value="EN"/>
 
 
