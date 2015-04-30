@@ -263,7 +263,7 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-
+        console.log("ingevoerd "+ $('worksheetComplete').val());
         console.log("toevoegen van "+ getWorksheetid());
         //addWorksheet($('#projectHeader').attr("data-value"), getWorksheetid());
 
