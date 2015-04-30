@@ -90,7 +90,7 @@ function saveUserEdits(id){
 function saveUserPermissions(){
     console.log("Save user permissions for user: " + viewModel.edituserid);
     //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + id, function(){
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
         console.log("User permissions were removed");
     });
 
