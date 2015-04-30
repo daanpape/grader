@@ -57,7 +57,7 @@ function criteria(parent, id, name, description) {
 
         removeThis: function() {
             parent.removeCriteria(this);
-            RemoveCriteria();
+            RemoveCurrentCriteria(id);
         }
     };
 }
@@ -150,12 +150,12 @@ function saveCourseStructure() {
     });
 }
 
-function RemoveCriteria()
+function RemoveCurrentCriteria(id)
 {
     $.ajax({
         type: "DELETE",
-        url: "/api/removecriteria/" + courseid,
-        data: ko.toJSON(viewModel.modules),
+        url: "/api/removecriteria/" + id,
+        data: ko.toJSON(viewModel.criteria),
         success: function(){
             // TODO make multilangual and with modals
             console.log("removecriteria");
