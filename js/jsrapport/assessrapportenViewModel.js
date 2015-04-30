@@ -190,7 +190,7 @@ function addWorksheet($worksheetid) {
     $.ajax({
         url: "/api/worksheetstudentcouple/" + $worksheetid + "/" + studid,
         type: "POST",
-        data: {'workseetid': workseetid, 'worksheetid': worksheetid},
+        data: {'workseetid': worksheetid, 'studid': studid},
         success: function(data) {
             //callback(true);
         },
