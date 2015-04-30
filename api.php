@@ -77,9 +77,9 @@ class GraderAPI {
         return UserDAO::removeUser($userid);
     }
 
-    public static function gradeProjectForStudent($projectid, $studentid)
+    public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent($projectid,$studentid);
+        return GradingEngine::gradeProjectForStudent($projectid,$userid);
     }
 
     /*
