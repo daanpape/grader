@@ -160,7 +160,7 @@ function filterModules(data) {
     var comps = [];
     var criteria = [];
     $.each(viewModel.availableModules, function(i, item){
-        console.log(item.modname);
+        console.log(item);
     });
     /*$.each(data, function(i, item) {
         if (viewModel.availableModules) {               //gvm.availableModules doorlopen
