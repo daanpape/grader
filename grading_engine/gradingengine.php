@@ -147,10 +147,14 @@ class GradingEngine {
             }
         }
 
-        // Calculate the weighted arithmetic mean of subcompetences
+        // Calculate the weighted arithmetic mean
 
+        $totalScore = 0;
+        $totalWeight = 0;
         foreach($projectStructure as $competence)
         {
+            $competenceScore = 0;
+            $competenceWeight = 0;
             foreach($competence->subcompetences as $subcompetence)
             {
                 $score = 0;
@@ -161,11 +165,21 @@ class GradingEngine {
                     $weight += $indicator->weight;
                 }
                 $subcompetence->score = $score / $weight;
+
+                $competenceScore += $subcompetence->score * $subcompetence->weight;
+                $competenceWeight += $subcompetence->weight;
             }
+            $competence->score  = $competenceScore / $competenceWeight;
+
+            $totalScore += $competence->score * $competence->weight;
+            $totalWeight += $competence->weight;
         }
 
+        // Final Point for project
 
-        return $projectStructure;
+        $finalScore = $totalScore / $totalWeight;
+
+        return $finalScore;
 
 
 
