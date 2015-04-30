@@ -53,6 +53,15 @@ function pageViewModel(gvm) {
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
+
+    $(".savePageBtn").click(function()
+    {
+        saveChanges();
+    });
+}
+
+function saveChanges(){
+    console.log("Save changes.")
 }
 
 function setRights(){
