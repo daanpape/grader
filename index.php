@@ -359,6 +359,13 @@ $app->get('/api/projectscore/:projectid/:studentid', function($projectid,$studen
     echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
 });
 
+$app->get('/api/loggedinuser', function() use ($app)
+{
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
+    echo json_encode(GraderAPI::getLoggedInId());
+});
+
 $app->get('/api/allusers/', function() use ($app)
 {
     $response = $app->response();
