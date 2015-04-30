@@ -60,6 +60,7 @@ function initPage() {
 
         saveChanges();
 
+
         //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
 }
@@ -68,15 +69,38 @@ function saveChanges(){
     console.log("Save changes");
     console.log("userid: " + viewModel.edituserid);
 
+    saveUserEdits(viewModel.edituserid);
+    saveUserPermissions(viewModel.edituserid);
+}
+
+function saveUserEdits(id){
     $.ajax({
         type: "POST",
-        url: "/api/saveedit/" + viewModel.edituserid,
+        url: "/api/saveedit/" + id,
         data: $('#userEditForm').serialize(),
         success: function() {
-            console.log('Success');
+            console.log('Success saved user changes');
         },
         error: function() {
-            console.log("error");
+            console.log("Error saving user changes");
+        }
+    });
+}
+
+function saveUserPermissions(id){
+    //FIRST DELETE ALL PERMISSIONS
+
+
+    //SAVE NEW PERMISSIONS
+    $.ajax({
+        type: "POST",
+        url: "/api/saveedit/" + id,
+        data: $('#userEditForm').serialize(),
+        success: function() {
+            console.log('Success saved user changes');
+        },
+        error: function() {
+            console.log("Error saving user changes");
         }
     });
 }
