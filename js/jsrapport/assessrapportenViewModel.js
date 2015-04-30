@@ -224,7 +224,7 @@ function addWorksheetStudentList(worksheetid) {
 
 function loadTablePage(pagenr)
 {
-    $.getJSON('/api/worksheets/page/' + pagenr, function(data){
+    $.getJSON('/api/worksheets/page/' + pagenr + '/' + selectedcourseid, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
