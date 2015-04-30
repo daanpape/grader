@@ -616,6 +616,20 @@ class rapportenDAO {
             return false;
         }
     }
+    
+        public static function removeDoelstellingFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE doelstelling_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         try {

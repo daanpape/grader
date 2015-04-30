@@ -147,6 +147,31 @@ class GradingEngine {
             }
         }
 
+        // Calculate the weighted arithmetic mean
+
+
+        foreach($projectStructure as $competence)
+        {
+            $competenceScore = 0;
+            $competenceWeight = 0;
+            foreach($competence->subcompetences as $subcompetence)
+            {
+                $score = 0;
+                $weight = 0;
+                foreach($subcompetence->indicators as $indicator)
+                {
+                    $score += $indicator->score * $indicator->weight;
+                    $weight += $indicator->weight;
+                }
+                $subcompetence->score = $score / $weight;
+
+                $competenceScore += $subcompetence->score * $subcompetence->weight;
+                $competenceWeight += $subcompetence->weight;
+            }
+            $competence->score  = $competenceScore / $competenceWeight;
+        }
+
+
         return $projectStructure;
 
 

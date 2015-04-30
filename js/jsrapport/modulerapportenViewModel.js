@@ -38,6 +38,7 @@ function doelstelling(parent, id, name, description, crit) {
 
         removeThis: function() {
             parent.removeDoelstelling(this);
+            RemoveCurrentDoelstelling(id);
         },
         
         removeCriteria: function(criteria) {
@@ -57,7 +58,7 @@ function criteria(parent, id, name, description) {
 
         removeThis: function() {
             parent.removeCriteria(this);
-            RemoveCriteria();
+            RemoveCurrentCriteria(id);
         }
     };
 }
@@ -150,15 +151,28 @@ function saveCourseStructure() {
     });
 }
 
-function RemoveCriteria()
+function RemoveCurrentCriteria(id)
 {
     $.ajax({
         type: "DELETE",
-        url: "/api/removecriteria/" + courseid,
-        data: ko.toJSON(viewModel.modules),
+        url: "/api/removecriteria/" + id,
+        data: ko.toJSON(viewModel.criteria),
         success: function(){
             // TODO make multilangual and with modals
             console.log("removecriteria");
+        }
+    });
+}
+
+function RemoveCurrentDoelstelling(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removedoelstelling/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            // TODO make multilangual and with modals
+            console.log("removedoelstelling");
         }
     });
 }
