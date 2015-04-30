@@ -352,7 +352,7 @@ $app->post('/api/worksheetmodules', function() use($app) {
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    echo json_encode(RapportAPI::addWorksheetModules());  //still needs 3 parameters (modules, competences and criteria)
+    echo json_encode(RapportAPI::addWorksheetModules($id, $modules, $competences, $criteria));
 });
 // API DELETE routes
 $app->delete('/api/coursedelete/:id', function ($id) use ($app) {

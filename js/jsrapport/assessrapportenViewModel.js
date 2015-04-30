@@ -281,8 +281,15 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        addWorksheet(getWorksheetid());
+        //TODO controle of er effectief een lijst / student geselecteerd is.
+        //controleren of het voor 1 student is of voor alle studenten
+        if (new String ($('#studenten').val("")) == new String("student")) {
+            addWorksheet(getWorksheetid());
+        }
+            else //studentlist
+        {
 
+        }
         //table opnieuw laden
         loadTablePage(1);
 
