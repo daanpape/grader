@@ -254,8 +254,8 @@ class GraderAPI {
     }
 
     public static function getLoggedInId() {
-        $userid = Security::getLoggedInId();
-        return $userid;
+        return Security::getLoggedInId();
+
     }
 
 
