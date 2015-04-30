@@ -31,6 +31,7 @@ class Indicator {
     public $id;                 /* The ID of this indicator */
     public $score;              /* The score of an indicator */
     public $weight;             /* The weight of an indicator */
+    public $count;              /* Number of times an indicator got judged */
 }
 
 /**
@@ -99,28 +100,54 @@ class GradingEngine {
             $newCompetence = new Competence();
             $newCompetence->id = $competence->id;
             $newCompetence->weight = $competence->weight;
+            $newCompetence->score = 0;
             $newCompetence->subcompetences = array();
             foreach($competence->subcompetences as $subcompetence)
             {
                 $newSubcompetence = new SubCompetence();
                 $newSubcompetence->id = $subcompetence->id;
                 $newSubcompetence->weight = $subcompetence->weight;
+                $newSubcompetence->score = 0;
                 $newSubcompetence->indicators = array();
                 foreach($subcompetence->indicators as $indicator)
                 {
                     $newIndicator = new Indicator();
                     $newIndicator->id = $indicator->id;
                     $newIndicator->weight = $indicator->weight;
-                    array_push($newSubcompetence->indicators, $newIndicator);
+                    $newIndicator->score = 0;
+                    $newIndicator->count = 0;
+                    //array_push($newSubcompetence->indicators, $newIndicator);
+                    $newSubcompetence->indicators[$newIndicator->id] = $newIndicator;
                 }
-                array_push($newCompetence->subcompetences, $newSubcompetence);
+                //array_push($newCompetence->subcompetences, $newSubcompetence);
+                $newCompetence->subcompetences[$newSubcompetence->id] = $newSubcompetence;
             }
-            array_push($projectStructure, $newCompetence);
+            //array_push($projectStructure, $newCompetence);
+            $projectStructure[$newCompetence->id] = $newCompetence;
         }
 
         // Calculate indicator points
-        return $projectStructure[0]->subcompetences[0]->indicators[0]->score;
 
+        foreach($score as $point)
+        {
+            $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->score += $point['score'];
+            $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->count++;
+        }
+
+        // Calculate the average score of indicator (total / count )
+
+        foreach($projectStructure as $competence)
+        {
+            foreach($competence->subcompetences as $subcompetence)
+            {
+                foreach($subcompetence->indicators as $indicator)
+                {
+                    $indicator->score = $indicator->score / $indicator->count;
+                }
+            }
+        }
+
+        return $projectStructure;
 
 
 

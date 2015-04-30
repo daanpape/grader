@@ -58,7 +58,8 @@ function initPage() {
     {
         e.preventDefault();
 
-        saveChanges();
+        //saveChanges();
+        saveUserPermissions();
 
         //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
@@ -68,17 +69,56 @@ function saveChanges(){
     console.log("Save changes");
     console.log("userid: " + viewModel.edituserid);
 
+    saveUserEdits(viewModel.edituserid);
+    saveUserPermissions();
+}
+
+function saveUserEdits(id){
     $.ajax({
         type: "POST",
-        url: "/api/saveedit/" + viewModel.edituserid,
+        url: "/api/saveedit/" + id,
         data: $('#userEditForm').serialize(),
         success: function() {
-            console.log('Success');
+            console.log('Success saved user changes');
         },
         error: function() {
-            console.log("error");
+            console.log("Error saving user changes");
         }
     });
+}
+
+function saveUserPermissions(){
+    console.log("Save user permissions for user: " + viewModel.edituserid);
+    //FIRST DELETE ALL PERMISSIONS
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
+        console.log("User permissions were removed");
+    });
+
+    $.each(viewModel.allRights(), function(i, currentRights){
+
+        var checkedValue = document.getElementsByName(currentRights);
+
+        console.log(checkedValue[0].checked + " - " + currentRights);
+
+        //SAVE NEW PERMISSIONS
+        if(checkedValue[0].checked == true) {
+            $.ajax({
+                type: "POST",
+                url: "/api/addrole/" + viewModel.edituserid,
+                data: { 'currentRight': currentRights },
+                success: function() {
+                    console.log('Success saved user permission: ' + currentRights);
+                },
+                error: function() {
+                    console.log('Error saving user permission: ' + currentRights);
+                }
+            });
+        }
+    });
+
+
+
+
 }
 
 function setRights(){

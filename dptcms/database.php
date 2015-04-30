@@ -927,6 +927,29 @@ class UserDAO {
         }
     }
 
+    public static function removeUserRoles($userid)
+    {
+        $conn = Db::getConnection();
+        // Delete from user_roles (all roles)
+        $stmt = $conn->prepare("DELETE FROM user_roles WHERE user_id=?");
+        $stmt->execute(array($userid));
+
+        return true;
+    }
+
+
+
+    public static function addUserRole($userid, $role)
+    {
+        $conn = Db::getConnection();
+        // Add role for user
+        $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
+        $stmt->execute(array($userid, $role));
+
+        return true;
+    }
+
+
     /**
      * Get all users with roles.
      * @return stdClass the users.
