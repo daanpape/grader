@@ -61,7 +61,7 @@ function initPage() {
         //saveChanges();
         saveUserPermissions();
 
-        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
+        window.location.href = "/admin/permissions/edit/" + viewModel.edituserid;
     });
 }
 
@@ -115,8 +115,6 @@ function saveUserPermissions(){
             });
         }
     });
-
-
 
 
 }
