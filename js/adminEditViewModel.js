@@ -4,7 +4,7 @@ function pageViewModel(gvm) {
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
     gvm.edituserid = $("#usereditHeader").data('value');
-
+    gvm.loggedinuser = ko.observable();
 
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
@@ -54,7 +54,6 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
-    setRights();
 
     getLoggedInUser();
 
@@ -65,11 +64,13 @@ function initPage() {
         saveChanges();
         saveUserPermissions();
     });
+
+    setRights();
 }
 
 function getLoggedInUser(){
     $.getJSON("/api/loggedinuser", function(data){
-        console.log(data);
+        viewModel.loggedinuser = data;
     });
 }
 
@@ -168,10 +169,9 @@ function checkPermissions(){
         var data = [];
         $.each(viewModel.rights(), function(i, itemRights){
             if(itemAllRights == itemRights && checked == false){
-                if(itemRights == "SUPERUSER"){
+                if(itemRights == "SUPERUSER" || viewModel.loggedinuser == viewModel.edituserid){
                     data["disabled"] = true;
                 } else {
-
                     data["disabled"] = false;
                 }
                 checked = true;
@@ -183,7 +183,11 @@ function checkPermissions(){
         if (checked == false){
             data["item"] = itemAllRights;
             data["isChecked"] = false;
-            data["disabled"] = false;
+            if(viewModel.loggedinuser == viewModel.edituserid){
+                data["disabled"] = true;
+            } else {
+                data["disabled"] = false;
+            }
             viewModel.updateCheckedRights(data);
         }
     });
