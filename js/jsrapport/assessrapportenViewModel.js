@@ -178,6 +178,7 @@ function getWorksheetid() {
     worksheets.forEach(function(entry) {
         if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
+            console.log("hier " + worksheet);
         }
         i+= 1;
     });
