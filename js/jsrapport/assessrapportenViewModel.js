@@ -176,8 +176,7 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
-        console.log(entry + " " + $('worksheetComplete').val());
-        if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
+        if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
         }
         i+= 1;
@@ -280,8 +279,7 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        console.log("ingevoerd "+ $('#worksheetComplete').val());
-        console.log("toevoegen van "+ getWorksheetid());
+        console.log("toevoegen van "+ getWorksheetid($('#worksheetComplete').val()));
         addWorksheet();
 
         //table
