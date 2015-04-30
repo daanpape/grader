@@ -61,7 +61,7 @@ function initPage() {
 }
 
 function saveChanges(){
-    console.log("Save changes.")
+    console.log("Save changes")
 }
 
 function setRights(){
