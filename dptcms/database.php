@@ -939,11 +939,15 @@ class UserDAO {
 
 
 
-    public static function addUserRole($userid, $role)
+    public static function addUserRole($userid, $roleName)
     {
         $conn = Db::getConnection();
+        $stmt=$conn->prepare("SELECT id FROM roles WHERE role = ?");
+        $stmt->execute(array($roleName));
+        $role = $stmt->fetchObject();
+
         // Add role for user
-        $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
+        $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, )");
         $stmt->execute(array($userid, $role));
 
         return true;
