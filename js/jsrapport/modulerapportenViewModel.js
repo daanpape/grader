@@ -158,8 +158,6 @@ function RemoveCriteria()
         data: ko.toJSON(viewModel.modules),
         success: function(){
             // TODO make multilangual and with modals
-
-            fetchCourseStructure();
         }
     });
 }
