@@ -183,7 +183,7 @@ function getWorksheetid() {
 }
 
 function addWorksheet($worksheetid) {
-    console.log("toe te voegenworksheet " + $worksheetsid)
+    console.log("toe te voegenworksheet " + $worksheetid)
     /*
     $.ajax({
         url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
