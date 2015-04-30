@@ -74,10 +74,10 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProjectForStudent($project, $student) {
+    public static function gradeProjectForStudent($score, $rules) {
 
         //return ClassDAO::getAllScoresForStudentByProject($project,$student);
-        return "data";
+        return $score;
     }
 }
 
