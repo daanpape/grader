@@ -43,7 +43,9 @@ function pageViewModel(gvm) {
                     $('.btn-student span:first').text(item.student);
                     gvm.currentCourseId = item.courseid;
                     selectedcourseid = item.courseid;
+                    gvm.updateStudentlists(item.courseid, gvm.userId);
                     gvm.currentStudentlistId = item.studentlistid;
+                    gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
                     studid = item.studentid;
                     gvm.updateCourseRapport();
@@ -279,8 +281,15 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        addWorksheet(getWorksheetid());
+        //TODO controle of er effectief een lijst / student geselecteerd is.
+        //controleren of het voor 1 student is of voor alle studenten
+        if (new String ($('#studenten').val("")) == new String("student")) {
+            addWorksheet(getWorksheetid());
+        }
+            else //studentlist
+        {
 
+        }
         //table opnieuw laden
         loadTablePage(1);
 
