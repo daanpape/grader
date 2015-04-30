@@ -64,7 +64,6 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -77,7 +76,6 @@ function pageViewModel(gvm) {
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursefromteacher/' + gvm.userId, function(data) {
-            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
