@@ -91,26 +91,13 @@ class GradingEngine {
             $newRule->percent = $rule->value;
             array_push($projectRules, $newRule);
         }
-        return $projectRules;
-    }
 
-    function createRules($rules)
-    {
-        // Create rule objects
-        $projectRules = array();
-        foreach($rules as $rule)
-        {
-            /*$newRule = new Rule();
-            $newRule->type = $rule->action['subject'];
-            $newRule->id = $rule->action['id'];
-            $newRule->operator = $rule->operator;
-            $newRule->value = $rule->result;
-            $newRule->sign = $rule->sign;
-            $newRule->percent = $rule->value;
-            array_push($projectRules, $newRule);*/
-        }
+        // Calculate points
+        return $score;
 
-        return $rules;
+
+
+
     }
 }
 
