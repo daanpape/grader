@@ -93,7 +93,34 @@ class GradingEngine {
         }
 
         // Calculate points for indicators
-        return $structure;
+        $projectStructure = array();
+        foreach($structure as $competence)
+        {
+            $newCompetence = new Competence();
+            $newCompetence->id = $competence->id;
+            $newCompetence->weight = $competence->weight;
+            $newCompetence->subcompetences = array();
+            foreach($competence->subcompetences as $subcompetence)
+            {
+                $newSubcompetence = new SubCompetence();
+                $newSubcompetence->id = $subcompetence->id;
+                $newSubcompetence->weight = $subcompetence->weight;
+                $newSubcompetence->indicators = array();
+                foreach($subcompetence->indicators as $indicator)
+                {
+                    $newIndicator = new Indicator();
+                    $newIndicator->id = $indicator->id;
+                    $newIndicator->weight = $indicator->weight;
+                    array_push($newSubcompetence->indicators, $newIndicator);
+                }
+                array_push($newCompetence->subcompetences, $newSubcompetence);
+            }
+            array_push($projectStructure, $newCompetence);
+
+        }
+
+
+        return $projectStructure;
 
 
     }
