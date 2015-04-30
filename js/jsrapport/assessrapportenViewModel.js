@@ -146,6 +146,7 @@ function pageViewModel(gvm) {
                     gvm.currentStudentId = item.id;
                     $(".btn-student span:first").text($(this).text());
                     gvm.saveLastSelectedDropdowns();
+                    loadTablePage(1,gvm.currentCourseId);
                 });
             })
         })
@@ -155,9 +156,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, Name , datum) {
+    gvm.addTableData = function(id, Name , datum, score) {
         // Push data
-        var tblObject = {tworkid: id, tname: Name, tdatum: datum};
+        var tblObject = {tworkid: id, tname: Name, tdatum: datum, tscore: score};
         gvm.tabledata.push(tblObject);
     }
 
@@ -233,7 +234,7 @@ function loadTablePage(pagenr,course)
         // Load table data
         $.each(data.data, function(i, item) {
             console.log(item);
-            viewModel.addTableData(item.id, item.Name , item.datum);
+            viewModel.addTableData(item.id, item.Name , item.datum, item.score);
         });
 
         //TODO pagers doen werken
