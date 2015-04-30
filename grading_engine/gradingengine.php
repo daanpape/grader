@@ -61,6 +61,8 @@ class Rule {
     public $id;                 /* The id of the item it works on */
     public $operator;           /* The comparison binary operator */
     public $value;              /* The value to compare with */
+    public $sign;               /* The sign of the percent */
+    public $percent;            /* The percent that gets added or subtracted of the action  */
 }
 
 /**
@@ -76,8 +78,23 @@ class GradingEngine {
      */
     public static function gradeProjectForStudent($score, $rules) {
 
-        //return ClassDAO::getAllScoresForStudentByProject($project,$student);
-        return $rules;
+        // Create rule objects
+        $projectRules = array();
+        foreach($projectRules as $rule)
+        {
+            $newRule = new Rule();
+            $newRule->type = $rule->action->subject;
+            $newRule->id = $rule->action->id;
+            $newRule->operator = $rule->operator;
+            $newRule->value = $rule->result;
+            $newRule->sign = $rule->sign;
+            $newRule->percent = $rule->value;
+            array_push($projectRules, $newRule);
+        }
+
+        return $projectRules;
+
+
     }
 }
 
