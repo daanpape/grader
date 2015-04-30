@@ -70,8 +70,8 @@ function saveChanges(){
         success: function() {
             console.log('Success');
         },
-        error: function() {
-            console.log('error');
+        error: function(xhr, textStatus, errorThrown) {
+            console.log(xhr.responseText);
         }
     });
 }
