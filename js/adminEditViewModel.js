@@ -56,7 +56,7 @@ function initPage() {
 
     $('#userEditForm').on('submit', function(e)
     {
-        e.preventDefault();
+        //e.preventDefault();
 
         saveChanges();
 
@@ -92,17 +92,7 @@ function saveUserPermissions(id){
 
 
     //SAVE NEW PERMISSIONS
-    $.ajax({
-        type: "POST",
-        url: "/api/saveedit/" + id,
-        data: $('#userEditForm').serialize(),
-        success: function() {
-            console.log('Success saved user changes');
-        },
-        error: function() {
-            console.log("Error saving user changes");
-        }
-    });
+
 }
 
 function setRights(){
