@@ -193,6 +193,7 @@ function loadTablePage(pagenr)
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
+        console.log("numItems: " + numItems);
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
