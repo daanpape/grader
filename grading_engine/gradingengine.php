@@ -80,7 +80,7 @@ class GradingEngine {
 
         // Create rule objects
         $projectRules = array();
-        foreach($projectRules as $rule)
+        foreach($rules as $rule)
         {
             $newRule = new Rule();
             $newRule->type = $rule->action->subject;
