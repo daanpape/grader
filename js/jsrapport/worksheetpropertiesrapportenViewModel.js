@@ -159,7 +159,7 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    $.each(viewModel.availableModules.modname(), function(i, item) {
+    $.each(viewModel.availableModules().modname, function(i, item) {
         console.log(item);
     });
     /*$.each(data, function(i, item){
