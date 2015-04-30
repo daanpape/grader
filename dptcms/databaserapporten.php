@@ -79,6 +79,37 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function insertWorksheetModule($id, $modid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_module_rapport (werkfiche, module) VALUES (?, ?)");
+            $stmt->execute(array($id, $modid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCompetence($id, $compid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_competence_rapport (werkfiche, competence) VALUES (?, ?)");
+            $stmt->execute(array($id, $compid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCriteria($id, $critid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_rapport (werkfiche, criteria) VALUES (?, ?)");
+            $stmt->execute(array($id, $critid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
     //Get all courses
     public static function getAllCourse() {
         try {

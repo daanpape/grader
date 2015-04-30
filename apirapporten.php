@@ -62,10 +62,16 @@ Class RapportAPI {
         return rapportenDAO::getWorksheetCount();
     }
     
-    public static function addWorksheetModules($modules, $competences, $criteria) {
-        //addmodule
-        //addcompetence
-        //addcriteria
+    public static function addWorksheetModules($id, $modules, $competences, $criteria) {
+        foreach($modules as $mod) {
+            rapportenDAO::insertWorksheetModule($id, $mod);
+        }
+        foreach($competences as $comp) {
+            rapportenDAO::insertWorksheetCompetence($id, $comp);
+        }
+        foreach($criteria as $crit) {
+            rapportenDAO::insertWorksheetCriteria($id, $crit);
+        }
     }
 
     public static function getTeacher() {

@@ -50,8 +50,8 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
-    console.log(getCheckedFields());
-    /*$.ajax({
+    var collection = getCheckedFields();
+    $.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
         data: serialData,
@@ -66,14 +66,14 @@ function addWorksheetProperties(serialData, wid, callback) {
     $.ajax({
         url: "/api/worksheetmodules",
         type: "POST",
-        data: {id: wid},  //ook nog de aangeduide modules, doelstellingen, criteria
+        data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
         success: function(data) {
             console.log('Success');
         },
         error: function(data) {
             console.log('Failure');
         }
-    });*/
+    });
 }
 
 function makeChecklist() {
@@ -177,7 +177,6 @@ function filterModules(data) {
     collection.push(modules);
     collection.push(comps);
     collection.push(criteria);
-    console.log(collection);
     return collection;
 }
 
