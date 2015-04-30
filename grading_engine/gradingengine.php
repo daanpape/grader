@@ -83,7 +83,7 @@ class GradingEngine {
         foreach($rules as $rule)
         {
             $newRule = new Rule();
-            $newRule->type = $rule->action->id;
+            $newRule->type = $rule->action['id'];
             //$newRule->id = $rule['action']['id'];
             //$newRule->operator = $rule['operator'];
             //$newRule->value = $rule['result'];
