@@ -342,6 +342,20 @@ class GraderAPI {
         return UserDAO::updateUser($id, $firstname, $lastname, $username, $status);
     }
 
+    /*
+     * remove user roles
+     */
+    public static function removeUserRoles($id) {
+        return UserDAO::removeUserRoles($id);
+    }
+
+    /*
+     * Add user role
+     */
+    public static function addUserRole($id, $role) {
+        return UserDAO::addUserRole($id, $role);
+    }
+
 
     /**
      * Put a project structure into the database.

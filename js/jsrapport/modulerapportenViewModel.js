@@ -20,7 +20,6 @@ function module(viewmodel, id, name, description, doelstellingen) {
             this.doelstellingen.remove(doelstelling);
         }
     };
-
 }
 
 /**
@@ -58,6 +57,7 @@ function criteria(parent, id, name, description) {
 
         removeThis: function() {
             parent.removeCriteria(this);
+            RemoveCriteria();
         }
     };
 }
@@ -146,6 +146,18 @@ function saveCourseStructure() {
             alert("Saved coursestructure to server");
 
             fetchCourseStructure();
+        }
+    });
+}
+
+function RemoveCriteria()
+{
+    $.ajax({
+        type: "GET",
+        url: "/api/removecriteria/" + courseid,
+        data: ko.toJSON(viewModel.modules),
+        success: function(){
+            // TODO make multilangual and with modals
         }
     });
 }

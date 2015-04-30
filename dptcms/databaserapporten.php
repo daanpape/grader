@@ -477,7 +477,9 @@ class rapportenDAO {
     public static function insertWorksheetStudentListCouple($worksheetid, $studlijstid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user)
+                                      SELECT ?, user FROM studentlist_students_rapport
+                                        WHERE studentlist = ?");
 
             $stmt->execute(array($worksheetid, $studlijstid));
 
@@ -598,6 +600,19 @@ class rapportenDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not delete studentlist', $err);
             return null;
+        }
+    }
+    
+    public static function removeCriteriaFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE criteria_rapport SET Active = '0' WHERE id = ?");
+            $stmt->execute(array($id));
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
         }
     }
 
