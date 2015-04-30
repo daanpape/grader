@@ -86,9 +86,9 @@ class GradingEngine {
             $newRule->type = $rule->action['subject'];
             $newRule->id = $rule->action['id'];
             $newRule->operator = $rule->operator;
-            $newRule->value = $rule['result'];
-            $newRule->sign = $rule['sign'];
-            $newRule->percent = $rule['value'];
+            $newRule->value = $rule->result;
+            $newRule->sign = $rule->sign;
+            $newRule->percent = $rule->value;
             array_push($projectRules, $newRule);
         }
 
