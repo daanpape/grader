@@ -330,6 +330,14 @@ $app->post('/api/coursecouple/:courseid/:studlistid/:teacherid', function($cours
     //Insert the data
     echo json_encode(RapportAPI::createCourseStudentlistCouple($courseid, $studlistid, $teacherid));
 });
+$app->post('/api/worksheetstudentcouple/:worksheetid/:studid', function($worksheetid, $studid) use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(RapportAPI::createWorksheetStudentCouple($worksheetid, $studid));
+});
 $app->post('/api/newstudent/:name/:list', function($name, $listid) use($app) {
     //Use json header
     $response = $app->response();

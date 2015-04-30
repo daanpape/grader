@@ -429,6 +429,19 @@ class rapportenDAO {
             return null;
         }
     }
+    public static function insertWorksheetStudentCouple($worksheetid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("");
+
+            $stmt->execute(array($worksheetid, $studid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a worksheet and student', $err);
+            return null;
+        }
+    }
 
     public static function updateCourse($id, $code, $name, $description) {
         try {
