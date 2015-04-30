@@ -359,7 +359,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(course_studentlist_teacher_rapport.id)
+            $stmt = $conn->prepare("SELECT count(*)
                                       FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
@@ -426,6 +426,19 @@ class rapportenDAO {
             return $conn->lastInsertId();
         } catch (PDOException $err) {
             Logger::logError('Could not create new coupling between a course, studentlist and a teacher', $err);
+            return null;
+        }
+    }
+    public static function insertWorksheetStudentCouple($worksheetid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("");
+
+            $stmt->execute(array($worksheetid, $studid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a worksheet and student', $err);
             return null;
         }
     }

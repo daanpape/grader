@@ -159,9 +159,17 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    $.each(viewModel.availableModules(), function(i, item){
-        console.log(item);
-    });
+    console.log(data);
+    /*$.each(viewModel.availableModules(), function(i, item) {
+        if (data.indexOf(item.modname) > -1) {
+            console.log(item.modname);
+        }
+    });*/
+    /*$.each(data, function(i, item){
+        if (viewModel.availableModules().indexOf(data[i]) > -1) {
+            console.log(item.modname);
+        }
+    });*/
     /*$.each(data, function(i, item) {
         if (viewModel.availableModules) {               //gvm.availableModules doorlopen
             modules.push(item);

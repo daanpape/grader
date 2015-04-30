@@ -1,5 +1,6 @@
 //Nodig voor autoincrement
 var selectedcourseid;
+var studid;
 var worksheets = [];
 var worksheetsid = [];
 
@@ -44,6 +45,7 @@ function pageViewModel(gvm) {
                     selectedcourseid = item.courseid;
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.currentStudentId = item.studentid;
+                    studid = item.studentid;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
@@ -64,7 +66,7 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        console.log(data);
+        studid = gvm.currentStudentId;
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -77,7 +79,6 @@ function pageViewModel(gvm) {
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursefromteacher/' + gvm.userId, function(data) {
-            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -176,22 +177,20 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
-        console.log(worksheetsid[i]);
         if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
-            console.log("hier " + worksheet);
         }
         i+= 1;
     });
     return worksheet;
 }
 
-function addWorksheet() {
-    /*
+function addWorksheet($worksheetid) {
+    console.log("toe te voegenworksheet " + $worksheetid + " voor " + studid);
     $.ajax({
-        url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
+        url: "/api/worksheetstudentcouple/" + $worksheetid + "/" + studid,
         type: "POST",
-        data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
+        data: {'workseetid': workseetid, 'worksheetid': worksheetid},
         success: function(data) {
             //callback(true);
         },
@@ -200,7 +199,6 @@ function addWorksheet() {
             //callback(false);
         }
     });
-    */
 }
 
 function loadTablePage(pagenr)
@@ -281,10 +279,9 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        console.log("toevoegen van "+ getWorksheetid($('#worksheetComplete').val()));
-        addWorksheet();
+        addWorksheet(getWorksheetid());
 
-        //table
+        //table opnieuw laden
         loadTablePage(1);
 
         //Indien gewenst toevoegformulier weer verbergen.
