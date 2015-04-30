@@ -83,11 +83,12 @@ class GradingEngine {
         foreach($rules as $rule)
         {
             $newRule = new Rule();
+            $newRule->type = "Test";
             //$newRule->type = $rule['action']['subject'];
             //$newRule->id = $rule['action']['id'];
             //$newRule->operator = $rule['operator'];
             //$newRule->value = $rule['result'];
-            $newRule->sign = $rule['sign'];
+            //$newRule->sign = $rule['sign'];
             //$newRule->percent = $rule['value'];
             array_push($projectRules, $newRule);
         }
