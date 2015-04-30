@@ -65,7 +65,7 @@ function saveChanges(){
 
     $.ajax({
         type: "POST",
-        url: "/api/edituser/" + viewModel.edituserid,
+        url: "/api/saveedit/" + viewModel.edituserid,
         data: $('#userEditForm').serialize(),
         success: function() {
             console.log('Success');
