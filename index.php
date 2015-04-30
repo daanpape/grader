@@ -269,6 +269,21 @@ $app->post('/api/saveedit/:id', function($id) use ($app) {
     }
 });
 
+$app->get('/api/removeroles/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::removeUserRoles($id));
+});
+
+$app->post('/api/addrole/:id', function($id) use ($app) {
+    // Try to edit the user
+    if(!GraderAPI::addUserRole($id, $_POST['currentRight'])) {
+        // Edit failed, bad request
+        $app->response->setStatus(400);
+    }
+});
+
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

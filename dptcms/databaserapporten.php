@@ -602,6 +602,20 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function removeCriteriaFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE criteria_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         try {

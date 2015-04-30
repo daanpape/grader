@@ -56,10 +56,10 @@ function initPage() {
 
     $('#userEditForm').on('submit', function(e)
     {
-        //e.preventDefault();
+        e.preventDefault();
 
-        saveChanges();
-
+        //saveChanges();
+        saveUserPermissions();
 
         //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
@@ -70,7 +70,7 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions(viewModel.edituserid);
+    saveUserPermissions();
 }
 
 function saveUserEdits(id){
@@ -87,11 +87,37 @@ function saveUserEdits(id){
     });
 }
 
-function saveUserPermissions(id){
+function saveUserPermissions(){
+    console.log("Save user permissions for user: " + viewModel.edituserid);
     //FIRST DELETE ALL PERMISSIONS
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
+        console.log("User permissions were removed");
+    });
+
+    $.each(viewModel.allRights(), function(i, currentRights){
+
+        var checkedValue = document.getElementsByName(currentRights);
+
+        console.log(checkedValue[0].checked + " - " + currentRights);
+
+        //SAVE NEW PERMISSIONS
+        if(checkedValue[0].checked == true) {
+            $.ajax({
+                type: "POST",
+                url: "/api/addrole/" + viewModel.edituserid,
+                data: { 'currentRight': currentRights },
+                success: function() {
+                    console.log('Success saved user permission: ' + currentRights);
+                },
+                error: function() {
+                    console.log('Error saving user permission: ' + currentRights);
+                }
+            });
+        }
+    });
 
 
-    //SAVE NEW PERMISSIONS
+
 
 }
 
