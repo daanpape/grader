@@ -69,10 +69,7 @@ function initPage() {
 
 function getLoggedInUser(){
     $.getJSON("/api/loggedinuser", function(data){
-        $.each(data, function(i, item){
-            console.log(data);
-            console.log(i + " " + item);
-        });
+        console.log(data);
     });
 }
 
