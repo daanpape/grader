@@ -13,8 +13,7 @@ function module(viewmodel, id, name, description, doelstellingen) {
         },
 
         removeThis: function() {
-            //viewModel.removeModule(this);
-            this.module.remove(module);
+            viewModel.removeModule(this);
         },
 
         removeDoelstelling: function(doelstelling) {
