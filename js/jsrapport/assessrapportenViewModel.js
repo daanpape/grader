@@ -1,5 +1,6 @@
 //Nodig voor autoincrement
 var selectedcourseid;
+var studid;
 var worksheets = [];
 var worksheetsid = [];
 
@@ -44,6 +45,7 @@ function pageViewModel(gvm) {
                     selectedcourseid = item.courseid;
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.currentStudentId = item.studentid;
+                    studid = item.studentid;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
@@ -64,6 +66,7 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
+        studid = gvm.currentStudentId;
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -183,7 +186,7 @@ function getWorksheetid() {
 }
 
 function addWorksheet($worksheetid) {
-    console.log("toe te voegenworksheet " + $worksheetid)
+    console.log("toe te voegenworksheet " + $worksheetid + " voor " + studid);
     /*
     $.ajax({
         url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
