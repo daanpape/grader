@@ -288,8 +288,7 @@ function initPage() {
             console.log("Add student");
             addWorksheet(getWorksheetid());
         }
-            else if ($("input:radio[name='studenten']:checked")== "studentlist")//studentlist
-        {
+            else {
             console.log("Add studentengroep");
         }
         //table opnieuw laden
