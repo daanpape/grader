@@ -927,6 +927,9 @@ class UserDAO {
         }
     }
 
+    function debug_to_console($data){
+        echo "<script>console.log(".$data.")";
+    }
 
     public static function removeUserRoles($userid)
     {
@@ -944,6 +947,8 @@ class UserDAO {
     {
         $conn = Db::getConnection();
         // Add role for user
+
+        debug_to_console($role);
 
         $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
         $stmt->execute(array($userid, $role));
