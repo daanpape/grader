@@ -85,7 +85,7 @@ $location = "adminEdit";
 
         <!-- /.col-lg-12 -->
         <div>
-            <form id="userForm">
+            <form id="userEditForm">
                 <input type="hidden" name="lang" value="EN"/>
 
 
@@ -109,18 +109,18 @@ $location = "adminEdit";
                             <!-- ko if: status() === 'ACTIVE' || status() === 'DISABLED' -->
                             <select class="form-control form-next">
                                 <!-- ko if: status() === 'ACTIVE' -->
-                                <option selected="true" data-bind="if:status">Active</option>
-                                <option data-bind="if:status">Non-Active</option>
+                                <option selected="true" data-bind="if:status" name="ACTIVE">Active</option>
+                                <option data-bind="if:status" name="DISABLED">Non-Active</option>
                                 <!-- /ko -->
                                 <!-- ko if: status() === 'DISABLED' -->
-                                <option data-bind="if:status">Active</option>
-                                <option selected="true" data-bind="if:status">Non-Active</option>
+                                <option data-bind="if:status" name="ACTIVE">Active</option>
+                                <option selected="true" data-bind="if:status" name="DISABLED">Non-Active</option>
                                 <!-- /ko -->
                             </select>
                             <!-- /ko -->
                             <!-- ko if: status() === 'WAIT_ACTIVATION' -->
                             <select class="form-control form-next" disabled>
-                                <option selected="true" data-bind="if:status">WAIT_ACTIVATION</option>
+                                <option selected="true" data-bind="if:status" name="WAIT_ACTIVATION">WAIT_ACTIVATION</option>
                             </select>
                             <!-- /ko -->
                         </td>

@@ -61,7 +61,19 @@ function initPage() {
 }
 
 function saveChanges(){
-    console.log("Save changes")
+    console.log("Save changes");
+
+    $.ajax({
+        type: "POST",
+        url: "/api/saveedit/" + viewModel.edituserid,
+        data: $('#userEditForm').serialize(),
+        success: function() {
+            console.log('Success');
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            console.log(data);
+        }
+    });
 }
 
 function setRights(){
