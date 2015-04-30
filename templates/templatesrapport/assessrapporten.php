@@ -94,7 +94,9 @@
 
         <div id="addGroupForm" class="container">
             <div class="row">
-                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" />
+                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" /><br>
+                <input type="radio" name="studenten" value="studentlist">All students of studentlist<br>
+                <input type="radio" name="studenten" value="student">Only the student selected
                 <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
             </div>
         </div>
