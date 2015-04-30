@@ -58,8 +58,8 @@ function initPage() {
     {
         //e.preventDefault();
 
-        saveChanges();
-
+        //saveChanges();
+        saveUserPermissions();
 
         //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
@@ -88,6 +88,13 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(id){
+    $.each(viewModel.allRights(), function(i, currentRights){
+
+        var checkedValue = $(currentRights).isChecked(":checked");
+        console.log(checkedValue);
+
+    });
+
     //FIRST DELETE ALL PERMISSIONS
 
 
