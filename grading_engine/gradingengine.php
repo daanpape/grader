@@ -78,7 +78,7 @@ class GradingEngine {
      */
     public static function gradeProjectForStudent($score, $rules) {
 
-        return $rules;
+        return createRules($rules);
 
 
 
