@@ -271,7 +271,7 @@ $app->post('/api/saveedit/:id', function($id) use ($app) {
 
 
 
-$app->get('/api/removeroles', function($id) use ($app) {
+$app->get('/api/removeroles/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 

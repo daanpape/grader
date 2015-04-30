@@ -88,14 +88,19 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(id){
+    //FIRST DELETE ALL PERMISSIONS
+    $.getJSON("/api/removeroles/" + id, function(data){
+        console.log("User permissions were removed");
+    });
+
     $.each(viewModel.allRights(), function(i, currentRights){
 
         var checkedValue = document.getElementsByName(currentRights);
         console.log(checkedValue[0].checked);
 
+
     });
 
-    //FIRST DELETE ALL PERMISSIONS
 
 
     //SAVE NEW PERMISSIONS
