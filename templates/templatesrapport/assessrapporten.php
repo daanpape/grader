@@ -63,7 +63,7 @@
                     <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>
-                <tbody>       <!-- data-bind="foreach: tabledata" -->
+                <tbody data-bind="foreach: tabledata">       <!-- data-bind="foreach: tabledata" -->
                 <tr>
                     <td data-bind="text: tworkid">--</td>     <!-- data-bind="text: tstudid" -->
                     <td data-bind="text: tname">--</td>     <!-- data-bind="text: tname" -->
