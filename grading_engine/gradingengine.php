@@ -31,6 +31,7 @@ class Indicator {
     public $id;                 /* The ID of this indicator */
     public $score;              /* The score of an indicator */
     public $weight;             /* The weight of an indicator */
+    public $count;              /* Number of times an indicator got judged */
 }
 
 /**
@@ -114,6 +115,7 @@ class GradingEngine {
                     $newIndicator->id = $indicator->id;
                     $newIndicator->weight = $indicator->weight;
                     $newIndicator->score = 0;
+                    $newIndicator->count = 0;
                     //array_push($newSubcompetence->indicators, $newIndicator);
                     $newSubcompetence->indicators[$newIndicator->id] = $newIndicator;
                 }
@@ -125,12 +127,12 @@ class GradingEngine {
         }
 
         // Calculate indicator points
-        //return $projectStructure[0]->subcompetences[0]->indicators[0]->score;
 
         $indicatorCount = 0;
         foreach($score as $point)
         {
             $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->score += $point['score'];
+            $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->count++;
         }
 
         return $projectStructure;
