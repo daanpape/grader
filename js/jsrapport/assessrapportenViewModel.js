@@ -187,11 +187,10 @@ function getWorksheetid() {
 
 function addWorksheet($worksheetid) {
     console.log("toe te voegenworksheet " + $worksheetid + " voor " + studid);
-    /*
     $.ajax({
-        url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
+        url: "/api/worksheetstudentcouple/" + $worksheetid + "/" + studid,
         type: "POST",
-        data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
+        data: {'workseetid': worksheetid, 'studid': studid},
         success: function(data) {
             //callback(true);
         },
@@ -200,7 +199,6 @@ function addWorksheet($worksheetid) {
             //callback(false);
         }
     });
-    */
 }
 
 function loadTablePage(pagenr)

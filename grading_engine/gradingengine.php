@@ -1,5 +1,7 @@
 <?php
 
+require_once('../dptcms/database.php');
+
 /* 
  * Copyright 2015 Daan Pape.
  */
@@ -74,8 +76,9 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProject($competences, $rules) {
-        
+    public static function gradeProjectForStudent($project, $student) {
+
+        return ClassDAO::getAllScoresForStudentByProject($project,$student);
     }
 }
 

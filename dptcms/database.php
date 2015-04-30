@@ -843,6 +843,23 @@ class ClassDAO {
         }
     }
 
+    public static function getAllScoresForStudentByProject($projectid,$studentid)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ? AND student = ?");
+            $stmt->execute(array($projectid, $studentid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError(("could not get scores. ".$ex));
+        }
+    }
+
     public static function saveScoresForStudentByUser($projectid,$studentid,$userid, $scores)
     {
         try
