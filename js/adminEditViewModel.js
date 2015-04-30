@@ -5,6 +5,8 @@ function pageViewModel(gvm) {
 
     gvm.edituserid = $("#usereditHeader").data('value');
 
+
+
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
     gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
@@ -54,12 +56,20 @@ function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
 
+    getLoggedInUser();
+
     $('#userEditForm').on('submit', function(e)
     {
         e.preventDefault();
 
         saveChanges();
         saveUserPermissions();
+    });
+}
+
+function getLoggedInUser(){
+    $.getJSON("/api/loggedinuser", function(data){
+        console.log(data);
     });
 }
 
