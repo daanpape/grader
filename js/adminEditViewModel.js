@@ -84,7 +84,6 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions();
 }
 
 function saveUserEdits(id){
