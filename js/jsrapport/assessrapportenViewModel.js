@@ -224,14 +224,16 @@ function addWorksheetStudentList(worksheetid) {
 
 function loadTablePage(pagenr,course)
 {
-    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr + '/' + course, function(data){
+    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course);
+    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
+            console.log(data.data);
+            viewModel.addTableData(item.id, item.Name , item.datum);
         });
 
         //TODO pagers doen werken

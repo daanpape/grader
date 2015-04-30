@@ -5,7 +5,9 @@ function pageViewModel(gvm) {
 
     gvm.edituserid = $("#usereditHeader").data('value');
 
+    gvm.loggedinuser = ko.observable();
 
+    getLoggedInUser();
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -54,21 +56,26 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
-    setRights();
-
-    $.getJSON("/api/loggedinuser", function(data){
-        $.each(data, function(i, item){
-            console.log(data);
-            console.log(i + " " + item);
-        });
-    });
 
     $('#userEditForm').on('submit', function(e)
     {
         e.preventDefault();
 
-        saveChanges();
-        saveUserPermissions();
+        if(viewModel.loggedinuser != viewModel.edituserid)
+        {
+            saveChanges();
+            saveUserPermissions();
+        } else {
+            saveChanges();
+        }
+    });
+
+    setRights();
+}
+
+function getLoggedInUser(){
+    $.getJSON("/api/loggedinuser", function(data){
+        viewModel.loggedinuser = data;
     });
 }
 
@@ -77,7 +84,6 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions();
 }
 
 function saveUserEdits(id){
@@ -167,10 +173,9 @@ function checkPermissions(){
         var data = [];
         $.each(viewModel.rights(), function(i, itemRights){
             if(itemAllRights == itemRights && checked == false){
-                if(itemRights == "SUPERUSER"){
+                if(itemRights == "SUPERUSER" || viewModel.loggedinuser == viewModel.edituserid){
                     data["disabled"] = true;
                 } else {
-
                     data["disabled"] = false;
                 }
                 checked = true;
@@ -182,7 +187,11 @@ function checkPermissions(){
         if (checked == false){
             data["item"] = itemAllRights;
             data["isChecked"] = false;
-            data["disabled"] = false;
+            if(viewModel.loggedinuser == viewModel.edituserid){
+                data["disabled"] = true;
+            } else {
+                data["disabled"] = false;
+            }
             viewModel.updateCheckedRights(data);
         }
     });
