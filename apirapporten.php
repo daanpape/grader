@@ -267,6 +267,10 @@ Class RapportAPI {
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);
     }
+    
+    public static function removeCriteriaFromDatabase($id) {
+        return rapportenDAO::removeCriteriaFromDatabase($id);
+    }
 
     public static function getStudentListsFromUser($id) {
         return rapportenDAO::getStudentListsFromUser($id);
