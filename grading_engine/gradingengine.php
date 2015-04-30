@@ -111,14 +111,14 @@ class GradingEngine {
                     $newIndicator = new Indicator();
                     $newIndicator->id = $indicator->id;
                     $newIndicator->weight = $indicator->weight;
-
-                    $newSubcompetence->indicators[$indicator->id] = $newIndicator;
+                    array_push($newSubcompetence->indicators, $newIndicator);
+                    $newSubcompetence->indicators[$newIndicator->id] = $newIndicator;
                 }
 
-                $newCompetence->subcompetences[$subcompetence->id] = $newSubcompetence;
+                $newCompetence->subcompetences[$newSubcompetence->id] = $newSubcompetence;
             }
 
-            $projectStructure->competences[$competence->id] = $newCompetence;
+            $projectStructure->competences[$newCompetence->id] = $newCompetence;
         }
 
 
