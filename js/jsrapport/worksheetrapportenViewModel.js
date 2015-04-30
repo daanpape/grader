@@ -181,7 +181,7 @@ function loadTablePage(pagenr)
                 loadTablePage(data.prev);
             });
         }
-    console.log(data.next);
+
         if(data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
