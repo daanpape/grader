@@ -61,8 +61,13 @@ function initPage() {
     {
         e.preventDefault();
 
-        saveChanges();
-        saveUserPermissions();
+        if(viewModel.loggedinuser != viewModel.edituserid)
+        {
+            saveChanges();
+            saveUserPermissions();
+        } else {
+            saveChanges();
+        }
     });
 
     setRights();
@@ -79,7 +84,6 @@ function saveChanges(){
     console.log("userid: " + viewModel.edituserid);
 
     saveUserEdits(viewModel.edituserid);
-    saveUserPermissions();
 }
 
 function saveUserEdits(id){

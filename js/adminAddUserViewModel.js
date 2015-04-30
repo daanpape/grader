@@ -27,11 +27,11 @@ function initPage() {
     // Form submit
     $('#userForm').on('submit', function(e)
     {
-        e.preventDefault();
+        //e.preventDefault();
 
         createNewUser();
 
-        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
+        //window.location.href = "/admin/users";
     });
 }
 
