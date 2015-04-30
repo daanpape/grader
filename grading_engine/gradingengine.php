@@ -138,9 +138,9 @@ class GradingEngine {
 
         foreach($projectStructure as $competence)
         {
-            foreach($competence as $subcompetence)
+            foreach($competence->subcompetences as $subcompetence)
             {
-                foreach($subcompetence as $indicator)
+                foreach($subcompetence->indicators as $indicator)
                 {
                     $indicator->score = $indicator->score / $indicator->count;
                 }
