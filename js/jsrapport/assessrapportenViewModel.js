@@ -166,7 +166,7 @@ function getAllWorksheets() {
     $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
-            worksheets.push(item.id);
+            worksheetsid.push(item.id);
         });
     });
     return worksheets;
@@ -176,8 +176,10 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
+        console.log(worksheetsid[i]);
         if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
+            console.log("hier " + worksheet);
         }
         i+= 1;
     });
