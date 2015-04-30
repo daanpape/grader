@@ -92,7 +92,7 @@ class GradingEngine {
             array_push($projectRules, $newRule);
         }
 
-        // Calculate points for indicators
+        // Calculate project structure
         $projectStructure = array();
         foreach($structure as $competence)
         {
@@ -116,11 +116,13 @@ class GradingEngine {
                 array_push($newCompetence->subcompetences, $newSubcompetence);
             }
             array_push($projectStructure, $newCompetence);
-
         }
 
+        // Calculate indicator points
+        return $projectStructure[0];
 
-        return $projectStructure;
+
+
 
 
     }
