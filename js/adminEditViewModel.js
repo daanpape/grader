@@ -13,9 +13,10 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
+    gvm.allRights = ko.observableArray([]);
+    gvm.checkedRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
 
     gvm.updateUser = function(user)
@@ -28,6 +29,12 @@ function pageViewModel(gvm) {
         gvm.rights.push(permission);
     },
 
+
+    gvm.updateAllPermissions = function(permission)
+    {
+        gvm.allRights.push(permission);
+    },
+
     gvm.removeUser = function(user) {
         gvm.user.remove(user);
         removeUser(user);
@@ -37,10 +44,22 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
+
+    gvm.updateCheckedRights = function(item){
+        gvm.checkedRights.push(item);
+    }
 }
 
 function initPage() {
+    getAllUserDataById(viewModel.edituserid);
+    setRights();
+}
 
+function setRights(){
+    viewModel.updateAllPermissions("GUEST");
+    viewModel.updateAllPermissions("STUDENT");
+    viewModel.updateAllPermissions("USER");
+    viewModel.updateAllPermissions("SUPERUSER");
 }
 
 function getAllUserDataById(edituserid){
@@ -54,36 +73,55 @@ function getAllUserDataById(edituserid){
             $.each(data, function(i, item)
             {
                 if(item.username == current && addedUsername != current){
-                    console.log(current + " " + item.roleid + " " + item.role );
-                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
+                    console.log(current + " " + item.role);
+                    viewModel.updatePermissions(item.role)
                 }
             });
 
-            if (addedUsername != current){
+            if (addedUsername != current) {
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
+
+        checkPermissions();
+    });
+}
+
+function checkPermissions(){
+    var checked = false;
+    $.each(viewModel.allRights(), function(i, itemAllRights){
+        checked = false;
+        var data = [];
+        $.each(viewModel.rights(), function(i, itemRights){
+            if(itemAllRights == itemRights && checked == false){
+                checked = true;
+                data["item"] = itemAllRights;
+                data["isChecked"] = true;
+                viewModel.updateCheckedRights(data);
+            }
+        });
+        if (checked == false){
+            data["item"] = itemAllRights;
+            data["isChecked"] = false;
+            viewModel.updateCheckedRights(data);
+        }
     });
 
+    $.each(viewModel.checkedRights(), function(i, item){
+        console.log(" - " + item["item"] + " - " + item["checked"]);
+    });
 }
 
-function Permission(id, permissions) {
-    return {
-        id: ko.observable(id),
-        permissions: ko.observable(permissions)
-    };
-}
-
-function User(id, username, firstname, lastname, status, permission) {
+function User(id, username, firstname, lastname, status, permissions) {
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
-        permission: ko.observableArray(permission),
+        permissions: ko.observableArray(permissions),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))

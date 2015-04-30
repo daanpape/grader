@@ -87,6 +87,8 @@ $location = "adminEdit";
         <div>
             <form id="userForm">
                 <input type="hidden" name="lang" value="EN"/>
+
+
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
@@ -105,11 +107,11 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <select class="form-control form-next">
-                                <!-- ko if: status() === 'ACTIVE' --> -->
+                                <!-- ko if: status() === 'ACTIVE' -->
                                 <option selected="true" data-bind="if:status">Active</option>
                                 <option data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() !== 'ACTIVE' --> -->
+                                <!-- ko if: status() !== 'ACTIVE' -->
                                 <option data-bind="if:status">Active</option>
                                 <option selected="true" data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
@@ -117,59 +119,61 @@ $location = "adminEdit";
                         </td>
                     </tr>
                     <tr>
-
-                        <div>
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th data-bind="text: permissionRole">Role</th>
-                                    <th data-bind="text: permissionDescription">Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>GUEST</td>
-                                    <td>When not logged in you get the GUEST role.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>SUPERUSER</td>
-                                    <td>The superuser role must have access to everything...</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>USER</td>
-                                    <td>Contains rights for every USER in the system.</td>
-                                </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <td>STUDENT</td>
-                                    <td>Can only do studentactions</td>
-                                </tr>
-                                </tbody>
-                        </div>
-                    </tr>
-                    <tr>
-
-                        <p class="h1">User Permissions</p>
-                        <td>Permission</td>
-                        <td data-bind="foreach: rights">
-
-                        </td>
-                    </tr>
                 </table>
 
-                <div class="container">
-                    <div class="row">
-                        <div id="bottom-col" class="col-md-12">
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                        </div>
-                    </div>
+
+                <h2>User Permissions</h2>
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th data-bind="text: permissionRole">Role</th>
+                            <th data-bind="text: permissionDescription">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>GUEST</td>
+                            <td>When not logged in you get the GUEST role.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>SUPERUSER</td>
+                            <td>The superuser role must have access to everything...</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>USER</td>
+                            <td>Contains rights for every USER in the system.</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>STUDENT</td>
+                            <td>Can only do studentactions</td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td>Permission</td>
+                            <td data-bind="foreach: viewModel.checkedRights">
+                                <input type="checkbox" data-bind="checked: isChecked"><label data-bind="text: item"></label><br />
+                            </td>
+                        </tr>
+                        </tbody>
                 </div>
             </form>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="bottom-col" class="col-md-12">
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+            </div>
         </div>
     </div>
     <!-- /.row -->

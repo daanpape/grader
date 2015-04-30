@@ -18,7 +18,7 @@ function pageViewModel(gvm) {
                 gvm.availableModules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modname: item.name, competences: new Array()};
+                    var tblObject = {modid: item.id, modname: item.name, competences: new Array()};
                     if (item.doelstellingen !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comname: item.name, criterias: new Array()}
+            var tblObject = {comid: item.id, comname: item.name, criterias: new Array()}
             if (item.criterias !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
@@ -42,7 +42,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCriteria = function(data, criteria) {     
         $.each(data, function(i, item){
-            var tblObject = {critname: item.name};
+            var tblObject = {critid: item.id, critname: item.name};
             criteria.push(tblObject);
         });
         makeChecklist();
@@ -50,6 +50,7 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
+    getCheckedFields();
     $.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
@@ -62,7 +63,17 @@ function addWorksheetProperties(serialData, wid, callback) {
             callback(true);
         }
     });
-    //second ajax call for modules, competences and criteria
+    $.ajax({
+        url: "/api/worksheetmodules",
+        type: "POST",
+        data: {id: wid},  //ook nog de aangeduide modules, doelstellingen, criteria
+        success: function(data) {
+            console.log('Success');
+        },
+        error: function(data) {
+            console.log('Failure');
+        }
+    });
 }
 
 function makeChecklist() {
@@ -132,19 +143,28 @@ function makeChecklist() {
         }
         init();
     });
+}
 
-    $('#get-checked-data').on('click', function(event) {
-        event.preventDefault(); 
-        var checkedItems = {}, counter = 0;
-        $("#check-list-box li.active").each(function(idx, li) {
-            checkedItems[counter] = $(li).text();
-            counter++;
-        });
-        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+function getCheckedFields() {
+    var checkedItems = {}, counter = 0;
+    $("#check-list-box li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        counter++;
+    });
+    filterModules(checkedItems);
+}
+
+function filterModules(data) {
+    var collection = [];
+    var modules = [];
+    var comps = [];
+    var criteria = [];
+    $.each(data, function(i, item) {
+        console.log(item);
     });
 }
 
-function initPage() {     
+function initPage() {        
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;

@@ -765,9 +765,10 @@ class ClassDAO {
                     $rule = new stdClass();
                     $rule->id = $row['id'];
                     $rule->name = $row['name'];
-                    $rule->action = $row['action'];
+                    $rule->action = array("id" => $row['subject_id'], "name"=>$row['action'], "subject"=>$row['subject']);
                     $rule->operator = $row['operator'];
                     $rule->value = $row['value'];
+                    $rule->sign = $row['sign'];
                     $rule->result = $row['result'];
 
                     $data[$row['id']] = $rule;
@@ -792,14 +793,14 @@ class ClassDAO {
             $count=0;
             foreach ($data as $rule) {
                 if(!isset($rule->id)) {
-                    $stmt = $conn->prepare("INSERT INTO rules (project, name, subject, subject_id, action, operator, value, result) VALUES (?,?,?,?,?,?,?,?)");
-                    $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, (int)$rule->result));
+                    $stmt = $conn->prepare("INSERT INTO rules (project, name, subject, subject_id, action, operator, value, sign, result) VALUES (?,?,?,?,?,?,?,?,?)");
+                    $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, $rule->sign, (int)$rule->result));
                     $count++;
                 }
                 else
                 {
-                    $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, subject=?, subject_id=?, action=?, operator=?, value=?, result=? WHERE id=?");
-                    $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, (int)$rule->result, (int)$rule->id));
+                    $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, subject=?, subject_id=?, action=?, operator=?, value=?, sign=?, result=? WHERE id=?");
+                    $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, $rule->sign, (int)$rule->result, (int)$rule->id));
                 }
             }
             return $count;
