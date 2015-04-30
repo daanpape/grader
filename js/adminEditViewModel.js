@@ -104,12 +104,12 @@ function saveUserPermissions(id){
             $.ajax({
                 type: "POST",
                 url: "/api/addrole/" + viewModel.edituserid,
-                data: { 'current': currentRights },
+                data: { 'currentRight': currentRights },
                 success: function() {
                     console.log('Success saved user permission: ' + currentRights);
                 },
                 error: function() {
-                    console.log("Error saving user permission");
+                    console.log('Error saving user permission: ' + currentRights);
                 }
             });
         }
