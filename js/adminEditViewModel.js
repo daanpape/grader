@@ -56,7 +56,7 @@ function initPage() {
 
     $('#userEditForm').on('submit', function(e)
     {
-        //e.preventDefault();
+        e.preventDefault();
 
         //saveChanges();
         saveUserPermissions();
