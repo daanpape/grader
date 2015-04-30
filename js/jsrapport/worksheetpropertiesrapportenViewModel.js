@@ -160,7 +160,9 @@ function filterModules(data) {
     var comps = [];
     var criteria = [];
     $.each(viewModel.availableModules(), function(i, item) {
-        console.log(item.modname);
+        if (data.indexOf(item.modname) > -1) {
+            console.log(item.modname);
+        }
     });
     /*$.each(data, function(i, item){
         if (viewModel.availableModules().indexOf(data[i]) > -1) {
