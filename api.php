@@ -335,6 +335,13 @@ class GraderAPI {
         return UserDAO::updateUserStatus($uid, $status);
     }
 
+    /*
+     * Update user
+     */
+    public static function updateUser($id, $username, $firstname, $lastname, $status) {
+        return UserDAO::updateUser($id, $username, $firstname, $lastname, $status);
+    }
+
 
     /**
      * Put a project structure into the database.

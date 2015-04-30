@@ -914,6 +914,19 @@ class UserDAO {
         }
     }
 
+    public static function updateUser($id, $username, $firstname, $lastname, $status) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE users SET username = ?, firstname = ?, lastname = ?, status = ? WHERE id = ?");
+            $stmt->execute(array($username, $firstname, $lastname, $status, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+
     /**
      * Get all users with roles.
      * @return stdClass the users.

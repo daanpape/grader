@@ -136,6 +136,7 @@ $app->post('/register', function() use($app){
     }
 });
 
+
 // API GET routes
 $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
@@ -256,6 +257,16 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
 
     // Get all user data by id
     $userdata = GraderAPI::getEditUserDataById($id);
+
+    echo json_encode($userdata);
+});
+
+$app->post('/api/saveedit/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Get all user data by id
+    $userdata = GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status']);
 
     echo json_encode($userdata);
 });
@@ -471,6 +482,15 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
 
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
+});
+
+$app->post('/api/edit/:id', function($id) use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(GraderAPI::createProjectStudentlistCouple($id));
 });
 
 $app->post('/api/account/avatar', function() use ($app) {
