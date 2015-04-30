@@ -206,13 +206,12 @@ function addWorksheetStudent(worksheetid) {
 }
 
 //addWorksheetStudentList
-
 function addWorksheetStudentList(worksheetid) {
     console.log("toe te voegenworksheet " + worksheetid + " voor " + studlijstid);
     $.ajax({
-        url: "/api/worksheetstudentcouple/" + worksheetid + "/" + studlijstid,
+        url: "/api/worksheetstudentListcouple/" + worksheetid + "/" + studlijstid,
         type: "POST",
-        data: {'worksheetid': worksheetid, 'studid': studid},
+        data: {'worksheetid': worksheetid, 'studlijstid': studlijstid},
         success: function(data) {
             //callback(true);
         },

@@ -54,9 +54,13 @@ function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
 
-    $(".savePageBtn").click(function()
+    $('#userEditForm').on('submit', function(e)
     {
+        e.preventDefault();
+
         saveChanges();
+
+        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
 }
 
@@ -75,9 +79,6 @@ function saveChanges(){
             console.log("error");
         }
     });
-
-    // Stop form submit via normal post
-    e.preventDefault();
 }
 
 function setRights(){
