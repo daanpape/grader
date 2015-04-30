@@ -927,7 +927,6 @@ class UserDAO {
         }
     }
 
-
     public static function removeUserRoles($userid)
     {
         $conn = Db::getConnection();
