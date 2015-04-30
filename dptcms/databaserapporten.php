@@ -79,6 +79,37 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function insertWorksheetModule($id, $modid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_module_rapport (werkfiche, module) VALUES (?, ?)");
+            $stmt->execute(array($id, $modid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCompetence($id, $compid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_competence_rapport (werkfiche, competence) VALUES (?, ?)");
+            $stmt->execute(array($id, $compid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCriteria($id, $critid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_rapport (werkfiche, criteria) VALUES (?, ?)");
+            $stmt->execute(array($id, $critid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
     //Get all courses
     public static function getAllCourse() {
         try {
@@ -337,7 +368,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseID($start, $count, $course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname,course_studentlist_teacher_rapport.id
+            $stmt = $conn->prepare("SELECT studentlist_rapport.id as 'studid', studentlist_rapport.name, users.id as 'userid', users.firstname, users.lastname,course_studentlist_teacher_rapport.id as 'mainid'
                                         FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
