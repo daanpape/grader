@@ -5,12 +5,7 @@ function pageViewModel(gvm) {
 
     gvm.edituserid = $("#usereditHeader").data('value');
 
-    $.getJSON("/api/loggedinuser", function(data){
-        $.each(data, function(i, item){
-            console.log(data);
-            console.log(i + " " + item);
-        });
-    });
+
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -60,6 +55,13 @@ function pageViewModel(gvm) {
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
+
+    $.getJSON("/api/loggedinuser", function(data){
+        $.each(data, function(i, item){
+            console.log(data);
+            console.log(i + " " + item);
+        });
+    });
 
     $('#userEditForm').on('submit', function(e)
     {
