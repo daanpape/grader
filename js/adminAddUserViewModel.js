@@ -27,11 +27,11 @@ function initPage() {
     // Form submit
     $('#userForm').on('submit', function(e)
     {
-        e.preventDefault();
+        //e.preventDefault();
 
         createNewUser();
 
-        window.location.href = "/admin/users";
+        //window.location.href = "/admin/users";
     });
 }
 
