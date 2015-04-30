@@ -96,14 +96,19 @@ function saveUserPermissions(id){
     $.each(viewModel.allRights(), function(i, currentRights){
 
         var checkedValue = document.getElementsByName(currentRights);
-        console.log(checkedValue[0].checked);
 
 
+        //SAVE NEW PERMISSIONS
+        if(checkedValue[0].checked) {
+
+            $.getJSON("/api/addrole/" + id, function(data){
+                console.log("User permission '" + currentRights + "' was added!");
+            });
+        }
     });
 
 
 
-    //SAVE NEW PERMISSIONS
 
 }
 
