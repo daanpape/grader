@@ -207,7 +207,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-prev-btn').removeClass('disabled');
             $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev);
+                loadTablePage(data.prev, course);
             });
         }
 
@@ -216,7 +216,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-next-btn').removeClass('disabled');
             $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next);
+                loadTablePage(data.next, course);
             });
         }
 
@@ -248,7 +248,7 @@ function loadTablePage(pagenr,course)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(thispagenr, course);
                 });
             }
         });
