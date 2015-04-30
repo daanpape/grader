@@ -256,7 +256,7 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all user data by id
-    $userdata = GraderAPI::updateUser($id);
+    $userdata = GraderAPI::getEditUserDataById($id);
 
     echo json_encode($userdata);
 });
@@ -266,7 +266,7 @@ $app->post('/api/saveedit/:id', function($id) use ($app) {
     $response->header('Content-Type', 'application/json');
 
     // Get all user data by id
-    $userdata = GraderAPI::getEditUserDataById($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status']);
+    $userdata = GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status']);
 
     echo json_encode($userdata);
 });
