@@ -116,11 +116,6 @@ $location = "adminEdit";
                                 <option data-bind="if:status">Active</option>
                                 <option selected="true" data-bind="if:status">Non-Active</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() === 'WAIT_ACTIVATION' -->
-                                <option data-bind="if:status">Active</option>
-                                <option selected="true" data-bind="if:status">Non-Active</option>
-                                <option selected="true" data-bind="if:status">WAIT_ACTIVATION</option>
-                                <!-- /ko -->
                             </select>
                             <!-- /ko -->
                             <!-- ko if: status() === 'WAIT_ACTIVATION' -->
