@@ -119,7 +119,7 @@ class GradingEngine {
         }
 
         // Calculate indicator points
-        return $projectStructure[0]['subcompetences'];
+        return $projectStructure[0];
 
 
 
