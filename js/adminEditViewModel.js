@@ -60,8 +60,9 @@ function initPage() {
     });
 }
 
-function saveChanges(){
+function saveChanges(e){
     console.log("Save changes");
+    console.log("userid: " + viewModel.edituserid);
 
     $.ajax({
         type: "POST",
@@ -74,6 +75,9 @@ function saveChanges(){
             console.log("error");
         }
     });
+
+    // Stop form submit via normal post
+    e.preventDefault();
 }
 
 function setRights(){
