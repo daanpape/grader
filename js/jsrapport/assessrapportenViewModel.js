@@ -232,6 +232,7 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
+            console.log(data.data);
             viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
