@@ -1,5 +1,6 @@
 <?php
 
+require_once('../dptcms/database.php');
 
 /* 
  * Copyright 2015 Daan Pape.
