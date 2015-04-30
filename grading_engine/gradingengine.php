@@ -97,7 +97,8 @@ class GradingEngine {
             $newRule->percent = $rule->value;
             array_push($projectRules, $newRule);*/
         }
-        return $projectRules;
+
+        return $rules;
     }
 }
 
