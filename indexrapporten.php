@@ -315,6 +315,13 @@ $app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(RapportAPI::updateCoursemodules($id, file_get_contents('php://input')));
 });
+
+$app->get('/api/removecriteria/:id', function($id) use ($app) {
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::removeCriteriaFromDatabase($id));
+});
+
+
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers
     $response = $app->response();
