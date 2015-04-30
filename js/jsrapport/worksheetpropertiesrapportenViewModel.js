@@ -159,8 +159,8 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    $.each(viewModel.availableModules(), function(i, item){
-        if (item.modname.indexOf(data[i]) > -1) {
+    $.each(data, function(i, item){
+        if (viewModel.availableModules().modname.indexOf(data[i]) > -1) {
             console.log(item.modname);
         }
     });
