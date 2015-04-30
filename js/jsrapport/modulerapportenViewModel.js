@@ -38,6 +38,7 @@ function doelstelling(parent, id, name, description, crit) {
 
         removeThis: function() {
             parent.removeDoelstelling(this);
+            RemoveCurrentDoelstelling(id);
         },
         
         removeCriteria: function(criteria) {
@@ -159,6 +160,19 @@ function RemoveCurrentCriteria(id)
         success: function(){
             // TODO make multilangual and with modals
             console.log("removecriteria");
+        }
+    });
+}
+
+function RemoveCurrentDoelstelling(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removedoelstelling/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            // TODO make multilangual and with modals
+            console.log("removedoelstelling");
         }
     });
 }
