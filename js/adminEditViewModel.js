@@ -76,7 +76,7 @@ function saveChanges(){
 function saveUserEdits(id){
     $.ajax({
         type: "POST",
-        url: "/api/saveedit/" + id,
+        url: "/api/saveedit/" + id + "/",
         data: $('#userEditForm').serialize(),
         success: function() {
             console.log('Success saved user changes');
@@ -103,8 +103,7 @@ function saveUserPermissions(id){
         if(checkedValue[0].checked == true) {
             $.ajax({
                 type: "POST",
-                url: "/api/addrole/" + id,
-                data: currentRights,
+                url: "/api/addrole/" + id + "/" + currentRights,
                 success: function() {
                     console.log('Success saved user permission: ' + currentRights);
                 },
