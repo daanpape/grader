@@ -185,10 +185,10 @@ function getWorksheetid() {
     return worksheet;
 }
 
-function addWorksheet($worksheetid) {
-    console.log("toe te voegenworksheet " + $worksheetid + " voor " + studid);
+function addWorksheet(worksheetid) {
+    console.log("toe te voegenworksheet " + worksheetid + " voor " + studid);
     $.ajax({
-        url: "/api/worksheetstudentcouple/" + $worksheetid + "/" + studid,
+        url: "/api/worksheetstudentcouple/" + worksheetid + "/" + studid,
         type: "POST",
         data: {'worksheetid': worksheetid, 'studid': studid},
         success: function(data) {

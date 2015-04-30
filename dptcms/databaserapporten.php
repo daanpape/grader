@@ -164,7 +164,7 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get studentlists from owner with id' . $id, $err);
+            Logger::logError('Could not get studentlists from owner with id' .  $err);
             return null;
         }
     }
@@ -432,7 +432,7 @@ class rapportenDAO {
     public static function insertWorksheetStudentCouple($worksheetid, $studid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("");
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
 
             $stmt->execute(array($worksheetid, $studid));
 

@@ -50,7 +50,7 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, callback) {
-    getCheckedFields();
+    console.log(getCheckedFields());
     /*$.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
@@ -151,7 +151,7 @@ function getCheckedFields() {
         checkedItems[counter] = $(li).text();
         counter++;
     });
-    filterModules(checkedItems);
+    return filterModules(checkedItems);
 }
 
 function filterModules(data) {
@@ -161,27 +161,24 @@ function filterModules(data) {
     var criteria = [];
     $.each(viewModel.availableModules(), function(i, item) {
         if (data.indexOf(item.modname) > -1) {
-            console.log(item.modname);
-        }
-    });
-    /*$.each(data, function(i, item){
-        if (viewModel.availableModules().indexOf(data[i]) > -1) {
-            console.log(item.modname);
-        }
-    });*/
-    /*$.each(data, function(i, item) {
-        if (viewModel.availableModules) {               //gvm.availableModules doorlopen
-            modules.push(item);
-        } else if (item === "") {        //gvm.availableModules.items (competences) doorlopen
-            comps.push(item);
-        } else {
-            criteria.push(item);
-        }
+            modules.push(item.modid);
+        } 
+        $.each(item.competences, function(i, item) {
+            if (data.indexOf(item.comname) > -1) {
+                comps.push(item.comid);
+            }
+            $.each(item.criterias, function(i, item) {
+                if (data.indexOf(item.critname) > -1) {
+                    criteria.push(item.critid);
+                }
+            });
+        });
     });
     collection.push(modules);
     collection.push(comps);
     collection.push(criteria);
-    return collection;*/
+    console.log(collection);
+    return collection;
 }
 
 function initPage() {        

@@ -20,12 +20,12 @@ function pageViewModel(gvm) {
     gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
-    gvm.getProjectInfo = function() {
+   /* gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
-
+*/
     gvm.coupledLists = ko.observableArray([]);
     gvm.availableLists = ko.observableArray([]);
 
@@ -193,7 +193,6 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            console.log("studid: " + item.studid + " en userid: " + item.userid);
            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
         });
 
@@ -212,7 +211,8 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        console.log("prev: " + data.next);
+        console.log("prev: " + data.prev);
+        console.log("next: " + data.next);
         if (data.next != "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
@@ -221,7 +221,7 @@ function loadTablePage(pagenr,course)
                 loadTablePage(data.next);
             });
         }
-
+        console.log("next: " + data.next);
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
         console.log("numItems: " + numItems);
@@ -281,7 +281,7 @@ function deleteTableItem(id, tblOject) {
 }
 
 function initPage() {
-    viewModel.getProjectInfo();
+   // viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
     $('#addGroupForm').hide();
