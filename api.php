@@ -6,6 +6,7 @@
 
 // Load required files
 require_once('dptcms/database.php');
+//require_once('grading_engine/gradingengine.php');
 
 // Database class for connection handling
 class GraderAPI {
@@ -79,7 +80,7 @@ class GraderAPI {
 
     public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent($projectid,$userid);
+        return ClassDAO::getAllScoresForStudentByProject($projectid,$userid);
     }
 
     /*

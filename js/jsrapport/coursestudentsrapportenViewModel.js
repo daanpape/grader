@@ -201,8 +201,8 @@ function loadTablePage(pagenr,course)
         //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
 
-        console.log("prev: " + data.prev);
-        if(data.prev != "none"){
+
+        if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
@@ -211,9 +211,7 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        console.log("prev: " + data.prev);
-        console.log("next: " + data.next);
-        if (data.next != "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
@@ -221,15 +219,14 @@ function loadTablePage(pagenr,course)
                 loadTablePage(data.next);
             });
         }
-        console.log("next: " + data.next);
+
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
-        console.log("numItems: " + numItems);
+
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
-        console.log("pagenr: " + pagenr)
-        console.log("lowPage: " + lowPage);
+
 
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
