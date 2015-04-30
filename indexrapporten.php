@@ -322,6 +322,12 @@ $app->delete('/api/removecriteria/:id', function($id) use ($app) {
     echo json_encode(RapportAPI::removeCriteriaFromDatabase($id));
 });
 
+$app->delete('/api/removedoelstelling/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    echo json_encode(RapportAPI::removeDoelstellingFromDatabase($id));
+});
+
 
 $app->post('/api/newstudentlistrapport/:userid', function ($userid) use ($app) {
     // Use json headers
