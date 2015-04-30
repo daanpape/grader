@@ -133,7 +133,7 @@ class GradingEngine {
             $projectStructure[$point->competence]->subcompetences[$point->subcompetence]->indicators[$point->indicator]->score = 1;
         }*/
 
-        return $projectStructure;
+        return $score;
 
 
 
