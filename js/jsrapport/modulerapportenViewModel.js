@@ -153,7 +153,7 @@ function saveCourseStructure() {
 function RemoveCriteria()
 {
     $.ajax({
-        type: "GET",
+        type: "DELETE",
         url: "/api/removecriteria/" + courseid,
         data: ko.toJSON(viewModel.modules),
         success: function(){
