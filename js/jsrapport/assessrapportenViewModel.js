@@ -282,7 +282,7 @@ function initPage() {
 
     $('#addNewWorksheetBtn').click(function() {
         //TODO controle of er effectief een lijst / student geselecteerd is.
-        console.log("geselecteerd " + $('#studentenradio').val())
+        console.log("geselecteerd " + $("input:radio[name='studenten']:checked").val())
         //controleren of het voor 1 student is of voor alle studenten
         if (new String ($('#studentenradio').val()) == new String("student")) {
             console.log("Add student");
