@@ -155,7 +155,7 @@ function RemoveCriteria()
     $.ajax({
         type: "DELETE",
         url: "/api/removecriteria/" + courseid,
-        data: ko.toJSON(viewModel.modules),
+        data: ko.toJSON(viewModel.criteria),
         success: function(){
             // TODO make multilangual and with modals
             console.log("removecriteria");
