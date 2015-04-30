@@ -166,7 +166,7 @@ function getAllWorksheets() {
     $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
-            worksheets.push(item.id);
+            worksheetsid.push(item.id);
         });
     });
     return worksheets;
