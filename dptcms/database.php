@@ -928,7 +928,7 @@ class UserDAO {
     }
 
     function debug_to_console($data){
-        echo "<script>console.log(".$data.")";
+        echo "<script>console.log(".$data.")</script>";
     }
 
     public static function removeUserRoles($userid)
