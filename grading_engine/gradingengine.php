@@ -76,7 +76,7 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProjectForStudent($score, $rules) {
+    public static function gradeProjectForStudent($structure, $score, $rules) {
 
         // Create rule objects
         $projectRules = array();
@@ -92,10 +92,8 @@ class GradingEngine {
             array_push($projectRules, $newRule);
         }
 
-        // Calculate points
-        return $score;
-
-
+        // Calculate points for indicators
+        return $structure;
 
 
     }

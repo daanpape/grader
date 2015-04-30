@@ -284,11 +284,11 @@ function initPage() {
         //TODO controle of er effectief een lijst / student geselecteerd is.
         console.log("geselecteerd " + $("input:radio[name='studenten']:checked").val())
         //controleren of het voor 1 student is of voor alle studenten
-        if (new String ($('#studentenradio').val()) == new String("student")) {
+        if ($("input:radio[name='studenten']:checked").val() == "student") { //student
             console.log("Add student");
             addWorksheet(getWorksheetid());
         }
-            else if (new String ($('#studentenradio').val()) == new String("studentlist"))//studentlist
+            else if ($("input:radio[name='studenten']:checked")== "studentlist")//studentlist
         {
             console.log("Add studentengroep");
         }
