@@ -149,7 +149,8 @@ class GradingEngine {
 
         // Calculate the weighted arithmetic mean
 
-
+        $totalScore = 0;
+        $totalWeight = 0;
         foreach($projectStructure as $competence)
         {
             $competenceScore = 0;
@@ -169,8 +170,14 @@ class GradingEngine {
                 $competenceWeight += $subcompetence->weight;
             }
             $competence->score  = $competenceScore / $competenceWeight;
+
+            $totalScore += $competence->score * $competence->weight;
+            $totalWeight += $competence->weight;
         }
 
+        // Final Point for project
+
+        $finalScore = $totalScore / $totalWeight;
 
         return $projectStructure;
 
