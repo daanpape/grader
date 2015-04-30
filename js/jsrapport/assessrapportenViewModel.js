@@ -155,9 +155,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, name, lastname, mail, score) {
+    gvm.addTableData = function(id, Name , datum) {
         // Push data
-        var tblOject = {tstudid: id, tname: name, tlname: lastname, tmail: mail, tscore: score};
+        var tblOject = {tworkid: id, tname: Name, tdatum: datum};
         gvm.tabledata.push(tblOject);
     }
 
