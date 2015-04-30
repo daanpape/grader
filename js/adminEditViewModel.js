@@ -56,12 +56,7 @@ function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
 
-    $.getJSON("/api/loggedinuser", function(data){
-        $.each(data, function(i, item){
-            console.log(data);
-            console.log(i + " " + item);
-        });
-    });
+
 
     $('#userEditForm').on('submit', function(e)
     {
