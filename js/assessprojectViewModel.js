@@ -59,7 +59,7 @@ function initPage() {
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
-    $.getJSON('/api/finalscore/' + viewModel.projectid + '/' + id, function(data) {
+    $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function(data) {
         $.each(data, function(i, item) {
             console.log(item);
         });
