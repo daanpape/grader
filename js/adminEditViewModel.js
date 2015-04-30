@@ -89,7 +89,7 @@ function saveUserEdits(id){
 
 function saveUserPermissions(id){
     //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + id, function(data){
+    $.getJSON("/api/removeroles/" + id, function(){
         console.log("User permissions were removed");
     });
 
@@ -97,11 +97,10 @@ function saveUserPermissions(id){
 
         var checkedValue = document.getElementsByName(currentRights);
 
-
+        console.log(checkedValue[0].checked + " - " + currentRights);
         //SAVE NEW PERMISSIONS
-        if(checkedValue[0].checked) {
-
-            $.getJSON("/api/addrole/" + id, function(data){
+        if(checkedValue[0].checked == true) {
+            $.getJSON("/api/addrole/" + id, function(){
                 console.log("User permission '" + currentRights + "' was added!");
             });
         }
