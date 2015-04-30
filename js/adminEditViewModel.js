@@ -60,7 +60,7 @@ function initPage() {
     });
 }
 
-function saveChanges(){
+function saveChanges(e){
     console.log("Save changes");
     console.log("userid: " + viewModel.edituserid);
 
