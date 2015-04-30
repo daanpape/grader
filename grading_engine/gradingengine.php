@@ -128,11 +128,23 @@ class GradingEngine {
 
         // Calculate indicator points
 
-        $indicatorCount = 0;
         foreach($score as $point)
         {
             $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->score += $point['score'];
             $projectStructure[$point['competence']]->subcompetences[$point['subcompetence']]->indicators[$point['indicator']]->count++;
+        }
+
+        // Calculate the average score of indicator (total / count )
+
+        foreach($projectStructure as $competence)
+        {
+            foreach($competence as $subcompetence)
+            {
+                foreach($subcompetence as $indicator)
+                {
+                    $indicator->score = $indicator->score / $indicator->count;
+                }
+            }
         }
 
         return $projectStructure;
