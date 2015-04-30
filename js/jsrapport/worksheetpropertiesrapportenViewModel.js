@@ -20,7 +20,7 @@ function pageViewModel(gvm) {
                 $.each(data, function(i, item) {
                     var tblObject = {modid: item.id, modname: item.name, competences: new Array()};
                     if (item.doelstellingen !== null) {
-                        console.log("Doelstellingen: " + item.doelstellingen);
+                        console.log(item.doelstellingen);
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
                     gvm.availableModules.push(tblObject);
@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
         $.each(data, function(i, item) {
             var tblObject = {comid: item.id, comname: item.name, criterias: new Array()}
             if (item.criterias !== null) {
-                console.log("Criteria's: " + item.criterias);
+                console.log(item.criterias);
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
             competences.push(tblObject);
