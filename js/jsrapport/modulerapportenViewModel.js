@@ -14,6 +14,7 @@ function module(viewmodel, id, name, description, doelstellingen) {
 
         removeThis: function() {
             viewModel.removeModule(this);
+            RemoveCurrentModule(id);
         },
 
         removeDoelstelling: function(doelstelling) {
@@ -173,6 +174,19 @@ function RemoveCurrentDoelstelling(id)
         success: function(){
             // TODO make multilangual and with modals
             console.log("removedoelstelling");
+        }
+    });
+}
+
+function RemoveCurrentModule(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removemodule/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            // TODO make multilangual and with modals
+            console.log("removemodule");
         }
     });
 }
