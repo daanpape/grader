@@ -103,8 +103,8 @@ function saveUserPermissions(id){
         if(checkedValue[0].checked == true) {
             $.ajax({
                 type: "POST",
-                url: "/api/addrole/" + id,
-                data: { current: currentRights },
+                url: "/api/addrole/" + viewModel.edituserid,
+                data: { 'current': currentRights },
                 success: function() {
                     console.log('Success saved user permission: ' + currentRights);
                 },
