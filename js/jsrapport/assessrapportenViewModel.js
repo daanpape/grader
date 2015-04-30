@@ -224,7 +224,8 @@ function addWorksheetStudentList(worksheetid) {
 
 function loadTablePage(pagenr,course)
 {
-    $.getJSON('/api/getStudentGroupTeacherByCourseID/page/' + pagenr + '/' + course, function(data){
+    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course);
+    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
