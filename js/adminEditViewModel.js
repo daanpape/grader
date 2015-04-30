@@ -54,30 +54,45 @@ function initPage() {
     getAllUserDataById(viewModel.edituserid);
     setRights();
 
-    $(".savePageBtn").click(function()
+    $('#userEditForm').on('submit', function(e)
     {
+        //e.preventDefault();
+
         saveChanges();
+
+
+        //window.location.href = "http://dptknokke.ns01.info:9000/templates/admin/users.php";
     });
 }
 
-function saveChanges(e){
+function saveChanges(){
     console.log("Save changes");
     console.log("userid: " + viewModel.edituserid);
 
+    saveUserEdits(viewModel.edituserid);
+    saveUserPermissions(viewModel.edituserid);
+}
+
+function saveUserEdits(id){
     $.ajax({
         type: "POST",
-        url: "/api/saveedit/" + viewModel.edituserid,
+        url: "/api/saveedit/" + id,
         data: $('#userEditForm').serialize(),
         success: function() {
-            console.log('Success');
+            console.log('Success saved user changes');
         },
         error: function() {
-            console.log("error");
+            console.log("Error saving user changes");
         }
     });
+}
 
-    // Stop form submit via normal post
-    e.preventDefault();
+function saveUserPermissions(id){
+    //FIRST DELETE ALL PERMISSIONS
+
+
+    //SAVE NEW PERMISSIONS
+
 }
 
 function setRights(){
