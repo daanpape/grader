@@ -102,7 +102,7 @@ function makeChecklist() {
             $checkbox.triggerHandler('change');
             /* Expansion */
             if ($(this).parent('li').length) {
-                $(this).parent('li').prop('checked', !$checkbox.is(':checked'));
+                $(this).parent('li').prop('checked', true);
                 $(this).parent('li').triggerHandler('change');
             }
             /* Expansion */
