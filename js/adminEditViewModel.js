@@ -75,6 +75,9 @@ function saveChanges(){
             console.log("error");
         }
     });
+
+    // Stop form submit via normal post
+    e.preventDefault();
 }
 
 function setRights(){
