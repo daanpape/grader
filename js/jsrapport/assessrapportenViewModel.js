@@ -232,7 +232,8 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            console.log(data.data);
+            console.log(item);
+            console.log("wat wordt weergegeven in tabel item.id, item.Name , item.datum")
             viewModel.addTableData(item.id, item.Name , item.datum);
         });
 
