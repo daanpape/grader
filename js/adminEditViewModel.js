@@ -162,6 +162,12 @@ function checkPermissions(){
         var data = [];
         $.each(viewModel.rights(), function(i, itemRights){
             if(itemAllRights == itemRights && checked == false){
+                if(itemRights == "SUPERUSER"){
+                    data["disabled"] = true;
+                } else {
+
+                    data["disabled"] = false;
+                }
                 checked = true;
                 data["item"] = itemAllRights;
                 data["isChecked"] = true;
@@ -171,6 +177,7 @@ function checkPermissions(){
         if (checked == false){
             data["item"] = itemAllRights;
             data["isChecked"] = false;
+            data["disabled"] = false;
             viewModel.updateCheckedRights(data);
         }
     });
