@@ -60,8 +60,6 @@ function initPage() {
 
         saveChanges();
         saveUserPermissions();
-
-        window.location.href = "/admin/permissions/edit/" + viewModel.edituserid;
     });
 }
 
