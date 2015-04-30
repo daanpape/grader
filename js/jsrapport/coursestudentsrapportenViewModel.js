@@ -209,7 +209,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-prev-btn').removeClass('disabled');
             $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev, course);
+                loadTablePage(data.prev);
             });
         }
 
@@ -218,7 +218,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-next-btn').removeClass('disabled');
             $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next, course);
+                loadTablePage(data.next);
             });
         }
 
