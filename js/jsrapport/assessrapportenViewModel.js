@@ -64,7 +64,6 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -77,7 +76,6 @@ function pageViewModel(gvm) {
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursefromteacher/' + gvm.userId, function(data) {
-            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -176,17 +174,16 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
-        console.log(worksheetsid[i]);
         if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
-            console.log("hier " + worksheet);
         }
         i+= 1;
     });
     return worksheet;
 }
 
-function addWorksheet() {
+function addWorksheet($worksheetid) {
+    console.log("toe te voegenworksheet " + $worksheetid)
     /*
     $.ajax({
         url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
@@ -281,10 +278,9 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        console.log("toevoegen van "+ getWorksheetid($('#worksheetComplete').val()));
-        addWorksheet();
+        addWorksheet(getWorksheetid());
 
-        //table
+        //table opnieuw laden
         loadTablePage(1);
 
         //Indien gewenst toevoegformulier weer verbergen.
