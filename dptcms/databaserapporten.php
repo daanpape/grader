@@ -405,6 +405,47 @@ class rapportenDAO {
                 }
     }
 
+    public static function getWorkficheCourseUser($start, $count, $userid, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT werkfiche_rapport.id, werkfiche_rapport.Name, werkfiche_user_rapport.datum,
+                                        werkfiche_user_rapport.score
+                                        FROM werkfiche_user_rapport
+                                        LEFT JOIN werkfiche_rapport ON werkfiche_user_rapport.werkfiche = werkfiche_rapport.id
+                                        WHERE werkfiche_rapport.course = :course
+                                        AND werkfiche_user_rapport.user = :userid
+                                        ORDER BY werkfiche_user_rapport.datum,werkfiche_rapport.Name
+                                        LIMIT :start,:count");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets from a student for a specific course', $err);
+            return null;
+        }
+    }
+
+    public static function getWorkficheCourseUserCount($userid, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT count(werkfiche_rapport.id)
+                                        FROM werkfiche_user_rapport
+                                        LEFT JOIN werkfiche_rapport ON werkfiche_user_rapport.werkfiche = werkfiche_rapport.id
+                                        WHERE werkfiche_rapport.course = :course
+                                        AND werkfiche_user_rapport.user = :userid");
+            $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all worksheets from a student for a specific course', $err);
+            return 0;
+        }
+    }
+
     /*
      *
      * Momenteel niet langer gebruikt.
