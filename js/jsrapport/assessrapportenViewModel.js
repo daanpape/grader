@@ -146,6 +146,7 @@ function pageViewModel(gvm) {
                     gvm.currentStudentId = item.id;
                     $(".btn-student span:first").text($(this).text());
                     gvm.saveLastSelectedDropdowns();
+                    loadTablePage(1,gvm.currentStudentId);
                 });
             })
         })
