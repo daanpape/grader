@@ -88,6 +88,7 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(id){
+    console.log("Save user permissions for user: " + id);
     //FIRST DELETE ALL PERMISSIONS
     $.getJSON("/api/removeroles/" + id, function(){
         console.log("User permissions were removed");
