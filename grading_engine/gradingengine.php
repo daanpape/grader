@@ -111,7 +111,7 @@ class GradingEngine {
                     $newIndicator = new Indicator();
                     $newIndicator->id = $indicator->id;
                     $newIndicator->weight = $indicator->weight;
-                    array_push($newSubcompetence->indicators, $newIndicator);
+
                     $newSubcompetence->indicators[$indicator->id] = $newIndicator;
                 }
 
