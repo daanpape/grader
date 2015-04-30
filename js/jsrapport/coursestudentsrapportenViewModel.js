@@ -20,12 +20,12 @@ function pageViewModel(gvm) {
     gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
-   /* gvm.getProjectInfo = function() {
+   gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
     };
-*/
+
     gvm.coupledLists = ko.observableArray([]);
     gvm.availableLists = ko.observableArray([]);
 
@@ -281,7 +281,7 @@ function deleteTableItem(id, tblOject) {
 }
 
 function initPage() {
-   // viewModel.getProjectInfo();
+    viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
     $('#addGroupForm').hide();
