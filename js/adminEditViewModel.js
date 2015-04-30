@@ -90,8 +90,8 @@ function saveUserEdits(id){
 function saveUserPermissions(id){
     $.each(viewModel.allRights(), function(i, currentRights){
 
-        var checkedValue = $(currentRights).isChecked(":checked");
-        console.log(checkedValue);
+        var checkedValue = document.getElementsByName(currentRights);
+        console.log(checkedValue[0].checked);
 
     });
 
