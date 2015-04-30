@@ -375,9 +375,9 @@ class rapportenDAO {
                                         WHERE course_studentlist_teacher_rapport.active =  '1'
                                         AND course =  :course
                                         ORDER BY studentlist_rapport.name, users.firstname, users.lastname
-                                        LIMIT :start,:count");
-            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
-            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+                                        ");
+         //   $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+         //   $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
             $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
