@@ -81,7 +81,7 @@ function makeChecklist() {
 
         // Settings
         var $widget = $(this),
-            $checkbox = $('<input type="checkbox" class="hidden" />'),
+            $checkbox = $('<input type="checkbox" />'),
             color = ($widget.data('color') ? $widget.data('color') : "primary"),
             style = ($widget.data('style') == "button" ? "btn-" : "list-group-item-"),
             settings = {
@@ -93,7 +93,7 @@ function makeChecklist() {
                 }
             };
 
-        $widget.css('cursor', 'pointer')
+        $widget.css('cursor', 'pointer');
         $widget.append($checkbox);
 
         // Event Handlers
@@ -101,8 +101,7 @@ function makeChecklist() {
             $checkbox.prop('checked', !$checkbox.is(':checked'));
             $checkbox.triggerHandler('change');
             /* Expansion */
-            $(this).parent('li input[type=checkbox]').prop('checked', true);
-            $(this).parent('li input[type=checkbox]').triggerHandler('change');
+            
             /* Expansion */
             updateDisplay();
         });
