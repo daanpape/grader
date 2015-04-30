@@ -432,7 +432,7 @@ class rapportenDAO {
     public static function insertWorksheetStudentCouple($worksheetid, $studid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("");
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
 
             $stmt->execute(array($worksheetid, $studid));
 
