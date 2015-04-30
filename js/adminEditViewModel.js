@@ -116,8 +116,7 @@ function saveUserPermissions(){
         }
     });
 
-
-
+    initPage();
 
 }
 
