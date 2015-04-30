@@ -57,7 +57,7 @@ function criteria(parent, id, name, description) {
 
         removeThis: function() {
             parent.removeCriteria(this);
-            RemoveCriteria(this.id);
+            RemoveCurrentCriteria(id);
         }
     };
 }
@@ -150,7 +150,7 @@ function saveCourseStructure() {
     });
 }
 
-function RemoveCriteria(id)
+function RemoveCurrentCriteria(id)
 {
     $.ajax({
         type: "DELETE",
