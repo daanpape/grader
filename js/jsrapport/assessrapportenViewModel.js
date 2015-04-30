@@ -292,9 +292,6 @@ function initPage() {
         {
             console.log("Add studentengroep");
         }
-        else {
-        console.log("Niets geselecteerd");
-        }
         //table opnieuw laden
         loadTablePage(1);
 
