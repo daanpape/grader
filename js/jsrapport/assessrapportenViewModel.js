@@ -179,7 +179,6 @@ function getWorksheetid() {
         }
         i+= 1;
     });
-    console.log(worksheet);
     return worksheet;
 }
 
@@ -279,7 +278,7 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
-        addWorksheet(getWorksheetid($('#worksheetComplete').val()));
+        addWorksheet(getWorksheetid());
 
         //table opnieuw laden
         loadTablePage(1);
