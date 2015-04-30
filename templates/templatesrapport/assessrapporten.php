@@ -59,7 +59,7 @@
                 <tr>
                     <th data-bind="text: werkficheName">Name</th>
                     <th data-bind="text: werkficheDate">Date</th>
-                    <th data-bind="text: werkficheScore">Werkfiche Score</th>
+                    <th>Score</th>
                     <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>

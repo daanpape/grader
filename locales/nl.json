@@ -102,7 +102,6 @@
     "werkficheName":"Naam",
     "werkficheDate":"Datum",
     "werkficheAction":"Acties",
-    "werkficheScore":"Punten",
 
     "AdminTitle" : "Admin pagina",
     "UserPermissionsTitle" : "Rechten",
