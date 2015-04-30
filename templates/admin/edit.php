@@ -110,11 +110,11 @@ $location = "adminEdit";
                             <select class="form-control form-next" name="status">
                                 <!-- ko if: status() === 'ACTIVE' -->
                                 <option selected="true" data-bind="if:status" name="ACTIVE">ACTIVE</option>
-                                <option data-bind="if:status" name="DISABLED">NON-ACTIVE</option>
+                                <option data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
                                 <!-- ko if: status() === 'DISABLED' -->
                                 <option data-bind="if:status" name="ACTIVE">ACTIVE</option>
-                                <option selected="true" data-bind="if:status" name="DISABLED">NON-ACTIVE</option>
+                                <option selected="true" data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
                             </select>
                             <!-- /ko -->
