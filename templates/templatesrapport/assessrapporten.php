@@ -88,7 +88,7 @@
             </ul>
             
             <button type="button" class="btn btn-default pagination-button" id="addWorksheetBtn">
-                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: AddBtnWorksheetUser"></span>
             </button>
         </div>
 

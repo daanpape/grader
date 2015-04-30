@@ -122,6 +122,7 @@
     "WorksheetNameRapport" : "Werkfiches",
     "WorksheetRapportManual" : "Overzicht van de werfiches",
     "AddNewWorksheet" : "Voeg werkfiche toe",
+    "AddBtnWorksheetUser" : "Voeg werkfiche toe voor student",
     "EditWorksheet" : "Pas werkfiche aan",
     "FormEquip" : "Materiaal",
     "FormMethod" : "Werkwijze",
