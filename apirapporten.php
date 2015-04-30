@@ -168,6 +168,19 @@ Class RapportAPI {
         }
     }
 
+    public static function createWorksheetStudentCouple($worksheetid, $studid) {
+        $id = rapportenDAO::insertWorksheetStudentCouple($worksheetid, $studid);
+
+        if($id != null) {
+            return array(
+                "worksheetid" => $worksheetid,
+                "$studid" => $studid
+            );
+        } else {
+            return -1;
+        }
+    }
+
     /*
      * Delete a course from the database
      */
