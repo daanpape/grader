@@ -164,6 +164,9 @@ function checkPermissions(){
             if(itemAllRights == itemRights && checked == false){
                 if(itemRights == "SUPERUSER"){
                     data["disabled"] = true;
+                } else {
+
+                    data["disabled"] = false;
                 }
                 checked = true;
                 data["item"] = itemAllRights;
