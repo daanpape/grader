@@ -79,7 +79,7 @@ class GradingEngine {
     public static function gradeProjectForStudent($score, $rules) {
 
         // Create rule objects
-        $projectRules = array();
+        /*$projectRules = array();
         foreach($rules as $rule)
         {
             $newRule = new Rule();
@@ -90,7 +90,7 @@ class GradingEngine {
             $newRule->sign = $rule['sign'];
             $newRule->percent = $rule['value'];
             array_push($projectRules, $newRule);
-        }
+        }*/
 
         return "data";
     }
