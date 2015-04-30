@@ -179,7 +179,7 @@ class GradingEngine {
 
         $finalScore = $totalScore / $totalWeight;
 
-        return $projectStructure;
+        return $finalScore;
 
 
 
