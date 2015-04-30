@@ -159,7 +159,9 @@ function filterModules(data) {
     var modules = [];
     var comps = [];
     var criteria = [];
-    console.log(viewModel.availableModules.modname);
+    $.each(viewModel.availableModules, function(i, item){
+        console.log(item.modname);
+    });
     /*$.each(data, function(i, item) {
         if (viewModel.availableModules) {               //gvm.availableModules doorlopen
             modules.push(item);
