@@ -338,8 +338,8 @@ class GraderAPI {
     /*
      * Update user
      */
-    public static function updateUser($id, $username, $firstname, $lastname, $status) {
-        return UserDAO::updateUser($id, $username, $firstname, $lastname, $status);
+    public static function updateUser($id, $firstname, $lastname, $username, $status) {
+        return UserDAO::updateUser($id, $firstname, $lastname, $username, $status);
     }
 
 
