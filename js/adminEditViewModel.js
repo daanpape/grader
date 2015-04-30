@@ -62,6 +62,7 @@ function initPage() {
 
 function saveChanges(){
     console.log("Save changes");
+    console.log("userid: " + viewModel.edituserid);
 
     $.ajax({
         type: "POST",
