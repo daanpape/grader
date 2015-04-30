@@ -177,9 +177,7 @@ function filterModules(data) {
     collection.push(modules);
     collection.push(comps);
     collection.push(criteria);
-    console.log(modules);
-    console.log(comps);
-    console.log(criteria);
+    console.log(collection);
     return collection;
 }
 
