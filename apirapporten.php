@@ -297,6 +297,7 @@ Class RapportAPI {
                                 property_exists($criteria, "id") ? $criteria->id : -1,
                                 property_exists($criteria, "name") ? $criteria->name : "",
                                 property_exists($criteria, "description") ? $criteria->description : "",
+                                property_exists($criteria, "Active") ? $criteria->Active: 1,
                                 $doelstellingid);
                         }
                     }
