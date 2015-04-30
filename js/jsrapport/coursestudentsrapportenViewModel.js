@@ -281,7 +281,7 @@ function deleteTableItem(id, tblOject) {
 }
 
 function initPage() {
-    viewModel.getProjectInfo();
+   // viewModel.getProjectInfo();
     viewModel.getCoupledLists();
 
     $('#addGroupForm').hide();
