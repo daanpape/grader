@@ -281,10 +281,10 @@ $app->get('/api/removeroles/:id', function($id) use ($app) {
     echo json_encode($userdata);
 });
 
-$app->post('/api/addrole/:id/:role', function($id, $role) use ($app) {
+$app->post('/api/addrole/:id', function($id) use ($app) {
 
     // Try to edit the user
-    if(!GraderAPI::addUserRole($id, $role)) {
+    if(!GraderAPI::addUserRole($id, $_POST['current'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }
