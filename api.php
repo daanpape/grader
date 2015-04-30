@@ -80,7 +80,7 @@ class GraderAPI {
 
     public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
+        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
     }
 
     /*
