@@ -76,7 +76,7 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProjectForStudent($score, $rules) {
+    public static function gradeProjectForStudent($structure, $score, $rules) {
 
         // Create rule objects
         $projectRules = array();
@@ -92,8 +92,38 @@ class GradingEngine {
             array_push($projectRules, $newRule);
         }
 
-        // Calculate points
-        return $score;
+        // Calculate project structure
+        $projectStructure = array();
+        foreach($structure as $competence)
+        {
+            $newCompetence = new Competence();
+            $newCompetence->id = $competence->id;
+            $newCompetence->weight = $competence->weight;
+            $newCompetence->subcompetences = array();
+            foreach($competence->subcompetences as $subcompetence)
+            {
+                $newSubcompetence = new SubCompetence();
+                $newSubcompetence->id = $subcompetence->id;
+                $newSubcompetence->weight = $subcompetence->weight;
+                $newSubcompetence->indicators = array();
+                foreach($subcompetence->indicators as $indicator)
+                {
+                    $newIndicator = new Indicator();
+                    $newIndicator->id = $indicator->id;
+                    $newIndicator->weight = $indicator->weight;
+                    //array_push($newSubcompetence->indicators, $newIndicator);
+                    $newSubcompetence->indicators[$newIndicator->id] = $newIndicator;
+                }
+                //array_push($newCompetence->subcompetences, $newSubcompetence);
+                $newCompetence->subcompetences[$newSubcompetence->id] = $newSubcompetence;
+            }
+            //array_push($projectStructure, $newCompetence);
+            $projectStructure[$newCompetence->id] = $newCompetence;
+        }
+
+        // Calculate indicator points
+        //return $projectStructure[0]->subcompetences[0]->indicators[0]->score;
+        return $projectStructure;
 
 
 

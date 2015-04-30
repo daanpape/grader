@@ -80,7 +80,7 @@ class GraderAPI {
 
     public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
+        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
     }
 
     /*
@@ -338,8 +338,8 @@ class GraderAPI {
     /*
      * Update user
      */
-    public static function updateUser($id, $username, $firstname, $lastname, $status) {
-        return UserDAO::updateUser($id, $username, $firstname, $lastname, $status);
+    public static function updateUser($id, $firstname, $lastname, $username, $status) {
+        return UserDAO::updateUser($id, $firstname, $lastname, $username, $status);
     }
 
 

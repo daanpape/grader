@@ -1,6 +1,7 @@
 //Nodig voor autoincrement
 var selectedcourseid;
 var studid;
+var studlijstid;
 var worksheets = [];
 var worksheetsid = [];
 
@@ -48,6 +49,7 @@ function pageViewModel(gvm) {
                     gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
                     studid = item.studentid;
+                    studlijstid = gvm.currentStudentlistId;
                     gvm.updateCourseRapport();
                     loadTablePage(item.courseid, 1);
                 });
@@ -69,6 +71,7 @@ function pageViewModel(gvm) {
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
         studid = gvm.currentStudentId;
+        studlijstid = gvm.currentStudentlistId;
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -187,12 +190,28 @@ function getWorksheetid() {
     return worksheet;
 }
 
-function addWorksheet(worksheetid) {
-    console.log("toe te voegenworksheet " + worksheetid + " voor " + studid);
+function addWorksheetStudent(worksheetid) {
     $.ajax({
         url: "/api/worksheetstudentcouple/" + worksheetid + "/" + studid,
         type: "POST",
         data: {'worksheetid': worksheetid, 'studid': studid},
+        success: function(data) {
+            //callback(true);
+        },
+        error: function(data) {
+            console.log('Failed to add new student');
+            //callback(false);
+        }
+    });
+}
+
+//addWorksheetStudentList
+function addWorksheetStudentList(worksheetid) {
+    console.log("toe te voegenworksheet " + worksheetid + " voor " + studlijstid);
+    $.ajax({
+        url: "/api/worksheetstudentListcouple/" + worksheetid + "/" + studlijstid,
+        type: "POST",
+        data: {'worksheetid': worksheetid, 'studlijstid': studlijstid},
         success: function(data) {
             //callback(true);
         },
@@ -282,16 +301,14 @@ function initPage() {
 
     $('#addNewWorksheetBtn').click(function() {
         //TODO controle of er effectief een lijst / student geselecteerd is.
-        console.log("geselecteerd " + $("input:radio[name='studenten']:checked").val())
+
         //controleren of het voor 1 student is of voor alle studenten
-        if (new String ($("input:radio[name='studenten']:checked").val()) == new String("student")) {
-            console.log("Add student");
-            addWorksheet(getWorksheetid());
+        if ($("input:radio[name='studenten']:checked").val() == "student") { //student
+            addWorksheetStudent(getWorksheetid());
         }
-            else if (new String ($("input:radio[name='studenten']:checked").val()) == new String("studentlist"))//studentlist
-        {
-            console.log("Add studentengroep");
-        }
+            else { //studentlist
+            addWorksheetStudentList(getWorksheetid());
+            }
         //table opnieuw laden
         loadTablePage(1);
 

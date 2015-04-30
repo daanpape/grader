@@ -107,14 +107,14 @@ $location = "adminEdit";
                         <td>Status</td>
                         <td>
                             <!-- ko if: status() === 'ACTIVE' || status() === 'DISABLED' -->
-                            <select class="form-control form-next">
+                            <select class="form-control form-next" name="status">
                                 <!-- ko if: status() === 'ACTIVE' -->
-                                <option selected="true" data-bind="if:status" name="ACTIVE">Active</option>
-                                <option data-bind="if:status" name="DISABLED">Non-Active</option>
+                                <option selected="true" data-bind="if:status" name="ACTIVE">ACTIVE</option>
+                                <option data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
                                 <!-- ko if: status() === 'DISABLED' -->
-                                <option data-bind="if:status" name="ACTIVE">Active</option>
-                                <option selected="true" data-bind="if:status" name="DISABLED">Non-Active</option>
+                                <option data-bind="if:status" name="ACTIVE">ACTIVE</option>
+                                <option selected="true" data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
                             </select>
                             <!-- /ko -->
@@ -166,7 +166,7 @@ $location = "adminEdit";
                         <tr>
                             <td>Permission</td>
                             <td data-bind="foreach: viewModel.checkedRights">
-                                <input type="checkbox" data-bind="checked: isChecked"><label data-bind="text: item"></label><br />
+                                <input type="checkbox" data-bind="checked: isChecked, attr:{ name: item }" ><label data-bind="text: item"></label><br />
                             </td>
                         </tr>
                         </tbody>
