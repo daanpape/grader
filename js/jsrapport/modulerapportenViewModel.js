@@ -158,7 +158,7 @@ function RemoveCriteria()
         data: ko.toJSON(viewModel.modules),
         success: function(){
             // TODO make multilangual and with modals
-            alert("Delete criteria/put inactive");
+            alert("Delete criteria | put inactive");
 
             fetchCourseStructure();
         }
