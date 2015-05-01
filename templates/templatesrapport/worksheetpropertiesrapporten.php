@@ -34,7 +34,7 @@
                         <br />
 
                         <label data-bind="text: formmodules"></label>
-                        <div style="max-height: 300px;overflow: auto;">
+                        <div>
                             <ul id="check-list-box" class="list-group checked-list-box" data-bind="foreach: availableModules">
                                 <li class="list-group-item" data-bind="text: modname">Module name</li>
                                 
