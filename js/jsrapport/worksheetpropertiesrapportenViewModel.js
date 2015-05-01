@@ -73,7 +73,7 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
             type: "POST",
             data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
             success: function(data) {
-                console.log('Success');
+                window.location = "/worksheetrapporten";
             },
             error: function(data) {
                 console.log('Failure');
