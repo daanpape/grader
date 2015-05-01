@@ -49,7 +49,7 @@
                         </div>
                         <br />
                         
-                        <div class="form-group form-inline">
+                        <div class="form-group">
                             <label data-bind="text: formscore"></label>
                             <div class="dropdown col-md-2">
                                 <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
