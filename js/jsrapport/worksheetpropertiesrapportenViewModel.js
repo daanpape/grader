@@ -52,9 +52,8 @@ function pageViewModel(gvm) {
     }
 }
 
-function addWorksheetProperties(serialData, wid, callback) {
-    var collection = getCheckedFields();
-    $.ajax({
+function addWorksheetProperties(serialData, wid, collection, callback) {
+    /*$.ajax({
         url: "/api/worksheetproperties/" + wid,
         type: "PUT",
         data: serialData,
@@ -76,7 +75,7 @@ function addWorksheetProperties(serialData, wid, callback) {
         error: function(data) {
             console.log('Failure');
         }
-    });
+    });*/
 }
 
 function makeChecklist() {
@@ -200,7 +199,9 @@ function initPage() {
     
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
-        addWorksheetProperties($('#worksheetform').serialize(), wid, function() {
+        var collection = getCheckedFields();
+        console.log($('#worksheetform').serialize());
+        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, function() {
             $('#worksheetform').prepend("<p class='text-danger'>There was a problem submitting the form</p>");
         });
     });
