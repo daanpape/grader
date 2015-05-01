@@ -8,6 +8,9 @@ function pageViewModel(gvm) {
     
     gvm.formequip = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormEquip");}, gvm);
     gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
+    gvm.formmodules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormModules");}, gvm);
+    gvm.formscore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormScore");}, gvm);
+    gvm.formassess = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssess");}, gvm);
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);

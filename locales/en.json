@@ -128,6 +128,9 @@
     "EditWorksheet" : "Edit worksheet",
     "FormEquip" : "Equipment",
     "FormMethod" : "Method",
+    "FormModules" : "Modules, competences and criteria",
+    "FormScore" : "Assessment method",
+    "FormAssess" : "Custom",
 
     "UserEditTitle": "Edit user"
 }

@@ -125,6 +125,9 @@
     "EditWorksheet" : "Pas werkfiche aan",
     "FormEquip" : "Materiaal",
     "FormMethod" : "Werkwijze",
+    "FormModules" : "Modules, doelstellingen en criteria",
+    "FormScore" : "Beoordelingsmethode",
+    "FormAssess" : "Aangepast",
 
     "UserEditTitle": "Gebruiker wijzigen"
 }
