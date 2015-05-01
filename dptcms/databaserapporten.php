@@ -694,9 +694,6 @@ class rapportenDAO {
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
-                                    AND (module_rapport.Active = 1 AND doelstelling_rapport.Active = 1 AND criteria_rapport.Active = 1)
-                                    OR (module_rapport.Active = 1 AND doelstelling_rapport.Active = 1 AND criteria_rapport.Active = 0)
-                                    OR (module_rapport.Active = 1 AND doelstelling_rapport.Active = 0 AND criteria_rapport.Active = 0)
                                     ORDER BY mid, did, cid ASC");
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
