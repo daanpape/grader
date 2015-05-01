@@ -50,7 +50,7 @@
                         <br />
                         
                         <label data-bind="text: formscore"></label>
-                        <div class="dropdown">
+                        <div class="dropdown col-md-8">
                             <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
                                 <span class="text-center">Choose...</span>
                                 <span class="pull-right caret-down caret"></span>
