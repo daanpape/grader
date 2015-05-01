@@ -690,7 +690,7 @@ class rapportenDAO {
         try {
             
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, module_rapport.Active mac, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, doelstelling_rapport.Active dac, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription, criteria_rapport.Active cac FROM module_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
@@ -700,7 +700,7 @@ class rapportenDAO {
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['mid'], $data)) {
+                if (!array_key_exists($row['mid'], $data) && $row['mac'] != 0) {
                     $module = new stdClass();
                     $module->id = $row['mid'];
                     $module->name = $row['mname'];
@@ -708,7 +708,7 @@ class rapportenDAO {
                     $module->doelstellingen = array();
                     $data[$row['mid']] = $module;
                 }
-                if (!array_key_exists($row['did'], $module->doelstellingen)) {
+                if (!array_key_exists($row['did'], $module->doelstellingen) && $row['dac'] != 0) {
                     $doelstelling = new stdClass();
                     $doelstelling->id = $row['did'];
                     $doelstelling->name = $row['dname'];
@@ -716,7 +716,7 @@ class rapportenDAO {
                     $doelstelling->criterias = array();
                     $module->doelstellingen[$row['did']] = $doelstelling;
                 }
-                if (!array_key_exists($row['cid'], $doelstelling->criterias)) {
+                if (!array_key_exists($row['cid'], $doelstelling->criterias) && $row['cac'] != 0) {
                     $criteria = new stdClass();
                     $criteria->id = $row['cid'];
                     $criteria->name = $row['cname'];
