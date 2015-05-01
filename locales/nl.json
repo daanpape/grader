@@ -128,6 +128,7 @@
     "FormModules" : "Modules, doelstellingen en criteria",
     "FormScore" : "Beoordelingsmethode",
     "FormAssess" : "Aangepast",
+    "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
 
     "UserEditTitle": "Gebruiker wijzigen"
 }
