@@ -57,9 +57,9 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
         callback(true, i18n.__('AssessMethodError'));
     } else {
         $.ajax({
-            url: "/api/worksheetproperties/" + wid,
+            url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
             type: "PUT",
-            data: {"": serialData, assess: assessMethod},
+            data: serialData,
             success: function(data) {
                 console.log(data);
                 callback(false);

@@ -294,13 +294,13 @@ $app->put('/api/updateworksheet/:id', function($id) use ($app){
     // Update the existing resource
     echo json_encode(RapportAPI::updateWorksheet($id, $app->request->post('name')));
 });
-$app->put('/api/worksheetproperties/:id', function($id) use ($app){
+$app->put('/api/worksheetproperties/:id/:assess', function($id, $assess) use ($app){
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Update the existing resource
-    echo json_encode(RapportAPI::updateWorksheetProperties($id, $app->request->post('equipment'), $app->request->post('method'), $app->request->post('assess')));
+    echo json_encode(RapportAPI::updateWorksheetProperties($id, $app->request->post('equipment'), $app->request->post('method'), $assess));
 });
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
