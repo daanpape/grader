@@ -81,7 +81,7 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
             }
         });
     }
-    window.location = "/worksheetrapporten";
+    //window.location = "/worksheetrapporten";
 }
 
 function makeChecklist() {
