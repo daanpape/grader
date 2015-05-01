@@ -34,7 +34,7 @@
                         <br />
 
                         <label data-bind="text: formmodules"></label>
-                        <div>
+                        <div style="max-height: 300px;overflow: auto;">
                             <ul id="check-list-box" class="list-group checked-list-box" data-bind="foreach: availableModules">
                                 <li class="list-group-item" data-bind="text: modname">Module name</li>
                                 
@@ -50,7 +50,7 @@
                         <br />
                         
                         <label data-bind="text: formscore"></label>
-                        <div class="dropdown col-md-2">
+                        <div class="dropdown">
                             <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
                                 <span class="text-center">Choose...</span>
                                 <span class="pull-right caret-down caret"></span>
