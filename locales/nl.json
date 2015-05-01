@@ -129,6 +129,7 @@
     "FormScore" : "Beoordelingsmethode",
     "FormAssess" : "Aangepast",
     "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
+    "AssessGeneralError" : "Data kon niet verstuurd worden",
 
     "UserEditTitle": "Gebruiker wijzigen"
 }

@@ -65,7 +65,7 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
                 callback(false);
             },
             error: function(data) {
-                callback(true);
+                callback(true, i18n.__('AssessGeneralError'));
             }
         });
         $.ajax({
@@ -73,13 +73,15 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
             type: "POST",
             data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
             success: function(data) {
-                window.location = "/worksheetrapporten";
+                console.log(data);
+                callback(false);
             },
             error: function(data) {
-                console.log('Failure');
+                callback(true, i18n.__('AssessGeneralError'));
             }
         });
     }
+    window.location = "/worksheetrapporten";
 }
 
 function makeChecklist() {

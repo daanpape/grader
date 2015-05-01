@@ -132,6 +132,7 @@
     "FormScore" : "Assessment method",
     "FormAssess" : "Custom",
     "AssessMethodError" : "You must select an assessment method",
+    "AssessGeneralError" : "Could not submit data",
 
     "UserEditTitle": "Edit user"
 }
