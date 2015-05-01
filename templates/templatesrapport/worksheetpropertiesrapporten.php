@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <form id="worksheetform">
-                        <!--<div class="form-group">
+                        <div class="form-group">
                             <label data-bind="text: formequip"></label>
                             <textarea class="form-control" rows="5" name="equipment" form="worksheetform"></textarea>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label data-bind="text: formmethod"></label>
                             <textarea class="form-control" rows="5" name="method" form="worksheetform"></textarea>
-                        </div>-->
+                        </div>
                         <br />
 
                         <label data-bind="text: formmodules"></label>
