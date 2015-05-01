@@ -131,7 +131,7 @@
     "FormModules" : "Modules, competences and criteria",
     "FormScore" : "Assessment method",
     "FormAssess" : "Custom",
-    "AssessMethodError" : "You must select a assessment method",
+    "AssessMethodError" : "You must select an assessment method",
 
     "UserEditTitle": "Edit user"
 }
