@@ -53,29 +53,33 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, collection, assessMethod, callback) {
-    /*$.ajax({
-        url: "/api/worksheetproperties/" + wid,
-        type: "PUT",
-        data: serialData,
-        success: function(data) {
-            console.log(data);
-            callback(false);
-        },
-        error: function(data) {
-            callback(true);
-        }
-    });
-    $.ajax({
-        url: "/api/worksheetmodules",
-        type: "POST",
-        data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
-        success: function(data) {
-            console.log('Success');
-        },
-        error: function(data) {
-            console.log('Failure');
-        }
-    });*/
+    if (assessMethod === "Choose...") {
+        callback(true, i18n.__('AssessMethodError'));
+    } else {
+        /*$.ajax({
+            url: "/api/worksheetproperties/" + wid,
+            type: "PUT",
+            data: serialData,
+            success: function(data) {
+                console.log(data);
+                callback(false);
+            },
+            error: function(data) {
+                callback(true);
+            }
+        });
+        $.ajax({
+            url: "/api/worksheetmodules",
+            type: "POST",
+            data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
+            success: function(data) {
+                console.log('Success');
+            },
+            error: function(data) {
+                console.log('Failure');
+            }
+        });*/
+    }
 }
 
 function makeChecklist() {
