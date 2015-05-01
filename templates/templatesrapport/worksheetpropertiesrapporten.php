@@ -49,8 +49,8 @@
                         </div>
                         <br />
                         
+                        <div class="row"><label data-bind="text: formscore"></label></div>
                         <div class="row">
-                            <label data-bind="text: formscore"></label>
                             <div class="dropdown col-md-2">
                                 <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Choose...</span>
