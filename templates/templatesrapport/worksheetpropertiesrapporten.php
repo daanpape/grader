@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p id="errormessage" class="text-danger hidden"></p>
+                    <p id="errormessage" class="text-danger"></p>
                     <form id="worksheetform">
                         <div class="form-group">
                             <label data-bind="text: formequip"></label>

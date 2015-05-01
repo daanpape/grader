@@ -205,7 +205,6 @@ function initPage() {
         var wid = $('#header').attr('data-value');
         var collection = getCheckedFields();
         var assessMethod = $('.btn-assessMethod span:first').text();
-        console.log(assessMethod);
         addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
             $('#errormessage').text(message);
         });
