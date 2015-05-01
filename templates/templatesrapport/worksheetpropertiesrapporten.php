@@ -50,7 +50,7 @@
                         <br />
                         
                         <label data-bind="text: formscore"></label>
-                        <div class="dropdown col-md-8">
+                        <div class="dropdown col-md-2">
                             <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
                                 <span class="text-center">Choose...</span>
                                 <span class="pull-right caret-down caret"></span>
@@ -61,6 +61,7 @@
                                 <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassess"></span></a></li>
                             </ul>
                         </div>
+                        <br />
             
                         <input type="submit" id="submit" value="Save" class="btn btn-primary" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
