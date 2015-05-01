@@ -193,7 +193,10 @@ function initPage() {
         viewModel.updateModules(courseid);
     });
     
-    
+    //event handlers for dropdown items
+    $('ul.dropdown-assessMethod li').click(function() {
+        $(".btn-assessMethod span:first").text($(this).text());
+    });
     
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
