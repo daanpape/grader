@@ -56,10 +56,10 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
     if (assessMethod === "Choose...") {
         callback(true, i18n.__('AssessMethodError'));
     } else {
-        /*$.ajax({
+        $.ajax({
             url: "/api/worksheetproperties/" + wid,
             type: "PUT",
-            data: serialData,
+            data: {"": serialData, assess: assessMethod},
             success: function(data) {
                 console.log(data);
                 callback(false);
@@ -78,7 +78,7 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
             error: function(data) {
                 console.log('Failure');
             }
-        });*/
+        });
     }
 }
 

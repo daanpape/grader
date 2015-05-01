@@ -555,11 +555,11 @@ class rapportenDAO {
         }
     }
     
-    public static function updateWorksheetProperties($id, $equip, $method) {
+    public static function updateWorksheetProperties($id, $equip, $method, $assess) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET equipment = ?, method = ? WHERE id = ?");
-            $stmt->execute(array($equip, $method, $id));
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET equipment = ?, method = ?, assessment = ? WHERE id = ?");
+            $stmt->execute(array($equip, $method, $assess, $id));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update worksheet', $err);

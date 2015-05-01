@@ -261,11 +261,12 @@ Class RapportAPI {
         }
     }
     
-    public static function updateWorksheetProperties($id, $equip, $method) {
-        if (rapportenDAO::updateWorksheetProperties($id, $equip, $method)) {
+    public static function updateWorksheetProperties($id, $equip, $method, $assess) {
+        if (rapportenDAO::updateWorksheetProperties($id, $equip, $method, $assess)) {
             return array(
                 "equipment" => $equip,
-                "method" => $method);
+                "method" => $method,
+                "assess" => $assess);
         } else {
             return -1;
         }
