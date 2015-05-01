@@ -49,19 +49,17 @@
                         </div>
                         <br />
                         
-                        <div class="form-group">
-                            <label data-bind="text: formscore"></label>
-                            <div class="dropdown col-md-2">
-                                <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
-                                    <span class="text-center">Choose...</span>
-                                    <span class="pull-right caret-down caret"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessMethod">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">A-E</a></li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">1-10</a></li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassess"></span></a></li>
-                                </ul>
-                            </div>
+                        <label data-bind="text: formscore"></label>
+                        <div class="dropdown col-md-2">
+                            <button class="btn btn-wide btn-default btn-assessMethod dropdown-toggle" type="button" id="assessMethod" data-toggle="dropdown" aria-expanded="true">
+                                <span class="text-center">Choose...</span>
+                                <span class="pull-right caret-down caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessMethod">
+                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">A-E</a></li>
+                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">1-10</a></li>
+                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassess"></span></a></li>
+                            </ul>
                         </div>
             
                         <input type="submit" id="submit" value="Save" class="btn btn-primary" />
