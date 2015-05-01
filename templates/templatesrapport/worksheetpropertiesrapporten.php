@@ -56,7 +56,7 @@
                                     <span class="text-center">Choose...</span>
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessMethod">
+                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessMethod" name="assessMethod">
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">A - E</a></li>
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">1 - 10</a></li>
                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassess"></span></a></li>
