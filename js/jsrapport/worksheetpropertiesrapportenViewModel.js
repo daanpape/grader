@@ -202,8 +202,8 @@ function initPage() {
         var collection = getCheckedFields();
         var assessMethod = $('.btn-assessMethod span:first').text();
         console.log(assessMethod);
-        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function() {
-            $('#worksheetform').prepend("<p class='text-danger'>There was a problem submitting the form</p>");
+        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
+            $('#worksheetform').prepend("<p class='text-danger'>" + message + "</p>");
         });
     });
 }
