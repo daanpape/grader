@@ -207,7 +207,7 @@ function initPage() {
         var assessMethod = $('.btn-assessMethod span:first').text();
         console.log(assessMethod);
         addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
-            $('#worksheetform').prepend("<p class='text-danger'>" + message + "</p>");
+            $('#errormessage').text(message);
         });
     });
 }
