@@ -700,7 +700,7 @@ class rapportenDAO {
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['mid'], $data) && $row['mac'] != 0) {
+                if (!array_key_exists($row['mid'], $data) && $row['mac'] != 0) {      //NEW
                     $module = new stdClass();
                     $module->id = $row['mid'];
                     $module->name = $row['mname'];
@@ -708,7 +708,7 @@ class rapportenDAO {
                     $module->doelstellingen = array();
                     $data[$row['mid']] = $module;
                 }
-                if (!array_key_exists($row['did'], $module->doelstellingen) && $row['dac'] != 0) {
+                if (!array_key_exists($row['did'], $module->doelstellingen) && $row['mac'] != 0 && $row['dac'] != 0) {    //NEW
                     $doelstelling = new stdClass();
                     $doelstelling->id = $row['did'];
                     $doelstelling->name = $row['dname'];
@@ -716,7 +716,7 @@ class rapportenDAO {
                     $doelstelling->criterias = array();
                     $module->doelstellingen[$row['did']] = $doelstelling;
                 }
-                if (!array_key_exists($row['cid'], $doelstelling->criterias) && $row['cac'] != 0) {
+                if (!array_key_exists($row['cid'], $doelstelling->criterias) && $row['mac'] != 0 && $row['dac'] != 0 && $row['cac'] != 0) {     //NEW
                     $criteria = new stdClass();
                     $criteria->id = $row['cid'];
                     $criteria->name = $row['cname'];
