@@ -177,7 +177,7 @@ class GradingEngine {
 
         // Calculate the rules
 
-        foreach($rules as $rule)
+        /*foreach($rules as $rule)
         {
             if($rule->action['subject'] == "subcompetence")
             {
@@ -197,7 +197,7 @@ class GradingEngine {
                     }
                 }
             }
-        }
+        }*/
 
         // Final Point for project
 
@@ -206,9 +206,6 @@ class GradingEngine {
 
 
         return $projectStructure;
-
-
-
 
     }
 }
