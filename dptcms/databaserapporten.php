@@ -289,7 +289,7 @@ class rapportenDAO {
 
 
     public static function addTeacher($id) {
-        try {
+        /*try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users");
             $stmt->execute();
@@ -297,7 +297,7 @@ class rapportenDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not find teacher', $err);
             return null;
-        }
+        }*/
     }
     
     public static function addStudentToList($name, $listid) {
