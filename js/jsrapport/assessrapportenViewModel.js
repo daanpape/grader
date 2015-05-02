@@ -1,5 +1,3 @@
-//Nodig voor autoincrement
-var studlijstid;
 var worksheets = [];
 var worksheetsid = [];
 
@@ -45,7 +43,6 @@ function pageViewModel(gvm) {
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
-                    studlijstid = gvm.currentStudentlistId;
                     gvm.updateCourseRapport();
                     loadTablePage(1, gvm.currentCourseId);
                 });
@@ -66,7 +63,6 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        studlijstid = gvm.currentStudentlistId;
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -202,11 +198,11 @@ function addWorksheetStudent(worksheetid) {
 
 //addWorksheetStudentList
 function addWorksheetStudentList(worksheetid) {
-    console.log("toe te voegenworksheet " + worksheetid + " voor " + studlijstid);
+    console.log("toe te voegenworksheet " + worksheetid + " voor " + viewModel.currentStudentlistId);
     $.ajax({
-        url: "/api/worksheetstudentListcouple/" + worksheetid + "/" + studlijstid,
+        url: "/api/worksheetstudentListcouple/" + worksheetid + "/" + viewModel.currentStudentlistId,
         type: "POST",
-        data: {'worksheetid': worksheetid, 'studlijstid': studlijstid},
+        data: {'worksheetid': worksheetid, 'studlijstid': viewModel.currentStudentlistId},
         success: function(data) {
             //callback(true);
         },
