@@ -20,16 +20,16 @@ function pageViewModel(gvm) {
     gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
-    gvm.getProjectInfo = function() {
+    /*gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
         });
-    };
+    };*/
 
-    gvm.coupledLists = ko.observableArray([]);
-    gvm.availableLists = ko.observableArray([]);
+    //gvm.coupledLists = ko.observableArray([]);
+    //gvm.availableLists = ko.observableArray([]);
 
-    gvm.addCoupledList = function(id, name) {
+    /*gvm.addCoupledList = function(id, name) {
         // Push data
         var tblOject = {tid: id, tname: name};
         gvm.coupledLists.push(tblOject);
@@ -49,9 +49,9 @@ function pageViewModel(gvm) {
                 }
             });
         });
-    }
+    }*/
 
-    gvm.addAvailableLists = function(id, name) {
+    /*gvm.addAvailableLists = function(id, name) {
         var tblOject = {tid: id, tname: name};
         gvm.availableLists.push(tblOject);
 
@@ -69,24 +69,24 @@ function pageViewModel(gvm) {
                 alert("list already coupled");
             }
         });
-    }
+    }*/
 
-    gvm.getCoupledLists = function() {
+    /*gvm.getCoupledLists = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
             $.each(data, function(i, item) {
                 gvm.coupledCount++;
                 gvm.addCoupledList(item.id, item.name);
             });
         });
-}
+    }*/
 
-    gvm.getAvailableLists = function() {
+    /*gvm.getAvailableLists = function() {
         $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
             $.each(data, function(i, item) {
                 gvm.addAvailableLists(item.id, item.name);
             });
         });
-    }
+    }*/
 
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
@@ -268,20 +268,20 @@ function deleteTableItem(id, tblOject) {
             //teacherid = "userid " + id.substr(id.indexOf('-')+1);
 
              $.ajax({
-             url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
-             type: "DELETE",
-             success: function() {
-             viewModel.tabledata.remove(tblOject);
-             }
+                url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
+                type: "DELETE",
+                success: function() {
+                   viewModel.tabledata.remove(tblOject);
+                }
              });
 
-            }
+        }
     });
 }
 
 function initPage() {
-   viewModel.getProjectInfo();
-    viewModel.getCoupledLists();
+    //viewModel.getProjectInfo();
+    //viewModel.getCoupledLists();
 
     $('#addGroupForm').hide();
     
@@ -305,7 +305,7 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         userid = data.id;
-        viewModel.getAvailableLists(data.id);
+        //viewModel.getAvailableLists(data.id);
     });
     loadTablePage(1,$('#projectHeader').attr("data-value"));
 }
