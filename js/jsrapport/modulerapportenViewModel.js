@@ -144,7 +144,6 @@ function saveCourseStructure() {
         url: "/api/savemodules/" + courseid,
         data: ko.toJSON(viewModel.modules),
         success: function(){
-            // TODO make multilangual and with modals
             alert("Saved coursestructure to server");
 
             fetchCourseStructure();
@@ -159,7 +158,6 @@ function RemoveCurrentCriteria(id)
         url: "/api/removecriteria/" + id,
         data: ko.toJSON(viewModel.criteria),
         success: function(){
-            // TODO make multilangual and with modals
             console.log("removecriteria");
         }
     });
@@ -172,7 +170,6 @@ function RemoveCurrentDoelstelling(id)
         url: "/api/removedoelstelling/" + id,
         data: ko.toJSON(viewModel.criteria),
         success: function(){
-            // TODO make multilangual and with modals
             console.log("removedoelstelling");
         }
     });
@@ -185,7 +182,6 @@ function RemoveCurrentModule(id)
         url: "/api/removemodule/" + id,
         data: ko.toJSON(viewModel.criteria),
         success: function(){
-            // TODO make multilangual and with modals
             console.log("removemodule");
         }
     });
