@@ -183,18 +183,18 @@ class GradingEngine {
             {
                 if($rule->operator == "<")
                 {
-                    /*foreach($projectStructure->$competence->subcompetences as $subcompetence)
+                    foreach($projectStructure->$competence->subcompetences as $subcompetence)
                     {
-                        if($rule->action['id'] === $subcompetence->id)
+                        /*if($rule->action['id'] == $subcompetence->id)
                         {
                             if($subcompetence->score < $rule->result) {
-                                if ($rule->sign === "-")
+                                if ($rule->sign == "-")
                                 {
                                     $subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
                                 }
                             }
-                        }
-                    }*/
+                        }*/
+                    }
                 }
             }
         }
