@@ -205,7 +205,7 @@ class GradingEngine {
 
 
 
-        return $projectStructure['subcompetences'];
+        return $projectStructure;
 
     }
 }
