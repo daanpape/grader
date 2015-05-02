@@ -185,16 +185,13 @@ class GradingEngine {
                 {
                     foreach($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
-                            $competence->id = 50;
-
-                            /*
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score < $rule->result) {
-                                    if ($rule->sign == "-") {
+                                    if ($rule->sign == '-') {
                                         $subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
                                     }
                                 }
-                            }*/
+                            }
                         }
                     }
                 }
