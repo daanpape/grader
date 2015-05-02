@@ -181,7 +181,7 @@ class GradingEngine {
         {
             if($rule->action['subject'] === "subcompetence")
             {
-                if($rule->operator === "<")
+                /*if($rule->operator === "<")
                 {
                     foreach($projectStructure->$competence->subcompetences as $subcompetence)
                     {
@@ -195,7 +195,7 @@ class GradingEngine {
                             }
                         }
                     }
-                }
+                }*/
             }
         }
 
