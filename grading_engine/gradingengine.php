@@ -175,11 +175,25 @@ class GradingEngine {
             $totalWeight += $competence->weight;
         }
 
+        // Calculate the rules
+
+
+
+
+
+
+
+
+
+
+
         // Final Point for project
 
         $finalScore = $totalScore / $totalWeight;
 
-        return $finalScore;
+
+
+        return $rules;
 
 
 
