@@ -177,18 +177,18 @@ class GradingEngine {
 
         // Calculate the rules
 
-        /*foreach($rules as $rule)
+        foreach($rules as $rule)
         {
-            if($rule->action['subject'] == "subcompetence")
+            if($rule->action['subject'] === "subcompetence")
             {
-                if($rule->operator == "<")
+                if($rule->operator === "<")
                 {
                     foreach($projectStructure->$competence->subcompetences as $subcompetence)
                     {
-                        if($rule->action['id'] == $subcompetence->id)
+                        if($rule->action['id'] === $subcompetence->id)
                         {
                             if($subcompetence->score < $rule->result) {
-                                if ($rule->sign == "-")
+                                if ($rule->sign === "-")
                                 {
                                     $subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
                                 }
@@ -197,7 +197,7 @@ class GradingEngine {
                     }
                 }
             }
-        }*/
+        }
 
         // Final Point for project
 
