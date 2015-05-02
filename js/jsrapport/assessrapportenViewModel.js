@@ -1,5 +1,4 @@
 //Nodig voor autoincrement
-var selectedcourseid;
 var studid;
 var studlijstid;
 var worksheets = [];
@@ -43,7 +42,6 @@ function pageViewModel(gvm) {
                     $(".btn-studentlist span:first").text(item.studentlist);
                     $('.btn-student span:first').text(item.student);
                     gvm.currentCourseId = item.courseid;
-                    selectedcourseid = item.courseid;
                     gvm.updateStudentlists(item.courseid, gvm.userId);
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.updateStudents(item.studentlistid);
@@ -92,7 +90,6 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
-                    selectedcourseid = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -170,7 +167,7 @@ function pageViewModel(gvm) {
 function getAllWorksheets() {
     worksheets = [];
     worksheetsid = [];
-    $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
+    $.getJSON('/api/worksheets/' + viewModel.currentCourseId, function(data) {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
             worksheetsid.push(item.id);
@@ -248,7 +245,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-prev-btn').removeClass('disabled');
             $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev,selectedcourseid);
+                loadTablePage(data.prev,viewModel.currentCourseId);
             });
         }
 
@@ -257,7 +254,7 @@ function loadTablePage(pagenr,course)
         } else {
             $('#pager-next-btn').removeClass('disabled');
             $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next,selectedcourseid);
+                loadTablePage(data.next,viewModel.currentCourseId);
             });
         }
 
@@ -289,7 +286,7 @@ function loadTablePage(pagenr,course)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr,selectedcourseid);
+                    loadTablePage(thispagenr,viewModel.currentCourseId);
                 });
             }
         });
@@ -320,7 +317,7 @@ function initPage() {
             addWorksheetStudentList(getWorksheetid());
             }
         //table opnieuw laden
-        loadTablePage(1,selectedcourseid);
+        loadTablePage(1,viewModel.currentCourseId);
 
         //Indien gewenst toevoegformulier weer verbergen.
         $('#worksheetComplete').val("");
