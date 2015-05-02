@@ -177,7 +177,10 @@ class GradingEngine {
 
         // Calculate the rules
 
+        foreach($rules as $rule)
+        {
 
+        }
 
 
 
@@ -193,7 +196,7 @@ class GradingEngine {
 
 
 
-        return $rules;
+        return $rules[17]->action->subject;
 
 
 
