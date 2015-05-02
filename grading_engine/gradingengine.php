@@ -190,6 +190,105 @@ class GradingEngine {
                                     if ($rule->sign == '-') {
                                         $subcompetence->score -= (($rule->result / 100) * $subcompetence->score);
                                     }
+                                    elseif($rule->sign == '+')
+                                    {
+                                        $subcompetence->score += (($rule->result / 100) * $subcompetence->score);
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                elseif($rule->operator == '>')
+                {
+                    foreach($projectStructure as $competence) {
+                        foreach ($competence->subcompetences as $subcompetence) {
+                            if ($rule->action['id'] == $subcompetence->id) {
+                                if ($subcompetence->score > $rule->value) {
+                                    if ($rule->sign == '-') {
+                                        $subcompetence->score -= (($rule->result / 100) * $subcompetence->score);
+                                    }
+                                    elseif($rule->sign == '+')
+                                    {
+                                        $subcompetence->score += (($rule->result / 100) * $subcompetence->score);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            elseif($rule->action['subject'] == "competence")
+            {
+                if($rule->operator == '<')
+                {
+                    foreach($projectStructure as $competence) {
+                        if ($rule->action['id'] == $competence->id) {
+                            if ($competence->score < $rule->value) {
+                                if ($rule->sign == '-') {
+                                    $competence->score -= (($rule->result / 100) * $competence->score);
+                                }
+                                elseif($rule->sign == '+')
+                                {
+                                    $competence->score += (($rule->result / 100) * $competence->score);
+
+                                }
+                            }
+                        }
+                    }
+                }
+                elseif($rule->operator == '>')
+                {
+                    foreach($projectStructure as $competence) {
+                        if ($rule->action['id'] == $competence->id) {
+                            if ($competence->score > $rule->value) {
+                                if ($rule->sign == '-') {
+                                    $competence->score -= (($rule->result / 100) * $competence->score);
+                                }
+                                elseif($rule->sign == '+')
+                                {
+                                    $competence->score += (($rule->result / 100) * $competence->score);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            elseif($rule->action['subject'] == "indicator")
+            {
+                if($rule->operator == '<')
+                {
+                    foreach($projectStructure as $competence) {
+                        foreach ($competence->subcompetences as $subcompetence) {
+                            foreach($subcompetence->indicators as $indicator)
+                            {
+                                if ($rule->action['id'] == $indicator->id) {
+                                    if ($indicator->score < $rule->value) {
+                                        if ($rule->sign == '-') {
+                                            $indicator->score -= (($rule->result / 100) * $indicator->score);
+                                        } elseif ($rule->sign == '+') {
+                                            $indicator->score += (($rule->result / 100) * $indicator->score);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                elseif($rule->operator == '>')
+                {
+                    foreach($projectStructure as $competence) {
+                        foreach ($competence->subcompetences as $subcompetence) {
+                            foreach($subcompetence->indicators as $indicator) {
+                                if ($rule->action['id'] == $indicator->id) {
+                                    if ($indicator->score > $rule->value) {
+                                        if ($rule->sign == '-') {
+                                            $indicator->score -= (($rule->result / 100) * $indicator->score);
+                                        } elseif ($rule->sign == '+') {
+                                            $indicator->score += (($rule->result / 100) * $indicator->score);
+                                        }
+                                    }
                                 }
                             }
                         }
