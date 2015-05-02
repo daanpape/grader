@@ -53,7 +53,7 @@ function pageViewModel(gvm) {
 
 function showEditStudentModal(tblObject) {
     resetGeneralModal();
-    setGeneralModalTitle("Edit Student");
+    setGeneralModalTitle(i18n.__("EditStudent"));
     setGeneralModalBody('<form id="updateStudent"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" " name="firstname" value="' + tblObject.tfirstname + '"> \
@@ -82,9 +82,9 @@ function showEditStudentModal(tblObject) {
 
 function addNewStudent(studentname, listid, callback) {
     $.ajax({
-        url: "/api/newstudent/" + studentname + "/" + listid,
+        url: "/api/newstudent",
         type: "POST",
-        data: {'name': studentname, 'list': listid},
+        data: {name: studentname, list: listid},
         success: function(data) {
             loadStudentTable();
             callback(true);
@@ -146,7 +146,6 @@ function loadStudentTable() {
 
 function initPage() {
     $.getJSON('/api/studentlistrapport/info/' + $("#page-header").data('value'), function(data) {
-        console.log(data[0].id);
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });

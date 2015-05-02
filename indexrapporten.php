@@ -380,13 +380,13 @@ $app->post('/api/worksheetstudentListcouple', function() use($app) {
     //Insert the data
     echo json_encode(RapportAPI::createWorksheetStudentListCouple($app->request->post('worksheetid'), $app->request->post('studlistid')));
 });
-$app->post('/api/newstudent/:name/:list', function($name, $listid) use($app) {
+$app->post('/api/newstudent', function() use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    echo json_encode(RapportAPI::addStudentToList($name, $listid));
+    echo json_encode(RapportAPI::addStudentToList($app->request->post('name'), $app->request->post('list')));
 });
 $app->post('/api/worksheetmodules', function() use($app) {
     //Use json header

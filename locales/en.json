@@ -134,5 +134,6 @@
     "AssessMethodError" : "You must select an assessment method",
     "AssessGeneralError" : "Could not submit data",
 
-    "UserEditTitle": "Edit user"
+    "UserEditTitle": "Edit user",
+    "EditStudent" : "Edit student"
 }
