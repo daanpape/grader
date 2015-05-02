@@ -28,9 +28,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc, teach) {
+    gvm.addTableData = function(id, code, name, desc) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, tteach: teach};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -43,7 +43,7 @@ function pageViewModel(gvm) {
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
             // Edit the table item
-            showEditProjectTypeModal(code, name, desc, id);
+            showEditCourseModal(code, name, desc, id);
             event.stopPropagation();
         });
 
@@ -53,58 +53,12 @@ function pageViewModel(gvm) {
             copyTableItem(id, tblOject);
             event.stopPropagation();
         });
-        
-        //Attach manage handler to manage modules, doelstellingen and criterias to manage button
-        $('#managebtn-' + id).bind('click', function(event, data) {
-            //TODO
-        });
-
-        /*$('#studentbtn-' + id).bind('click', function(event, data) {
-            showCoupleStudentListModal(id);
-            gvm.currentprojectid = id;
-            gvm.currentselectedlist = -1;
-            event.stopPropagation();
-            loadCoupleDropdown();
-        });*/
     }
     
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
-    /*
-    gvm.updateDropdowns = function() {
-        $.getJSON('api/teacherrapport/' + gvm.userId, function(data) {
-            if(!$.isEmptyObject(data)) {
-                $.each(data, function(i, item) {
-                    $(".btn-teacher span:first").text(item.teacher);
-                    gvm.currentteacherid = item.id;
-                    gvm.updateTeacher(item.id);
-                    LoadTablePage(item.currentteacherid, 1);
-                });
-            } else {
-                gvm.updateTeacher();
-            }
-        });
-    }*/
-
-    gvm.updateTeacher = function(id) {
-        $.getJSON('/api/getteacherrapport/' + id, function(data) {
-            gvm.availableTeacher.removeAll();
-            $.each(data, function(i, item) {
-                console.log(item);
-                gvm.availableTeacher.push(item);
-                $("#teacherbtn-" + item.id).click(function(){
-                    $(".btn-teacher span:first").text($(this).text());
-                    gvm.currentteacherid = item.id;
-                    gvm.saveLastSelectedDropdowns();
-                    loadTablePage(item.id, 1);
-                });
-            });
-        });
-    }
-
-
-    }
+}
     
 /*
  * Delete item from table given the id. 
@@ -140,9 +94,9 @@ function copyTableItem(id) {
 }
 
 /*
- * Add a new projecttype
+ * Add a new course
  */
-function addNewProjecttypeForm(serialData, callback) {
+function addNewCourse(serialData, callback) {
     $.ajax({
             url: "/api/courserapport",
             type: "POST",
@@ -157,30 +111,20 @@ function addNewProjecttypeForm(serialData, callback) {
         });
 } 
 
-/*
- * Add a new projecttype
- */
-function addNewProjecttypeRaw(code, name, description, callback) {
-    addNewProjecttypeForm("code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description), callback);
+function addNewCourseRaw(code, name, description, callback) {
+    addNewCourse("code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description), callback);
 }
 
 /*
- * Update the projecttype
- * @param {type} id
- * @param {type} code
- * @param {type} name
- * @param {type} description
- * @param {type} callback
- * @returns {undefined}
+ * update course
  */
-function updateProjecttypeForm(id, serialData, callback) {
+function updateCourse(id, serialData, callback) {
     $.ajax({
         url: "/api/courseupdate/" + id,
         type: "PUT",
         data: serialData,
         success: function(data) {
-            //viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
-            loadTablePage(1); //TODO now it is refreshing table after updating but it redirects to pagenr 1     WERKT NIET
+            loadTablePage(1);
             callback(true);
         },
         error: function(data) {
@@ -189,18 +133,8 @@ function updateProjecttypeForm(id, serialData, callback) {
     });
 }
 
-
-/**
- * update project type 
- * @param {type} id
- * @param {type} code
- * @param {type} name
- * @param {type} description
- * @param {type} callback
- * @returns {undefined}
- */
-function updateProjecttypeRaw(id, code, name, description, callback) {
-    updateProjecttypeForm(id, "code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description), callback);
+function updateCourseRaw(id, code, name, description, callback) {
+    updateCourse(id, "code=" + encodeURIComponent(code) + "&name=" + encodeURIComponent(name) + "&description=" + encodeURIComponent(description), callback);
 }
 
 /*
@@ -215,7 +149,7 @@ function loadTablePage(pagenr)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description, item.leerkracht);
+            viewModel.addTableData(item.id, item.code, item.name, item.description);
         });
         
         /* Let previous en next buttons work */
@@ -271,14 +205,13 @@ function loadTablePage(pagenr)
 }
 
 /**
- * Show a new projecttype modal.
- * @returns {undefined}
+ * Show a new course modal.
  */
-function showNewProjectTypeModal()
+function showNewCourseModal()
 {
     resetGeneralModal();
     setGeneralModalTitle(i18n.__("AddNewCourse"));
-    setGeneralModalBody('<form id="newprojectform"> \
+    setGeneralModalBody('<form id="newcourseform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code"> \
             </div> \
@@ -291,8 +224,7 @@ function showNewProjectTypeModal()
             </form>' );
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-        console.log($('#newprojectform').serialize());
-       addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
+       addNewCourse($('#newcourseform').serialize(), function(result){
             hideModal();
         });
     });
@@ -300,19 +232,14 @@ function showNewProjectTypeModal()
     showGeneralModal();
 }
 
-/**
- * Show the edit projecttype modal. 
- * @param {type} code
- * @param {type} name
- * @param {type} description
- * @param {type} tid
- * @returns {undefined}
+/*
+ * show edit course modal
  */
-function showEditProjectTypeModal(code, name, description, tid)
+function showEditCourseModal(code, name, description, cid)
 {
   resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle2"));
-    setGeneralModalBody('<form id="updateprojectform"> \
+    setGeneralModalBody('<form id="updatecourseform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
             </div> \
@@ -326,7 +253,7 @@ function showEditProjectTypeModal(code, name, description, tid)
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+        updateCourse(cid, $('#updatecourseform').serialize(), function(result){
             hideModal();
         });
     });
@@ -338,7 +265,7 @@ function showEditProjectTypeModal(code, name, description, tid)
     showGeneralModal();
 }
 
-function showCoupleStudentListModal(projectid) {
+/*function showCoupleStudentListModal(projectid) {
     viewModel.currentselectedlist = -1;
     resetGeneralModal();
     setGeneralModalTitle(i18n.__("CoupleStudentList"));
@@ -362,8 +289,9 @@ function showCoupleStudentListModal(projectid) {
         hideModal();
     })
     showGeneralModal();
-}
-function loadCoupleDropdown() {
+}*/
+
+/*function loadCoupleDropdown() {
     $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
         $.each(data, function(i, item) {
             $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
@@ -377,9 +305,9 @@ function loadCoupleDropdown() {
     $("#dropdownStudLists").click(function() {
         $(this).parent().toggleClass("open");
     });
-}
+}*/
 
-function updateListForm(id, serialData, callback) {
+/*function updateListForm(id, serialData, callback) {
     $.ajax({
         url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
         type: "POST",
@@ -391,17 +319,16 @@ function updateListForm(id, serialData, callback) {
             callback(false);
         }
     });
-}
+}*/
 
 function initPage() {
     // Add button handlers
-    $('#addProjectTypeBtn').click(function(){
-        showNewProjectTypeModal();
+    $('#addCourseBtn').click(function(){
+        showNewCourseModal();
     });
 
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        /*viewModel.updateDropdowns();*/
     });
     
     loadTablePage(1);
