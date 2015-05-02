@@ -196,7 +196,7 @@ class GradingEngine {
 
 
 
-        return $rules[17]->action;
+        return $rules[17]->action['subject'];
 
 
 
