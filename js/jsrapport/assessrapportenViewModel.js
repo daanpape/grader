@@ -183,9 +183,9 @@ function getWorksheetid() {
 
 function addWorksheetStudent(worksheetid) {
     $.ajax({
-        url: "/api/worksheetstudentcouple/" + worksheetid + "/" + viewModel.currentStudentId,
+        url: "/api/worksheetstudentcouple",
         type: "POST",
-        data: {'worksheetid': worksheetid, 'studid': viewModel.currentStudentId},
+        data: {worksheetid: worksheetid, studid: viewModel.currentStudentId},
         success: function(data) {
             //callback(true);
         },
@@ -200,9 +200,9 @@ function addWorksheetStudent(worksheetid) {
 function addWorksheetStudentList(worksheetid) {
     console.log("toe te voegenworksheet " + worksheetid + " voor " + viewModel.currentStudentlistId);
     $.ajax({
-        url: "/api/worksheetstudentListcouple/" + worksheetid + "/" + viewModel.currentStudentlistId,
+        url: "/api/worksheetstudentListcouple",
         type: "POST",
-        data: {'worksheetid': worksheetid, 'studlijstid': viewModel.currentStudentlistId},
+        data: {worksheetid: worksheetid, studlistid: viewModel.currentStudentlistId},
         success: function(data) {
             //callback(true);
         },

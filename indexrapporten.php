@@ -364,21 +364,21 @@ $app->post('/api/coursecouple/:courseid/:studlistid/:teacherid', function($cours
     //Insert the data
     echo json_encode(RapportAPI::createCourseStudentlistCouple($courseid, $studlistid, $teacherid));
 });
-$app->post('/api/worksheetstudentcouple/:worksheetid/:studid', function($worksheetid, $studid) use($app) {
+$app->post('/api/worksheetstudentcouple', function() use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    echo json_encode(RapportAPI::createWorksheetStudentCouple($worksheetid, $studid));
+    echo json_encode(RapportAPI::createWorksheetStudentCouple($app->request->post('worksheetid'), $app->request->post('studid')));
 });
-$app->post('/api/worksheetstudentListcouple/:worksheetid/:studlijstid', function($worksheetid, $studlijstid) use($app) {
+$app->post('/api/worksheetstudentListcouple', function() use($app) {
     //Use json header
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     //Insert the data
-    echo json_encode(RapportAPI::createWorksheetStudentListCouple($worksheetid, $studlijstid));
+    echo json_encode(RapportAPI::createWorksheetStudentListCouple($app->request->post('worksheetid'), $app->request->post('studlistid')));
 });
 $app->post('/api/newstudent/:name/:list', function($name, $listid) use($app) {
     //Use json header
