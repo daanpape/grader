@@ -116,7 +116,6 @@ function makeChecklist() {
             updateDisplay();
         });
 
-
         // Actions
         function updateDisplay() {
             var isChecked = $checkbox.is(':checked');
