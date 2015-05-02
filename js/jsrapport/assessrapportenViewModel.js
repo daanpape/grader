@@ -1,5 +1,4 @@
 //Nodig voor autoincrement
-var studid;
 var studlijstid;
 var worksheets = [];
 var worksheetsid = [];
@@ -46,7 +45,6 @@ function pageViewModel(gvm) {
                     gvm.currentStudentlistId = item.studentlistid;
                     gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
-                    studid = item.studentid;
                     studlijstid = gvm.currentStudentlistId;
                     gvm.updateCourseRapport();
                     loadTablePage(1, gvm.currentCourseId);
@@ -68,7 +66,6 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        studid = gvm.currentStudentId;
         studlijstid = gvm.currentStudentlistId;
         $.ajax({
             type: "POST",
@@ -190,9 +187,9 @@ function getWorksheetid() {
 
 function addWorksheetStudent(worksheetid) {
     $.ajax({
-        url: "/api/worksheetstudentcouple/" + worksheetid + "/" + studid,
+        url: "/api/worksheetstudentcouple/" + worksheetid + "/" + viewModel.currentStudentId,
         type: "POST",
-        data: {'worksheetid': worksheetid, 'studid': studid},
+        data: {'worksheetid': worksheetid, 'studid': viewModel.currentStudentId},
         success: function(data) {
             //callback(true);
         },
@@ -222,8 +219,8 @@ function addWorksheetStudentList(worksheetid) {
 
 function loadTablePage(pagenr,course)
 {
-    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course);
-    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + studid + '/' + course, function(data){
+    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course);
+    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
