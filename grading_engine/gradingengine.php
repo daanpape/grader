@@ -188,7 +188,8 @@ class GradingEngine {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score < $rule->result) {
                                     if ($rule->sign == '-') {
-                                        $subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
+                                        $competence->id = 50;
+                                        //$subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
                                     }
                                 }
                             }
