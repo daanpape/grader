@@ -186,7 +186,6 @@ class GradingEngine {
                     foreach($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
                             if ($rule->action['id'] == $subcompetence->id) {
-                                $competence->id = 50;
                                 if ($subcompetence->score < $rule->result) {
                                     if ($rule->sign == '-') {
                                         //$subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
@@ -205,7 +204,7 @@ class GradingEngine {
 
 
 
-        return $projectStructure;
+        return $rules;
 
     }
 }
