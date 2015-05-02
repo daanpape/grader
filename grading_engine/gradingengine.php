@@ -179,24 +179,33 @@ class GradingEngine {
 
         foreach($rules as $rule)
         {
-
+            if($rule->action['subject'] == "subcompetence")
+            {
+                if($rule->operator == "<")
+                {
+                    foreach($projectStructure->$competence->subcompetences as $subcompetence)
+                    {
+                        if($rule->action['id'] == $subcompetence->id)
+                        {
+                            if($subcompetence->score < $rule->result) {
+                                if ($rule->sign == "-")
+                                {
+                                    $subcompetence->score -= (($rule->value / 100) * $subcompetence->score);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-
-
-
-
-
-
-
 
         // Final Point for project
 
-        $finalScore = $totalScore / $totalWeight;
+        //$finalScore = $totalScore / $totalWeight;
 
 
 
-        return $rules[17]->action['subject'];
+        return $projectStructure;
 
 
 
