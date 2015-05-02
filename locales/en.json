@@ -91,7 +91,7 @@
     "TeacherTableTitle":"Teacher",
     "studentrapportRapportTitle":"Student grades",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>",
-    "EditProjectTitle2" : "Edit course",
+    "EditCourse" : "Edit course",
   "AdminTitle":"Userlist",
   "AdminCodeTableTitle": "ID",
   " AdminNameTableTitle":"Name",

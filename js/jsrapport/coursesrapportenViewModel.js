@@ -238,7 +238,7 @@ function showNewCourseModal()
 function showEditCourseModal(code, name, description, cid)
 {
   resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditProjectTitle2"));
+    setGeneralModalTitle(i18n.__("EditCourse"));
     setGeneralModalBody('<form id="updatecourseform"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
@@ -264,62 +264,6 @@ function showEditCourseModal(code, name, description, cid)
 
     showGeneralModal();
 }
-
-/*function showCoupleStudentListModal(projectid) {
-    viewModel.currentselectedlist = -1;
-    resetGeneralModal();
-    setGeneralModalTitle(i18n.__("CoupleStudentList"));
-    setGeneralModalBody(
-        '<div class="dropdown">' +
-            '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownStudLists" data-toggle="dropdown" aria-expanded="true">' +
-                'Dropdown' +
-                '<span class="caret"></span>' +
-            '</button>' +
-            '<ul class="dropdown-menu" role="menu" id="ddlLists" aria-labelledby="dropdownStudLists">' +
-            '</ul>' +
-        '</div>');
-
-    addGeneralModalButton(i18n.__("SaveBtn"), function() {
-        updateListForm(viewModel.currentselectedlist, $('#coupleform').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-    showGeneralModal();
-}*/
-
-/*function loadCoupleDropdown() {
-    $.getJSON('/api/studentlists/' + viewModel.userId, function(data) {
-        $.each(data, function(i, item) {
-            $("#ddlLists").append('<li class="li-wide studentListItem" role="presentation"><a role="menuitem" tabindex="-1" href="#" id="dropdownitem-' + item.id + '""><span>' + item.name + '</span></a> </li>')
-            $("#dropdownitem-" + item.id).click(function(){
-                $(this).parent().parent().parent().removeClass("open");
-                $(this).parent().parent().parent().find(".btn").html($(this).text() + '<span class="caret"></span>');
-                viewModel.currentselectedlist = item.id;
-            });
-        });
-    });
-    $("#dropdownStudLists").click(function() {
-        $(this).parent().toggleClass("open");
-    });
-}*/
-
-/*function updateListForm(id, serialData, callback) {
-    $.ajax({
-        url: "/api/project/" + viewModel.currentprojectid + "/studentlist/" + id,
-        type: "POST",
-        data: serialData,
-        success: function(data) {
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}*/
 
 function initPage() {
     // Add button handlers
