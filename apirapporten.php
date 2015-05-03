@@ -302,6 +302,10 @@ Class RapportAPI {
         }
     }
     
+    public static function deleteWorksheetFromUser($id, $userid) {
+        return rapportenDAO::deleteWorksheetFromUser($id, $userid);
+    }
+    
     public static function updateCoursemodules($courseid, $courseStructure) {
         $data = json_decode($courseStructure);
 

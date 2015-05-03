@@ -592,6 +592,21 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function deleteWorksheetFromUser($id, $userid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM werkfiche_user_rapport
+                                    WHERE werkfiche = :id AND user = :userid");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete worksheet from user with id ' + $userid, $err);
+            return null;
+        }
+    }
 
     //set link course - teacher - studlist inactive
     public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
