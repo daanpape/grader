@@ -89,7 +89,7 @@
     "TeacherTableTitle":"Leerkracht",
     "studentrapportRapportTitle":"Rapport van studenten",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
-    "EditProjectTitle2" : "Wijzig vak",
+    "EditCourse" : "Wijzig vak",
     "AdminTitle":"Gebruikerslijst",
     "AdminCodeTableTitle": "ID",
     "AdminNameTableTitle":"Naam",
@@ -125,6 +125,12 @@
     "EditWorksheet" : "Pas werkfiche aan",
     "FormEquip" : "Materiaal",
     "FormMethod" : "Werkwijze",
+    "FormModules" : "Modules, doelstellingen en criteria",
+    "FormScore" : "Beoordelingsmethode",
+    "FormAssess" : "Aangepast",
+    "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
+    "AssessGeneralError" : "Data kon niet verstuurd worden",
 
-    "UserEditTitle": "Gebruiker wijzigen"
+    "UserEditTitle": "Gebruiker wijzigen",
+    "EditStudent" : "Wijzig student"
 }

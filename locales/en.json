@@ -91,7 +91,7 @@
     "TeacherTableTitle":"Teacher",
     "studentrapportRapportTitle":"Student grades",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>",
-    "EditProjectTitle2" : "Edit course",
+    "EditCourse" : "Edit course",
   "AdminTitle":"Userlist",
   "AdminCodeTableTitle": "ID",
   " AdminNameTableTitle":"Name",
@@ -128,6 +128,12 @@
     "EditWorksheet" : "Edit worksheet",
     "FormEquip" : "Equipment",
     "FormMethod" : "Method",
+    "FormModules" : "Modules, competences and criteria",
+    "FormScore" : "Assessment method",
+    "FormAssess" : "Custom",
+    "AssessMethodError" : "You must select an assessment method",
+    "AssessGeneralError" : "Could not submit data",
 
-    "UserEditTitle": "Edit user"
+    "UserEditTitle": "Edit user",
+    "EditStudent" : "Edit student"
 }

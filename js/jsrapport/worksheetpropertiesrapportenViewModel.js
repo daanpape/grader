@@ -8,6 +8,9 @@ function pageViewModel(gvm) {
     
     gvm.formequip = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormEquip");}, gvm);
     gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
+    gvm.formmodules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormModules");}, gvm);
+    gvm.formscore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormScore");}, gvm);
+    gvm.formassess = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssess");}, gvm);
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
@@ -19,7 +22,7 @@ function pageViewModel(gvm) {
                 
                 $.each(data, function(i, item) {
                     var tblObject = {modid: item.id, modname: item.name, competences: new Array()};
-                    if (item.doelstellingen !== null) {
+                    if (item.doelstellingen[Object.keys(item.doelstellingen)[0]].id !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
                     gvm.availableModules.push(tblObject);
@@ -32,7 +35,7 @@ function pageViewModel(gvm) {
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
             var tblObject = {comid: item.id, comname: item.name, criterias: new Array()}
-            if (item.criterias !== null) {
+            if (item.criterias[Object.keys(item.criterias)[0]] !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
             competences.push(tblObject);
@@ -49,20 +52,35 @@ function pageViewModel(gvm) {
     }
 }
 
-function addWorksheetProperties(serialData, wid, callback) {
-    $.ajax({
-        url: "/api/worksheetproperties/" + wid,
-        type: "PUT",
-        data: serialData,
-        success: function(data) {
-            console.log(data);
-            callback(false);
-        },
-        error: function(data) {
-            callback(true);
-        }
-    });
-    //second ajax call for modules, competences and criteria
+function addWorksheetProperties(serialData, wid, collection, assessMethod, callback) {
+    if (assessMethod === "Choose...") {
+        callback(true, i18n.__('AssessMethodError'));
+    } else {
+        $.ajax({
+            url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
+            type: "PUT",
+            data: serialData,
+            success: function(data) {
+                console.log(data);
+                callback(false);
+            },
+            error: function(data) {
+                callback(true, i18n.__('AssessGeneralError'));
+            }
+        });
+        $.ajax({
+            url: "/api/worksheetmodules",
+            type: "POST",
+            data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
+            success: function(data) {
+                console.log(data);
+                callback(false);
+            },
+            error: function(data) {
+                callback(true, i18n.__('AssessGeneralError'));
+            }
+        });
+    }
 }
 
 function makeChecklist() {
@@ -82,19 +100,21 @@ function makeChecklist() {
                 }
             };
 
-        $widget.css('cursor', 'pointer')
+        $widget.css('cursor', 'pointer');
         $widget.append($checkbox);
 
         // Event Handlers
         $widget.on('click', function () {
             $checkbox.prop('checked', !$checkbox.is(':checked'));
             $checkbox.triggerHandler('change');
+            /* Expansion */
+            //ervoor zorgen dat wanneer een child element gecheckt wordt, zijn parents automatisch ook gecheckt worden
+            /* Expansion */
             updateDisplay();
         });
         $checkbox.on('change', function () {
             updateDisplay();
         });
-
 
         // Actions
         function updateDisplay() {
@@ -132,31 +152,83 @@ function makeChecklist() {
         }
         init();
     });
+}
 
-    $('#get-checked-data').on('click', function(event) {
-        event.preventDefault(); 
-        var checkedItems = {}, counter = 0;
-        $("#check-list-box li.active").each(function(idx, li) {
-            checkedItems[counter] = $(li).text();
-            counter++;
+function getCheckedFields() {
+    var checkedItems = [], counter = 0;
+    $("#check-list-box li.active").each(function(idx, li) {
+        checkedItems[counter] = $(li).text();
+        counter++;
+    });
+    return filterModules(checkedItems);
+}
+
+function filterModules(data) {
+    var collection = [];
+    var modules = [];
+    var comps = [];
+    var criteria = [];
+    $.each(viewModel.availableModules(), function(i, item) {
+        if (data.indexOf(item.modname) > -1) {
+            modules.push(item.modid);
+        } 
+        $.each(item.competences, function(i, item) {
+            if (data.indexOf(item.comname) > -1) {
+                comps.push(item.comid);
+            }
+            $.each(item.criterias, function(i, item) {
+                if (data.indexOf(item.critname) > -1) {
+                    criteria.push(item.critid);
+                }
+            });
         });
-        $('#display-json').html(JSON.stringify(checkedItems, null, '\t'));
+    });
+    collection.push(modules);
+    collection.push(comps);
+    collection.push(criteria);
+    return collection;
+}
+
+function getWorksheetData(wid) {
+    $.getJSON('/api/worksheetdata/' + wid, function(data) {
+        if (!$.isEmptyObject(data)) {
+            $('#equipment').val(data[0].equipment);
+            $('#method').val(data[0].method);
+            if (data[0].assessment == "") {
+                $('.btn-assessMethod span:first').text("Choose...");
+            } else {
+                $('.btn-assessMethod span:first').text(data[0].assessment);
+            }
+        }
     });
 }
 
 function initPage() {     
+    console.log($('#storage').text());
+    if ($('#storage').text() == true) {
+        $('label#formmodules').hide();
+        $('div#formmodules').hide();
+    } 
+    
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;
         viewModel.updateModules(courseid);
     });
     
+    getWorksheetData($('#header').attr('data-value'));
     
+    //event handlers for dropdown items
+    $('ul.dropdown-assessMethod li').click(function() {
+        $(".btn-assessMethod span:first").text($(this).text());
+    });
     
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
-        addWorksheetProperties($('#worksheetform').serialize(), wid, function() {
-            $('#worksheetform').prepend("<p class='text-danger'>There was a problem submitting the form</p>");
+        var collection = getCheckedFields();
+        var assessMethod = $('.btn-assessMethod span:first').text();
+        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
+            $('#errormessage').text(message);
         });
     });
 }

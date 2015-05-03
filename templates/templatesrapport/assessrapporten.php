@@ -57,18 +57,22 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: werkficheID">Werkfiche ID</th>
                     <th data-bind="text: werkficheName">Name</th>
                     <th data-bind="text: werkficheDate">Date</th>
+                    <th>Score</th>
                     <th data-bind="text: werkficheAction">Actions</th>
                 </tr>
                 </thead>
-                <tbody>       <!-- data-bind="foreach: tabledata" -->
+                <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td>--</td>     <!-- data-bind="text: tstudid" -->
-                    <td>--</td>     <!-- data-bind="text: tname" -->
-                    <td>--</td>     <!-- data-bind="text: tlname" -->
-                    <td>--</td>     <!-- data-bind="text: tscore" -->
+                    <td data-bind="text: tname">--</td>
+                    <td data-bind="text: tdatum">--</td>
+                    <td>--</td>
+                    <td>
+                        <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
+                        <a data-bind="attr:{'href': '/api/worksheetedit/' + tworkid + '/' + tname + '/' + viewModel.currentCourseId}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
+                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tworkid}"></span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -94,7 +98,10 @@
 
         <div id="addGroupForm" class="container">
             <div class="row">
-                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" />
+                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" /><br>
+                <label>For who ?</label><br>
+                <input id=studentenradio type="radio" name="studenten" value="studentlist" checked="checked">All students of studentlist<br>
+                <input id=studentenradio type="radio" name="studenten" value="student">Only the student selected<br>
                 <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
             </div>
         </div>

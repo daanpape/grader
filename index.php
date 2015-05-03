@@ -136,6 +136,7 @@ $app->post('/register', function() use($app){
     }
 });
 
+
 // API GET routes
 $app->get('/api/projects/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers
@@ -249,7 +250,6 @@ $app->get('/api/currentuser', function() use ($app) {
 
     echo json_encode($userdata);
 });
-
 $app->get('/api/edituser/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -258,6 +258,30 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
     $userdata = GraderAPI::getEditUserDataById($id);
 
     echo json_encode($userdata);
+});
+
+$app->post('/api/saveedit/:id', function($id) use ($app) {
+
+    // Try to edit the user
+    if(!GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status'])) {
+        // Edit failed, bad request
+        $app->response->setStatus(400);
+    }
+});
+
+$app->get('/api/removeroles/:id', function($id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::removeUserRoles($id));
+});
+
+$app->post('/api/addrole/:id', function($id) use ($app) {
+    // Try to edit the user
+    if(!GraderAPI::addUserRole($id, $_POST['currentRight'])) {
+        // Edit failed, bad request
+        $app->response->setStatus(400);
+    }
 });
 
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
@@ -335,6 +359,13 @@ $app->get('/api/projectscore/:projectid/:studentid', function($projectid,$studen
     echo json_encode(GraderAPI::getScoresForStudentByUser($projectid,$studentid,Security::getLoggedInId()));
 });
 
+$app->get('/api/loggedinuser', function() use ($app)
+{
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
+    echo json_encode(GraderAPI::getLoggedInId());
+});
+
 $app->get('/api/allusers/', function() use ($app)
 {
     $response = $app->response();
@@ -361,6 +392,13 @@ $app->get('/api/alluserswithroles/', function() use ($app)
     $response = $app->response();
     $response->headers('Content-Type','application/json');
     echo json_encode(GraderAPI::getAllUsersWithRolesData(Security::getLoggedInId()));
+});
+
+$app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use ($app)
+{
+    $response = $app->response();
+    $response->headers('Content-Type','application/json');
+    echo json_encode(GraderAPI::gradeProjectForStudent($projectid,$userid));
 });
 
 // API PUT routes
@@ -464,6 +502,15 @@ $app->post('/api/project/:projectid/studentlist/:studlistid', function($projecti
 
     //Insert the data
     echo json_encode(GraderAPI::createProjectStudentlistCouple($projectid, $studlistid));
+});
+
+$app->post('/api/edit/:id', function($id) use($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    //Insert the data
+    echo json_encode(GraderAPI::createProjectStudentlistCouple($id));
 });
 
 $app->post('/api/account/avatar', function() use ($app) {

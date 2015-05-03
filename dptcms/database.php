@@ -843,6 +843,23 @@ class ClassDAO {
         }
     }
 
+    public static function getAllScoresForStudentByProject($projectid,$studentid)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ? AND student = ?");
+            $stmt->execute(array($projectid, $studentid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError(("could not get scores. ".$ex));
+        }
+    }
+
     public static function saveScoresForStudentByUser($projectid,$studentid,$userid, $scores)
     {
         try
@@ -896,6 +913,42 @@ class UserDAO {
             return null;
         }
     }
+
+    public static function updateUser($id, $firstname, $lastname, $username, $status) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE users SET firstname = ?, lastname = ?, username = ?, status = ? WHERE id = ?");
+            $stmt->execute(array($firstname, $lastname, $username, $status, $id));
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+
+    public static function removeUserRoles($userid)
+    {
+        $conn = Db::getConnection();
+        // Delete from user_roles (all roles)
+        $stmt = $conn->prepare("DELETE FROM user_roles WHERE user_id=?");
+        $stmt->execute(array($userid));
+
+        return true;
+    }
+
+
+
+    public static function addUserRole($userid, $role)
+    {
+        $conn = Db::getConnection();
+        // Add role for user
+        $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
+        $stmt->execute(array($userid, $role));
+
+        return true;
+    }
+
 
     /**
      * Get all users with roles.
@@ -1103,8 +1156,8 @@ class UserDAO {
             return false;
         }
     }
-    
-    /**
+
+    /**updateUser
      * Update the uers avatar. 
      * @param type $userid the id of the user to update
      * @param type $imageid the id of the imagefile

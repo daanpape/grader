@@ -14,13 +14,13 @@ function module(viewmodel, id, name, description, doelstellingen) {
 
         removeThis: function() {
             viewModel.removeModule(this);
+            RemoveCurrentModule(id);
         },
 
         removeDoelstelling: function(doelstelling) {
             this.doelstellingen.remove(doelstelling);
         }
     };
-
 }
 
 /**
@@ -39,6 +39,7 @@ function doelstelling(parent, id, name, description, crit) {
 
         removeThis: function() {
             parent.removeDoelstelling(this);
+            RemoveCurrentDoelstelling(id);
         },
         
         removeCriteria: function(criteria) {
@@ -58,6 +59,7 @@ function criteria(parent, id, name, description) {
 
         removeThis: function() {
             parent.removeCriteria(this);
+            RemoveCurrentCriteria(id);
         }
     };
 }
@@ -142,10 +144,45 @@ function saveCourseStructure() {
         url: "/api/savemodules/" + courseid,
         data: ko.toJSON(viewModel.modules),
         success: function(){
-            // TODO make multilangual and with modals
             alert("Saved coursestructure to server");
 
             fetchCourseStructure();
+        }
+    });
+}
+
+function RemoveCurrentCriteria(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removecriteria/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            console.log("removecriteria");
+        }
+    });
+}
+
+function RemoveCurrentDoelstelling(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removedoelstelling/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            console.log("removedoelstelling");
+        }
+    });
+}
+
+function RemoveCurrentModule(id)
+{
+    $.ajax({
+        type: "DELETE",
+        url: "/api/removemodule/" + id,
+        data: ko.toJSON(viewModel.criteria),
+        success: function(){
+            console.log("removemodule");
         }
     });
 }

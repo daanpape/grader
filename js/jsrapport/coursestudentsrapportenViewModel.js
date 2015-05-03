@@ -17,77 +17,6 @@ function pageViewModel(gvm) {
     
     gvm.addBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddBtn")}, gvm);
 
-    gvm.addmoduleBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Addmodule");}, gvm);
-    gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
-
-    gvm.getProjectInfo = function() {
-        $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
-            gvm.pageHeader(data[0].code + ' - ' + data[0].name);
-        });
-    };
-
-    gvm.coupledLists = ko.observableArray([]);
-    gvm.availableLists = ko.observableArray([]);
-
-    gvm.addCoupledList = function(id, name) {
-        // Push data
-        var tblOject = {tid: id, tname: name};
-        gvm.coupledLists.push(tblOject);
-
-        $("#uncouplebtn-" + id).click(function(){
-            showYesNoModal("Bent u zeker dat u dit item wil ontkoppelen?", function(val){
-                if(val){
-                    $.ajax({
-                        url: '/api/project/' + $("#projectHeader").data('value') +'/studentlist/uncouple/' + id,
-                        type: "DELETE",
-                        success: function() {
-                            gvm.coupledCount--;
-                            viewModel.coupledLists.remove(tblOject);
-                        }
-                    });
-
-                }
-            });
-        });
-    }
-
-    gvm.addAvailableLists = function(id, name) {
-        var tblOject = {tid: id, tname: name};
-        gvm.availableLists.push(tblOject);
-
-        $("#couplebtn-" + id).click(function(){
-            if(gvm.coupledCount == 0) {
-                $.ajax({
-                    url: '/api/project/' + $("#projectHeader").data('value') + '/studentlist/' + id,
-                    type: "POST",
-                    success: function() {
-                        gvm.coupledCount++;
-                        viewModel.coupledLists.push(tblOject);
-                    }
-                });
-            } else {
-                alert("list already coupled");
-            }
-        });
-    }
-
-    gvm.getCoupledLists = function() {
-        $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
-            $.each(data, function(i, item) {
-                gvm.coupledCount++;
-                gvm.addCoupledList(item.id, item.name);
-            });
-        });
-}
-
-    gvm.getAvailableLists = function() {
-        $.getJSON('/api/studentlists/' + gvm.userId, function(data) {
-            $.each(data, function(i, item) {
-                gvm.addAvailableLists(item.id, item.name);
-            });
-        });
-    }
-
     // The table data observable array
     gvm.tabledata = ko.observableArray([]);
 
@@ -165,7 +94,7 @@ function getGroupid() {
 
  function addGroup(courseid, teacherid, studlijstid) {
      //TODO if teacher or studlijst = 0 dan bestaat deze niet!
-     //TODO momenteel nog mogelijk om meer als 1 maal zelfde velden in te voeren.
+     //TODO momenteel niet mogelijk om meer als 1 maal zelfde velden in te voeren maar geen foutboodschap
 
          $.ajax({
             url: "/api/coursecouple/" + courseid + "/" + studlijstid + "/" + teacherid,
@@ -193,8 +122,9 @@ function loadTablePage(pagenr,course)
 
         // Load table data
         $.each(data.data, function(i, item) {
-            console.log("studid: " + item.studid + " en userid: " + item.userid);
-           viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname);
+
+           viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname, item.id);
+            console.log(item.studid +' '+ item.userid+' '+ item.id);
         });
 
         //TODO pagers doen werken
@@ -202,8 +132,8 @@ function loadTablePage(pagenr,course)
         //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
 
-        console.log("prev: " + data.prev);
-        if(data.prev != "none"){
+
+        if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
@@ -212,8 +142,7 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        console.log("prev: " + data.next);
-        if (data.next != "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
@@ -224,12 +153,11 @@ function loadTablePage(pagenr,course)
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
-        console.log("numItems: " + numItems);
+
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
-        console.log("pagenr: " + pagenr)
-        console.log("lowPage: " + lowPage);
+
 
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
@@ -251,7 +179,7 @@ function loadTablePage(pagenr,course)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(thispagenr, course);
                 });
             }
         });
@@ -269,21 +197,18 @@ function deleteTableItem(id, tblOject) {
             //teacherid = "userid " + id.substr(id.indexOf('-')+1);
 
              $.ajax({
-             url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
-             type: "DELETE",
-             success: function() {
-             viewModel.tabledata.remove(tblOject);
-             }
+                url: "/api/setInactiveCourseStudlistCouple/" + $('#projectHeader').attr("data-value") + '/' + id.substr(0,id.indexOf('-')) + '/' + id.substr(id.indexOf('-')+1),
+                type: "DELETE",
+                success: function() {
+                   viewModel.tabledata.remove(tblOject);
+                }
              });
 
-            }
+        }
     });
 }
 
 function initPage() {
-    viewModel.getProjectInfo();
-    viewModel.getCoupledLists();
-
     $('#addGroupForm').hide();
     
     $('#addCoursemembers').click(function() {
@@ -306,7 +231,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         userid = data.id;
-        viewModel.getAvailableLists(data.id);
     });
     loadTablePage(1,$('#projectHeader').attr("data-value"));
 }

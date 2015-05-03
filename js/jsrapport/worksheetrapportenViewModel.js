@@ -20,7 +20,7 @@ function pageViewModel(gvm) {
     gvm.currentCourseId = null;
     
     gvm.updateCourseRapport = function() {
-        $.getJSON('/api/coursedrop', function(data) {
+        $.getJSON('api/coursefromteacher/' + gvm.userId, function(data) {
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -193,6 +193,7 @@ function loadTablePage(pagenr)
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
+
 
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;

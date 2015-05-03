@@ -6,6 +6,7 @@
 
 // Load required files
 require_once('dptcms/database.php');
+require_once('grading_engine/gradingengine.php');
 
 // Database class for connection handling
 class GraderAPI {
@@ -75,6 +76,11 @@ class GraderAPI {
     public static function removeUser($userid)
     {
         return UserDAO::removeUser($userid);
+    }
+
+    public static function gradeProjectForStudent($projectid, $userid)
+    {
+        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
     }
 
     /*
@@ -241,11 +247,18 @@ class GraderAPI {
             return -1;
         }
     }
-    
+
     public static function updateProfilePicture($pictureid) {
         $userid = Security::getLoggedInId();
         return UserDAO::updateUserProfilePicture($userid, $pictureid);
     }
+
+    public static function getLoggedInId() {
+        return Security::getLoggedInId();
+
+    }
+
+
 
     /*
      * Get all courses from database
@@ -327,6 +340,27 @@ class GraderAPI {
      */
     public static function updateUserStatus($uid, $status) {
         return UserDAO::updateUserStatus($uid, $status);
+    }
+
+    /*
+     * Update user
+     */
+    public static function updateUser($id, $firstname, $lastname, $username, $status) {
+        return UserDAO::updateUser($id, $firstname, $lastname, $username, $status);
+    }
+
+    /*
+     * remove user roles
+     */
+    public static function removeUserRoles($id) {
+        return UserDAO::removeUserRoles($id);
+    }
+
+    /*
+     * Add user role
+     */
+    public static function addUserRole($id, $role) {
+        return UserDAO::addUserRole($id, $role);
     }
 
 

@@ -5,6 +5,10 @@ function pageViewModel(gvm) {
 
     gvm.edituserid = $("#usereditHeader").data('value');
 
+    gvm.loggedinuser = ko.observable();
+
+    getLoggedInUser();
+
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
     gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
@@ -13,10 +17,10 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    getAllUserDataById(gvm.edituserid);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
+    gvm.checkedRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
 
     gvm.updateUser = function(user)
@@ -44,10 +48,88 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
+
+    gvm.updateCheckedRights = function(item){
+        gvm.checkedRights.push(item);
+    }
 }
 
 function initPage() {
+    getAllUserDataById(viewModel.edituserid);
+
+    $('#userEditForm').on('submit', function(e)
+    {
+        e.preventDefault();
+
+        if(viewModel.loggedinuser != viewModel.edituserid)
+        {
+            saveChanges();
+            saveUserPermissions();
+        } else {
+            saveChanges();
+        }
+    });
+
     setRights();
+}
+
+function getLoggedInUser(){
+    $.getJSON("/api/loggedinuser", function(data){
+        viewModel.loggedinuser = data;
+    });
+}
+
+function saveChanges(){
+    console.log("Save changes");
+    console.log("userid: " + viewModel.edituserid);
+
+    saveUserEdits(viewModel.edituserid);
+}
+
+function saveUserEdits(id){
+    $.ajax({
+        type: "POST",
+        url: "/api/saveedit/" + id,
+        data: $('#userEditForm').serialize(),
+        success: function() {
+            console.log('Success saved user changes');
+        },
+        error: function() {
+            console.log("Error saving user changes");
+        }
+    });
+}
+
+function saveUserPermissions(){
+    console.log("Save user permissions for user: " + viewModel.edituserid);
+    //FIRST DELETE ALL PERMISSIONS
+    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
+        console.log("User permissions were removed");
+    });
+
+    $.each(viewModel.allRights(), function(i, currentRights){
+
+        var checkedValue = document.getElementsByName(currentRights);
+
+        console.log(checkedValue[0].checked + " - " + currentRights);
+
+        //SAVE NEW PERMISSIONS
+        if(checkedValue[0].checked == true) {
+            $.ajax({
+                type: "POST",
+                url: "/api/addrole/" + viewModel.edituserid,
+                data: { 'currentRight': currentRights },
+                success: function() {
+                    console.log('Success saved user permission: ' + currentRights);
+                },
+                error: function() {
+                    console.log('Error saving user permission: ' + currentRights);
+                }
+            });
+        }
+    });
+
+
 }
 
 function setRights(){
@@ -68,26 +150,55 @@ function getAllUserDataById(edituserid){
             $.each(data, function(i, item)
             {
                 if(item.username == current && addedUsername != current){
-                    console.log(current + " " + item.roleid + " " + item.role );
-                    viewModel.updatePermissions(new Permission(item.roleid, item.role))
+                    console.log(current + " " + item.role);
+                    viewModel.updatePermissions(item.role)
                 }
             });
 
-            if (addedUsername != current){
+            if (addedUsername != current) {
                 addedUsername = current;
                 console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
-    });
 
+        checkPermissions();
+    });
 }
 
-function Permission(id, permissions) {
-    return {
-        id: ko.observable(id),
-        permission: ko.observable(permissions)
-    };
+function checkPermissions(){
+    var checked = false;
+    $.each(viewModel.allRights(), function(i, itemAllRights){
+        checked = false;
+        var data = [];
+        $.each(viewModel.rights(), function(i, itemRights){
+            if(itemAllRights == itemRights && checked == false){
+                if(itemRights == "SUPERUSER" || viewModel.loggedinuser == viewModel.edituserid){
+                    data["disabled"] = true;
+                } else {
+                    data["disabled"] = false;
+                }
+                checked = true;
+                data["item"] = itemAllRights;
+                data["isChecked"] = true;
+                viewModel.updateCheckedRights(data);
+            }
+        });
+        if (checked == false){
+            data["item"] = itemAllRights;
+            data["isChecked"] = false;
+            if(viewModel.loggedinuser == viewModel.edituserid){
+                data["disabled"] = true;
+            } else {
+                data["disabled"] = false;
+            }
+            viewModel.updateCheckedRights(data);
+        }
+    });
+
+    $.each(viewModel.checkedRights(), function(i, item){
+        console.log(" - " + item["item"] + " - " + item["checked"]);
+    });
 }
 
 function User(id, username, firstname, lastname, status, permissions) {

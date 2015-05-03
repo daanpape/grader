@@ -1,5 +1,3 @@
-//Nodig voor autoincrement
-var selectedcourseid;
 var worksheets = [];
 var worksheetsid = [];
 
@@ -13,7 +11,6 @@ function pageViewModel(gvm) {
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessTitle2");}, gvm);
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRapportName");}, gvm);
     gvm.homeManual = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("HomeRapportManual");}, gvm);
-    gvm.foundProjects = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FoundProjects");}, gvm);
     gvm.selectCourse = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SelectCourse");}, gvm);
 
     // Pagination i18n bindings
@@ -41,11 +38,12 @@ function pageViewModel(gvm) {
                     $(".btn-studentlist span:first").text(item.studentlist);
                     $('.btn-student span:first').text(item.student);
                     gvm.currentCourseId = item.courseid;
-                    selectedcourseid = item.courseid;
+                    gvm.updateStudentlists(item.courseid, gvm.userId);
                     gvm.currentStudentlistId = item.studentlistid;
+                    gvm.updateStudents(item.studentlistid);
                     gvm.currentStudentId = item.studentid;
                     gvm.updateCourseRapport();
-                    loadTablePage(item.courseid, 1);
+                    loadTablePage(1, gvm.currentCourseId);
                 });
             } else {
                 gvm.updateCourseRapport();
@@ -64,7 +62,6 @@ function pageViewModel(gvm) {
         data["studentlistid"] = gvm.currentStudentlistId;
         data["student"] = $(".btn-student span:first").text();
         data["studentid"] = gvm.currentStudentId;
-        console.log(data);
         $.ajax({
             type: "POST",
             url: "/api/savedropdownsRapport",
@@ -77,7 +74,6 @@ function pageViewModel(gvm) {
 
     gvm.updateCourseRapport = function() {
         $.getJSON('/api/coursefromteacher/' + gvm.userId, function(data) {
-            console.log(gvm.userId);
             gvm.availableCourses.removeAll();
             $.each(data, function(i, item) {
                 //  Put item in list
@@ -86,7 +82,6 @@ function pageViewModel(gvm) {
                 // Add listener to listitem
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
-                    selectedcourseid = item.id;
                     gvm.currentStudentlistId = null;
                     gvm.currentStudentId = null;
                     gvm.updateStudentlists(item.id, gvm.userId);
@@ -140,6 +135,7 @@ function pageViewModel(gvm) {
                     gvm.currentStudentId = item.id;
                     $(".btn-student span:first").text($(this).text());
                     gvm.saveLastSelectedDropdowns();
+                    loadTablePage(1,gvm.currentCourseId);
                 });
             })
         })
@@ -149,10 +145,16 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, name, lastname, mail, score) {
+    gvm.addTableData = function(id, Name , datum, score) {
         // Push data
-        var tblOject = {tstudid: id, tname: name, tlname: lastname, tmail: mail, tscore: score};
-        gvm.tabledata.push(tblOject);
+        var tblObject = {tworkid: id, tname: Name, tdatum: datum, tscore: score};
+        gvm.tabledata.push(tblObject);
+        
+        $('#removebtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, gvm.currentStudentId, tblObject);
+            event.stopPropagation();
+        });
     }
 
     gvm.clearTable = function() {
@@ -160,13 +162,27 @@ function pageViewModel(gvm) {
     }
 }
 
+function deleteTableItem(id, userid, tblOject) {
+    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        if(val){
+            $.ajax({
+                url: "/api/deleteworksheetfromuser/" + id + "/" + userid,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblOject);
+                }
+            });
+        }
+    });
+}
+
 function getAllWorksheets() {
     worksheets = [];
     worksheetsid = [];
-    $.getJSON('/api/worksheets/' + selectedcourseid, function(data) {
+    $.getJSON('/api/worksheets/' + viewModel.currentCourseId, function(data) {
         $.each(data, function(i, item) {
             worksheets.push(item.Name);
-            worksheets.push(item.id);
+            worksheetsid.push(item.id);
         });
     });
     return worksheets;
@@ -176,8 +192,7 @@ function getWorksheetid() {
     var i = 0;
     var worksheet = 0;
     worksheets.forEach(function(entry) {
-        console.log(entry + " " + $('worksheetComplete').val());
-        if (new String(entry).valueOf() == new String($('worksheetComplete').val()).valueOf()) {
+        if (new String(entry).valueOf() == new String($('#worksheetComplete').val()).valueOf()) {
             worksheet = worksheetsid[i];
         }
         i+= 1;
@@ -185,42 +200,83 @@ function getWorksheetid() {
     return worksheet;
 }
 
-function loadTablePage(pagenr)
+function addWorksheetStudent(worksheetid) {
+    $.ajax({
+        url: "/api/worksheetstudentcouple",
+        type: "POST",
+        data: {worksheetid: worksheetid, studid: viewModel.currentStudentId},
+        success: function(data) {
+            //callback(true);
+        },
+        error: function(data) {
+            console.log('Failed to add new student');
+            //callback(false);
+        }
+    });
+}
+
+//addWorksheetStudentList
+function addWorksheetStudentList(worksheetid) {
+    console.log("toe te voegenworksheet " + worksheetid + " voor " + viewModel.currentStudentlistId);
+    $.ajax({
+        url: "/api/worksheetstudentListcouple",
+        type: "POST",
+        data: {worksheetid: worksheetid, studlistid: viewModel.currentStudentlistId},
+        success: function(data) {
+            //callback(true);
+        },
+        error: function(data) {
+            console.log('Failed to add new student');
+            //callback(false);
+        }
+    });
+}
+
+function loadTablePage(pagenr,course)
 {
-    $.getJSON('/api/worksheets/page/' + pagenr, function(data){
+    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course);
+    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course, function(data){
 
         /* Clear current table page */
         viewModel.clearTable();
 
         // Load table data
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id,  item.firstname, item.lastname, item.mail);
+            console.log(item);
+            viewModel.addTableData(item.id, item.Name , item.datum, item.score);
         });
 
+        //TODO pagers doen werken
+        //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
+        //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
         /* Let previous en next buttons work */
+
+
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
             $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev);
+                loadTablePage(data.prev,viewModel.currentCourseId);
             });
         }
 
-        if(data.next == "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
             $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next);
+                loadTablePage(data.next,viewModel.currentCourseId);
             });
         }
 
         // Number of pager buttons
         var numItems = $('.pager-nr-btn').length;
 
+
         /* Calculate for the pager buttons */
         var lowPage = Math.floor(pagenr/numItems) + 1;
+
 
         $('.pager-nr-btn').each(function() {
             /* calculate current page number */
@@ -242,7 +298,7 @@ function loadTablePage(pagenr)
             } else {
                 /* Add click listener for button */
                 $(this).click(function() {
-                    loadTablePage(thispagenr);
+                    loadTablePage(thispagenr,viewModel.currentCourseId);
                 });
             }
         });
@@ -263,14 +319,20 @@ function initPage() {
     });
 
     $('#addNewWorksheetBtn').click(function() {
+        //TODO controle of er effectief een lijst / student geselecteerd is.
 
-        console.log("toevoegen van "+ getWorksheetid());
-        //addWorksheet($('#projectHeader').attr("data-value"), getWorksheetid());
-
-        //table herladen
+        //controleren of het voor 1 student is of voor alle studenten
+        if ($("input:radio[name='studenten']:checked").val() == "student") { //student
+            addWorksheetStudent(getWorksheetid());
+        }
+            else { //studentlist
+            addWorksheetStudentList(getWorksheetid());
+            }
+        //table opnieuw laden
+        loadTablePage(1,viewModel.currentCourseId);
 
         //Indien gewenst toevoegformulier weer verbergen.
-        $('worksheetComplete').val("")
+        $('#worksheetComplete').val("");
         $('#addGroupForm').hide();
     });
 }

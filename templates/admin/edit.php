@@ -85,8 +85,10 @@ $location = "adminEdit";
 
         <!-- /.col-lg-12 -->
         <div>
-            <form id="userForm">
+            <form id="userEditForm">
                 <input type="hidden" name="lang" value="EN"/>
+
+
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td>Firstname</td>
@@ -104,16 +106,23 @@ $location = "adminEdit";
                     <tr>
                         <td>Status</td>
                         <td>
-                            <select class="form-control form-next">
+                            <!-- ko if: status() === 'ACTIVE' || status() === 'DISABLED' -->
+                            <select class="form-control form-next" name="status">
                                 <!-- ko if: status() === 'ACTIVE' -->
-                                <option selected="true" data-bind="if:status">Active</option>
-                                <option data-bind="if:status">Non-Active</option>
+                                <option selected="true" data-bind="if:status" name="ACTIVE">ACTIVE</option>
+                                <option data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
-                                <!-- ko if: status() !== 'ACTIVE' -->
-                                <option data-bind="if:status">Active</option>
-                                <option selected="true" data-bind="if:status">Non-Active</option>
+                                <!-- ko if: status() === 'DISABLED' -->
+                                <option data-bind="if:status" name="ACTIVE">ACTIVE</option>
+                                <option selected="true" data-bind="if:status" name="DISABLED">DISABLED</option>
                                 <!-- /ko -->
                             </select>
+                            <!-- /ko -->
+                            <!-- ko if: status() === 'WAIT_ACTIVATION' -->
+                            <select class="form-control form-next" disabled>
+                                <option selected="true" data-bind="if:status" name="WAIT_ACTIVATION">WAIT_ACTIVATION</option>
+                            </select>
+                            <!-- /ko -->
                         </td>
                     </tr>
                     <tr>
@@ -156,24 +165,22 @@ $location = "adminEdit";
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td data-bind="foreach: viewModel.allRights, value: allRights" >
-                                <input type="checkbox"><label data-bind="text: $data"></label><br />
+                            <td data-bind="foreach: viewModel.checkedRights">
+                                <input type="checkbox" data-bind="checked: isChecked, attr:{ name: item }, enable: !disabled" ><label data-bind="text: item"></label><br />
                             </td>
                         </tr>
                         </tbody>
                 </div>
-                <table>
-
-                </table>
-
-                <div class="container">
-                    <div class="row">
-                        <div id="bottom-col" class="col-md-12">
-                            <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                        </div>
-                    </div>
-                </div>
             </form>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="bottom-col" class="col-md-12">
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+            </div>
         </div>
     </div>
     <!-- /.row -->

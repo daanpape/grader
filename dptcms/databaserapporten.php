@@ -79,6 +79,37 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function insertWorksheetModule($id, $modid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_module_rapport (werkfiche, module) VALUES (?, ?)");
+            $stmt->execute(array($id, $modid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCompetence($id, $compid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_competence_rapport (werkfiche, competence) VALUES (?, ?)");
+            $stmt->execute(array($id, $compid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
+    public static function insertWorksheetCriteria($id, $critid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_rapport (werkfiche, criteria) VALUES (?, ?)");
+            $stmt->execute(array($id, $critid));
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new list', $err);
+        }
+    }
+    
     //Get all courses
     public static function getAllCourse() {
         try {
@@ -164,7 +195,7 @@ class rapportenDAO {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
-            Logger::logError('Could not get studentlists from owner with id' . $id, $err);
+            Logger::logError('Could not get studentlists from owner with id' .  $err);
             return null;
         }
     }
@@ -258,7 +289,7 @@ class rapportenDAO {
 
 
     public static function addTeacher($id) {
-        try {
+        /*try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM users");
             $stmt->execute();
@@ -266,7 +297,7 @@ class rapportenDAO {
         } catch (PDOException $err) {
             Logger::logError('Could not find teacher', $err);
             return null;
-        }
+        }*/
     }
     
     public static function addStudentToList($name, $listid) {
@@ -359,7 +390,7 @@ class rapportenDAO {
     public static function getStudentGroupTeacherByCourseCount($course) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT count(course_studentlist_teacher_rapport.id)
+            $stmt = $conn->prepare("SELECT count(*)
                                       FROM course_studentlist_teacher_rapport
                                         LEFT JOIN studentlist_rapport ON course_studentlist_teacher_rapport.studentlist = studentlist_rapport.id
                                         LEFT JOIN users ON course_studentlist_teacher_rapport.teacher = users.id
@@ -372,6 +403,47 @@ class rapportenDAO {
             Logger::logError('Could not count all connections between an studentlist an teachers', $err);
             return 0;
                 }
+    }
+
+    public static function getWorkficheCourseUser($start, $count, $userid, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT werkfiche_rapport.id, werkfiche_rapport.Name, werkfiche_user_rapport.datum,
+                                        werkfiche_user_rapport.score
+                                        FROM werkfiche_user_rapport
+                                        LEFT JOIN werkfiche_rapport ON werkfiche_user_rapport.werkfiche = werkfiche_rapport.id
+                                        WHERE werkfiche_rapport.course = :course
+                                        AND werkfiche_user_rapport.user = :userid
+                                        ORDER BY werkfiche_user_rapport.datum,werkfiche_rapport.Name
+                                        LIMIT :start,:count");
+            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':course', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all worksheets from a student for a specific course', $err);
+            return null;
+        }
+    }
+
+    public static function getWorkficheCourseUserCount($userid, $course) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT count(werkfiche_rapport.id)
+                                        FROM werkfiche_user_rapport
+                                        LEFT JOIN werkfiche_rapport ON werkfiche_user_rapport.werkfiche = werkfiche_rapport.id
+                                        WHERE werkfiche_rapport.course = :course
+                                        AND werkfiche_user_rapport.user = :userid");
+            $stmt->bindValue(':count', (int) $course, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        } catch (PDOException $err) {
+            Logger::logError('Could not count all worksheets from a student for a specific course', $err);
+            return 0;
+        }
     }
 
     /*
@@ -429,6 +501,35 @@ class rapportenDAO {
             return null;
         }
     }
+    public static function insertWorksheetStudentCouple($worksheetid, $studid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user) VALUES (?,?)");
+
+            $stmt->execute(array($worksheetid, $studid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a worksheet and student', $err);
+            return null;
+        }
+    }
+
+    public static function insertWorksheetStudentListCouple($worksheetid, $studlijstid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_user_rapport (werkfiche, user)
+                                      SELECT ?, user FROM studentlist_students_rapport
+                                        WHERE studentlist = ?");
+
+            $stmt->execute(array($worksheetid, $studlijstid));
+
+            return $conn->lastInsertId();
+        } catch (PDOException $err) {
+            Logger::logError('Could not create new coupling between a worksheet and the students in a studentlist', $err);
+            return null;
+        }
+    }
 
     public static function updateCourse($id, $code, $name, $description) {
         try {
@@ -454,15 +555,29 @@ class rapportenDAO {
         }
     }
     
-    public static function updateWorksheetProperties($id, $equip, $method) {
+    public static function updateWorksheetProperties($id, $equip, $method, $assess) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET equipment = ?, method = ? WHERE id = ?");
-            $stmt->execute(array($equip, $method, $id));
+            $stmt = $conn->prepare("UPDATE werkfiche_rapport SET equipment = ?, method = ?, assessment = ? WHERE id = ?");
+            $stmt->execute(array($equip, $method, $assess, $id));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update worksheet', $err);
             return false;
+        }
+    }
+    
+    public static function getWorksheetData($wid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT equipment, method, assessment FROM werkfiche_rapport
+                                    WHERE id = :wid");
+            $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select worksheetdata by id ' . $wid, $err);
+            return null;
         }
     }
 
@@ -488,6 +603,21 @@ class rapportenDAO {
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not delete worksheet', $err);
+            return null;
+        }
+    }
+    
+    public static function deleteWorksheetFromUser($id, $userid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("DELETE FROM werkfiche_user_rapport
+                                    WHERE werkfiche = :id AND user = :userid");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':userid', (int) $userid, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not delete worksheet from user with id ' + $userid, $err);
             return null;
         }
     }
@@ -542,24 +672,64 @@ class rapportenDAO {
             return null;
         }
     }
+    
+    public static function removeCriteriaFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE criteria_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+        public static function removeDoelstellingFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE doelstelling_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
+    
+            public static function removeModuleFromDatabase($id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE module_rapport SET active = '0' WHERE id = :id");
+            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        }
+    }
 
     public static function getAllDataFromCourse($id) {
         try {
             
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription FROM module_rapport
+            $stmt = $conn->prepare("SELECT module_rapport.id mid, module_rapport.name mname, module_rapport.description mdescription, module_rapport.Active mac, doelstelling_rapport.id did, doelstelling_rapport.name dname, doelstelling_rapport.description ddescription, doelstelling_rapport.Active dac, criteria_rapport.id cid, criteria_rapport.name cname, criteria_rapport.description cdescription, criteria_rapport.Active cac FROM module_rapport
                                     LEFT JOIN doelstelling_rapport ON module_rapport.id = doelstelling_rapport.module
                                     LEFT JOIN criteria_rapport ON doelstelling_rapport.id = criteria_rapport.doelstelling
                                     WHERE module_rapport.course = :courseid
-                                        
                                     ORDER BY mid, did, cid ASC");
-                                    /*AND module_rapport.active ='1' AND doelstelling_rapport.active = '1' AND criteria_rapport.active ='1'*/
             $stmt->bindValue(':courseid', (int) $id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $data = array();
             foreach ($dataFromDb as $row) {
-                if (!array_key_exists($row['mid'], $data)) {
+                if (!array_key_exists($row['mid'], $data) && $row['mac'] != 0) {      //NEW
                     $module = new stdClass();
                     $module->id = $row['mid'];
                     $module->name = $row['mname'];
@@ -567,7 +737,7 @@ class rapportenDAO {
                     $module->doelstellingen = array();
                     $data[$row['mid']] = $module;
                 }
-                if (!array_key_exists($row['did'], $module->doelstellingen)) {
+                if (!array_key_exists($row['did'], $module->doelstellingen) && $row['mac'] != 0 && $row['dac'] != 0) {    //NEW
                     $doelstelling = new stdClass();
                     $doelstelling->id = $row['did'];
                     $doelstelling->name = $row['dname'];
@@ -575,7 +745,7 @@ class rapportenDAO {
                     $doelstelling->criterias = array();
                     $module->doelstellingen[$row['did']] = $doelstelling;
                 }
-                if (!array_key_exists($row['cid'], $doelstelling->criterias)) {
+                if (!array_key_exists($row['cid'], $doelstelling->criterias) && $row['mac'] != 0 && $row['dac'] != 0 && $row['cac'] != 0) {     //NEW
                     $criteria = new stdClass();
                     $criteria->id = $row['cid'];
                     $criteria->name = $row['cname'];
