@@ -199,7 +199,12 @@ function getWorksheetData(wid) {
     });
 }
 
-function initPage() {        
+function initPage() {       
+    if ($('#storage').text() == 'true') {
+        $('label#formmodules').hide();
+        $('div#formmodules').hide();
+    } 
+    
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;

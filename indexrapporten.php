@@ -37,7 +37,11 @@ $app->get('/api/coursestudents/:id/:name', function($id, $name) use ($app) {
 });
 
 $app->get('/api/worksheet/:id/:name/:courseid', function($id, $name, $courseid) use ($app) {
-    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid));
+    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid, 'edit' => false));
+});
+
+$app->get('/api/worksheetedit/:id/:name/:courseid', function($id, $name, $courseid) use ($app) {
+    $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid, 'edit' => true));
 });
 
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {

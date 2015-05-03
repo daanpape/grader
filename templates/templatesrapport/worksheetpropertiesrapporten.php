@@ -13,7 +13,7 @@
         <?php include_once('templates/menu.php') ?>
 
         <!-- Header container -->
-        <p id="storage" data-bind="attr:{'data-value': <?php echo $courseid ?>}" style="display: none"></p>   <!-- veldje om courseid in op te slaan -->
+        <p id="storage" data-bind="attr:{'data-value': <?php echo $courseid ?>}" style="display: none"><?php echo $edit ?></p>   <!-- veldje om courseid in op te slaan -->
         <div class="container">
             <h1 id="header" class="page-header" data-bind="attr:{'data-value': <?php echo $sheetid ?>}"><?php echo $sheetname ?></h1>
         </div>
@@ -34,8 +34,8 @@
                         </div>
                         <br />
 
-                        <label data-bind="text: formmodules"></label>
-                        <div style="max-height: 300px;overflow: auto;">
+                        <label id="formmodules" data-bind="text: formmodules"></label>
+                        <div id="formmodules" style="max-height: 300px;overflow: auto;">
                             <ul id="check-list-box" class="list-group checked-list-box" data-bind="foreach: availableModules">
                                 <li class="list-group-item" data-bind="text: modname">Module name</li>
                                 
