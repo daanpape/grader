@@ -192,10 +192,9 @@ function filterModules(data) {
 function getWorksheetData(wid) {
     $.getJSON('/api/worksheetdata/' + wid, function(data) {
         if (!$.isEmptyObject(data)) {
-            console.log(data[0]);
-            $('#equipment').val(data.equipment);
-            $('#method').val(data.method);
-            $('.btn-assessMethod span:first').text(data.assessment);
+            $('#equipment').val(data[0].equipment);
+            $('#method').val(data[0].method);
+            $('.btn-assessMethod span:first').text(data[0].assessment);
         }
     });
 }
