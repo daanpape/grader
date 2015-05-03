@@ -189,11 +189,12 @@ function filterModules(data) {
     return collection;
 }
 
-function getWorksheetData($wid) {
-    $.getJSON('/api/worksheetdata/' + $wid, function(data) {
+function getWorksheetData(wid) {
+    $.getJSON('/api/worksheetdata/' + wid, function(data) {
         if (!$.isEmptyObject(data)) {
-            console.log(data);
-            return data;
+            $('#equipment').val(data.equipment);
+            $('#method').val(data.method);
+            $('.btn-assessMethod span:first').text(data.assessment);
         }
     });
 }
@@ -205,11 +206,7 @@ function initPage() {
         viewModel.updateModules(courseid);
     });
     
-    var data = getWorksheetData($('#header').attr('data-value'));
-    console.log(data);
-    //$('#equipment').val(data.equipment);
-    //$('#method').val(data.method);
-    //$('.btn-assessMethod span:first').text(data.assessment);
+    getWorksheetData($('#header').attr('data-value'));
     
     //event handlers for dropdown items
     $('ul.dropdown-assessMethod li').click(function() {
