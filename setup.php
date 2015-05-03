@@ -54,6 +54,88 @@ interface ISetupStep
     public function OKForNextStep();
 }
 
+class Step314_createconfig implements ISetupStep
+{
+    private $configFile;
+    
+    public function __construct()
+    {
+        $this->configFile = 'dptcms/config.php';
+    }
+    
+    public function OKForNextStep()
+    {
+        
+    }
+
+    
+    public function createConfig()
+    {
+        if(file_exists($this->configFile))
+        {
+            if(filesize($this->configFile) > 0)
+            {
+                return array(
+                    'success' => false,
+                    'error' => "File '{$this->configFile}' already exists and filesize > 0 bytes"
+                );
+            }
+        }
+        
+        $config = <<<EOD
+class Config
+{
+    /* Site configuration */
+    public static \$siteURL	= 'http://dptknokke.ns01.info:9000';
+
+    /* Database configuration */
+    public static \$dbServer = '{$DBDetails['SQLHost']}';
+    public static \$dbPort 	= '3306';
+    public static \$dbName 	= '{$DBDetails['SQLDBName']}';
+    public static \$dbUser 	= '{$DBDetails['SQLUser']}';
+    public static \$dbPass 	= '{$DBDetails['SQLPassword']}';
+
+    /* Pagination settings */
+    public static \$pageCount	= 20;
+
+     /* Log file */
+     public static \$logfile = './logfile.log';
+     
+   /*
+    * Image upload settings
+    */
+   public static \$fileImgSupport          = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png", "application/vnd.ms-excel","text/plain", "text/csv", "text/tsv", "application/octet-stream", "");
+   public static \$fileFriendlySupport     = 'GIF, JPEG, PNG, CSV';
+   public static \$fileMaxSize             = 4096;
+   public static \$fileDestination	  = 'upload';
+ }
+?>
+EOD;
+        if(is_writable($this->configFile))
+        {
+            if(file_put_contents($this->configFile, $config) === false)
+            {
+                $errors = error_get_last();
+                return array('success' => false, 'error' => $errors['message'], 'config' => $config);
+            }
+            else
+            {
+                return array('success' => true);
+            }
+        }
+        else
+        {
+            return array(
+                'success' => false,
+                'error' => "File {$this->configFile} isn't writeable for the webserver",
+                'config' => $config
+            );
+        }
+    }
+}
+
+
+
 class Step310_dbcreate implements ISetupStep
 {
     public function CreateDB()
