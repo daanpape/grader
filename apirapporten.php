@@ -210,27 +210,15 @@ Class RapportAPI {
     }
 
     public static function deleteCourse($id) {
-        if (rapportenDAO::deleteCourse($id) === true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::deleteCourse($id);
     }
 
     public static function setInactiveCourseStudlistCouple($course, $studentlist, $teacher) {
-        if (rapportenDAO::setInactiveCourseStudlistCouple($course, $studentlist, $teacher) === true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::setInactiveCourseStudlistCouple($course, $studentlist, $teacher);
     }
 
     public static function copyCourse($id) {
-        if (rapportenDAO::copyCourse($id) === true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::copyCourse($id);
     }
 
     public static function updateCourse($id, $code, $name, $description) {
@@ -287,19 +275,11 @@ Class RapportAPI {
     }
 
     public static function deleteStudentList($id) {
-        if(rapportenDAO::deleteStudentList($id) == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::deleteStudentList($id);
     }
     
     public static function deleteWorksheet($id) {
-        if (rapportenDAO::deleteWorksheet($id) == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::deleteWorksheet($id);
     }
     
     public static function deleteWorksheetFromUser($id, $userid) {
@@ -412,10 +392,6 @@ Class RapportAPI {
     }
     
     public static function deleteStudentFromStudentList($studlistid, $studid) {
-        if(rapportenDAO::deleteStudentFromStudentList($studlistid, $studid) == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return rapportenDAO::deleteStudentFromStudentList($studlistid, $studid);
     }
 }
