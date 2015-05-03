@@ -8,7 +8,7 @@ class StepController
     public function __construct()
     {
         
-        $this->Steps = array('Step000_sysreq', 'Step001_database', 'Step002_dbconnect');
+        $this->Steps = array('Step000_sysreq', 'Step001_database', 'Step002_dbconnect', 'Step310_dbcreate');
         
         if(!isset($_SESSION['currentStep']))
         {
@@ -54,42 +54,154 @@ interface ISetupStep
     public function OKForNextStep();
 }
 
-class Step002_dbconnect implements ISetupStep
+class Step310_dbcreate implements ISetupStep
 {
-    public function TestDB()
+    public function CreateDB()
     {
-        if($withcreateuser)
+        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        
+        if($DBDetails['createUserAndDB'] == 'true')
         {
-            $DB = new PDO("mysql:dbname={$db};host={$host}", $rootuser, $rootpass);
-            $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $Query = $DB->prepare("GET DATABASES");
+            $RootDB = new PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
+            $Log[] = 'Connected to database server';
+            $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $Query = $RootDB->prepare("SHOW DATABASES;");
+            $Query->execute();
+            if(!in_array($DBDetails['SQLDBName'], $Query->fetchAll(\PDO::FETCH_COLUMN, 0)))
+            {
+                $Log[] = "Database {$DBDetails['SQLDBName']} doesn't exist, creating";
+                $Query = $RootDB->prepare("CREATE DATABASE `{$DBDetails['SQLDBName']}` CHARACTER SET = 'utf8' COLLATE = 'utf8_unicode_ci';");
+                try
+                {
+                    $Query->execute();
+                }
+                catch (Exception $ex)
+                {
+                    $Log[] = "FAIL: Couldn't create database: {$ex->getMessage()}";
+                    return $Log;
+                }
+            }
+
+            $Query = $RootDB->prepare("SELECT User FROM mysql.user WHERE User = :User AND Host = '%';");
+            $Query->bindValue(':User', $DBDetails['SQLUser']);
             $Query->execute();
             if(count($Query->fetchAll()) == 0)
             {
-                $Query = $DB->prepare("CREATE DATABASE {$dbname} CHARACTER SET = UTF-8 COLLATE = UTF-8");
-                $Query->execute();
+                $Log[] = "Database user {$DBDetails['SQLUser']} doesn't exist, creating";
+                try
+                {
+                    $Query = $RootDB->prepare("CREATE USER '{$DBDetails['SQLUser']}'@'%' IDENTIFIED BY '{$DBDetails['SQLPassword']}';");
+                    $Query->execute();
+                    $Query = $RootDB->prepare("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON `{$DBDetails['SQLDBName']}`.* TO '{$DBDetails['SQLUser']}'@'%';");
+                    $Query->execute();
+                    $RootDB->exec("FLUSH PRIVILEGES;");
+                }
+                catch (Exception $ex)
+                {
+                    $Log[] = "FAIL: Couldn't create user: {$ex->getMessage()}";
+                    return $Log;
+                }
             }
             
-            $Query = $DB->prepare("SELECT User FROM mysql.user WHERE...");
-            $Query->execute();
-            if(count($Query->fetchAll()) == 0)
-            {
-                $Query = $DB->prepare("CREATE USER '{$dbuser}'@'%' IDENTIFIED BY '{$dbpass}';");
-                $Query->execute();
-                $Query = $DB->prepare("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON '{$dbname}'.* TO '{$dbuser}'@'%'");
-                $Query->execute();
-            }
+            $DB = $RootDB;
+        }
+        else
+        {
+            $DB = new PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+            $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
         
-        $SQL = "USE {$dbname};\n";
+        $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
         $SQL .= file_get_contents('grader.sql');
         $Query = $DB->prepare($SQL);
-        $Query->execute();
+        try
+        {
+            $Query->execute();
+            $Log[] = 'Imported database schema successfully';
+        }
+        catch (Exception $ex)
+        {
+            $Log[] = "FAIL: Couldn't import database schema: {$ex->getMessage()}";
+        }
+        
+        return $Log;
+    }
+    
+    public function OKForNextStep()
+    {
+        
+    }
+
+}
+
+
+
+class Step002_dbconnect implements ISetupStep
+{
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step002_dbconnect']['OKForNextStep']))
+        {
+            $_SESSION['Step002_dbconnect']['OKForNextStep'] = false;
+        }
+    }
+    
+    public function TestDB()
+    {
+        $tests = array();
+        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        
+        
+        if($DBDetails['createUserAndDB'] == 'true')
+        {
+            $tests[0]['Name'] = "Connect to MySQL server (host: {$DBDetails['SQLHost']}) with user {$DBDetails['SQLRootUser']}";
+            try
+            {
+                @$DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
+                $tests[0]['Error'] = null;
+            }
+            catch (Exception $ex)
+            {
+                $tests[0]['Error'] = $ex->getMessage();
+            }
+        }
+        else
+        {
+            $tests[0]['Name'] = "Connect to MySQL server (host: {$DBDetails['SQLHost']}) with user {$DBDetails['SQLUser']}";
+            try
+            {
+                @$DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+                $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+                $tests[0]['Error'] = null;
+            }
+            catch (Exception $ex)
+            {
+                $tests[0]['Error'] = $ex->getMessage();
+                return $tests;
+            }
+
+            $tests[1]['Name'] = "Check for access to database {$DBDetails['SQLDBName']}";
+            try
+            {
+                $Query = $DB->prepare("USE `{$DBDetails['SQLDBName']}`;");
+                $Query->execute();
+                $tests[1]['Error'] = null;
+            }
+            catch (Exception $ex)
+            {
+                $tests[1]['Error'] = $ex->getMessage();
+                return $tests;
+            }
+
+        }
+        
+        $_SESSION['Step002_dbconnect']['OKForNextStep'] = true;
+        return $tests;
     }
 
     public function OKForNextStep()
     {
-        
+        return $_SESSION['Step002_dbconnect']['OKForNextStep'];
     }
 
 }
@@ -230,52 +342,87 @@ if(@$_GET['mode'] == 'json')
 
                     <tr>
                         <td>SQL host:</td>
-                        <td><input type="text" value="localhost" /></td>
+                        <td><input name="SQLHost" type="text" value="localhost" /></td>
                     </tr>
 
                     <tr>
-                        <td>SQL user:</td>
-                        <td><input type="text" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>SQL password:</td>
-                        <td><input type="text" /><span class="rpasslink">(Generate random password)</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>SQL database:</td>
-                        <td><input type="text" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>Create user & empty database for me?</td>
+                        <td>Create user & database for me?</td>
                         <td><input type="checkbox" data-bind="checked: createUserAndDB" /></td>
                     </tr>
 
                     <!-- ko if: createUserAndDB -->
                     <tr>
                         <td>SQL root user:</td>
-                        <td><input type="text" value="root" /></td>
+                        <td><input name="SQLRootUser" type="text" value="root" /></td>
+                    </tr>
+                    <tr>
+                        <td>SQL root password:</td>
+                        <td><input name="SQLRootPassword" type="text" /></td>
+                    </tr>
+                    <!-- /ko -->
+
+                    <tr>
+                        <td>SQL user:</td>
+                        <td><input name="SQLUser" type="text" /></td>
                     </tr>
 
                     <tr>
-                        <td>SQL root password:</td>
-                        <td><input type="text" /></td>
+                        <td>SQL password:</td>
+                        <td><input name="SQLPassword" type="text" /><span class="rpasslink" data-bind="visible: : createUserAndDB">(Generate random password)</span></td>
                     </tr>
-                    <!-- /ko -->
+
+                    <tr>
+                        <td>SQL database:</td>
+                        <td><input name="SQLDBName" type="text" /></td>
+                    </tr>
 
                 </tbody>
             </table>
         </div>
         <!-- / Step 001: Database -->
         
+        
+        <!-- Step 002: dbconnect -->
+        
+        <div id="Step002_dbconnect">
+            
+            <button data-bind="click: testDB">Test</button>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: tests">
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td>
+                            <span data-bind="ifnot: error" style="color: green">PASS</span>
+                            <span data-bind="if: error" style="color: red">FAIL:<br /><span data-bind="text: error"></span></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        
+        <!-- / Step 002: dbconnect -->
+        
+        <!-- Step 310: create db -->
+        
+        <div id="Step310_dbcreate">
+            <button data-bind="click: createDB">Create database</button>
+        </div>
+        
+        <!-- / Step 310: create db -->
+        
+        
         <input name="previousStep" type="submit" value="« Previous step" />
         <input name="nextStep" data-bind="enable: OKForNextStep" type="submit" value="Next step »" />
 
         <script type="text/javascript">
-
-
             function stepController()
             {
                 self = this;
@@ -370,9 +517,76 @@ if(@$_GET['mode'] == 'json')
             {
                 this.createUserAndDB = ko.observable(true);
             }
+            
+            function step002_dbconnect()
+            {
+                var self = this;
+                
+                self.tests = ko.observableArray([]);
+                
+                this.test = function(data)
+                {
+                    this.name = ko.observable(data.Name);
+                    this.error = ko.observable(data.Error);
+                }
+                
+                this.testDB = function()
+                {
+                    var dbdata =
+                    {
+                        "SQLHost": $("input[name=SQLHost]").val(),
+                        "SQLUser": $("input[name=SQLUser]").val(),
+                        "SQLPassword": $("input[name=SQLPassword]").val(),
+                        "SQLDBName": $("input[name=SQLDBName]").val(),
+                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
+                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
+                        "createUserAndDB": step001.createUserAndDB
+                    };
 
-            ko.applyBindings(new step000_sysreqVM(), document.getElementById("Step000_sysreq"));
-            ko.applyBindings(new step001_database(), document.getElementById("Step001_database"));
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step002_dbconnect&method=TestDB",
+                        dbdata,
+                        function(allData)
+                        {
+                            var mappedTests = $.map(allData, function(item) { return new self.test(item) });
+                            self.tests(mappedTests);
+                        }
+                    );
+                }
+            }
+            
+            function step310_dbcreate()
+            {
+                var self = this;
+                
+                this.createDB = function()
+                {
+                    var dbdata =
+                    {
+                        "SQLHost": $("input[name=SQLHost]").val(),
+                        "SQLUser": $("input[name=SQLUser]").val(),
+                        "SQLPassword": $("input[name=SQLPassword]").val(),
+                        "SQLDBName": $("input[name=SQLDBName]").val(),
+                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
+                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
+                        "createUserAndDB": step001.createUserAndDB
+                    };
+
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step310_dbcreate&method=CreateDB",
+                        dbdata,
+                        function(allData)
+                        {
+                            console.log(allData);
+                        }
+                    );
+                }
+            }
+
+            ko.applyBindings(step000 = new step000_sysreqVM(), document.getElementById("Step000_sysreq"));
+            ko.applyBindings(step001 = new step001_database(), document.getElementById("Step001_database"));
+            ko.applyBindings(step002 = new step002_dbconnect(), document.getElementById("Step002_dbconnect"));
+            ko.applyBindings(step310 = new step310_dbcreate(), document.getElementById("Step310_dbcreate"));
 
             var sc = new stepController();
             sc.start();
