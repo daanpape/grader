@@ -89,6 +89,13 @@ $app->get('/api/worksheets/:courseid', function ($courseid) use ($app) {
     $data = RapportAPI::getAllWorksheetsNoPager($courseid);
     echo json_encode($data);
 });
+$app->get('/api/worksheetdata/:wid', function ($wid) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    $data = RapportAPI::getWorksheetData($wid);
+    echo json_encode($data);
+});
 //get all student form a selected course with pages
 $app->get('/api/studentscourse/page/:pagenr', function ($pagenr) use ($app) {
     // Use json headers

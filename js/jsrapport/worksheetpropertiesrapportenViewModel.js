@@ -189,12 +189,23 @@ function filterModules(data) {
     return collection;
 }
 
+function getWorksheetData($wid) {
+    $.getJSON('/api/worksheetdata/' + $wid, function(data) {
+        if (!$.isEmptyObject(data)) {
+            console.log(data);
+        }
+    });
+}
+
 function initPage() {        
     $.getJSON('/api/currentuser', function(data) {
         var courseid = $('#storage').attr('data-value');
         viewModel.userId = data.id;
         viewModel.updateModules(courseid);
     });
+    
+    //$data = 
+    getWorksheetData($('#header').attr('data-value'));
     
     //event handlers for dropdown items
     $('ul.dropdown-assessMethod li').click(function() {

@@ -566,6 +566,20 @@ class rapportenDAO {
             return false;
         }
     }
+    
+    public static function getWorksheetData($wid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT equipment, method, assessment FROM werkfiche_rapport
+                                    WHERE id = :wid");
+            $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select worksheetdata by id ' . $wid, $err);
+            return null;
+        }
+    }
 
     public static function deleteCourse($id) {
         try {
