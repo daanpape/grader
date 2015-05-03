@@ -192,7 +192,8 @@ function filterModules(data) {
 function getWorksheetData($wid) {
     $.getJSON('/api/worksheetdata/' + $wid, function(data) {
         if (!$.isEmptyObject(data)) {
-            return data.data;
+            console.log(data);
+            return data;
         }
     });
 }
