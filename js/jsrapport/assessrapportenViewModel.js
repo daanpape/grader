@@ -149,11 +149,32 @@ function pageViewModel(gvm) {
         // Push data
         var tblObject = {tworkid: id, tname: Name, tdatum: datum, tscore: score};
         gvm.tabledata.push(tblObject);
+        
+        $('#removebtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            deleteTableItem(id, tblObject);
+            event.stopPropagation();
+        });
     }
 
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+}
+
+function deleteTableItem(id, tblOject) {
+    console.log(id);
+    /*showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
+        if(val){
+            $.ajax({
+                url: "/api/deleteworksheetfromuser/" + id,
+                type: "DELETE",
+                success: function() {
+                    viewModel.tabledata.remove(tblOject);
+                }
+            });
+        }
+    });*/
 }
 
 function getAllWorksheets() {
