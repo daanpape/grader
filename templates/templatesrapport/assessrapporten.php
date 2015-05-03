@@ -70,7 +70,7 @@
                     <td>--</td>
                     <td>
                         <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
-                        <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
+                        <a data-bind="attr:{'href': '/api/worksheet/' + tworkid + '/' + tname + viewModel.currentCourseId'/:courseid'}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tworkid}"></span>
                     </td>
                 </tr>
