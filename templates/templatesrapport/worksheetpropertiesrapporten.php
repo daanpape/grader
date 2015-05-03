@@ -25,12 +25,12 @@
                     <form id="worksheetform" action="/worksheetrapporten">
                         <div class="form-group">
                             <label data-bind="text: formequip"></label>
-                            <textarea class="form-control" rows="3" name="equipment" form="worksheetform"></textarea>
+                            <textarea class="form-control" rows="3" name="equipment" id="equipment" form="worksheetform"></textarea>
                         </div>
                         <br />
                         <div class="form-group">
                             <label data-bind="text: formmethod"></label>
-                            <textarea class="form-control" rows="3" name="method" form="worksheetform"></textarea>
+                            <textarea class="form-control" rows="3" name="method" id="method" form="worksheetform"></textarea>
                         </div>
                         <br />
 

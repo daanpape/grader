@@ -204,8 +204,10 @@ function initPage() {
         viewModel.updateModules(courseid);
     });
     
-    //$data = 
-    getWorksheetData($('#header').attr('data-value'));
+    var data = getWorksheetData($('#header').attr('data-value'));
+    $('#equipment').val(data.equipment);
+    $('#method').val(data.method);
+    $('.btn-assessMethod span:first').text(data.assessment);
     
     //event handlers for dropdown items
     $('ul.dropdown-assessMethod li').click(function() {
