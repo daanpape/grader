@@ -194,7 +194,11 @@ function getWorksheetData(wid) {
         if (!$.isEmptyObject(data)) {
             $('#equipment').val(data[0].equipment);
             $('#method').val(data[0].method);
-            $('.btn-assessMethod span:first').text(data[0].assessment);
+            if (data[0].assessment == "") {
+                $('.btn-assessMethod span:first').text("Choose...");
+            } else {
+                $('.btn-assessMethod span:first').text(data[0].assessment);
+            }
         }
     });
 }
