@@ -205,9 +205,10 @@ function initPage() {
     });
     
     var data = getWorksheetData($('#header').attr('data-value'));
-    $('#equipment').val(data.equipment);
-    $('#method').val(data.method);
-    $('.btn-assessMethod span:first').text(data.assessment);
+    console.log(data);
+    //$('#equipment').val(data.equipment);
+    //$('#method').val(data.method);
+    //$('.btn-assessMethod span:first').text(data.assessment);
     
     //event handlers for dropdown items
     $('ul.dropdown-assessMethod li').click(function() {
