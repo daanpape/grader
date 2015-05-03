@@ -199,8 +199,9 @@ function getWorksheetData(wid) {
     });
 }
 
-function initPage() {       
-    if ($('#storage').text() == 'true') {
+function initPage() {     
+    console.log($('#storage').text());
+    if ($('#storage').text() == true) {
         $('label#formmodules').hide();
         $('div#formmodules').hide();
     } 
