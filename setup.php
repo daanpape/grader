@@ -382,11 +382,13 @@ class Step000_sysreq implements ISetupStep
     }
 }
 
-if(@$_GET['mode'] == 'json')
+$filteredGET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+
+if(@$filteredGET['mode'] == 'json')
 {
     header("Content-Type: application/json; charset=UTF-8");
-    $ClassName = $_GET['class'];
-    $Method = $_GET['method'];
+    $ClassName = $filteredGET['class'];
+    $Method = $filteredGET['method'];
     $C = new $ClassName;
     echo json_encode($C->$Method());
     die();
