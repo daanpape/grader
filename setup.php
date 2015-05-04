@@ -163,7 +163,7 @@ class Step310_dbcreate implements ISetupStep
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
-            $RootDB = new PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
+            $RootDB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
             $Log[] = 'Connected to database server';
             $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $Query = $RootDB->prepare("SHOW DATABASES;");
@@ -208,7 +208,7 @@ class Step310_dbcreate implements ISetupStep
         }
         else
         {
-            $DB = new PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+            $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
             $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         }
         
