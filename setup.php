@@ -8,7 +8,13 @@ class StepController
     public function __construct()
     {
         
-        $this->Steps = array('Step000_sysreq', 'Step001_database', 'Step002_dbconnect', 'Step310_dbcreate');
+        $this->Steps = array(
+            'Step000_sysreq',
+            'Step001_database',
+            'Step002_dbconnect',
+            'Step310_dbcreate',
+            'Step314_createconfig'
+        );
         
         if(!isset($_SESSION['currentStep']))
         {
@@ -69,20 +75,11 @@ class Step314_createconfig implements ISetupStep
     }
 
     
-    public function createConfig()
+    public function writeConfig()
     {
-        if(file_exists($this->configFile))
-        {
-            if(filesize($this->configFile) > 0)
-            {
-                return array(
-                    'success' => false,
-                    'error' => "File '{$this->configFile}' already exists and filesize > 0 bytes"
-                );
-            }
-        }
-        
+        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         $config = <<<EOD
+<?php
 class Config
 {
     /* Site configuration */
@@ -98,19 +95,32 @@ class Config
     /* Pagination settings */
     public static \$pageCount	= 20;
 
-     /* Log file */
-     public static \$logfile = './logfile.log';
+    /* Log file */
+    public static \$logfile = './logfile.log';
      
-   /*
-    * Image upload settings
-    */
-   public static \$fileImgSupport          = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png", "application/vnd.ms-excel","text/plain", "text/csv", "text/tsv", "application/octet-stream", "");
-   public static \$fileFriendlySupport     = 'GIF, JPEG, PNG, CSV';
-   public static \$fileMaxSize             = 4096;
-   public static \$fileDestination	  = 'upload';
- }
+    /*
+     * Image upload settings
+     */
+    public static \$fileImgSupport      = array("image/gif", "image/jpeg", "image/jpg", "image/pjpeg", "image/x-png", "image/png", "application/vnd.ms-excel","text/plain", "text/csv", "text/tsv", "application/octet-stream", "");
+    public static \$fileFriendlySupport = 'GIF, JPEG, PNG, CSV';
+    public static \$fileMaxSize         = 4096;
+    public static \$fileDestination     = 'upload';
+}
 ?>
 EOD;
+    
+        if(file_exists($this->configFile))
+        {
+            if(filesize($this->configFile) > 0)
+            {
+                return array(
+                    'success' => false,
+                    'error' => "File '{$this->configFile}' already exists and filesize > 0 bytes",
+                    'config' => $config
+                );
+            }
+        }
+    
         if(is_writable($this->configFile))
         {
             if(file_put_contents($this->configFile, $config) === false)
@@ -138,6 +148,15 @@ EOD;
 
 class Step310_dbcreate implements ISetupStep
 {
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step310_dbcreate']['OKForNextStep']))
+        {
+            $_SESSION['Step310_dbcreate']['OKForNextStep'] = false;
+        }
+    }
+    
+    
     public function CreateDB()
     {
         $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
@@ -204,14 +223,16 @@ class Step310_dbcreate implements ISetupStep
         catch (Exception $ex)
         {
             $Log[] = "FAIL: Couldn't import database schema: {$ex->getMessage()}";
+            return $Log;
         }
         
+        $_SESSION['Step310_dbcreate']['OKForNextStep'] = true;
         return $Log;
     }
     
     public function OKForNextStep()
     {
-        
+        return $_SESSION['Step310_dbcreate']['OKForNextStep'];
     }
 
 }
@@ -414,6 +435,7 @@ if(@$_GET['mode'] == 'json')
                     </tr>
                 </tbody>
             </table>
+            <button data-bind="click: retest">Retest</button>
         </div>
         <!-- / Step 000: System requirements -->
         
@@ -439,7 +461,7 @@ if(@$_GET['mode'] == 'json')
                     </tr>
                     <tr>
                         <td>SQL root password:</td>
-                        <td><input name="SQLRootPassword" type="text" /></td>
+                        <td><input name="SQLRootPassword" type="password" /></td>
                     </tr>
                     <!-- /ko -->
 
@@ -499,6 +521,29 @@ if(@$_GET['mode'] == 'json')
         </div>
         
         <!-- / Step 310: create db -->
+        
+        
+        <!-- Step 314: create config file -->
+        
+        <div id="Step314_createconfig">
+            
+            <button data-bind="click: writeConfig">Create configuration file</button>
+            <div data-bind="if: executed">
+                <div data-bind="if: success">
+
+                </div>
+
+                <div data-bind="ifnot: success">
+                    Was unable to write config file:<br />
+                    <span data-bind="text: error"></span><br />
+                    Copy paste this into dptcms/config.php:<br />
+                    <textarea data-bind="text: config" rows="35" cols="120"></textarea>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- / Step 314: create config file -->
         
         
         <input name="previousStep" type="submit" value="« Previous step" />
@@ -567,23 +612,28 @@ if(@$_GET['mode'] == 'json')
 
                 self.reqs = ko.observableArray([]);
                 self.OKForNextStep = ko.observable(false);
+        
+                this.retest = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step000_sysreq&method=GetReqs",
+                        function(allData)
+                        {
+                            var mappedReqs = $.map(allData, function(item) { return new sysreq(item) });
+                            self.reqs(mappedReqs);
+                        }
+                    )
 
-                $.getJSON(
-                    "setup.php?mode=json&class=Step000_sysreq&method=GetReqs",
-                    function(allData)
-                    {
-                        var mappedReqs = $.map(allData, function(item) { return new sysreq(item) });
-                        self.reqs(mappedReqs);
-                    }
-                )
-
-                $.getJSON(
-                    "setup.php?mode=json&class=Step000_sysreq&method=OKForNextStep",
-                    function(data)
-                    {
-                        self.OKForNextStep(data);
-                    }
-                )
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step000_sysreq&method=OKForNextStep",
+                        function(data)
+                        {
+                            self.OKForNextStep(data);
+                        }
+                    )
+                }
+                
+                this.retest();
             }
 
             function sysreq(data)
@@ -597,7 +647,7 @@ if(@$_GET['mode'] == 'json')
 
             function step001_database()
             {
-                this.createUserAndDB = ko.observable(true);
+                this.createUserAndDB = ko.observable(false);
             }
             
             function step002_dbconnect()
@@ -665,10 +715,51 @@ if(@$_GET['mode'] == 'json')
                 }
             }
 
+
+            function step314_createconfig()
+            {
+                var self = this;
+                
+                this.success = ko.observable(false);
+                this.config  = ko.observable("");
+                this.error   = ko.observable(null);
+                this.executed = ko.observable(false);
+               
+                var dbdata =
+                {
+                    "SQLHost": $("input[name=SQLHost]").val(),
+                    "SQLUser": $("input[name=SQLUser]").val(),
+                    "SQLPassword": $("input[name=SQLPassword]").val(),
+                    "SQLDBName": $("input[name=SQLDBName]").val(),
+                    "SQLRootUser": $("input[name=SQLRootUser]").val(),
+                    "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
+                    "createUserAndDB": step001.createUserAndDB
+                };
+                
+                this.writeConfig = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step314_createconfig&method=writeConfig",
+                        dbdata,
+                        function(allData)
+                        {
+                            self.config(allData.config);
+                            self.success(allData.success);
+                            if(allData.success == false)
+                            {
+                                self.error(allData.error);
+                            }
+                            self.executed(true);
+                        }
+                    );
+                }
+            }
+
             ko.applyBindings(step000 = new step000_sysreqVM(), document.getElementById("Step000_sysreq"));
             ko.applyBindings(step001 = new step001_database(), document.getElementById("Step001_database"));
             ko.applyBindings(step002 = new step002_dbconnect(), document.getElementById("Step002_dbconnect"));
             ko.applyBindings(step310 = new step310_dbcreate(), document.getElementById("Step310_dbcreate"));
+            ko.applyBindings(step314 = new step314_createconfig(), document.getElementById("Step314_createconfig"));
 
             var sc = new stepController();
             sc.start();
