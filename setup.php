@@ -573,6 +573,7 @@ if(@$filteredGET['mode'] == 'json')
                 self = this;
                 
                 self.currentStep = "";
+                self.OKForNextStep = ko.observable(false);
                 
                 self.steps = {};
                 
@@ -587,6 +588,26 @@ if(@$filteredGET['mode'] == 'json')
                 ko.applyBindings(self.steps.Step002_dbconnect, document.getElementById("Step002_dbconnect"));
                 ko.applyBindings(self.steps.Step310_dbcreate, document.getElementById("Step310_dbcreate"));
                 ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
+
+
+            
+                function stepControllerViewModel()
+                {
+                    this.OKForNextStep = self.OKForNextStep;
+                }
+                
+                this.reevaluateOKForNextStep = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=" + this.currentStep + "&method=OKForNextStep",
+                        function(data)
+                        {
+                            self.OKForNextStep(data);
+                        }
+                    );
+                }
+            
+                ko.applyBindings(new stepControllerViewModel(), document.getElementById("buttons"));
 
 
                 this.getStep = function (stepName)
@@ -626,6 +647,7 @@ if(@$filteredGET['mode'] == 'json')
                         {
                             self.deactivateCurrentStep();
                             self.currentStep = allData;
+                            self.reevaluateOKForNextStep();
                             self.activateCurrentStep();
                         }
                     );
@@ -639,6 +661,7 @@ if(@$filteredGET['mode'] == 'json')
                         {
                             self.deactivateCurrentStep();
                             self.currentStep = allData;
+                            self.reevaluateOKForNextStep();
                             self.activateCurrentStep();
                         }
                     );
@@ -651,7 +674,6 @@ if(@$filteredGET['mode'] == 'json')
                 var self = this;
 
                 self.reqs = ko.observableArray([]);
-                self.OKForNextStep = ko.observable(false);
         
                 this.retest = function()
                 {
@@ -662,18 +684,14 @@ if(@$filteredGET['mode'] == 'json')
                             var mappedReqs = $.map(allData, function(item) { return new sysreq(item) });
                             self.reqs(mappedReqs);
                         }
-                    )
-
-                    $.getJSON(
-                        "setup.php?mode=json&class=Step000_sysreq&method=OKForNextStep",
-                        function(data)
-                        {
-                            self.OKForNextStep(data);
-                        }
-                    )
+                    );
+                    sc.reevaluateOKForNextStep();
                 }
                 
-                this.retest();
+                this.activate = function()
+                {
+                    this.retest();
+                }
             }
 
             function sysreq(data)
