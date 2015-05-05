@@ -266,6 +266,7 @@ class Step002_dbconnect implements ISetupStep
             catch (Exception $ex)
             {
                 $tests[0]['Error'] = $ex->getMessage();
+                return $tests;
             }
         }
         else
@@ -492,7 +493,7 @@ if(@$filteredGET['mode'] == 'json')
         
         <div id="Step002_dbconnect">
             
-            <button data-bind="click: testDB">Test</button>
+            <button data-bind="click: testDB">Retest</button>
             
             <table>
                 <thead>
@@ -558,6 +559,26 @@ if(@$filteredGET['mode'] == 'json')
                 
                 self.currentStep = "";
                 
+                self.steps = {};
+                
+                self.steps.Step000_sysreq = new step000_sysreqVM();
+                self.steps.Step001_database = new step001_database();
+                self.steps.Step002_dbconnect = new step002_dbconnect();
+                self.steps.Step310_dbcreate = new step310_dbcreate();
+                self.steps.Step314_createconfig = new step314_createconfig();
+                
+                ko.applyBindings(self.steps.Step000_sysreq, document.getElementById("Step000_sysreq"));
+                ko.applyBindings(self.steps.Step001_database, document.getElementById("Step001_database"));
+                ko.applyBindings(self.steps.Step002_dbconnect, document.getElementById("Step002_dbconnect"));
+                ko.applyBindings(self.steps.Step310_dbcreate, document.getElementById("Step310_dbcreate"));
+                ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
+
+
+                this.getStep = function (stepName)
+                {
+                    return self.steps[stepName];
+                }
+
                 this.start = function()
                 {
                     $.getJSON(
@@ -573,11 +594,13 @@ if(@$filteredGET['mode'] == 'json')
                 this.activateCurrentStep = function()
                 {
                     $("#" + this.currentStep).show();
+                    self.steps[this.currentStep].activate && self.steps[this.currentStep].activate();
                 }
                 
                 this.deactivateCurrentStep = function()
                 {
                     $("#" + this.currentStep).hide();
+                    self.steps[this.currentStep].deactivate && self.steps[this.currentStep].deactivate();
                 }
                 
                 this.advance = function()
@@ -664,6 +687,11 @@ if(@$filteredGET['mode'] == 'json')
                     this.error = ko.observable(data.Error);
                 }
                 
+                this.activate = function()
+                {
+                    this.testDB();
+                }
+                
                 this.testDB = function()
                 {
                     var dbdata =
@@ -674,9 +702,9 @@ if(@$filteredGET['mode'] == 'json')
                         "SQLDBName": $("input[name=SQLDBName]").val(),
                         "SQLRootUser": $("input[name=SQLRootUser]").val(),
                         "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": step001.createUserAndDB
+                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
                     };
-
+                    
                     $.getJSON(
                         "setup.php?mode=json&class=Step002_dbconnect&method=TestDB",
                         dbdata,
@@ -703,7 +731,7 @@ if(@$filteredGET['mode'] == 'json')
                         "SQLDBName": $("input[name=SQLDBName]").val(),
                         "SQLRootUser": $("input[name=SQLRootUser]").val(),
                         "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": step001.createUserAndDB
+                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
                     };
 
                     $.getJSON(
@@ -726,20 +754,20 @@ if(@$filteredGET['mode'] == 'json')
                 this.config  = ko.observable("");
                 this.error   = ko.observable(null);
                 this.executed = ko.observable(false);
-               
-                var dbdata =
-                {
-                    "SQLHost": $("input[name=SQLHost]").val(),
-                    "SQLUser": $("input[name=SQLUser]").val(),
-                    "SQLPassword": $("input[name=SQLPassword]").val(),
-                    "SQLDBName": $("input[name=SQLDBName]").val(),
-                    "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                    "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                    "createUserAndDB": step001.createUserAndDB
-                };
                 
                 this.writeConfig = function()
                 {
+                    var dbdata =
+                    {
+                        "SQLHost": $("input[name=SQLHost]").val(),
+                        "SQLUser": $("input[name=SQLUser]").val(),
+                        "SQLPassword": $("input[name=SQLPassword]").val(),
+                        "SQLDBName": $("input[name=SQLDBName]").val(),
+                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
+                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
+                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
+                    };
+                    
                     $.getJSON(
                         "setup.php?mode=json&class=Step314_createconfig&method=writeConfig",
                         dbdata,
@@ -756,12 +784,6 @@ if(@$filteredGET['mode'] == 'json')
                     );
                 }
             }
-
-            ko.applyBindings(step000 = new step000_sysreqVM(), document.getElementById("Step000_sysreq"));
-            ko.applyBindings(step001 = new step001_database(), document.getElementById("Step001_database"));
-            ko.applyBindings(step002 = new step002_dbconnect(), document.getElementById("Step002_dbconnect"));
-            ko.applyBindings(step310 = new step310_dbcreate(), document.getElementById("Step310_dbcreate"));
-            ko.applyBindings(step314 = new step314_createconfig(), document.getElementById("Step314_createconfig"));
 
             var sc = new stepController();
             sc.start();
