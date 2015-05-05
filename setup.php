@@ -351,6 +351,20 @@ class Step000_sysreq implements ISetupStep
                 $Reqs[$Extension]['satisfied'] = true;
             }
         }
+        
+        $Reqs['php_timezone']['displayname'] = 'PHP INI date.timezone is configured';
+        $Reqs['php_timezone']['displaydescr'] = 'Not undefined';
+        if(ini_get('date.timezone') == '')
+        {
+            $Reqs['php_timezone']['value'] = 'Undefined';
+            $Reqs['php_timezone']['satisfied'] = false;
+        }
+        else
+        {
+            $Reqs['php_timezone']['value'] = ini_get('date.timezone');
+            $Reqs['php_timezone']['satisfied'] = true;
+        }
+        
 
 
         $Reqs['mod_rewrite']['displayname'] = 'Apache mod_rewrite active';
@@ -548,9 +562,10 @@ if(@$filteredGET['mode'] == 'json')
         
         <!-- / Step 314: create config file -->
         
-        
-        <input name="previousStep" type="submit" value="« Previous step" />
-        <input name="nextStep" data-bind="enable: OKForNextStep" type="submit" value="Next step »" />
+        <div id="buttons">
+            <input name="previousStep" type="submit" value="« Previous step" />
+            <input name="nextStep" data-bind="enable: OKForNextStep" type="submit" value="Next step »" />
+        </div>
 
         <script type="text/javascript">
             function stepController()
