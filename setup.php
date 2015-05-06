@@ -130,7 +130,15 @@ EOD;
             }
             else
             {
-                return array('success' => true);
+                if(!@chmod($this->configFile, 0444))
+                {
+                    $error = "Failed to chmod file to 0444, please adjust manually: chmod 444 {$this->configFile}";
+                }
+                else
+                {
+                    $error = null;
+                }
+                return array('success' => true, 'error' => $error);
             }
         }
         else
@@ -543,7 +551,16 @@ if(@$filteredGET['mode'] == 'json')
         <!-- Step 314: create config file -->
         
         <div id="Step314_createconfig">
-            
+            <p>Setup will now create Grader's configuration file. For this step
+                to work, setup needs to be able to write to the file <?php echo getcwd(); ?>/dptcms/config.php.
+                If the operation fails, setup will generate the configuration
+                for you, but you must manually upload it.
+            </p>
+            <ol>
+                <li>touch <?php echo getcwd(); ?>/dptcms/config.php</li>
+                <li>chmod o+rw <?php echo getcwd(); ?>/dptcms/config.php</li>
+                <li>chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php</li>
+            </ol>
             <button data-bind="click: writeConfig">Create configuration file</button>
             <div data-bind="if: executed">
                 <div data-bind="if: success">
@@ -751,6 +768,7 @@ if(@$filteredGET['mode'] == 'json')
                         {
                             var mappedTests = $.map(allData, function(item) { return new self.test(item) });
                             self.tests(mappedTests);
+                            sc.reevaluateOKForNextStep();
                         }
                     );
                 }
@@ -779,6 +797,7 @@ if(@$filteredGET['mode'] == 'json')
                         function(allData)
                         {
                             console.log(allData);
+                            sc.reevaluateOKForNextStep();
                         }
                     );
                 }
