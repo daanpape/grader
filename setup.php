@@ -431,6 +431,8 @@ if(@$filteredGET['mode'] == 'json')
         
         <!-- Step 000: System requirements -->
         <div id="Step000_sysreq">
+            <p>Setup will check basic system requirements for Grader. Please
+            fix all FAILs to continue to the next step.</p>
             <table>
                 <thead>
                     <tr>
@@ -458,14 +460,28 @@ if(@$filteredGET['mode'] == 'json')
         
         <!-- Step 001: Database -->
         <div id="Step001_database">
+        <p>Grader requires a MySQL or MariaDB database, please enter the details
+        of the database server. You can opt to have a MySQL user & database
+        created for you: setup will use the root username & password for that.</p>
             <table>
                 <tbody>
-
                     <tr>
                         <td>SQL host:</td>
                         <td><input name="SQLHost" type="text" value="localhost" /></td>
                     </tr>
+                    <tr>
+                        <td>SQL user<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
+                        <td><input name="SQLUser" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td>SQL password:</td>
+                        <td><input name="SQLPassword" type="text" /> <span class="rpasslink" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span></td>
+                    </tr>
 
+                    <tr>
+                        <td>SQL database<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
+                        <td><input name="SQLDBName" type="text" /></td>
+                    </tr>
                     <tr>
                         <td>Create user & database for me?</td>
                         <td><input type="checkbox" data-bind="checked: createUserAndDB" /></td>
@@ -481,22 +497,6 @@ if(@$filteredGET['mode'] == 'json')
                         <td><input name="SQLRootPassword" type="password" /></td>
                     </tr>
                     <!-- /ko -->
-
-                    <tr>
-                        <td>SQL user:</td>
-                        <td><input name="SQLUser" type="text" /></td>
-                    </tr>
-
-                    <tr>
-                        <td>SQL password:</td>
-                        <td><input name="SQLPassword" type="text" /><span class="rpasslink" data-bind="visible: : createUserAndDB">(Generate random password)</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>SQL database:</td>
-                        <td><input name="SQLDBName" type="text" /></td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>
@@ -506,9 +506,9 @@ if(@$filteredGET['mode'] == 'json')
         <!-- Step 002: dbconnect -->
         
         <div id="Step002_dbconnect">
-            
+            <p>Setup will do something basic database server connectivity
+            checks. Fix all FAILs to continue.</p>
             <button data-bind="click: testDB">Retest</button>
-            
             <table>
                 <thead>
                     <tr>
@@ -631,6 +631,7 @@ if(@$filteredGET['mode'] == 'json')
                 {
                     $("#" + this.currentStep).show();
                     self.steps[this.currentStep].activate && self.steps[this.currentStep].activate();
+                    self.reevaluateOKForNextStep();
                 }
                 
                 this.deactivateCurrentStep = function()
@@ -647,7 +648,6 @@ if(@$filteredGET['mode'] == 'json')
                         {
                             self.deactivateCurrentStep();
                             self.currentStep = allData;
-                            self.reevaluateOKForNextStep();
                             self.activateCurrentStep();
                         }
                     );
@@ -661,7 +661,6 @@ if(@$filteredGET['mode'] == 'json')
                         {
                             self.deactivateCurrentStep();
                             self.currentStep = allData;
-                            self.reevaluateOKForNextStep();
                             self.activateCurrentStep();
                         }
                     );
@@ -706,6 +705,13 @@ if(@$filteredGET['mode'] == 'json')
             function step001_database()
             {
                 this.createUserAndDB = ko.observable(false);
+                
+                this.genRandPass = function()
+                {
+                    // From http://stackoverflow.com/questions/9719570/generate-random-password-string-with-requirements-in-javascript
+                    var randPass = Math.random().toString(36).slice(-9);
+                    $("input[name=SQLPassword]").val(randPass);
+                }
             }
             
             function step002_dbconnect()
