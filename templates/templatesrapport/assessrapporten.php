@@ -67,7 +67,7 @@
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td data-bind="text: tdatum">--</td>
-                    <td>--</td>
+                    <td data-bind="text: tscore">--</td>
                     <td>
                         <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
                         <a data-bind="attr:{'href': '/api/worksheetedit/' + tworkid + '/' + tname + '/' + viewModel.currentCourseId}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
