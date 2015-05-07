@@ -213,6 +213,9 @@ function addWorksheetStudent(worksheetid) {
             //callback(false);
         }
     });
+
+    //table opnieuw laden
+    loadTablePage(1,viewModel.currentCourseId);
 }
 
 //addWorksheetStudentList
@@ -230,6 +233,9 @@ function addWorksheetStudentList(worksheetid) {
             //callback(false);
         }
     });
+
+    //table opnieuw laden
+    loadTablePage(1,viewModel.currentCourseId);
 }
 
 function loadTablePage(pagenr,course)
