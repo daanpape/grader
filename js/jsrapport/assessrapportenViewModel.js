@@ -249,7 +249,7 @@ function loadTablePage(pagenr,course)
         // Load table data
         $.each(data.data, function(i, item) {
             console.log(item);
-            viewModel.addTableData(item.id, item.Name , item.datum, item.score);
+            viewModel.addTableData(item.id, item.Name , $('.datepicker').datepicker(), item.score);
         });
 
         //TODO pagers doen werken
