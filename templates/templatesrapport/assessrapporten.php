@@ -66,9 +66,7 @@
                 <tbody data-bind="foreach: tabledata">
                 <tr>
                     <td data-bind="text: tname">--</td>
-                    <td><div class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                        </div></td>
+                    <td data-bind="text: tdatum">--</td>
                     <td data-bind="text: tscore">--</td>
                     <td>
                         <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
