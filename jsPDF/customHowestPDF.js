@@ -42,7 +42,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     var xPos = 10;
     var yPos = 110;
 
-    doc.setFontSize(5);
+    doc.setFontSize(8);
 
     for(var key in projectstructure)
     {
