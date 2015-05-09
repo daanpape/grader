@@ -7,7 +7,7 @@ $location = "assessproject";
 <head>
 
     <script src="/jsPDF/dist/jspdf.debug.js" ></script>
-    <script src="/jsPDF/customPDF.js"></script>
+    <script src="/jsPDF/customHowestPDF.js"></script>
 
     <?php include_once('hddepends.php') ?>
 

@@ -34,6 +34,11 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     doc.text(150, 100, 'Opmerking');
     doc.line(10, 101, 180, 101);
 
+    /*projectstructure.forEach(function(element, index, array)
+    {
+
+    });*/
+
     doc.setFontType('bold');
     doc.text(10, 110, 'Grafisch Presenteren');
     doc.text(100, 110, '25%');
