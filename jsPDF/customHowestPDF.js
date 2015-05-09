@@ -40,7 +40,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     });*/
 
     var xPos = 10;
-    var yPos = 100;
+    var yPos = 105;
 
     doc.setFontSize(5);
 
@@ -52,7 +52,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
             doc.text(xPos,yPos, projectstructure[key]['description']);
             xPos = 105;
             doc.text(xPos,yPos, projectstructure[key]['weight']);
-            xPos = 130;
+            xPos = 129;
             doc.text(xPos,yPos, projectstructure[key]['score'] + "%");
             yPos += 5;
             xPos = 10;
