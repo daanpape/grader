@@ -14,6 +14,7 @@ function pageViewModel(gvm) {
     gvm.formworksheet = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormWorksheet");}, gvm);
     
     gvm.modules = ko.observableArray([]);
+    gvm.assessMethod = ko.observableArray([]);
     
     gvm.updateModules = function(courseid) {
         $.getJSON('/api/coursestructure/' + courseid, function(data) {
@@ -47,6 +48,10 @@ function pageViewModel(gvm) {
             criteria.push(tblObject);
         });
     }
+    
+    gvm.getAssessMethod = function() {
+        //getJSON
+    }
 }
     
 function initPage() {      
@@ -54,6 +59,7 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.courseId = $('#storage').attr('data-value');
         viewModel.updateModules(viewModel.courseId);
+        viewModel.getAssessMethod();
     });
     
     $('#date').datepicker();
