@@ -34,7 +34,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">                                              
                                             <input type="text" placeholder="module name" class="form-control form-name col-xs-3" data-bind="value: modname">
-                                            <div class="dropdown col-md-2">
+                                            <!--<div class="dropdown col-md-2">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                     <span class="text-center">Choose...</span>
                                                     <span class="pull-right caret-down caret"></span>
@@ -42,7 +42,7 @@
                                                 <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
                                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
                                                 </ul>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="panel-body" data-bind="foreach: competences">         
                                             <div class="subcompPanel">
