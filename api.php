@@ -384,7 +384,6 @@ class GraderAPI {
                 $projectid,
                 property_exists($competence, "id") ? $competence->id : -1);
 
-
             // Insert subcompetences if any
             if (property_exists($competence, "subcompetences")) {
                 foreach ($competence->subcompetences as $subcompetence) {

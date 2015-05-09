@@ -556,6 +556,11 @@ class ClassDAO {
             return null;
         }
     }
+
+    public static function getTrainingAndCourseOfProject($projectid)
+    {
+        // TODO
+    }
     
     
     /**
