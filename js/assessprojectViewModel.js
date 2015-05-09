@@ -60,8 +60,7 @@ function initPage() {
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
     $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
-        //makePDF(id,name,lastname,email, projectheader, projectdescription,data);
-        console.log(data[10]['subcompetences'][7]['indicators']);
+        makePDF(id,name,lastname,email, projectheader, projectdescription,data);
     });
 
 

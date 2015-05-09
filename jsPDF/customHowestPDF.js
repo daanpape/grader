@@ -39,6 +39,23 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     });*/
 
+    for(var key in projectstructure)
+    {
+        if(data.hasOwnProperty(key))
+        {
+            console.log(projectstructure[key]);
+        }
+    }
+
+    /*for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            console.log(data[key]);
+        }
+    }*/
+
+    //console.log(data[10]['subcompetences'][7]['indicators']);
+
+
     doc.setFontType('bold');
     doc.text(10, 110, 'Grafisch Presenteren');
     doc.text(100, 110, '25%');
