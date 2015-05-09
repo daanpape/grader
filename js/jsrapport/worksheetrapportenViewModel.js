@@ -63,7 +63,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.saveLastSelectedDropdown = function() {
-        console.log("SaveLast dropdowns opgeroepen")
+        console.log("SaveLast dropdowns opgeroepen");
         data = {};
         data["user"] = gvm.userId;
         data["course"] = $(".btn-courseRapport span:first").text();
