@@ -302,9 +302,11 @@ class GradingEngine {
         }
 
 
+        $projectStructure[0] = $finalScore;
 
+        // Add final score to projectstructure
 
-        return $finalScore;
+        return $projectStructure;
 
     }
 }
