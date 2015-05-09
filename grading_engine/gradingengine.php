@@ -305,7 +305,8 @@ class GradingEngine {
         }
 
 
-        $projectStructure[0] = $finalScore;
+        $projectStructure[0]->score =  $finalScore;
+        $projectStructure[0]->description = "Final score";
 
         // Add final score to projectstructure
 
