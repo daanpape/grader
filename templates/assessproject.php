@@ -11,45 +11,10 @@ $location = "assessproject";
 
     <?php include_once('hddepends.php') ?>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-// Tooltip only Text
-            $('.masterTooltip').hover(function(){
-                // Hover over code
-                var title = $(this).attr('title');
-                $(this).data('tipText', title).removeAttr('title');
-                $('<p class="tooltip"></p>')
-                    .text(title)
-                    .appendTo('body')
-                    .fadeIn('slow');
-            }, function() {
-                // Hover out code
-                $(this).attr('title', $(this).data('tipText'));
-                $('.tooltip').remove();
-            }).mousemove(function(e) {
-                var mousex = e.pageX + 20; //Get X coordinates
-                var mousey = e.pageY + 10; //Get Y coordinates
-                $('.tooltip')
-                    .css({ top: mousey, left: mousex })
-            });
-        });
-    </script>
-
     <style>
         a:hover
         {
             text-decoration: none;
-        }
-
-        .tooltip {
-            display:none;
-            position:absolute;
-            border:1px solid #333;
-            background-color:#161616;
-            border-radius:5px;
-            padding:10px;
-            color:#fff;
-            font-size:12px Arial;
         }
     </style>
 
@@ -81,7 +46,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td><div class="glyphicon glyphicon-ok-circle masterTooltip"></div></td>
+                    <td><div class="glyphicon glyphicon-ok-circle"></div></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
