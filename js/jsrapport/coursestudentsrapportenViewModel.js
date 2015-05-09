@@ -233,5 +233,5 @@ function initPage() {
         viewModel.userId = data.id;
         userid = data.id;
     });
-    loadTablePage(1);
+    loadTablePage(1,$('#projectHeader').attr("data-value"));
 }
