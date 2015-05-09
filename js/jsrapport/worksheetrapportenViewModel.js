@@ -225,18 +225,20 @@ function loadTablePage(pagenr)
                 });
             }
         });
-
-        $("#errormessage").hide();
-    });
+        });
 }
 
 function initPage() {
     $('#addWorksheetBtn').click(function() {
-        if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null ) {
+        if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null) {
             alert("Gelieve een vak te selecteren.");
             $("#errormessage").show();
-        } else
+        } else {
             showNewWorksheetModal();
+    }
+
+        $("#errormessage").hide();
+
     });
     
     $.getJSON('/api/currentuser', function(data) {
