@@ -49,6 +49,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
         if(projectstructure.hasOwnProperty(key))
         {
+            doc.setFontType('bold');
             doc.text(xPos,yPos, projectstructure[key]['description']);
             xPos = 105;
             doc.text(xPos,yPos, projectstructure[key]['weight']);
