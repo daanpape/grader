@@ -80,6 +80,8 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
                         xPos = 125;
                         doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['score'] + "%");
                         yPos += 5;
+
+                        xPos = 30;
                     }
                 }
             }
