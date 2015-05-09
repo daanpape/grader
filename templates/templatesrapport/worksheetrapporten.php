@@ -26,9 +26,10 @@
                         <span class="text-center">Course</span>
                         <span class="pull-right caret-down caret"></span>
                     </button>
+                    <p id="errormessage" class="text-danger">*</p
                     <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="courseRapport" data-bind="foreach: availableCourses" id="testcliker">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
-                        <p id="errormessage" class="text-danger">*</p></ul>
+                        ></ul>
                 </div>            
             </div>
         </div>
