@@ -100,6 +100,7 @@ class GradingEngine {
             $newCompetence = new Competence();
             $newCompetence->id = $competence->id;
             $newCompetence->weight = $competence->weight;
+            $newCompetence->description = $competence->description;
             $newCompetence->score = 0;
             $newCompetence->subcompetences = array();
             foreach($competence->subcompetences as $subcompetence)
@@ -107,6 +108,7 @@ class GradingEngine {
                 $newSubcompetence = new SubCompetence();
                 $newSubcompetence->id = $subcompetence->id;
                 $newSubcompetence->weight = $subcompetence->weight;
+                $newSubcompetence->description = $subcompetence->description;
                 $newSubcompetence->score = 0;
                 $newSubcompetence->indicators = array();
                 foreach($subcompetence->indicators as $indicator)
@@ -114,6 +116,7 @@ class GradingEngine {
                     $newIndicator = new Indicator();
                     $newIndicator->id = $indicator->id;
                     $newIndicator->weight = $indicator->weight;
+                    $newIndicator->description = $indicator->description;
                     $newIndicator->score = 0;
                     $newIndicator->count = 0;
                     //array_push($newSubcompetence->indicators, $newIndicator);
@@ -306,7 +309,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $structure;
+        return $projectStructure;
 
     }
 }
