@@ -304,9 +304,12 @@ class GradingEngine {
             }
         }
 
+        $finalScoreProject = new Competence();
+        $finalScoreProject->score =  $finalScore;
+        $finalScoreProject->description = "Final score";
 
-        $projectStructure[0]->score =  $finalScore;
-        $projectStructure[0]->description = "Final score";
+        $projectStructure[0] = $finalScoreProject;
+
 
         // Add final score to projectstructure
 
