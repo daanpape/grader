@@ -61,11 +61,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
     $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
         //makePDF(id,name,lastname,email, projectheader, projectdescription,data);
-        for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-                console.log(data[key]);
-            }
-        }
+        console.log(data[0]['subcompetences']);
     });
 
 
