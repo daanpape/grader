@@ -46,8 +46,14 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     {
         if(projectstructure.hasOwnProperty(key))
         {
-            //doc.text(xPos,yPos, projectstructure[key])
-            console.log(projectstructure[key]['id']);
+            doc.text(xPos,yPos, projectstructure[key]['description']);
+            xPos = 100;
+            doc.text(xPos,yPos, projectstructure[key]['weight']);
+            xPos = 128;
+            doc.text(xPos,yPos, projectstructure[key]['score'] + "%");
+            yPos += 5;
+
+            //console.log(projectstructure[key]['description']);
         }
     }
 
