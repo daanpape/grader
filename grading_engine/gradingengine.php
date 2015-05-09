@@ -305,6 +305,7 @@ class GradingEngine {
         }
 
         $finalScoreProject = new Competence();
+        $finalScoreProject->id = 0;
         $finalScoreProject->score =  $finalScore;
         $finalScoreProject->description = "Final score";
 
