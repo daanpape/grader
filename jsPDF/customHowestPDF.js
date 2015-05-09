@@ -63,22 +63,22 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
             {
                 if(projectstructure[competenceKey]['subcompetences'].hasOwnProperty(subcompetenceKey))
                 {
-                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['description']);
+                    doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['description']);
                     xPos = 105;
-                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['weight']);
+                    doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['weight']);
                     xPos = 125;
-                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['score'] + "%");
+                    doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['score'] + "%");
                     yPos += 5;
 
                     xPos = 30;
 
                     for(var indicatorKey in projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'])
                     {
-                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['description']);
+                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
                         xPos = 105;
-                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['weight']);
+                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['weight']);
                         xPos = 125;
-                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['score'] + "%");
+                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['score'] + "%");
                         yPos += 5;
                     }
                 }
