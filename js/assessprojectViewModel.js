@@ -61,7 +61,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
     $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
         //makePDF(id,name,lastname,email, projectheader, projectdescription,data);
-        data.forEach(function(element, index, array)
+        data.toArray().forEach(function(element, index, array)
         {
            console.log(element);
         });
