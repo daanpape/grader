@@ -11,7 +11,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     doc.setFontType("bold");
     doc.text(10, 20, 'Hogeschool West-Vlaanderen');
     doc.text(10, 25, 'Howest Brugge');
-    doc.text(10, 30, 'Rijselstraat 5 - 8200 Brugge')
+    doc.text(10, 30, 'Rijselstraat 5 - 8200 Brugge');
     doc.text(10, 35, 'Tel: 050 38 12 77 - Fax : 050 38 11 71');
     doc.text(10, 40, 'Brugge@howest.be - website: www.howest.be');
 
@@ -42,7 +42,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     var xPos = 10;
     var yPos = 105;
 
-    doc.setFontSize(5);
+    doc.setFontSize(8);
 
     for(var competenceKey in projectstructure)
     {
@@ -74,48 +74,22 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
                     for(var indicatorKey in projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'])
                     {
-                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
-                        xPos = 105;
-                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['weight']);
-                        xPos = 125;
-                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['score'] + "%");
-                        yPos += 5;
+                        if(projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators']) {
+                            doc.text(xPos, yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
+                            xPos = 105;
+                            doc.text(xPos, yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['weight']);
+                            xPos = 125;
+                            doc.text(xPos, yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['score'] + "%");
+                            yPos += 5;
 
-                        xPos = 30;
+                            xPos = 30;
+                        }
                     }
                 }
             }
-
             xPos = 10;
         }
     }
-
-    /*for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-            console.log(data[key]);
-        }
-    }*/
-
-    //console.log(data[10]['subcompetences'][7]['indicators']);
-
-
-    /*doc.setFontType('bold');
-    doc.text(10, 110, 'Grafisch Presenteren');
-    doc.text(100, 110, '25%');
-    doc.text(128, 110, '50');
-    doc.setFontType('normal');
-    doc.text(20, 115, 'Lay-out opmaken');
-    doc.text(100, 115, '100%');
-    doc.text(128, 115, '40');
-    doc.text(30, 120, 'Leesbaarheid van knooppunten');
-    doc.text(100, 120, '50%');
-    doc.text(128, 120, '50');
-    doc.text(30, 125, 'Grafische kwaliteit tekst');
-    doc.text(100, 125, '25%');
-    doc.text(128, 125, '50');
-    doc.text(30, 130, 'Grafische kwaliteit plan');
-    doc.text(100, 130, '25%');
-    doc.text(128, 130, '50');*/
 
     doc.save(name + '_' + lastname + '.pdf');
 }
