@@ -17,4 +17,6 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
     });
+    
+    $('#date').datepicker();
 }

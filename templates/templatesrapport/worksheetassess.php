@@ -23,7 +23,7 @@
                     <form id="worksheetassess" action="/assessrapporten">
                         <div class="form-group">
                             <label data-bind="text: formdate"></label>
-                            <!-- date -->
+                            <input type="text" id="date" />
                         </div>
                         <br />
                         
@@ -37,6 +37,7 @@
                             <label data-bind="text: formworksheet"></label>
                             <!-- worksheet score -->
                         </div>
+                        <br />
                         
                         <input type="submit" id="submit" value="Save" class="btn btn-primary" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
