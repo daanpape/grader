@@ -44,6 +44,10 @@ $app->get('/api/worksheetedit/:id/:name/:courseid', function($id, $name, $course
     $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid, 'edit' => true));
 });
 
+$app->get('/api/worksheetassess/:worksheetid/:userid', function($workid, $userid) use ($app) {
+    $app->render('templatesrapport/worksheetassess.php', array('workid' => $workid, 'userid' => $userid));
+});
+
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
