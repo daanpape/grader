@@ -125,6 +125,8 @@ function loadTablePage(pagenr,course)
 
            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname, item.id);
             console.log(item.studid +' '+ item.userid+' '+ item.id);
+            console.log(data);
+            console.log(data.data);
         });
 
         //TODO pagers doen werken
