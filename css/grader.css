@@ -155,7 +155,9 @@ body {
 {
     background-color: greenyellow;
 }
+
+
 .coursesInputField
 {
-    margin-left: auto;
+   display: block;
 }
