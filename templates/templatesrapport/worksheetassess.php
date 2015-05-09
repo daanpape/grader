@@ -6,7 +6,6 @@
 <html lang="nl" id="htmldoc">
     <head>
         <?php include_once('templates/hddepends.php');  ?>
-        <link href="/css/cssrapport/report.css" rel="stylesheet">
     </head>
     
     <body>
@@ -34,21 +33,47 @@
                                 <div class="col-md-12 compPanel">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
-                                            <!-- assess input field -->
+                                            <div class="col-xs-3">                                                
+                                                <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
+                                            </div>
+                                            <div class="dropdown col-md-2">
+                                                <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                    <span class="text-center">Choose...</span>
+                                                    <span class="pull-right caret-down caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                         <div class="panel-body" data-bind="foreach: competences">         
                                             <div class="subcompPanel">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading color-subcomp">
                                                         <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
-                                                        <!-- assess input field -->
+                                                        <div class="dropdown col-md-2">
+                                                            <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                                <span class="text-center">Choose...</span>
+                                                                <span class="pull-right caret-down caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
                                                             <li class="list-group-item">
                                                                 <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
-                                                                <!-- assess input field -->
+                                                                <div class="dropdown col-md-2">
+                                                                    <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                                        <span class="text-center">Choose...</span>
+                                                                        <span class="pull-right caret-down caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                                    </ul>
+                                                                </div>
                                                             </li>
                                                         </ul>
                                                     </div>
