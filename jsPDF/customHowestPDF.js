@@ -44,20 +44,47 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     doc.setFontSize(5);
 
-    for(var key in projectstructure)
+    for(var competenceKey in projectstructure)
     {
-
-        if(projectstructure.hasOwnProperty(key))
+        if(projectstructure.hasOwnProperty(competenceKey))
         {
             doc.setFontType('bold');
-            doc.text(xPos,yPos, projectstructure[key]['description']);
+            doc.text(xPos,yPos, projectstructure[competenceKey]['description']);
             xPos = 105;
-            doc.text(xPos,yPos, projectstructure[key]['weight']);
+            doc.text(xPos,yPos, projectstructure[competenceKey]['weight']);
             xPos = 125;
-            doc.text(xPos,yPos, projectstructure[key]['score'] + "%");
+            doc.text(xPos,yPos, projectstructure[competenceKey]['score'] + "%");
             yPos += 5;
-            xPos = 10;
+            xPos = 20;
             //console.log(projectstructure[key]['description']);
+            doc.setFontType('normal');
+
+            for(var subcompetenceKey in projectstructure[competenceKey]['subcompetences'])
+            {
+                if(projectstructure[competenceKey]['subcompetences'].hasOwnProperty(subcompetenceKey))
+                {
+                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['description']);
+                    xPos = 105;
+                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['weight']);
+                    xPos = 125;
+                    doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['score'] + "%");
+                    yPos += 5;
+
+                    xPos = 30;
+
+                    for(var indicatorKey in projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'])
+                    {
+                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['description']);
+                        xPos = 105;
+                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['weight']);
+                        xPos = 125;
+                        doc.text(xPos,yPos, projectstructure[competenceKey][subcompetenceKey]['score'] + "%");
+                        yPos += 5;
+                    }
+                }
+            }
+
+            xPos = 10;
         }
     }
 
