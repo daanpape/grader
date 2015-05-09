@@ -229,9 +229,9 @@ function initPage() {
     $('#addWorksheetBtn').click(function() {
         alert(viewModel.currentCourseId);
         if (typeof null == viewModel.currentCourseId) {
-            alert("Gelieve een vak te selecteren.");
-        } else
             showNewWorksheetModal();
+        } else
+            alert("Gelieve een vak te selecteren.");
     });
     
     $.getJSON('/api/currentuser', function(data) {
