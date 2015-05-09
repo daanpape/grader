@@ -33,7 +33,9 @@
                                 <div class="col-md-12 compPanel">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
+                                            <div class="col-xs-3">                                                
+                                                <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
+                                            </div>
                                             <div class="dropdown col-md-2">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                     <span class="text-center">Choose...</span>
