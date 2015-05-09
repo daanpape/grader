@@ -32,22 +32,22 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'jsrapport/homerapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="homerapporten" >Home</a></li>
+                ?>" id="homerapporten"> <a href="homerapporten" >Home</a></li>
                 
                 <li class="<?php if ($location == 'jsrapport/assessrapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="/assessrapporten" >Assess</a></li>
+                ?>" id="assessrapporten"> <a href="/assessrapporten" >Assess</a></li>
                 
                 <li class="<?php if ($location == 'jsrapport/coursesrapporten') {
                     echo 'active';
                 }
-                ?>"> <a href="/coursesrapporten" >Courses</a></li>
+                ?>" id="coursesrapporten"> <a href="/coursesrapporten" >Courses</a></li>
                                 
                 <li class="<?php if ($location == 'jsrapport/worksheetrapporten') {
                     echo 'active';
                 } 
-                ?>"> <a href="/worksheetrapporten" >Worksheets</a></li>  
+                ?>" id="worksheetrapporten"> <a href="/worksheetrapporten" >Worksheets</a></li>
 
                 <!----------  RapportSysteem ---------->
                     

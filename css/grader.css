@@ -150,3 +150,8 @@ body {
     width: auto;
     display: inline;
 }
+
+#homerapporten, #assessrapporten, #coursesrapporten, #worksheetrapporten
+{
+    background-color: greenyellow;
+}
