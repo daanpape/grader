@@ -66,7 +66,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     //console.log(data[10]['subcompetences'][7]['indicators']);
 
 
-    doc.setFontType('bold');
+    /*doc.setFontType('bold');
     doc.text(10, 110, 'Grafisch Presenteren');
     doc.text(100, 110, '25%');
     doc.text(128, 110, '50');
@@ -82,7 +82,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     doc.text(128, 125, '50');
     doc.text(30, 130, 'Grafische kwaliteit plan');
     doc.text(100, 130, '25%');
-    doc.text(128, 130, '50');
+    doc.text(128, 130, '50');*/
 
     doc.save(name + '_' + lastname + '.pdf');
 }
