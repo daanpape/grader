@@ -68,17 +68,18 @@
             </div>
 
         </div>
-    </div>
-
-    <div id="addGroupForm" class="container">
-        <div class="row">
-                <label>Teacher name:</label> <input id="teachersComplete" name="teachername" />
+        <div id="addGroupForm" class="container">
+            <div class="row" >
+                <label>Teacher name:</label> <input id="teachersComplete" name="teachername" class="coursesInputField" />
                 <br />
-                <label>StudentList:</label> <input id="studentListComplete" name="studentlistname"/>
+                <label>StudentList:</label> <input id="studentListComplete" name="studentlistname" class="coursesInputField"/>
                 <br />
                 <button id="addGroupBtn" class="btn btn-default">Add</button>
+            </div>
         </div>
     </div>
+
+
 
     <?php include_once('templates/jsdepends.php') ?>
 </body>

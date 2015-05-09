@@ -124,7 +124,8 @@ function loadTablePage(pagenr,course)
         $.each(data.data, function(i, item) {
 
            viewModel.addTableData(item.studid, item.userid , item.name , item.firstname + " " + item.lastname, item.id);
-            console.log(item.studid +' '+ item.userid+' '+ item.id);
+
+
         });
 
         //TODO pagers doen werken

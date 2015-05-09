@@ -30,6 +30,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
                     $(".btn-courseRapport span:first").text($(this).text());
+                    gvm.saveLastSelectedDropdown();
                     loadTablePage(1);
                 });
             });
@@ -59,6 +60,24 @@ function pageViewModel(gvm) {
     
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
+    }
+
+    gvm.saveLastSelectedDropdown = function() {
+        console.log("SaveLast dropdowns opgeroepen");
+        data = {};
+        data["user"] = gvm.userId;
+        data["course"] = $(".btn-courseRapport span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdownsRapportWorksheet",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
+
     }
 }
 
@@ -170,6 +189,7 @@ function loadTablePage(pagenr)
         // Load table data
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.Name);
+
         });
         
         /* Let previous en next buttons work */
@@ -222,12 +242,18 @@ function loadTablePage(pagenr)
                 });
             }
         });
-    });
+        });
 }
 
 function initPage() {
+    $("#errormessage").hide();
     $('#addWorksheetBtn').click(function() {
-        showNewWorksheetModal();
+        if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null) {
+            $("#errormessage").show();
+        } else {
+            showNewWorksheetModal();
+            $("#errormessage").hide();
+    }
     });
     
     $.getJSON('/api/currentuser', function(data) {

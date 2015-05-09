@@ -44,6 +44,10 @@ $app->get('/api/worksheetedit/:id/:name/:courseid', function($id, $name, $course
     $app->render('templatesrapport/worksheetpropertiesrapporten.php', array('sheetid' => $id, 'sheetname' => $name, 'courseid' => $courseid, 'edit' => true));
 });
 
+$app->get('/api/worksheetassess/:worksheetid/:worksheetname/:courseid/:userid', function($workid, $workname, $courseid, $userid) use ($app) {
+    $app->render('templatesrapport/worksheetassess.php', array('workid' => $workid, 'workname' => $workname, 'courseid' => $courseid, 'userid' => $userid));
+});
+
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
@@ -326,6 +330,13 @@ $app->post('/api/savedropdownsRapport', function() use ($app) {
     //Insert the data
     echo json_encode(RapportAPI::saveDropdownChoice($app->request->post('user'), $app->request->post('course'), $app->request->post('courseid'),
         $app->request->post('studentlist'), $app->request->post('studentlistid'), $app->request->post('student'), $app->request->post('studentid')));
+});
+$app->post('/api/savedropdownsRapportWorksheet', function() use ($app) {
+    //Use json header
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+    //Insert the data
+    echo json_encode(RapportAPI::saveDropdownChoiceWorksheet($app->request->post('user'), $app->request->post('course'), $app->request->post('courseid')));
 });
 $app->post('/api/savemodules/:id', function($id) use ($app) {
     $app->response->headers->set('Content-Type', 'application/json');

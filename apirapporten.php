@@ -330,7 +330,20 @@ Class RapportAPI {
     }
     
     public static function saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid) {
-        $id = rapportenDAO::saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid);
+    $id = rapportenDAO::saveDropdownChoice($user, $course, $courseid, $studentlist, $studentlistid, $student, $studentid);
+    if($id != false) {
+        return array(
+            "course" => $course,
+            "student" => $student,
+            "user" => $user
+        );
+    } else {
+        return -1;
+    }
+    }
+
+    public static function saveDropdownChoiceWorksheet($user, $course, $courseid) {
+        $id = rapportenDAO::saveDropdownChoiceWorksheet($user, $course, $courseid);
         if($id != false) {
             return array(
                 "course" => $course,

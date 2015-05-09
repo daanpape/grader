@@ -130,7 +130,9 @@
     "FormMethod" : "Method",
     "FormModules" : "Modules, competences and criteria",
     "FormScore" : "Assessment method",
+    "FormWorksheet" : "Worksheet",
     "FormAssess" : "Custom",
+    "FormDate" : "Date",
     "AssessMethodError" : "You must select an assessment method",
     "AssessGeneralError" : "Could not submit data",
 

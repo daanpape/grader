@@ -67,9 +67,9 @@
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td data-bind="text: tdatum">--</td>
-                    <td>--</td>
+                    <td data-bind="text: tscore">--</td>
                     <td>
-                        <a data-bind="attr:{'href': ''}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
+                        <a data-bind="attr:{'href': '/api/worksheetassess/' + tworkid + '/' + tname + '/' + viewModel.currentCourseId + '/' + viewModel.userId}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
                         <a data-bind="attr:{'href': '/api/worksheetedit/' + tworkid + '/' + tname + '/' + viewModel.currentCourseId}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tworkid}"></span>
                     </td>
@@ -94,17 +94,18 @@
             <button type="button" class="btn btn-default pagination-button" id="addWorksheetBtn">
                 <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
             </button>
-        </div>
-
-        <div id="addGroupForm" class="container">
-            <div class="row">
-                <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" /><br>
-                <label>For who ?</label><br>
-                <input id=studentenradio type="radio" name="studenten" value="studentlist" checked="checked">All students of studentlist<br>
-                <input id=studentenradio type="radio" name="studenten" value="student">Only the student selected<br>
-                <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
+            <div id="addGroupForm" class="container">
+                <div class="row">
+                    <label>Worksheet name:</label> <input id="worksheetComplete" name="Worksheetname" /><br>
+                    <label>For who ?</label><br>
+                    <input id=studentenradio type="radio" name="studenten" value="studentlist" checked="checked">All students of studentlist<br>
+                    <input id=studentenradio type="radio" name="studenten" value="student">Only the student selected<br>
+                    <button id="addNewWorksheetBtn" class="btn btn-default">Add</button>
+                </div>
             </div>
         </div>
+
+
 
         <?php include_once('templates/jsdepends.php') ?>
     </body>

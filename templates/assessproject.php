@@ -7,6 +7,7 @@ $location = "assessproject";
 <head>
 
     <script src="/jsPDF/dist/jspdf.debug.js" ></script>
+    <script src="/jsPDF/customHowestPDF.js"></script>
 
     <?php include_once('hddepends.php') ?>
 
@@ -16,6 +17,8 @@ $location = "assessproject";
             text-decoration: none;
         }
     </style>
+
+
 </head>
 
 <body>
@@ -43,6 +46,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
+                    <td><div class="glyphicon glyphicon-ok-circle"></div></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
