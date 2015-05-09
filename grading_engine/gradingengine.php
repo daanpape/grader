@@ -175,7 +175,11 @@ class GradingEngine {
             $totalWeight += $competence->weight;
         }
 
-        // Calculate the rules
+        // Final Point for project
+
+        $finalScore = $totalScore / $totalWeight;
+
+        // Check if rules are broken
 
         foreach($rules as $rule)
         {
@@ -188,11 +192,11 @@ class GradingEngine {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score < $rule->value) {
                                     if ($rule->sign == '-') {
-                                        $subcompetence->score -= (($rule->result / 100) * $subcompetence->score);
+                                        $finalScore -= (($rule->result / 100) * $finalScore);
                                     }
                                     elseif($rule->sign == '+')
                                     {
-                                        $subcompetence->score += (($rule->result / 100) * $subcompetence->score);
+                                        $finalScore += (($rule->result / 100) * $finalScore);
 
                                     }
                                 }
@@ -207,11 +211,11 @@ class GradingEngine {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score > $rule->value) {
                                     if ($rule->sign == '-') {
-                                        $subcompetence->score -= (($rule->result / 100) * $subcompetence->score);
+                                        $finalScore -= (($rule->result / 100) * $finalScore);
                                     }
                                     elseif($rule->sign == '+')
                                     {
-                                        $subcompetence->score += (($rule->result / 100) * $subcompetence->score);
+                                        $finalScore += (($rule->result / 100) * $finalScore);
                                     }
                                 }
                             }
@@ -227,11 +231,11 @@ class GradingEngine {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score < $rule->value) {
                                 if ($rule->sign == '-') {
-                                    $competence->score -= (($rule->result / 100) * $competence->score);
+                                    $finalScore -= (($rule->result / 100) * $finalScore);
                                 }
                                 elseif($rule->sign == '+')
                                 {
-                                    $competence->score += (($rule->result / 100) * $competence->score);
+                                    $finalScore += (($rule->result / 100) * $finalScore);
 
                                 }
                             }
@@ -244,11 +248,11 @@ class GradingEngine {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score > $rule->value) {
                                 if ($rule->sign == '-') {
-                                    $competence->score -= (($rule->result / 100) * $competence->score);
+                                    $finalScore -= (($rule->result / 100) * $finalScore);
                                 }
                                 elseif($rule->sign == '+')
                                 {
-                                    $competence->score += (($rule->result / 100) * $competence->score);
+                                    $finalScore += (($rule->result / 100) * $finalScore);
                                 }
                             }
                         }
@@ -266,9 +270,9 @@ class GradingEngine {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score < $rule->value) {
                                         if ($rule->sign == '-') {
-                                            $indicator->score -= (($rule->result / 100) * $indicator->score);
+                                            $finalScore -= (($rule->result / 100) * $finalScore);
                                         } elseif ($rule->sign == '+') {
-                                            $indicator->score += (($rule->result / 100) * $indicator->score);
+                                            $finalScore += (($rule->result / 100) * $finalScore);
                                         }
                                     }
                                 }
@@ -284,9 +288,9 @@ class GradingEngine {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score > $rule->value) {
                                         if ($rule->sign == '-') {
-                                            $indicator->score -= (($rule->result / 100) * $indicator->score);
+                                            $finalScore -= (($rule->result / 100) * $finalScore);
                                         } elseif ($rule->sign == '+') {
-                                            $indicator->score += (($rule->result / 100) * $indicator->score);
+                                            $finalScore += (($rule->result / 100) * $finalScore);
                                         }
                                     }
                                 }
@@ -297,13 +301,10 @@ class GradingEngine {
             }
         }
 
-        // Final Point for project
-
-        //$finalScore = $totalScore / $totalWeight;
 
 
 
-        return $projectStructure;
+        return $finalScore;
 
     }
 }
