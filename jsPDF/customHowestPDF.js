@@ -42,8 +42,11 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
     var xPos = 10;
     var yPos = 110;
 
+    doc.setFontSize(5);
+
     for(var key in projectstructure)
     {
+
         if(projectstructure.hasOwnProperty(key))
         {
             doc.text(xPos,yPos, projectstructure[key]['description']);
@@ -53,7 +56,6 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
             doc.text(xPos,yPos, projectstructure[key]['score'] + "%");
             yPos += 5;
             xPos = 10;
-
             //console.log(projectstructure[key]['description']);
         }
     }
