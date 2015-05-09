@@ -69,7 +69,7 @@
                     <td data-bind="text: tdatum">--</td>
                     <td data-bind="text: tscore">--</td>
                     <td>
-                        <a data-bind="attr:{'href': '/api/worksheetassess/' + tworkid + '/' + viewModel.userId}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
+                        <a data-bind="attr:{'href': '/api/worksheetassess/' + tworkid + '/' + tname + '/' + viewModel.userId}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'assessbtn-' + tworkid}"></span></a>
                         <a data-bind="attr:{'href': '/api/worksheetedit/' + tworkid + '/' + tname + '/' + viewModel.currentCourseId}"><span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tworkid}"></span></a>
                         <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tworkid}"></span>
                     </td>
