@@ -8,6 +8,9 @@ function pageViewModel(gvm) {
     
     gvm.userId = null;
     
+    gvm.formdate = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormDate");}, gvm);
+    gvm.formmodules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormModules");}, gvm);
+    gvm.formworksheet = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormWorksheet");}, gvm);
 }
     
 function initPage() {      

@@ -19,7 +19,29 @@
         
         <div class="container">
             <div class="row">
-                
+                <div class="col-md-12">
+                    <form id="worksheetassess" action="/assessrapporten">
+                        <div class="form-group">
+                            <label data-bind="text: formdate"></label>
+                            <!-- date -->
+                        </div>
+                        <br />
+                        
+                        <div class="form-group">
+                            <label data-bind="text: formmodules"></label>
+                            <!-- modules, competences and criteria scores -->
+                        </div>
+                        <br />
+                        
+                        <div class="form-group">
+                            <label data-bind="text: formworksheet"></label>
+                            <!-- worksheet score -->
+                        </div>
+                        
+                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                        <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
+                    </form>
+                </div>
             </div>
         </div>
 
