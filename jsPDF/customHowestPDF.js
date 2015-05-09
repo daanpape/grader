@@ -76,7 +76,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
                     {
                         if(projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description'].length > 30)
                         {
-                            doc.text(xPos,yPos,projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description'].substring(0,30));
+                            doc.text(xPos,yPos,projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description'].substring(0,70));
                         }
                         //doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
                         xPos = 105;
