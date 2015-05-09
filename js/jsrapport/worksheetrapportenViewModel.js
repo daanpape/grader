@@ -60,6 +60,7 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
@@ -224,6 +225,8 @@ function loadTablePage(pagenr)
                 });
             }
         });
+
+        $("#errormessage").hide();
     });
 }
 
@@ -231,7 +234,7 @@ function initPage() {
     $('#addWorksheetBtn').click(function() {
         if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null ) {
             alert("Gelieve een vak te selecteren.");
-            document.getElementById(errormessage).innerHTML=("***");
+            $("#errormessage").show();
         } else
             showNewWorksheetModal();
     });
