@@ -306,7 +306,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $projectStructure;
+        return $structure;
 
     }
 }
