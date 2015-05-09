@@ -844,6 +844,17 @@ class rapportenDAO {
             return false;
         }
     }
+    public static function saveDropdownChoiceWorksheet($user, $course, $courseid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO lastdropdownRapport (user, courseworksheet, courseidworksheet) VALUES (?,?,?) ON DUPLICATE KEY UPDATE courseworksheet = ?, courseidworksheet = ?");
+            $stmt->execute(array($user, $course, $courseid));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not save dropdown list', $err);
+            return false;
+        }
+    }
 
     //update/edit studentlist
     public static function updateStudentList($id, $code) {
