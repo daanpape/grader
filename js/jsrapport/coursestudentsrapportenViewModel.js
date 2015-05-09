@@ -143,7 +143,7 @@ function loadTablePage(pagenr,course)
             });
         }
 
-        if (data.next != "none"){
+        if (data.next == "none"){
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
