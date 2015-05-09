@@ -127,6 +127,8 @@
     "FormMethod" : "Werkwijze",
     "FormModules" : "Modules, doelstellingen en criteria",
     "FormScore" : "Beoordelingsmethode",
+    "FormWorksheet" : "Werkfiche",
+    "FormDate" : "Datum",
     "FormAssess" : "Aangepast",
     "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
     "AssessGeneralError" : "Data kon niet verstuurd worden",
