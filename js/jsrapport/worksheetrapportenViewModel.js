@@ -230,10 +230,8 @@ function loadTablePage(pagenr)
 
 function initPage() {
     $("#errormessage").hide();
-
     $('#addWorksheetBtn').click(function() {
         if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null) {
-            alert("Gelieve een vak te selecteren.");
             $("#errormessage").show();
         } else {
             showNewWorksheetModal();
