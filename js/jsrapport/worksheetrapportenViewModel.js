@@ -63,7 +63,6 @@ function pageViewModel(gvm) {
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
-    if (courseid != 0) {
     $.ajax({
         url: "/api/addworksheet/" + courseid,
         type: "POST",
@@ -76,9 +75,6 @@ function addNewWorksheet(serialData, courseid, callback) {
             callback(false);
         }
     });
-    } else {
-        alert("Gelieve een vak te selecteren.")
-    }
 }
 
 function updateWorksheet(id, serialData, callback) {
@@ -231,6 +227,7 @@ function loadTablePage(pagenr)
 
 function initPage() {
     $('#addWorksheetBtn').click(function() {
+        alert(viewModel.currentCourseId);
         showNewWorksheetModal();
     });
     
