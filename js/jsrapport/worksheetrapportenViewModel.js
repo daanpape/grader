@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
                     $(".btn-courseRapport span:first").text($(this).text());
-                    saveLastSelectedDropdown();
+                    gvm.saveLastSelectedDropdown();
                     loadTablePage(1);
                 });
             });
