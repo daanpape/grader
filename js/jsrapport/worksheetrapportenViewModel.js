@@ -60,6 +60,7 @@ function pageViewModel(gvm) {
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
+
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
@@ -170,6 +171,8 @@ function loadTablePage(pagenr)
         // Load table data
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.Name);
+            console.log(item.id +" "+ item.Name);
+            console.log(data)
         });
         
         /* Let previous en next buttons work */
@@ -222,12 +225,20 @@ function loadTablePage(pagenr)
                 });
             }
         });
-    });
+        });
 }
 
 function initPage() {
     $('#addWorksheetBtn').click(function() {
-        showNewWorksheetModal();
+        if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null) {
+            alert("Gelieve een vak te selecteren.");
+            $("#errormessage").show();
+        } else {
+            showNewWorksheetModal();
+    }
+
+        $("#errormessage").hide();
+
     });
     
     $.getJSON('/api/currentuser', function(data) {

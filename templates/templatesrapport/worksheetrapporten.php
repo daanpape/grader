@@ -28,8 +28,8 @@
                     </button>
                     <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="courseRapport" data-bind="foreach: availableCourses" id="testcliker">
                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
-                    </ul>
-                </div>            
+                       </ul>
+                </div> <p id="errormessage" class="text-danger">*</p>
             </div>
         </div>
         
