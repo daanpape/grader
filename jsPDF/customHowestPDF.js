@@ -52,6 +52,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
             xPos = 128;
             doc.text(xPos,yPos, projectstructure[key]['score'] + "%");
             yPos += 5;
+            xPos = 10;
 
             //console.log(projectstructure[key]['description']);
         }
