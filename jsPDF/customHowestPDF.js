@@ -41,7 +41,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     for(var key in projectstructure)
     {
-        if(data.hasOwnProperty(key))
+        if(projectstructure.hasOwnProperty(key))
         {
             console.log(projectstructure[key]);
         }
