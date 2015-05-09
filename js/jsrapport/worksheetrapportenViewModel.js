@@ -30,6 +30,7 @@ function pageViewModel(gvm) {
                 $("#coursebtn-" + item.id).click(function(){
                     gvm.currentCourseId = item.id;
                     $(".btn-courseRapport span:first").text($(this).text());
+                    gvm.saveLastSelectedDropdown();
                     loadTablePage(1);
                 });
             });
@@ -61,6 +62,24 @@ function pageViewModel(gvm) {
         gvm.tabledata.removeAll();
     }
 
+    gvm.saveLastSelectedDropdown = function() {
+        console.log("SaveLast dropdowns opgeroepen");
+        data = {};
+        data["user"] = gvm.userId;
+        data["course"] = $(".btn-courseRapport span:first").text();
+        data["courseid"] = gvm.currentCourseId;
+
+        /*
+        $.ajax({
+            type: "POST",
+            url: "/api/savedropdownsRapport",
+            data: data,
+            success: function() {
+                console.log("success");
+            }
+        })
+        */
+    }
 }
 
 function addNewWorksheet(serialData, courseid, callback) {
