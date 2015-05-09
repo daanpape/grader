@@ -16,6 +16,17 @@ $location = "assessproject";
         {
             text-decoration: none;
         }
+
+        .tooltip {
+            display:none;
+            position:absolute;
+            border:1px solid #333;
+            background-color:#161616;
+            border-radius:5px;
+            padding:10px;
+            color:#fff;
+            font-size:12px Arial;
+        }
     </style>
 </head>
 
@@ -44,7 +55,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td><a href="#" class="glyphicon glyphicon-ok-circle"></a></td>
+                    <td><a href="#" class="glyphicon glyphicon-ok-circle masterTooltip" title="Test"></a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
