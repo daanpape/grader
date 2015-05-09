@@ -39,11 +39,15 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     });*/
 
+    var xPos = 10;
+    var yPos = 110;
+
     for(var key in projectstructure)
     {
         if(projectstructure.hasOwnProperty(key))
         {
-            console.log(projectstructure[key]);
+            //doc.text(xPos,yPos, projectstructure[key])
+            console.log(projectstructure[key]['id']);
         }
     }
 
