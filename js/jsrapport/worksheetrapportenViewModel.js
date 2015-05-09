@@ -229,7 +229,7 @@ function initPage() {
     $('#addWorksheetBtn').click(function() {
         if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null ) {
             alert("Gelieve een vak te selecteren.");
-            document.getElementById(containerid).innerHTML=("***");
+            document.getElementById(errormessage).innerHTML=("***");
         } else
             showNewWorksheetModal();
     });
