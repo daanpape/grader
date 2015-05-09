@@ -138,7 +138,7 @@ function loadTablePage(pagenr,course)
             $('#pager-prev-btn').addClass('disabled');
         } else {
             $('#pager-prev-btn').removeClass('disabled');
-            $('#pager-prev-btn').find('a').click(function(){
+            $('#pager-prev-btn a').click(function(){
                 loadTablePage(data.prev);
             });
         }
@@ -147,7 +147,7 @@ function loadTablePage(pagenr,course)
             $('#pager-next-btn').addClass('disabled');
         } else {
             $('#pager-next-btn').removeClass('disabled');
-            $('#pager-next-btn').find('a').click(function(){
+            $('#pager-next-btn a').click(function(){
                 loadTablePage(data.next);
             });
         }
