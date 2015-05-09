@@ -34,20 +34,20 @@
                                 <div class="col-md-12 compPanel">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: tname">
+                                            <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
                                             <!-- assess input field -->
                                         </div>
                                         <div class="panel-body" data-bind="foreach: competences">         
                                             <div class="subcompPanel">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading color-subcomp">
-                                                        <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: tname">
+                                                        <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
                                                         <!-- assess input field -->
                                                     </div>
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
                                                             <li class="list-group-item">
-                                                                <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: tname">
+                                                                <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 <!-- assess input field -->
                                                             </li>
                                                         </ul>
