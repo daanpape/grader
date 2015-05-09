@@ -228,7 +228,10 @@ function loadTablePage(pagenr)
 function initPage() {
     $('#addWorksheetBtn').click(function() {
         alert(viewModel.currentCourseId);
-        showNewWorksheetModal();
+        if (typeof null == viewModel.currentCourseId) {
+            alert("Gelieve een vak te selecteren.");
+        } else
+            showNewWorksheetModal();
     });
     
     $.getJSON('/api/currentuser', function(data) {
