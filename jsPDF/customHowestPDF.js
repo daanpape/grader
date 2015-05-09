@@ -74,11 +74,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
                     for(var indicatorKey in projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'])
                     {
-                        if(projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description'].length > 30)
-                        {
-                            doc.text(xPos,yPos,projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description'].substring(0,70));
-                        }
-                        //doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
+                        doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['description']);
                         xPos = 105;
                         doc.text(xPos,yPos, projectstructure[competenceKey]['subcompetences'][subcompetenceKey]['indicators'][indicatorKey]['weight']);
                         xPos = 125;
