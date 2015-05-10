@@ -63,7 +63,7 @@ function pageViewModel(gvm) {
                     break;
             }
         });
-        console.log(viewModel.assessMethod);
+        console.log(viewModel.assessMethod());
     }
 }
     
