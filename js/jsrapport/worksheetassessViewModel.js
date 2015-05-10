@@ -54,11 +54,11 @@ function pageViewModel(gvm) {
             switch(data[0].assessment) {
                 case 'A - E':
                     var array = ['A', 'B', 'C', 'D', 'E'];
-                    viewModel.assessMethod = array.slice();
+                    fillArray(array);
                     break;
                 case '1 - 10':
                     var array = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-                    viewModel.assessMethod = array.slice();
+                    fillArray(array);
                     break;
                 default:
                     //input field
@@ -67,6 +67,12 @@ function pageViewModel(gvm) {
         });
         console.log(viewModel.assessMethod());
     }
+}
+
+function fillArray(array) {
+    $.each(array, function(i, item) {
+        viewModel.assessMethod.push(item);
+    });
 }
     
 function initPage() {      
