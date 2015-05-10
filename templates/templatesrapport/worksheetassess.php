@@ -41,7 +41,7 @@
                                                     <span class="text-center">Choose...</span>
                                                     <span class="pull-right caret-down caret"></span>
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: assessMethod">
                                                     <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
                                                 </ul>
                                             </div>
@@ -58,14 +58,14 @@
                                                                 <span class="text-center">Choose...</span>
                                                                 <span class="pull-right caret-down caret"></span>
                                                             </button>
-                                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: assessMethod">
                                                                 <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
-                                                            <li class="list-group-item">
+                                                            <li>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 </div>
@@ -74,7 +74,7 @@
                                                                         <span class="text-center">Choose...</span>
                                                                         <span class="pull-right caret-down caret"></span>
                                                                     </button>
-                                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
+                                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: assessMethod">
                                                                         <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
                                                                     </ul>
                                                                 </div>
