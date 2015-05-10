@@ -13,13 +13,7 @@
             .form-name {
                 display: inline-block !important;
                 margin-right: 10px;
-                width: 300px !important;
-            }
-            
-            .form-desc {
-                display: inline-block !important;
-                margin-right: 10px;
-                width: 520px !important;
+                width: 500px !important;
             }
 
             .validationSummary
