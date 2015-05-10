@@ -53,9 +53,11 @@ function pageViewModel(gvm) {
         $.getJSON('/api/worksheetdata/' + wid, function(data) {
             switch(data[0].assessment) {
                 case 'A - E':
+                    console.log('in A - E');
                     viewModel.assessMethod = ['A', 'B', 'C', 'D', 'E'];
                     break;
                 case '1 - 10':
+                    console.log('in 1 - 10');
                     viewModel.assessMethod = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
                     break;
                 default:
