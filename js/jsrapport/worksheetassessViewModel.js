@@ -65,14 +65,13 @@ function pageViewModel(gvm) {
                     break;
             }
         });
-        console.log(viewModel.assessMethod());
     }
 }
 
 function fillArray(array) {
     $.each(array, function(i, item) {
         viewModel.assessMethod.push({score: item});
-        $('ul.dropdown-assessMethod li').click(function(){
+        $('ul.dropdown-assessMethod li a').click(function(){
             $(".btn-assessScore span:first").text($(this).text());
         });
     });
