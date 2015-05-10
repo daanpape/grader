@@ -70,10 +70,11 @@ function pageViewModel(gvm) {
 }
 
 function fillArray(array) {
-    console.log(array);
     $.each(array, function(i, item) {
-        console.log(item);
         viewModel.assessMethod.push({score: item});
+        $('ul.dropdown-assessMethod li').click(function(){
+            $(".btn-assessScore span:first").text($(this).text());
+        });
     });
 }
     
