@@ -24,6 +24,10 @@
             .hide{
                 display: none;
             }
+            
+            form {
+                margin-bottom: 200px;
+            }
         </style>
         
         <?php include_once('templates/hddepends.php');  ?>
@@ -119,8 +123,10 @@
                         </div>
                         <br />
                         
-                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
-                        <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
+                        <div>
+                            <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                            <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
+                        </div>
                     </form>
                 </div>
             </div>
