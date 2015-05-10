@@ -69,16 +69,15 @@ function pageViewModel(gvm) {
         data["course"] = $(".btn-courseRapport span:first").text();
         data["courseid"] = gvm.currentCourseId;
 
-        /*
         $.ajax({
             type: "POST",
-            url: "/api/savedropdownsRapport",
+            url: "/api/savedropdownsRapportWorksheet",
             data: data,
             success: function() {
                 console.log("success");
             }
         })
-        */
+
     }
 }
 

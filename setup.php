@@ -13,7 +13,9 @@ class StepController
             'Step001_database',
             'Step002_dbconnect',
             'Step310_dbcreate',
-            'Step314_createconfig'
+            'Step311_siteconfig',
+            'Step314_createconfig',
+            'Step400_complete'
         );
         
         if(!isset($_SESSION['currentStep']))
@@ -71,7 +73,7 @@ class Step314_createconfig implements ISetupStep
     
     public function OKForNextStep()
     {
-        
+        return true;
     }
 
     
@@ -83,7 +85,7 @@ class Step314_createconfig implements ISetupStep
 class Config
 {
     /* Site configuration */
-    public static \$siteURL	= 'http://dptknokke.ns01.info:9000';
+    public static \$siteURL	= '{$DBDetails['siteURL']}';
 
     /* Database configuration */
     public static \$dbServer = '{$DBDetails['SQLHost']}';
@@ -97,7 +99,7 @@ class Config
 
     /* Log file */
     public static \$logfile = './logfile.log';
-     
+
     /*
      * Image upload settings
      */
@@ -152,7 +154,14 @@ EOD;
     }
 }
 
+class Step311_siteconfig implements ISetupStep
+{
+    public function OKForNextStep()
+    {
+        return true;
+    }
 
+}
 
 class Step310_dbcreate implements ISetupStep
 {
@@ -216,8 +225,16 @@ class Step310_dbcreate implements ISetupStep
         }
         else
         {
-            $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
-            $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            try
+            {
+                $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+                $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
+            catch(\Exception $ex)
+            {
+                $Log[] = "FAIL: Couldn't connect to database server: {$ex->getMessage()}";
+                return $Log;
+            }
         }
         
         $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
@@ -259,6 +276,7 @@ class Step002_dbconnect implements ISetupStep
     
     public function TestDB()
     {
+        $_SESSION['Step002_dbconnect']['OKForNextStep'] = false;
         $tests = array();
         $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         
@@ -543,11 +561,52 @@ if(@$filteredGET['mode'] == 'json')
         
         <div id="Step310_dbcreate">
             <button data-bind="click: createDB">Create database</button>
+            
+            <ul data-bind="foreach: resultLog">
+                <li><span data-bind="text: message"></span></li>
+            </ul>
+
         </div>
         
         <!-- / Step 310: create db -->
         
+        <?php
+        if($_SERVER['SERVER_PORT'] == 80 && $_SERVER['REQUEST_SCHEME'] == 'http')
+        {
+            $Port = null;
+        }
+        elseif($_SERVER['SERVER_PORT'] == 443 && $_SERVER['REQUEST_SCHEME'] == 'https')
+        {
+            $Port = null;
+        }
+        else
+        {
+            $Port = $_SERVER['SERVER_PORT'];
+        }
         
+        $siteURL = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . $Port;
+        
+        ?>
+        
+        <div id="Step311_siteconfig">
+            Please enter the following configuration details:
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Site URL:</td>
+                        <td><input type="text" value="<?php echo $siteURL; ?>" name="siteURL"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
         <!-- Step 314: create config file -->
         
         <div id="Step314_createconfig">
@@ -579,9 +638,17 @@ if(@$filteredGET['mode'] == 'json')
         
         <!-- / Step 314: create config file -->
         
+        <!-- Step 400: complete -->
+        <div id="Step400_complete">
+            Grader setup has now complete. Login at
+            <a href="">http://...</a>
+        </div>
+        <!-- / Step 400: complete -->
+        
+        
         <div id="buttons">
-            <input name="previousStep" type="submit" value="« Previous step" />
-            <input name="nextStep" data-bind="enable: OKForNextStep" type="submit" value="Next step »" />
+            <button name="previousStep" data-bind="click: recede">« Previous step</button>
+            <button name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
         </div>
 
         <script type="text/javascript">
@@ -598,19 +665,32 @@ if(@$filteredGET['mode'] == 'json')
                 self.steps.Step001_database = new step001_database();
                 self.steps.Step002_dbconnect = new step002_dbconnect();
                 self.steps.Step310_dbcreate = new step310_dbcreate();
+                self.steps.Step311_siteconfig = new step311_siteconfig();
                 self.steps.Step314_createconfig = new step314_createconfig();
+                self.steps.Step400_complete = new step400_complete();
                 
                 ko.applyBindings(self.steps.Step000_sysreq, document.getElementById("Step000_sysreq"));
                 ko.applyBindings(self.steps.Step001_database, document.getElementById("Step001_database"));
                 ko.applyBindings(self.steps.Step002_dbconnect, document.getElementById("Step002_dbconnect"));
                 ko.applyBindings(self.steps.Step310_dbcreate, document.getElementById("Step310_dbcreate"));
+                ko.applyBindings(self.steps.Step311_siteconfig, document.getElementById("Step311_siteconfig"));
                 ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
-
+                ko.applyBindings(self.steps.Step400_complete, document.getElementById("Step400_complete"));
 
             
                 function stepControllerViewModel()
                 {
                     this.OKForNextStep = self.OKForNextStep;
+                    
+                    this.advance = function()
+                    {
+                        self.advance();
+                    }
+                    
+                    this.recede = function()
+                    {
+                        self.recede();
+                    }
                 }
                 
                 this.reevaluateOKForNextStep = function()
@@ -778,6 +858,8 @@ if(@$filteredGET['mode'] == 'json')
             {
                 var self = this;
                 
+                self.resultLog = ko.observableArray([]);
+                
                 this.createDB = function()
                 {
                     var dbdata =
@@ -796,11 +878,22 @@ if(@$filteredGET['mode'] == 'json')
                         dbdata,
                         function(allData)
                         {
-                            console.log(allData);
+                            var resultLog = $.map(allData, function(item) { return new self.resultLogEntry(item) });
+                            self.resultLog(resultLog);
                             sc.reevaluateOKForNextStep();
                         }
                     );
                 }
+                
+                this.resultLogEntry = function(data)
+                {
+                    this.message = ko.observable(data);
+                }
+            }
+            
+            function step311_siteconfig()
+            {
+                
             }
 
 
@@ -823,7 +916,8 @@ if(@$filteredGET['mode'] == 'json')
                         "SQLDBName": $("input[name=SQLDBName]").val(),
                         "SQLRootUser": $("input[name=SQLRootUser]").val(),
                         "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
+                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB,
+                        "siteURL": $("input[name=siteURL]").val()
                     };
                     
                     $.getJSON(
@@ -842,22 +936,17 @@ if(@$filteredGET['mode'] == 'json')
                     );
                 }
             }
+            
+            function step400_complete()
+            {
+                this.activate = function()
+                {
+                    $("#buttons").hide();
+                }
+            }
 
             var sc = new stepController();
             sc.start();
-
-            $("input[name=nextStep]").on("click", function() 
-                {
-                    sc.advance();
-                }
-            );
-    
-            $("input[name=previousStep]").on("click", function() 
-                {
-                    sc.recede();
-                }
-            );
-
         </script>
     </body>
 
