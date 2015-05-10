@@ -79,13 +79,13 @@ class Step314_createconfig implements ISetupStep
     
     public function writeConfig()
     {
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        $DBDetails = $_SESSION['Step001_database'];
         $config = <<<EOD
 <?php
 class Config
 {
     /* Site configuration */
-    public static \$siteURL	= '{$DBDetails['siteURL']}';
+    public static \$siteURL	= '{$_SESSION['Step311_siteconfig']['siteURL']}';
 
     /* Database configuration */
     public static \$dbServer = '{$DBDetails['SQLHost']}';
@@ -156,11 +156,47 @@ EOD;
 
 class Step311_siteconfig implements ISetupStep
 {
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step311_siteconfig']))
+        {
+            if($_SERVER['SERVER_PORT'] == 80 && $_SERVER['REQUEST_SCHEME'] == 'http')
+            {
+                $Port = null;
+            }
+            elseif($_SERVER['SERVER_PORT'] == 443 && $_SERVER['REQUEST_SCHEME'] == 'https')
+            {
+                $Port = null;
+            }
+            else
+            {
+                $Port = $_SERVER['SERVER_PORT'];
+            }
+
+            $siteURL = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . $Port;
+        
+            $_SESSION['Step311_siteconfig']['siteURL'] = $siteURL;
+        }
+    }
+    
     public function OKForNextStep()
     {
         return true;
     }
 
+    public function saveValues()
+    {
+        $siteConfig = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        foreach($siteConfig as $key => $value)
+        {
+            $_SESSION['Step311_siteconfig'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step311_siteconfig'];
+    }
 }
 
 class Step310_dbcreate implements ISetupStep
@@ -176,7 +212,7 @@ class Step310_dbcreate implements ISetupStep
     
     public function CreateDB()
     {
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        $DBDetails = $_SESSION['Step001_database'];
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
@@ -278,8 +314,7 @@ class Step002_dbconnect implements ISetupStep
     {
         $_SESSION['Step002_dbconnect']['OKForNextStep'] = false;
         $tests = array();
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-        
+        $DBDetails = $_SESSION['Step001_database'];
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
@@ -339,6 +374,34 @@ class Step002_dbconnect implements ISetupStep
 
 class Step001_database implements ISetupStep
 {
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step001_database']))
+        {
+            $_SESSION['Step001_database'] = array(
+                'SQLHost' => 'localhost',
+                'SQLUser' => '',
+                'SQLPassword' => '',
+                'SQLDBName' => '',
+                'SQLRootUser' => 'root',
+                'SQLRootPassword' => '',
+                'createUserAndDB' => false
+            );
+        }
+    }
+    public function saveValues()
+    {
+        foreach(json_decode($_GET['dbdetails'], true) as $key => $value)
+        {
+            $_SESSION['Step001_database'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step001_database'];
+    }
+    
     public function OKForNextStep()
     {
         return true;
@@ -493,20 +556,20 @@ if(@$filteredGET['mode'] == 'json')
                 <tbody>
                     <tr>
                         <td>SQL host:</td>
-                        <td><input name="SQLHost" type="text" value="localhost" /></td>
+                        <td><input data-bind="value: SQLHost" /></td>
                     </tr>
                     <tr>
                         <td>SQL user<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input name="SQLUser" type="text" /></td>
+                        <td><input data-bind="value: SQLUser" /></td>
                     </tr>
                     <tr>
                         <td>SQL password:</td>
-                        <td><input name="SQLPassword" type="text" /> <span class="rpasslink" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span></td>
+                        <td><input data-bind="value: SQLPassword" /> <span class="rpasslink" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span></td>
                     </tr>
 
                     <tr>
                         <td>SQL database<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input name="SQLDBName" type="text" /></td>
+                        <td><input data-bind="value: SQLDBName" /></td>
                     </tr>
                     <tr>
                         <td>Create user & database for me?</td>
@@ -516,11 +579,11 @@ if(@$filteredGET['mode'] == 'json')
                     <!-- ko if: createUserAndDB -->
                     <tr>
                         <td>SQL root user:</td>
-                        <td><input name="SQLRootUser" type="text" value="root" /></td>
+                        <td><input data-bind="value: SQLRootUser" /></td>
                     </tr>
                     <tr>
                         <td>SQL root password:</td>
-                        <td><input name="SQLRootPassword" type="password" /></td>
+                        <td><input data-bind="value: SQLRootPassword" /></td>
                     </tr>
                     <!-- /ko -->
                 </tbody>
@@ -569,25 +632,7 @@ if(@$filteredGET['mode'] == 'json')
         </div>
         
         <!-- / Step 310: create db -->
-        
-        <?php
-        if($_SERVER['SERVER_PORT'] == 80 && $_SERVER['REQUEST_SCHEME'] == 'http')
-        {
-            $Port = null;
-        }
-        elseif($_SERVER['SERVER_PORT'] == 443 && $_SERVER['REQUEST_SCHEME'] == 'https')
-        {
-            $Port = null;
-        }
-        else
-        {
-            $Port = $_SERVER['SERVER_PORT'];
-        }
-        
-        $siteURL = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . $Port;
-        
-        ?>
-        
+
         <div id="Step311_siteconfig">
             Please enter the following configuration details:
             <table>
@@ -600,7 +645,7 @@ if(@$filteredGET['mode'] == 'json')
                 <tbody>
                     <tr>
                         <td>Site URL:</td>
-                        <td><input type="text" value="<?php echo $siteURL; ?>" name="siteURL"/></td>
+                        <td><input type="text" data-bind="value: siteURL" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -801,13 +846,57 @@ if(@$filteredGET['mode'] == 'json')
 
             function step001_database()
             {
+                var self = this;
+                
+                this.SQLHost = ko.observable("");
+                this.SQLUser = ko.observable("");
+                this.SQLPassword = ko.observable("");
+                this.SQLDBName = ko.observable("");
+                this.SQLRootUser = ko.observable("");
+                this.SQLRootPassword = ko.observable("");
                 this.createUserAndDB = ko.observable(false);
                 
                 this.genRandPass = function()
                 {
                     // From http://stackoverflow.com/questions/9719570/generate-random-password-string-with-requirements-in-javascript
                     var randPass = Math.random().toString(36).slice(-9);
-                    $("input[name=SQLPassword]").val(randPass);
+                    self.SQLPassword(randPass);
+                }
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step001_database&method=retrieveValues",
+                        function(values)
+                        {
+                            self.SQLHost(values.SQLHost);
+                            self.SQLUser(values.SQLUser);
+                            self.SQLPassword(values.SQLPassword);
+                            self.SQLDBName(values.SQLDBName);
+                            self.SQLRootUser(values.SQLRootUser);
+                            self.SQLRootPassword(values.SQLRootPassword);
+                            self.createUserAndDB(values.createUserAndDB);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var dbdata =
+                    {
+                        "SQLHost": self.SQLHost,
+                        "SQLUser": self.SQLUser,
+                        "SQLPassword": self.SQLPassword,
+                        "SQLDBName": self.SQLDBName,
+                        "SQLRootUser": self.SQLRootUser,
+                        "SQLRootPassword": self.SQLRootPassword,
+                        "createUserAndDB": self.createUserAndDB
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step001_database&method=saveValues",
+                        { "dbdetails" : ko.toJSON(dbdata) }
+                    );
                 }
             }
             
@@ -829,21 +918,9 @@ if(@$filteredGET['mode'] == 'json')
                 }
                 
                 this.testDB = function()
-                {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
-                    };
-                    
+                {   
                     $.getJSON(
                         "setup.php?mode=json&class=Step002_dbconnect&method=TestDB",
-                        dbdata,
                         function(allData)
                         {
                             var mappedTests = $.map(allData, function(item) { return new self.test(item) });
@@ -862,20 +939,8 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.createDB = function()
                 {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
-                    };
-
                     $.getJSON(
                         "setup.php?mode=json&class=Step310_dbcreate&method=CreateDB",
-                        dbdata,
                         function(allData)
                         {
                             var resultLog = $.map(allData, function(item) { return new self.resultLogEntry(item) });
@@ -893,7 +958,34 @@ if(@$filteredGET['mode'] == 'json')
             
             function step311_siteconfig()
             {
+                var self = this;
                 
+                this.siteURL = ko.observable("");
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_siteconfig&method=retrieveValues",
+                        function(values)
+                        {
+                            console.log(values);
+                            self.siteURL(values.siteURL);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var siteconfig =
+                    {
+                        "siteURL": self.siteURL
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_siteconfig&method=saveValues",
+                        siteconfig
+                    );
+                }
             }
 
 
@@ -907,22 +999,9 @@ if(@$filteredGET['mode'] == 'json')
                 this.executed = ko.observable(false);
                 
                 this.writeConfig = function()
-                {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB,
-                        "siteURL": $("input[name=siteURL]").val()
-                    };
-                    
+                {   
                     $.getJSON(
                         "setup.php?mode=json&class=Step314_createconfig&method=writeConfig",
-                        dbdata,
                         function(allData)
                         {
                             self.config(allData.config);
