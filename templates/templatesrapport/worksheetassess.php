@@ -109,9 +109,9 @@
                         </div>
                         <br />
                         
-                        <div class="form-group">
-                            <label data-bind="text: formworksheet"></label><br />
-                            <div class="dropdown col-md-2 row">
+                        <label data-bind="text: formworksheet"></label>
+                        <div class="row">
+                            <div class="dropdown col-md-2">
                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Choose...</span>
                                     <span class="pull-right caret-down caret"></span>
@@ -121,12 +121,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <br />
                         
-                        <div class="form-group">
-                            <input type="submit" id="submit" value="Save" class="btn btn-primary" />
-                            <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
-                        </div>
+                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                        <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>
                 </div>
             </div>
