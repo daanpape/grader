@@ -51,7 +51,7 @@ function pageViewModel(gvm) {
     
     gvm.getAssessMethod = function(wid) {
         $.getJSON('/api/worksheetdata/' + wid, function(data) {
-            console.log(data);
+            console.log(data.assessment);
         });
     }
 }
