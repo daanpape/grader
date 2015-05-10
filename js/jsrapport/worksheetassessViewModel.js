@@ -51,7 +51,17 @@ function pageViewModel(gvm) {
     
     gvm.getAssessMethod = function(wid) {
         $.getJSON('/api/worksheetdata/' + wid, function(data) {
-            console.log(data[0].assessment);
+            switch(data[0].assessment) {
+                case 'A - E':
+                    viewModel.assessMethod.push(['A', 'B', 'C', 'D', 'E']);
+                    break;
+                case '1 - 10':
+                    viewModel.assessMethod.push(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
+                    break;
+                default:
+                    //input field
+                    break;
+            }
         });
     }
 }
