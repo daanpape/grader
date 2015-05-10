@@ -107,7 +107,15 @@
                         
                         <div class="form-group">
                             <label data-bind="text: formworksheet"></label>
-                            <!-- worksheet score -->
+                            <div class="dropdown col-md-2">
+                                <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                    <span class="text-center">Choose...</span>
+                                    <span class="pull-right caret-down caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                </ul>
+                            </div>
                         </div>
                         <br />
                         

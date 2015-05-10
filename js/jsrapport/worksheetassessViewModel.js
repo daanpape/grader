@@ -49,8 +49,10 @@ function pageViewModel(gvm) {
         });
     }
     
-    gvm.getAssessMethod = function() {
-        //getJSON
+    gvm.getAssessMethod = function(wid) {
+        $.getJSON('/api/worksheetdata/' + wid, function(data) {
+            console.log(data);
+        });
     }
 }
     
@@ -59,7 +61,7 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.courseId = $('#storage').attr('data-value');
         viewModel.updateModules(viewModel.courseId);
-        viewModel.getAssessMethod();
+        viewModel.getAssessMethod(viewModel.courseId);
     });
     
     $('#date').datepicker();
