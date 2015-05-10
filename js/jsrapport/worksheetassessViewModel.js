@@ -72,7 +72,7 @@ function fillArray(array) {
     $.each(array, function(i, item) {
         viewModel.assessMethod.push({score: item});
         $('ul.dropdown-assessMethod li a').click(function(){
-            $(".btn-assessScore span:first").text($(this).text());
+            $('ul.dropdown-assessMethod li a').parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
         });
     });
 }
