@@ -26,7 +26,7 @@
             }
             
             form {
-                margin-bottom: 200px;
+                margin-bottom: 100px;
             }
         </style>
         
