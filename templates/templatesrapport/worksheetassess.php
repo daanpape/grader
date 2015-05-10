@@ -65,7 +65,7 @@
                                                     </div>
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
-                                                            <li>
+                                                            <li class="list-group-item">
                                                                 <div class="col-xs-5">
                                                                     <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 </div>
