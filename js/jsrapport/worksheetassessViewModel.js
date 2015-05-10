@@ -51,7 +51,7 @@ function pageViewModel(gvm) {
     
     gvm.getAssessMethod = function(wid) {
         $.getJSON('/api/worksheetdata/' + wid, function(data) {
-            console.log(data[0]);
+            console.log(data);
         });
     }
 }
@@ -59,9 +59,12 @@ function pageViewModel(gvm) {
 function initPage() {      
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
+        
         viewModel.courseId = $('#storage').attr('data-value');
         viewModel.updateModules(viewModel.courseId);
-        viewModel.getAssessMethod(viewModel.courseId);
+        
+        var wid = $('#header').attr('data-value');
+        viewModel.getAssessMethod(wid);
     });
     
     $('#date').datepicker();
