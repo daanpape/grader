@@ -32,10 +32,8 @@
                             <div class="container" data-bind="foreach: modules">
                                 <div class="col-md-12 compPanel">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">    
-                                            <div class="col-xs-5">                                                
-                                                <input type="text" placeholder="module name" class="form-control form-name col-xs-3" data-bind="value: modname">
-                                            </div>
+                                        <div class="panel-heading">                                                   
+                                            <input type="text" placeholder="module name" class="form-control form-name col-xs-3" data-bind="value: modname">
                                             <div class="dropdown col-md-2">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                     <span class="text-center">Choose...</span>
@@ -50,9 +48,7 @@
                                             <div class="subcompPanel">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading color-subcomp">
-                                                        <div class="col-xs-5">
-                                                            <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
-                                                        </div>
+                                                        <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
                                                         <div class="dropdown col-md-2">
                                                             <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                                 <span class="text-center">Choose...</span>
@@ -66,9 +62,7 @@
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
                                                             <li class="list-group-item">
-                                                                <div class="col-xs-5">
-                                                                    <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
-                                                                </div>
+                                                                <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 <div class="dropdown col-md-2">
                                                                     <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                                         <span class="text-center">Choose...</span>
