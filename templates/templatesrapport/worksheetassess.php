@@ -111,7 +111,7 @@
                         
                         <div class="form-group">
                             <label data-bind="text: formworksheet"></label><br />
-                            <div class="dropdown col-md-2">
+                            <div class="dropdown col-md-2 row">
                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                     <span class="text-center">Choose...</span>
                                     <span class="pull-right caret-down caret"></span>
