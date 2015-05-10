@@ -72,6 +72,7 @@ function pageViewModel(gvm) {
 function fillArray(array) {
     console.log(array);
     $.each(array, function(i, item) {
+        console.log(item);
         viewModel.assessMethod.push(item);
     });
 }
