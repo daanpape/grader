@@ -76,7 +76,7 @@
                                                                 <span class="pull-right caret-down caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
-                                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
