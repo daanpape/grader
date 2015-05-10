@@ -123,10 +123,8 @@
                         </div>
                         <br />
                         
-                        <div class="row">
-                            <input type="submit" id="submit" value="Save" class="btn btn-primary" />
-                            <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
-                        </div>
+                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                        <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>
                 </div>
             </div>
