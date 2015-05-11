@@ -73,9 +73,8 @@ function fillArray(array) {
         viewModel.assessMethod.push({score: item});
         $('ul.dropdown-assessMethod li a').click(function(e){
             $(this).parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
-            console.log(viewModel.modules);
-            $.each(viewModel.modules(), function(i, item) {
-                console.log(item);
+            $.each(viewModel.modules, function(i, item) {
+                console.log(item.modid);
             });
             e.preventDefault();
         });
