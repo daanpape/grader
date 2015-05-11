@@ -80,7 +80,9 @@ function fillArray(array) {
 }
 
 function getModuleScores() {
-    
+    $('.btn-assessScore span:first').each(function(index) {
+        console.log($(this).val());
+    });
 }
     
 function initPage() {      
@@ -96,10 +98,9 @@ function initPage() {
     
     $('#submit').click(function() {
         var date = $('#date').val();
-        var moduleScores = getModuleScores();
+        getModuleScores();
+        //var moduleScores = getModuleScores();
         var worksheetScore = $('.btn-assessScore span:first').text();
-        console.log(date);
-        console.log(worksheetScore);
     });
     
     $('#date').datepicker();
