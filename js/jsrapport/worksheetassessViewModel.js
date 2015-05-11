@@ -74,7 +74,7 @@ function fillArray(array) {
         $('ul.dropdown-assessMethod li a').click(function(e){
             $(this).parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
             $(this).parent().parent().parent().find('.btn-assessScore span:first').val($(this).text());
-            console.log($(this).parent().parent().parent().find('.btn-assessScore span:first').val());
+            console.log($(this).parent().parent().parent().find('.btn-assessScore span:first').val().get(0));
             e.preventDefault();
         });
     });
