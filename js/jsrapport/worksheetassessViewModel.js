@@ -78,16 +78,26 @@ function fillArray(array) {
         e.preventDefault();
     });
 }
+
+function getModuleScores() {
+    
+}
     
 function initPage() {      
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        
-        viewModel.courseId = $('#storage').attr('data-value');
-        viewModel.updateModules(viewModel.courseId);
-        
-        var wid = $('#header').attr('data-value');
-        viewModel.getAssessMethod(wid);
+    });
+    
+    viewModel.courseId = $('#storage').attr('data-value');
+    viewModel.updateModules(viewModel.courseId);
+
+    var wid = $('#header').attr('data-value');
+    viewModel.getAssessMethod(wid);
+    
+    $('#submit').click(function() {
+        var date = $('#date').val();
+        var moduleScores = getModuleScores();
+        var worksheetScore = $('.btn-assessScore span:first').text();
     });
     
     $('#date').datepicker();
