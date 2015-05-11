@@ -98,7 +98,7 @@ function initPage() {
     
     $('#submit').click(function() {
         var date = $('#date').val();
-        //getModuleScores();
+        getModuleScores();
         //var moduleScores = getModuleScores();
         var worksheetScore = $('.btn-assessScore span:first').text();
     });
