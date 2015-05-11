@@ -580,15 +580,45 @@ class rapportenDAO {
     }
     
     public static function assessModules($sheetmodule, $user, $score) {
-        
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_module_score_rapport(werkfiche_module, werkfiche_user, score)
+                                    VALUES (?,?,?");
+            $stmt->execute(array($sheetmodule, $user, $score));
+            $sid = $conn->lastInsertId();
+            return $sid;
+        } catch (PDOException $err) {
+            Logger::logError('Could not insert score for module', $err);
+            return null;
+        }
     }
     
     public static function assessCompetences($sheetcompetence, $user, $score) {
-        
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_competence_score_rapport(werkfiche_competence, werkfiche_user, score)
+                                    VALUES (?,?,?");
+            $stmt->execute(array($sheetcompetence, $user, $score));
+            $sid = $conn->lastInsertId();
+            return $sid;
+        } catch (PDOException $err) {
+            Logger::logError('Could not insert score for competence', $err);
+            return null;
+        }
     }
     
     public static function assessCriteria($sheetcriteria, $user, $score) {
-        
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_score_rapport(werkfiche_criteria, werkfiche_user, score)
+                                    VALUES (?,?,?");
+            $stmt->execute(array($sheetcriteria, $user, $score));
+            $sid = $conn->lastInsertId();
+            return $sid;
+        } catch (PDOException $err) {
+            Logger::logError('Could not insert score for criteria', $err);
+            return null;
+        }
     }
     
     public static function getWorksheetData($wid) {
@@ -597,6 +627,51 @@ class rapportenDAO {
             $stmt = $conn->prepare("SELECT equipment, method, assessment FROM werkfiche_rapport
                                     WHERE id = :wid");
             $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select worksheetdata by id ' . $wid, $err);
+            return null;
+        }
+    }
+    
+    public static function getWorksheetModule($wid, $modid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT id FROM werkfiche_module_rapport
+                                    WHERE werkfiche = :wid AND module = :modid");
+            $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->bindValue(':modid', (int) $modid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select worksheetdata by id ' . $wid, $err);
+            return null;
+        }
+    }
+    
+    public static function getWorksheetCompetence($wid, $compid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT id FROM werkfiche_competence_rapport
+                                    WHERE werkfiche = :wid AND competence = :compid");
+            $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->bindValue(':compid', (int) $compid, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select worksheetdata by id ' . $wid, $err);
+            return null;
+        }
+    }
+    
+    public static function getWorksheetCriteria($wid, $critid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT id FROM werkfiche_criteria_rapport
+                                    WHERE werkfiche = :wid AND criteria = :critid");
+            $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
+            $stmt->bindValue(':critid', (int) $critid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {

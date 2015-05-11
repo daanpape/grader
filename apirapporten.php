@@ -117,26 +117,6 @@ Class RapportAPI {
         return rapportenDAO::getWorkficheCourseUserCount($userid, $course);
     }
 
-    /*
-     *
-     * Momenteel niet langer gebruikt.
-     *
-     *
-    public static function getIDFromTeacherByName($firstname, $lastname) {
-        return rapportenDAO::getIDFromTeacherByName($firstname, $lastname);
-    }
-    */
-
-    /*
-     *
-     * Momenteel niet langer gebruikt.
-     *
-     *
-    public static function getIDFromStudentlistByName($id, $name) {
-        return rapportenDAO::getIDFromStudentlistByName($id, $name);
-    }
-    */
-
     public static function addTeacher($id) {
         return rapportenDAO::addTeacher($id);
     }
@@ -260,6 +240,19 @@ Class RapportAPI {
     
     public static function assessWorksheet($wid, $userid, $date, $sheetscore, $modscores, $compscores, $critscores) {
         rapportenDAO::assessWorksheet($wid, $userid, $date, $sheetscore);
+        
+        foreach($modscores as $modscore) {
+            $id = rapportenDAO::getWorksheetModule($wid, $modscore['modid']);
+            rapportenDAO::assessModules($id, $userid, $modscore['score']);
+        }
+        foreach($compscores as $compscore) {
+            $id = rapportenDAO::getWorksheetCompetence($wid, $compscore['comid']);
+            rapportenDAO::assessCompetences($id, $userid, $compscore['score']);
+        }
+        foreach($critscores as $critscore) {
+            $id = rapportenDAO::getWorksheetCriteria($wid, $critscore['critid']);
+            rapportenDAO::assessCriteria($id, $userid, $critscores['score']);
+        }
     }
 
     public static function getAllDataFromCourse($id) {
