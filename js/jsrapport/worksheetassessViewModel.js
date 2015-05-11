@@ -97,7 +97,7 @@ function getScores() {
             $.each(item.criterias, function(i, item) {
                 if($("#critScore-" + item.critid).length != 0) {   //check if element with given id exists
                     var score = $('#critScore-' + item.critid).text();
-                    critScores.push({modid: item.critid, score: score});
+                    critScores.push({critid: item.critid, score: score});
                 }
             });
         });
@@ -122,9 +122,15 @@ function initPage() {
     $('#submit').click(function() {
         var date = $('#date').val();
         var scores = getScores();
-        console.log(scores[0]);
-        console.log(scores[1]);
-        console.log(scores[2]);
+        $.each(scores[0], function(i, item) {
+            console.log(item.modid + ': ' + item.score);
+        });
+        $.each(scores[1], function(i, item) {
+            console.log(item.comid + ': ' + item.score);
+        });
+        $.each(scores[2], function(i, item) {
+            console.log(item.critid + ': ' + item.score);
+        });
         var worksheetScore = $('.btn-assessScore span:first').text();
     });
     
