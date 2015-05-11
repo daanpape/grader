@@ -90,7 +90,7 @@
                                                                 <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 <div class="dropdown col-md-2">
                                                                     <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                                        <span class="text-center" data-bind="valueWithInit: score">Choose...</span>
+                                                                        <span class="text-center" data-bind="value: score">Choose...</span>
                                                                         <span class="pull-right caret-down caret"></span>
                                                                     </button>
                                                                     <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
