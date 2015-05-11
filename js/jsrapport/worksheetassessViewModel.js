@@ -79,10 +79,33 @@ function fillArray(array) {
     });
 }
 
-function getModuleScores() {
-    $(document).find('.btn-assessScore span:first').each(function(index) {
-        console.log($(this).val());
+function getScores() {
+    var collection = [];
+    var modScores = [];
+    var compScores = [];
+    var critScores = [];
+    $.each(viewModel.modules(), function(i, item) {
+        if($("#modScore-" + item.modid).length != 0) {   //check if element with given id exists
+            var score = $('#modScore-' + item.modid).text();
+            modScores.push({modid: item.modid, score: score});
+        }
+        $.each(item.competences, function(i, item) {
+            if($("#comScore-" + item.comid).length != 0) {   //check if element with given id exists
+                var score = $('#comScore-' + item.comid).text();
+                compScores.push({comid: item.comid, score: score});
+            }
+            $.each(item.criterias, function(i, item) {
+                if($("#critScore-" + item.critid).length != 0) {   //check if element with given id exists
+                    var score = $('#critScore-' + item.critid).text();
+                    critScores.push({modid: item.critid, score: score});
+                }
+            });
+        });
     });
+    collection.push(modScores);
+    collection.push(compScores);
+    collection.push(critScores);
+    return collection;
 }
     
 function initPage() {      
@@ -98,8 +121,8 @@ function initPage() {
     
     $('#submit').click(function() {
         var date = $('#date').val();
-        getModuleScores();
-        //var moduleScores = getModuleScores();
+        var scores = getScores();
+        console.log(scores);
         var worksheetScore = $('.btn-assessScore span:first').text();
     });
     

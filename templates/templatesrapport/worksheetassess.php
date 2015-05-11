@@ -61,7 +61,7 @@
                                             <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
                                             <div class="dropdown col-md-2">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                    <span class="text-center" data-bind="value: modname">Choose...</span>
+                                                    <span class="text-center" data-bind="attr:{'id': 'modScore-' + modid}">Choose...</span>
                                                     <span class="pull-right caret-down caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
@@ -76,7 +76,7 @@
                                                         <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
                                                         <div class="dropdown col-md-2">
                                                             <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                                <span class="text-center" data-bind="value: comname">Choose...</span>
+                                                                <span class="text-center" data-bind="attr:{'id': 'comScore-' + comid}">Choose...</span>
                                                                 <span class="pull-right caret-down caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
@@ -90,7 +90,7 @@
                                                                 <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 <div class="dropdown col-md-2">
                                                                     <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                                        <span class="text-center" data-bind="value: critname">Choose...</span>
+                                                                        <span class="text-center" data-bind="attr:{'id': 'critScore-' + critid}">Choose...</span>
                                                                         <span class="pull-right caret-down caret"></span>
                                                                     </button>
                                                                     <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
