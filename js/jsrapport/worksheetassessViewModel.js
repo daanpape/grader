@@ -138,7 +138,7 @@ function initPage() {
         var wid = $('#header').attr('data-value');
         var date = $('#date').val();
         var scores = getScores();
-        var worksheetScore = $('.btn-assessScore span:first').text();
+        var worksheetScore = $('#sheetscore').text();
         addWorksheetScores(date, scores, worksheetScore, wid, viewModel.userId);
     });
     
