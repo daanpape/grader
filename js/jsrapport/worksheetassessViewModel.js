@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
                 gvm.modules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modid: item.id, modname: item.name, competences: new Array()};
+                    var tblObject = {modid: item.id, modname: item.name, competences: new Array(), score: ko.observable('')};
                     if (item.doelstellingen[Object.keys(item.doelstellingen)[0]].id !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comid: item.id, comname: item.name, criterias: new Array()}
+            var tblObject = {comid: item.id, comname: item.name, criterias: new Array(), score: ko.observable('')}
             if (item.criterias[Object.keys(item.criterias)[0]] !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCriteria = function(data, criteria) {     
         $.each(data, function(i, item){
-            var tblObject = {critid: item.id, critname: item.name};
+            var tblObject = {critid: item.id, critname: item.name, score: ko.observable('')};
             criteria.push(tblObject);
         });
     }
@@ -73,6 +73,9 @@ function fillArray(array) {
         viewModel.assessMethod.push({score: item});
         $('ul.dropdown-assessMethod li a').click(function(e){
             $(this).parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
+            $.each(viewModel.modules, function(i, item) {
+                console.log(item.score);
+            });
             e.preventDefault();
         });
     });
