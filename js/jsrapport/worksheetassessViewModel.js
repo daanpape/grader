@@ -115,10 +115,10 @@ function addWorksheetScores(date, scores, worksheetScore, wid, userid) {
         data: {date: date, sheetscore: worksheetScore, modscores: scores[0], compscores: scores[1], critscores: scores[2]},
         success: function(data) {
             console.log(data);
-            callback(false);
+            //callback(false);
         },
         error: function(data) {
-            callback(true, i18n.__('AssessGeneralError'));
+            //callback(true, i18n.__('AssessGeneralError'));
         }
     });
 }
