@@ -308,6 +308,16 @@ $app->put('/api/worksheetproperties/:id/:assess', function($id, $assess) use ($a
     // Update the existing worksheetproperties
     echo json_encode(RapportAPI::updateWorksheetProperties($id, $app->request->post('equipment'), $app->request->post('method'), $assess));
 });
+
+$app->post('/api/assessworksheet/:wid/:userid', function($wid, $userid) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing worksheetproperties
+    echo json_encode(RapportAPI::assessWorksheet($wid, $userid, $app->request->post('date'), $app->request->post('sheetscore'), 
+            $app->request->post('modscores'), $app->request->post('compscores'), $app->request->post('critscores')));
+});
 //POST routes
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers

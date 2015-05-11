@@ -257,6 +257,10 @@ Class RapportAPI {
             return -1;
         }
     }
+    
+    public static function assessWorksheet($wid, $userid, $date, $sheetscore, $modscores, $compscores, $critscores) {
+        rapportenDAO::assessWorksheet($wid, $userid, $date, $sheetscore);
+    }
 
     public static function getAllDataFromCourse($id) {
         return rapportenDAO::getAllDataFromCourse($id);

@@ -567,6 +567,30 @@ class rapportenDAO {
         }
     }
     
+    public static function assessWorksheet($wid, $userid, $date, $score) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("UPDATE werkfiche_user_rapport SET datum = ?, score = ? WHERE werkfiche = ? AND user = ?");
+            $stmt->execute(array($date, $score, $wid, $userid));
+            return true;
+        } catch (PDOException $err) {
+            Logger::logError('Could not update worksheet', $err);
+            return false;
+        }
+    }
+    
+    public static function assessModules($sheetmodule, $user, $score) {
+        
+    }
+    
+    public static function assessCompetences($sheetcompetence, $user, $score) {
+        
+    }
+    
+    public static function assessCriteria($sheetcriteria, $user, $score) {
+        
+    }
+    
     public static function getWorksheetData($wid) {
         try {
             $conn = Db::getConnection();

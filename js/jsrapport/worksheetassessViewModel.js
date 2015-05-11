@@ -107,6 +107,21 @@ function getScores() {
     collection.push(critScores);
     return collection;
 }
+
+function addWorksheetScores(date, scores, worksheetScore, wid, userid) {
+    $.ajax({
+        url: "/api/assessworksheet/" + wid + '/' + userid,
+        type: "POST",
+        data: {date: date, sheetscore: worksheetScore, modscores: scores[0], compscores: scores[1], critscores: scores[2]},
+        success: function(data) {
+            console.log(data);
+            callback(false);
+        },
+        error: function(data) {
+            callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
+}
     
 function initPage() {      
     $.getJSON('/api/currentuser', function(data) {
@@ -120,18 +135,11 @@ function initPage() {
     });
     
     $('#submit').click(function() {
+        var wid = $('#header').attr('data-value');
         var date = $('#date').val();
         var scores = getScores();
-        $.each(scores[0], function(i, item) {
-            console.log(item.modid + ': ' + item.score);
-        });
-        $.each(scores[1], function(i, item) {
-            console.log(item.comid + ': ' + item.score);
-        });
-        $.each(scores[2], function(i, item) {
-            console.log(item.critid + ': ' + item.score);
-        });
         var worksheetScore = $('.btn-assessScore span:first').text();
+        addWorksheetScores(date, scores, worksheetScore, wid, viewModel.userId);
     });
     
     $('#date').datepicker();
