@@ -80,7 +80,7 @@ function fillArray(array) {
 }
 
 function getModuleScores() {
-    $('.btn-assessScore span:first').each(function(index) {
+    $(document).find('.btn-assessScore span:first').each(function(index) {
         console.log($(this).val());
     });
 }
