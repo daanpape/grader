@@ -45,7 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form id="worksheetassess">    <!-- action="/assessrapporten" -->
+                    <form id="worksheetassess" action="/assessrapporten">    <!-- action="/assessrapporten" -->
                         <div class="form-group">
                             <label data-bind="text: formdate"></label><br />
                             <input type="text" id="date" />
