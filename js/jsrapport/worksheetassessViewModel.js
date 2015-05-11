@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
                 gvm.modules.removeAll();
                 
                 $.each(data, function(i, item) {
-                    var tblObject = {modid: item.id, modname: item.name, competences: new Array(), score: ko.observable('')};
+                    var tblObject = {modid: item.id, modname: item.name, competences: new Array(), score: ko.observable('A')};
                     if (item.doelstellingen[Object.keys(item.doelstellingen)[0]].id !== null) {
                         gvm.updateCompetences(item.doelstellingen, tblObject.competences);
                     }
@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCompetences = function(data, competences) {          
         $.each(data, function(i, item) {
-            var tblObject = {comid: item.id, comname: item.name, criterias: new Array(), score: ko.observable('')}
+            var tblObject = {comid: item.id, comname: item.name, criterias: new Array(), score: ko.observable('B')}
             if (item.criterias[Object.keys(item.criterias)[0]] !== null) {
                 gvm.updateCriteria(item.criterias, tblObject.criterias);
             }
@@ -44,7 +44,7 @@ function pageViewModel(gvm) {
     
     gvm.updateCriteria = function(data, criteria) {     
         $.each(data, function(i, item){
-            var tblObject = {critid: item.id, critname: item.name, score: ko.observable('')};
+            var tblObject = {critid: item.id, critname: item.name, score: ko.observable('C')};
             criteria.push(tblObject);
         });
     }
