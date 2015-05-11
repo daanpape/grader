@@ -71,11 +71,11 @@ function pageViewModel(gvm) {
 function fillArray(array) {
     $.each(array, function(i, item) {
         viewModel.assessMethod.push({score: item});
-    });
-    $('ul.dropdown-assessMethod li a').click(function(e){
-        $(this).parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
-        console.log($(this).parent().parent().parent().find('.btn-assessScore span:first').val() + ": " + $(this).parent().parent().parent().find('.btn-assessScore span:first').text());
-        e.preventDefault();
+        $('ul.dropdown-assessMethod li a').click(function(e){
+            $(this).parent().parent().parent().find('.btn-assessScore span:first').text($(this).text());
+            console.log($(this).parent().parent().parent().find('.btn-assessScore span:first').val() + ": " + $(this).parent().parent().parent().find('.btn-assessScore span:first').text());
+            e.preventDefault();
+        });
     });
 }
 
