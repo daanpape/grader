@@ -122,7 +122,9 @@ function initPage() {
     $('#submit').click(function() {
         var date = $('#date').val();
         var scores = getScores();
-        console.log(scores);
+        console.log(scores.modScores);
+        console.log(scores.compScores);
+        console.log(scores.critScores);
         var worksheetScore = $('.btn-assessScore span:first').text();
     });
     
