@@ -309,16 +309,24 @@ $app->put('/api/worksheetproperties/:id/:assess', function($id, $assess) use ($a
     echo json_encode(RapportAPI::updateWorksheetProperties($id, $app->request->post('equipment'), $app->request->post('method'), $assess));
 });
 
-$app->post('/api/assessworksheet/:wid/:userid', function($wid, $userid) use ($app){
+$app->put('/api/assessworksheet/:wid/:userid', function($wid, $userid) use ($app){
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     // Update the existing worksheetproperties
-    echo json_encode(RapportAPI::assessWorksheet($wid, $userid, $app->request->post('date'), $app->request->post('sheetscore'), 
-            $app->request->post('modscores'), $app->request->post('compscores'), $app->request->post('critscores')));
+    echo json_encode(RapportAPI::assessWorksheet($wid, $userid, $app->request->post('date'), $app->request->post('sheetscore')));
 });
 //POST routes
+$app->post('/api/assessmodules/:wid/:userid', function($wid, $userid) use ($app){
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing worksheetproperties
+    echo json_encode(RapportAPI::assessWorksheet($wid, $userid, $app->request->post('modscores'), $app->request->post('compscores'), $app->request->post('critscores')));
+});
+
 $app->post('/api/courserapport', function () use ($app) {
     // Use json headers
     $response = $app->response();

@@ -111,8 +111,20 @@ function getScores() {
 function addWorksheetScores(date, scores, worksheetScore, wid, userid) {
     $.ajax({
         url: "/api/assessworksheet/" + wid + '/' + userid,
+        type: "PUT",
+        data: {date: date, sheetscore: worksheetScore},
+        success: function(data) {
+            console.log(data);
+            //callback(false);
+        },
+        error: function(data) {
+            //callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
+    $.ajax({
+        url: "/api/assessmodules/" + wid + '/' + userid,
         type: "POST",
-        data: {date: date, sheetscore: worksheetScore, modscores: scores[0], compscores: scores[1], critscores: scores[2]},
+        data: {modscores: scores[0], compscores: scores[1], critscores: scores[2]},
         success: function(data) {
             console.log(data);
             //callback(false);

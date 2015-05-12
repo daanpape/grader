@@ -238,20 +238,22 @@ Class RapportAPI {
         }
     }
     
-    public static function assessWorksheet($wid, $userid, $date, $sheetscore, $modscores, $compscores, $critscores) {
+    public static function assessWorksheet($wid, $userid, $date, $sheetscore) {
         rapportenDAO::assessWorksheet($wid, $userid, $date, $sheetscore);
-        
+    }
+    
+    public static function assessModules($wid, $userid, $modscores, $compscores, $critscores) {
         foreach($modscores as $modscore) {
-            $id = rapportenDAO::getWorksheetModule($wid, $modscore->{'modid'});
-            rapportenDAO::assessModules($id, $userid, $modscore->{'score'});
+            $id = rapportenDAO::getWorksheetModule($wid, $modscore->modid);
+            rapportenDAO::assessModules($id, $userid, $modscore->score);
         }
         foreach($compscores as $compscore) {
-            $id = rapportenDAO::getWorksheetCompetence($wid, $compscore->{'comid'});
-            rapportenDAO::assessCompetences($id, $userid, $compscore->{'score'});
+            $id = rapportenDAO::getWorksheetCompetence($wid, $compscore->comid);
+            rapportenDAO::assessCompetences($id, $userid, $compscore->score);
         }
         foreach($critscores as $critscore) {
-            $id = rapportenDAO::getWorksheetCriteria($wid, $critscore->{'critid'});
-            rapportenDAO::assessCriteria($id, $userid, $critscores->{'score'});
+            $id = rapportenDAO::getWorksheetCriteria($wid, $critscore->critid);
+            rapportenDAO::assessCriteria($id, $userid, $critscores->score);
         }
     }
 
