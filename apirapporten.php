@@ -238,11 +238,9 @@ Class RapportAPI {
         }
     }
     
-    public static function assessWorksheet($wid, $userid, $date, $sheetscore) {
+    public static function assessWorksheet($wid, $userid, $date, $sheetscore, $modscores, $compscores, $critscores) {
         rapportenDAO::assessWorksheet($wid, $userid, $date, $sheetscore);
-    }
-    
-    public static function assessModules($wid, $userid, $modscores, $compscores, $critscores) {
+        
         foreach($modscores as $modscore) {
             $id = rapportenDAO::getWorksheetModule($wid, $modscore->modid);
             rapportenDAO::assessModules($id, $userid, $modscore->score);
