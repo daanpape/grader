@@ -605,7 +605,7 @@ class rapportenDAO {
             $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
             $stmt->bindValue(':modid', (int) $modid, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchColumn();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('could not select worksheetdata by id ' . $wid, $err);
             return null;
@@ -620,7 +620,7 @@ class rapportenDAO {
             $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
             $stmt->bindValue(':compid', (int) $compid, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchColumn();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('could not select worksheetdata by id ' . $wid, $err);
             return null;
@@ -635,7 +635,7 @@ class rapportenDAO {
             $stmt->bindValue(':wid', (int) $wid, PDO::PARAM_INT);
             $stmt->bindValue(':critid', (int) $critid, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchColumn();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
             Logger::logError('could not select worksheetdata by id ' . $wid, $err);
             return null;
