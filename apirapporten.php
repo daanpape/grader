@@ -242,16 +242,16 @@ Class RapportAPI {
         rapportenDAO::assessWorksheet($wid, $userid, $date, $sheetscore);
         
         foreach($modscores as $modscore) {
-            $id = rapportenDAO::getWorksheetModule($wid, $modscore->modid);
-            rapportenDAO::assessModules($id, $userid, $modscore->score);
+            $mid = rapportenDAO::getWorksheetModule($wid, $modscore->modid);
+            rapportenDAO::assessModules($mid, $userid, $modscore->score);
         }
         foreach($compscores as $compscore) {
-            $id = rapportenDAO::getWorksheetCompetence($wid, $compscore->comid);
-            rapportenDAO::assessCompetences($id, $userid, $compscore->score);
+            $cmid = rapportenDAO::getWorksheetCompetence($wid, $compscore->comid);
+            rapportenDAO::assessCompetences($cmid, $userid, $compscore->score);
         }
         foreach($critscores as $critscore) {
-            $id = rapportenDAO::getWorksheetCriteria($wid, $critscore->critid);
-            rapportenDAO::assessCriteria($id, $userid, $critscores->score);
+            $crid = rapportenDAO::getWorksheetCriteria($wid, $critscore->critid);
+            rapportenDAO::assessCriteria($crid, $userid, $critscores->score);
         }
     }
 

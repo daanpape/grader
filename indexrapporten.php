@@ -314,7 +314,6 @@ $app->post('/api/assessworksheet/:wid/:userid', function($wid, $userid) use ($ap
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
-    // Update the existing worksheetproperties
     echo json_encode(RapportAPI::assessWorksheet($wid, $userid, $app->request->post('date'), $app->request->post('sheetscore'), 
             $app->request->post('modscores'), $app->request->post('compscores'), $app->request->post('critscores')));
 });
