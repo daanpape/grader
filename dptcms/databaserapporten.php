@@ -545,7 +545,7 @@ class rapportenDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO werkfiche_module_score_rapport(werkfiche_module, werkfiche_user, score)
-                                    VALUES (?,?,?");
+                                    VALUES (?,?,?)");
             $stmt->execute(array($sheetmodule, $user, $score));
             $sid = $conn->lastInsertId();
             return $sid;
@@ -559,7 +559,7 @@ class rapportenDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO werkfiche_competence_score_rapport(werkfiche_competence, werkfiche_user, score)
-                                    VALUES (?,?,?");
+                                    VALUES (?,?,?)");
             $stmt->execute(array($sheetcompetence, $user, $score));
             $sid = $conn->lastInsertId();
             return $sid;
@@ -573,7 +573,7 @@ class rapportenDAO {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_score_rapport(werkfiche_criteria, werkfiche_user, score)
-                                    VALUES (?,?,?");
+                                    VALUES (?,?,?)");
             $stmt->execute(array($sheetcriteria, $user, $score));
             $sid = $conn->lastInsertId();
             return $sid;
