@@ -546,7 +546,7 @@ if(@$filteredGET['mode'] == 'json')
         <div id="Step000_sysreq">
             <p>Setup will check basic system requirements for Grader. Please
             fix all FAILs to continue to the next step.</p>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Requirement</th>
@@ -561,8 +561,12 @@ if(@$filteredGET['mode'] == 'json')
                         <td data-bind="text: value"></td>
                         <td data-bind="text: displaydescr"></td>
                         <td>
-                            <span data-bind="if: satisfied" style="color: green">PASS</span>
-                            <span data-bind="ifnot: satisfied" style="color: red">FAIL</span>
+                            <span data-bind="if: satisfied" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS
+                            </span>
+                            <span data-bind="ifnot: satisfied" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL
+                            </span>
                         </td>
                     </tr>
                 </tbody>
