@@ -538,9 +538,13 @@ if(@$filteredGET['mode'] == 'json')
 
         <div class="container">
         <h1>Grader setup</h1>
+        <div class="col-md-4">
         <ul>
             <li>Step 0: Check system requirements</li>
         </ul>
+        </div>
+        
+        <div class="col-md-8">
         
         <!-- Step 000: System requirements -->
         <div id="Step000_sysreq">
@@ -717,12 +721,12 @@ if(@$filteredGET['mode'] == 'json')
             <a href="">http://...</a>
         </div>
         <!-- / Step 400: complete -->
-        
-        
-        <div id="buttons">
+        </div>
+        <div id="buttons" style="text-align: right;">
             <button name="previousStep" data-bind="click: recede">« Previous step</button>
             <button name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
         </div>
+        
 
         </div>
         
