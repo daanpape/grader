@@ -584,42 +584,50 @@ if(@$filteredGET['mode'] == 'json')
         <p>Grader requires a MySQL or MariaDB database, please enter the details
         of the database server. You can opt to have a MySQL user & database
         created for you: setup will use the root username & password for that.</p>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>SQL host:</td>
-                        <td><input data-bind="value: SQLHost" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL user<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input data-bind="value: SQLUser" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL password:</td>
-                        <td><input data-bind="value: SQLPassword" /> <span class="rpasslink" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span></td>
-                    </tr>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL host:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" data-bind="value: SQLHost" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL user:<span data-bind="visible: createUserAndDB"><br />(will be created for you)</span></label>
+                    <div class="col-md-8"><input class="form-control" data-bind="value: SQLUser" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" data-bind="value: SQLPassword" /> <span class="rpasslink input-group-addon" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td>SQL database<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input data-bind="value: SQLDBName" /></td>
-                    </tr>
-                    <tr>
-                        <td>Create user & database for me?</td>
-                        <td><input type="checkbox" data-bind="checked: createUserAndDB" /></td>
-                    </tr>
-
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL database:<span data-bind="visible: createUserAndDB"><br />(will be created for you)</span></label>
+                    <div class="col-md-8"><input class="form-control" data-bind="value: SQLDBName" /></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-md-8">
+                        <div class="checkbox">
+                             <label>
+                                <input type="checkbox" data-bind="checked: createUserAndDB" /> Create user and database for me
+                            </label>
+                        </div>
+                    </div>
+                </div>
                     <!-- ko if: createUserAndDB -->
-                    <tr>
-                        <td>SQL root user:</td>
-                        <td><input data-bind="value: SQLRootUser" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL root password:</td>
-                        <td><input data-bind="value: SQLRootPassword" /></td>
-                    </tr>
+                    <div class="form-group">
+                    <label class="control-label col-md-4">SQL root user:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" data-bind="value: SQLRootUser" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">SQL root password:</label>
+                        <div class="col-md-8"><input class="form-control" data-bind="value: SQLRootPassword" /></div>
+                    </div>
                     <!-- /ko -->
-                </tbody>
-            </table>
+            </form>
         </div>
         <!-- / Step 001: Database -->
         
