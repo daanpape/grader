@@ -815,21 +815,21 @@ if(@$filteredGET['mode'] == 'json')
         <!-- / Step 310: create db -->
 
         <div id="Step311_siteconfig">
-            Please enter the following configuration details:
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Site URL:</td>
-                        <td><input type="text" data-bind="value: siteURL" /></td>
-                    </tr>
-                </tbody>
-            </table>
+            
+            <p>Please enter the following configuration details:</p>
+            
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Site URL:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: siteURL" />
+                        <p class="help-block">
+                            Enter the grader's site URL here. This URL will be
+                            used to refer to the site when sending out e-mails.
+                        </p>
+                    </div>
+                </div>
+            </form>
         </div>
 
 
