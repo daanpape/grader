@@ -508,6 +508,7 @@ if(@$filteredGET['mode'] == 'json')
         <script type="text/javascript" src="js/knockout-3.1.0.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <style type="text/css">
+            body { padding-top: 50px; }
             span.rpasslink { font-size: small; }
             span.rpasslink:hover { cursor: pointer; }
             div[id^=Step] { display: none; }
@@ -515,6 +516,27 @@ if(@$filteredGET['mode'] == 'json')
     </head>
     
     <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                   <a class="navbar-brand">Grader</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a>Setup</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
         <h1>Grader setup</h1>
         <ul>
             <li>Step 0: Check system requirements</li>
@@ -698,6 +720,8 @@ if(@$filteredGET['mode'] == 'json')
             <button name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
         </div>
 
+        </div>
+        
         <script type="text/javascript">
             function stepController()
             {
