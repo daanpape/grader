@@ -745,8 +745,8 @@ if(@$filteredGET['mode'] == 'json')
         <!-- / Step 400: complete -->
         </div>
         <div id="buttons" style="text-align: right;">
-            <button name="previousStep" data-bind="click: recede">« Previous step</button>
-            <button name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
+            <button class="btn btn-default" name="previousStep" data-bind="click: recede">« Previous step</button>
+            <button class="btn btn-default" name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
         </div>
         
 
