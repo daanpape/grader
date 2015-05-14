@@ -211,14 +211,62 @@ class Step311_siteconfig implements ISetupStep
 
 class Step310_dbcreate implements ISetupStep
 {
+    // Log structure example:
+    // [index]['operation'] = 'Create database'
+    // [index]['error'] = null if no error, otherwise error message
+    // [index]['sql'] = The SQL code that caused the error (optional)
+    private $log;
+    private $logIndex;
+    
     public function __construct()
     {
         if(!isset($_SESSION['Step310_dbcreate']['OKForNextStep']))
         {
             $_SESSION['Step310_dbcreate']['OKForNextStep'] = false;
         }
+        
+        $this->log = array();
+        $this->logIndex = 0;
+        $this->logInitializeEntry();
     }
     
+    private function logEntrySetOp($operation)
+    {
+        $this->log[$this->logIndex]['operation'] = $operation;
+    }
+    
+    private function logEntrySetError($error)
+    {
+        $this->log[$this->logIndex]['error'] = $error;
+    }
+    
+    private function logEntrySetSQL($SQL)
+    {
+        return $this->log[$this->logIndex]['sql'] = $SQL;
+    }
+    
+    private function logNextEntry()
+    {
+        if(!array_key_exists($this->logIndex + 1, $this->log))
+        {
+            $this->logIndex++;
+            $this->logInitializeEntry();
+        }
+    }
+    
+    private function logInitializeEntry()
+    {
+        $this->log[$this->logIndex] = array(
+            'operation' => '',
+            'error' => null,
+            'sql' => ''
+        );
+    }
+    
+    private function getLog()
+    {
+        return $this->log;
+    }
     
     public function CreateDB()
     {
@@ -226,51 +274,100 @@ class Step310_dbcreate implements ISetupStep
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
-            $RootDB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
-            $Log[] = 'Connected to database server';
-            $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $Query = $RootDB->prepare("SHOW DATABASES;");
-            $Query->execute();
+            $this->logEntrySetOp("Connect to database server {$DBDetails['SQLHost']} as {$DBDetails['SQLRootUser']}");
+            try
+            {
+                $RootDB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
+                $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
+            catch (Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
+            $this->logEntrySetOp('Getting list of databases');
+            
+            try {
+                $Query = $RootDB->prepare($this->logEntrySetSQL("SHOW DATABASES;"));
+                $Query->execute();
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
             if(!in_array($DBDetails['SQLDBName'], $Query->fetchAll(\PDO::FETCH_COLUMN, 0)))
             {
-                $Log[] = "Database {$DBDetails['SQLDBName']} doesn't exist, creating";
-                $Query = $RootDB->prepare("CREATE DATABASE `{$DBDetails['SQLDBName']}` CHARACTER SET = 'utf8' COLLATE = 'utf8_unicode_ci';");
+                $this->logEntrySetOp("Database {$DBDetails['SQLDBName']} doesn't exist, creating");
+                $Query = $RootDB->prepare($this->logEntrySetSQL("CREATE DATABASE `{$DBDetails['SQLDBName']}` CHARACTER SET = 'utf8' COLLATE = 'utf8_unicode_ci';"));
                 try
                 {
                     $Query->execute();
                 }
-                catch (Exception $ex)
+                catch (\Exception $ex)
                 {
-                    $Log[] = "FAIL: Couldn't create database: {$ex->getMessage()}";
-                    return $Log;
+                    $this->logEntrySetError("Couldn't create database: {$ex->getMessage()}");
+                    return $this->getLog();
                 }
             }
-
-            $Query = $RootDB->prepare("SELECT User FROM mysql.user WHERE User = :User AND Host = '%';");
-            $Query->bindValue(':User', $DBDetails['SQLUser']);
-            $Query->execute();
+            else
+            {
+                $this->logEntrySetOp("Database {$DBDetails['SQLDBName']} exists");
+            }
+            
+            $this->logNextEntry();
+            
+            $this->logEntrySetOp("Query if SQL user {$DBDetails['SQLUser']} already exists");
+            
+            try {
+                $Query = $RootDB->prepare($this->logEntrySetSQL("SELECT User FROM mysql.user WHERE User = :User AND Host = '%';"));
+                $Query->bindValue(':User', $DBDetails['SQLUser']);
+                $Query->execute();
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
             if(count($Query->fetchAll()) == 0)
             {
-                $Log[] = "Database user {$DBDetails['SQLUser']} doesn't exist, creating";
+                $this->logEntrySetOp("Database user {$DBDetails['SQLUser']} doesn't exist, creating");
                 try
                 {
-                    $Query = $RootDB->prepare("CREATE USER '{$DBDetails['SQLUser']}'@'%' IDENTIFIED BY '{$DBDetails['SQLPassword']}';");
+                    $Query = $RootDB->prepare($this->logEntrySetSQL("CREATE USER '{$DBDetails['SQLUser']}'@'%' IDENTIFIED BY '{$DBDetails['SQLPassword']}';"));
                     $Query->execute();
-                    $Query = $RootDB->prepare("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON `{$DBDetails['SQLDBName']}`.* TO '{$DBDetails['SQLUser']}'@'%';");
+                    $Query = $RootDB->prepare($this->logEntrySetSQL("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON `{$DBDetails['SQLDBName']}`.* TO '{$DBDetails['SQLUser']}'@'%';"));
                     $Query->execute();
-                    $RootDB->exec("FLUSH PRIVILEGES;");
+                    $RootDB->exec($this->logEntrySetSQL("FLUSH PRIVILEGES;"));
                 }
                 catch (Exception $ex)
                 {
-                    $Log[] = "FAIL: Couldn't create user: {$ex->getMessage()}";
-                    return $Log;
+                    $this->logEntrySetError("FAIL: Couldn't create user: {$ex->getMessage()}");
+                    $this->getLog();
                 }
+            }
+            else
+            {
+                $this->logEntrySetOp("Database user {$DBDetails['SQLUser']} already exists (skipping creation)");
             }
             
             $DB = $RootDB;
         }
         else
         {
+            $this->logNextEntry();
+            
+            $this->logEntrySetOp('Connect to database server');
+            
             try
             {
                 $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
@@ -278,10 +375,14 @@ class Step310_dbcreate implements ISetupStep
             }
             catch(\Exception $ex)
             {
-                $Log[] = "FAIL: Couldn't connect to database server: {$ex->getMessage()}";
-                return $Log;
+                $this->logEntrySetError("FAIL: Couldn't connect to database server: {$ex->getMessage()}");
+                return $this->getLog();
             }
         }
+        
+        $this->logNextEntry();
+        
+        $this->logEntrySetOp('Import database schema');
         
         $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
         $SQL .= file_get_contents('grader.sql');
@@ -289,16 +390,15 @@ class Step310_dbcreate implements ISetupStep
         try
         {
             $Query->execute();
-            $Log[] = 'Imported database schema successfully';
         }
         catch (Exception $ex)
         {
-            $Log[] = "FAIL: Couldn't import database schema: {$ex->getMessage()}";
-            return $Log;
+            $this->logEntrySetError("FAIL: Couldn't import database schema: {$ex->getMessage()}");
+            return $this->getLog();
         }
         
         $_SESSION['Step310_dbcreate']['OKForNextStep'] = true;
-        return $Log;
+        return $this->getLog();
     }
     
     public function OKForNextStep()
@@ -679,10 +779,25 @@ if(@$filteredGET['mode'] == 'json')
         <div id="Step310_dbcreate">
             <button data-bind="click: createDB">Create database</button>
             
-            <ul data-bind="foreach: resultLog">
-                <li><span data-bind="text: message"></span></li>
-            </ul>
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: resultLog">
+                    <tr>
+                        <td data-bind="text: operation"></td>
+                        <td>
+                            <span data-bind="ifnot: error" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS</span>
+                            <span data-bind="if: error" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL<br /><span data-bind="text: error"></span></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         <!-- / Step 310: create db -->
@@ -1025,7 +1140,9 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.resultLogEntry = function(data)
                 {
-                    this.message = ko.observable(data);
+                    this.operation = ko.observable(data.operation);
+                    this.error = ko.observable(data.error);
+                    this.sql = ko.observable(data.sql);
                 }
             }
             
