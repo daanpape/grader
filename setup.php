@@ -170,20 +170,28 @@ class Step311_siteconfig implements ISetupStep
     {
         if(!isset($_SESSION['Step311_siteconfig']))
         {
-            if($_SERVER['SERVER_PORT'] == 80 && $_SERVER['REQUEST_SCHEME'] == 'http')
+            if(@$_SERVER['HTTPS'])
+            {
+                $proto = 'https://';
+            }
+            else
+            {
+                $proto = 'http://';
+            }
+            if($_SERVER['SERVER_PORT'] == 80 && $proto == 'http://')
             {
                 $Port = null;
             }
-            elseif($_SERVER['SERVER_PORT'] == 443 && $_SERVER['REQUEST_SCHEME'] == 'https')
+            elseif($_SERVER['SERVER_PORT'] == 443 && $proto = 'https://')
             {
                 $Port = null;
             }
             else
             {
-                $Port = $_SERVER['SERVER_PORT'];
+                $Port = ":{$_SERVER['SERVER_PORT']}";
             }
 
-            $siteURL = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . $Port;
+            $siteURL = $proto . "://" . $_SERVER["SERVER_NAME"] . $Port;
         
             $_SESSION['Step311_siteconfig']['siteURL'] = $siteURL;
         }
