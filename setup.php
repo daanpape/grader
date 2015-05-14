@@ -29,6 +29,11 @@ class StepController
         );
     }
     
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+    
     public function GetCurrentStep()
     {
         return $_SESSION['currentStep'];
