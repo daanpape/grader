@@ -837,26 +837,42 @@ if(@$filteredGET['mode'] == 'json')
         
         <div id="Step314_createconfig">
             <p>Setup will now create Grader's configuration file. For this step
-                to work, setup needs to be able to write to the file <?php echo getcwd(); ?>/dptcms/config.php.
-                If the operation fails, setup will generate the configuration
-                for you, but you must manually upload it.
+                to work, setup needs to be able to write to the file:<br />
+                <code><?php echo getcwd(); ?>/dptcms/config.php</code>
             </p>
-            <ol>
-                <li>touch <?php echo getcwd(); ?>/dptcms/config.php</li>
-                <li>chmod o+rw <?php echo getcwd(); ?>/dptcms/config.php</li>
-                <li>chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php</li>
-            </ol>
-            <button data-bind="click: writeConfig">Create configuration file</button>
+            <ul>
+            <li>Setup will not write the configuration file if it already
+                exists and has content.</li>
+            <li>If the operation fails, setup will still
+            generate the configuration for you, but you must manually upload
+            it.</li>
+            </ul>
+            <p>If you have shell access, you may execute the following commands:</p>
+            <pre>touch <?php echo getcwd(); ?>/dptcms/config.php
+chmod o+rw <?php echo getcwd(); ?>/dptcms/config.php
+# If you have SE linux enabled, you'll also need to:
+chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
+</pre>
+            <p>If you do not have shell access, make sure the webserver can
+            write to it. In most hosting scenarios, most likely you'll have to
+            grant world (public) permissions to include write.</p>
+            
+            <p><button data-bind="click: writeConfig">Create configuration file</button></p>
+            
             <div data-bind="if: executed">
                 <div data-bind="if: success">
-
+                    <p class="bg-success">Configuration file written!</p>
+                    <p class="bg-warning">If you have SE linux enabled:</p>
+                    <pre class="bg-warning">chcon -t httpd_user_content_t <?php echo getcwd(); ?>/dptcms/config.php</pre>
+                    
                 </div>
 
                 <div data-bind="ifnot: success">
-                    Was unable to write config file:<br />
-                    <span data-bind="text: error"></span><br />
-                    Copy paste this into dptcms/config.php:<br />
-                    <textarea data-bind="text: config" rows="35" cols="120"></textarea>
+                    <p class="bg-danger">
+                    Was unable to write config file:
+                    <span data-bind="text: error"></span></p>
+                    <p>Copy paste this into dptcms/config.php:</p>
+                    <textarea data-bind="text: config" rows="35" cols="90" style="font-family: monospace"></textarea>
                 </div>
             </div>
 
