@@ -15,7 +15,11 @@ class StepController
         $this->addStep('Step314_createconfig', 'Create configuration file');
         $this->addStep('Step400_complete', 'Finish');
         
-        if(!isset($_SESSION['currentStep']))
+        if(@is_numeric($_GET['DEV_GOTOSTEP']))
+        {
+            $_SESSION['currentStep'] = $this->steps[$_GET['DEV_GOTOSTEP']];
+        }
+        elseif(!isset($_SESSION['currentStep']))
         {
             $_SESSION['currentStep'] = $this->GetInitialStep();
         }
