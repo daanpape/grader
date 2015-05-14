@@ -636,7 +636,7 @@ if(@$filteredGET['mode'] == 'json')
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4">SQL root password:</label>
-                        <div class="col-md-8"><input class="form-control" data-bind="value: SQLRootPassword" /></div>
+                        <div class="col-md-8"><input class="form-control" data-bind="value: SQLRootPassword" type="password" /></div>
                     </div>
                     <!-- /ko -->
             </form>
