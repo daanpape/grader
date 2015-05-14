@@ -191,7 +191,7 @@ class Step311_siteconfig implements ISetupStep
                 $Port = ":{$_SERVER['SERVER_PORT']}";
             }
 
-            $siteURL = $proto . "://" . $_SERVER["SERVER_NAME"] . $Port;
+            $siteURL = $proto . $_SERVER["SERVER_NAME"] . $Port;
         
             $_SESSION['Step311_siteconfig']['siteURL'] = $siteURL;
         }
