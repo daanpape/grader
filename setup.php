@@ -550,9 +550,8 @@ if(@$filteredGET['mode'] == 'json')
         <h1>Grader setup</h1>
         <div class="col-md-4">
             <h2>Steps</h2>
-        <ul>
-            <li>Step 0: Check system requirements</li>
-        </ul>
+            <ol id="stepList">
+            </ol>
         </div>
         
         <div class="col-md-8">
@@ -779,7 +778,7 @@ if(@$filteredGET['mode'] == 'json')
                 ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
                 ko.applyBindings(self.steps.Step400_complete, document.getElementById("Step400_complete"));
 
-            
+
                 function stepControllerViewModel()
                 {
                     this.OKForNextStep = self.OKForNextStep;
@@ -807,6 +806,22 @@ if(@$filteredGET['mode'] == 'json')
                 }
             
                 ko.applyBindings(new stepControllerViewModel(), document.getElementById("buttons"));
+                
+                this.fillStepList = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=StepController&method=getSteps",
+                        function(allData)
+                        {
+                            $.each(allData,
+                                function(index, value)
+                                {
+                                    $("#stepList").append("<li>" + value.name + "</li>");
+                                }
+                            );
+                        }
+                    );
+                }
 
 
                 this.getStep = function (stepName)
@@ -1084,6 +1099,7 @@ if(@$filteredGET['mode'] == 'json')
 
             var sc = new stepController();
             sc.start();
+            sc.fillStepList();
         </script>
     </body>
 
