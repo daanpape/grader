@@ -646,7 +646,7 @@ if(@$filteredGET['mode'] == 'json')
             <p>Setup will do something basic database server connectivity
             checks. Fix all FAILs to continue.</p>
             <button data-bind="click: testDB">Retest</button>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Test</th>
@@ -657,8 +657,10 @@ if(@$filteredGET['mode'] == 'json')
                     <tr>
                         <td data-bind="text: name"></td>
                         <td>
-                            <span data-bind="ifnot: error" style="color: green">PASS</span>
-                            <span data-bind="if: error" style="color: red">FAIL:<br /><span data-bind="text: error"></span></span>
+                            <span data-bind="ifnot: error" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS</span>
+                            <span data-bind="if: error" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL<br /><span data-bind="text: error"></span></span>
                         </td>
                     </tr>
                 </tbody>
