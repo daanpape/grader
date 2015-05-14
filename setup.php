@@ -3,25 +3,30 @@ session_start();
 
 class StepController
 {
-    private $Steps;
+    private $steps;
     
     public function __construct()
     {
-        
-        $this->Steps = array(
-            'Step000_sysreq',
-            'Step001_database',
-            'Step002_dbconnect',
-            'Step310_dbcreate',
-            'Step311_siteconfig',
-            'Step314_createconfig',
-            'Step400_complete'
-        );
+        $this->addStep('Step000_sysreq', 'System requirements');
+        $this->addStep('Step001_database', 'Database parameters');
+        $this->addStep('Step002_dbconnect', 'Database connection test');
+        $this->addStep('Step310_dbcreate', 'Database creation');
+        $this->addStep('Step311_siteconfig', 'Site configuration');
+        $this->addStep('Step314_createconfig', 'Create configuration file');
+        $this->addStep('Step400_complete', 'Finish');
         
         if(!isset($_SESSION['currentStep']))
         {
             $_SESSION['currentStep'] = $this->GetInitialStep();
         }
+    }
+    
+    public function addStep($stepClass, $stepName)
+    {
+        $this->steps[] = array(
+            'class' => $stepClass,
+            'name' => $stepName
+        );
     }
     
     public function GetCurrentStep()
@@ -31,14 +36,14 @@ class StepController
     
     public function GetInitialStep()
     {
-        return $this->Steps[0];
+        return $this->steps[0];
     }
     
     public function Advance()
     {
-        $C = new $_SESSION['currentStep'];
+        $C = new $_SESSION['currentStep']['class'];
         if($C->OKForNextStep()) {
-            $_SESSION['currentStep'] = $this->Steps[array_search($this->GetCurrentStep(), $this->Steps) + 1];
+            $_SESSION['currentStep'] = $this->steps[array_search($this->GetCurrentStep(), $this->steps) + 1];
             return $_SESSION['currentStep'];
         }
 
@@ -47,7 +52,7 @@ class StepController
     
     public function Recede()
     {
-        $_SESSION['currentStep'] = $this->Steps[array_search($this->GetCurrentStep(), $this->Steps) - 1];
+        $_SESSION['currentStep'] = $this->steps[array_search($this->GetCurrentStep(), $this->steps) - 1];
         return $_SESSION['currentStep'];
     }
 }
@@ -539,6 +544,7 @@ if(@$filteredGET['mode'] == 'json')
         <div class="container">
         <h1>Grader setup</h1>
         <div class="col-md-4">
+            <h2>Steps</h2>
         <ul>
             <li>Step 0: Check system requirements</li>
         </ul>
@@ -546,6 +552,8 @@ if(@$filteredGET['mode'] == 'json')
         
         <div class="col-md-8">
         
+            <h2 id="currentStepName"></h2>
+            
         <!-- Step 000: System requirements -->
         <div id="Step000_sysreq">
             <p>Setup will check basic system requirements for Grader. Please
@@ -743,7 +751,7 @@ if(@$filteredGET['mode'] == 'json')
             {
                 self = this;
                 
-                self.currentStep = "";
+                self.currentStep = {};
                 self.OKForNextStep = ko.observable(false);
                 
                 self.steps = {};
@@ -783,7 +791,7 @@ if(@$filteredGET['mode'] == 'json')
                 this.reevaluateOKForNextStep = function()
                 {
                     $.getJSON(
-                        "setup.php?mode=json&class=" + this.currentStep + "&method=OKForNextStep",
+                        "setup.php?mode=json&class=" + this.currentStep.class + "&method=OKForNextStep",
                         function(data)
                         {
                             self.OKForNextStep(data);
@@ -813,15 +821,16 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.activateCurrentStep = function()
                 {
-                    $("#" + this.currentStep).show();
-                    self.steps[this.currentStep].activate && self.steps[this.currentStep].activate();
+                    $("#" + this.currentStep.class).show();
+                    self.steps[this.currentStep.class].activate && self.steps[this.currentStep.class].activate();
                     self.reevaluateOKForNextStep();
+                    $("#currentStepName").text(this.currentStep.name);
                 }
                 
                 this.deactivateCurrentStep = function()
                 {
-                    $("#" + this.currentStep).hide();
-                    self.steps[this.currentStep].deactivate && self.steps[this.currentStep].deactivate();
+                    $("#" + this.currentStep.class).hide();
+                    self.steps[this.currentStep.class].deactivate && self.steps[this.currentStep.class].deactivate();
                 }
                 
                 this.advance = function()
