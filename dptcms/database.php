@@ -28,14 +28,9 @@ class Db {
         $dsn = "mysql:host=$host;port=$port;dbname=$database";
 
         // Try to connect to the database
-        try {
-            $conn = new PDO($dsn, Config::$dbUser, Config::$dbPass);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        } catch (PDOException $err) {
-            Logger::logError('could not connect to database', $err);
-            return null;
-        }
+        $conn = new PDO($dsn, Config::$dbUser, Config::$dbPass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
     }
 
 }
