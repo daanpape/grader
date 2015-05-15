@@ -364,6 +364,8 @@ ALTER TABLE `studentlist_students_rapport`
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY ( `user_id` ) REFERENCES `grader`.`users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 /* DATA INSERTION */
