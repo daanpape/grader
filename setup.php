@@ -102,7 +102,7 @@ class Config
     public static \$siteURL	= '{$_SESSION['Step311_siteconfig']['siteURL']}';
 
     /* Database configuration */
-    public static \$dbServer = '{$DBDetails['SQLHost']}';
+    public static \$dbServer    = '{$DBDetails['SQLHost']}';
     public static \$dbPort 	= '3306';
     public static \$dbName 	= '{$DBDetails['SQLDBName']}';
     public static \$dbUser 	= '{$DBDetails['SQLUser']}';
@@ -111,8 +111,18 @@ class Config
     /* Pagination settings */
     public static \$pageCount	= 20;
 
-    /* Log file */
-    public static \$logfile = './logfile.log';
+    /**
+     * Controls the destination of the logging. Set to syslog or file.
+     * When set to file, define public static \$logfile.
+     * @var string Either 'syslog' or 'file'
+     */
+    public static \$logDestination = '{$_SESSION['Step311_siteconfig']['logDestination']}';
+    /**
+     * When \$logDestination is set to 'file', this variable controls which file
+     * logging goes to.
+     * @var string A filepath
+     */
+    public static \$logfile = '{$_SESSION['Step311_siteconfig']['logfile']}';
 
     /*
      * Image upload settings
@@ -198,6 +208,8 @@ class Step311_siteconfig implements ISetupStep
             $siteURL = $proto . $_SERVER["SERVER_NAME"] . $Port;
         
             $_SESSION['Step311_siteconfig']['siteURL'] = $siteURL;
+            $_SESSION['Step311_siteconfig']['logDestination'] = 'syslog';
+            $_SESSION['Step311_siteconfig']['logfile'] = './logfile.log';
         }
     }
     
@@ -376,8 +388,6 @@ class Step310_dbcreate implements ISetupStep
         }
         else
         {
-            $this->logNextEntry();
-            
             $this->logEntrySetOp('Connect to database server');
             
             try
@@ -829,6 +839,31 @@ if(@$filteredGET['mode'] == 'json')
                         </p>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">Log destination:</label>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="logDestination" value="syslog" data-bind="checked: logDestination"> Syslog
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="logDestination" value="file" data-bind="checked: logDestination"> File
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- ko if: logDestination() == 'file' -->
+                <div class="form-group">
+                    <label class="control-label col-md-3">Logfile:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: logfile" />
+                        <p class="help-block">
+                            Path to the logfile
+                        </p>
+                    </div>
+                </div>
+                <!-- /ko -->
+                
             </form>
         </div>
 
@@ -1179,6 +1214,8 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 var self = this;
                 
                 this.siteURL = ko.observable("");
+                this.logDestination = ko.observable("");
+                this.logfile = ko.observable("");
                 
                 this.activate = function()
                 {
@@ -1186,8 +1223,9 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                         "setup.php?mode=json&class=Step311_siteconfig&method=retrieveValues",
                         function(values)
                         {
-                            console.log(values);
                             self.siteURL(values.siteURL);
+                            self.logDestination(values.logDestination);
+                            self.logfile(values.logfile);
                         }
                     );
                 }
@@ -1196,7 +1234,9 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 {
                     var siteconfig =
                     {
-                        "siteURL": self.siteURL
+                        "siteURL": self.siteURL,
+                        "logDestination": self.logDestination,
+                        "logfile": self.logfile
                     };
                     
                     $.getJSON(
