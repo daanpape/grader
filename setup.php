@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once('dptcms/password.php');
+
 class StepController
 {
     private $steps;
@@ -11,7 +13,8 @@ class StepController
         $this->addStep('Step001_database', 'Database parameters');
         $this->addStep('Step002_dbconnect', 'Database connection test');
         $this->addStep('Step310_dbcreate', 'Database creation');
-        $this->addStep('Step311_siteconfig', 'Site configuration');
+        $this->addStep('Step311_firstuser', 'First user account');
+        $this->addStep('Step312_siteconfig', 'Site configuration');
         $this->addStep('Step314_createconfig', 'Create configuration file');
         $this->addStep('Step400_complete', 'Finish');
         
@@ -99,7 +102,7 @@ class Step314_createconfig implements ISetupStep
 class Config
 {
     /* Site configuration */
-    public static \$siteURL	= '{$_SESSION['Step311_siteconfig']['siteURL']}';
+    public static \$siteURL	= '{$_SESSION['Step312_siteconfig']['siteURL']}';
 
     /* Database configuration */
     public static \$dbServer    = '{$DBDetails['SQLHost']}';
@@ -116,13 +119,13 @@ class Config
      * When set to file, define public static \$logfile.
      * @var string Either 'syslog' or 'file'
      */
-    public static \$logDestination = '{$_SESSION['Step311_siteconfig']['logDestination']}';
+    public static \$logDestination = '{$_SESSION['Step312_siteconfig']['logDestination']}';
     /**
      * When \$logDestination is set to 'file', this variable controls which file
      * logging goes to.
      * @var string A filepath
      */
-    public static \$logfile = '{$_SESSION['Step311_siteconfig']['logfile']}';
+    public static \$logfile = '{$_SESSION['Step312_siteconfig']['logfile']}';
 
     /*
      * Image upload settings
@@ -178,11 +181,11 @@ EOD;
     }
 }
 
-class Step311_siteconfig implements ISetupStep
+class Step312_siteconfig implements ISetupStep
 {
     public function __construct()
     {
-        if(!isset($_SESSION['Step311_siteconfig']))
+        if(!isset($_SESSION['Step312_siteconfig']))
         {
             if(@$_SERVER['HTTPS'])
             {
@@ -207,9 +210,9 @@ class Step311_siteconfig implements ISetupStep
 
             $siteURL = $proto . $_SERVER["SERVER_NAME"] . $Port;
         
-            $_SESSION['Step311_siteconfig']['siteURL'] = $siteURL;
-            $_SESSION['Step311_siteconfig']['logDestination'] = 'syslog';
-            $_SESSION['Step311_siteconfig']['logfile'] = './logfile.log';
+            $_SESSION['Step312_siteconfig']['siteURL'] = $siteURL;
+            $_SESSION['Step312_siteconfig']['logDestination'] = 'syslog';
+            $_SESSION['Step312_siteconfig']['logfile'] = './logfile.log';
         }
     }
     
@@ -223,15 +226,99 @@ class Step311_siteconfig implements ISetupStep
         $siteConfig = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         foreach($siteConfig as $key => $value)
         {
-            $_SESSION['Step311_siteconfig'][$key] = $value;
+            $_SESSION['Step312_siteconfig'][$key] = $value;
         }
     }
     
     public function retrieveValues()
     {
-        return $_SESSION['Step311_siteconfig'];
+        return $_SESSION['Step312_siteconfig'];
     }
 }
+
+class Step311_firstuser implements ISetupStep
+{
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step311_firstuser']))
+        {
+            $_SESSION['Step311_firstuser']['username'] = '';
+            $_SESSION['Step311_firstuser']['password'] = '';
+            $_SESSION['Step311_firstuser']['OKForNextStep'] = false;
+        }
+    }
+    
+    public function createUser()
+    {
+        $DBDetails = $_SESSION['Step001_database'];
+            
+        try
+        {
+            $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+            $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        }
+        catch(\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+        
+        $SQL = "USE `{$DBDetails['SQLDBName']}`;";
+        $Query = $DB->prepare($SQL);
+        try
+        {
+            $Query->execute();
+        }
+        catch (\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+
+        $SQL = "INSERT INTO users (username, password, status) VALUES (:username, :password, :status);\n";
+        $Query = $DB->prepare($SQL);
+        $Query->bindValue(':username', $_SESSION['Step311_firstuser']['username']);
+        $Query->bindValue(':password', password_hash($_SESSION['Step311_firstuser']['password'], PASSWORD_BCRYPT));
+        $Query->bindValue(':status', 'ACTIVE');
+        try
+        {
+            $Query->execute();
+            $userId = $DB->lastInsertId();
+            $SQL = "INSERT INTO user_roles (user_id, role_id) VALUES (:userId, :roleId);";
+            $Query = $DB->prepare($SQL);
+            $Query->bindParam(':userId', $userId);
+            $Query->bindParam(':roleId', $roleId);
+            for($roleId = 1; $roleId <= 4; $roleId++)
+            {
+                $Query->execute();
+            }
+        }
+        catch (\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+        
+        $_SESSION['Step311_firstuser']['OKForNextStep'] = true;
+    }
+    
+    
+    public function OKForNextStep()
+    {
+        return $_SESSION['Step311_firstuser']['OKForNextStep'];
+    }
+    public function saveValues()
+    {
+        $siteConfig = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        foreach($siteConfig as $key => $value)
+        {
+            $_SESSION['Step311_firstuser'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step311_firstuser'];
+    }
+}
+
 
 class Step310_dbcreate implements ISetupStep
 {
@@ -825,8 +912,48 @@ if(@$filteredGET['mode'] == 'json')
         </div>
         
         <!-- / Step 310: create db -->
+        
+        
+        <div id="Step311_firstuser">
+            
+            <p>First user</p>
+            
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">E-mail address:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: username" />
+                        <p class="help-block">
+                            This will also be the login.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Password:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="password" data-bind="value: password" />
+                    </div>
+                </div>
+                
+                <button data-bind="click: createUser">Create user</button>
+                
+            </form>
+            
+            <div data-bind="if: executed">
+                <div data-bind="ifnot: error">
+                    <p class="bg-success">User created!</p>
+                </div>
 
-        <div id="Step311_siteconfig">
+                <div data-bind="if: error">
+                    <p class="bg-danger">Error while creating user</p>
+                    <span data-bind="text: error"></span>
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <div id="Step312_siteconfig">
             
             <p>Please enter the following configuration details:</p>
             
@@ -946,7 +1073,8 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 self.steps.Step001_database = new step001_database();
                 self.steps.Step002_dbconnect = new step002_dbconnect();
                 self.steps.Step310_dbcreate = new step310_dbcreate();
-                self.steps.Step311_siteconfig = new step311_siteconfig();
+                self.steps.Step311_firstuser = new step311_firstuser();
+                self.steps.Step312_siteconfig = new step312_siteconfig();
                 self.steps.Step314_createconfig = new step314_createconfig();
                 self.steps.Step400_complete = new step400_complete();
                 
@@ -954,7 +1082,8 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 ko.applyBindings(self.steps.Step001_database, document.getElementById("Step001_database"));
                 ko.applyBindings(self.steps.Step002_dbconnect, document.getElementById("Step002_dbconnect"));
                 ko.applyBindings(self.steps.Step310_dbcreate, document.getElementById("Step310_dbcreate"));
-                ko.applyBindings(self.steps.Step311_siteconfig, document.getElementById("Step311_siteconfig"));
+                ko.applyBindings(self.steps.Step311_firstuser, document.getElementById("Step311_firstuser"));
+                ko.applyBindings(self.steps.Step312_siteconfig, document.getElementById("Step312_siteconfig"));
                 ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
                 ko.applyBindings(self.steps.Step400_complete, document.getElementById("Step400_complete"));
 
@@ -1215,7 +1344,64 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 }
             }
             
-            function step311_siteconfig()
+            function step311_firstuser()
+            {
+                var self = this;
+                
+                this.username = ko.observable("");
+                this.password = ko.observable("");
+                this.error = ko.observable(null);
+                this.executed = ko.observable(false);
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=retrieveValues",
+                        function(values)
+                        {
+                            self.username(values.username);
+                            self.password(values.password);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var firstUser =
+                    {
+                        "username": self.username,
+                        "password": self.password
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=saveValues",
+                        firstUser
+                    );
+                }
+                
+                this.createUser = function()
+                {
+                    var firstUser =
+                    {
+                        "username": self.username,
+                        "password": self.password
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=createUser",
+                        firstUser,
+                        function(allData)
+                        {
+                            self.error(allData);
+                            self.executed(true);
+                            sc.reevaluateOKForNextStep();
+                        }
+                    )
+                }
+            }
+            
+            
+            function step312_siteconfig()
             {
                 var self = this;
                 
@@ -1226,7 +1412,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 this.activate = function()
                 {
                     $.getJSON(
-                        "setup.php?mode=json&class=Step311_siteconfig&method=retrieveValues",
+                        "setup.php?mode=json&class=Step312_siteconfig&method=retrieveValues",
                         function(values)
                         {
                             self.siteURL(values.siteURL);
@@ -1246,7 +1432,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                     };
                     
                     $.getJSON(
-                        "setup.php?mode=json&class=Step311_siteconfig&method=saveValues",
+                        "setup.php?mode=json&class=Step312_siteconfig&method=saveValues",
                         siteconfig
                     );
                 }
