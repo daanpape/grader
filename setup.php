@@ -644,6 +644,8 @@ if(@$filteredGET['mode'] == 'json')
             span.rpasslink { font-size: small; }
             span.rpasslink:hover { cursor: pointer; }
             div[id^=Step] { display: none; }
+            .tocActive { font-weight: bold; }
+            .tocInactive { font-weight: normal; }
         </style>
     </head>
     
@@ -960,6 +962,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 function stepControllerViewModel()
                 {
                     this.OKForNextStep = self.OKForNextStep;
+                    this.currentStep = self.currentStep;
                     
                     this.advance = function()
                     {
@@ -994,9 +997,10 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                             $.each(allData,
                                 function(index, value)
                                 {
-                                    $("#stepList").append("<li>" + value.name + "</li>");
+                                    $("#stepList").append('<li>' + value.name + '</li>');
                                 }
                             );
+                            $("#stepList li:contains('" + self.currentStep.name + "')").attr('class', 'tocActive');
                         }
                     );
                 }
@@ -1025,10 +1029,12 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                     self.steps[this.currentStep.class].activate && self.steps[this.currentStep.class].activate();
                     self.reevaluateOKForNextStep();
                     $("#currentStepName").text(this.currentStep.name);
+                    $("#stepList li:contains('" + this.currentStep.name + "')").attr('class', 'tocActive');
                 }
                 
                 this.deactivateCurrentStep = function()
                 {
+                    $("#stepList li:contains('" + this.currentStep.name + "')").attr('class', 'tocInactive');
                     $("#" + this.currentStep.class).hide();
                     self.steps[this.currentStep.class].deactivate && self.steps[this.currentStep.class].deactivate();
                 }
