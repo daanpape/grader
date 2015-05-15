@@ -637,7 +637,7 @@ if(@$filteredGET['mode'] == 'json')
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/knockout-3.1.0.js"></script>
+        <script type="text/javascript" src="js/knockout-3.3.0.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <style type="text/css">
             body { padding-top: 50px; }
