@@ -7,6 +7,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 
+/* DATABASE STRUCTURE */
+/* SCROLL DOWN FOR DATA INSERTION */
+
+
 CREATE TABLE IF NOT EXISTS `assess_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project` int(11) NOT NULL,
@@ -358,6 +362,78 @@ CREATE TABLE IF NOT EXISTS `werkfiche_user_rapport` (
 ALTER TABLE `studentlist_students_rapport`
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+
+/* DATA INSERTION */
+
+INSERT INTO `roles` (`id`, `role`, `description`) VALUES
+(1, 'GUEST', 'When not logged in you get the GUEST role. '),
+(2, 'SUPERUSER', 'The superuser role must have access to everything. '),
+(3, 'USER', 'Contains rights for every USER in the system'),
+(4, 'STUDENT', 'Can only do studentactions');
+
+
+INSERT INTO `permissions` (`id`, `permission`) VALUES
+(1, ''),
+(2, 'home'),
+(3, 'assess'),
+(4, 'courses'),
+(5, 'projects'),
+(6, 'api/*'),
+(8, 'register'),
+(9, 'checkemail'),
+(10, 'activate/*'),
+(11, 'login/*'),
+(12, 'logout'),
+(13, 'project/*'),
+(14, 'project/*'),
+(15, 'assess/project/*'),
+(16, 'account/*'),
+(17, 'upload'),
+(18, 'student/*'),
+(19, 'admin/*'),
+(20, 'coursesrapporten'),
+(21, 'homerapporten'),
+(22, 'assessrapporten'),
+(23, 'account'),
+(24, 'studentrapportrapporten'),
+(25, 'coursecompetence/*'),
+(26, 'worksheetrapporten');
+
+
+INSERT INTO `role_permissions` (`id`, `role_id`, `permission_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(7, 1, 6),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10),
+(11, 1, 11),
+(12, 1, 12),
+(13, 2, 13),
+(14, 3, 14),
+(15, 3, 15),
+(16, 3, 16),
+(17, 3, 17),
+(18, 1, 18),
+(19, 1, 18),
+(20, 2, 19),
+(21, 3, 20),
+(22, 3, 21),
+(23, 3, 22),
+(24, 3, 23),
+(25, 3, 24),
+(26, 3, 25),
+(27, 3, 26);
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
