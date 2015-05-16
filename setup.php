@@ -495,12 +495,16 @@ class Step310_dbcreate implements ISetupStep
         
         $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
         $SQL .= file_get_contents('grader.sql');
-        $Query = $DB->prepare($SQL);
+        $query = $DB->prepare($SQL);
         try
         {
-            $Query->execute();
+            $result = $query->execute();
+            while($query->nextRowSet())
+            {
+                
+            }
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
             $this->logEntrySetError("FAIL: Couldn't import database schema: {$ex->getMessage()}");
             return $this->getLog();
