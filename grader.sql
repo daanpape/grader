@@ -363,9 +363,55 @@ ALTER TABLE `studentlist_students_rapport`
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-
 ALTER TABLE `user_roles`
   ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY ( `user_id` ) REFERENCES `grader`.`users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `assess_score`
+  ADD CONSTRAINT `assess_score_ibfk_6` FOREIGN KEY (`indicator`) REFERENCES `indicator` (`id`),
+  ADD CONSTRAINT `assess_score_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`),
+  ADD CONSTRAINT `assess_score_ibfk_2` FOREIGN KEY (`student`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `assess_score_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `assess_score_ibfk_4` FOREIGN KEY (`competence`) REFERENCES `competence` (`id`),
+  ADD CONSTRAINT `assess_score_ibfk_5` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`);
+
+ALTER TABLE `competence`
+  ADD CONSTRAINT `competence_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`);
+
+ALTER TABLE `course`
+  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`training`) REFERENCES `training` (`id`);
+
+ALTER TABLE `documenttype`
+  ADD CONSTRAINT `documenttype_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`);
+
+ALTER TABLE `email`
+  ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `indicator`
+  ADD CONSTRAINT `indicator_ibfk_1` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`);
+
+ALTER TABLE `role_permissions`
+  ADD CONSTRAINT `role_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `role_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+ALTER TABLE `rules`
+  ADD CONSTRAINT `rules_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`);
+
+ALTER TABLE `studentlist`
+  ADD CONSTRAINT `studentlist_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`);
+
+ALTER TABLE `studentlist_students_rapport`
+  ADD CONSTRAINT `studentlist_students_rapport_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `studentlist_users`
+  ADD CONSTRAINT `studentlist_users_ibfk_2` FOREIGN KEY (`student`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `studentlist_users_ibfk_1` FOREIGN KEY (`studentlist`) REFERENCES `studentlist` (`id`);
+
+ALTER TABLE `training`
+  ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`location`) REFERENCES `location` (`id`);
+
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 /* DATA INSERTION */
