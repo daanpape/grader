@@ -399,19 +399,12 @@ ALTER TABLE `rules`
 ALTER TABLE `studentlist`
   ADD CONSTRAINT `studentlist_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`);
 
-ALTER TABLE `studentlist_students_rapport`
-  ADD CONSTRAINT `studentlist_students_rapport_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 ALTER TABLE `studentlist_users`
   ADD CONSTRAINT `studentlist_users_ibfk_2` FOREIGN KEY (`student`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `studentlist_users_ibfk_1` FOREIGN KEY (`studentlist`) REFERENCES `studentlist` (`id`);
 
 ALTER TABLE `training`
   ADD CONSTRAINT `training_ibfk_1` FOREIGN KEY (`location`) REFERENCES `location` (`id`);
-
-ALTER TABLE `user_roles`
-  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 /* DATA INSERTION */
