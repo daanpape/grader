@@ -78,23 +78,8 @@ require_once('templates/header.php');
                     <tr>
                         <td>Status</td>
                         <td>
-                            <!-- ko if: status() === 'ACTIVE' || status() === 'DISABLED' -->
-                            <select class="form-control form-next" name="status">
-                                <!-- ko if: status() === 'ACTIVE' -->
-                                <option selected="true" data-bind="if:status" name="ACTIVE">ACTIVE</option>
-                                <option data-bind="if:status" name="DISABLED">DISABLED</option>
-                                <!-- /ko -->
-                                <!-- ko if: status() === 'DISABLED' -->
-                                <option data-bind="if:status" name="ACTIVE">ACTIVE</option>
-                                <option selected="true" data-bind="if:status" name="DISABLED">DISABLED</option>
-                                <!-- /ko -->
+                            <select class="form-control form-next" name="status" data-bind="options: userStatuses, value: status">
                             </select>
-                            <!-- /ko -->
-                            <!-- ko if: status() === 'WAIT_ACTIVATION' -->
-                            <select class="form-control form-next" disabled>
-                                <option selected="true" data-bind="if:status" name="WAIT_ACTIVATION">WAIT_ACTIVATION</option>
-                            </select>
-                            <!-- /ko -->
                         </td>
                     </tr>
                     <tr>
