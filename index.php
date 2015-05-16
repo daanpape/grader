@@ -263,7 +263,30 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
 $app->post('/api/saveedit/:id', function($id) use ($app) {
 
     // Try to edit the user
-    if(!GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status'])) {
+    
+    $filter = array(
+        'firstname' => FILTER_SANITIZE_STRING,
+        'lastname'  => FILTER_SANITIZE_STRING,
+        'email'     => FILTER_VALIDATE_EMAIL,
+        'status'    => array(
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => array(
+                'regexp' => '/^WAIT_ACTIVATION|ACTIVE|DISABLED$/'
+                )
+            )
+    );
+    
+    $fPOST = filter_input_array(INPUT_POST, $filter, true);
+
+    foreach($fPOST as $name => $value)
+    {
+        if($value === null)
+        {
+            throw new \Exception("Validation failed on POST field '{$name}'");
+        }
+    }
+    
+    if(!GraderAPI::updateUser($id, $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['status'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }
