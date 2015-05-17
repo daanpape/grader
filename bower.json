@@ -15,8 +15,10 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrap": "*",
     "font-awesome": "~4.3.0",
     "metisMenu": "~2.0.0",
-    "sb-admin-2": "*"
+    "sb-admin-2": "*",
+    "bootstrapValidator": "*"
   }
 }
