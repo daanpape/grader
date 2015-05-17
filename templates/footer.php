@@ -2,7 +2,7 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jsrapport/jquery-ui.min.js"></script>
 <script src="/js/knockout-3.3.0.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/modals.js"></script>
 <script src="/js/global.js"></script>

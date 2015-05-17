@@ -88,11 +88,20 @@ require_once('templates/header.php');
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-md-4">Language</label>
+                    <div class="col-md-8">
+                        <select class="form-control form-next" name="lang">
+                            <option>EN</option>
+                            <option>NL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label col-md-4">Status</label>
                     <div class="col-md-8">
-                        <select class="form-control form-next">
-                            <option>Active</option>
-                            <option>Non-Active</option>
+                        <select class="form-control form-next" name="status">
+                            <option>ACTIVE</option>
+                            <option>DISABLED</option>
                         </select>
                     </div>
                 </div>
@@ -107,16 +116,17 @@ require_once('templates/header.php');
                         </select>
                     </div>
                 </div>
-            </form>
 
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" type="submit" data-bind="click: createNewUser">Save</button>
+                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
                     </div>
                 </div>
             </div>
-        </form>
+                
+            </form>
+            
         </div>
     </div>
     <!-- /.row -->

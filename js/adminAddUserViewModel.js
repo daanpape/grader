@@ -16,6 +16,7 @@ function createNewUser()
      data: $('#userForm').serialize(),
      success: function() {
         console.log('Success');
+        $(location).attr('href', '/admin/users');
      },
      error: function() {
          console.log('error');
@@ -25,15 +26,23 @@ function createNewUser()
 
 function initPage() {
     // Form submit
-    $('#userForm').on('submit', function(e)
+    /*$('#userForm').on('submit', function(e)
     {
         //e.preventDefault();
 
         createNewUser();
 
         //window.location.href = "/admin/users";
-    });
+    });*/
+    
 }
+
+
+$('#userForm').on('success.form.bv', function (e) {
+        e.preventDefault();
+        createNewUser();
+    }    
+);
 
 
 $('#userForm').bootstrapValidator({

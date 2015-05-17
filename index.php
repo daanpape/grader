@@ -129,11 +129,42 @@ $app->post('/checkemail', function() use($app) {
 });
 
 $app->post('/register', function() use($app){
-    // Try to register the user
-    if(!Security::registerUser($_POST['lang'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['email'], $_POST['pass'], $_POST['passconfirm'])) {
+
+    $filter = array(
+        'firstname' => array(
+            'filter' => FILTER_SANITIZE_STRING,
+            'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
+            ),
+        'lastname'  => array(
+            'filter' => FILTER_SANITIZE_STRING,
+            'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
+            ),
+        'email'     => FILTER_VALIDATE_EMAIL,
+        'status'    => array(
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => array(
+                'regexp' => '/^WAIT_ACTIVATION|ACTIVE|DISABLED$/'
+                )
+            ),
+        'lang'      => FILTER_SANITIZE_STRING
+    );
+    
+    $fPOST = filter_input_array(INPUT_POST, $filter, true);
+    
+    foreach($fPOST as $name => $value)
+    {
+        if($value === null)
+        {
+            throw new \Exception("Validation failed on POST field '{$name}'");
+        }
+    }
+    
+    
+    if(!Security::registerUser($fPOST['lang'], $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['email'], $_POST['pass'], $_POST['passconfirm'])) {
         // Registration failed, bad request
         $app->response->setStatus(400);
     }
+
 });
 
 
