@@ -106,6 +106,7 @@ require_once('templates/header.php');
                         </select>
                     </div>
                 </div>
+                <!--
                 <div class="form-group">
                     <label class="control-label col-md-4">Permission</label>
                     <div class="col-md-8">
@@ -117,6 +118,7 @@ require_once('templates/header.php');
                         </select>
                     </div>
                 </div>
+                -->
 
             <div class="container">
                 <div class="row">
