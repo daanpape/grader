@@ -1,0 +1,9 @@
+* Have API calls always return a proper JSON response, as follows:
+
+array(
+    'success' => true OR false,
+    'error' => 'Error message' or null when success = true,
+    'data' => Result set when the API call is a data-fetching call
+);
+
+
