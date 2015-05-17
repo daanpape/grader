@@ -729,7 +729,7 @@ if(@$filteredGET['mode'] == 'json')
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/knockout-3.3.0.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <style type="text/css">
             body { padding-top: 50px; }
             span.rpasslink { font-size: small; }
