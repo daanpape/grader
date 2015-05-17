@@ -14,8 +14,8 @@ require_once('templates/header.php');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Grader Admin</a>
-            <a class="navbar-brand" href="../home.php">Grader</a>
+            <a class="navbar-brand" href="/admin/home">Grader Admin</a>
+            <a class="navbar-brand" href="/home">Grader</a>
         </div>
 
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
