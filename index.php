@@ -149,7 +149,7 @@ $app->post('/register', function() use($app){
         'lang'      => FILTER_SANITIZE_STRING
     );
     
-    $fPOST = filter_input_array(INPUT_POST, $filter, true);
+    $fPOST = filter_input_array(INPUT_POST, $filter, false);
     
     foreach($fPOST as $name => $value)
     {
