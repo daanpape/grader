@@ -251,6 +251,8 @@ class Step311_firstuser implements ISetupStep
     public function createUser()
     {
         $DBDetails = $_SESSION['Step001_database'];
+        
+        $this->saveValues();
             
         try
         {
