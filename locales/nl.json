@@ -139,5 +139,6 @@
     "AdminAddUser" : "Gebruiker toevoegen",
     "AdminEditPage" : "Gebruiker wijzigen",
     "AdminPermissionPage" : "Rechten",
-    "AdminUsersPage" : "Gebruikers"
+    "AdminUsersPage" : "Gebruikers",
+    "AdminPage" : "Home"
 }

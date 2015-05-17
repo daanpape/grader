@@ -142,5 +142,6 @@
     "AdminAddUser" : "Add User",
     "AdminEditPage" : "Edit User",
     "AdminPermissionPage" : "Permissions",
-    "AdminUsersPage" : "Users"
+    "AdminUsersPage" : "Users",
+    "AdminPage" : "Home"
 }
