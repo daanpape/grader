@@ -273,8 +273,10 @@ class Step311_firstuser implements ISetupStep
             return $ex->getMessage();
         }
 
-        $SQL = "INSERT INTO users (username, password, status) VALUES (:username, :password, :status);\n";
+        $SQL = "INSERT INTO users (firstname, lastname, username, password, status) VALUES (:firstname, :lastname, :username, :password, :status);\n";
         $Query = $DB->prepare($SQL);
+        $Query->bindValue(':firstname', 'Grader');
+        $Query->bindValue(':lastname', 'Admin');
         $Query->bindValue(':username', $_SESSION['Step311_firstuser']['username']);
         $Query->bindValue(':password', password_hash($_SESSION['Step311_firstuser']['password'], PASSWORD_BCRYPT));
         $Query->bindValue(':status', 'ACTIVE');
