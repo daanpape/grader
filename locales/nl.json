@@ -134,5 +134,10 @@
     "AssessGeneralError" : "Data kon niet verstuurd worden",
 
     "UserEditTitle": "Gebruiker wijzigen",
-    "EditStudent" : "Wijzig student"
+    "EditStudent" : "Wijzig student",
+
+    "AdminAddUser" : "Gebruiker toevoegen",
+    "AdminEditPage" : "Gebruiker wijzigen",
+    "AdminPermissionPage" : "Rechten",
+    "AdminUsersPage" : "Gebruikers"
 }
