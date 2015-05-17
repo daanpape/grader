@@ -58,60 +58,61 @@ require_once('templates/header.php');
 
         <!-- /.col-lg-12 -->
         <div>
-            <form id="userForm">
-            <input type="hidden" name="lang" value="EN"/>
-            <table class="table table-striped">
-                <tr>
-                    <td>Firstname</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname"
-                               ></td>
-                </tr>
-                <tr>
-                    <td>Lastname</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname"
-                               ></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" class="form-control form-next" placeholder="Email" name="email">
-                    </td>
-                </tr>
-                <tr>
-                    <td>password</td>
-                    <td><input type="password" class="form-control form-next" placeholder="Password" name="pass"
-                               ></td>
-                </tr>
-                <tr>
-                    <td>Confirm password</td>
-                    <td><input type="password" class="form-control form-next" placeholder="Confirm password" name="passconfirm"
-                               ></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td>
+            <form id="userForm" class="form">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Firstname</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-next" placeholder="Firstname" name="firstname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Lastname</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control form-next" placeholder="Lastname" name="lastname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Email</label>
+                    <div class="col-md-8"><input type="text" class="form-control form-next" placeholder="Email" name="email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">password</label>
+                    <div class="col-md-8"><input type="password" class="form-control form-next" placeholder="Password" name="pass"
+                               ></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Confirm password</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control form-next" placeholder="Confirm password" name="passconfirm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Status</label>
+                    <div class="col-md-8">
                         <select class="form-control form-next">
                             <option>Active</option>
                             <option>Non-Active</option>
                         </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Permission</td>
-                    <td>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">Permission</label>
+                    <div class="col-md-8">
                         <select class="form-control form-next">
                             <option>GUEST</option>
                             <option>STUDENT</option>
                             <option>USER</option>
                             <option>SUPERUSER</option>
                         </select>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </form>
 
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+                        <button class="btn btn-lg savePageBtn pull-right" type="submit" data-bind="click: createNewUser">Save</button>
                     </div>
                 </div>
             </div>
