@@ -21,11 +21,11 @@ require_once 'dptcms/config.php';
                 if ($location == 'home') {
                     echo 'class="active"';
                 }
-                ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
-                <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
+                ?>><a href="/home" data-bind="text: i18n.get('g_home')">Home</a></li>
+                <li><a href="/assess" data-bind="text: i18n.get('g_assess')">Assess</a></li>
                 <li class="<?php if ($location == 'projects') {
                         echo 'active';
-                    } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                    } ?>"> <a href="/projects" data-bind="text: i18n.get('g_projects')">Projects</a></li>
                 
                 <!---------- RapportSysteem ---------->
                 
@@ -66,17 +66,17 @@ require_once 'dptcms/config.php';
                                  <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
                             </ul>
                         </li>';
-                    echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
+                    echo '<li><a href="#" data-bind="text: i18n.get(\'g_logout\')" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
                 } else {
-                    echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
+                    echo '<li><a href="#" data-bind="text: i18n.get(\'g_login\')" id="usermanagement">Login</a></li>';
                 }
                 ?>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-bind="text: i18n.get('g_language')">Language <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><span class="navspan" onclick="setLang('en')">English</span></li>
-                        <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                        <li><span class="navspan" data-bind="click: function() { i18n.language('en')}">English</span></li>
+                        <li><span class="navspan" data-bind="click: function() { i18n.language('nl')}">Nederlands</span></li>
                     </ul>
                 </li>
             </ul>
@@ -89,36 +89,36 @@ require_once 'dptcms/config.php';
 
     <!-- Login modal -->
     <div class="modal_box" id="login_modal">
-        <div class="modal_title" data-bind="text: loginModalTitle">
+        <div class="modal_title" data-bind="text: i18n.get('g_login')">
             Login
         </div>
         <div class="modal_error" id="login_error"></div>
         <form id="loginform">
             <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Email" data-bind="attr: {placeholder: email}" name="email">
+                <input type="text" class="form-control input-lg" placeholder="Email" data-bind="attr: {placeholder: i18n.get('g_email')}" name="email">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control input-lg" placeholder="Password" data-bind="attr: {placeholder: password}" name="password">
+                <input type="password" class="form-control input-lg" placeholder="Password" data-bind="attr: {placeholder: i18n.get('g_password')}" name="password">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block" data-bind="text: loginBtn">Log in</button>
-                <span class="margin-top"><a href="#" data-bind="text: forgotPswdBtn">Forgot password?</a></span>
-                <span class="pull-right margin-top"><a href="register" data-bind="text: notMemberBtn">Not a member yet?</a></span>
+                <button class="btn btn-primary btn-lg btn-block" data-bind="text: i18n.get('g_login')">Log in</button>
+                <span class="margin-top"><a href="#" data-bind="text: i18n.get('g_forgotpassword')">Forgot password?</a></span>
+                <span class="pull-right margin-top"><a href="register" data-bind="text: i18n.get('g_notamember')">Not a member yet?</a></span>
             </div>
         </form>
     </div>
 
     <!-- Yes no modal -->
     <div id="yes_no_modal" class="modal_box extrapadding">
-        <div class="modal_title" data-bind="text: yesNoModaltitle">
+        <div class="modal_title" data-bind="text: i18n.get('g_areyousure')">
             Are you sure?
         </div>
-        <div id="modal_title_body" data-bind="text: yesNoModalBody">
+        <div id="modal_title_body" data-bind="text: i18n.get('g_confirmremove')">
             Bent u zeker dat u dit wenst te verwijderen?
         </div>
         <div class="form-inline rightbtns">
-            <button class="btn btn-primary inline" data-bind="text: yes" id="ynmodel-y-btn">Yes</button>
-            <button class="btn btn-primary inline" data-bind="text: no" id="ynmodal-n-btn">No</button>
+            <button class="btn btn-primary inline" data-bind="text: i18n.get('g_yes')" id="ynmodel-y-btn">Yes</button>
+            <button class="btn btn-primary inline" data-bind="text: i18n.get('g_no')" id="ynmodal-n-btn">No</button>
         </div>
         <!-- copy modal -->
     </div>
@@ -126,7 +126,7 @@ require_once 'dptcms/config.php';
 
     <!-- Upload modal -->
     <div id="upload_modal" class="modal_box extrapadding">
-        <div class="modal_title" data-bind="text: uploadModalTitle">
+        <div class="modal_title" data-bind="text: i18n.get('modal_upload_title')">
             Upload a file
         </div>
         <div id="modal_title_body">
@@ -141,11 +141,11 @@ require_once 'dptcms/config.php';
             <form id="uploadform" enctype="multipart/form-data">
                 <table>
                     <tr>
-                        <td><span data-bind="text: chooseFiles">Choose images</span>:</td>
+                        <td><span data-bind="text: i18n.get('modal_upload_chooseimages')">Choose images</span>:</td>
                     </tr>
                     <tr>
                         <td><input type="file" name="files[]" multiple></td>
-                        <td><button type="button" class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
+                        <td><button type="button" class="btn btn-primary inline" data-bind="text: i18n.get('modal_upload_upload')" id="uploadformbtn">Upload</button></td>
                     </tr>
                 </table>
             </form>

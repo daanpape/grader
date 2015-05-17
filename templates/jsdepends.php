@@ -3,6 +3,9 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jsrapport/jquery-ui.min.js"></script>
 <script src="/js/knockout-3.3.0.js"></script>
+<script src="/js/topener-i18n.js"></script>
+<script src="/locales/en-GB.js"></script>
+<script src="/locales/nl-BE.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/modals.js"></script>

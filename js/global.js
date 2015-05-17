@@ -33,6 +33,7 @@ function GlobalViewModel()
     this.app = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("AppName");}, this);
         
     // I18N bindings
+    /*
     this.loginModalTitle = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("LoginModalTitle");}, this);
     this.homeBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("HomeButton");}, this);
     this.assessBtn = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("AssessButton");}, this);
@@ -53,7 +54,9 @@ function GlobalViewModel()
     this.chooseFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("ChooseFiles");}, this);
     this.uploadedFiles = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("UploadedFiles");}, this);
     this.progress = ko.computed(function(){i18n.setLocale(this.lang()); return i18n.__("Progress");}, this);
+    */
 
+    this.i18n = new topener.i18n();
 
     /**
      * Change the UI locale

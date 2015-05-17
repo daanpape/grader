@@ -13,7 +13,7 @@ $location = "home";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: app">Projects</h1>
+            <h1 class="page-header" data-bind="text: i18n.get('g_projects')">Projects</h1>
         </div>
         
         <!-- Content container -->
@@ -23,7 +23,7 @@ $location = "home";
                     before using the service.</p>
             </div>
         </div>
-
+        
         <?php include_once('jsdepends.php') ?>
     </body>
 </html>
