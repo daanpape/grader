@@ -16,7 +16,7 @@ require_once('templates/header.php');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Grader Admin</a>
+            <a class="navbar-brand" href="/home"><i class="fa fa-home fa-fw fa-lg"></i>Grader Home</a>
         </div>
         <!-- /.navbar-header -->
 
