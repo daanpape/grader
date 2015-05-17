@@ -372,8 +372,6 @@ class GraderAPI {
     public static function putProjectStructure($projectid, $projectStructure) {
         $data = json_decode($projectStructure);
         
-        var_dump($data);
-        
         foreach ($data as $competence) {
             // Insert a competence
             $competenceid = self::putCompetence(
