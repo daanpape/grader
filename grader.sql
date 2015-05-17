@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `activation_key` varchar(100) NOT NULL,
+  `activation_key` varchar(100) NULL,
   `status` ENUM('WAIT_ACTIVATION','ACTIVE','DISABLED') NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
