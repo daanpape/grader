@@ -5,7 +5,6 @@ $location = "project";
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
     <head>
-        <link rel="stylesheet" href="../css/bootstrap.icon-large.css">
         <style>
             #top-col {
                 padding-bottom: 15px;
