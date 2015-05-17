@@ -137,5 +137,10 @@
     "AssessGeneralError" : "Could not submit data",
 
     "UserEditTitle": "Edit user",
-    "EditStudent" : "Edit student"
+    "EditStudent" : "Edit student",
+
+    "AdminAddUser" : "Add User",
+    "AdminEditPage" : "Edit User",
+    "AdminPermissionPage" : "Permissions",
+    "AdminUsersPage" : "Users"
 }
