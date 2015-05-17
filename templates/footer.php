@@ -6,6 +6,7 @@
 <script src="/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/modals.js"></script>
 <script src="/js/global.js"></script>
+<script src="/bower_components/bootstrapValidator/dist/js/bootstrapValidator.min.js"></script>
 <script src="/js/<?php echo $location ?>ViewModel.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->

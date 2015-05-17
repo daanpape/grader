@@ -10,6 +10,7 @@
     <title data-bind="text: title">Oopsie, the dev forgot a title!</title>
     
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css" rel="stylesheet">
     <link href="/css/grader.css" rel="stylesheet">
     <link href="/css/cssrapport/jquery-ui.min.css" rel="stylesheet">
     <link href="/bower_components/sb-admin-2/css/sb-admin-2.css" rel="stylesheet">
