@@ -165,6 +165,7 @@ class Security {
         if($skipEmailVerification)
         {
             $status = ACTIVE;
+            $regtoken = null;
         }
         else
         {
