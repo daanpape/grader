@@ -18,7 +18,7 @@ $location = "home";
         
         <!-- Content container -->
         <div class="container">
-            <div class="starter-template" data-bind="html: homeManual">
+            <div class="starter-template" data-bind="html: i18n.get('home_manualtext')">
                 <p class="lead">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual
                     before using the service.</p>
             </div>

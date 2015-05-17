@@ -19,11 +19,11 @@ $location = "assess";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" data-bind="text: pageHeader">Assess</h1>
+    <h1 class="page-header" data-bind="text: i18n.get('assess_pageheader')">Assess</h1>
 </div>
 <!-- Content container -->
 <div class="container">
-    <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
+    <div class="big-info"><span data-bind="text: i18n.get('assess_selectcourse')">Select course</span>:</div>
     <div class="row">
         <div class="dropdown col-md-4">
             <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
@@ -60,14 +60,14 @@ $location = "assess";
 
 <!-- Content container -->
 <div class="container">
-    <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
+    <div class="big-info"><span data-bind="text: i18n.get('assess_foundprojects')">Found projects</span>:</div>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th data-bind="text: codeTableTitle">Code</th>
-            <th data-bind="text: nameTableTitle">Name</th>
-            <th data-bind="text: descTableTitle">Description</th>
-            <th data-bind="text: actionTableTitle">Actions</th>
+            <th data-bind="text: i18n.get('g_code')">Code</th>
+            <th data-bind="text: i18n.get('g_name')">Name</th>
+            <th data-bind="text: i18n.get('g_description')">Description</th>
+            <th data-bind="text: i18n.get('g_actions')">Actions</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: tabledata">

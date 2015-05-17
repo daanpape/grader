@@ -13,11 +13,11 @@ $location = "projects";
 
         <!-- Header container -->
         <div class="container">
-            <h1 class="page-header" data-bind="text: pageHeader">Projects</h1>
+            <h1 class="page-header" data-bind="text: i18n.get('projects_pageheader')">Projects</h1>
         </div>
         <!-- Content container -->
         <div class="container">
-            <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
+            <div class="big-info"><span data-bind="text: i18n.get('projects_selectcourse')">Select course</span>:</div>
             <div class="row">
                 <div class="dropdown col-md-4">
                     <button class="btn btn-wide btn-default btn-location dropdown-toggle" type="button" id="locations" data-toggle="dropdown" aria-expanded="true">
@@ -54,14 +54,14 @@ $location = "projects";
 
         <!-- Content container -->
         <div class="container">
-            <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
+            <div class="big-info"><span data-bind="text: i18n.get('projects_foundprojects')">Found projects</span>:</div>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: descTableTitle">Description</th>
-                        <th data-bind="text: actionTableTitle">Actions</th>
+                        <th data-bind="text: i18n.get('g_code')">Code</th>
+                        <th data-bind="text: i18n.get('g_name')">Name</th>
+                        <th data-bind="text: i18n.get('g_description')">Description</th>
+                        <th data-bind="text: i18n.get('g_actions')">Actions</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
@@ -96,7 +96,7 @@ $location = "projects";
             </ul>
 
             <button type="button" class="btn btn-default pagination-button" id="addProjectTypeBtn">
-                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: i18n.get('projects_add')"></span>
             </button>
         </div>
 

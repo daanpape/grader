@@ -4,7 +4,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="/img/favicon.ico">
-<title data-bind="text: title"></title>
+<title></title>
 
 <!-- CSS style includes -->
 <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
