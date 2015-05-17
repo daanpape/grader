@@ -1,0 +1,22 @@
+{
+  "name": "grader",
+  "version": "1.0.0",
+  "homepage": "https://github.com/daanpape/grader",
+  "authors": [
+    "Glenn Matthys <glenn@webmind.be>"
+  ],
+  "description": "Grading system",
+  "license": "Undefined",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.3.0",
+    "metisMenu": "~2.0.0",
+    "sb-admin-2": "*"
+  }
+}

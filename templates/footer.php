@@ -9,10 +9,10 @@
 <script src="/js/<?php echo $location ?>ViewModel.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="/admin_static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/admin_static/dist/js/sb-admin-2.js"></script>
+<script src="/bower_components/sb-admin-2/js/sb-admin-2.js"></script>
 
 </body>
 
