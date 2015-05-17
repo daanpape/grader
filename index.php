@@ -159,8 +159,16 @@ $app->post('/register', function() use($app){
         }
     }
     
+    if(@$_POST['skipEmailVerification'])
+    {
+        $skipEmailVerification = true;
+    }
+    else
+    {
+        $skipEmailVerification = false;
+    }
     
-    if(!Security::registerUser($fPOST['lang'], $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['email'], $_POST['pass'], $_POST['passconfirm'])) {
+    if(!Security::registerUser($fPOST['lang'], $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['email'], $_POST['pass'], $_POST['passconfirm'], $skipEmailVerification)) {
         // Registration failed, bad request
         $app->response->setStatus(400);
     }
