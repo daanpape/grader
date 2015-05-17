@@ -59,6 +59,7 @@ require_once('templates/header.php');
         <!-- /.col-lg-12 -->
         <div>
             <form id="userForm" class="form">
+                <input type="hidden" name="skipEmailVerification" value="true">
                 <div class="form-group">
                     <label class="control-label col-md-4">Firstname</label>
                     <div class="col-md-8">
