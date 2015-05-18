@@ -32,18 +32,24 @@ function pageViewModel(gvm) {
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
             $.each(data, function(i, item) {
-                var current = $.grep(gvm.documents(), function(e) { return e.id == item.document});
-                current[0].submitted = item.submitted;
+                gmv.userData.push(item);
             });
         });
     };
 
     gvm.getDocumentsToSubmit = function() {
+        gvm.getUserData();
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, 1);
+                var current = $.grep(gvm.userData(), function(e) { return e.id == item.id});
+
+                if(current[0].submitted == null)
+                {
+                    current[0].submitted = 0;
+                }
+
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, current[0].submitted);
             });
-            gvm.getUserData();
         });
     };
 
