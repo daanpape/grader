@@ -2,7 +2,7 @@
 
 array(
     'success' => true OR false,
-    'error' => 'Error message' or null when success = true,
+    'error' => 'Error message' or (null or not present) when success = true,
     'data' => Result set when the API call is a data-fetching call
 );
 
