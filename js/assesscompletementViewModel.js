@@ -45,11 +45,15 @@ function pageViewModel(gvm) {
 
                 console.log(current);
 
-                var value = current[0].submitted;;
+                var value;
 
-                if(current[0] === 'undefined')
+                if(current.length == 0)
                 {
                     value = 0;
+                }
+                else
+                {
+                    value = current[0].submitted;;
                 }
 
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
