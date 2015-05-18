@@ -34,7 +34,6 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.documents(), function(e) { return e.id == item.document});
                 current[0].submitted = item.submitted;
-                // Push
             });
         });
     };
@@ -42,7 +41,7 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, 0);
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, 1);
             });
             gvm.getUserData();
         });
