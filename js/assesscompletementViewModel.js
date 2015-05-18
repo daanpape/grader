@@ -41,7 +41,7 @@ function pageViewModel(gvm) {
         gvm.getUserData();
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                var current = $.grep(gvm.userData(), function(e) { return e.document == item.id});
+                var current = $.grep(gvm.userData(), function(e) { console.log(e); return e.document == item.id});
 
                 console.log(current);
 
