@@ -45,7 +45,7 @@ function pageViewModel(gvm) {
 
                 var value = 0;
 
-                if(current != null)
+                if(current[0].submitted !== 'undefined')
                 {
                     value = current[0].submitted;
                 }
