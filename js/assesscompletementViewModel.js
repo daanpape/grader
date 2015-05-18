@@ -41,17 +41,16 @@ function pageViewModel(gvm) {
         gvm.getUserData();
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                var current = $.grep(gvm.userData(), function(e) { return e.id == item.id});
+                var current = $.grep(gvm.userData(), function(e) { return e.document == item.id});
 
                 var value = 0;
 
-                /*if(current != null)
+                if(current != null)
                 {
                     value = current[0].submitted;
-                }*/
-                console.log(current);
+                }
 
-                //gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
             });
         });
     };
