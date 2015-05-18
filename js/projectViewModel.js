@@ -233,6 +233,8 @@ function saveProjectStructure() {
         this.doTheRest();
     }
     
+    
+    var processedIndex = 0;
     for(i = 0; i < workQueue.length; i++)
     {
         $.getJSON(
@@ -244,11 +246,12 @@ function saveProjectStructure() {
                     alert("Failed processing your request: " + result.error);
                 }
 
-                if(i === workQueue.length)
+                if(processedIndex === workQueue.length - 1)
                 {
                     self.doTheRest();
                     workQueue = [];
                 }
+                processedIndex++;
             }
         );
     }
