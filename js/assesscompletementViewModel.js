@@ -28,7 +28,7 @@ function pageViewModel(gvm) {
         gvm.documents.push(document);
     };
 
-    gmv.getUserData = function()
+    gvm.getUserData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.userId, function(data) {
             $.each(data, function(i, item) {
@@ -42,7 +42,7 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight, 0);
             });
-            //gmv.getUserData();
+            gvm.getUserData();
         });
     };
 
