@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
 
     gvm.getUserData = function()
     {
-        $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.userId, function(data) {
+        $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
             $.each(data, function(i, item) {
                 console.log(data);
             });
