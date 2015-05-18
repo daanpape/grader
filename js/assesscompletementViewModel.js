@@ -43,12 +43,14 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.userData(), function(e) { return e.id == item.id});
 
-                if(current[0].submitted == null)
+                var value = 0;
+
+                if(current != null)
                 {
-                    current[0].submitted = 0;
+                    value = current[0].submitted;
                 }
 
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, current[0].submitted);
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
             });
         });
     };
