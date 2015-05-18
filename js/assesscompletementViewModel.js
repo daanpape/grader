@@ -37,7 +37,7 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.getAllData = fucntion()
+    gvm.getAllData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
             $.each(data, function(i, item) {
