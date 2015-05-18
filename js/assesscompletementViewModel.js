@@ -45,12 +45,13 @@ function pageViewModel(gvm) {
 
                 var value = 0;
 
-                if(current != null)
+                /*if(current != null)
                 {
                     value = current[0].submitted;
-                }
+                }*/
+                console.log(current);
 
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
+                //gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
             });
         });
     };
