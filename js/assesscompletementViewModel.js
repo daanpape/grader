@@ -43,9 +43,8 @@ function pageViewModel(gvm) {
     }
 
     gvm.saveDocumentsNotSubmitted = function() {
-        $( "select" ).each(function() {
-
-        });
+        var data = $("[id^=document-]").toArray();
+        console.log(data);
     }
 }
 
