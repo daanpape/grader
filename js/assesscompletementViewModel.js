@@ -32,7 +32,7 @@ function pageViewModel(gvm) {
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
             $.each(data, function(i, item) {
-                console.log(gvm.documents);
+                console.log($.grep(gvm.documents(), function(e) { return e.id == data.id()}));
             });
         });
     };
