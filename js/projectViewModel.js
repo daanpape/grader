@@ -228,12 +228,12 @@ function saveProjectStructure() {
         });
     }
     
-    if(workQueue.length == 0)
+    if(workQueue.length === 0)
     {
         this.doTheRest();
     }
     
-    for(i = 0; i < workQueue.length; ++i)
+    for(i = 0; i < workQueue.length; i++)
     {
         $.getJSON(
             workQueue[i],
@@ -244,9 +244,10 @@ function saveProjectStructure() {
                     alert("Failed processing your request: " + result.error);
                 }
 
-                if(i == workQueue.length)
+                if(i === workQueue.length)
                 {
                     self.doTheRest();
+                    workQueue = [];
                 }
             }
         );
