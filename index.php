@@ -409,6 +409,12 @@ $app->get('/api/projectstructure/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::getAllDataFromProject($id));
 });
 
+$app->get('/api/project/:projectId/documents/:userId', function($projectid,$userid) use ($app)
+{
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getUserDataForDocument($projectid,$userid));
+});
+
 $app->get('/api/projectrules/:id', function($id) use ($app)
 {
     $response = $app->response();

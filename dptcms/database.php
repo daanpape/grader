@@ -914,6 +914,23 @@ class ClassDAO {
         }
     }
 
+    public static function getUserDataForDocument($projectid,$userid)
+    {
+        try
+        {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assess_documents WHERE project = ? AND user = ?");
+            $stmt->execute(array($projectid, $userid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError("could not get projectdocuments of user. ".$ex);
+        }
+    }
+
 }
 
 /*

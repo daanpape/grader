@@ -83,6 +83,11 @@ class GraderAPI {
         return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
     }
 
+    public static function getUserDataForDocument($projectid, $userid)
+    {
+        return ClassDAO::getUserDataForDocument($projectid, $userid);
+    }
+
     /*
      * Delete a projecttype from the database
      */
