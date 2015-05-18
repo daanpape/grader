@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.documents = ko.observableArray([]);
+    gvm.userData = ko.observableArray([]);
 
     gvm.addDocument = function(id, description, amount_required, weight) {
         var amount_not_submitted = ko.observableArray([]);
@@ -26,6 +27,17 @@ function pageViewModel(gvm) {
         var document = {id: id, description: description, amount_required: amount_required, weight: weight, amount_not_submitted: amount_not_submitted};
         gvm.documents.push(document);
     };
+
+    /*gmv.getUserData = function()
+    {
+        $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.userId, function(data) {
+            $.each(data, function(i, item) {
+                gvm.addUserData
+            });
+        });
+    };*/
+
+
 
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
@@ -44,11 +56,17 @@ function pageViewModel(gvm) {
 
     gvm.saveDocumentsNotSubmitted = function() {
         var data = $("[id^=document-]").toArray();
-        console.log(data);
+        data.forEach(function(element, index, array)
+        {
+            console.log(element);
+        })
     }
 }
 
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getDocumentsToSubmit();
+
+    viewModel.userData.push(5);
+    //viewModel.getUserData();
 }
