@@ -39,9 +39,10 @@ function pageViewModel(gvm) {
 
     gvm.getDocumentsToSubmit = function() {
         gvm.getUserData();
+        console.log(gvm.userData);
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                var current = $.grep(gvm.userData, function(e) {return e.document == item.id});
+                var current = $.grep(gvm.userData(), function(e) {return e.document == item.id});
 
                 console.log(current);
 
