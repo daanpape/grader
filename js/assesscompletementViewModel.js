@@ -34,7 +34,7 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.documents(), function(e) { return e.id == item.document});
                 current[0].submitted = item.submitted;
-                // Test
+                // Push
             });
         });
     };
