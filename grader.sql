@@ -11,6 +11,15 @@ SET time_zone = "+00:00";
 /* SCROLL DOWN FOR DATA INSERTION */
 
 
+CREATE TABLE IF NOT EXISTS `assess_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `document` int(11) NOT NULL,
+  `project` int(11) NOT NULL,
+  `submitted` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `assess_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project` int(11) NOT NULL,
@@ -357,6 +366,12 @@ CREATE TABLE IF NOT EXISTS `werkfiche_user_rapport` (
   UNIQUE KEY `werkfiche` (`werkfiche`,`user`,`datum`),
   UNIQUE KEY `werkfiche_2` (`werkfiche`,`user`,`datum`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Koppelt een leerling aan een bepaalde werkfiche.' AUTO_INCREMENT=1 ;
+
+
+ALTER TABLE `assess_documents`
+  ADD CONSTRAINT `assess_documents_ibfk_3` FOREIGN KEY (`project`) REFERENCES `project` (`id`),
+  ADD CONSTRAINT `assess_documents_ibfk_1` FOREIGN KEY (`user`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `assess_documents_ibfk_2` FOREIGN KEY (`document`) REFERENCES `documenttype` (`id`);
 
 
 ALTER TABLE `studentlist_students_rapport`
