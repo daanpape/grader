@@ -37,8 +37,18 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.getAllData = fucntion()
+    {
+        $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
+            $.each(data, function(i, item) {
+                gvm.userData.push(item);
+            });
+        }).done( gvm.getDocumentsToSubmit());
+    }
+
     gvm.getDocumentsToSubmit = function() {
-        gvm.getUserData();
+
+
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.userData(), function(e) {return e.document == item.id});
@@ -67,5 +77,5 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.getProjectInfo();
-    viewModel.getDocumentsToSubmit();
+    viewModel.getAllData();
 }
