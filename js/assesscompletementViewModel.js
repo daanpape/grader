@@ -32,7 +32,8 @@ function pageViewModel(gvm) {
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
             $.each(data, function(i, item) {
-                console.log($.grep(gvm.documents(), function(e) { return e.id == item.document}));
+                var current = $.grep(gvm.documents(), function(e) { return e.id == item.document});
+                current[0].submitted = item.submitted;
             });
         });
     };
