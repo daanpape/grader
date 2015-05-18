@@ -67,6 +67,6 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getDocumentsToSubmit();
 
-    viewModel.userData.push(5);
+    viewModel.userData.push(1);
     //viewModel.getUserData();
 }
