@@ -1,3 +1,4 @@
+var workQueue = [];
 /**
  * Competence class
  */
@@ -83,29 +84,13 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         removeIndicator: function(indicator) {
             var self = this;
 
-            if(indicator.id() == undefined) // User deletes an indicator that hasn't been saved to the database yet
+            if(indicator.id() != undefined) // User deletes an indicator that hasn't been saved to the database yet
             {
-                self.indicators.remove(indicator);
-                automatedWeightCalculation(this.indicators());
+                workQueue.push("/api/project/indicator/delete/" + indicator.id())
             }
-            else
-            {
-                $.getJSON(
-                    "/api/project/indicator/delete/" + indicator.id(),
-                    function(result)
-                    {
-                        if(result.success)
-                        {
-                            self.indicators.remove(indicator);
-                            automatedWeightCalculation(self.indicators());
-                        }
-                        else
-                        {
-                            alert("Failed processing your request: " + result.error);
-                        }
-                    }
-                );
-            }
+            
+            self.indicators.remove(indicator);
+            automatedWeightCalculation(this.indicators());
         }
 
     };
@@ -225,17 +210,48 @@ function initPage() {
 }
 
 function saveProjectStructure() {
-    $.ajax({
-        type: "POST",
-        url: "/api/projectstructure/" + projectid,
-        data: ko.toJSON(viewModel.competences),
-        success: function(){
-            // TODO make multilangual and with modals
-            alert("Saved projectstructure to server");
+    var self = this;
+    
 
-            fetchProjectStructure();
-        }
-    });
+    this.doTheRest = function()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/api/projectstructure/" + projectid,
+            data: ko.toJSON(viewModel.competences),
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved projectstructure to server");
+
+                fetchProjectStructure();
+            }
+        });
+    }
+    
+    if(workQueue.length == 0)
+    {
+        this.doTheRest();
+    }
+    
+    for(i = 0; i < workQueue.length; ++i)
+    {
+        $.getJSON(
+            workQueue[i],
+            function(result)
+            {
+                if(!result.success)
+                {
+                    alert("Failed processing your request: " + result.error);
+                }
+
+                if(i == workQueue.length)
+                {
+                    self.doTheRest();
+                }
+            }
+        );
+    }
+
 }
 
 function allValidationChecks()
