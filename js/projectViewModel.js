@@ -45,6 +45,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
  */
 function SubCompetence(parent, id, code, name, weight, locked, indicators) {
     return {
+        
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
@@ -80,8 +81,31 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         },
         
         removeIndicator: function(indicator) {
-            this.indicators.remove(indicator);
-            automatedWeightCalculation(this.indicators());
+            var self = this;
+
+            if(indicator.id() == undefined) // User deletes an indicator that hasn't been saved to the database yet
+            {
+                self.indicators.remove(indicator);
+                automatedWeightCalculation(this.indicators());
+            }
+            else
+            {
+                $.getJSON(
+                    "/api/project/indicator/delete/" + indicator.id(),
+                    function(result)
+                    {
+                        if(result.success)
+                        {
+                            self.indicators.remove(indicator);
+                            automatedWeightCalculation(self.indicators());
+                        }
+                        else
+                        {
+                            alert("Failed processing your request: " + result.error);
+                        }
+                    }
+                );
+            }
         }
 
     };

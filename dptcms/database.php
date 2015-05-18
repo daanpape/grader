@@ -718,6 +718,25 @@ class ClassDAO {
             return false;
         }
     }
+
+    
+    /**
+     * Delete a project's indicator
+     * @param int $id
+     * @return void
+     */
+    public static function deleteProjectIndicator($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM indicator WHERE id = ?;');
+        $stmt->execute(array($id));
+        if($stmt->rowCount() === 0)
+        {
+            throw new \Exception("No rows deleted. Check if the indicator with id {$id} exists. You cannot delete non-existent indicators.");
+        }
+    }
+    
+    
     public static function putStudentList($userid, $username) {
         try {
             $conn = Db::getConnection();
