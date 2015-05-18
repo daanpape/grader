@@ -43,11 +43,13 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.userData(), function(e) { return e.document == item.id});
 
-                var value = 0;
+                console.log(current);
 
-                if(current[0] !== 'undefined')
+                var value = current[0].submitted;;
+
+                if(current[0] === 'undefined')
                 {
-                    value = current[0].submitted;
+                    value = 0;
                 }
 
                 gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
