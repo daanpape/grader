@@ -82,19 +82,17 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    $("saveBtn").on('click', saveDocumentsNotSubmitted());
-}
-
-var saveDocumentsNotSubmitted = function() {
-    $.ajax({
-        type: "POST",
-        url: "/api/documents/" + projectid + "/user/" + viewModel.studentId + "/save",
-        data: ko.toJSON(viewModel.documents),
-        success: function(){
-            // TODO make multilangual and with modals
-            alert("Saved document completeness to server");
-            viewModel.clearStructure();
-            viewModel.getAllData();
-        }
+    $("#saveBtn").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "/api/documents/" + projectid + "/user/" + viewModel.studentId + "/save",
+            data: ko.toJSON(viewModel.documents),
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved document completeness to server");
+                viewModel.clearStructure();
+                viewModel.getAllData();
+            }
+        });
     });
 }
