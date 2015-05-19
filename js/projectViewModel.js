@@ -95,7 +95,6 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
             }
 
             self.indicators.remove(indicator);
-            console.log(indicator);
             automatedWeightCalculation(this.indicators());
         }
 
@@ -361,6 +360,7 @@ function totalPercentCheck()
         if(totalPercentIndicators[index] != 100)
         {
             checkIndicators = false;
+            console.log(totalPercentIndicators);
             console.log('Check indicators failed');
         }
     }
