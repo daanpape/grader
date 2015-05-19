@@ -82,7 +82,7 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
 
-    $("saveBtn").on('click', saveDocumentsNotSubmitted);
+    $("saveBtn").on('click', saveDocumentsNotSubmitted());
 }
 
 var saveDocumentsNotSubmitted = function() {
