@@ -514,6 +514,29 @@ class Step310_dbcreate implements ISetupStep
             return $this->getLog();
         }
         
+        if($DBDetails['importDemoData'] == 'true')
+        {
+            $this->logNextEntry();
+            $this->logEntrySetOp('Import demo data');
+
+            $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
+            $SQL .= file_get_contents('grader-demodata.sql');
+            $query = $DB->prepare($SQL);
+            try
+            {
+                $result = $query->execute();
+                while($query->nextRowSet())
+                {
+
+                }
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError("FAIL: Couldn't import demo data: {$ex->getMessage()}");
+                return $this->getLog();
+            }
+        }
+        
         $_SESSION['Step310_dbcreate']['OKForNextStep'] = true;
         return $this->getLog();
     }
@@ -606,13 +629,14 @@ class Step001_database implements ISetupStep
         if(!isset($_SESSION['Step001_database']))
         {
             $_SESSION['Step001_database'] = array(
-                'SQLHost' => 'localhost',
-                'SQLUser' => '',
-                'SQLPassword' => '',
-                'SQLDBName' => '',
-                'SQLRootUser' => 'root',
-                'SQLRootPassword' => '',
-                'createUserAndDB' => false
+                'SQLHost' =>        'localhost',
+                'SQLUser' =>        '',
+                'SQLPassword'       => '',
+                'SQLDBName'         => '',
+                'SQLRootUser'       => 'root',
+                'SQLRootPassword'   => '',
+                'createUserAndDB'   => false,
+                'importDemoData'    => false
             );
         }
     }
@@ -841,6 +865,15 @@ if(@$filteredGET['mode'] == 'json')
                     <div class="col-sm-offset-4 col-md-8">
                         <div class="checkbox">
                              <label>
+                                <input type="checkbox" data-bind="checked: importDemoData" /> Import demo data into the database
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-md-8">
+                        <div class="checkbox">
+                             <label>
                                 <input type="checkbox" data-bind="checked: createUserAndDB" /> Create user and database for me
                             </label>
                         </div>
@@ -1055,7 +1088,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
         <!-- Step 400: complete -->
         <div id="Step400_complete">
             Grader setup has now complete. Login at
-            <a href="">http://...</a>
+            <a href="<?php echo $_SESSION['Step312_siteconfig']['siteURL']; ?>"><?php echo $_SESSION['Step312_siteconfig']['siteURL']; ?></a>
         </div>
         <!-- / Step 400: complete -->
         </div>
@@ -1249,6 +1282,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                 this.SQLRootUser = ko.observable("");
                 this.SQLRootPassword = ko.observable("");
                 this.createUserAndDB = ko.observable(false);
+                this.importDemoData = ko.observable(false);
                 
                 this.genRandPass = function()
                 {
@@ -1270,6 +1304,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                             self.SQLRootUser(values.SQLRootUser);
                             self.SQLRootPassword(values.SQLRootPassword);
                             self.createUserAndDB(values.createUserAndDB);
+                            self.importDemoData(values.importDemoData);
                         }
                     );
                 }
@@ -1284,7 +1319,8 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
                         "SQLDBName": self.SQLDBName,
                         "SQLRootUser": self.SQLRootUser,
                         "SQLRootPassword": self.SQLRootPassword,
-                        "createUserAndDB": self.createUserAndDB
+                        "createUserAndDB": self.createUserAndDB,
+                        "importDemoData": self.importDemoData
                     };
                     
                     $.getJSON(
