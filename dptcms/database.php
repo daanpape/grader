@@ -673,6 +673,24 @@ class ClassDAO {
         }
     }
     
+    
+    /**
+     * Delete a project's subcompetence
+     * @param int $id
+     * @return void
+     */
+    public static function deleteProjectSubCompetence($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM subcompetence WHERE id = ?;');
+        $stmt->execute(array($id));
+        if($stmt->rowCount() === 0)
+        {
+            throw new \Exception("No rows deleted. Check if the subcompetence with id {$id} exists. You cannot delete non-existent subcompetences.");
+        }
+    }
+    
+    
     /**
      * Insert a new indicator in the database
      * @param type $name

@@ -473,4 +473,27 @@ class GraderAPI {
             );
         }
     }
+    
+    public static function deleteProjectSubCompentence($id)
+    {
+        if(!is_numeric($id))
+        {
+            return array(
+                'success'   => false,
+                'error'     => 'The supplied ID argument must be numeric'
+            );
+        }
+        try
+        {
+            ClassDAO::deleteProjectSubCompetence($id);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
 }

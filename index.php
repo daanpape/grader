@@ -473,9 +473,18 @@ $app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use
 });
 
 $app->get('/api/project/indicator/delete/:id',
-    function($id) use($app) {
+    function($id) use($app)
+    {
         $app->response()->headers('Content-Type', 'application/json');
         echo json_encode(GraderAPI::deleteProjectIndicator($id));
+    }
+);
+
+$app->get('/api/project/subcompetence/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectSubCompentence($id));
     }
 );
 
