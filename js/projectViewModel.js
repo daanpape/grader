@@ -95,7 +95,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
             }
 
             self.indicators.remove(indicator);
-            console.log(self.indicators);
+            console.log(self.indicators());
             automatedWeightCalculation(this.indicators());
         }
 
