@@ -11,6 +11,15 @@ SET time_zone = "+00:00";
 /* SCROLL DOWN FOR DATA INSERTION */
 
 
+CREATE TABLE IF NOT EXISTS `assess_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `document` int(11) NOT NULL,
+  `project` int(11) NOT NULL,
+  `submitted` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `assess_score` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `project` int(11) NOT NULL,
@@ -359,6 +368,12 @@ CREATE TABLE IF NOT EXISTS `werkfiche_user_rapport` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Koppelt een leerling aan een bepaalde werkfiche.' AUTO_INCREMENT=1 ;
 
 
+ALTER TABLE `assess_documents`
+  ADD CONSTRAINT `assess_documents_ibfk_3` FOREIGN KEY (`project`) REFERENCES `project` (`id`),
+  ADD CONSTRAINT `assess_documents_ibfk_1` FOREIGN KEY (`user`) REFERENCES `students` (`id`),
+  ADD CONSTRAINT `assess_documents_ibfk_2` FOREIGN KEY (`document`) REFERENCES `documenttype` (`id`);
+
+
 ALTER TABLE `studentlist_students_rapport`
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `studentlist_students_rapport_ibfk_2` FOREIGN KEY (`studentlist`) REFERENCES `studentlist_rapport` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -387,7 +402,7 @@ ALTER TABLE `email`
   ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `indicator`
-  ADD CONSTRAINT `indicator_ibfk_1` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`);
+  ADD CONSTRAINT `indicator_ibfk_1` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `role_permissions`
   ADD CONSTRAINT `role_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),

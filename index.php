@@ -472,6 +472,22 @@ $app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use
     echo json_encode(GraderAPI::gradeProjectForStudent($projectid,$userid));
 });
 
+$app->get('/api/project/indicator/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectIndicator($id));
+    }
+);
+
+$app->get('/api/project/subcompetence/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectSubCompentence($id));
+    }
+);
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

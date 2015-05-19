@@ -48,7 +48,6 @@
     "commit": "8d8eb4f554bec2687fe6f0cb9349d577a1e67872"
   },
   "_source": "git://github.com/nghuuphuoc/bootstrapvalidator.git",
-  "_target": "~0.5.3",
-  "_originalSource": "bootstrapValidator",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "bootstrapValidator"
 }
