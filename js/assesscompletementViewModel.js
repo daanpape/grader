@@ -85,6 +85,11 @@ function pageViewModel(gvm) {
             }
         });
     }
+
+    gvm.clearStructure = function() {
+        gvm.documents.destroyAll();
+        gvm.userData.destroyAll();
+    }
 }
 
 function initPage() {
