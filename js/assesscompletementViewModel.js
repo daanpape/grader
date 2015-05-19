@@ -80,6 +80,7 @@ function pageViewModel(gvm) {
             success: function(){
                 // TODO make multilangual and with modals
                 alert("Saved document completeness to server");
+                viewModel.clearStructure();
                 gvm.getAllData();
             }
         });
