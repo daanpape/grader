@@ -20,7 +20,7 @@ $location = "projectcompleteness";
                 <span data-bind="text: projectCompletenessTitle"></span>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
            <label for="totalDocument">Total document percentage: </label>
             <input  class="form-control" type="text" data-bind="value: totalDocumentPercentage" placeholder="0%" id="totalDocument">
         </div>
