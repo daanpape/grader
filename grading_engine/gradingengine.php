@@ -145,7 +145,7 @@ class GradingEngine {
             {
                 foreach($subcompetence->indicators as $indicator)
                 {
-                    $indicator->score = $indicator->score / $indicator->count;
+                    $indicator->score = ceil($indicator->score / $indicator->count);
                 }
             }
         }
@@ -167,12 +167,12 @@ class GradingEngine {
                     $score += $indicator->score * $indicator->weight;
                     $weight += $indicator->weight;
                 }
-                $subcompetence->score = $score / $weight;
+                $subcompetence->score = ceil($score / $weight);
 
                 $competenceScore += $subcompetence->score * $subcompetence->weight;
                 $competenceWeight += $subcompetence->weight;
             }
-            $competence->score  = $competenceScore / $competenceWeight;
+            $competence->score  = ceil($competenceScore / $competenceWeight);
 
             $totalScore += $competence->score * $competence->weight;
             $totalWeight += $competence->weight;
@@ -180,7 +180,7 @@ class GradingEngine {
 
         // Final Point for project
 
-        $finalScore = $totalScore / $totalWeight;
+        $finalScore = ceil($totalScore / $totalWeight);
 
         // Check if rules are broken
 
@@ -307,7 +307,7 @@ class GradingEngine {
         $finalScoreProject = new Competence();
         $finalScoreProject->id = "0";
         $finalScoreProject->weight = "100";
-        $finalScoreProject->score =  $finalScore;
+        $finalScoreProject->score =  ceil($finalScore);
         $finalScoreProject->description = "Final score";
 
         $projectStructure[0] = $finalScoreProject;

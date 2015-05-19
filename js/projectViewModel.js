@@ -182,9 +182,7 @@ function pageViewModel(gvm) {
 
 function fetchProjectStructure() {
     viewModel.clearStructure();
-    console.log(projectid);
     $.getJSON("/api/projectstructure/" + projectid, function(data){
-        console.log(data);
         $.each(data, function(i, item){
             if(item.id > 0) {
                 var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
