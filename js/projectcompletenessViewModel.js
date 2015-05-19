@@ -4,6 +4,7 @@ function pageViewModel(gvm) {
     gvm.projectId = $("#projectHeader").data('value');
     gvm.lastIdFromDb = -1;
     gvm.lastId = -1;
+    gvm.totalDocumentPercentage = 0;
 
     // Page specific i18n bindings
     gvm.title = ko.computed(function (){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("ProjectTitle") + ": " + gvm.projecttitle();}, gvm);
@@ -20,8 +21,6 @@ function pageViewModel(gvm) {
     };
 
     gvm.documents = ko.observableArray([]);
-
-    gvm.totalDocumentPercentage;
 
     gvm.addDocument = function(id, description, amount_required, weight) {
         var document = {id: id, description: description, amount_required: amount_required, weight: weight};
