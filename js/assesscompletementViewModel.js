@@ -101,5 +101,8 @@ function initPage() {
     });
 
     var url = '/assess/project/' + projectid + '/students';
-    $("#cancelBtn").attr('href', url);
+    $("#cancelBtn").click(function()
+    {
+        window.location.href = url;
+    });
 }
