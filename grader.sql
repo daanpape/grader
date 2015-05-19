@@ -402,7 +402,7 @@ ALTER TABLE `email`
   ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `indicator`
-  ADD CONSTRAINT `indicator_ibfk_1` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`);
+  ADD CONSTRAINT `indicator_ibfk_1` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `role_permissions`
   ADD CONSTRAINT `role_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
