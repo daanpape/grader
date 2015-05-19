@@ -88,6 +88,11 @@ class GraderAPI {
         return ClassDAO::getUserDataForDocument($projectid, $userid);
     }
 
+    public static function saveDocumentsForUser($projectid, $userid, $structure)
+    {
+        return ClassDAO::saveDocumentsForUser($projectid,$userid, $structure);
+    }
+
     /*
      * Delete a projecttype from the database
      */

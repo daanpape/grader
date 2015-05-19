@@ -22,7 +22,7 @@ $location = "assesscompletement";
                     <th>Name</th>
                     <th># to submit</th>
                     <th>Weight</th>
-                    <th>Not submitted</th>
+                    <th>Submitted</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: documents">

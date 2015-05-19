@@ -521,6 +521,14 @@ $app->post('/api/newstudent/:id', function($id) use ($app) {
         $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
 });
 
+$app->post("/api/documents/:projectid/user/:userid/save", function($projectid, $userid) use ($app)
+{
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::saveDocumentsForUser($projectid,$userid, file_get_contents('php://input')));
+});
+
 // API POST routes
 $app->post('/api/project/:projectid/documents/:lastid', function($projectid, $lastid) use ($app) {
     $response = $app->response();

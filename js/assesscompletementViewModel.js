@@ -18,13 +18,13 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
     gvm.userData = ko.observableArray([]);
 
-    gvm.addDocument = function(id, description, amount_required, weight, submitted) {
+    gvm.addDocument = function(id, description, amount_required, weight, submitted, submittedId) {
         var amount_not_submitted = ko.observableArray([]);
         for(i = 0; i <= amount_required; i++) {
             amount_not_submitted.push(i);
         }
 
-        var document = {id: id, description: description, amount_required: amount_required, weight: weight, amount_not_submitted: amount_not_submitted, submitted: submitted};
+        var document = {id: id, description: description, amount_required: amount_required, weight: weight, amount_not_submitted: amount_not_submitted, submitted: submitted, submittedId: submittedId};
         gvm.documents.push(document);
     };
 
@@ -47,24 +47,25 @@ function pageViewModel(gvm) {
     }
 
     gvm.getDocumentsToSubmit = function() {
-
-
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 var current = $.grep(gvm.userData(), function(e) {return e.document == item.id});
 
                 var value;
+                var valueId;
 
                 if(current.length == 0)
                 {
                     value = 0;
+                    valueId = 0;
                 }
                 else
                 {
                     value = current[0].submitted;
+                    valueId = current[0].id;
                 }
 
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value);
+                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value, valueId);
             });
         });
     };
@@ -72,6 +73,16 @@ function pageViewModel(gvm) {
     gvm.amountSubmitted = ko.observableArray([]);
 
     gvm.saveDocumentsNotSubmitted = function() {
+        $.ajax({
+            type: "POST",
+            url: "/api/documents/" + projectid + "/user/" + gvm.studentId + "/save",
+            data: ko.toJSON(gvm.documents),
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved document completeness to server");
+                gvm.getAllData();
+            }
+        });
     }
 }
 
