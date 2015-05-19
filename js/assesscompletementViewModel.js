@@ -72,21 +72,8 @@ function pageViewModel(gvm) {
 
     gvm.amountSubmitted = ko.observableArray([]);
 
-    gvm.saveDocumentsNotSubmitted = function() {
-        $.ajax({
-            type: "POST",
-            url: "/api/documents/" + projectid + "/user/" + gvm.studentId + "/save",
-            data: ko.toJSON(gvm.documents),
-            success: function(){
-                // TODO make multilangual and with modals
-                alert("Saved document completeness to server");
-                viewModel.clearStructure();
-                gvm.getAllData();
-            }
-        });
-    }
-
-    gvm.clearStructure = function() {
+    gvm.clearStructure = function()
+    {
         gvm.documents.destroyAll();
     }
 }
@@ -94,4 +81,20 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getAllData();
+
+    $("saveBtn").on('click', saveDocumentsNotSubmitted);
+}
+
+var saveDocumentsNotSubmitted = function() {
+    $.ajax({
+        type: "POST",
+        url: "/api/documents/" + projectid + "/user/" + gvm.studentId + "/save",
+        data: ko.toJSON(gvm.documents),
+        success: function(){
+            // TODO make multilangual and with modals
+            alert("Saved document completeness to server");
+            viewModel.clearStructure();
+            gvm.getAllData();
+        }
+    });
 }
