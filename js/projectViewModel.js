@@ -34,8 +34,13 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         removeSubCompetence: function(subCompetence) {
+            if(subCompetence.id() !== undefined) // User deletes a subcompetence that hasn't been saved to the database yet
+            {
+                workQueue.push("/api/project/subcompetence/delete/" + subCompetence.id())
+            }
+            
             this.subcompetences.remove(subCompetence);
-            automatedWeightCalculation(this.subcompetences());
+            automatedWeightCalculation(this.subcompetences());            
         }
     };
 
