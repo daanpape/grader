@@ -341,8 +341,9 @@ function totalPercentCheck()
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
             {
                 totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
+                nrOfIndicators++;
             }
-            nrOfIndicators++;
+
         }
         nrOfSubcompetences++;
     }
