@@ -182,13 +182,17 @@ function fetchProjectStructure() {
         console.log(data);
         $.each(data, function(i, item){
             var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            
+
             $.each(item.subcompetences, function(i, subcomp){
-               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
-               competence.subcompetences.push(subcompetence);
+                if(subcomp.id > 0) {
+                    var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+                    competence.subcompetences.push(subcompetence);
+                }
                
                $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                   if(indic.id > 0) {
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                   }
                });
             });
         })
