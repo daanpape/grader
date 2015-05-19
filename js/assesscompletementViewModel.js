@@ -88,13 +88,13 @@ function initPage() {
 var saveDocumentsNotSubmitted = function() {
     $.ajax({
         type: "POST",
-        url: "/api/documents/" + projectid + "/user/" + gvm.studentId + "/save",
-        data: ko.toJSON(gvm.documents),
+        url: "/api/documents/" + projectid + "/user/" + viewModel.studentId + "/save",
+        data: ko.toJSON(viewModel.documents),
         success: function(){
             // TODO make multilangual and with modals
             alert("Saved document completeness to server");
             viewModel.clearStructure();
-            gvm.getAllData();
+            viewModel.getAllData();
         }
     });
 }
