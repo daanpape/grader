@@ -17,6 +17,11 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         removeThis: function() {
+            if(this.id() !== undefined) // User deletes a competence that's been saved to the database
+            {
+                workQueue.push("/api/project/competence/delete/" + this.id())
+            }
+
             viewmodel.removeCompetence(this);
         },
 
@@ -34,7 +39,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         removeSubCompetence: function(subCompetence) {
-            if(subCompetence.id() !== undefined) // User deletes a subcompetence that hasn't been saved to the database yet
+            if(subCompetence.id() !== undefined) // User deletes a subcompetence that's been saved to the database
             {
                 workQueue.push("/api/project/subcompetence/delete/" + subCompetence.id())
             }
@@ -243,7 +248,7 @@ function saveProjectStructure() {
     {
         this.doTheRest();
     }
-    
+
     
     var processedIndex = 0;
     for(i = 0; i < workQueue.length; i++)
@@ -256,7 +261,7 @@ function saveProjectStructure() {
                 {
                     alert("Failed processing your request: " + result.error);
                 }
-
+                
                 if(processedIndex === workQueue.length - 1)
                 {
                     self.doTheRest();

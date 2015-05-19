@@ -488,6 +488,14 @@ $app->get('/api/project/subcompetence/delete/:id',
     }
 );
 
+$app->get('/api/project/competence/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectCompetence($id));
+    }
+);
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

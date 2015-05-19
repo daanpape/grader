@@ -657,6 +657,22 @@ class ClassDAO
             return false;
         }
     }
+    
+    /**
+     * Delete a project's competence
+     * @param type $id
+     * @throws \Exception
+     */
+    public static function deleteProjectCompetence($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM competence WHERE id = ?;');
+        $stmt->execute(array($id));
+        if ($stmt->rowCount() === 0) {
+            throw new \Exception("No rows deleted. Check if the subcompetence with id {$id} exists. You cannot delete non-existent competences.");
+        }
+    }
+    
 
     /**
      * Insert a new subcompetence in the database.
