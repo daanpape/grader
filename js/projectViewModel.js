@@ -360,7 +360,7 @@ function totalPercentCheck()
         if(totalPercentIndicators[index] != 100)
         {
             checkIndicators = false;
-            console.log(totalPercentIndicators);
+            console.log(nrOfIndicators);
             console.log('Check indicators failed');
         }
     }
