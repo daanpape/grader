@@ -94,8 +94,12 @@ function initPage() {
                 // TODO make multilangual and with modals
                 alert("Saved document completeness to server");
                 viewModel.clearStructure();
+                viewModel.getProjectInfo();
                 viewModel.getAllData();
             }
         });
     });
+
+    var url = '/assess/project/' + projectid + '/students';
+    $("#cancelBtn").attr('href', url);
 }
