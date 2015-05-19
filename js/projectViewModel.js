@@ -351,7 +351,7 @@ function totalPercentCheck()
         if(totalPercentSubcompetences[i] != 100)
         {
             checkSubcompetences = false;
-            console.log(nrOfSubcompetences);
+            console.log(totalPercentSubcompetences);
             console.log('Check subcomp failed');
         }
     }
