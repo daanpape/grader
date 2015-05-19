@@ -341,9 +341,8 @@ function totalPercentCheck()
             for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
             {
                 totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
-                nrOfIndicators++;
             }
-
+            nrOfIndicators++;
         }
         nrOfSubcompetences++;
     }
@@ -376,7 +375,6 @@ function totalPercentCheck()
     }
     else
     {
-        console.log(totalPercentCompetences);
         $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
         $(".validationSummary").removeClass("hide");
         return false;
