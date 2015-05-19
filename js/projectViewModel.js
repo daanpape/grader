@@ -181,8 +181,9 @@ function fetchProjectStructure() {
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         console.log(data);
         $.each(data, function(i, item){
-            var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-
+            if(item.id > 0) {
+                var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            }
             $.each(item.subcompetences, function(i, subcomp){
                 if(subcomp.id > 0) {
                     var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
@@ -368,7 +369,6 @@ function totalPercentCheck()
 
     if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
     {
-
         $(".validationSummary ul").html("");
         $(".validationSummary").addClass("hide");
         return true;
