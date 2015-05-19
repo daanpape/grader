@@ -15,13 +15,13 @@ function pageViewModel(gvm) {
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
-            console.log(data);
+            gvm.totalDocumentPercentage = data[0].document;
         });
     };
 
     gvm.documents = ko.observableArray([]);
 
-    gvm.totalDocumentPercentage = 0;
+    gvm.totalDocumentPercentage;
 
     gvm.addDocument = function(id, description, amount_required, weight) {
         var document = {id: id, description: description, amount_required: amount_required, weight: weight};
