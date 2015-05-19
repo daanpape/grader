@@ -94,7 +94,6 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
                 workQueue.push("/api/project/indicator/delete/" + indicator.id())
             }
 
-            console.log('Deleted indicator');
             self.indicators.remove(indicator);
             automatedWeightCalculation(this.indicators());
         }
@@ -352,6 +351,7 @@ function totalPercentCheck()
         if(totalPercentSubcompetences[i] != 100)
         {
             checkSubcompetences = false;
+            console.log('Check subcomp failed');
         }
     }
 
@@ -360,6 +360,7 @@ function totalPercentCheck()
         if(totalPercentIndicators[index] != 100)
         {
             checkIndicators = false;
+            console.log('Check indicators failed');
         }
     }
 
