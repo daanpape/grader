@@ -1002,7 +1002,7 @@ if(@$filteredGET['mode'] == 'json')
                 <div class="form-group">
                     <label class="control-label col-md-3">Site URL:</label>
                     <div class="col-md-9">
-                        <input class="form-control" type="text" data-bind="value: siteURL" />
+                        <input class="form-control" type="text" data-bind="value: siteURL" id="siteURL" />
                         <p class="help-block">
                             Enter the grader's site URL here. This URL will be
                             used to refer to the site when sending out e-mails.
@@ -1088,7 +1088,7 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
         <!-- Step 400: complete -->
         <div id="Step400_complete">
             Grader setup has now complete. Login at
-            <a href="<?php echo $_SESSION['Step312_siteconfig']['siteURL']; ?>"><?php echo $_SESSION['Step312_siteconfig']['siteURL']; ?></a>
+            <a data-bind="attr: { href: siteURL }, text: siteURL"></a>
         </div>
         <!-- / Step 400: complete -->
         </div>
@@ -1512,8 +1512,11 @@ chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
             
             function step400_complete()
             {
+                this.siteURL = ko.observable('');
+                
                 this.activate = function()
                 {
+                    this.siteURL($("#siteURL").val());
                     $("#buttons").hide();
                 }
             }
