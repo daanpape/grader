@@ -93,7 +93,8 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
             {
                 workQueue.push("/api/project/indicator/delete/" + indicator.id())
             }
-            
+
+            console.log('Deleted indicator');
             self.indicators.remove(indicator);
             automatedWeightCalculation(this.indicators());
         }
