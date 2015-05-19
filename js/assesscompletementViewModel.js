@@ -74,7 +74,10 @@ function pageViewModel(gvm) {
 
     gvm.clearStructure = function()
     {
+        gvm.userData.destroyAll();
         gvm.documents.destroyAll();
+        gvm.amountSubmitted.destroyAll();
+
     }
 }
 
