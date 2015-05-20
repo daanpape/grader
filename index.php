@@ -699,12 +699,18 @@ $app->delete('/api/studentlist/delete/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::deleteStudentList($id));
 });
 
-$app->delete('/api/delete/document/:id', function($id) use ($app) {
+$app->get('/api/project/documenttype/delete/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     echo json_encode(GraderAPI::deleteDocumentTypeFromProject($id));
 });
+
+$app->post('/api/project/:projectId/documenttype/add', function ($projectId) use ($app) {
+    $app->response()->header('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::addProjectDocumentType($projectId, $_POST['description'], $_POST['amount_required'], $_POST['weight']));
+}
+);
 
 $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', function($projectid, $studentlistid) use ($app) {
     $response = $app->response();

@@ -1035,6 +1035,20 @@ class ClassDAO
         }
     }
 
+    public static function addProjectDocumentType($projectId, $description, $amount_required, $weight)
+    {
+        $conn = Db::getConnection();
+        $SQL = "INSERT INTO documenttype
+                (description, amount_required, weight, project)
+                VALUES
+                (:description, :amount_required, :weight, :projectId);";
+        $stmt = $conn->prepare($SQL);
+        $stmt->bindValue(':description', $description);
+        $stmt->bindValue(':amount_required', $amount_required);
+        $stmt->bindValue(':weight', $weight);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+    }
 }
 
 /*

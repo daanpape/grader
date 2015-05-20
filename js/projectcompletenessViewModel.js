@@ -1,4 +1,8 @@
+var workQueue = [];
+
 function pageViewModel(gvm) {
+    var self = this;
+    
     // projecttitle
     gvm.projecttitle = ko.observable("");
     gvm.projectId = $("#projectHeader").data('value');
@@ -22,47 +26,77 @@ function pageViewModel(gvm) {
 
     gvm.documents = ko.observableArray([]);
 
+    gvm.document = function(data)
+    {
+        this.id                 = ko.observable(data.id);
+        this.description        = ko.observable(data.description || "");
+        this.amount_required    = ko.observable(data.amount_required || "");
+        this.weight             = ko.observable(data.weight || "");
+    }
+
     gvm.addDocument = function(id, description, amount_required, weight) {
-        var document = {id: id, description: description, amount_required: amount_required, weight: weight};
+        // var document = {id: id, description: description, amount_required: amount_required, weight: weight};
         gvm.documents.push(document);
 
-        $('#removebtn-' + id).bind('click', function(event, data) {
+        /*$('#removebtn-' + id).bind('click', function(event, data) {
             gvm.removeDocument(id, document);
             event.stopPropagation();
-        });
+        });*/
     };
 
-    gvm.addDocumentToSubmit = function() {
-        ++gvm.lastId;
-        gvm.addDocument(gvm.lastId, "", "", "");
+    gvm.addDocumentToSubmit = function()
+    {
+        i = gvm.documents.push(new gvm.document({}));
+
+        workQueue.push(
+            {
+                url: '/api/project/' + gvm.projectId + '/documenttype/add',
+                type: 'POST',
+                data: gvm.documents()[i - 1]
+            }
+        );
     };
 
-    gvm.getDocumentsToSubmit = function() {
-        $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
-            $.each(data, function(i, item) {
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight);
-                gvm.lastIdFromDb = item.id;
-                gvm.lastId = item.id;
-            });
-        });
+    gvm.getDocumentsToSubmit = function()
+    {
+        $.getJSON(
+            '/api/project/'+ gvm.projectId + '/documents',
+            function(allData)
+            {
+                var mappedDocs = $.map(allData, function(item) { return new gvm.document(item) });
+                gvm.documents(mappedDocs);
+            }
+        );
     };
 
-    gvm.removeDocument = function(id, document) {
-        if(id <= gvm.lastIdFromDb) {
-            $.ajax({
-                url: "/api/delete/document/" + id,
-                type: "DELETE",
-                success: function() {
-                    gvm.documents.remove(document);
-                }
-            });
-        } else {
-            gvm.documents.remove(document);
+    gvm.removeDocumentType = function(documentType) {
+        if(documentType.id() !== undefined) {
+            workQueue.push({url:'/api/project/documenttype/delete/' + documentType.id(), type: 'GET'});
         }
+        gvm.documents.remove(documentType);
     };
 
-    gvm.saveDocumentsToSubmit = function() {
-        console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
+    gvm.saveDocumentsToSubmit = function()
+    {
+        var processedIndex = 0;
+        for(i = 0; i < workQueue.length; i++)
+        {
+            $.ajax(
+                workQueue[i].url,
+                { type: workQueue[i].type, data: workQueue[i].data },
+                function(result)
+                {
+                    if(processedIndex === workQueue.length - 1)
+                    {
+                        workQueue = [];
+                        alert("Saved");
+                    }
+                    processedIndex++;
+                }
+            );
+        }
+        
+        /*console.log("/api/project/" + gvm.projectId + "/documents/" + gvm.lastId);
         console.log(ko.toJS(gvm.documents));
         var json = JSON.stringify(ko.toJS(gvm.documents));
         $.ajax({
@@ -77,7 +111,7 @@ function pageViewModel(gvm) {
             error: function() {
                 console.log("error");
             }
-        });
+        });*/
     };
 }
 

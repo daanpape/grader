@@ -460,6 +460,23 @@ class GraderAPI {
             return $id;
         }
     }
+    
+    public static function addProjectDocumentType($projectId, $description, $amount_required, $weight)
+    {
+        try
+        {
+            ClassDAO::addProjectDocumentType($projectId, $description, $amount_required, $weight);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
+    
 
     public static function deleteProjectIndicator($id)
     {
