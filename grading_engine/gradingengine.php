@@ -281,9 +281,9 @@ class GradingEngine {
                 if ($rule->operator == '<') {
                     foreach($documents as $document)
                     {
-                        if($rule->action['id'] == $document->id)
+                        if($rule->action['id'] == $document['document'])
                         {
-                            if ($document->submitted < $rule->value) {
+                            if ($document['submitted'] < $rule->value) {
                                 if ($rule->sign == '-') {
                                     $finalScore -= (($rule->result / 100) * $finalScore);
                                 } elseif ($rule->sign == '+') {
@@ -296,9 +296,9 @@ class GradingEngine {
                 } elseif ($rule->operator == '>') {
                     foreach($documents as $document)
                     {
-                        if($rule->action['id'] == $document->id)
+                        if($rule->action['id'] == $document['document'])
                         {
-                            if ($document->submitted > $rule->value) {
+                            if ($document['submitted'] > $rule->value) {
                                 if ($rule->sign == '-') {
                                     $finalScore -= (($rule->result / 100) * $finalScore);
                                 } elseif ($rule->sign == '+') {
@@ -313,7 +313,7 @@ class GradingEngine {
                 $totalDocuments = 0;
                 foreach($documents as $document)
                 {
-                    $totalDocuments = (int)($document['submitted']);
+                    $totalDocuments += (int)($document['submitted']);
                 }
                 if ($rule->operator == '<') {
                     if($totalDocuments < $rule->value)
@@ -348,7 +348,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $totalDocuments;
+        return $projectStructure;
 
     }
 }
