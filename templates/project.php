@@ -27,9 +27,9 @@ $location = "project";
 
             .border
             {
-                border:solid black 1px;
-                border-radius:10%;
-                padding:1%;
+                border:solid black 2px;
+                border-radius:15%;
+                padding:2%;
             }
         </style>
 
