@@ -130,12 +130,8 @@ function fetchProjectRules()
     {
         $.each(data, function(i, item) {
             var action = new Action(item.action.id,item.action.name,item.action.subject);
-            console.log(item.action.name);
 
             action = $.grep(viewModel.projectActions(), function(e) {return (e.id() == item.action.id) && (e.subject() == item.action.subject)});
-            console.log(action);
-            console.log(viewModel.projectActions());
-            console.log(item.action.id);
 
             viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value,item.sign, item.result));
         });

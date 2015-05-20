@@ -70,9 +70,17 @@ $location = "projects";
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
                         <td>
+                            <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
+                                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                            </a>
+
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                            <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
-                            <a data-bind="attr:{'href': '/project/students/' + tid}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
+                            <a data-bind="attr:{'href': '/project/' + tid}">
+                                <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span><span data-bind="text: 'Structure'"></span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/students/' + tid}">
+                                <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
+                            </a>
                             <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
                             <a data-bind="attr:{'href': '/project/projectrules/' + tid}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span></a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
