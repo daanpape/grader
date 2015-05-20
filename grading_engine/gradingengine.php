@@ -55,22 +55,10 @@ class Competence {
 }
 
 /**
- * The rule object
- */
-class Rule {
-    public $type;               /* Does this work on INDICATOR, SUBCOMP or COMP? */
-    public $id;                 /* The id of the item it works on */
-    public $operator;           /* The comparison binary operator */
-    public $value;              /* The value to compare with */
-    public $sign;               /* The sign of the percent */
-    public $percent;            /* The percent that gets added or subtracted of the action  */
-}
-
-/**
  * The guts of the grader engine. 
  */
 class GradingEngine {
-    
+
     /*
      * Calculate grading result and give back result in a 
      * GradingResult object.
@@ -79,21 +67,7 @@ class GradingEngine {
      */
     public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
 
-        // Create rule objects
-        $projectRules = array();
-        foreach($rules as $rule)
-        {
-            $newRule = new Rule();
-            $newRule->type = $rule->action['subject'];
-            $newRule->id = $rule->action['id'];
-            $newRule->operator = $rule->operator;
-            $newRule->value = $rule->result;
-            $newRule->sign = $rule->sign;
-            $newRule->percent = $rule->value;
-            array_push($projectRules, $newRule);
-        }
-
-        // Calculate project structure
+        // Create project structure
         $projectStructure = array();
         foreach($structure as $competence)
         {
@@ -178,7 +152,7 @@ class GradingEngine {
             $totalWeight += $competence->weight;
         }
 
-        // Final Point for project
+        // Final Point for project without rules
 
         $finalScore = ceil($totalScore / $totalWeight);
 
@@ -349,7 +323,6 @@ class GradingEngine {
         // Add final score to projectstructure
 
         return $projectStructure;
-
     }
 }
 
