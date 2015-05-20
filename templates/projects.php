@@ -26,17 +26,6 @@ $location = "projects";
                 z-index: 98;
                 width: 220px;
             }
-
-            .tooltip:hover:before{
-                border: solid;
-                border-color: #333 transparent;
-                border-width: 6px 6px 0 6px;
-                bottom: 20px;
-                content: "";
-                left: 50%;
-                position: absolute;
-                z-index: 99;
-            }
         </style>
     </head>
 
