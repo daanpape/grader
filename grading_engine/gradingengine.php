@@ -165,12 +165,7 @@ class GradingEngine {
                         foreach ($competence->subcompetences as $subcompetence) {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score < $rule->value) {
-                                    if ($rule->sign == '-') {
-                                        $finalScore -= (($rule->result / 100) * $finalScore);
-                                    } elseif ($rule->sign == '+') {
-                                        $finalScore += (($rule->result / 100) * $finalScore);
-
-                                    }
+                                    applyRule($finalScore,$rule,$rule->sign);
                                 }
                             }
                         }
@@ -180,11 +175,7 @@ class GradingEngine {
                         foreach ($competence->subcompetences as $subcompetence) {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score > $rule->value) {
-                                    if ($rule->sign == '-') {
-                                        $finalScore -= (($rule->result / 100) * $finalScore);
-                                    } elseif ($rule->sign == '+') {
-                                        $finalScore += (($rule->result / 100) * $finalScore);
-                                    }
+                                    applyRule($finalScore,$rule,$rule->sign);
                                 }
                             }
                         }
@@ -195,12 +186,7 @@ class GradingEngine {
                     foreach ($projectStructure as $competence) {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score < $rule->value) {
-                                if ($rule->sign == '-') {
-                                    $finalScore -= (($rule->result / 100) * $finalScore);
-                                } elseif ($rule->sign == '+') {
-                                    $finalScore += (($rule->result / 100) * $finalScore);
-
-                                }
+                                applyRule($finalScore,$rule,$rule->sign);
                             }
                         }
                     }
@@ -208,11 +194,7 @@ class GradingEngine {
                     foreach ($projectStructure as $competence) {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score > $rule->value) {
-                                if ($rule->sign == '-') {
-                                    $finalScore -= (($rule->result / 100) * $finalScore);
-                                } elseif ($rule->sign == '+') {
-                                    $finalScore += (($rule->result / 100) * $finalScore);
-                                }
+                                applyRule($finalScore,$rule,$rule->sign);
                             }
                         }
                     }
@@ -224,11 +206,7 @@ class GradingEngine {
                             foreach ($subcompetence->indicators as $indicator) {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score < $rule->value) {
-                                        if ($rule->sign == '-') {
-                                            $finalScore -= (($rule->result / 100) * $finalScore);
-                                        } elseif ($rule->sign == '+') {
-                                            $finalScore += (($rule->result / 100) * $finalScore);
-                                        }
+                                        applyRule($finalScore,$rule,$rule->sign);
                                     }
                                 }
                             }
@@ -240,11 +218,7 @@ class GradingEngine {
                             foreach ($subcompetence->indicators as $indicator) {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score > $rule->value) {
-                                        if ($rule->sign == '-') {
-                                            $finalScore -= (($rule->result / 100) * $finalScore);
-                                        } elseif ($rule->sign == '+') {
-                                            $finalScore += (($rule->result / 100) * $finalScore);
-                                        }
+                                        applyRule($finalScore,$rule,$rule->sign);
                                     }
                                 }
                             }
@@ -258,11 +232,7 @@ class GradingEngine {
                         if($rule->action['id'] == $document['document'])
                         {
                             if ($document['submitted'] < $rule->value) {
-                                if ($rule->sign == '-') {
-                                    $finalScore -= (($rule->result / 100) * $finalScore);
-                                } elseif ($rule->sign == '+') {
-                                    $finalScore += (($rule->result / 100) * $finalScore);
-                                }
+                                applyRule($finalScore,$rule,$rule->sign);
                             }
                         }
                     }
@@ -273,11 +243,7 @@ class GradingEngine {
                         if($rule->action['id'] == $document['document'])
                         {
                             if ($document['submitted'] > $rule->value) {
-                                if ($rule->sign == '-') {
-                                    $finalScore -= (($rule->result / 100) * $finalScore);
-                                } elseif ($rule->sign == '+') {
-                                    $finalScore += (($rule->result / 100) * $finalScore);
-                                }
+                                applyRule($finalScore,$rule,$rule->sign);
                             }
                         }
                     }
@@ -292,20 +258,12 @@ class GradingEngine {
                 if ($rule->operator == '<') {
                     if($totalDocuments < $rule->value)
                     {
-                        if ($rule->sign == '-') {
-                            $finalScore -= (($rule->result / 100) * $finalScore);
-                        } elseif ($rule->sign == '+') {
-                            $finalScore += (($rule->result / 100) * $finalScore);
-                        }
+                        applyRule($finalScore,$rule,$rule->sign);
                     }
                 } elseif ($rule->operator == '>') {
                     if($totalDocuments > $rule->value)
                     {
-                        if ($rule->sign == '-') {
-                            $finalScore -= (($rule->result / 100) * $finalScore);
-                        } elseif ($rule->sign == '+') {
-                            $finalScore += (($rule->result / 100) * $finalScore);
-                        }
+                        applyRule($finalScore,$rule,$rule->sign);
                     }
                 }
             }
@@ -323,6 +281,15 @@ class GradingEngine {
         // Add final score to projectstructure
 
         return $projectStructure;
+    }
+
+    public function applyRule(&$finalScore,$rule,$sign)
+    {
+        if ($rule->sign == '-') {
+            $finalScore -= (($rule->result / 100) * $finalScore);
+        } elseif ($rule->sign == '+') {
+            $finalScore += (($rule->result / 100) * $finalScore);
+        }
     }
 }
 
