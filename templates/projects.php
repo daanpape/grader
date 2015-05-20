@@ -58,7 +58,7 @@ $location = "projects";
         <!-- Content container -->
         <div class="container">
             <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
                 <thead>
                     <tr>
                         <th data-bind="text: codeTableTitle">Code</th>
@@ -72,7 +72,7 @@ $location = "projects";
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
-                        <td style="margin-left:10%">
+                        <td>
                             <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
                                 <span>Edit</span>
