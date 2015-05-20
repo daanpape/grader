@@ -24,13 +24,6 @@ $location = "project";
             .hide{
                 display: none;
             }
-
-            .border
-            {
-                border:solid black 2px;
-                border-radius:15%;
-                padding:2%;
-            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -68,10 +61,8 @@ $location = "project";
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
-                        <span class="border">
-                            <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
-                            <i class="icon-large icon-unlock" data-bind="value: locked, click: toggleLock"></i>
-                        <span>
+                        <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%</span>
+                        <i class="icon-large icon-unlock" data-bind="value: locked, click: toggleLock"></i>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
