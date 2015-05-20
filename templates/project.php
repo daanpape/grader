@@ -29,7 +29,7 @@ $location = "project";
             {
                 border:solid black 1px;
                 border-radius:10%;
-                padding:10%;
+                padding:1%;
             }
         </style>
 
