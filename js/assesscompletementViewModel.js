@@ -43,7 +43,8 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.userData.push(item);
             });
-        }).done( gvm.getDocumentsToSubmit());
+            gvm.getDocumentsToSubmit()
+        });
     }
 
     gvm.getDocumentsToSubmit = function() {
