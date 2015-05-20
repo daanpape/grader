@@ -59,7 +59,6 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
-    fetchProjectRules();
 
 
     $(".addRuleBtn").click(function() {
@@ -112,14 +111,12 @@ function fetchActions() {
                 });
             });
         })
-    });
-
-    $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
+    }).done($.getJSON('/api/project/'+ projectid + '/documents', function(data) {
         viewModel.addProjectAction(new Action(0,"Total documents", "totalDocument"));
         $.each(data, function(i, item) {
             viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
         });
-    });
+    })).done(fetchProjectRules());
 }
 
 function fetchProjectRules()
