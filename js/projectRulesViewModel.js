@@ -23,6 +23,8 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.selectedValue = ko.observable('Kennis van select-tag');
+
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
