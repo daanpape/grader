@@ -311,10 +311,10 @@ class GradingEngine {
                 }
             } elseif ($rule->action['subject'] == "totalDocument") {
                 $totalDocuments = 0;
-                foreach($documents as $document)
+                /*foreach($documents as $document)
                 {
                     $totalDocuments += $document->submitted;
-                }
+                }*/
                 if ($rule->operator == '<') {
                     if($totalDocuments < $rule->value)
                     {
