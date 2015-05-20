@@ -85,7 +85,7 @@ $location = "assessproject";
 
 <script type="text/html" id="test-template">
     <div class="popup">
-        <h3>Assessed by</h3>
+        <h4><u>Assessed by</u></h4>
         <p id="popupContainer">
             <ul data-bind="foreach: viewModel.users">
                 <li data-bind="text: $data"></li>
