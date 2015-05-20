@@ -23,6 +23,8 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.selectedItem = ko.observable();
+
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
@@ -56,8 +58,8 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    fetchProjectRules();
     fetchActions();
+    fetchProjectRules();
 
 
     $(".addRuleBtn").click(function() {
@@ -129,7 +131,11 @@ function fetchProjectRules()
         $.each(data, function(i, item) {
             var action = new Action(item.action.id,item.action.name,item.action.subject);
             console.log(item.action.name);
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action,item.operator,item.value,item.sign, item.result));
+
+            action = $.grep(viewModel.projectActions, function(e) {return e.id == item.id});
+            console.log(action);
+
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value,item.sign, item.result));
         });
     });
 }
