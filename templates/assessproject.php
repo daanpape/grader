@@ -26,7 +26,7 @@ $location = "assessproject";
 <body>
 <?php include_once('menu.php') ?>
 
-<a class="btn" id="popoverData" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">Popover with data-trigger</a>
+<a class="btn popoverData" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">Popover with data-trigger</a>
 
 <!-- Header container -->
 <div class="container">
