@@ -59,8 +59,9 @@ class Competence {
  */
 class GradingEngine {
 
-    public static function createProjectStructure(&$projectStructure,$structure)
+    public static function createProjectStructure($structure)
     {
+        $projectStructure = array();
         foreach($structure as $competence)
         {
             $newCompetence = new Competence();
@@ -94,6 +95,7 @@ class GradingEngine {
             //array_push($projectStructure, $newCompetence);
             $projectStructure[$newCompetence->id] = $newCompetence;
         }
+        return $projectStructure;
     }
 
 
@@ -106,8 +108,7 @@ class GradingEngine {
     public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
 
         // Calculate project structure
-        $projectStructure = array();
-        GradingEngine::createProjectStructure($projectStructure,$structure);
+        $projectStructure = GradingEngine::createProjectStructure($structure);
 
         // Calculate indicator points
 
