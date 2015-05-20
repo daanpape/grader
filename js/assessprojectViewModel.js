@@ -58,8 +58,6 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
 
-    $('.popoverData').popover();
-
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
