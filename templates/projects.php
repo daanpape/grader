@@ -58,7 +58,7 @@ $location = "projects";
         <!-- Content container -->
         <div class="container">
             <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
-            <table class="table table-striped table-responsive">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th data-bind="text: codeTableTitle">Code</th>
