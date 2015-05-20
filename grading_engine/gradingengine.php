@@ -59,7 +59,7 @@ class Competence {
  */
 class GradingEngine {
 
-    function createProjectStructure($structure)
+    function createProjectStructure(&$structure)
     {
         $projectStructure = array();
         foreach($structure as $competence)
