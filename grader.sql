@@ -412,7 +412,7 @@ ALTER TABLE `role_permissions`
   ADD CONSTRAINT `role_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 
 ALTER TABLE `rules`
-  ADD CONSTRAINT `rules_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`);
+  ADD CONSTRAINT `rules_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `studentlist`
   ADD CONSTRAINT `studentlist_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`);
