@@ -284,7 +284,6 @@ class GradingEngine {
         }
     }
 
-
     /*
      * Calculate grading result and give back result in a 
      * GradingResult object.
