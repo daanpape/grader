@@ -56,8 +56,9 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
-    fetchActions();
     fetchProjectRules();
+    fetchActions();
+
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
