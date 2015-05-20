@@ -28,6 +28,7 @@ $location = "project";
             .border
             {
                 border:solid black 1px;
+                height:100%;
             }
         </style>
 
