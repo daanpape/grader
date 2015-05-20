@@ -277,17 +277,64 @@ class GradingEngine {
                         }
                     }
                 }
-            } /*elseif ($rule->action['subject'] == "document") {
+            } elseif ($rule->action['subject'] == "document") {
                 if ($rule->operator == '<') {
                     foreach($documents as $document)
                     {
-                        if($rule->action[])
+                        if($rule->action['id'] == $document->id)
+                        {
+                            if ($document->submitted < $rule->value) {
+                                if ($rule->sign == '-') {
+                                    $finalScore -= (($rule->result / 100) * $finalScore);
+                                } elseif ($rule->sign == '+') {
+                                    $finalScore += (($rule->result / 100) * $finalScore);
+                                }
+                            }
+                        }
                     }
 
                 } elseif ($rule->operator == '>') {
+                    foreach($documents as $document)
+                    {
+                        if($rule->action['id'] == $document->id)
+                        {
+                            if ($document->submitted > $rule->value) {
+                                if ($rule->sign == '-') {
+                                    $finalScore -= (($rule->result / 100) * $finalScore);
+                                } elseif ($rule->sign == '+') {
+                                    $finalScore += (($rule->result / 100) * $finalScore);
+                                }
+                            }
+                        }
+                    }
 
                 }
-            }*/
+            } elseif ($rule->action['subject'] == "totalDocument") {
+                $totalDocuments = 0;
+                foreach($documents as $document)
+                {
+                    $totalDocuments += $document->submitted;
+                }
+                if ($rule->operator == '<') {
+                    if($totalDocuments < $rule->value)
+                    {
+                        if ($rule->sign == '-') {
+                            $finalScore -= (($rule->result / 100) * $finalScore);
+                        } elseif ($rule->sign == '+') {
+                            $finalScore += (($rule->result / 100) * $finalScore);
+                        }
+                    }
+                } elseif ($rule->operator == '>') {
+                    if($totalDocuments > $rule->value)
+                    {
+                        if ($rule->sign == '-') {
+                            $finalScore -= (($rule->result / 100) * $finalScore);
+                        } elseif ($rule->sign == '+') {
+                            $finalScore += (($rule->result / 100) * $finalScore);
+                        }
+                    }
+                }
+            }
         }
 
         $finalScoreProject = new Competence();
@@ -301,7 +348,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $rules;
+        return $totalDocuments;
 
     }
 }
