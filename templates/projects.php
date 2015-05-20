@@ -6,6 +6,38 @@ $location = "projects";
 <html lang="nl" id="htmldoc">
     <head>
         <?php include_once('hddepends.php') ?>
+
+        <style>
+            .tooltip{
+                display: inline;
+                position: relative;
+            }
+
+            .tooltip:hover:after{
+                background: #333;
+                background: rgba(0,0,0,.8);
+                border-radius: 5px;
+                bottom: 26px;
+                color: #fff;
+                content: attr(title);
+                left: 20%;
+                padding: 5px 15px;
+                position: absolute;
+                z-index: 98;
+                width: 220px;
+            }
+
+            .tooltip:hover:before{
+                border: solid;
+                border-color: #333 transparent;
+                border-width: 6px 6px 0 6px;
+                bottom: 20px;
+                content: "";
+                left: 50%;
+                position: absolute;
+                z-index: 99;
+            }
+        </style>
     </head>
 
     <body>
@@ -70,19 +102,19 @@ $location = "projects";
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
                         <td>
-                            <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
-                                <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-                            </a>
-
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                            <a data-bind="attr:{'href': '/project/' + tid}">
-                                <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span><span data-bind="text: 'Structure'"></span>
+                            <a data-bind="attr:{'href': '/project/' + tid}" title="Structure" class="tooltip">
+                                <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
                             </a>
                             <a data-bind="attr:{'href': '/project/students/' + tid}">
                                 <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
                             </a>
-                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
-                            <a data-bind="attr:{'href': '/project/projectrules/' + tid}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span></a>
+                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}">
+                                <span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/projectrules/' + tid}">
+                                <span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span>
+                            </a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             </td>
                     </tr>
