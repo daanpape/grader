@@ -77,7 +77,7 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProjectForStudent($structure, $score, $rules) {
+    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
 
         // Create rule objects
         $projectRules = array();
@@ -184,21 +184,16 @@ class GradingEngine {
 
         // Check if rules are broken
 
-        foreach($rules as $rule)
-        {
-            if($rule->action['subject'] == "subcompetence")
-            {
-                if($rule->operator == '<')
-                {
-                    foreach($projectStructure as $competence) {
+        foreach($rules as $rule) {
+            if ($rule->action['subject'] == "subcompetence") {
+                if ($rule->operator == '<') {
+                    foreach ($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score < $rule->value) {
                                     if ($rule->sign == '-') {
                                         $finalScore -= (($rule->result / 100) * $finalScore);
-                                    }
-                                    elseif($rule->sign == '+')
-                                    {
+                                    } elseif ($rule->sign == '+') {
                                         $finalScore += (($rule->result / 100) * $finalScore);
 
                                     }
@@ -206,18 +201,14 @@ class GradingEngine {
                             }
                         }
                     }
-                }
-                elseif($rule->operator == '>')
-                {
-                    foreach($projectStructure as $competence) {
+                } elseif ($rule->operator == '>') {
+                    foreach ($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
                             if ($rule->action['id'] == $subcompetence->id) {
                                 if ($subcompetence->score > $rule->value) {
                                     if ($rule->sign == '-') {
                                         $finalScore -= (($rule->result / 100) * $finalScore);
-                                    }
-                                    elseif($rule->sign == '+')
-                                    {
+                                    } elseif ($rule->sign == '+') {
                                         $finalScore += (($rule->result / 100) * $finalScore);
                                     }
                                 }
@@ -225,51 +216,38 @@ class GradingEngine {
                         }
                     }
                 }
-            }
-            elseif($rule->action['subject'] == "competence")
-            {
-                if($rule->operator == '<')
-                {
-                    foreach($projectStructure as $competence) {
+            } elseif ($rule->action['subject'] == "competence") {
+                if ($rule->operator == '<') {
+                    foreach ($projectStructure as $competence) {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score < $rule->value) {
                                 if ($rule->sign == '-') {
                                     $finalScore -= (($rule->result / 100) * $finalScore);
-                                }
-                                elseif($rule->sign == '+')
-                                {
+                                } elseif ($rule->sign == '+') {
                                     $finalScore += (($rule->result / 100) * $finalScore);
 
                                 }
                             }
                         }
                     }
-                }
-                elseif($rule->operator == '>')
-                {
-                    foreach($projectStructure as $competence) {
+                } elseif ($rule->operator == '>') {
+                    foreach ($projectStructure as $competence) {
                         if ($rule->action['id'] == $competence->id) {
                             if ($competence->score > $rule->value) {
                                 if ($rule->sign == '-') {
                                     $finalScore -= (($rule->result / 100) * $finalScore);
-                                }
-                                elseif($rule->sign == '+')
-                                {
+                                } elseif ($rule->sign == '+') {
                                     $finalScore += (($rule->result / 100) * $finalScore);
                                 }
                             }
                         }
                     }
                 }
-            }
-            elseif($rule->action['subject'] == "indicator")
-            {
-                if($rule->operator == '<')
-                {
-                    foreach($projectStructure as $competence) {
+            } elseif ($rule->action['subject'] == "indicator") {
+                if ($rule->operator == '<') {
+                    foreach ($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
-                            foreach($subcompetence->indicators as $indicator)
-                            {
+                            foreach ($subcompetence->indicators as $indicator) {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score < $rule->value) {
                                         if ($rule->sign == '-') {
@@ -282,12 +260,10 @@ class GradingEngine {
                             }
                         }
                     }
-                }
-                elseif($rule->operator == '>')
-                {
-                    foreach($projectStructure as $competence) {
+                } elseif ($rule->operator == '>') {
+                    foreach ($projectStructure as $competence) {
                         foreach ($competence->subcompetences as $subcompetence) {
-                            foreach($subcompetence->indicators as $indicator) {
+                            foreach ($subcompetence->indicators as $indicator) {
                                 if ($rule->action['id'] == $indicator->id) {
                                     if ($indicator->score > $rule->value) {
                                         if ($rule->sign == '-') {
@@ -301,7 +277,17 @@ class GradingEngine {
                         }
                     }
                 }
-            }
+            } /*elseif ($rule->action['subject'] == "document") {
+                if ($rule->operator == '<') {
+                    foreach($documents as $document)
+                    {
+                        if($rule->action[])
+                    }
+
+                } elseif ($rule->operator == '>') {
+
+                }
+            }*/
         }
 
         $finalScoreProject = new Competence();
@@ -315,7 +301,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $projectStructure;
+        return $rules;
 
     }
 }
