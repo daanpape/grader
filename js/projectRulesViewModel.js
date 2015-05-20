@@ -23,8 +23,6 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.selectedValue = ko.observable('Kennis van select-tag');
-
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
@@ -76,13 +74,8 @@ function initPage() {
 
 function setOperators()
 {
-    viewModel.availableOperators.push("=");
-    viewModel.availableOperators.push("!=");
     viewModel.availableOperators.push("<");
-    viewModel.availableOperators.push("<=");
     viewModel.availableOperators.push(">");
-    viewModel.availableOperators.push(">=");
-
 
     viewModel.availableSigns.push("+");
     viewModel.availableSigns.push("-");
