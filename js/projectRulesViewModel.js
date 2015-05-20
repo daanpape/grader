@@ -98,25 +98,28 @@ function removeRuleFromDb(rule)
 function fetchActions() {
     viewModel.clearActionsStructure();
 
-    $.getJSON("/api/projectstructure/" + projectid, function(data){
-        viewModel.addProjectAction(new Action(0,"Total project score", "totalScore"));
-        $.each(data, function(i, item){
-            viewModel.addProjectAction(new Action(item.id,item.description,"competence"));
+    $.getJSON("/api/projectstructure/" + projectid, function(data) {
+        viewModel.addProjectAction(new Action(0, "Total project score", "totalScore"));
+        $.each(data, function (i, item) {
+            viewModel.addProjectAction(new Action(item.id, item.description, "competence"));
 
-            $.each(item.subcompetences, function(i, subcomp){
-                viewModel.addProjectAction(new Action(subcomp.id,subcomp.description,"subcompetence"));
+            $.each(item.subcompetences, function (i, subcomp) {
+                viewModel.addProjectAction(new Action(subcomp.id, subcomp.description, "subcompetence"));
 
-                $.each(subcomp.indicators, function(i, indic){
+                $.each(subcomp.indicators, function (i, indic) {
                     viewModel.addProjectAction(new Action(indic.id, indic.description, "indicator"));
                 });
             });
-        })
-    }).done($.getJSON('/api/project/'+ projectid + '/documents', function(data) {
-        viewModel.addProjectAction(new Action(0,"Total documents", "totalDocument"));
-        $.each(data, function(i, item) {
-            viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
         });
-    })).done(fetchProjectRules());
+
+        $.getJSON('/api/project/' + projectid + '/documents', function (data) {
+            viewModel.addProjectAction(new Action(0, "Total documents", "totalDocument"));
+            $.each(data, function (i, item) {
+                viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
+            });
+            fetchProjectRules();
+        });
+    });
 }
 
 function fetchProjectRules()
