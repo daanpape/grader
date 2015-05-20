@@ -69,6 +69,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
     $.ajax({
         url: '/api/finalscore/' + viewModel.projectId + '/' + id,
         type: "GET",
+        dataType: 'json',
         success: function(data) {
             makePDF(id,name,lastname,email,projectheader,projectdescription,data);
         }
