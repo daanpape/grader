@@ -15,7 +15,6 @@ $location = "projects";
 
             .tooltip:hover:after{
                 background: #333;
-                background: rgba(0,0,0,.8);
                 border-radius: 5px;
                 bottom: 26px;
                 color: #fff;
