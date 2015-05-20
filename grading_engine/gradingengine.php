@@ -348,7 +348,7 @@ class GradingEngine {
 
         // Add final score to projectstructure
 
-        return $projectStructure;
+        return $totalDocuments;
 
     }
 }
