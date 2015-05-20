@@ -109,6 +109,7 @@ class GradingEngine {
     public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
 
         // Calculate project structure
+        $projectStructure = array();
         $projectStructure = createProjectStructure($structure);
 
         // Calculate indicator points
