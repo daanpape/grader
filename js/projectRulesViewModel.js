@@ -132,7 +132,7 @@ function fetchProjectRules()
             var action = new Action(item.action.id,item.action.name,item.action.subject);
             console.log(item.action.name);
 
-            action = $.grep(viewModel.projectActions(), function(e) {return (e.id() == item.action.id) && (e.subject() == item.action.subject())});
+            action = $.grep(viewModel.projectActions(), function(e) {return (e.id() == item.action.id) && (e.subject() == item.action.subject)});
             console.log(action);
             console.log(viewModel.projectActions());
             console.log(item.action.id);
