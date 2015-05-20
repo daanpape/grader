@@ -59,15 +59,8 @@ class Competence {
  */
 class GradingEngine {
 
-    /*
-     * Calculate grading result and give back result in a 
-     * GradingResult object.
-     * @param $competences: an array of Competence objects. 
-     * @
-     */
-    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
-
-        // Calculate project structure
+    public function createProjectStructure($structure)
+    {
         $projectStructure = array();
         foreach($structure as $competence)
         {
@@ -102,6 +95,20 @@ class GradingEngine {
             //array_push($projectStructure, $newCompetence);
             $projectStructure[$newCompetence->id] = $newCompetence;
         }
+        return $projectStructure;
+    }
+
+
+    /*
+     * Calculate grading result and give back result in a 
+     * GradingResult object.
+     * @param $competences: an array of Competence objects. 
+     * @
+     */
+    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
+
+        // Calculate project structure
+        $projectStructure = createProjectStructure($structure);
 
         // Calculate indicator points
 

@@ -26,7 +26,6 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     doc.setFontType('bold');
     doc.text(10, 80, projectheader + ' - ' + projectdescription);
-    doc.text(10, 85, 'Toegepaste Architectuur - 3BA Toegepaste Architectuur');
 
     doc.text(10, 100, 'Competencies');
     doc.text(100, 100, 'Gewicht');
