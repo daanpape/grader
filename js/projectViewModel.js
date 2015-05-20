@@ -176,7 +176,7 @@ function pageViewModel(gvm) {
     }
     
     gvm.clearStructure = function() {
-        gvm.competences.destroyAll();
+        gvm.competences.removeAll();
     }
 }
 
