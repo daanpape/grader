@@ -11,8 +11,6 @@ $location = "assessproject";
 
     <?php include_once('hddepends.php') ?>
 
-    <script src="/js/knockout.popupTemplate.js"></script>
-
     <style>
         a:hover
         {
@@ -90,5 +88,6 @@ $location = "assessproject";
 </script>
 
 <?php include_once('jsdepends.php') ?>
+<script src="/js/knockout.popupTemplate.js"></script>
 </body>
 </html>
