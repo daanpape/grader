@@ -42,12 +42,12 @@ function pageViewModel(gvm) {
     }
 
     gvm.clearActionsStructure = function() {
-        gvm.projectActions.destroyAll();
+        gvm.projectActions.removeAll();
     }
 
     gvm.clearRuleStructure = function()
     {
-        gvm.projectRules.destroyAll();
+        gvm.projectRules.removeAll();
     }
 
     gvm.addProjectAction = function(data) {
