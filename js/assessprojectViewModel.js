@@ -72,6 +72,10 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
         dataType: 'json',
         success: function(data) {
             makePDF(id,name,lastname,email,projectheader,projectdescription,data);
+        },
+        error: function()
+        {
+            alert("Please make sure points are given!");
         }
     });
 }
