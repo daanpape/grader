@@ -26,7 +26,6 @@ $location = "assessproject";
 <body>
 <?php include_once('menu.php') ?>
 
-<a class="btn popoverData" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">Popover with data-trigger</a>
 
 <!-- Header container -->
 <div class="container">
@@ -50,7 +49,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td></td>
+                    <td><a class="btn popoverData" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">Popover with data-trigger</a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
