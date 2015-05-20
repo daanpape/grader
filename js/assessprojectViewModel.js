@@ -55,6 +55,9 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
+
+    $('.popup').popover();
+
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)

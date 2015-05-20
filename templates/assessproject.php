@@ -61,9 +61,6 @@ $location = "assessproject";
 <div class="container">
 </div>
 
-<script>
-    $('.popup').popover();
-</script>
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
