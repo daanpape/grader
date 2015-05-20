@@ -80,8 +80,10 @@ $location = "assessproject";
 <script type="text/html" id="test-template">
     <div class="popup">
         <h1>Assessed by</h1>
-        <p>
-
+        <p id="popupContainer">
+            <ul data-bind="foreach: users">
+                <li data-bind="text: $data"></li>
+            </ul>
         </p>
     </div>
 </script>

@@ -32,6 +32,8 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.users = ko.observableArray([]);
+
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
@@ -72,6 +74,11 @@ function getData(id)
 {
     $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
     {
-        console.log(data);
+        gvm.users.destroyAll();
+        data.forEach(function(element)
+        {
+            gvm.users.push(element.firstname + " " + element.lastname);
+        });
+
     });
 }
