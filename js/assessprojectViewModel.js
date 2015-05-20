@@ -74,10 +74,10 @@ function getData(id)
 {
     $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
     {
-        gvm.users.destroyAll();
+        viewModel.users.destroyAll();
         data.forEach(function(element)
         {
-            gvm.users.push(element.firstname + " " + element.lastname);
+            viewModel.users.push(element.firstname + " " + element.lastname);
         });
 
     });
