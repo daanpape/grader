@@ -337,23 +337,23 @@ function totalPercentCheck()
     
     $.each(viewModel.competences(),
         function(cI, cVal) {
-            cTotal += parseFloat(cVal.weight());
+            cTotal += parseInt(cVal.weight());
             
             scTotal = 0;
             $.each(cVal.subcompetences(),
                 function(scI, scVal)
                 {
-                    scTotal += parseFloat(scVal.weight());
+                    scTotal += parseInt(scVal.weight());
                     
                     iTotal = 0;
                     $.each(scVal.indicators(),
                         function(iI, iVal)
                         {
-                            iTotal += parseFloat(iVal.weight());
+                            iTotal += parseInt(iVal.weight());
                         }
                     );
             
-                    if(scVal.indicators().length > 0 && Math.ceil(iTotal) !== 100)
+                    if(scVal.indicators().length > 0 && iTotal !== 100)
                     {
                         $(".validationSummary ul").append('<li>Indicator weights in the subcompetence ' + scVal.name() + ' are not adding up to 100%</li>');
                         success = false;
@@ -361,7 +361,7 @@ function totalPercentCheck()
                 }
             );
 
-            if(cVal.subcompetences().length > 0 && Math.ceil(scTotal) !== 100)
+            if(cVal.subcompetences().length > 0 && scTotal !== 100)
             {
                 $(".validationSummary ul").append('<li>Subcompentence weights in the competence ' + cVal.name() + ' are not adding up to 100%</li>');
                 success = false;
@@ -369,7 +369,7 @@ function totalPercentCheck()
         }
     );
     
-    if(viewModel.competences().length > 0 && Math.ceil(cTotal) !== 100)
+    if(viewModel.competences().length > 0 && cTotal !== 100)
     {
         $(".validationSummary ul").append('<li>Competence weights are not adding up to 100%</li>');
         success = false;
