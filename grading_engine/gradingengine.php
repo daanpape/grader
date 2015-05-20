@@ -59,9 +59,8 @@ class Competence {
  */
 class GradingEngine {
 
-    function createProjectStructure(&$structure)
+    function createProjectStructure(&$projectStructure,$structure)
     {
-        $projectStructure = array();
         foreach($structure as $competence)
         {
             $newCompetence = new Competence();
@@ -110,7 +109,7 @@ class GradingEngine {
 
         // Calculate project structure
         $projectStructure = array();
-        $projectStructure = createProjectStructure($structure);
+        createProjectStructure($projectStructure,$structure);
 
         // Calculate indicator points
 
