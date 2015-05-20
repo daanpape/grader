@@ -11,6 +11,8 @@ $location = "assessproject";
 
     <?php include_once('hddepends.php') ?>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         a:hover
         {
@@ -46,7 +48,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td><div class="glyphicon glyphicon-ok-circle"></div></td>
+                    <td><a class="btn glyphicon glyphicon-ok-circle popup" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="hover">Popover with data-trigger></a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
@@ -59,6 +61,9 @@ $location = "assessproject";
 <div class="container">
 </div>
 
+<script>
+    $('.popup').popover();
+</script>
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
