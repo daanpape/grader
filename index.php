@@ -496,6 +496,12 @@ $app->get('/api/project/competence/delete/:id',
     }
 );
 
+$app->get('/api/project/:projectid/student/:userid/assessed', function($projectid, $userid) use($app)
+{
+    $app->response()->headers('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getUsersAssessStudent($projectid,$userid));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers

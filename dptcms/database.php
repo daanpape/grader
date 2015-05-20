@@ -1020,6 +1020,21 @@ class ClassDAO
         }
     }
 
+    public static function getUsersAssessStudent($projectid,$userid)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT DISTINCT users.firstname, users.lastname FROM assess_score INNER JOIN users ON assess_score.user = users.id WHERE assess_score.project =? AND assess_score.student =?");
+            $stmt->execute(array($projectid, $userid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+
+        } catch (PDOException $ex) {
+            Logger::logError("could not get users assess student. " . $ex);
+        }
+    }
+
 }
 
 /*

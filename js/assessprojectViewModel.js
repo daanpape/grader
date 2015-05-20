@@ -66,6 +66,12 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
         makePDF(id,name,lastname,email,projectheader,projectdescription,data);
         //console.log(data);
     });
+}
 
-
+function getData(id)
+{
+    $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
+    {
+        console.log(data);
+    });
 }
