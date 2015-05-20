@@ -57,14 +57,21 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
-
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
-    $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
+    /*$.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
         makePDF(id,name,lastname,email,projectheader,projectdescription,data);
         //console.log(data);
+    });*/
+
+    $.ajax({
+        url: '/api/finalscore/' + viewModel.projectId + '/' + id,
+        type: "GET",
+        success: function(data) {
+            makePDF(id,name,lastname,email,projectheader,projectdescription,data);
+        }
     });
 }
 
