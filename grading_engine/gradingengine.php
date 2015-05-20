@@ -313,7 +313,7 @@ class GradingEngine {
                 $totalDocuments = 0;
                 foreach($documents as $document)
                 {
-                    $totalDocuments += (int)$document->submitted;
+                    $totalDocuments += 1;
                 }
                 if ($rule->operator == '<') {
                     if($totalDocuments < $rule->value)
