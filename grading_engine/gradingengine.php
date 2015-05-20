@@ -94,8 +94,6 @@ class GradingEngine {
             //array_push($projectStructure, $newCompetence);
             $projectStructure[$newCompetence->id] = $newCompetence;
         }
-
-        return $projectStructure;
     }
 
 
