@@ -74,7 +74,8 @@ function getData(id)
 {
     $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
     {
-        viewModel.users.empty();
+        viewModel.users.removeAll();
+        console.log(viewModel.users);
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
