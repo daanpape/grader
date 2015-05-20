@@ -274,7 +274,15 @@ function saveProjectStructure() {
 
 function allValidationChecks()
 {
-    return totalPercentCheck() && validationCheck();
+    $(".validationSummary").addClass('hide');
+    $(".validationSummary ul").empty();
+    result = validationCheck() && totalPercentCheck()
+    if(!result)
+    {
+        $(".validationSummary").removeClass('hide'); 
+    }
+    
+    return result;
 }
 
 function validationCheck()
@@ -324,64 +332,50 @@ function validationCheck()
 
 function totalPercentCheck()
 {
-    var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = new Array();
-    var totalPercentIndicators = new Array();
-    var nrOfSubcompetences = 0;
-    var nrOfIndicators = 0;
+    var cTotal = 0;
+    var success = true;
+    
+    $.each(viewModel.competences(),
+        function(cI, cVal) {
+            cTotal += parseInt(cVal.weight());
+            
+            scTotal = 0;
+            $.each(cVal.subcompetences(),
+                function(scI, scVal)
+                {
+                    scTotal += parseInt(scVal.weight());
+                    
+                    iTotal = 0;
+                    $.each(scVal.indicators(),
+                        function(iI, iVal)
+                        {
+                            iTotal += parseInt(iVal.weight());
+                        }
+                    );
+            
+                    if(scVal.indicators().length > 0 && iTotal !== 100)
+                    {
+                        $(".validationSummary ul").append('<li>Indicator weights in the subcompetence ' + scVal.name() + ' are not adding up to 100%</li>');
+                        success = false;
+                    }
+                }
+            );
 
-    var checkSubcompetences = true;
-    var checkIndicators = true;
-
-    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
-    {
-        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
-        totalPercentSubcompetences.push(0);
-        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
-        {
-            totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
-            totalPercentIndicators.push(0);
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
+            if(cVal.subcompetences().length > 0 && scTotal !== 100)
             {
-                totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
+                $(".validationSummary ul").append('<li>Subcompentence weights in the competence ' + cVal.name() + ' are not adding up to 100%</li>');
+                success = false;
             }
-            nrOfIndicators++;
         }
-        nrOfSubcompetences++;
-    }
-
-    for(var i = 0; i < nrOfSubcompetences - 1; i++)
+    );
+    
+    if(viewModel.competences().length > 0 && cTotal !== 100)
     {
-        if(totalPercentSubcompetences[i] != 100)
-        {
-            checkSubcompetences = false;
-            console.log(totalPercentSubcompetences);
-            console.log('Check subcomp failed');
-        }
+        $(".validationSummary ul").append('<li>Competence weights are not adding up to 100%</li>');
+        success = false;
     }
-
-    for(var index = 0; index < nrOfIndicators - 1; index++)
-    {
-        if(totalPercentIndicators[index] != 100)
-        {
-            checkIndicators = false;
-            console.log(nrOfIndicators);
-            console.log('Check indicators failed');
-        }
-    }
-
-    if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
-    {
-        $(".validationSummary ul").html("");
-        $(".validationSummary").addClass("hide");
-        return true;
-    }
-    else
-    {
-        $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
-        $(".validationSummary").removeClass("hide");
-        return false;
-    }
+    
+    return success;
 }
 
 function automatedWeightCalculation(data)
