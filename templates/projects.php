@@ -9,7 +9,7 @@ $location = "projects";
 
         <style>
             .tooltip{
-                display: inline;
+                position: relative;
             }
 
             .tooltip:hover:after{
