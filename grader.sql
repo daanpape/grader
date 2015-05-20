@@ -390,7 +390,10 @@ ALTER TABLE `assess_score`
   ADD CONSTRAINT `assess_score_ibfk_5` FOREIGN KEY (`subcompetence`) REFERENCES `subcompetence` (`id`);
 
 ALTER TABLE `competence`
-  ADD CONSTRAINT `competence_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`);
+  ADD CONSTRAINT `competence_ibfk_1` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `subcompetence`
+  ADD CONSTRAINT `subcompetence_ibfk_1` FOREIGN KEY (`competence`) REFERENCES `competence`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `course`
   ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`training`) REFERENCES `training` (`id`);
