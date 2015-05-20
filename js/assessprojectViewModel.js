@@ -56,7 +56,7 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
 
-    $('.popup').popover();
+    $('#popoverData').popover();
 
 }
 
