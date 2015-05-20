@@ -98,18 +98,8 @@ class GradingEngine {
         return $projectStructure;
     }
 
-
-    /*
-     * Calculate grading result and give back result in a 
-     * GradingResult object.
-     * @param $competences: an array of Competence objects. 
-     * @
-     */
-    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
-
-        // Calculate project structure
-        $projectStructure = GradingEngine::createProjectStructure($structure);
-
+    public static function calculateIndicatorPoints(&$projectStructure,$score)
+    {
         // Calculate indicator points
 
         foreach($score as $point)
@@ -130,7 +120,10 @@ class GradingEngine {
                 }
             }
         }
+    }
 
+    public static function calculateFinalScoreWithoutRules(&$projectStructure)
+    {
         // Calculate the weighted arithmetic mean
 
         $totalScore = 0;
@@ -163,6 +156,11 @@ class GradingEngine {
 
         $finalScore = ceil($totalScore / $totalWeight);
 
+        return $finalScore;
+    }
+
+    public static function checkRules(&$projectStructure,$rules,$documents,&$finalScore)
+    {
         // Check if rules are broken
 
         foreach($rules as $rule) {
@@ -317,6 +315,25 @@ class GradingEngine {
                 }
             }
         }
+    }
+
+
+    /*
+     * Calculate grading result and give back result in a 
+     * GradingResult object.
+     * @param $competences: an array of Competence objects. 
+     * @
+     */
+    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
+
+        $projectStructure = GradingEngine::createProjectStructure($structure);
+
+        GradingEngine::calculateIndicatorPoints($projectStructure,$score);
+
+        $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
+
+
+        GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
         $finalScoreProject = new Competence();
         $finalScoreProject->id = "0";
