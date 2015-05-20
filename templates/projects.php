@@ -74,7 +74,7 @@ $location = "projects";
                         <td data-bind="text: tdesc">--</td>
                         <td>
                             <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                            <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default pagination-button">
+                            <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
                                 <span>Structure</span>
                             </a>
