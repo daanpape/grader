@@ -11,12 +11,29 @@ $location = "assessproject";
 
     <?php include_once('hddepends.php') ?>
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/knockout.popupTemplate.js"></script>
 
     <style>
         a:hover
         {
             text-decoration: none;
+        }
+
+        .popup {
+            border: thin #aaa solid;
+            -webkit-box-shadow: 1px 1px 4px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    1px 1px 4px rgba(50, 50, 50, 0.75);
+            box-shadow:         1px 1px 4px rgba(50, 50, 50, 0.75);
+            padding: 0.3em 1em;
+            background-color: white;
+        }
+
+        .positioning {
+            text-align: center;
+        }
+
+        .positioning button {
+            width: 200px;
         }
     </style>
 
@@ -49,7 +66,7 @@ $location = "assessproject";
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td><a class="btn popoverData" href="#" data-content="Popover with data-trigger" rel="popover" data-placement="bottom" data-original-title="Title" data-trigger="click">Popover with data-trigger</a></td>
+                    <td><button data-bind="popupTemplate: 'test-template'">Show popup</button></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
@@ -61,6 +78,16 @@ $location = "assessproject";
 <!-- Content container -->
 <div class="container">
 </div>
+
+<script type="text/html" id="test-template">
+    <div class="popup">
+        <h1>This is a popup</h1>
+        <p>
+            You can place any content in the popup template you
+            want.
+        </p>
+    </div>
+</script>
 
 <?php include_once('jsdepends.php') ?>
 </body>
