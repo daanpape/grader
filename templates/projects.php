@@ -72,7 +72,7 @@ $location = "projects";
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
-                        <td>
+                        <td style="margin-left:10%">
                             <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
                                 <span>Edit</span>
