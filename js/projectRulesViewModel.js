@@ -134,6 +134,8 @@ function fetchProjectRules()
 
             action = $.grep(viewModel.projectActions(), function(e) {return e.id == item.action.id});
             console.log(action);
+            console.log(viewModel.projectActions());
+            console.log(item.action.id);
 
             viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value,item.sign, item.result));
         });
