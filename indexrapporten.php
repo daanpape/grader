@@ -48,7 +48,7 @@ $app->get('/api/worksheetassess/:worksheetid/:worksheetname/:courseid/:userid', 
     $app->render('templatesrapport/worksheetassess.php', array('workid' => $workid, 'workname' => $workname, 'courseid' => $courseid, 'userid' => $userid));
 });
 
-$app->get('/account/adminUsersCourse', function () use($app) {
+$app->get('/api/adminUsersCourse', function () use($app) {
     $app->render('templatesrapport/studentcoursesrapport.php');
 });
 
