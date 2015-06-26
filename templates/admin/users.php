@@ -68,7 +68,7 @@ require_once('templates/header.php');
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: userName" onclick="alert()">Username</th>
+                    <th data-bind="text: userName">Username</th>
                     <th data-bind="text: firstName">Name</th>
                     <th data-bind="text: lastName">Lastname</th>
                     <th data-bind="text: userStatus">Status</th>

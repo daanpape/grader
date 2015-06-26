@@ -93,7 +93,7 @@ function User(id, username, firstname, lastname, status) {
 }
 
 function alert() {
-    alert("U hebt op een user geklikt.")
+    alert("U hebt op een user geklikt.");
 }
 
 function initPage() {
