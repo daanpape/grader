@@ -54,6 +54,19 @@ function removeUser(user)
     });
 }
 
+//rapportenSysteem
+function manageCourse(user)
+{
+    alert("Hier");
+    /*
+    $.getJSON("/api/removeuser/" + user.id(), function(data)
+    {
+        console.log("User was removed");
+        fetchUsersData();
+    });
+    */
+}
+
 function updateUserStatus(user)
 {
     console.log(user.status());
