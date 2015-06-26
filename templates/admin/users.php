@@ -82,10 +82,10 @@ require_once('templates/header.php');
                         <td data-bind="text: lastname"></td>
                         <td data-bind="text: status"></td>
                         <!-- ko if: status() === 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"><i class="fa fa-archive fa-lg" data-bind="click: removeThisUser"></td>
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"><i class="fa fa-archive fa-lg" data-bind=""></td>
                         <!-- /ko -->
                         <!-- ko if: status() !== 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"><i class="fa fa-archive fa-lg" data-bind="click: removeThisUser"></td>
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"><i class="fa fa-archive fa-lg" data-bind=""></td>
                         <!-- /ko -->
 
                     </tr>
