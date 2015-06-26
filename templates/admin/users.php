@@ -84,12 +84,12 @@ require_once('templates/header.php');
                         <!-- ko if: status() === 'ACTIVE' -->
                         <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a>
                             <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer">
-                                <i class="fa fa-archive fa-lg" data-bind="attr:{'href': '/adminUsersCourse/'}"></td>
+                                <i class="fa fa-archive fa-lg" data-bind="attr:{'href'= '/adminUsersCourse'}"></td>
                         <!-- /ko -->
                         <!-- ko if: status() !== 'ACTIVE' -->
                         <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a>
                             <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer">
-                                <i class="fa fa-archive fa-lg" data-bind="attr:{'href': '/adminUsersCourse/'}"></td>
+                                <i class="fa fa-archive fa-lg" data-bind="attr:{'href'= '/adminUsersCourse'}"></td>
                         <!-- /ko -->
 
                     </tr>
