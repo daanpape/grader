@@ -49,7 +49,7 @@ $app->get('/api/worksheetassess/:worksheetid/:worksheetname/:courseid/:userid', 
 });
 
 $app->get('/account/adminUsersCourse', function () use($app) {
-    $app->render('templatesrapport/studentcourserapport.php');
+    $app->render('templatesrapport/studentcoursesrapport.php');
 });
 
 $app->get('/api/studentlistrapport/info/:id', function($id) use ($app) {
