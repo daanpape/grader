@@ -1,6 +1,6 @@
 <?php
 // Page initialisation
-$location = "adminUsersCourse";
+$location = "jsrapport/adminUsersCourse";
 require_once('templates/header.php');
 ?>
 
