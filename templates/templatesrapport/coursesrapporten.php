@@ -25,6 +25,7 @@
                         <th data-bind="text: nameTableTitle">Name</th>
                         <th data-bind="text: descTableTitle">Description</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
+                        <th>TEST</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
@@ -62,8 +63,6 @@
                 <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
             </button>
         </div>
-        
-        <p>Sup</p>
 
         <?php include_once('templates/jsdepends.php') ?>
     </body>
