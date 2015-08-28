@@ -39,7 +39,8 @@
                             <a data-bind="attr:{'href': '/api/coursestudents/' + tid + '/' + tname}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
-                            </td>
+                        </td>
+                        <td>TEST</td>
                     </tr>
                 </tbody>
             </table>
