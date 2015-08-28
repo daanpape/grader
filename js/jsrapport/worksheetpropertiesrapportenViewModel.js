@@ -10,7 +10,8 @@ function pageViewModel(gvm) {
     gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
     gvm.formmodules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormModules");}, gvm);
     gvm.formscore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormScore");}, gvm);
-    gvm.formassess = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssess");}, gvm);
+    gvm.formassesscustom = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessCustom");}, gvm);
+    gvm.formassessnone = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessNone");}, gvm);
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
@@ -226,9 +227,11 @@ function initPage() {
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
         var collection = getCheckedFields();
-        var assessMethod = $('.btn-assessMethod span:first').text();
-        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
+        //var assessMethod = $('.btn-assessMethod span:first').text();
+        var assessMethod = $('.btn-assessMethod span:first').parent().val();
+        console.log(assessMethod);
+        /*addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
             $('#errormessage').text(message);
-        });
+        });*/
     });
 }

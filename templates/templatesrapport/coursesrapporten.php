@@ -25,7 +25,6 @@
                         <th data-bind="text: nameTableTitle">Name</th>
                         <th data-bind="text: descTableTitle">Description</th>
                         <th data-bind="text: actionTableTitle">Actions</th>
-                        <th>TEST</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
@@ -40,7 +39,6 @@
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                             <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
                         </td>
-                        <td>TEST</td>
                     </tr>
                 </tbody>
             </table>

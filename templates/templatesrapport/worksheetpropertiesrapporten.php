@@ -58,9 +58,10 @@
                                     <span class="pull-right caret-down caret"></span>
                                 </button>
                                 <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessMethod" name="assessMethod">
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">A - E</a></li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#">1 - 10</a></li>
-                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassess"></span></a></li>
+                                    <li class="li-wide" role="presentation" value="A - E"><a role="menuitem" tabindex="-1" href="#">A - E</a></li>
+                                    <li class="li-wide" role="presentation" value="1 - 10"><a role="menuitem" tabindex="-1" href="#">1 - 10</a></li>
+                                    <li class="li-wide" role="presentation" value="Custom"><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassesscustom"></span></a></li>
+                                    <li class="li-wide" role="presentation" value=""><a role="menuitem" tabindex="-1" href="#"><span data-bind="text: formassessnone"></span></a></li>
                                 </ul>
                             </div>
                         </div>
