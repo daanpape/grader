@@ -55,33 +55,33 @@ function pageViewModel(gvm) {
 
 function addWorksheetProperties(serialData, wid, collection, assessMethod, callback) {
     if (assessMethod === "None") {
-        callback(true, i18n.__('AssessMethodError'));
-    } else {
-        $.ajax({
-            url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
-            type: "PUT",
-            data: serialData,
-            success: function(data) {
-                console.log(data);
-                callback(false);
-            },
-            error: function(data) {
-                callback(true, i18n.__('AssessGeneralError'));
-            }
-        });
-        $.ajax({
-            url: "/api/worksheetmodules",
-            type: "POST",
-            data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
-            success: function(data) {
-                console.log(data);
-                callback(false);
-            },
-            error: function(data) {
-                callback(true, i18n.__('AssessGeneralError'));
-            }
-        });
+        assessMethod = "";
     }
+    
+    $.ajax({
+        url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
+        type: "PUT",
+        data: serialData,
+        success: function(data) {
+            console.log(data);
+            callback(false);
+        },
+        error: function(data) {
+            callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
+    $.ajax({
+        url: "/api/worksheetmodules",
+        type: "POST",
+        data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
+        success: function(data) {
+            console.log(data);
+            callback(false);
+        },
+        error: function(data) {
+            callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
 }
 
 function makeChecklist() {
