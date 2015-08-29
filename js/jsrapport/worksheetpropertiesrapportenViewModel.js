@@ -227,11 +227,11 @@ function initPage() {
     $('#submit').click(function() {
         var wid = $('#header').attr('data-value');
         var collection = getCheckedFields();
-        //var assessMethod = $('.btn-assessMethod span:first').text();
-        var assessMethod = $('.btn-assessMethod span:first').parent().val();
+        var assessMethod = $('.btn-assessMethod span:first').text();
+        //var assessMethod = $('.btn-assessMethod span:first').parent().val();
         console.log(assessMethod);
-        /*addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
+        addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
             $('#errormessage').text(message);
-        });*/
+        });
     });
 }
