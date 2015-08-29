@@ -195,9 +195,7 @@ function getWorksheetData(wid) {
         if (!$.isEmptyObject(data)) {
             $('#equipment').val(data[0].equipment);
             $('#method').val(data[0].method);
-            if (data[0].assessment == "") {
-                $('.btn-assessMethod span:first').text("Choose...");
-            } else {
+            if (data[0].assessment !== "") {
                 $('.btn-assessMethod span:first').text(data[0].assessment);
             }
         }
@@ -228,7 +226,6 @@ function initPage() {
         var wid = $('#header').attr('data-value');
         var collection = getCheckedFields();
         var assessMethod = $('.btn-assessMethod span:first').text();
-        //var assessMethod = $('.btn-assessMethod span:first').parent().val();
         console.log(assessMethod);
         addWorksheetProperties($('#worksheetform').serialize(), wid, collection, assessMethod, function(result, message) {
             $('#errormessage').text(message);
