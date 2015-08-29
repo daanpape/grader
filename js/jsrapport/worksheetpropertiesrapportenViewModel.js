@@ -54,9 +54,9 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, collection, assessMethod, callback) {
-    if (assessMethod === "Choose...") {
+    /*if (assessMethod === "Choose...") {
         callback(true, i18n.__('AssessMethodError'));
-    } else {
+    } else {*/
         $.ajax({
             url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
             type: "PUT",
@@ -81,7 +81,7 @@ function addWorksheetProperties(serialData, wid, collection, assessMethod, callb
                 callback(true, i18n.__('AssessGeneralError'));
             }
         });
-    }
+    //}
 }
 
 function makeChecklist() {
