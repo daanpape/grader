@@ -131,6 +131,7 @@
     "FormModules" : "Modules, competences and criteria",
     "FormScore" : "Assessment method",
     "FormWorksheet" : "Worksheet",
+    "FormAssessChoose" : "Choose...",
     "FormAssessCustom" : "Custom",
     "FormAssessNone" : "None",
     "FormDate" : "Date",

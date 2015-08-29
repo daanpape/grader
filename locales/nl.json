@@ -129,6 +129,7 @@
     "FormScore" : "Beoordelingsmethode",
     "FormWorksheet" : "Werkfiche",
     "FormDate" : "Datum",
+    "FormAssessChoose" : "Kies...",
     "FormAssessCustom" : "Aangepast",
     "FormAssessNone" : "Geen",
     "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
