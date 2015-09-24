@@ -353,10 +353,11 @@ function showNewProjectTypeModal()
         </form>');
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-        console.log($('#newprojectform').serialize());
+       console.log($('#newprojectform').serialize());
        addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
             hideModal();
         });
+        console.log("Test");
     });
 
     showGeneralModal();
@@ -388,10 +389,9 @@ function showEditProjectTypeModal(code, name, description, tid)
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        console.log("Test");
-        //updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
-            //hideModal();
-        //});
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+            hideModal();
+        });
     });
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
