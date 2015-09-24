@@ -29,7 +29,7 @@
                 padding: 0;
                 list-style-type: none;
             }
-            #list li {
+            #modules li {
                 display: block;
                 color: #FFF;
                 background-color: #2165A7;
@@ -39,7 +39,7 @@
                 font-weight: bold;
                 margin-bottom: 2px;
             }
-            #list li li {
+            #competences li {
                 display: block;
                 color: #FFF;
                 background-color: #47A0DA;
@@ -49,7 +49,7 @@
                 font-weight: normal;
                 margin-bottom: 2px;
             }
-            #list li li li {
+            #criterias li {
                 display: block;
                 color: #FFF;
                 background-color: #70B8FF;
@@ -87,11 +87,11 @@
                         <div class="formgroup">
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
-                                <ul data-bind="foreach: modules">              <!-- modules -->
+                                <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
                                     <li data-bind="text: modname"></li>
-                                    <ul data-bind="foreach: competences">      <!-- competences -->
+                                    <ul data-bind="foreach: competences" id="competences">      <!-- competences -->
                                         <li data-bind="text: comname"></li>
-                                        <ul data-bind="foreach: criterias">         <!-- criteria -->
+                                        <ul data-bind="foreach: criterias" id="criterias">         <!-- criteria -->
                                             <li data-bind="text: critname"></li>
                                         </ul>
                                     </ul>
