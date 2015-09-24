@@ -100,16 +100,18 @@
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
                                 <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
-                                    <li data-bind="text: modname"></li>
-                    <!--------->    <div class="dropdown col-md-2">
-                                        <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                            <span class="text-center" id="sheetscore">Choose...</span>
-                                            <span class="pull-right caret-down caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
-                                            <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
-                                        </ul>
-                    <!--------->    </div>
+                                    <li data-bind="text: modname">
+                        <!--------->    <div class="dropdown col-md-2">
+                                            <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                <span class="text-center" id="sheetscore">Choose...</span>
+                                                <span class="pull-right caret-down caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                            </ul>
+                        <!--------->    </div>
+                                    </li>
+                    
                                     <ul data-bind="foreach: competences" id="competences">      <!-- competences -->
                                         <li data-bind="text: comname"></li>
                                         <ul data-bind="foreach: criterias" id="criterias">         <!-- criteria -->
