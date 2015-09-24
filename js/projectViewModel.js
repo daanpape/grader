@@ -215,7 +215,8 @@ function initPage() {
         if(allValidationChecks()) {
             saveProjectStructure();
             var url = document.URL;
-            console.log(url + "/students/" + viewModel.courseId);
+            var string = url.split("/");
+            window.location.href = "http://" + string[2] + "/" + string[3] + "/students/" + string[4];
             console.log("Saved");
         }
         else
