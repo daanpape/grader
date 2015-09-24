@@ -23,7 +23,6 @@
                 <p class="lead">Here comes a summary of students who still need to be assessed</p>
             </div>
         </div>
-<div>ook een test!</div>
         <?php include_once('templates/jsdepends.php') ?>
     </body>
 </html>
