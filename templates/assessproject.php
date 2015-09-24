@@ -60,7 +60,7 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: users.size > 0-->
+                    <!-- ko if: users().length > 0-->
                     <td>test</td>
                     <!-- /ko -->
 
