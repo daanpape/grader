@@ -94,4 +94,13 @@ function initPage() {
         viewModel.userId = data.id;
         viewModel.getAvailableLists(data.id);
     });
+
+    $("#nextPageButton").click(function()
+    {
+        var url = document.URL;
+        var string = url.split("/");
+        var current  = string[3];
+        window.location.href = "http://" + string[2] + "/project/" + data['id'];
+
+    });
 }
