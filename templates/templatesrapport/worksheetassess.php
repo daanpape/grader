@@ -26,8 +26,7 @@
             }
             #list {
                 width: 50%;
-                margin-top: 5%;
-                margin-bottom: 5%;
+                margin-bottom: 2%;
             }
             #list ul {
                 margin: 0;
@@ -53,10 +52,11 @@
                 font-size: 20px;
                 border-radius: 10px;
                 width: auto;
-                padding: 10px 10px 10px 50px;
+                padding: 10px 10px 10px 8px;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
+                margin-left: 3%;
             }
             #criterias li {
                 display: block;
@@ -65,10 +65,11 @@
                 font-size: 20px;
                 border-radius: 10px;
                 width: auto;
-                padding: 10px 10px 10px 100px;
+                padding: 10px 10px 10px 8px;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
+                margin-left: 5%;
             }
         </style>
         
