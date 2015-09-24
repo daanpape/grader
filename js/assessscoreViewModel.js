@@ -78,7 +78,9 @@ function saveProjectScore()
 
             fetchProjectStructure();
 
+            console.log("worked")
             window.location = "/assess/project/" + projectid + "/students"
+            console.log("redirected")
         }
     });
 }
