@@ -208,7 +208,7 @@ function addNewProjecttypeForm(serialData, callback) {
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 var url = document.URL;
                 var string = url.split("/");
-                console.log(string);
+                console.log(string[3]);
                 //console.log(document.URL);
                 console.log("Ok test ok");
 
