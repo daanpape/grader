@@ -42,6 +42,7 @@ class DPTSecurityMiddleware extends \Slim\Middleware
         $this->next->call();
     }
 }
+
 $app->add(new DPTSecurityMiddleware());
 
 // GET routes

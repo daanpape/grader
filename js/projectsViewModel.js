@@ -169,6 +169,8 @@ function pageViewModel(gvm) {
             event.stopPropagation();
             loadCoupleDropdown();
         });*/
+
+
     }
     
     gvm.clearTable = function() {
@@ -388,6 +390,7 @@ function showEditProjectTypeModal(code, name, description, tid)
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
             hideModal();
+            console.log("Test");
         });
     });
 
