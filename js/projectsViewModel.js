@@ -206,6 +206,12 @@ function addNewProjecttypeForm(serialData, callback) {
             data: serialData,
             success: function(data) {
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                $.ajax({
+                    url: "/project/" + data['id'],
+                    type: "GET"
+                });
+                console.log("Ok test ok");
+
                 callback(true);
             },
             error: function(data) {
