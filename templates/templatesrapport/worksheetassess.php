@@ -55,16 +55,33 @@
                         <!-- list van modules, competenties en criteria -->
                         <div class="formgroup">
                             <label data-bind="text: formmodules"></label>
-                            <ul data-bind="foreach: modules">              <!-- modules -->
-                                <li data-bind="text: modname">
-                                    <ul data-bind="foreach: competences">      <!-- competences -->
-                                        <li data-bind="text: comname"></li>
-                                        <ul data-bind="foreach: criterias">         <!-- criteria -->
-                                            <li data-bind="text: critname"></li>
-                                        </ul>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <table class="table">
+                                <thead>
+                                </thead>
+                                <tbody data-bind="foreach: modules">
+                                    <tr>
+                                        <td data-bind="text: modname"></td>
+                                        <td>
+                                            <table>
+                                                <tbody data-bind="foreach: competences">
+                                                    <tr>
+                                                        <td data-bind="text: comname"></td>
+                                                        <td>
+                                                            <table>
+                                                                <tbody data-bind="criterias">
+                                                                    <tr>
+                                                                        <td data-bind="text: critname"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         
                         <label data-bind="text: formworksheet"></label>
