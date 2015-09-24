@@ -74,7 +74,7 @@ function saveProjectScore()
         data: ko.toJSON(viewModel.competences),
         success: function(){
             // TODO make multilangual and with modals
-            console.log("worked");
+            alert("worked");
             alert("Saved projectscore to server");
 
             console.log("worked");
