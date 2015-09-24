@@ -96,7 +96,10 @@ $location = "assessscore";
         input[type="range"] {
             -webkit-appearance:none !important;
             pointer:cursor;
-            background-color:#0000FF;
+            background: -webkit-linear-gradient(red, lawngreen); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(red, lawngreen); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(red, lawngreen); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(red, lawngreen); /* Standard syntax */
             -webkit-border-radius:15px;
             -moz-border-radius:5px;
             background-repeat: no-repeat;
