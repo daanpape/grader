@@ -60,11 +60,8 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: users().length == 0-->
-                    <td>0</td>
-                    <!-- /ko -->
-                    <!-- ko if: users().length > 0-->
-                    <td>1++</td>
+                    <!-- ko if: users() > 0 -->
+                    <td>y() > 0</td>
                     <!-- /ko -->
 
                     <td data-bind="text: tfirstname">--</td>
