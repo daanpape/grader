@@ -62,22 +62,10 @@ $location = "assessproject";
                 <tr>
                     <!-- ko if: users().length == 0 -->
                     <td>y() == 0</td>
-
-                    <td data-bind="text: tfirstname">--</td>
-                    <td data-bind="text: tlastname">--</td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
-                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-file"></span>
-                            <span>PDF</span>
-                        </a></td>
-                    <td><a data-bind="popupTemplate: { template: 'test-template'}, click: function() { getData(tid) }" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            <span>Info</span>
-                        </a></td>
                     <!-- /ko -->
                     <!-- ko if: users().length >= 1 -->
                     <td>y() > 0</td>
+                    <!-- /ko -->
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
@@ -86,13 +74,11 @@ $location = "assessproject";
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-file"></span>
                             <span>PDF</span>
-                        </a></td>
+                    </a></td>
                     <td><a data-bind="popupTemplate: { template: 'test-template'}, click: function() { getData(tid) }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             <span>Info</span>
-                        </a></td>
-                    <!-- /ko -->
-
+                    </a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
