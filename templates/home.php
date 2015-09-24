@@ -22,7 +22,7 @@ $location = "home";
                 <p class="lead">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual
                     before using the service.</p>
             </div>
-            <div>Test text</div>
+            <div>Test text a second time</div>
         </div>
 
 
