@@ -33,7 +33,7 @@
                 padding: 0;
                 list-style-type: none;
             }
-            #modules li {
+            #modules>li {
                 display: block;
                 color: #FFF;
                 background-color: #154890;
@@ -45,7 +45,7 @@
                 font-weight: bold;
                 margin-bottom: 2px;
             }
-            #competences li {
+            #competences>li {
                 display: block;
                 color: #FFF;
                 background-color: #6699FF;
@@ -58,7 +58,7 @@
                 margin-bottom: 2px;
                 margin-left: 6%;
             }
-            #criterias li {
+            #criterias>li {
                 display: block;
                 color: #FFF;
                 background-color: #CDBFAC;
