@@ -63,7 +63,7 @@ $location = "assessproject";
                     <!-- ko if: getDataCount(tid) === 0 -->
                     <td>0</td>
                     <!-- /ko -->
-                    <!-- ko if: getDataCount(tid) >== 1 -->
+                    <!-- ko if: getDataCount(tid) >= 1 -->
                     <td>++</td>
                     <!-- /ko -->
 
