@@ -27,8 +27,8 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
                 //console.log(item);
-                var items = getData(item.id).length;
-                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail,items);
+                var items = getData(item.id);
+                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
                 console.log(items);
             });
         });
