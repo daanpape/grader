@@ -96,10 +96,11 @@ $location = "assessscore";
         input[type="range"] {
             -webkit-appearance:none !important;
             pointer:cursor;
-            background: -webkit-linear-gradient(left, red, lawngreen); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(right, red, lawngreen); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(left, red, lawngreen); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(right, red, lawngreen); /* Standard syntax */
+            background: -webkit-linear-gradient(left, darkred, lawngreen); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(right, darkred, lawngreen); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(left, darkred, lawngreen); /* For Firefox 3.6 to 15 */
+            background: linear-gradient(right, darkred, lawngreen); /* Standard syntax */
+            height: 25px;
             -webkit-border-radius:15px;
             -moz-border-radius:5px;
             background-repeat: no-repeat;
