@@ -36,8 +36,8 @@
                 width: 9em;
                 padding: 3px 12px 3px 8px;
                 text-decoration: none;
-                border-bottom: 1px solid #fff;
                 font-weight: bold;
+                margin-bottom: 2px;
             }
             #list li li {
                 display: block;
@@ -46,8 +46,8 @@
                 width: 9em;
                 padding: 3px 3px 3px 17px;
                 text-decoration: none;
-                border-bottom: 1px solid #fff;
                 font-weight: normal;
+                margin-bottom: 2px;
             }
             #list li li li {
                 display: block;
@@ -56,8 +56,8 @@
                 width: 9em;
                 padding: 3px 3px 3px 17px;
                 text-decoration: none;
-                border-bottom: 1px solid #fff;
                 font-weight: normal;
+                margin-bottom: 2px;
             }
         </style>
         
