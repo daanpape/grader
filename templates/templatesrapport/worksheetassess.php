@@ -56,7 +56,7 @@
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
-                margin-left: 3%;
+                margin-left: 6%;
             }
             #criterias li {
                 display: block;
@@ -69,7 +69,7 @@
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
-                margin-left: 5%;
+                margin-left: 12%;
             }
         </style>
         
