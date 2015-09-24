@@ -28,6 +28,7 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 //console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+                getData(item.id);
             });
         });
     };
@@ -90,13 +91,11 @@ function getData(id)
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
-
         });
     });
 }
 
 function getDataCount(id)
 {
-    getData(id)
     return viewModel.users().length;
 }
