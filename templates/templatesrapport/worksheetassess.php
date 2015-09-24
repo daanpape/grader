@@ -100,7 +100,8 @@
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
                                 <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
-                                    <li data-bind="text: modname">
+                                    <li>
+                                        <span data-bind="text: modname"></span>
                         <!--------->    <div class="dropdown col-md-2">
                                             <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                 <span class="text-center" id="sheetscore">Choose...</span>
