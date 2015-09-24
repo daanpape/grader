@@ -208,8 +208,8 @@ function addNewProjecttypeForm(serialData, callback) {
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 var url = document.URL;
                 var string = url.split("/");
-                console.log(string[3]);
-                //console.log(document.URL);
+                var current  = string[3];
+                window.location.href = string[2] + "/project/" + data['id'];
                 console.log("Ok test ok");
 
                 callback(true);
