@@ -50,6 +50,7 @@ $location = "assessproject";
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th></th>
                     <th data-bind="text: firstNameTableTitle">FirstName</th>
                     <th data-bind="text: lastNameTableTitle">LastName</th>
                     <th data-bind="text: scoreTableTitle">Scores</th>
@@ -59,6 +60,10 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
+                    <!-- ko if: users().length > 0-->
+                    <td data-bind="text: tlastname"></td>
+                    <!-- /ko -->
+
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>

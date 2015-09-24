@@ -15,6 +15,7 @@ function pageViewModel(gvm) {
 
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+    gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
@@ -92,5 +93,14 @@ function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.getAvailableLists(data.id);
+    });
+
+    $("#nextPageButton").click(function()
+    {
+        var url = document.URL;
+        var string = url.split("/");
+        var current  = string[3];
+        console.log(string);
+        //window.location.href = "http://" + string[2] + "/project/" + data['id'];
     });
 }

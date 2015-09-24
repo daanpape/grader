@@ -49,6 +49,11 @@ require_once 'dptcms/config.php';
                 } 
                 ?>" id="worksheetrapporten"> <a href="/worksheetrapporten" >Worksheets</a></li>
 
+                <li class="<?php if ($location == 'jsrapport/worksheetrapporten') {
+                    echo 'active';
+                }
+                ?>" id="worksheetrapporten"> <a href="/worksheetrapporten" >Student management</a></li>
+
                 <!----------  RapportSysteem ---------->
                     
             </ul>
