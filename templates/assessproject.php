@@ -67,6 +67,7 @@ $location = "assessproject";
                     <td>++</td>
                     <!-- /ko -->
 
+                    <td date-bind="if"></td>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
