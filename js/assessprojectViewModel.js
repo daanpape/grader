@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
                 viewModel.assassedUsers.push(getData(item.id));
             });
 
-            console.log(viewModel.assassedUsers[0]);
+            console.log(viewModel.assassedUsers());
         });
     };
 
