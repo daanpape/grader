@@ -210,6 +210,7 @@ function addNewProjecttypeForm(serialData, callback) {
                     url: "/project/" + data['id'],
                     type: "GET"
                 });
+                console.log("Ok test ok");
 
                 callback(true);
             },
