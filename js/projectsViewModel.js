@@ -388,10 +388,10 @@ function showEditProjectTypeModal(code, name, description, tid)
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
-            hideModal();
-            console.log("Test");
-        });
+        console.log("Test");
+        //updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+            //hideModal();
+        //});
     });
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
