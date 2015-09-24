@@ -64,7 +64,6 @@ $location = "assess";
     <table class="table table-striped">
         <thead>
         <tr>
-            <th></th>
             <th data-bind="text: codeTableTitle">Code</th>
             <th data-bind="text: nameTableTitle">Name</th>
             <th data-bind="text: descTableTitle">Description</th>
@@ -73,7 +72,6 @@ $location = "assess";
         </thead>
         <tbody data-bind="foreach: tabledata">
         <tr>
-            <td>--</td>
             <td data-bind="text: tcode">--</td>
             <td data-bind="text: tname">--</td>
             <td data-bind="text: tdesc">--</td>
