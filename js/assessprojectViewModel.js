@@ -31,7 +31,7 @@ function pageViewModel(gvm) {
                 viewModel.assassedUsers.push(getData(item.id));
             });
 
-            console.log(viewModel.assassedUsers().length);
+            console.log(viewModel.assassedUsers());
         });
     };
 
@@ -91,7 +91,6 @@ function getData(id)
     $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
     {
         viewModel.users.removeAll();
-        console.log(viewModel.users);
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
