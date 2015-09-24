@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     gvm.ruleAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleAction");}, gvm);
     gvm.ruleActionDropdown = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleActionDropdown");}, gvm);
     gvm.ruleNotOK = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleNotOK");}, gvm);
+    gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
@@ -68,6 +69,10 @@ function initPage() {
     $(".savePageBtn").click(function()
     {
         saveProjectRules();
+        alert("The project was saved correctly");
+        var url = document.URL;
+        var string = url.split("/");
+        window.location.href = "http://" + string[2] + "/projects";
     });
 
     setOperators();

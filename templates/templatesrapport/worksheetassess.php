@@ -35,9 +35,11 @@
             #modules li {
                 display: block;
                 color: #FFF;
-                background-color: #2165A7;
+                font-size: 20px;
+                border-radius: 5px;
+                background-color: #DD1E2F;
                 width: auto;
-                padding: 3px 12px 3px 8px;
+                padding: 2%;
                 text-decoration: none;
                 font-weight: bold;
                 margin-bottom: 2px;
@@ -45,9 +47,11 @@
             #competences li {
                 display: block;
                 color: #FFF;
-                background-color: #47A0DA;
+                font-size: 20px;
+                border-radius: 5px;
+                background-color: #EBB035;
                 width: auto;
-                padding: 3px 3px 3px 17px;
+                padding: 2%;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
@@ -55,9 +59,11 @@
             #criterias li {
                 display: block;
                 color: #FFF;
-                background-color: #70B8FF;
+                font-size: 20px;
+                border-radius: 5px;
+                background-color: #06A2CB;
                 width: auto;
-                padding: 3px 3px 3px 17px;
+                padding: 2%;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
