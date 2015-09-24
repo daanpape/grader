@@ -60,7 +60,7 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <td data-bind="value: function() { getData(tid) }"></td>
+                    <td data-bind="value:  }"></td>
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
