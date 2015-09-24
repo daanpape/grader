@@ -63,7 +63,7 @@ $location = "assessproject";
                     <!-- ko if: users() == 0 -->
                     <td>y() == 0</td>
                     <!-- /ko -->
-                    <!-- ko if: users() == 0 -->
+                    <!-- ko if: users() >= 1 -->
                     <td>y() > 0</td>
                     <!-- /ko -->
 
