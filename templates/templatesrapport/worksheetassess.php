@@ -24,17 +24,40 @@
             form {
                 margin-bottom: 100px;
             }
-            #list {
-                list-style: none;
+            #list ul {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
             }
-            #modules {
+            #list li {
+                display: block;
+                color: #FFF;
                 background-color: #2165A7;
+                width: 9em;
+                padding: 3px 12px 3px 8px;
+                text-decoration: none;
+                border-bottom: 1px solid #fff;
+                font-weight: bold;
             }
-            #competences {
+            #list li li {
+                display: block;
+                color: #FFF;
                 background-color: #47A0DA;
+                width: 9em;
+                padding: 3px 3px 3px 17px;
+                text-decoration: none;
+                border-bottom: 1px solid #fff;
+                font-weight: normal;
             }
-            #criterias {
+            #list li li li {
+                display: block;
+                color: #FFF;
                 background-color: #70B8FF;
+                width: 9em;
+                padding: 3px 3px 3px 17px;
+                text-decoration: none;
+                border-bottom: 1px solid #fff;
+                font-weight: normal;
             }
         </style>
         
@@ -63,21 +86,21 @@
                         <!-- list van modules, competenties en criteria -->
                         <div class="formgroup">
                             <label data-bind="text: formmodules"></label>
-                            <nav id="list">
-                                <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
+                            <div id="list">
+                                <ul data-bind="foreach: modules">              <!-- modules -->
                                     <li data-bind="text: modname">
                                     <li>
-                                        <ul data-bind="foreach: competences" id="competences">      <!-- competences -->
+                                        <ul data-bind="foreach: competences">      <!-- competences -->
                                             <li data-bind="text: comname"></li>
                                             <li>
-                                                <ul data-bind="foreach: criterias" id="criterias">         <!-- criteria -->
+                                                <ul data-bind="foreach: criterias">         <!-- criteria -->
                                                     <li data-bind="text: critname"></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li> 
                                 </ul>
-                            </nav>
+                            </div>
                         </div>
                         
                         <label data-bind="text: formworksheet"></label>
