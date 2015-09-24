@@ -24,6 +24,9 @@
             form {
                 margin-bottom: 100px;
             }
+            #list {
+                width: 50%;
+            }
             #list ul {
                 margin: 0;
                 padding: 0;
@@ -33,7 +36,7 @@
                 display: block;
                 color: #FFF;
                 background-color: #2165A7;
-                width: 9em;
+                width: auto;
                 padding: 3px 12px 3px 8px;
                 text-decoration: none;
                 font-weight: bold;
@@ -43,7 +46,7 @@
                 display: block;
                 color: #FFF;
                 background-color: #47A0DA;
-                width: 9em;
+                width: auto;
                 padding: 3px 3px 3px 17px;
                 text-decoration: none;
                 font-weight: normal;
@@ -53,7 +56,7 @@
                 display: block;
                 color: #FFF;
                 background-color: #70B8FF;
-                width: 9em;
+                width: auto;
                 padding: 3px 3px 3px 17px;
                 text-decoration: none;
                 font-weight: normal;
