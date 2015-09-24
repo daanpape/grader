@@ -60,14 +60,8 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: getDataCount(tid) === 0 -->
-                    <td>0</td>
-                    <!-- /ko -->
-                    <!-- ko if: getDataCount(tid) >= 1 -->
-                    <td>++</td>
-                    <!-- /ko -->
+                    <td data-bind="value: function() { getData(tid) }"></td>
 
-                    <td date-bind="if"></td>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
