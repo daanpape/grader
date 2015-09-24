@@ -353,9 +353,8 @@ function showNewProjectTypeModal()
         </form>');
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-        console.log($('#newprojectform').serialize());
-        console.log("test");
-       addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
+        console.log($('#newprojectform').serialize() + "Test");
+               addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
             hideModal();
         });
     });
