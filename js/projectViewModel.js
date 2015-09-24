@@ -213,6 +213,8 @@ function initPage() {
     $(".savePageBtn").click(function(){
         if(allValidationChecks()) {
             saveProjectStructure();
+            var url = document.URL;
+            console.log(url + "/students/" + viewModel.courseId);
             console.log("Saved");
         }
         else
