@@ -26,6 +26,7 @@
             }
             #list {
                 width: 50%;
+                margin-bottom: 2%;
             }
             #list ul {
                 margin: 0;
@@ -35,9 +36,11 @@
             #modules li {
                 display: block;
                 color: #FFF;
-                background-color: #2165A7;
+                background-color: #154890;
+                font-size: 20px;
+                border-radius: 10px;
                 width: auto;
-                padding: 3px 12px 3px 8px;
+                padding: 10px 10px 10px 8px;
                 text-decoration: none;
                 font-weight: bold;
                 margin-bottom: 2px;
@@ -45,22 +48,28 @@
             #competences li {
                 display: block;
                 color: #FFF;
-                background-color: #47A0DA;
+                background-color: #6699FF;
+                font-size: 20px;
+                border-radius: 10px;
                 width: auto;
-                padding: 3px 3px 3px 17px;
+                padding: 10px 10px 10px 8px;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
+                margin-left: 6%;
             }
             #criterias li {
                 display: block;
                 color: #FFF;
-                background-color: #70B8FF;
+                background-color: #CDBFAC;
+                font-size: 20px;
+                border-radius: 10px;
                 width: auto;
-                padding: 3px 3px 3px 17px;
+                padding: 10px 10px 10px 8px;
                 text-decoration: none;
                 font-weight: normal;
                 margin-bottom: 2px;
+                margin-left: 12%;
             }
         </style>
         
@@ -92,6 +101,15 @@
                             <div id="list">
                                 <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
                                     <li data-bind="text: modname"></li>
+                    <!--------->    <div class="dropdown col-md-2">
+                                        <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                            <span class="text-center" id="sheetscore">Choose...</span>
+                                            <span class="pull-right caret-down caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                            <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                        </ul>
+                    <!--------->    </div>
                                     <ul data-bind="foreach: competences" id="competences">      <!-- competences -->
                                         <li data-bind="text: comname"></li>
                                         <ul data-bind="foreach: criterias" id="criterias">         <!-- criteria -->
