@@ -89,6 +89,7 @@ function getData(id)
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
+            console.log(users().length);
         });
 
     });
