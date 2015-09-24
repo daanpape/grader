@@ -57,6 +57,7 @@ function pageViewModel(gvm) {
 function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
+
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
@@ -89,7 +90,12 @@ function getData(id)
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
-        });
 
+        });
     });
+}
+
+function getDataCount(id)
+{
+    return viewModel.users().length;
 }
