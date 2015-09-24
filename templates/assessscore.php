@@ -93,6 +93,17 @@ $location = "assessscore";
         input[type=range]:focus::-ms-fill-upper {
             background: #ffffff;
         }
+        input[type="range"] {
+            -webkit-appearance:none !important;
+            border: 1px solid #4ba8b1;
+            margin: 6px 0px 5px 5px;
+            pointer:cursor;
+            width:300px;
+            background-color:#0000FF;
+            -webkit-border-radius:15px;
+            -moz-border-radius:5px;
+            background-repeat: no-repeat;
+        }
 
     </style>
 </head>
