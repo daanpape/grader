@@ -58,7 +58,6 @@ function initPage() {
     viewModel.getProjectInfo();
     viewModel.getStudentList();
 
-    console.log(viewModel.users.length);
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
@@ -91,6 +90,8 @@ function getData(id)
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
+
+            console.log(viewModel.users.length);
         });
 
     });
