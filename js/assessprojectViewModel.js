@@ -96,7 +96,7 @@ function getData(id)
         });
     });
 
-    console.log(id);
+    console.log(viewModel.users());
     return viewModel.users();
 }
 
