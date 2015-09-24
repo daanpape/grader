@@ -27,11 +27,10 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
                 //console.log(item);
-                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
-                viewModel.assassedUsers.push(getData(item.id));
+                var items = viewModel.getData(item.id).length;
+                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail,items);
+                console.log(items);
             });
-
-            console.log(viewModel.assassedUsers());
         });
     };
 
