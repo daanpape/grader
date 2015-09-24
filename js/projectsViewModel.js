@@ -206,6 +206,12 @@ function addNewProjecttypeForm(serialData, callback) {
             data: serialData,
             success: function(data) {
                 viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                var url = document.URL;
+                var string = url.split("/");
+                console.log(string[3]);
+                //console.log(document.URL);
+                console.log("Ok test ok");
+
                 callback(true);
             },
             error: function(data) {
@@ -353,11 +359,10 @@ function showNewProjectTypeModal()
         </form>');
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
-       console.log($('#newprojectform').serialize());
+        console.log($('#newprojectform').serialize());
        addNewProjecttypeForm($('#newprojectform').serialize(), function(result){
             hideModal();
         });
-        console.log("Test");
     });
 
     showGeneralModal();
@@ -391,6 +396,7 @@ function showEditProjectTypeModal(code, name, description, tid)
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
             hideModal();
+            console.log("Test");
         });
     });
 
