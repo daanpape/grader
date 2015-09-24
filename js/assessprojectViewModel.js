@@ -101,6 +101,6 @@ function getData(id)
 
 function getDataCount(id)
 {
-    getData(id);
+
     return viewModel.users().length;
 }
