@@ -1,3 +1,4 @@
+var workQueue = [];
 /**
  * Competence class
  */
@@ -16,6 +17,11 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         removeThis: function() {
+            if(this.id() !== undefined) // User deletes a competence that's been saved to the database
+            {
+                workQueue.push("/api/project/competence/delete/" + this.id())
+            }
+
             viewmodel.removeCompetence(this);
         },
 
@@ -33,8 +39,13 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
         },
 
         removeSubCompetence: function(subCompetence) {
+            if(subCompetence.id() !== undefined) // User deletes a subcompetence that's been saved to the database
+            {
+                workQueue.push("/api/project/subcompetence/delete/" + subCompetence.id())
+            }
+            
             this.subcompetences.remove(subCompetence);
-            automatedWeightCalculation(this.subcompetences());
+            automatedWeightCalculation(this.subcompetences());            
         }
     };
 
@@ -45,6 +56,7 @@ function Competence(viewmodel, id, code, name, weight, locked, subcompetences) {
  */
 function SubCompetence(parent, id, code, name, weight, locked, indicators) {
     return {
+        
         id: ko.observable(id),
         code: ko.observable(code),
         name: ko.observable(name),
@@ -80,7 +92,14 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         },
         
         removeIndicator: function(indicator) {
-            this.indicators.remove(indicator);
+            var self = this;
+
+            if(indicator.id() != undefined) // User deletes an indicator that hasn't been saved to the database yet
+            {
+                workQueue.push("/api/project/indicator/delete/" + indicator.id())
+            }
+
+            self.indicators.remove(indicator);
             automatedWeightCalculation(this.indicators());
         }
 
@@ -157,23 +176,27 @@ function pageViewModel(gvm) {
     }
     
     gvm.clearStructure = function() {
-        gvm.competences.destroyAll();
+        gvm.competences.removeAll();
     }
 }
 
 function fetchProjectStructure() {
     viewModel.clearStructure();
-    console.log(projectid);
     $.getJSON("/api/projectstructure/" + projectid, function(data){
         $.each(data, function(i, item){
-            var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
-            
+            if(item.id > 0) {
+                var competence = viewModel.updateCompetence(item.id, item.code, item.description, item.max, item.weight);
+            }
             $.each(item.subcompetences, function(i, subcomp){
-               var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
-               competence.subcompetences.push(subcompetence);
+                if(subcomp.id > 0) {
+                    var subcompetence = new SubCompetence(competence, subcomp.id, subcomp.code, subcomp.description, subcomp.weight);
+                    competence.subcompetences.push(subcompetence);
+                }
                
                $.each(subcomp.indicators, function(i, indic){
-                  subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                   if(indic.id > 0) {
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                   }
                });
             });
         })
@@ -201,22 +224,65 @@ function initPage() {
 }
 
 function saveProjectStructure() {
-    $.ajax({
-        type: "POST",
-        url: "/api/projectstructure/" + projectid,
-        data: ko.toJSON(viewModel.competences),
-        success: function(){
-            // TODO make multilangual and with modals
-            alert("Saved projectstructure to server");
+    var self = this;
+    
 
-            fetchProjectStructure();
-        }
-    });
+    this.doTheRest = function()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/api/projectstructure/" + projectid,
+            data: ko.toJSON(viewModel.competences),
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved projectstructure to server");
+
+                fetchProjectStructure();
+            }
+        });
+    }
+    
+    if(workQueue.length === 0)
+    {
+        this.doTheRest();
+    }
+
+    
+    var processedIndex = 0;
+    for(i = 0; i < workQueue.length; i++)
+    {
+        $.getJSON(
+            workQueue[i],
+            function(result)
+            {
+                if(!result.success)
+                {
+                    alert("Failed processing your request: " + result.error);
+                }
+                
+                if(processedIndex === workQueue.length - 1)
+                {
+                    self.doTheRest();
+                    workQueue = [];
+                }
+                processedIndex++;
+            }
+        );
+    }
+
 }
 
 function allValidationChecks()
 {
-    return totalPercentCheck() && validationCheck();
+    $(".validationSummary").addClass('hide');
+    $(".validationSummary ul").empty();
+    result = validationCheck() && totalPercentCheck()
+    if(!result)
+    {
+        $(".validationSummary").removeClass('hide'); 
+    }
+    
+    return result;
 }
 
 function validationCheck()
@@ -266,60 +332,50 @@ function validationCheck()
 
 function totalPercentCheck()
 {
-    var totalPercentCompetences = 0;
-    var totalPercentSubcompetences = new Array();
-    var totalPercentIndicators = new Array();
-    var nrOfSubcompetences = 0;
-    var nrOfIndicators = 0;
+    var cTotal = 0;
+    var success = true;
+    
+    $.each(viewModel.competences(),
+        function(cI, cVal) {
+            cTotal += parseInt(cVal.weight());
+            
+            scTotal = 0;
+            $.each(cVal.subcompetences(),
+                function(scI, scVal)
+                {
+                    scTotal += parseInt(scVal.weight());
+                    
+                    iTotal = 0;
+                    $.each(scVal.indicators(),
+                        function(iI, iVal)
+                        {
+                            iTotal += parseInt(iVal.weight());
+                        }
+                    );
+            
+                    if(scVal.indicators().length > 0 && iTotal !== 100)
+                    {
+                        $(".validationSummary ul").append('<li>Indicator weights in the subcompetence ' + scVal.name() + ' are not adding up to 100%</li>');
+                        success = false;
+                    }
+                }
+            );
 
-    var checkSubcompetences = true;
-    var checkIndicators = true;
-
-    for(var indexCompetences =0; indexCompetences < viewModel.competences().length; indexCompetences++)
-    {
-        totalPercentCompetences = totalPercentCompetences + parseInt(viewModel.competences()[indexCompetences].weight());
-        totalPercentSubcompetences.push(0);
-        for(var indexSubcompetence = 0; indexSubcompetence < viewModel.competences()[indexCompetences].subcompetences().length; indexSubcompetence++)
-        {
-            totalPercentSubcompetences[nrOfSubcompetences] = totalPercentSubcompetences[nrOfSubcompetences] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].weight());
-            totalPercentIndicators.push(0);
-            for(var indexIndicators = 0; indexIndicators < viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators().length; indexIndicators++)
+            if(cVal.subcompetences().length > 0 && scTotal !== 100)
             {
-                totalPercentIndicators[nrOfIndicators] = totalPercentIndicators[nrOfIndicators] + parseInt(viewModel.competences()[indexCompetences].subcompetences()[indexSubcompetence].indicators()[indexIndicators].weight());
+                $(".validationSummary ul").append('<li>Subcompentence weights in the competence ' + cVal.name() + ' are not adding up to 100%</li>');
+                success = false;
             }
-            nrOfIndicators++;
         }
-        nrOfSubcompetences++;
-    }
-
-    for(var i = 0; i < nrOfSubcompetences - 1; i++)
+    );
+    
+    if(viewModel.competences().length > 0 && cTotal !== 100)
     {
-        if(totalPercentSubcompetences[i] != 100)
-        {
-            checkSubcompetences = false;
-        }
+        $(".validationSummary ul").append('<li>Competence weights are not adding up to 100%</li>');
+        success = false;
     }
-
-    for(var index = 0; index < nrOfIndicators - 1; index++)
-    {
-        if(totalPercentIndicators[index] != 100)
-        {
-            checkIndicators = false;
-        }
-    }
-
-    if(totalPercentCompetences == 100 && checkSubcompetences && checkIndicators )
-    {
-        $(".validationSummary ul").html("");
-        $(".validationSummary").addClass("hide");
-        return true;
-    }
-    else
-    {
-        $(".validationSummary ul").append("<li>Not all percentages are 100%</li>");
-        $(".validationSummary").removeClass("hide");
-        return false;
-    }
+    
+    return success;
 }
 
 function automatedWeightCalculation(data)
@@ -343,7 +399,7 @@ function automatedWeightCalculation(data)
 
     var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
-    percentPerCompetence = percentPerCompetence.toFixed(2);
+    percentPerCompetence = Math.floor(percentPerCompetence);
 
     for(var index = 0; index < data.length; index++)
     {

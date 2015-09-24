@@ -23,6 +23,8 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.selectedItem = ko.observable();
+
     gvm.projectRules = ko.observableArray([]);
     gvm.projectActions = ko.observableArray([]);
     gvm.availableOperators = ko.observableArray([]);
@@ -42,12 +44,12 @@ function pageViewModel(gvm) {
     }
 
     gvm.clearActionsStructure = function() {
-        gvm.projectActions.destroyAll();
+        gvm.projectActions.removeAll();
     }
 
     gvm.clearRuleStructure = function()
     {
-        gvm.projectRules.destroyAll();
+        gvm.projectRules.removeAll();
     }
 
     gvm.addProjectAction = function(data) {
@@ -57,7 +59,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     fetchActions();
-    fetchProjectRules();
+
 
     $(".addRuleBtn").click(function() {
         viewModel.addRule();
@@ -73,13 +75,8 @@ function initPage() {
 
 function setOperators()
 {
-    viewModel.availableOperators.push("=");
-    viewModel.availableOperators.push("!=");
     viewModel.availableOperators.push("<");
-    viewModel.availableOperators.push("<=");
     viewModel.availableOperators.push(">");
-    viewModel.availableOperators.push(">=");
-
 
     viewModel.availableSigns.push("+");
     viewModel.availableSigns.push("-");
@@ -101,25 +98,26 @@ function removeRuleFromDb(rule)
 function fetchActions() {
     viewModel.clearActionsStructure();
 
-    $.getJSON("/api/projectstructure/" + projectid, function(data){
-        viewModel.addProjectAction(new Action(0,"Total project score", "totalScore"));
-        $.each(data, function(i, item){
-            viewModel.addProjectAction(new Action(item.id,item.description,"competence"));
+    $.getJSON("/api/projectstructure/" + projectid, function(data) {
+        viewModel.addProjectAction(new Action(0, "Total project score", "totalScore"));
+        $.each(data, function (i, item) {
+            viewModel.addProjectAction(new Action(item.id, item.description, "competence"));
 
-            $.each(item.subcompetences, function(i, subcomp){
-                viewModel.addProjectAction(new Action(subcomp.id,subcomp.description,"subcompetence"));
+            $.each(item.subcompetences, function (i, subcomp) {
+                viewModel.addProjectAction(new Action(subcomp.id, subcomp.description, "subcompetence"));
 
-                $.each(subcomp.indicators, function(i, indic){
+                $.each(subcomp.indicators, function (i, indic) {
                     viewModel.addProjectAction(new Action(indic.id, indic.description, "indicator"));
                 });
             });
-        })
-    });
+        });
 
-    $.getJSON('/api/project/'+ projectid + '/documents', function(data) {
-        viewModel.addProjectAction(new Action(0,"Total documents", "totalDocument"));
-        $.each(data, function(i, item) {
-            viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
+        $.getJSON('/api/project/' + projectid + '/documents', function (data) {
+            viewModel.addProjectAction(new Action(0, "Total documents", "totalDocument"));
+            $.each(data, function (i, item) {
+                viewModel.addProjectAction(new Action(item.id, "Documents: " + item.description, "document"));
+            });
+            fetchProjectRules();
         });
     });
 }
@@ -132,8 +130,10 @@ function fetchProjectRules()
     {
         $.each(data, function(i, item) {
             var action = new Action(item.action.id,item.action.name,item.action.subject);
-            console.log(item.action.name);
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action,item.operator,item.value,item.sign, item.result));
+
+            action = $.grep(viewModel.projectActions(), function(e) {return (e.id() == item.action.id) && (e.subject() == item.action.subject)});
+
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value,item.sign, item.result));
         });
     });
 }

@@ -80,7 +80,22 @@ class GraderAPI {
 
     public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid));
+        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid), ClassDAO::getUserDataForDocument($projectid,$userid));
+    }
+
+    public static function getUserDataForDocument($projectid, $userid)
+    {
+        return ClassDAO::getUserDataForDocument($projectid, $userid);
+    }
+
+    public static function saveDocumentsForUser($projectid, $userid, $structure)
+    {
+        return ClassDAO::saveDocumentsForUser($projectid,$userid, $structure);
+    }
+
+    public static function getUsersAssessStudent($projectid,$userid)
+    {
+        return ClassDAO::getUsersAssessStudent($projectid,$userid);
     }
 
     /*
@@ -372,8 +387,6 @@ class GraderAPI {
     public static function putProjectStructure($projectid, $projectStructure) {
         $data = json_decode($projectStructure);
         
-        var_dump($data);
-        
         foreach ($data as $competence) {
             // Insert a competence
             $competenceid = self::putCompetence(
@@ -447,6 +460,90 @@ class GraderAPI {
             return $id;
         }
     }
+    
+    public static function addProjectDocumentType($projectId, $description, $amount_required, $weight)
+    {
+        try
+        {
+            ClassDAO::addProjectDocumentType($projectId, $description, $amount_required, $weight);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
+    
 
-
+    public static function deleteProjectIndicator($id)
+    {
+        if(!is_numeric($id))
+        {
+            return array(
+                'success'   => false,
+                'error'     => 'The supplied ID argument must be numeric'
+            );
+        }
+        try
+        {
+            ClassDAO::deleteProjectIndicator($id);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
+    
+    public static function deleteProjectSubCompentence($id)
+    {
+        if(!is_numeric($id))
+        {
+            return array(
+                'success'   => false,
+                'error'     => 'The supplied ID argument must be numeric'
+            );
+        }
+        try
+        {
+            ClassDAO::deleteProjectSubCompetence($id);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
+    
+    public static function deleteProjectCompetence($id)
+    {
+        if(!is_numeric($id))
+        {
+            return array(
+                'success'   => false,
+                'error'     => 'The supplied ID argument must be numeric'
+            );
+        }
+        try
+        {
+            ClassDAO::deleteProjectCompetence($id);
+            return array('success' => true);
+        }
+        catch (\Exception $ex)
+        {
+            return array(
+                'success'   => false,
+                'error'     => $ex->getMessage()
+            );
+        }
+    }
 }

@@ -1,6 +1,6 @@
 function pageViewModel(gvm) {
     // Page specific i18n bindings
-    gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
+    gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminUsersPage");}, gvm);
     gvm.pageHeader = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserTitle");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
@@ -90,6 +90,10 @@ function User(id, username, firstname, lastname, status) {
             updateUserStatus(this);
         }
     };
+}
+
+function alert() {
+    alert("U hebt op een user geklikt.");
 }
 
 function initPage() {

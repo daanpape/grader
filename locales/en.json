@@ -131,11 +131,18 @@
     "FormModules" : "Modules, competences and criteria",
     "FormScore" : "Assessment method",
     "FormWorksheet" : "Worksheet",
-    "FormAssess" : "Custom",
+    "FormAssessNone" : "None",
+    "FormAssessCustom" : "Custom",
     "FormDate" : "Date",
     "AssessMethodError" : "You must select an assessment method",
     "AssessGeneralError" : "Could not submit data",
 
     "UserEditTitle": "Edit user",
-    "EditStudent" : "Edit student"
+    "EditStudent" : "Edit student",
+
+    "AdminAddUser" : "Add User",
+    "AdminEditPage" : "Edit User",
+    "AdminPermissionPage" : "Permissions",
+    "AdminUsersPage" : "Users",
+    "AdminPage" : "Home"
 }

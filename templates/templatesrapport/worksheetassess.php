@@ -5,6 +5,31 @@
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
     <head>
+        <style>
+            #top-col {
+                padding-bottom: 15px;
+            }
+            
+            .form-name {
+                display: inline-block !important;
+                margin-right: 10px;
+                width: 750px !important;
+            }
+
+            .validationSummary
+            {
+                color: red;
+            }
+
+            .hide{
+                display: none;
+            }
+            
+            form {
+                margin-bottom: 100px;
+            }
+        </style>
+        
         <?php include_once('templates/hddepends.php');  ?>
     </head>
     
@@ -12,7 +37,7 @@
         <?php include_once('templates/menu.php') ?>
 
         <!-- Header container -->
-        <p id="storage" data-bind="attr:{'data-value': <?php echo $courseid ?>}" style="display: none"></p>
+        <p id="storage" data-bind="attr:{'data-value': <?php echo $courseid ?>}" style="display: none"><?php echo $userid ?></p>
         <div class="container">
             <h1 id="header" class="page-header" data-bind="attr:{'data-value': <?php echo $workid ?>}"><?php echo $workname ?></h1>
         </div>
@@ -20,7 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form id="worksheetassess" action="/assessrapporten">
+                    <form id="worksheetassess" action="/assessrapporten">    <!-- action="/assessrapporten" -->
                         <div class="form-group">
                             <label data-bind="text: formdate"></label><br />
                             <input type="text" id="date" />
@@ -32,17 +57,15 @@
                             <div class="container" data-bind="foreach: modules">
                                 <div class="col-md-12 compPanel">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">    
-                                            <div class="col-xs-5">                                                
-                                                <input type="text" placeholder="module name" class="form-control form-name col-xs-3" data-bind="value: modname">
-                                            </div>
+                                        <div class="panel-heading">                                                   
+                                            <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: modname">
                                             <div class="dropdown col-md-2">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                    <span class="text-center">Choose...</span>
+                                                    <span class="text-center" data-bind="attr:{'id': 'modScore-' + modid}">Choose...</span>
                                                     <span class="pull-right caret-down caret"></span>
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
-                                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -50,32 +73,28 @@
                                             <div class="subcompPanel">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading color-subcomp">
-                                                        <div class="col-xs-5">
-                                                            <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
-                                                        </div>
+                                                        <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: comname">
                                                         <div class="dropdown col-md-2">
                                                             <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                                <span class="text-center">Choose...</span>
+                                                                <span class="text-center" data-bind="attr:{'id': 'comScore-' + comid}">Choose...</span>
                                                                 <span class="pull-right caret-down caret"></span>
                                                             </button>
-                                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
-                                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="panel-body">
                                                         <ul class="list-group" data-bind="foreach: criterias">
                                                             <li class="list-group-item">
-                                                                <div class="col-xs-5">
-                                                                    <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
-                                                                </div>
+                                                                <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: critname">
                                                                 <div class="dropdown col-md-2">
                                                                     <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                                        <span class="text-center">Choose...</span>
+                                                                        <span class="text-center" data-bind="attr:{'id': 'critScore-' + critid}">Choose...</span>
                                                                         <span class="pull-right caret-down caret"></span>
                                                                     </button>
-                                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="assessMethod">
-                                                                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="score"></a></li>
+                                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </li>
@@ -90,11 +109,18 @@
                         </div>
                         <br />
                         
-                        <div class="form-group">
-                            <label data-bind="text: formworksheet"></label>
-                            <!-- worksheet score -->
+                        <label data-bind="text: formworksheet"></label>
+                        <div class="row">
+                            <div class="dropdown col-md-2">
+                                <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                    <span class="text-center" id="sheetscore">Choose...</span>
+                                    <span class="pull-right caret-down caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <br />
                         
                         <input type="submit" id="submit" value="Save" class="btn btn-primary" />
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />

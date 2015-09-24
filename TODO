@@ -1,0 +1,14 @@
+* Have API calls always return a proper JSON response, as follows:
+
+array(
+    'success' => true OR false,
+    'error' => 'Error message' or (null or not present) when success = true,
+    'data' => Result set when the API call is a data-fetching call
+);
+
+
+* Assess page: Display selected student's name
+* Assess page: Hover checkmark icon shows who already graded
+* Assess page: When clicking PDF result icon, provide feedback when no grading
+  has been performed
+* PDF: Wrap long lines

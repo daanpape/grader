@@ -1,35 +1,8 @@
 <?php
 // Page initialisation
 $location = "adminUsers";
+require_once('templates/header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Grader - Administrator panel</title>
-
-    <link href="/admin_static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/admin_static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-    <link href="/admin_static/dist/css/timeline.css" rel="stylesheet">
-    <link href="/admin_static/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="/admin_static/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <link href="/admin_static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../css/grader.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
 
 <body style="padding-top: 0px">
 
@@ -44,7 +17,7 @@ $location = "adminUsers";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Grader Admin</a>
+            <a class="navbar-brand" href="/home"><i class="fa fa-home fa-fw fa-lg"></i>Grader Home</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -109,10 +82,14 @@ $location = "adminUsers";
                         <td data-bind="text: lastname"></td>
                         <td data-bind="text: status"></td>
                         <!-- ko if: status() === 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a></td>
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a>
+                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer">
+                                <a data-bind="attr:{'href': '/api/adminUsersCourse/'}"><span class="fa fa-archive fa-lg" data-bind=""></span></a></td>
                         <!-- /ko -->
                         <!-- ko if: status() !== 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a> <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a></td>
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a>
+                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer">
+                                <a data-bind="attr:{'href': '/api/adminUsersCourse/'}"><span class="fa fa-archive fa-lg" data-bind=""></span></a></td>
                         <!-- /ko -->
 
                     </tr>
@@ -126,24 +103,6 @@ $location = "adminUsers";
 </div>
 <!-- /#wrapper -->
 
-<?php include_once('templates/jsdepends.php') ?>
-<!-- jQuery -->
-<script src="/admin_static/bower_components/jquery/dist/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/admin_static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-<script src="/admin_static/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="/admin_static/bower_components/raphael/raphael-min.js"></script>
-<script src="/admin_static/bower_components/morrisjs/morris.min.js"></script>
-<script src="/admin_static/js/morris-data.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/admin_static/dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>
+<?php
+require_once('templates/footer.php');
+?>

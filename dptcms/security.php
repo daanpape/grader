@@ -128,11 +128,19 @@ class Security {
         return false;
     }
 
-    /*
-     * Register a user in the system, returns true 
-     * on succes. Return false on error.
+    /**
+     * Register a user in the system
+     * @param string $lang The user's language preference
+     * @param string $firstname Firstname
+     * @param string $lastname Lastname
+     * @param string $username Username
+     * @param string $email Primary email address
+     * @param string $password Password
+     * @param string $passwordconfirm
+     * @param boolean $skipEmailVerification Immediately activate user and skip the activation email
+     * @return boolean|string true on success, string with error message otherwise
      */
-    public static function registerUser($lang, $firstname, $lastname, $username, $email, $password, $passwordconfirm) {
+    public static function registerUser($lang, $firstname, $lastname, $username, $email, $password, $passwordconfirm, $skipEmailVerification = false) {
         // Perform simple form validation
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return 'InvalidEmail';
@@ -154,16 +162,25 @@ class Security {
         }
 
         // All data is checked and valid, place user in database and generate token
-        $regtoken = self::generateRegToken();
-        if ($regtoken == false) {
-            return 'Error';
+        if($skipEmailVerification)
+        {
+            $status = ACTIVE;
+            $regtoken = null;
+        }
+        else
+        {
+            $regtoken = self::generateRegToken();
+            if ($regtoken == false) {
+                return 'Error';
+            }
+            $status = WAIT_ACTIVATION;
         }
 
         // Hash the users password 
         $hashpass = self::hashPass($password);
 
         // Register the user 
-        if (UserDAO::createUser($lang, $email, $username, $firstname, $lastname, $hashpass, $regtoken, WAIT_ACTIVATION) == null) {
+        if (UserDAO::createUser($lang, $email, $username, $firstname, $lastname, $hashpass, $regtoken, $status) == null) {
             return 'Error';
         }
 
@@ -175,7 +192,7 @@ class Security {
         // New user created and waiting for activation
         return true;
     }
-
+    
     /*
      * Activate a user account given the activation token
      */

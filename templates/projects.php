@@ -6,6 +6,9 @@ $location = "projects";
 <html lang="nl" id="htmldoc">
     <head>
         <?php include_once('hddepends.php') ?>
+
+        <style>
+        </style>
     </head>
 
     <body>
@@ -69,13 +72,31 @@ $location = "projects";
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
-                        <td>
-                            <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                            <a data-bind="attr:{'href': '/project/' + tid}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
-                            <a data-bind="attr:{'href': '/project/students/' + tid}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
-                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}"><span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span></a>
-                            <a data-bind="attr:{'href': '/project/projectrules/' + tid}"><span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span></a>
-                            <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                        <td width="55%">
+                            <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
+                                <span>Edit</span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
+                                <span>Structure</span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/students/' + tid}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
+                                <span>Students</span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span>
+                                <span>Documents</span>
+                            </a>
+                            <a data-bind="attr:{'href': '/project/projectrules/' + tid}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span>
+                                <span>Rules</span>
+                            </a>
+                            <a data-bind="attr:{'id': 'removebtn-' + tid}" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash glyphicon-btn"></span>
+                                <span>Delete</span>
+                            </a>
                             </td>
                     </tr>
                 </tbody>

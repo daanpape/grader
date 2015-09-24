@@ -22,7 +22,7 @@ $location = "assesscompletement";
                     <th>Name</th>
                     <th># to submit</th>
                     <th>Weight</th>
-                    <th>Not submitted</th>
+                    <th>Submitted</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: documents">
@@ -31,7 +31,7 @@ $location = "assesscompletement";
                         <td><span data-bind="text: amount_required"></span></td>
                         <td><span data-bind="text: weight"></span></td>
                         <td>
-                            <select class="form-control" data-bind="options: amount_not_submitted, attr:{'id': 'document-' + id}">
+                            <select class="form-control" data-bind="options: amount_not_submitted, value: submitted, attr:{'id': 'document-' + id}">
                             </select>
                         </td>
                     </tr>
@@ -39,7 +39,7 @@ $location = "assesscompletement";
             </table>
         </div>
         <div class="col-md-12">
-            <button data-bind="click: saveDocumentsNotSubmitted" data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg">Save</button>
+            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg">Save</button>
             <button id="cancelBtn" class="btn btn-lg">Cancel</button>
         </div>
     </div>
@@ -48,6 +48,11 @@ $location = "assesscompletement";
 <!-- Content container -->
 <div class="container">
 </div>
+
+<script>
+    var projectid = <?php echo $projectid ?>
+</script>
+
 
 <?php include_once('jsdepends.php') ?>
 </body>

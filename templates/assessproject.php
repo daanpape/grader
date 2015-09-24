@@ -16,6 +16,23 @@ $location = "assessproject";
         {
             text-decoration: none;
         }
+
+        .popup {
+            border: thin #aaa solid;
+            -webkit-box-shadow: 1px 1px 4px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    1px 1px 4px rgba(50, 50, 50, 0.75);
+            box-shadow:         1px 1px 4px rgba(50, 50, 50, 0.75);
+            padding: 0.3em 1em;
+            background-color: white;
+        }
+
+        .positioning {
+            text-align: center;
+        }
+
+        .positioning button {
+            width: 200px;
+        }
     </style>
 
 
@@ -23,6 +40,7 @@ $location = "assessproject";
 
 <body>
 <?php include_once('menu.php') ?>
+
 
 <!-- Header container -->
 <div class="container">
@@ -45,8 +63,14 @@ $location = "assessproject";
                     <td data-bind="text: tlastname">--</td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
-                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" class="glyphicon glyphicon-file"></a></td>
-                    <td><div class="glyphicon glyphicon-ok-circle"></div></td>
+                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-file"></span>
+                            <span>PDF</span>
+                    </a></td>
+                    <td><a data-bind="popupTemplate: { template: 'test-template'}, click: function() { getData(tid) }" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            <span>Info</span>
+                    </a></td>
                 </tr><!-- Header container -->
                 </tbody>
             </table>
@@ -59,6 +83,18 @@ $location = "assessproject";
 <div class="container">
 </div>
 
+<script type="text/html" id="test-template">
+    <div class="popup">
+        <h4><u>Assessed by</u></h4>
+        <p id="popupContainer">
+            <ul data-bind="foreach: viewModel.users">
+                <li data-bind="text: $data"></li>
+            </ul>
+        </p>
+    </div>
+</script>
+
 <?php include_once('jsdepends.php') ?>
+<script src="/js/knockout.popupTemplate.js"></script>
 </body>
 </html>

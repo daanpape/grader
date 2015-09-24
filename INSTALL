@@ -13,13 +13,19 @@ Chapter V:      Upgrading from an earlier version
 yum install httpd php php-mysql
 tar -xf grader.tar.gz /var/www/html/grader
 cat << EOF
-<Directory /var/www/html/grader>
-    AllowOverride All
-</Directory>
+<VirtualHost *:80>
+    ServerName grader.local
+    DocumentRoot /var/www/html/grader
+    <Directory /var/www/html/grader>
+        AllowOverride All
+    </Directory>
+</VirtualHost>
 EOF > /etc/httpd/conf.d/grader.conf
 touch /var/www/html/grader/dptcms/config.php
 chmod 666 /var/www/html/grader/dptcms/config.php
-systemctl reload httpd
+chmod o+rw /var/www/html/grader/dptcms/config.php
+chcon -t httpd_user_rw_content_t /var/www/html/grader/dptcms/config.php
+service reload httpd
 
 Open browser to http://localhost/grader/setup.php and follow the steps
 
@@ -38,7 +44,8 @@ Grader requires the following:
 2. PHP >= 5.3.0
    -> yum install php
 3. A MySQL (or compatible) server
-   -> yum install mariadb
+   -> yum install mariadb-server (CentOS 7)
+   -> yum install mysql-server (CentOS 6)
 
 
 *** Chapter II: Webserver configuration
@@ -54,7 +61,13 @@ files, which you can do as following:
     AllowOverride All
 </Directory>
 
-systemctl reload httpd
+Grader requires its own virtual host because it needs to be at the root. Without
+going in details, a quick snippet on how to configure a virtual host:
+
+<VirtualHost *:80>
+    ServerName grader.local
+    DocumentRoot /var/www/html/grader
+</VirtualHost>
 
 
 *** Chapter III: Installing webserver files
@@ -63,15 +76,19 @@ Extract the .tar.gz file to your wwwroot or a subdirectory thereof.
 
 tar -xf grader.tar.gz /var/www/html/grader
 
+
 *** Chapter IV: Running setup
 
 Go to http://localhost/grader/setup.php
 
 The setup will try to automatically create and write out the contents of the
-configuration file dptcms/config.php.
+configuration file dptcms/config.php. For that, the config.php file needs to be
+created and its permissions set so the webserver can write to it:
 
-touch dptcms/config.php
-chmod 666 dptcms/config.php
+touch /var/www/html/grader/dptcms/config.php
+chmod 666 /var/www/html/grader/dptcms/config.php
+chmod o+rw /var/www/html/grader/dptcms/config.php
+chcon -t httpd_user_rw_content_t /var/www/html/grader/dptcms/config.php
 
 If setup is unable to modify the config.php file, it will allow you to download
 it so you can manually upload it to the webserver. Setup will also try to modify
@@ -80,31 +97,42 @@ following command:
 
 chmod 664 dptcms/config.php
 
-
-
 Setup steps
 
-0 Check system requirements (PHP version, MySQL lib, mod_rewrite works)
-1 Ask for database details
- -> root user for creating database & grader user
- -> grader user to be created and/or set random password
-2 Do connect test
-3 Check if installing or upgrading
-3.1 Install
-3.1.1 Create database
-3.1.2 Create user
-3.1.3 Import SQL file
-3.1.4 Write out new config file
-3.1.5 Change permissions on config.php
-3.2 Upgrade
-3.2.1 Ask for backup
-3.2.2 Apply SQL diff
-4 Delete setup.php and redirect to index.php
-
+1 Check system requirements (PHP version, MySQL lib, mod_rewrite works)
+2 Ask for database details
+  Setup can automatically create the MySQL user and database. To do that,
+  enable the checkbox "Create user and database for me" and enter the username
+  and password of the root MySQL user (or another MySQL user that has
+  sufficient privileges to write to mysql.user and create databases). Setup
+  will then proceed to create a new user according to what you've entered.
+  Otherwise you must create a user and database yourself.
+3 Database connection test
+  Setup will run some basic queries to verify the information is correct. If
+  a test fails, make the necessary configuration changes to the database server
+  and click "Retest".
+4 Database creation
+  Setup will now create the necessary objects on the database server and
+  import the database schema.
+5 First user account
+  You are now being asked to provide a username and password. This will be the
+  first user created in the grader system, which also has full administrative
+  privileges. After setup has completed, you can use this username and password
+  to log in and administer grader.
+6 Site configuration
+  Some additional site configuration parameters can be adjust here.
+7 Create configuration file
+  Setup will now attemp to write out grader's configuration file.
+8 Finish
+  Setup has completed! You can now login to your new grader installation.
+  DELETE THE FILE setup.php, for security reasons. It is no longer necessary.
+  Any upgrades of grader will install a new copy of setup.php which can be used
+  to perform upgrades. After upgrades you should delete setup.php again.
 
 
 *** Chapter V: Upgrading from an earlier version
 
+(This chapter is currently a placeholder as there are no upgrades yet)
 Remove all files except dptcms/config.php
 
 Extract the .tar.gz to the same directory of the old installation

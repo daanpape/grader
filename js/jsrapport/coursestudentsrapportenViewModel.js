@@ -101,6 +101,7 @@ function getGroupid() {
              type: "POST",
              data: {'course': courseid, 'teacher': teacherid, 'studentlist': teacherid},
              success: function(data) {
+                 loadTablePage(1,courseid);
                  //callback(true);
              },
              error: function(data) {

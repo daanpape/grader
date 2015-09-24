@@ -87,6 +87,7 @@ function addNewStudent(studentname, listid, callback) {
         data: {name: studentname, list: listid},
         success: function(data) {
             loadStudentTable();
+            $('#studentsComplete').val("");
             callback(true);
         },
         error: function(data) {

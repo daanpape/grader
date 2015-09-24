@@ -1,27 +1,44 @@
 <?php
 session_start();
 
+require_once('dptcms/password.php');
+
 class StepController
 {
-    private $Steps;
+    private $steps;
     
     public function __construct()
     {
+        $this->addStep('Step000_sysreq', 'System requirements');
+        $this->addStep('Step001_database', 'Database parameters');
+        $this->addStep('Step002_dbconnect', 'Database connection test');
+        $this->addStep('Step310_dbcreate', 'Database creation');
+        $this->addStep('Step311_firstuser', 'First user account');
+        $this->addStep('Step312_siteconfig', 'Site configuration');
+        $this->addStep('Step314_createconfig', 'Create configuration file');
+        $this->addStep('Step400_complete', 'Finish');
         
-        $this->Steps = array(
-            'Step000_sysreq',
-            'Step001_database',
-            'Step002_dbconnect',
-            'Step310_dbcreate',
-            'Step311_siteconfig',
-            'Step314_createconfig',
-            'Step400_complete'
-        );
-        
-        if(!isset($_SESSION['currentStep']))
+        if(@is_numeric($_GET['DEV_GOTOSTEP']))
+        {
+            $_SESSION['currentStep'] = $this->steps[$_GET['DEV_GOTOSTEP']];
+        }
+        elseif(!isset($_SESSION['currentStep']))
         {
             $_SESSION['currentStep'] = $this->GetInitialStep();
         }
+    }
+    
+    public function addStep($stepClass, $stepName)
+    {
+        $this->steps[] = array(
+            'class' => $stepClass,
+            'name' => $stepName
+        );
+    }
+    
+    public function getSteps()
+    {
+        return $this->steps;
     }
     
     public function GetCurrentStep()
@@ -31,14 +48,14 @@ class StepController
     
     public function GetInitialStep()
     {
-        return $this->Steps[0];
+        return $this->steps[0];
     }
     
     public function Advance()
     {
-        $C = new $_SESSION['currentStep'];
+        $C = new $_SESSION['currentStep']['class'];
         if($C->OKForNextStep()) {
-            $_SESSION['currentStep'] = $this->Steps[array_search($this->GetCurrentStep(), $this->Steps) + 1];
+            $_SESSION['currentStep'] = $this->steps[array_search($this->GetCurrentStep(), $this->steps) + 1];
             return $_SESSION['currentStep'];
         }
 
@@ -47,7 +64,7 @@ class StepController
     
     public function Recede()
     {
-        $_SESSION['currentStep'] = $this->Steps[array_search($this->GetCurrentStep(), $this->Steps) - 1];
+        $_SESSION['currentStep'] = $this->steps[array_search($this->GetCurrentStep(), $this->steps) - 1];
         return $_SESSION['currentStep'];
     }
 }
@@ -79,16 +96,16 @@ class Step314_createconfig implements ISetupStep
     
     public function writeConfig()
     {
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        $DBDetails = $_SESSION['Step001_database'];
         $config = <<<EOD
 <?php
 class Config
 {
     /* Site configuration */
-    public static \$siteURL	= '{$DBDetails['siteURL']}';
+    public static \$siteURL	= '{$_SESSION['Step312_siteconfig']['siteURL']}';
 
     /* Database configuration */
-    public static \$dbServer = '{$DBDetails['SQLHost']}';
+    public static \$dbServer    = '{$DBDetails['SQLHost']}';
     public static \$dbPort 	= '3306';
     public static \$dbName 	= '{$DBDetails['SQLDBName']}';
     public static \$dbUser 	= '{$DBDetails['SQLUser']}';
@@ -97,8 +114,18 @@ class Config
     /* Pagination settings */
     public static \$pageCount	= 20;
 
-    /* Log file */
-    public static \$logfile = './logfile.log';
+    /**
+     * Controls the destination of the logging. Set to syslog or file.
+     * When set to file, define public static \$logfile.
+     * @var string Either 'syslog' or 'file'
+     */
+    public static \$logDestination = '{$_SESSION['Step312_siteconfig']['logDestination']}';
+    /**
+     * When \$logDestination is set to 'file', this variable controls which file
+     * logging goes to.
+     * @var string A filepath
+     */
+    public static \$logfile = '{$_SESSION['Step312_siteconfig']['logfile']}';
 
     /*
      * Image upload settings
@@ -154,77 +181,306 @@ EOD;
     }
 }
 
-class Step311_siteconfig implements ISetupStep
+class Step312_siteconfig implements ISetupStep
 {
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step312_siteconfig']))
+        {
+            if(@$_SERVER['HTTPS'])
+            {
+                $proto = 'https://';
+            }
+            else
+            {
+                $proto = 'http://';
+            }
+            if($_SERVER['SERVER_PORT'] == 80 && $proto == 'http://')
+            {
+                $Port = null;
+            }
+            elseif($_SERVER['SERVER_PORT'] == 443 && $proto = 'https://')
+            {
+                $Port = null;
+            }
+            else
+            {
+                $Port = ":{$_SERVER['SERVER_PORT']}";
+            }
+
+            $siteURL = $proto . $_SERVER["SERVER_NAME"] . $Port;
+        
+            $_SESSION['Step312_siteconfig']['siteURL'] = $siteURL;
+            $_SESSION['Step312_siteconfig']['logDestination'] = 'syslog';
+            $_SESSION['Step312_siteconfig']['logfile'] = './logfile.log';
+        }
+    }
+    
     public function OKForNextStep()
     {
         return true;
     }
 
+    public function saveValues()
+    {
+        $siteConfig = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        foreach($siteConfig as $key => $value)
+        {
+            $_SESSION['Step312_siteconfig'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step312_siteconfig'];
+    }
 }
+
+class Step311_firstuser implements ISetupStep
+{
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step311_firstuser']))
+        {
+            $_SESSION['Step311_firstuser']['username'] = '';
+            $_SESSION['Step311_firstuser']['password'] = '';
+            $_SESSION['Step311_firstuser']['OKForNextStep'] = false;
+        }
+    }
+    
+    public function createUser()
+    {
+        $DBDetails = $_SESSION['Step001_database'];
+        
+        $this->saveValues();
+            
+        try
+        {
+            $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
+            $DB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        }
+        catch(\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+        
+        $SQL = "USE `{$DBDetails['SQLDBName']}`;";
+        $Query = $DB->prepare($SQL);
+        try
+        {
+            $Query->execute();
+        }
+        catch (\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+
+        $SQL = "INSERT INTO users (firstname, lastname, username, password, status) VALUES (:firstname, :lastname, :username, :password, :status);\n";
+        $Query = $DB->prepare($SQL);
+        $Query->bindValue(':firstname', 'Grader');
+        $Query->bindValue(':lastname', 'Admin');
+        $Query->bindValue(':username', $_SESSION['Step311_firstuser']['username']);
+        $Query->bindValue(':password', password_hash($_SESSION['Step311_firstuser']['password'], PASSWORD_BCRYPT));
+        $Query->bindValue(':status', 'ACTIVE');
+        try
+        {
+            $Query->execute();
+            $userId = $DB->lastInsertId();
+            $SQL = "INSERT INTO user_roles (user_id, role_id) VALUES (:userId, :roleId);";
+            $Query = $DB->prepare($SQL);
+            $Query->bindParam(':userId', $userId);
+            $Query->bindParam(':roleId', $roleId);
+            for($roleId = 1; $roleId <= 4; $roleId++)
+            {
+                $Query->execute();
+            }
+        }
+        catch (\Exception $ex)
+        {
+            return $ex->getMessage();
+        }
+        
+        $_SESSION['Step311_firstuser']['OKForNextStep'] = true;
+    }
+    
+    
+    public function OKForNextStep()
+    {
+        return $_SESSION['Step311_firstuser']['OKForNextStep'];
+    }
+    public function saveValues()
+    {
+        $siteConfig = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        foreach($siteConfig as $key => $value)
+        {
+            $_SESSION['Step311_firstuser'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step311_firstuser'];
+    }
+}
+
 
 class Step310_dbcreate implements ISetupStep
 {
+    // Log structure example:
+    // [index]['operation'] = 'Create database'
+    // [index]['error'] = null if no error, otherwise error message
+    // [index]['sql'] = The SQL code that caused the error (optional)
+    private $log;
+    private $logIndex;
+    
     public function __construct()
     {
         if(!isset($_SESSION['Step310_dbcreate']['OKForNextStep']))
         {
             $_SESSION['Step310_dbcreate']['OKForNextStep'] = false;
         }
+        
+        $this->log = array();
+        $this->logIndex = 0;
+        $this->logInitializeEntry();
     }
     
+    private function logEntrySetOp($operation)
+    {
+        $this->log[$this->logIndex]['operation'] = $operation;
+    }
+    
+    private function logEntrySetError($error)
+    {
+        $this->log[$this->logIndex]['error'] = $error;
+    }
+    
+    private function logEntrySetSQL($SQL)
+    {
+        return $this->log[$this->logIndex]['sql'] = $SQL;
+    }
+    
+    private function logNextEntry()
+    {
+        if(!array_key_exists($this->logIndex + 1, $this->log))
+        {
+            $this->logIndex++;
+            $this->logInitializeEntry();
+        }
+    }
+    
+    private function logInitializeEntry()
+    {
+        $this->log[$this->logIndex] = array(
+            'operation' => '',
+            'error' => null,
+            'sql' => ''
+        );
+    }
+    
+    private function getLog()
+    {
+        return $this->log;
+    }
     
     public function CreateDB()
     {
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        $DBDetails = $_SESSION['Step001_database'];
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
-            $RootDB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
-            $Log[] = 'Connected to database server';
-            $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $Query = $RootDB->prepare("SHOW DATABASES;");
-            $Query->execute();
+            $this->logEntrySetOp("Connect to database server {$DBDetails['SQLHost']} as {$DBDetails['SQLRootUser']}");
+            try
+            {
+                $RootDB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLRootUser'], $DBDetails['SQLRootPassword']);
+                $RootDB->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
+            catch (Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
+            $this->logEntrySetOp('Getting list of databases');
+            
+            try {
+                $Query = $RootDB->prepare($this->logEntrySetSQL("SHOW DATABASES;"));
+                $Query->execute();
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
             if(!in_array($DBDetails['SQLDBName'], $Query->fetchAll(\PDO::FETCH_COLUMN, 0)))
             {
-                $Log[] = "Database {$DBDetails['SQLDBName']} doesn't exist, creating";
-                $Query = $RootDB->prepare("CREATE DATABASE `{$DBDetails['SQLDBName']}` CHARACTER SET = 'utf8' COLLATE = 'utf8_unicode_ci';");
+                $this->logEntrySetOp("Database {$DBDetails['SQLDBName']} doesn't exist, creating");
+                $Query = $RootDB->prepare($this->logEntrySetSQL("CREATE DATABASE `{$DBDetails['SQLDBName']}` CHARACTER SET = 'utf8' COLLATE = 'utf8_unicode_ci';"));
                 try
                 {
                     $Query->execute();
                 }
-                catch (Exception $ex)
+                catch (\Exception $ex)
                 {
-                    $Log[] = "FAIL: Couldn't create database: {$ex->getMessage()}";
-                    return $Log;
+                    $this->logEntrySetError("Couldn't create database: {$ex->getMessage()}");
+                    return $this->getLog();
                 }
             }
-
-            $Query = $RootDB->prepare("SELECT User FROM mysql.user WHERE User = :User AND Host = '%';");
-            $Query->bindValue(':User', $DBDetails['SQLUser']);
-            $Query->execute();
+            else
+            {
+                $this->logEntrySetOp("Database {$DBDetails['SQLDBName']} exists");
+            }
+            
+            $this->logNextEntry();
+            
+            $this->logEntrySetOp("Query if SQL user {$DBDetails['SQLUser']} already exists");
+            
+            try {
+                $Query = $RootDB->prepare($this->logEntrySetSQL("SELECT User FROM mysql.user WHERE User = :User AND Host = '%';"));
+                $Query->bindValue(':User', $DBDetails['SQLUser']);
+                $Query->execute();
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError($ex->getMessage());
+                return $this->getLog();
+            }
+            
+            $this->logNextEntry();
+            
             if(count($Query->fetchAll()) == 0)
             {
-                $Log[] = "Database user {$DBDetails['SQLUser']} doesn't exist, creating";
+                $this->logEntrySetOp("Database user {$DBDetails['SQLUser']} doesn't exist, creating");
                 try
                 {
-                    $Query = $RootDB->prepare("CREATE USER '{$DBDetails['SQLUser']}'@'%' IDENTIFIED BY '{$DBDetails['SQLPassword']}';");
+                    $Query = $RootDB->prepare($this->logEntrySetSQL("CREATE USER '{$DBDetails['SQLUser']}'@'%' IDENTIFIED BY '{$DBDetails['SQLPassword']}';"));
                     $Query->execute();
-                    $Query = $RootDB->prepare("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON `{$DBDetails['SQLDBName']}`.* TO '{$DBDetails['SQLUser']}'@'%';");
+                    $Query = $RootDB->prepare($this->logEntrySetSQL("GRANT SELECT, INSERT, UPDATE, DELETE, LOCK TABLES ON `{$DBDetails['SQLDBName']}`.* TO '{$DBDetails['SQLUser']}'@'%';"));
                     $Query->execute();
-                    $RootDB->exec("FLUSH PRIVILEGES;");
+                    $RootDB->exec($this->logEntrySetSQL("FLUSH PRIVILEGES;"));
                 }
                 catch (Exception $ex)
                 {
-                    $Log[] = "FAIL: Couldn't create user: {$ex->getMessage()}";
-                    return $Log;
+                    $this->logEntrySetError("FAIL: Couldn't create user: {$ex->getMessage()}");
+                    $this->getLog();
                 }
+            }
+            else
+            {
+                $this->logEntrySetOp("Database user {$DBDetails['SQLUser']} already exists (skipping creation)");
             }
             
             $DB = $RootDB;
         }
         else
         {
+            $this->logEntrySetOp('Connect to database server');
+            
             try
             {
                 $DB = new \PDO("mysql:host={$DBDetails['SQLHost']}", $DBDetails['SQLUser'], $DBDetails['SQLPassword']);
@@ -232,27 +488,57 @@ class Step310_dbcreate implements ISetupStep
             }
             catch(\Exception $ex)
             {
-                $Log[] = "FAIL: Couldn't connect to database server: {$ex->getMessage()}";
-                return $Log;
+                $this->logEntrySetError("FAIL: Couldn't connect to database server: {$ex->getMessage()}");
+                return $this->getLog();
             }
         }
         
+        $this->logNextEntry();
+        
+        $this->logEntrySetOp('Import database schema');
+        
         $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
         $SQL .= file_get_contents('grader.sql');
-        $Query = $DB->prepare($SQL);
+        $query = $DB->prepare($SQL);
         try
         {
-            $Query->execute();
-            $Log[] = 'Imported database schema successfully';
+            $result = $query->execute();
+            while($query->nextRowSet())
+            {
+                
+            }
         }
-        catch (Exception $ex)
+        catch (\Exception $ex)
         {
-            $Log[] = "FAIL: Couldn't import database schema: {$ex->getMessage()}";
-            return $Log;
+            $this->logEntrySetError("FAIL: Couldn't import database schema: {$ex->getMessage()}");
+            return $this->getLog();
+        }
+        
+        if($DBDetails['importDemoData'] == 'true')
+        {
+            $this->logNextEntry();
+            $this->logEntrySetOp('Import demo data');
+
+            $SQL = "USE `{$DBDetails['SQLDBName']}`;\n";
+            $SQL .= file_get_contents('grader-demodata.sql');
+            $query = $DB->prepare($SQL);
+            try
+            {
+                $result = $query->execute();
+                while($query->nextRowSet())
+                {
+
+                }
+            }
+            catch (\Exception $ex)
+            {
+                $this->logEntrySetError("FAIL: Couldn't import demo data: {$ex->getMessage()}");
+                return $this->getLog();
+            }
         }
         
         $_SESSION['Step310_dbcreate']['OKForNextStep'] = true;
-        return $Log;
+        return $this->getLog();
     }
     
     public function OKForNextStep()
@@ -278,8 +564,7 @@ class Step002_dbconnect implements ISetupStep
     {
         $_SESSION['Step002_dbconnect']['OKForNextStep'] = false;
         $tests = array();
-        $DBDetails = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
-        
+        $DBDetails = $_SESSION['Step001_database'];
         
         if($DBDetails['createUserAndDB'] == 'true')
         {
@@ -339,6 +624,35 @@ class Step002_dbconnect implements ISetupStep
 
 class Step001_database implements ISetupStep
 {
+    public function __construct()
+    {
+        if(!isset($_SESSION['Step001_database']))
+        {
+            $_SESSION['Step001_database'] = array(
+                'SQLHost' =>        'localhost',
+                'SQLUser' =>        '',
+                'SQLPassword'       => '',
+                'SQLDBName'         => '',
+                'SQLRootUser'       => 'root',
+                'SQLRootPassword'   => '',
+                'createUserAndDB'   => false,
+                'importDemoData'    => false
+            );
+        }
+    }
+    public function saveValues()
+    {
+        foreach(json_decode($_GET['dbdetails'], true) as $key => $value)
+        {
+            $_SESSION['Step001_database'][$key] = $value;
+        }
+    }
+    
+    public function retrieveValues()
+    {
+        return $_SESSION['Step001_database'];
+    }
+    
     public function OKForNextStep()
     {
         return true;
@@ -436,30 +750,62 @@ if(@$filteredGET['mode'] == 'json')
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/knockout-3.1.0.js"></script>
+        <script type="text/javascript" src="js/knockout-3.3.0.js"></script>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <style type="text/css">
-            body { font-family: DejaVu Sans; }
+            body { padding-top: 50px; }
             span.rpasslink { font-size: small; }
             span.rpasslink:hover { cursor: pointer; }
             div[id^=Step] { display: none; }
+            .tocActive { font-weight: bold; }
+            .tocInactive { font-weight: normal; }
         </style>
     </head>
     
     <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                   <a class="navbar-brand">Grader</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a>Setup</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
         <h1>Grader setup</h1>
-        <ul>
-            <li>Step 0: Check system requirements</li>
-        </ul>
+        <div class="col-md-4">
+            <h2>Steps</h2>
+            <ol id="stepList">
+            </ol>
+        </div>
         
+        <div class="col-md-8">
+        
+            <h2 id="currentStepName"></h2>
+            
         <!-- Step 000: System requirements -->
         <div id="Step000_sysreq">
             <p>Setup will check basic system requirements for Grader. Please
             fix all FAILs to continue to the next step.</p>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Requirement</th>
@@ -474,8 +820,12 @@ if(@$filteredGET['mode'] == 'json')
                         <td data-bind="text: value"></td>
                         <td data-bind="text: displaydescr"></td>
                         <td>
-                            <span data-bind="if: satisfied" style="color: green">PASS</span>
-                            <span data-bind="ifnot: satisfied" style="color: red">FAIL</span>
+                            <span data-bind="if: satisfied" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS
+                            </span>
+                            <span data-bind="ifnot: satisfied" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL
+                            </span>
                         </td>
                     </tr>
                 </tbody>
@@ -489,42 +839,59 @@ if(@$filteredGET['mode'] == 'json')
         <p>Grader requires a MySQL or MariaDB database, please enter the details
         of the database server. You can opt to have a MySQL user & database
         created for you: setup will use the root username & password for that.</p>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>SQL host:</td>
-                        <td><input name="SQLHost" type="text" value="localhost" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL user<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input name="SQLUser" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL password:</td>
-                        <td><input name="SQLPassword" type="text" /> <span class="rpasslink" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span></td>
-                    </tr>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL host:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" data-bind="value: SQLHost" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL user:<span data-bind="visible: createUserAndDB"><br />(will be created for you)</span></label>
+                    <div class="col-md-8"><input class="form-control" data-bind="value: SQLUser" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" data-bind="value: SQLPassword" /> <span class="rpasslink input-group-addon" data-bind="visible: createUserAndDB, click: genRandPass">(Generate random password)</span>
+                    </div>
+                </div>
 
-                    <tr>
-                        <td>SQL database<span data-bind="visible: createUserAndDB"> (will be created for you)</span>:</td>
-                        <td><input name="SQLDBName" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td>Create user & database for me?</td>
-                        <td><input type="checkbox" data-bind="checked: createUserAndDB" /></td>
-                    </tr>
-
+                <div class="form-group">
+                    <label class="control-label col-md-4">SQL database:<span data-bind="visible: createUserAndDB"><br />(will be created for you)</span></label>
+                    <div class="col-md-8"><input class="form-control" data-bind="value: SQLDBName" /></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-md-8">
+                        <div class="checkbox">
+                             <label>
+                                <input type="checkbox" data-bind="checked: importDemoData" /> Import demo data into the database
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-md-8">
+                        <div class="checkbox">
+                             <label>
+                                <input type="checkbox" data-bind="checked: createUserAndDB" /> Create user and database for me
+                            </label>
+                        </div>
+                    </div>
+                </div>
                     <!-- ko if: createUserAndDB -->
-                    <tr>
-                        <td>SQL root user:</td>
-                        <td><input name="SQLRootUser" type="text" value="root" /></td>
-                    </tr>
-                    <tr>
-                        <td>SQL root password:</td>
-                        <td><input name="SQLRootPassword" type="password" /></td>
-                    </tr>
+                    <div class="form-group">
+                    <label class="control-label col-md-4">SQL root user:</label>
+                        <div class="col-md-8">
+                            <input class="form-control" data-bind="value: SQLRootUser" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4">SQL root password:</label>
+                        <div class="col-md-8"><input class="form-control" data-bind="value: SQLRootPassword" type="password" /></div>
+                    </div>
                     <!-- /ko -->
-                </tbody>
-            </table>
+            </form>
         </div>
         <!-- / Step 001: Database -->
         
@@ -535,7 +902,7 @@ if(@$filteredGET['mode'] == 'json')
             <p>Setup will do something basic database server connectivity
             checks. Fix all FAILs to continue.</p>
             <button data-bind="click: testDB">Retest</button>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th>Test</th>
@@ -546,8 +913,10 @@ if(@$filteredGET['mode'] == 'json')
                     <tr>
                         <td data-bind="text: name"></td>
                         <td>
-                            <span data-bind="ifnot: error" style="color: green">PASS</span>
-                            <span data-bind="if: error" style="color: red">FAIL:<br /><span data-bind="text: error"></span></span>
+                            <span data-bind="ifnot: error" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS</span>
+                            <span data-bind="if: error" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL<br /><span data-bind="text: error"></span></span>
                         </td>
                     </tr>
                 </tbody>
@@ -562,48 +931,110 @@ if(@$filteredGET['mode'] == 'json')
         <div id="Step310_dbcreate">
             <button data-bind="click: createDB">Create database</button>
             
-            <ul data-bind="foreach: resultLog">
-                <li><span data-bind="text: message"></span></li>
-            </ul>
-
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Operation</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: resultLog">
+                    <tr>
+                        <td data-bind="text: operation"></td>
+                        <td>
+                            <span data-bind="ifnot: error" class="text-success">
+                                <span class="glyphicon glyphicon-ok"></span> PASS</span>
+                            <span data-bind="if: error" class="text-danger">
+                                <span class="glyphicon glyphicon-remove"></span> FAIL<br /><span data-bind="text: error"></span></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         <!-- / Step 310: create db -->
         
-        <?php
-        if($_SERVER['SERVER_PORT'] == 80 && $_SERVER['REQUEST_SCHEME'] == 'http')
-        {
-            $Port = null;
-        }
-        elseif($_SERVER['SERVER_PORT'] == 443 && $_SERVER['REQUEST_SCHEME'] == 'https')
-        {
-            $Port = null;
-        }
-        else
-        {
-            $Port = $_SERVER['SERVER_PORT'];
-        }
         
-        $siteURL = $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["SERVER_NAME"] . $Port;
+        <div id="Step311_firstuser">
+            
+            <p>First user</p>
+            
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">E-mail address:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: username" />
+                        <p class="help-block">
+                            This will also be the login.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Password:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="password" data-bind="value: password" />
+                    </div>
+                </div>
+                
+                <button data-bind="click: createUser">Create user</button>
+                
+            </form>
+            
+            <div data-bind="if: executed">
+                <div data-bind="ifnot: error">
+                    <p class="bg-success">User created!</p>
+                </div>
+
+                <div data-bind="if: error">
+                    <p class="bg-danger">Error while creating user</p>
+                    <span data-bind="text: error"></span>
+                </div>
+            </div>
+        </div>
         
-        ?>
         
-        <div id="Step311_siteconfig">
-            Please enter the following configuration details:
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Site URL:</td>
-                        <td><input type="text" value="<?php echo $siteURL; ?>" name="siteURL"/></td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div id="Step312_siteconfig">
+            
+            <p>Please enter the following configuration details:</p>
+            
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-3">Site URL:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: siteURL" id="siteURL" />
+                        <p class="help-block">
+                            Enter the grader's site URL here. This URL will be
+                            used to refer to the site when sending out e-mails.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3">Log destination:</label>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input type="radio" name="logDestination" value="syslog" data-bind="checked: logDestination"> Syslog
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="logDestination" value="file" data-bind="checked: logDestination"> File
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- ko if: logDestination() == 'file' -->
+                <div class="form-group">
+                    <label class="control-label col-md-3">Logfile:</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" data-bind="value: logfile" />
+                        <p class="help-block">
+                            Path to the logfile
+                        </p>
+                    </div>
+                </div>
+                <!-- /ko -->
+                
+            </form>
         </div>
 
 
@@ -611,26 +1042,42 @@ if(@$filteredGET['mode'] == 'json')
         
         <div id="Step314_createconfig">
             <p>Setup will now create Grader's configuration file. For this step
-                to work, setup needs to be able to write to the file <?php echo getcwd(); ?>/dptcms/config.php.
-                If the operation fails, setup will generate the configuration
-                for you, but you must manually upload it.
+                to work, setup needs to be able to write to the file:<br />
+                <code><?php echo getcwd(); ?>/dptcms/config.php</code>
             </p>
-            <ol>
-                <li>touch <?php echo getcwd(); ?>/dptcms/config.php</li>
-                <li>chmod o+rw <?php echo getcwd(); ?>/dptcms/config.php</li>
-                <li>chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php</li>
-            </ol>
-            <button data-bind="click: writeConfig">Create configuration file</button>
+            <ul>
+            <li>Setup will not write the configuration file if it already
+                exists and has content.</li>
+            <li>If the operation fails, setup will still
+            generate the configuration for you, but you must manually upload
+            it.</li>
+            </ul>
+            <p>If you have shell access, you may execute the following commands:</p>
+            <pre>touch <?php echo getcwd(); ?>/dptcms/config.php
+chmod o+rw <?php echo getcwd(); ?>/dptcms/config.php
+# If you have SE linux enabled, you'll also need to:
+chcon -t httpd_user_rw_content_t <?php echo getcwd(); ?>/dptcms/config.php
+</pre>
+            <p>If you do not have shell access, make sure the webserver can
+            write to it. In most hosting scenarios, most likely you'll have to
+            grant world (public) permissions to include write.</p>
+            
+            <p><button data-bind="click: writeConfig">Create configuration file</button></p>
+            
             <div data-bind="if: executed">
                 <div data-bind="if: success">
-
+                    <p class="bg-success">Configuration file written!</p>
+                    <p class="bg-warning">If you have SE linux enabled:</p>
+                    <pre class="bg-warning">chcon -t httpd_user_content_t <?php echo getcwd(); ?>/dptcms/config.php</pre>
+                    
                 </div>
 
                 <div data-bind="ifnot: success">
-                    Was unable to write config file:<br />
-                    <span data-bind="text: error"></span><br />
-                    Copy paste this into dptcms/config.php:<br />
-                    <textarea data-bind="text: config" rows="35" cols="120"></textarea>
+                    <p class="bg-danger">
+                    Was unable to write config file:
+                    <span data-bind="text: error"></span></p>
+                    <p>Copy paste this into dptcms/config.php:</p>
+                    <textarea data-bind="text: config" rows="35" cols="90" style="font-family: monospace"></textarea>
                 </div>
             </div>
 
@@ -641,22 +1088,24 @@ if(@$filteredGET['mode'] == 'json')
         <!-- Step 400: complete -->
         <div id="Step400_complete">
             Grader setup has now complete. Login at
-            <a href="">http://...</a>
+            <a data-bind="attr: { href: siteURL }, text: siteURL"></a>
         </div>
         <!-- / Step 400: complete -->
-        
-        
-        <div id="buttons">
-            <button name="previousStep" data-bind="click: recede">« Previous step</button>
-            <button name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
         </div>
+        <div id="buttons" style="text-align: right;">
+            <button class="btn btn-default" name="previousStep" data-bind="click: recede">« Previous step</button>
+            <button class="btn btn-default" name="nextStep" data-bind="enable: OKForNextStep, click: advance">Next step »</button>
+        </div>
+        
 
+        </div>
+        
         <script type="text/javascript">
             function stepController()
             {
                 self = this;
                 
-                self.currentStep = "";
+                self.currentStep = {};
                 self.OKForNextStep = ko.observable(false);
                 
                 self.steps = {};
@@ -665,7 +1114,8 @@ if(@$filteredGET['mode'] == 'json')
                 self.steps.Step001_database = new step001_database();
                 self.steps.Step002_dbconnect = new step002_dbconnect();
                 self.steps.Step310_dbcreate = new step310_dbcreate();
-                self.steps.Step311_siteconfig = new step311_siteconfig();
+                self.steps.Step311_firstuser = new step311_firstuser();
+                self.steps.Step312_siteconfig = new step312_siteconfig();
                 self.steps.Step314_createconfig = new step314_createconfig();
                 self.steps.Step400_complete = new step400_complete();
                 
@@ -673,14 +1123,16 @@ if(@$filteredGET['mode'] == 'json')
                 ko.applyBindings(self.steps.Step001_database, document.getElementById("Step001_database"));
                 ko.applyBindings(self.steps.Step002_dbconnect, document.getElementById("Step002_dbconnect"));
                 ko.applyBindings(self.steps.Step310_dbcreate, document.getElementById("Step310_dbcreate"));
-                ko.applyBindings(self.steps.Step311_siteconfig, document.getElementById("Step311_siteconfig"));
+                ko.applyBindings(self.steps.Step311_firstuser, document.getElementById("Step311_firstuser"));
+                ko.applyBindings(self.steps.Step312_siteconfig, document.getElementById("Step312_siteconfig"));
                 ko.applyBindings(self.steps.Step314_createconfig, document.getElementById("Step314_createconfig"));
                 ko.applyBindings(self.steps.Step400_complete, document.getElementById("Step400_complete"));
 
-            
+
                 function stepControllerViewModel()
                 {
                     this.OKForNextStep = self.OKForNextStep;
+                    this.currentStep = self.currentStep;
                     
                     this.advance = function()
                     {
@@ -696,7 +1148,7 @@ if(@$filteredGET['mode'] == 'json')
                 this.reevaluateOKForNextStep = function()
                 {
                     $.getJSON(
-                        "setup.php?mode=json&class=" + this.currentStep + "&method=OKForNextStep",
+                        "setup.php?mode=json&class=" + this.currentStep.class + "&method=OKForNextStep",
                         function(data)
                         {
                             self.OKForNextStep(data);
@@ -705,6 +1157,23 @@ if(@$filteredGET['mode'] == 'json')
                 }
             
                 ko.applyBindings(new stepControllerViewModel(), document.getElementById("buttons"));
+                
+                this.fillStepList = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=StepController&method=getSteps",
+                        function(allData)
+                        {
+                            $.each(allData,
+                                function(index, value)
+                                {
+                                    $("#stepList").append('<li>' + value.name + '</li>');
+                                }
+                            );
+                            $("#stepList li:contains('" + self.currentStep.name + "')").attr('class', 'tocActive');
+                        }
+                    );
+                }
 
 
                 this.getStep = function (stepName)
@@ -726,15 +1195,18 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.activateCurrentStep = function()
                 {
-                    $("#" + this.currentStep).show();
-                    self.steps[this.currentStep].activate && self.steps[this.currentStep].activate();
+                    $("#" + this.currentStep.class).show();
+                    self.steps[this.currentStep.class].activate && self.steps[this.currentStep.class].activate();
                     self.reevaluateOKForNextStep();
+                    $("#currentStepName").text(this.currentStep.name);
+                    $("#stepList li:contains('" + this.currentStep.name + "')").attr('class', 'tocActive');
                 }
                 
                 this.deactivateCurrentStep = function()
                 {
-                    $("#" + this.currentStep).hide();
-                    self.steps[this.currentStep].deactivate && self.steps[this.currentStep].deactivate();
+                    $("#stepList li:contains('" + this.currentStep.name + "')").attr('class', 'tocInactive');
+                    $("#" + this.currentStep.class).hide();
+                    self.steps[this.currentStep.class].deactivate && self.steps[this.currentStep.class].deactivate();
                 }
                 
                 this.advance = function()
@@ -801,13 +1273,60 @@ if(@$filteredGET['mode'] == 'json')
 
             function step001_database()
             {
+                var self = this;
+                
+                this.SQLHost = ko.observable("");
+                this.SQLUser = ko.observable("");
+                this.SQLPassword = ko.observable("");
+                this.SQLDBName = ko.observable("");
+                this.SQLRootUser = ko.observable("");
+                this.SQLRootPassword = ko.observable("");
                 this.createUserAndDB = ko.observable(false);
+                this.importDemoData = ko.observable(false);
                 
                 this.genRandPass = function()
                 {
                     // From http://stackoverflow.com/questions/9719570/generate-random-password-string-with-requirements-in-javascript
                     var randPass = Math.random().toString(36).slice(-9);
-                    $("input[name=SQLPassword]").val(randPass);
+                    self.SQLPassword(randPass);
+                }
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step001_database&method=retrieveValues",
+                        function(values)
+                        {
+                            self.SQLHost(values.SQLHost);
+                            self.SQLUser(values.SQLUser);
+                            self.SQLPassword(values.SQLPassword);
+                            self.SQLDBName(values.SQLDBName);
+                            self.SQLRootUser(values.SQLRootUser);
+                            self.SQLRootPassword(values.SQLRootPassword);
+                            self.createUserAndDB(values.createUserAndDB);
+                            self.importDemoData(values.importDemoData);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var dbdata =
+                    {
+                        "SQLHost": self.SQLHost,
+                        "SQLUser": self.SQLUser,
+                        "SQLPassword": self.SQLPassword,
+                        "SQLDBName": self.SQLDBName,
+                        "SQLRootUser": self.SQLRootUser,
+                        "SQLRootPassword": self.SQLRootPassword,
+                        "createUserAndDB": self.createUserAndDB,
+                        "importDemoData": self.importDemoData
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step001_database&method=saveValues",
+                        { "dbdetails" : ko.toJSON(dbdata) }
+                    );
                 }
             }
             
@@ -829,21 +1348,9 @@ if(@$filteredGET['mode'] == 'json')
                 }
                 
                 this.testDB = function()
-                {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
-                    };
-                    
+                {   
                     $.getJSON(
                         "setup.php?mode=json&class=Step002_dbconnect&method=TestDB",
-                        dbdata,
                         function(allData)
                         {
                             var mappedTests = $.map(allData, function(item) { return new self.test(item) });
@@ -862,20 +1369,8 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.createDB = function()
                 {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB
-                    };
-
                     $.getJSON(
                         "setup.php?mode=json&class=Step310_dbcreate&method=CreateDB",
-                        dbdata,
                         function(allData)
                         {
                             var resultLog = $.map(allData, function(item) { return new self.resultLogEntry(item) });
@@ -887,13 +1382,104 @@ if(@$filteredGET['mode'] == 'json')
                 
                 this.resultLogEntry = function(data)
                 {
-                    this.message = ko.observable(data);
+                    this.operation = ko.observable(data.operation);
+                    this.error = ko.observable(data.error);
+                    this.sql = ko.observable(data.sql);
                 }
             }
             
-            function step311_siteconfig()
+            function step311_firstuser()
             {
+                var self = this;
                 
+                this.username = ko.observable("");
+                this.password = ko.observable("");
+                this.error = ko.observable(null);
+                this.executed = ko.observable(false);
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=retrieveValues",
+                        function(values)
+                        {
+                            self.username(values.username);
+                            self.password(values.password);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var firstUser =
+                    {
+                        "username": self.username,
+                        "password": self.password
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=saveValues",
+                        firstUser
+                    );
+                }
+                
+                this.createUser = function()
+                {
+                    var firstUser =
+                    {
+                        "username": self.username,
+                        "password": self.password
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step311_firstuser&method=createUser",
+                        firstUser,
+                        function(allData)
+                        {
+                            self.error(allData);
+                            self.executed(true);
+                            sc.reevaluateOKForNextStep();
+                        }
+                    )
+                }
+            }
+            
+            
+            function step312_siteconfig()
+            {
+                var self = this;
+                
+                this.siteURL = ko.observable("");
+                this.logDestination = ko.observable("");
+                this.logfile = ko.observable("");
+                
+                this.activate = function()
+                {
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step312_siteconfig&method=retrieveValues",
+                        function(values)
+                        {
+                            self.siteURL(values.siteURL);
+                            self.logDestination(values.logDestination);
+                            self.logfile(values.logfile);
+                        }
+                    );
+                }
+                
+                this.deactivate = function()
+                {
+                    var siteconfig =
+                    {
+                        "siteURL": self.siteURL,
+                        "logDestination": self.logDestination,
+                        "logfile": self.logfile
+                    };
+                    
+                    $.getJSON(
+                        "setup.php?mode=json&class=Step312_siteconfig&method=saveValues",
+                        siteconfig
+                    );
+                }
             }
 
 
@@ -907,22 +1493,9 @@ if(@$filteredGET['mode'] == 'json')
                 this.executed = ko.observable(false);
                 
                 this.writeConfig = function()
-                {
-                    var dbdata =
-                    {
-                        "SQLHost": $("input[name=SQLHost]").val(),
-                        "SQLUser": $("input[name=SQLUser]").val(),
-                        "SQLPassword": $("input[name=SQLPassword]").val(),
-                        "SQLDBName": $("input[name=SQLDBName]").val(),
-                        "SQLRootUser": $("input[name=SQLRootUser]").val(),
-                        "SQLRootPassword": $("input[name=SQLRootPassword]").val(),
-                        "createUserAndDB": sc.getStep("Step001_database").createUserAndDB,
-                        "siteURL": $("input[name=siteURL]").val()
-                    };
-                    
+                {   
                     $.getJSON(
                         "setup.php?mode=json&class=Step314_createconfig&method=writeConfig",
-                        dbdata,
                         function(allData)
                         {
                             self.config(allData.config);
@@ -939,14 +1512,18 @@ if(@$filteredGET['mode'] == 'json')
             
             function step400_complete()
             {
+                this.siteURL = ko.observable('');
+                
                 this.activate = function()
                 {
+                    this.siteURL($("#siteURL").val());
                     $("#buttons").hide();
                 }
             }
 
             var sc = new stepController();
             sc.start();
+            sc.fillStepList();
         </script>
     </body>
 

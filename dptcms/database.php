@@ -28,14 +28,9 @@ class Db {
         $dsn = "mysql:host=$host;port=$port;dbname=$database";
 
         // Try to connect to the database
-        try {
-            $conn = new PDO($dsn, Config::$dbUser, Config::$dbPass);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $conn;
-        } catch (PDOException $err) {
-            Logger::logError('could not connect to database', $err);
-            return null;
-        }
+        $conn = new PDO($dsn, Config::$dbUser, Config::$dbPass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
     }
 
 }
@@ -43,7 +38,8 @@ class Db {
 /**
  * Database Access Object for manipulating projecttypes, competencetypes, ...
  */
-class ClassDAO {
+class ClassDAO
+{
 
     /**
      * Get part of the projects, ready for pagination.
@@ -51,12 +47,13 @@ class ClassDAO {
      * @param type $count the number of projects to fetch.
      * @return type an object containing the projects or null on error.
      */
-    public static function getAllProjects($start, $count) {
+    public static function getAllProjects($start, $count)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM project LIMIT :start,:count");
-            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
-            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':start', (int)$start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int)$count, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -72,13 +69,14 @@ class ClassDAO {
      * @param type $count the number of projects to fetch.
      * @return type an object containing the projects or null on error.
      */
-    public static function getProjectsByCourseId($courseid, $start, $count) {
+    public static function getProjectsByCourseId($courseid, $start, $count)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM project WHERE course = :courseid LIMIT :start,:count");
-            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
-            $stmt->bindValue(':start', (int) $start, PDO::PARAM_INT);
-            $stmt->bindValue(':count', (int) $count, PDO::PARAM_INT);
+            $stmt->bindValue(':courseid', (int)$courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':start', (int)$start, PDO::PARAM_INT);
+            $stmt->bindValue(':count', (int)$count, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -88,15 +86,16 @@ class ClassDAO {
     }
 
     /**
-     * Fetch a project from the database, based on its ID. 
+     * Fetch a project from the database, based on its ID.
      * @param type $id the id of the project.
      * @return type an object containing the project information or null on error.
      */
-    public static function getProjectById($id) {
+    public static function getProjectById($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM project WHERE id = :projectid");
-            $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':projectid', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -108,13 +107,14 @@ class ClassDAO {
     /**
      * Get student list metadata about a list associated with a tutor user-ID.
      * @param type $id the id of the tutor user.
-     * @return type an object containing the student list metadata or null on error. 
+     * @return type an object containing the student list metadata or null on error.
      */
-    public static function getStudentListsFromUser($id) {
+    public static function getStudentListsFromUser($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM studentlist WHERE owner = :owner");
-            $stmt->bindValue(':owner', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':owner', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -122,17 +122,18 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
-     * Get student list metadata based on it's id. 
+     * Get student list metadata based on it's id.
      * @param type $listid the ID of the student list.
-     * @return type an object containing the student list metadata or null on error.   
+     * @return type an object containing the student list metadata or null on error.
      */
-    public static function getStudentListInfoFromListId($listid) {
+    public static function getStudentListInfoFromListId($listid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM studentlist where id = :id ");
-            $stmt->bindValue(':id', (int) $listid, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$listid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -141,11 +142,12 @@ class ClassDAO {
         }
     }
 
-    public static function getCoupledListsFromProject($id) {
+    public static function getCoupledListsFromProject($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT studentlist.id, studentlist.name FROM studentlist join project_studentlist on studentlist.id = project_studentlist.studentlist where project_studentlist.project = :id ");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -153,17 +155,18 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
-     * Get a list of students in a student list. 
+     * Get a list of students in a student list.
      * @param type $id the ID of the student list.
      * @return type an object containing a list of students in this studentlist or null on error.
      */
-    public static function getStudentsFromStudentList($id) {
+    public static function getStudentsFromStudentList($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT students.id, students.mail, students.firstname, students.lastname FROM students JOIN studentlist_students ON students.id = studentlist_students.student WHERE studentlist_students.studentlist = :id ");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -171,17 +174,18 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
      * Get a list of students associated with a project.
      * @param type $id the ID of the project.
      * @return type an object containing a list of students associated with a project.
      */
-    public static function getStudentListsFromProject($id) {
+    public static function getStudentListsFromProject($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT students.id, students.mail, students.firstname, students.lastname FROM students JOIN studentlist_students ON students.id = studentlist_students.student JOIN project_studentlist ON studentlist_students.studentlist = project_studentlist.studentlist WHERE project_studentlist.project = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -190,11 +194,12 @@ class ClassDAO {
         }
     }
 
-    public static function getLastDropdownFromUser($id) {
+    public static function getLastDropdownFromUser($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM lastdropdown WHERE user = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -203,11 +208,12 @@ class ClassDAO {
         }
     }
 
-    public static function getDocumentsFromProject($id) {
+    public static function getDocumentsFromProject($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM documenttype WHERE project = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -217,9 +223,10 @@ class ClassDAO {
     }
 
     /**
-     * Get the number of projecttypes currently in the database 
+     * Get the number of projecttypes currently in the database
      */
-    public static function getAllProjectCount() {
+    public static function getAllProjectCount()
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM project");
@@ -231,11 +238,12 @@ class ClassDAO {
         }
     }
 
-    public static function getProjectCountByCourseId($courseid) {
+    public static function getProjectCountByCourseId($courseid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT COUNT(*) FROM project WHERE course = :courseid");
-            $stmt->bindValue(':courseid', (int) $courseid, PDO::PARAM_INT);
+            $stmt->bindValue(':courseid', (int)$courseid, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchColumn();
         } catch (PDOException $err) {
@@ -249,11 +257,12 @@ class ClassDAO {
      * @id the projectttype id to delete
      */
 
-    public static function deleteProject($id) {
+    public static function deleteProject($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM project WHERE id = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
@@ -262,12 +271,13 @@ class ClassDAO {
         }
     }
 
-    public static function uncoupleProjectStudentlist($projectid, $studentlistid) {
+    public static function uncoupleProjectStudentlist($projectid, $studentlistid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM project_studentlist WHERE project = :projectid AND studentlist = :studentlistid");
-            $stmt->bindValue(':projectid', (int) $projectid, PDO::PARAM_INT);
-            $stmt->bindValue(':studentlistid', (int) $studentlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':projectid', (int)$projectid, PDO::PARAM_INT);
+            $stmt->bindValue(':studentlistid', (int)$studentlistid, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
@@ -276,12 +286,13 @@ class ClassDAO {
         }
     }
 
-    public static function deleteStudentFromStudentList($studlistid, $studid) {
+    public static function deleteStudentFromStudentList($studlistid, $studid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :studlist AND student = :student");
-            $stmt->bindValue(':studlist', (int) $studlistid, PDO::PARAM_INT);
-            $stmt->bindValue(':student', (int) $studid, PDO::PARAM_INT);
+            $stmt->bindValue(':studlist', (int)$studlistid, PDO::PARAM_INT);
+            $stmt->bindValue(':student', (int)$studid, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
@@ -290,19 +301,20 @@ class ClassDAO {
         }
     }
 
-    public static function deleteStudentList($id) {
+    public static function deleteStudentList($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM studentlist WHERE id = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
 
             $stmt2 = $conn->prepare("DELETE FROM studentlist_students WHERE studentlist = :id");
-            $stmt2->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt2->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt2->execute();
 
             $stmt3 = $conn->prepare("DELETE FROM project_studentlist WHERE studentlist =:id");
-            $stmt3->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt3->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt3->execute();
             return true;
         } catch (PDOException $err) {
@@ -311,11 +323,12 @@ class ClassDAO {
         }
     }
 
-    public static function deleteDocumentType($id) {
+    public static function deleteDocumentType($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM documenttype WHERE id = :id");
-            $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $err) {
@@ -331,7 +344,8 @@ class ClassDAO {
      * @description a description about the project
      */
 
-    public static function insertProject($courseid, $code, $name, $description) {
+    public static function insertProject($courseid, $code, $name, $description)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO project (code, name, description, course) VALUES (?, ?, ?, ?)");
@@ -345,7 +359,8 @@ class ClassDAO {
         }
     }
 
-    public static function insertProjectStudlistCouple($projectid, $studlistid) {
+    public static function insertProjectStudlistCouple($projectid, $studlistid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO project_studentlist (project, studentlist) VALUES (?,?)");
@@ -359,7 +374,8 @@ class ClassDAO {
         }
     }
 
-    public static function saveDropdownChoice($location, $locationid, $training, $trainingid, $course, $courseid, $user) {
+    public static function saveDropdownChoice($location, $locationid, $training, $trainingid, $course, $courseid, $user)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO lastdropdown (user, location, locationid, training, trainingid, course, courseid) VALUES (?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE location = ?, locationid = ?, training = ?, trainingid = ?, course = ?, courseid = ?");
@@ -380,7 +396,8 @@ class ClassDAO {
      * @param type $description the new projecttype description
      */
 
-    public static function updateProject($id, $code, $name, $description) {
+    public static function updateProject($id, $code, $name, $description)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE project SET code = ?, name = ?, description = ? WHERE id = ?");
@@ -392,7 +409,8 @@ class ClassDAO {
         }
     }
 
-    public static function updateStudentListName($id, $name) {
+    public static function updateStudentListName($id, $name)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE studentlist SET name = ? WHERE id = ?");
@@ -403,7 +421,9 @@ class ClassDAO {
             return false;
         }
     }
-    public static function updateStudent($id, $username, $firstname, $lastname) {
+
+    public static function updateStudent($id, $username, $firstname, $lastname)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE students SET mail = ?, firstname = ?, lastname = ? WHERE id = ?");
@@ -415,12 +435,13 @@ class ClassDAO {
         }
     }
 
-    public static function updateDocuments($array) {
+    public static function updateDocuments($array)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ? WHERE id = ?");
             foreach ($array as $document) {
-                $stmt->execute(array((string) $document->description, (int) $document->amount_required, (int) $document->weight, (int) $document->id));
+                $stmt->execute(array((string)$document->description, (int)$document->amount_required, (int)$document->weight, (int)$document->id));
             }
             return true;
         } catch (PDOException $err) {
@@ -429,13 +450,14 @@ class ClassDAO {
         }
     }
 
-    public static function insertDocuments($projectid, $array) {
+    public static function insertDocuments($projectid, $array)
+    {
         try {
             // Insert the user
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO documenttype (description, amount_required, weight, project) VALUES (?, ?, ?,?)");
             foreach ($array as $document) {
-                $stmt->execute(array((string) $document->description, (int) $document->amount_required, (int) $document->weight, (int) $projectid));
+                $stmt->execute(array((string)$document->description, (int)$document->amount_required, (int)$document->weight, (int)$projectid));
             }
             return true;
         } catch (PDOException $err) {
@@ -448,7 +470,8 @@ class ClassDAO {
      * Get all the locations
      */
 
-    public static function getAllLocations() {
+    public static function getAllLocations()
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM location");
@@ -464,11 +487,12 @@ class ClassDAO {
      * Get all trainings by locationId
      * @id the locationId
      */
-    public static function getTrainingsByLocation($id) {
+    public static function getTrainingsByLocation($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM training WHERE location = :location");
-            $stmt->bindValue(':location', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':location', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -482,11 +506,12 @@ class ClassDAO {
      * @param type $id the trainings id to get the courses information from.
      * @return stdClass an object containing courses information
      */
-    public static function getCoursesByTraining($id) {
+    public static function getCoursesByTraining($id)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM course WHERE training = :training");
-            $stmt->bindValue(':training', (int) $id, PDO::PARAM_INT);
+            $stmt->bindValue(':training', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS);
         } catch (PDOException $err) {
@@ -496,17 +521,39 @@ class ClassDAO {
     }
 
     /**
-     * Get's all the data associated with a project. 
-     * @param type $id the project id to get the data from. 
-     * @return stdClass an object containing all project information or null on error. 
+     * Get's all the data associated with a project.
+     * @param type $id the project id to get the data from.
+     * @return stdClass an object containing all project information or null on error.
      */
-    public static function getAllDataFromProject($id) {
+    public static function getAllDataFromProject($id)
+    {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT competence.id cid, competence.code ccode, competence.description cdescription, competence.max cmax, competence.weight cweight, subcompetence.id sid, subcompetence.code scode, subcompetence.description sdescription, subcompetence.weight sweight, subcompetence.max smax, subcompetence.min_required smin_required, indicator.id iid, indicator.name iname, indicator.description idescription, indicator.max imax, indicator.weight iweight
-                                    FROM competence JOIN subcompetence ON competence.id = subcompetence.competence
-                                    JOIN indicator ON subcompetence.id = indicator.subcompetence WHERE project = :projectid ORDER BY cid, sid, iid ASC");
-            $stmt->bindValue(':projectid', (int) $id, PDO::PARAM_INT);
+            $SQL = "SELECT
+                        competence.id cid,
+                        competence.code ccode,
+                        competence.description cdescription,
+                        competence.max cmax,
+                        competence.weight cweight,
+                        subcompetence.id sid,
+                        subcompetence.code scode,
+                        subcompetence.description sdescription,
+                        subcompetence.weight sweight,
+                        subcompetence.max smax,
+                        subcompetence.min_required smin_required,
+                        indicator.id iid,
+                        indicator.name iname,
+                        indicator.description idescription,
+                        indicator.max imax,
+                        indicator.weight iweight
+                    FROM competence
+                    LEFT JOIN subcompetence ON competence.id = subcompetence.competence
+                    LEFT JOIN indicator ON subcompetence.id = indicator.subcompetence
+                    WHERE
+                        project = :projectid
+                    ORDER BY cid, sid, iid ASC;";
+            $stmt = $conn->prepare($SQL);
+            $stmt->bindValue(':projectid', (int)$id, PDO::PARAM_INT);
             $stmt->execute();
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -561,18 +608,19 @@ class ClassDAO {
     {
         // TODO
     }
-    
-    
+
+
     /**
      * Insert a new competence in the database.
      * @param type $code
-     * @param type $description 
+     * @param type $description
      * @param type $max
      * @param type $weight
      * @param type $projectid
      * @return type the id of the newly inserted competence or null on error.
      */
-    public static function putNewCompetence($code, $description, $max, $weight, $projectid) {
+    public static function putNewCompetence($code, $description, $max, $weight, $projectid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO competence (code, description, max, weight, project) VALUES (?, ?, ?, ?, ?)");
@@ -585,7 +633,7 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
      * Update an existing competence in the database
      * @param type $id
@@ -596,7 +644,8 @@ class ClassDAO {
      * @param type $projectid
      * @return boolean true on success, false on error.
      */
-    public static function updateCompetence($id, $code, $description, $max, $weight, $projectid) {
+    public static function updateCompetence($id, $code, $description, $max, $weight, $projectid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE competence SET code = ?, description = ?, max = ?, weight = ?, project = ? WHERE id = ?");
@@ -610,6 +659,22 @@ class ClassDAO {
     }
     
     /**
+     * Delete a project's competence
+     * @param type $id
+     * @throws \Exception
+     */
+    public static function deleteProjectCompetence($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM competence WHERE id = ?;');
+        $stmt->execute(array($id));
+        if ($stmt->rowCount() === 0) {
+            throw new \Exception("No rows deleted. Check if the subcompetence with id {$id} exists. You cannot delete non-existent competences.");
+        }
+    }
+    
+
+    /**
      * Insert a new subcompetence in the database.
      * @param type $code
      * @param type $description
@@ -619,7 +684,8 @@ class ClassDAO {
      * @param type $competenceid
      * @return type the id of the newly inserted subcompetence or null on error.
      */
-    public static function putNewSubCompetence($code, $description, $max, $weight, $min_required, $competenceid) {
+    public static function putNewSubCompetence($code, $description, $max, $weight, $min_required, $competenceid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO subcompetence (code, description, weight, max, min_required, competence) VALUES (?, ?, ?, ?, ?, ?)");
@@ -632,7 +698,7 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
      * Update an existing subcompetence in the database.
      * @param type $id
@@ -644,7 +710,8 @@ class ClassDAO {
      * @param type $competenceid
      * @return type true if update is success, false otherways
      */
-    public static function updateSubCompetence($id, $code, $description, $max, $weight, $min_required, $competenceid) {
+    public static function updateSubCompetence($id, $code, $description, $max, $weight, $min_required, $competenceid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE subcompetence SET code = ?, description = ?, weight = ?, max = ?, min_required = ?, competence = ? WHERE id = ?");
@@ -656,7 +723,24 @@ class ClassDAO {
             return false;
         }
     }
-    
+
+
+    /**
+     * Delete a project's subcompetence
+     * @param int $id
+     * @return void
+     */
+    public static function deleteProjectSubCompetence($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM subcompetence WHERE id = ?;');
+        $stmt->execute(array($id));
+        if ($stmt->rowCount() === 0) {
+            throw new \Exception("No rows deleted. Check if the subcompetence with id {$id} exists. You cannot delete non-existent subcompetences.");
+        }
+    }
+
+
     /**
      * Insert a new indicator in the database
      * @param type $name
@@ -666,7 +750,8 @@ class ClassDAO {
      * @param type $subcompetenceid
      * @return type the id of the newly inserted indicator or null on error.
      */
-    public static function putNewIndicator($name, $description, $max, $weight, $subcompetenceid) {
+    public static function putNewIndicator($name, $description, $max, $weight, $subcompetenceid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT INTO indicator (name, description, max, weight, subcompetence) VALUES (?, ?, ?, ?, ?)");
@@ -679,7 +764,7 @@ class ClassDAO {
             return null;
         }
     }
-    
+
     /**
      * Update an existing indicator in the database
      * @param type $id
@@ -690,7 +775,8 @@ class ClassDAO {
      * @param type $subcompetenceid
      * @return boolean true on succes, false on error
      */
-    public static function updateIndicator($id, $name, $description, $max, $weight, $subcompetenceid) {
+    public static function updateIndicator($id, $name, $description, $max, $weight, $subcompetenceid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ? WHERE id = ?");
@@ -702,63 +788,84 @@ class ClassDAO {
             return false;
         }
     }
-    public static function putStudentList($userid, $username) {
+
+
+    /**
+     * Delete a project's indicator
+     * @param int $id
+     * @return void
+     */
+    public static function deleteProjectIndicator($id)
+    {
+        $conn = Db::getConnection();
+        $stmt = $conn->prepare('DELETE FROM indicator WHERE id = ?;');
+        $stmt->execute(array($id));
+        if ($stmt->rowCount() === 0) {
+            throw new \Exception("No rows deleted. Check if the indicator with id {$id} exists. You cannot delete non-existent indicators.");
+        }
+    }
+
+
+    public static function putStudentList($userid, $username)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into studentlist (owner, name) VALUES (?, ?)");
-            $stmt->execute(array($userid, $username.' - New User List '));
+            $stmt->execute(array($userid, $username . ' - New User List '));
             return $conn->lastInsertId();
         } catch (Exception $ex) {
             return -1;
         }
     }
 
-    public function putStudents($listid, $studentArray) {
-            try {
-                $conn = Db::getConnection();
-                $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
-                foreach($studentArray as $student) {
-                    if($student[4] != "Titularis") {
-                        $stmt->execute(array($student[1], $student[2], $student[3]));
-                        $id = $conn->lastInsertId();
-                        $stmt2 = $conn->prepare("INSERT into studentlist_students (studentlist, student) VALUES (?, ?)");
-                        $stmt2->execute(array($listid, $id));
-                    }
+    public function putStudents($listid, $studentArray)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
+            foreach ($studentArray as $student) {
+                if ($student[4] != "Titularis") {
+                    $stmt->execute(array($student[1], $student[2], $student[3]));
+                    $id = $conn->lastInsertId();
+                    $stmt2 = $conn->prepare("INSERT into studentlist_students (studentlist, student) VALUES (?, ?)");
+                    $stmt2->execute(array($listid, $id));
                 }
-                return $conn->lastInsertId();
-            } catch (PDOException $ex) {
-                /*Logger::logError("could not insert new student".$ex);*/
-                return "could not insert new student".$ex;
             }
+            return $conn->lastInsertId();
+        } catch (PDOException $ex) {
+            /*Logger::logError("could not insert new student".$ex);*/
+            return "could not insert new student" . $ex;
+        }
 
     }
 
-    public static function putStudent($mail, $firstname, $lastname) {
+    public static function putStudent($mail, $firstname, $lastname)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
             $stmt->execute(array($firstname, $lastname, $mail));
             return $conn->lastInsertId();
         } catch (PDOException $ex) {
-            Logger::logError("could not insert new student".$ex);
+            Logger::logError("could not insert new student" . $ex);
         }
     }
 
-    public static function putStudentlist_Student($studentid, $listid) {
+    public static function putStudentlist_Student($studentid, $listid)
+    {
         try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into studentlist_students (student, studentlist) VALUES (?, ?)");
             $stmt->execute(array($studentid, $listid));
             return $conn->lastInsertId();
         } catch (PDOException $ex) {
-            Logger::logError("could not insert new student".$ex);
+            Logger::logError("could not insert new student" . $ex);
         }
     }
 
     public static function getProjectRules($id)
     {
-        try
-        {
+        try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM rules WHERE project = ?");
             $stmt->execute(array($id));
@@ -770,7 +877,7 @@ class ClassDAO {
                     $rule = new stdClass();
                     $rule->id = $row['id'];
                     $rule->name = $row['name'];
-                    $rule->action = array("id" => $row['subject_id'], "name"=>$row['action'], "subject"=>$row['subject']);
+                    $rule->action = array("id" => $row['subject_id'], "name" => $row['action'], "subject" => $row['subject']);
                     $rule->operator = $row['operator'];
                     $rule->value = $row['value'];
                     $rule->sign = $row['sign'];
@@ -781,123 +888,167 @@ class ClassDAO {
             }
 
             return $data;
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError("could not get project rules. ".$ex);
+        } catch (PDOException $ex) {
+            Logger::logError("could not get project rules. " . $ex);
         }
     }
 
     public static function saveProjectRules($id, $projectrules)
     {
-        try
-        {
+        try {
             $data = json_decode($projectrules);
             $conn = Db::getConnection();
 
-            $count=0;
+            $count = 0;
             foreach ($data as $rule) {
-                if(!isset($rule->id)) {
+                if (!isset($rule->id)) {
                     $stmt = $conn->prepare("INSERT INTO rules (project, name, subject, subject_id, action, operator, value, sign, result) VALUES (?,?,?,?,?,?,?,?,?)");
                     $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, $rule->sign, (int)$rule->result));
                     $count++;
-                }
-                else
-                {
+                } else {
                     $stmt = $conn->prepare("UPDATE rules SET project=?, name=?, subject=?, subject_id=?, action=?, operator=?, value=?, sign=?, result=? WHERE id=?");
                     $stmt->execute(array($id, $rule->name, $rule->action->subject, (int)$rule->action->id, $rule->action->name, $rule->operator, (int)$rule->value, $rule->sign, (int)$rule->result, (int)$rule->id));
                 }
             }
             return $count;
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError("could not save project rules. ".$ex);
+        } catch (PDOException $ex) {
+            Logger::logError("could not save project rules. " . $ex);
         }
     }
 
     public static function removeProjectRule($id)
     {
-        try
-        {
+        try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("DELETE FROM rules WHERE id= ?");
             $stmt->execute(array((int)$id));
             return $id;
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError(("could not remove rule. ".$ex));
+        } catch (PDOException $ex) {
+            Logger::logError(("could not remove rule. " . $ex));
         }
     }
 
-    public static function getScoresForStudentByUser($projectid,$studentid,$userid)
+    public static function getScoresForStudentByUser($projectid, $studentid, $userid)
     {
-        try
-        {
+        try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ? AND student = ? AND user = ?");
             $stmt->execute(array($projectid, $studentid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $dataFromDb;
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError(("could not get scores. ".$ex));
+        } catch (PDOException $ex) {
+            Logger::logError(("could not get scores. " . $ex));
         }
     }
 
-    public static function getAllScoresForStudentByProject($projectid,$studentid)
+    public static function getAllScoresForStudentByProject($projectid, $studentid)
     {
-        try
-        {
+        try {
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT * FROM assess_score WHERE project = ? AND student = ?");
             $stmt->execute(array($projectid, $studentid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $dataFromDb;
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError(("could not get scores. ".$ex));
+        } catch (PDOException $ex) {
+            Logger::logError(("could not get scores. " . $ex));
         }
     }
 
-    public static function saveScoresForStudentByUser($projectid,$studentid,$userid, $scores)
+    public static function saveScoresForStudentByUser($projectid, $studentid, $userid, $scores)
     {
-        try
-        {
+        try {
             $data = json_decode($scores);
             $conn = Db::getConnection();
 
             foreach ($data as $competences) {
-                foreach($competences->subcompetences as $subcompetences)
-                {
-                    foreach($subcompetences->indicators as $indicators)
-                    {
-                        if(!isset($indicators->scoreid)) {
+                foreach ($competences->subcompetences as $subcompetences) {
+                    foreach ($subcompetences->indicators as $indicators) {
+                        if (!isset($indicators->scoreid)) {
                             $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
-                            $stmt->execute(array($projectid,$studentid,$userid,$competences->id,$subcompetences->id,$indicators->id, $indicators->score));
-                        }
-                        else
-                        {
+                            $stmt->execute(array($projectid, $studentid, $userid, $competences->id, $subcompetences->id, $indicators->id, $indicators->score));
+                        } else {
                             $stmt = $conn->prepare("UPDATE assess_score SET score= ? WHERE id= ?");
-                            $stmt->execute(array($indicators->score,$indicators->scoreid));
+                            $stmt->execute(array($indicators->score, $indicators->scoreid));
                         }
                     }
                 }
 
 
             }
-        }
-        catch (PDOException $ex)
-        {
-            Logger::logError("could not save project rules. ".$ex);
+        } catch (PDOException $ex) {
+            Logger::logError("could not save project rules. " . $ex);
         }
     }
 
+    public static function getUserDataForDocument($projectid, $userid)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assess_documents WHERE project = ? AND user = ?");
+            $stmt->execute(array($projectid, $userid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+        } catch (PDOException $ex) {
+            Logger::logError("could not get projectdocuments of user. " . $ex);
+        }
+    }
+
+    public static function saveDocumentsForUser($projectid, $userid, $structure)
+    {
+        try {
+            $data = json_decode($structure);
+            $conn = Db::getConnection();
+
+            foreach($data as $document)
+            {
+                if($document->submittedId == 0)
+                {
+                    $stmt = $conn->prepare("INSERT INTO assess_documents (user, document, project, submitted ) VALUES (?,?,?,?)");
+                    $stmt->execute(array($userid,$document->id,$projectid,$document->submitted));
+                }
+                else
+                {
+                    $stmt = $conn->prepare("UPDATE assess_documents SET submitted= ? WHERE id= ?");
+                    $stmt->execute(array($document->submitted, $document->submittedId));
+                }
+            }
+        } catch (PDOException $ex) {
+            Logger::logError("could not save documents for user. " . $ex);
+        }
+    }
+
+    public static function getUsersAssessStudent($projectid,$userid)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT DISTINCT users.firstname, users.lastname FROM assess_score INNER JOIN users ON assess_score.user = users.id WHERE assess_score.project =? AND assess_score.student =?");
+            $stmt->execute(array($projectid, $userid));
+            $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dataFromDb;
+
+        } catch (PDOException $ex) {
+            Logger::logError("could not get users assess student. " . $ex);
+        }
+    }
+
+    public static function addProjectDocumentType($projectId, $description, $amount_required, $weight)
+    {
+        $conn = Db::getConnection();
+        $SQL = "INSERT INTO documenttype
+                (description, amount_required, weight, project)
+                VALUES
+                (:description, :amount_required, :weight, :projectId);";
+        $stmt = $conn->prepare($SQL);
+        $stmt->bindValue(':description', $description);
+        $stmt->bindValue(':amount_required', $amount_required);
+        $stmt->bindValue(':weight', $weight);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+    }
 }
 
 /*

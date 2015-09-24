@@ -129,10 +129,17 @@
     "FormScore" : "Beoordelingsmethode",
     "FormWorksheet" : "Werkfiche",
     "FormDate" : "Datum",
-    "FormAssess" : "Aangepast",
+    "FormAssessNone" : "Geen",
+    "FormAssessCustom" : "Aangepast",
     "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
     "AssessGeneralError" : "Data kon niet verstuurd worden",
 
     "UserEditTitle": "Gebruiker wijzigen",
-    "EditStudent" : "Wijzig student"
+    "EditStudent" : "Wijzig student",
+
+    "AdminAddUser" : "Gebruiker toevoegen",
+    "AdminEditPage" : "Gebruiker wijzigen",
+    "AdminPermissionPage" : "Rechten",
+    "AdminUsersPage" : "Gebruikers",
+    "AdminPage" : "Home"
 }

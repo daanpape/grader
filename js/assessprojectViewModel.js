@@ -32,6 +32,8 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.users = ko.observableArray([]);
+
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
@@ -59,10 +61,35 @@ function initPage() {
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
-    $.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
+    /*$.getJSON('/api/finalscore/' + viewModel.projectId + '/' + id, function (data) {
         makePDF(id,name,lastname,email,projectheader,projectdescription,data);
         //console.log(data);
+    });*/
+
+    $.ajax({
+        url: '/api/finalscore/' + viewModel.projectId + '/' + id,
+        type: "GET",
+        dataType: 'json',
+        success: function(data) {
+            makePDF(id,name,lastname,email,projectheader,projectdescription,data);
+        },
+        error: function()
+        {
+            alert("Please make sure points are given!");
+        }
     });
+}
 
+function getData(id)
+{
+    $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
+    {
+        viewModel.users.removeAll();
+        console.log(viewModel.users);
+        data.forEach(function(element)
+        {
+            viewModel.users.push(element.firstname + " " + element.lastname);
+        });
 
+    });
 }

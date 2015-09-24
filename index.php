@@ -130,11 +130,50 @@ $app->post('/checkemail', function() use($app) {
 });
 
 $app->post('/register', function() use($app){
-    // Try to register the user
-    if(!Security::registerUser($_POST['lang'], $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['email'], $_POST['pass'], $_POST['passconfirm'])) {
+
+    $filter = array(
+        'firstname' => array(
+            'filter' => FILTER_SANITIZE_STRING,
+            'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
+            ),
+        'lastname'  => array(
+            'filter' => FILTER_SANITIZE_STRING,
+            'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
+            ),
+        'email'     => FILTER_VALIDATE_EMAIL,
+        'status'    => array(
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => array(
+                'regexp' => '/^WAIT_ACTIVATION|ACTIVE|DISABLED$/'
+                )
+            ),
+        'lang'      => FILTER_SANITIZE_STRING
+    );
+    
+    $fPOST = filter_input_array(INPUT_POST, $filter, false);
+    
+    foreach($fPOST as $name => $value)
+    {
+        if($value === null)
+        {
+            throw new \Exception("Validation failed on POST field '{$name}'");
+        }
+    }
+    
+    if(@$_POST['skipEmailVerification'])
+    {
+        $skipEmailVerification = true;
+    }
+    else
+    {
+        $skipEmailVerification = false;
+    }
+    
+    if(!Security::registerUser($fPOST['lang'], $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['email'], $_POST['pass'], $_POST['passconfirm'], $skipEmailVerification)) {
         // Registration failed, bad request
         $app->response->setStatus(400);
     }
+
 });
 
 
@@ -264,7 +303,33 @@ $app->get('/api/edituser/:id', function($id) use ($app) {
 $app->post('/api/saveedit/:id', function($id) use ($app) {
 
     // Try to edit the user
-    if(!GraderAPI::updateUser($id, $_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['status'])) {
+    
+    $filter = array(
+        'firstname' => array(
+            'filter' => FILTER_SANITIZE_STRING,
+            'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
+            ),
+        'lastname'  => FILTER_SANITIZE_STRING,
+        'email'     => FILTER_VALIDATE_EMAIL,
+        'status'    => array(
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => array(
+                'regexp' => '/^WAIT_ACTIVATION|ACTIVE|DISABLED$/'
+                )
+            )
+    );
+    
+    $fPOST = filter_input_array(INPUT_POST, $filter, true);
+
+    foreach($fPOST as $name => $value)
+    {
+        if($value === null)
+        {
+            throw new \Exception("Validation failed on POST field '{$name}'");
+        }
+    }
+    
+    if(!GraderAPI::updateUser($id, $fPOST['firstname'], $fPOST['lastname'], $fPOST['email'], $fPOST['status'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }
@@ -345,6 +410,12 @@ $app->get('/api/projectstructure/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::getAllDataFromProject($id));
 });
 
+$app->get('/api/project/:projectId/documents/:userId', function($projectid,$userid) use ($app)
+{
+    $app->response->headers->set('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getUserDataForDocument($projectid,$userid));
+});
+
 $app->get('/api/projectrules/:id', function($id) use ($app)
 {
     $response = $app->response();
@@ -402,6 +473,36 @@ $app->get('/api/finalscore/:projectid/:userid', function($projectid,$userid) use
     echo json_encode(GraderAPI::gradeProjectForStudent($projectid,$userid));
 });
 
+$app->get('/api/project/indicator/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectIndicator($id));
+    }
+);
+
+$app->get('/api/project/subcompetence/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectSubCompentence($id));
+    }
+);
+
+$app->get('/api/project/competence/delete/:id',
+    function($id) use($app)
+    {
+        $app->response()->headers('Content-Type', 'application/json');
+        echo json_encode(GraderAPI::deleteProjectCompetence($id));
+    }
+);
+
+$app->get('/api/project/:projectid/student/:userid/assessed', function($projectid, $userid) use($app)
+{
+    $app->response()->headers('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::getUsersAssessStudent($projectid,$userid));
+});
+
 // API PUT routes
 $app->put('/api/project/:id', function($id) use ($app){
     // Use json headers
@@ -449,6 +550,14 @@ $app->post('/api/newstudent/:id', function($id) use ($app) {
     // Update the existing resource
     echo json_encode(GraderAPI::putStudent(
         $id, $app->request->post('username'), $app->request->post('firstname'), $app->request->post('lastname')));
+});
+
+$app->post("/api/documents/:projectid/user/:userid/save", function($projectid, $userid) use ($app)
+{
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::saveDocumentsForUser($projectid,$userid, file_get_contents('php://input')));
 });
 
 // API POST routes
@@ -591,12 +700,18 @@ $app->delete('/api/studentlist/delete/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::deleteStudentList($id));
 });
 
-$app->delete('/api/delete/document/:id', function($id) use ($app) {
+$app->get('/api/project/documenttype/delete/:id', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
 
     echo json_encode(GraderAPI::deleteDocumentTypeFromProject($id));
 });
+
+$app->post('/api/project/:projectId/documenttype/add', function ($projectId) use ($app) {
+    $app->response()->header('Content-Type', 'application/json');
+    echo json_encode(GraderAPI::addProjectDocumentType($projectId, $_POST['description'], $_POST['amount_required'], $_POST['weight']));
+}
+);
 
 $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', function($projectid, $studentlistid) use ($app) {
     $response = $app->response();

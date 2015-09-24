@@ -7,7 +7,8 @@
 <title data-bind="text: title"></title>
 
 <!-- CSS style includes -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.icon-large.min.css" rel="stylesheet">
 <link href="/css/grader.css" rel="stylesheet">
 <link href="/css/cssrapport/jquery-ui.min.css" rel="stylesheet">
 

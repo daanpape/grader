@@ -5,8 +5,6 @@ $location = "jsrapport/modulerapporten";
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
     <head>
-        <link rel="stylesheet" href="../css/bootstrap.icon-large.css">
-
         <style>
             #top-col {
                 padding-bottom: 15px;
@@ -68,29 +66,6 @@ $location = "jsrapport/modulerapporten";
                     <div class="panel-heading">
                         <input type="text" placeholder="module name" class="form-control form-name" data-bind="value: name">
                         <input type="text" placeholder="module description" class="form-control form-desc" data-bind="value: description">
-                    </div>
-                    <div class="panel-body" data-bind="foreach: doelstellingen">         
-                        <div class="subcompPanel">
-                            <div class="panel panel-default">
-                                <div class="panel-heading color-subcomp">
-                                    <input type="text" placeholder="competence name" class="form-control form-name" data-bind="value: name">
-                                    <input type="text" placeholder="competence description" class="form-control form-desc" data-bind="value: description">
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="list-group" data-bind="foreach: criterias">
-                                        <li class="list-group-item">
-                                            <input type="text" placeholder="criteria name" class="form-control form-name" data-bind="value: name">
-                                            <input type="text" placeholder="criteria description" class="form-control form-desc" data-bind="value: description">
-                                            <button class="btn" data-bind="click: removeThis">Remove this criteria</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="panel-footer color-subcomp">
-                                    <button class="btn" value="NaN-0" data-bind="click: addCriteria">Add a criteria</button>
-                                    <button class="btn pull-right" data-bind="click: removeThis">Remove this competence</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="panel-footer">
                         <button class="btn" value="NaN" data-bind="click: addDoelstelling">Add a competence</button>

@@ -1,6 +1,6 @@
 function pageViewModel(gvm) {
     // Page specific i18n bindings
-    gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminPage");}, gvm);
+    gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminEditPage");}, gvm);
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
 
     gvm.edituserid = $("#usereditHeader").data('value');
@@ -22,7 +22,7 @@ function pageViewModel(gvm) {
     gvm.allRights = ko.observableArray([]);
     gvm.checkedRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
-
+    
     gvm.updateUser = function(user)
     {
         gvm.user.push(user);
@@ -209,6 +209,7 @@ function User(id, username, firstname, lastname, status, permissions) {
         lastname: ko.observable(lastname),
         status: ko.observable(status),
         permissions: ko.observableArray(permissions),
+        userStatuses: ko.observableArray(['WAIT_ACTIVATION', 'ACTIVE', 'DISABLED']),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))
