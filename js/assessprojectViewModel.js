@@ -95,6 +95,7 @@ function getData(id)
         });
     });
 
+    console.log(viewModel.users().length);
     return viewModel.users().length;
 }
 
