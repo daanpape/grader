@@ -20,7 +20,7 @@ $location = "home";
         <div class="container">
             <div class="starter-template" data-bind="html: homeManual">
                 <p class="lead">This HoWest Assessment tool is used to grade students.<br/>Please read this short manual
-                    before using the service.</p>
+                    before using the service...</p>
             </div>
         </div>
 
