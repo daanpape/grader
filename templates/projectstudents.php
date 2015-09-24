@@ -54,6 +54,9 @@ $location = "projectstudents";
                 </tbody>
             </table>
         </div>
+        <button class="btn btn-lg savePageBtn pull-right" data-bind="text: nextPage">
+            Save
+        </button>
     </div>
 </div>
 
