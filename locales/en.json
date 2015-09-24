@@ -144,5 +144,6 @@
     "AdminEditPage" : "Edit User",
     "AdminPermissionPage" : "Permissions",
     "AdminUsersPage" : "Users",
-    "AdminPage" : "Home"
+    "AdminPage" : "Home",
+    "NextPage" : "Next"
 }

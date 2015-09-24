@@ -106,7 +106,7 @@ $location = "project";
                         Add competence
                     </button>
                     
-                    <button class="btn btn-lg savePageBtn pull-right" data-bind="text: savePage">
+                    <button class="btn btn-lg savePageBtn pull-right" data-bind="text: nextPage">
                         Save
                     </button>
                 </div>

@@ -141,5 +141,8 @@
     "AdminEditPage" : "Gebruiker wijzigen",
     "AdminPermissionPage" : "Rechten",
     "AdminUsersPage" : "Gebruikers",
-    "AdminPage" : "Home"
+    "AdminPage" : "Home",
+
+    "NextPage" : "Volgende"
+
 }
