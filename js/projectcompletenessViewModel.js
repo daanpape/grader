@@ -99,7 +99,6 @@ function pageViewModel(gvm) {
         var url = document.URL;
         var string = url.split("/");
         console.log(string);
-        window.location.href = "http://" + string[2] + "/" + string[3] + "/students/" + string[4];
     };
 }
 
