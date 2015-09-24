@@ -76,11 +76,11 @@ function saveProjectScore()
             // TODO make multilangual and with modals
             alert("Saved projectscore to server");
 
-            fetchProjectStructure();
-
             console.log("worked")
             window.location = "/assess/project/" + projectid + "/students"
             console.log("redirected")
+            //fetchProjectStructure();
+
         }
     });
 }
