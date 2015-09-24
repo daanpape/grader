@@ -95,7 +95,7 @@ function initPage() {
         viewModel.getAvailableLists(data.id);
     });
 
-    $("#nextPageButton").click(function()
+    $(".nextPageButton").click(function()
     {
         var url = document.URL;
         var string = url.split("/");
