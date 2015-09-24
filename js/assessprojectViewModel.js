@@ -91,8 +91,12 @@ function getData(id)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
 
-            console.log(viewModel.users().length);
         });
-
+        console.log(getDataCount(id));
     });
+}
+
+function getDataCount(id)
+{
+    return viewModel.users().length;
 }
