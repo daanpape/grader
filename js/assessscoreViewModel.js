@@ -77,6 +77,8 @@ function saveProjectScore()
             alert("Saved projectscore to server");
 
             fetchProjectStructure();
+
+            window.location = "/assess/project/" + projectid + "/students"
         }
     });
 }
