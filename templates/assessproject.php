@@ -60,7 +60,7 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: users().length > 0-->
+                    <!-- ko if: 1==1-->
                     <td data-bind="text: tlastname"></td>
                     <!-- /ko -->
 
