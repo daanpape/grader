@@ -95,7 +95,7 @@ function getData(id)
         });
     });
 
-    return viewModel.users();
+    return viewModel.users().length;
 }
 
 function getDataCount(id)
