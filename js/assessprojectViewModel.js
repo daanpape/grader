@@ -28,11 +28,16 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 //console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+                viewModel.assassedUsers.push(getData(item.id));
             });
+
+            console.log(viewModel.assassedUsers().length);
         });
     };
 
     gvm.users = ko.observableArray([]);
+
+    gvm.assassedUsers = ko.observableArray([]);
 
     gvm.tabledata = ko.observableArray([]);
 
@@ -90,13 +95,11 @@ function getData(id)
         data.forEach(function(element)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
-
         });
     });
 }
 
 function getDataCount(id)
 {
-    getData(id)
     return viewModel.users().length;
 }
