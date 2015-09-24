@@ -74,11 +74,12 @@ function saveProjectScore()
         data: ko.toJSON(viewModel.competences),
         success: function(){
             // TODO make multilangual and with modals
-            alert("Saved projectscore to server");
+            alert("worked");
+            //alert("Saved projectscore to server");
 
-            console.log("worked")
-            window.location = "/assess/project/" + projectid + "/students"
-            console.log("redirected")
+            console.log("worked");
+            window.location = "/assess/project/" + projectid + "/students";
+            console.log("redirected");
             //fetchProjectStructure();
 
         }
