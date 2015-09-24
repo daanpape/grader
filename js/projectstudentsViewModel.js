@@ -101,6 +101,6 @@ function initPage() {
         var string = url.split("/");
         var current  = string[3];
         console.log(string);
-        //window.location.href = "http://" + string[2] + "/project/" + data['id'];
+        window.location.href = "http://" + string[2] + "/" + string[3] + "/" + string[5] + "/completeness";
     });
 }
