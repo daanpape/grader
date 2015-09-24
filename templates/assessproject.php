@@ -60,12 +60,7 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: getDataCount(tid) === 0 -->
-                    <td data-bind="text: getDataCount(tid)"></td>
-                    <!-- /ko -->
-                    <!-- ko if: getDataCount(tid) >= 1 -->
-                    <td>++</td>
-                    <!-- /ko -->
+                    <p data-bind="value: getData(tid)"></p>
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>

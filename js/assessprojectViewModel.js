@@ -28,7 +28,6 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 //console.log(item);
                 //var items = getData(item.id);
-                getData(item.id);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
             });
         });
@@ -96,7 +95,6 @@ function getData(id)
         });
     });
 
-    console.log(viewModel.users());
     return viewModel.users();
 }
 
