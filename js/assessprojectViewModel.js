@@ -28,12 +28,16 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 //console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
-                getData(item.id);
+                viewModel.assassedUsers.push(getData(item.id));
             });
+
+            console.log(viewModel.assassedUsers());
         });
     };
 
     gvm.users = ko.observableArray([]);
+
+    gvm.assassedUsers = ko.observableArray([]);
 
     gvm.tabledata = ko.observableArray([]);
 
