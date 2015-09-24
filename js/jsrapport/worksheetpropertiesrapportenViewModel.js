@@ -10,9 +10,8 @@ function pageViewModel(gvm) {
     gvm.formmethod = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormMethod");}, gvm);
     gvm.formmodules = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormModules");}, gvm);
     gvm.formscore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormScore");}, gvm);
-    gvm.formassesschoose = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessChoose");}, gvm);
-    gvm.formassesscustom = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessCustom");}, gvm);
     gvm.formassessnone = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessNone");}, gvm);
+    gvm.formassesscustom = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("FormAssessCustom");}, gvm);
     
     gvm.userId = null;
     gvm.availableModules = ko.observableArray([]);
@@ -55,34 +54,32 @@ function pageViewModel(gvm) {
 }
 
 function addWorksheetProperties(serialData, wid, collection, assessMethod, callback) {
-    if (assessMethod === "Choose...") {
-        callback(true, i18n.__('AssessMethodError'));
-    } else {
-        $.ajax({
-            url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
-            type: "PUT",
-            data: serialData,
-            success: function(data) {
-                console.log(data);
-                callback(false);
-            },
-            error: function(data) {
-                callback(true, i18n.__('AssessGeneralError'));
-            }
-        });
-        $.ajax({
-            url: "/api/worksheetmodules",
-            type: "POST",
-            data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
-            success: function(data) {
-                console.log(data);
-                callback(false);
-            },
-            error: function(data) {
-                callback(true, i18n.__('AssessGeneralError'));
-            }
-        });
-    }
+    //properties ajax post
+    $.ajax({
+        url: "/api/worksheetproperties/" + wid + "/" + assessMethod,
+        type: "PUT",
+        data: serialData,
+        success: function(data) {
+            console.log(data);
+            callback(false);
+        },
+        error: function(data) {
+            callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
+    //modules ajax post
+    $.ajax({
+        url: "/api/worksheetmodules",
+        type: "POST",
+        data: {id: wid, modules: collection[0], competences: collection[1], criteria: collection[2]},
+        success: function(data) {
+            console.log(data);
+            callback(false);
+        },
+        error: function(data) {
+            callback(true, i18n.__('AssessGeneralError'));
+        }
+    });
 }
 
 function makeChecklist() {

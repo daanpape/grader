@@ -129,9 +129,8 @@
     "FormScore" : "Beoordelingsmethode",
     "FormWorksheet" : "Werkfiche",
     "FormDate" : "Datum",
-    "FormAssessChoose" : "Kies...",
-    "FormAssessCustom" : "Aangepast",
     "FormAssessNone" : "Geen",
+    "FormAssessCustom" : "Aangepast",
     "AssessMethodError" : "Je moet een beoordelingsmethode kiezen",
     "AssessGeneralError" : "Data kon niet verstuurd worden",
 
