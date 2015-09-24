@@ -100,8 +100,8 @@ $location = "assessscore";
             background: -o-linear-gradient(right, red, lawngreen); /* For Opera 11.1 to 12.0 */
             background: -moz-linear-gradient(left, red, lawngreen); /* For Firefox 3.6 to 15 */
             background: linear-gradient(right, red, lawngreen); /* Standard syntax */
-            -webkit-border-radius:15px;
-            -moz-border-radius:5px;
+            -webkit-border-radius:50px;
+            -moz-border-radius:25px;
             background-repeat: no-repeat;
         }
 
