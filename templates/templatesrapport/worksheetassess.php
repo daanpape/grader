@@ -56,11 +56,11 @@
                         <div class="formgroup">
                             <label data-bind="text: formmodules"></label>
                             <ul data-bind="foreach: modules">              <!-- modules -->
-                                <li data-bind="value: modname">
+                                <li data-bind="text: modname">
                                     <ul data-bind="foreach: competences">      <!-- competences -->
-                                        <li data-bind="value: comname"></li>
+                                        <li data-bind="text: comname"></li>
                                         <ul data-bind="foreach: criterias">         <!-- criteria -->
-                                            <li data-bind="value: critname"></li>
+                                            <li data-bind="text: critname"></li>
                                         </ul>
                                     </ul>
                                 </li>
