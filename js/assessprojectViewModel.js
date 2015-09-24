@@ -96,6 +96,8 @@ function getData(id)
             viewModel.users.push(element.firstname + " " + element.lastname);
         });
     });
+
+    return viewModel.users();
 }
 
 function getDataCount(id)
