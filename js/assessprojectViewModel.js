@@ -91,7 +91,7 @@ function getData(id)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
 
-            console.log(viewModel.users.length);
+            console.log(viewModel.users().length);
         });
 
     });
