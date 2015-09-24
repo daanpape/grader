@@ -88,15 +88,17 @@
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
                                 <ul data-bind="foreach: modules">              <!-- modules -->
-                                    <li data-bind="text: modname">
+                                    <li data-bind="text: modname"></li>
+                                    <li>
                                         <ul data-bind="foreach: competences">      <!-- competences -->
-                                            <li data-bind="text: comname">
+                                            <li data-bind="text: comname"></li>
+                                            <li>
                                                 <ul data-bind="foreach: criterias">         <!-- criteria -->
                                                     <li data-bind="text: critname"></li>
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> 
                                 </ul>
                             </div>
                         </div>
