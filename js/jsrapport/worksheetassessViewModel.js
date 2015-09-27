@@ -139,7 +139,8 @@ function initPage() {
         var scores = getScores();
         var worksheetScore = $('#sheetscore').text();
         var user = $('#storage').text();
-        addWorksheetScores(date, scores, worksheetScore, wid, user);
+        //addWorksheetScores(date, scores, worksheetScore, wid, user);    NEEDS REWORK DUE TO CHANGES IN PHP FILE
+        console.log(scores);
     });
     
     $('#date').datepicker();
