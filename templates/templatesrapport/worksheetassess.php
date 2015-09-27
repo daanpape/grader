@@ -71,6 +71,9 @@
                 margin-bottom: 2px;
                 margin-left: 12%;
             }
+            div#dropdown {
+                
+            }
         </style>
         
         <?php include_once('templates/hddepends.php');  ?>
@@ -99,18 +102,22 @@
                         <div class="formgroup">
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
-                                <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
+                                <ul data-bind="foreach: modules" id="modules">              <!-- modules -->      <!-- POSITION: ABSOLUTE VOOR DE DROPDOWNS! -->
                                     <li>
                                         <span data-bind="text: modname"></span>
-                        <!--------->    <div class="dropdown col-md-2">
-                                            <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                <span class="text-center" id="sheetscore">Choose...</span>
-                                                <span class="pull-right caret-down caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
-                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
-                                            </ul>
-                        <!--------->    </div>
+                                        
+                                        <div id="dropdown">
+                            <!--------->    <div class="dropdown col-md-2">
+                                                <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                    <span class="text-center" id="sheetscore">Choose...</span>
+                                                    <span class="pull-right caret-down caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                                </ul>
+                            <!--------->    </div>
+                                        </div>
+                        
                                     </li>
                     
                                     
