@@ -74,10 +74,10 @@
             #dropdownContainer {
                 display: inline-block;
                 vertical-align: top;
+                float: right;
             }
             #dropdown {
                 position: absolute;
-                float: right;
             }
         </style>
         
