@@ -71,8 +71,13 @@
                 margin-bottom: 2px;
                 margin-left: 12%;
             }
-            div#dropdown {
-                
+            #dropdownContainer {
+                display: inline-block;
+                vertical-align: top;
+            }
+            #dropdown {
+                position: absolute;
+                float: right;
             }
         </style>
         
@@ -106,8 +111,8 @@
                                     <li>
                                         <span data-bind="text: modname"></span>
                                         
-                                        <div id="dropdown">
-                            <!--------->    <div class="dropdown col-md-2">
+                                        <div id="dropdownContainer">
+                            <!--------->    <div class="dropdown col-md-2" id="dropdown">
                                                 <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
                                                     <span class="text-center" id="sheetscore">Choose...</span>
                                                     <span class="pull-right caret-down caret"></span>
