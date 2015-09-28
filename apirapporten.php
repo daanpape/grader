@@ -251,7 +251,7 @@ Class RapportAPI {
         }
         foreach($critscores as $critscore) {
             $crid = rapportenDAO::getWorksheetCriteria($wid, $critscore->critid);
-            rapportenDAO::assessCriteria($crid, $userid, $critscores->score);
+            rapportenDAO::assessCriteria($crid, $userid, $critscore->score);
         }
     }
 

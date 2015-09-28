@@ -61,7 +61,7 @@ function pageViewModel(gvm) {
                     fillArray(array);
                     break;
                 default:
-                    //input field
+                    //input field of slider?
                     break;
             }
         });
@@ -139,16 +139,7 @@ function initPage() {
         var scores = getScores();
         var worksheetScore = $('#sheetscore').text();
         var user = $('#storage').text();
-        //addWorksheetScores(date, scores, worksheetScore, wid, user);    NEEDS REWORK DUE TO CHANGES IN PHP FILE
-        $.each(scores[0], function(i, item) {
-            console.log(item.modid + ": " + item.score);
-        });
-        $.each(scores[1], function(i, item) {
-            console.log(item.comid + ": " + item.score);
-        });
-        $.each(scores[2], function(i, item) {
-            console.log(item.critid + ": " + item.score);
-        });
+        addWorksheetScores(date, scores, worksheetScore, wid, user);
     });
     
     $('#date').datepicker();
