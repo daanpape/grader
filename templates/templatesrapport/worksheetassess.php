@@ -181,7 +181,7 @@
                             </div>
                         </div>
                         
-                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                        <input id="submit" value="Save" class="btn btn-primary" />               <!-- type="submit" -->
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>
                 </div>
