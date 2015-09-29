@@ -1,5 +1,5 @@
 <?php
-$location = "jsrapport/worksheetrapporten";
+$location = "jsrapport/studentmanagementrapporten";
 ?>
 
 <!DOCTYPE html>
