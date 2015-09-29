@@ -61,7 +61,7 @@ function pageViewModel(gvm) {
                     fillArray(array);
                     break;
                 default:
-                    //input field
+                    //input field of slider?
                     break;
             }
         });
