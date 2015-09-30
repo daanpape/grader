@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
 
     //get all students
     function getAllStudents() {
+        alert("hier");
         students = [];
         studentsid = [];
         $.getJSON('/api/allstudents', function(data) {
