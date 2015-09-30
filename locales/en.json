@@ -145,5 +145,10 @@
     "AdminPermissionPage" : "Permissions",
     "AdminUsersPage" : "Users",
     "AdminPage" : "Home",
-    "NextPage" : "Next"
+    "NextPage" : "Next",
+
+    "courseID" : "CourseID",
+    "courseName" : "Name",
+    "volgStatus" : "Status",
+    "courseAction" : "Actions"
 }

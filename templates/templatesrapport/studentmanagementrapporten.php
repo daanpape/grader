@@ -31,10 +31,10 @@ $location = "jsrapport/studentmanagementrapporten";
     <table class="table table-striped">
         <thead>
         <tr>
-            <th data-bind="text: werkficheID">Course ID</th>
-            <th data-bind="text: werkficheName">Name</th>
-            <th data-bind="text: werkficheName">Status</th>
-            <th data-bind="text: werkficheAction">Actions</th>
+            <th data-bind="text: courseID">Course ID</th>
+            <th data-bind="text: courseName">Name</th>
+            <th data-bind="text: volgStatus">Status</th>
+            <th data-bind="text: courseAction">Actions</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: tabledata">
