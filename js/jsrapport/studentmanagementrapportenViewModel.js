@@ -1,3 +1,8 @@
+var userid;
+//arrays gebruikt voor autocompletes en selecteren waarde hiervan.
+var students = [];
+var studentsid = [];
+
 // View model for the page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
