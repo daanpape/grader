@@ -62,23 +62,6 @@ function pageViewModel(gvm) {
         gvm.tabledata.removeAll();
     }
 
-    gvm.saveLastSelectedDropdown = function() {
-        console.log("SaveLast dropdowns opgeroepen");
-        data = {};
-        data["user"] = gvm.userId;
-        data["course"] = $(".btn-courseRapport span:first").text();
-        data["courseid"] = gvm.currentCourseId;
-
-        $.ajax({
-            type: "POST",
-            url: "/api/savedropdownsRapportWorksheet",
-            data: data,
-            success: function() {
-                console.log("success");
-            }
-        })
-
-    }
 }
 
 function getAllTeachers() {
@@ -91,104 +74,6 @@ function getAllTeachers() {
         });
     });
     return teachers;
-}
-
-function addNewWorksheet(serialData, courseid, callback) {
-    $.ajax({
-        url: "/api/addworksheet/" + courseid,
-        type: "POST",
-        data: serialData,
-        success: function(data) {
-            callback(true);
-            window.location = "/api/worksheet/" + data['id'] + "/" + data['name'] + '/' + courseid;
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}
-
-function updateWorksheet(id, serialData, callback) {
-    $.ajax({
-        url: "/api/updateworksheet/" + id,
-        type: "PUT",
-        data: serialData,
-        success: function(data) {
-            loadTablePage(1);
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}
-
-function copyTableItem(id, tblObject) {
-    /*showYesNoModal("Bent u zeker dat u dit item wil kopiëren? ", function(val){
-        if(val){
-            $.ajax({
-                url: "/api/coursecopy/" + id,
-                type: "post"
-
-            });
-        }
-    });*/
-}
-
-function deleteTableItem(id, tblOject) {
-    showYesNoModal("Bent u zeker dat u dit item wil verwijderen? \r\n Let op: verwijderde items blijven in het systeem en kunnen weer actief gezet worden door een administrator. \r\n Gelieve de administrator te contacteren om een vak definitief te verwijderen.", function(val){
-        if(val){
-            $.ajax({
-                url: "/api/deleteworksheet/" + id,
-                type: "DELETE",
-                success: function() {
-                    viewModel.tabledata.remove(tblOject);
-                }
-            });
-        }
-    });
-}
-
-function showNewWorksheetModal() {
-    resetGeneralModal();
-    setGeneralModalTitle(i18n.__("AddNewWorksheet"));
-    setGeneralModalBody('<form id="newworksheetform"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name"> \
-            </div> \
-            </form>' );
-
-    addGeneralModalButton(i18n.__("AddBtn"), function(){
-       addNewWorksheet($('#newworksheetform').serialize(), viewModel.currentCourseId, function(result){
-            hideModal();
-        });
-    });
-
-    showGeneralModal();
-}
-
-function showEditWorksheetModal(id, name)
-{
-    resetGeneralModal();
-    setGeneralModalTitle(i18n.__("EditWorksheet"));
-    setGeneralModalBody('<form id="updateworksheetform"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" " name="name" value="' + name + '"> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateWorksheet(id, $('#updateworksheetform').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
 }
 
 function loadTablePage(pagenr)
