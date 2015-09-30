@@ -31,7 +31,7 @@ $location = "jsrapport/studentmanagementrapporten";
     <table class="table table-striped">
         <thead>
         <tr>
-            <th data-bind="text: courseID">Course ID</th>
+            <th >Course ID</th>
             <th data-bind="text: courseName">Name</th>
             <th data-bind="text: volgStatus">Status</th>
             <th data-bind="text: courseAction">Actions</th>
