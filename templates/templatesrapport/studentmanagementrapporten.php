@@ -14,16 +14,16 @@ $location = "jsrapport/studentmanagementrapporten";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" data-bind="text: app">Worksheets</h1>
+    <h1 class="page-header" data-bind="text: app">Student Management</h1>
 </div>
 
 <!-- Content container -->
 <div class="container">
-    <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
+    <div class="big-info"><span data-bind="text: selectCourse">Select student</span>:</div>
     <div class="row">
         <div class="dropdown col-md-4">
             <button class="btn btn-wide btn-default btn-courseRapport dropdown-toggle" type="button" id="courseRapport" data-toggle="dropdown" aria-expanded="true">
-                <span class="text-center">Course</span>
+                <span class="text-center">Student</span>
                 <span class="pull-right caret-down caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="courseRapport" data-bind="foreach: availableCourses" id="testcliker">
@@ -38,14 +38,16 @@ $location = "jsrapport/studentmanagementrapporten";
     <table class="table table-striped">
         <thead>
         <tr>
-            <th data-bind="text: werkficheID">Werkfiche ID</th>
+            <th data-bind="text: werkficheID">Course ID</th>
             <th data-bind="text: werkficheName">Name</th>
+            <th data-bind="text: werkficheName">Status</th>
             <th data-bind="text: werkficheAction">Actions</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: tabledata">
         <tr>
             <td data-bind="text: tid">--</td>
+            <td data-bind="text: tname">--</td>
             <td data-bind="text: tname">--</td>
             <td>
                 <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
