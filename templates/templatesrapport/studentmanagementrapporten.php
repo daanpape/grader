@@ -22,7 +22,7 @@ $location = "jsrapport/studentmanagementrapporten";
     <div class="row">
         <div class="dropdown col-md-4">
             <label>Student name:</label> <input id="studentsComplete" name="studentname" class="coursesInputField" />
-        </div><p id="errormessage" class="text-danger">*</p>
+        </div>
     </div>
 </div>
 
