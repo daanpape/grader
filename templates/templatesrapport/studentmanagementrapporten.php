@@ -63,10 +63,6 @@ $location = "jsrapport/studentmanagementrapporten";
         <li class="pager-nr-btn"><a href="#">5</a></li>
         <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
     </ul>
-
-    <button type="button" class="btn btn-default pagination-button" id="addWorksheetBtn">
-        <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-    </button>
 </div>
 
 <?php include_once('templates/jsdepends.php') ?>
