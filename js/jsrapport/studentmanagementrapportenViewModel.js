@@ -14,16 +14,23 @@ function pageViewModel(gvm) {
     gvm.volgStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("volgStatus");}, gvm);
     gvm.courseAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("courseAction");}, gvm);
 
+    //get all students
+    function getAllStudents() {
+        students = [];
+        studentsid = [];
+        $.getJSON('/api/allstudents', function(data) {
+            $.each(data, function(i, item) {
+                students.push(item.firstname + " " + item.lastname);
+                studentsid.push(item.id);
+            });
+        });
+        return students;
+    }
+
     function initPage() {
         $("#errormessage").hide();
-        $('#addWorksheetBtn').click(function () {
-            if (viewModel.currentCourseId === undefined || viewModel.currentCourseId === null) {
-                $("#errormessage").show();
-            } else {
-                showNewWorksheetModal();
-                $("#errormessage").hide();
-            }
-        });
+
+        $('#studentsComplete').autocomplete({ source: getAllStudents() });
 
         $.getJSON('/api/currentuser', function (data) {
             viewModel.userId = data.id;
