@@ -22,10 +22,6 @@ $location = "jsrapport/studentmanagementrapporten";
     <div class="big-info"><span data-bind="text: selectCourse">Select student</span>:</div>
     <div class="row">
         <div class="dropdown col-md-4">
-            <button class="btn btn-wide btn-default btn-courseRapport dropdown-toggle" type="button" id="courseRapport" data-toggle="dropdown" aria-expanded="true">
-                <span class="text-center">Student</span>
-                <span class="pull-right caret-down caret"></span>
-            </button>
             <label>Student name:</label> <input id="teachersComplete" name="teachername" class="coursesInputField" />
         </div><p id="errormessage" class="text-danger">*</p>
     </div>
