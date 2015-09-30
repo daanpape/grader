@@ -81,6 +81,18 @@ function pageViewModel(gvm) {
     }
 }
 
+function getAllTeachers() {
+    teachers = [];
+    teachersid = [];
+    $.getJSON('/api/getteacherrapport', function(data) {
+        $.each(data, function(i, item) {
+            teachers.push(item.firstname + " " + item.lastname);
+            teachersid.push(item.id);
+        });
+    });
+    return teachers;
+}
+
 function addNewWorksheet(serialData, courseid, callback) {
     $.ajax({
         url: "/api/addworksheet/" + courseid,
