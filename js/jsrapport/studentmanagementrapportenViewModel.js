@@ -46,6 +46,7 @@ function pageViewModel(gvm) {
 
         //$('#studentsComplete').autocomplete({ source: getAllStudents() });
         $('#studentsComplete').autocomplete({ source: getAllTeachers() });
+        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
 
         $.getJSON('/api/currentuser', function (data) {
             viewModel.userId = data.id;
