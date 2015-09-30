@@ -15,7 +15,6 @@ function pageViewModel(gvm) {
     gvm.courseAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("courseAction");}, gvm);
 
     //get all students
-    /*
     function getAllStudents() {
         students = [];
         studentsid = [];
@@ -27,26 +26,11 @@ function pageViewModel(gvm) {
         });
         return students;
     }
-    */
-
-    function getAllTeachers() {
-        teachers = [];
-        teachersid = [];
-        $.getJSON('/api/getteacherrapport', function(data) {
-            $.each(data, function(i, item) {
-                teachers.push(item.firstname + " " + item.lastname);
-                teachersid.push(item.id);
-            });
-        });
-        return teachers;
-    }
 
     function initPage() {
         $("#errormessage").hide();
 
-        //$('#studentsComplete').autocomplete({ source: getAllStudents() });
-        $('#studentsComplete').autocomplete({ source: getAllTeachers() });
-        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+        $('#studentsComplete').autocomplete({ source: getAllStudents() });
 
         $.getJSON('/api/currentuser', function (data) {
             viewModel.userId = data.id;
