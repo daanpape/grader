@@ -19,7 +19,6 @@ $location = "jsrapport/studentmanagementrapporten";
 
 <!-- Content container -->
 <div class="container">
-    <div class="big-info"><span data-bind="text: selectStudent">Select student</span>:</div>
     <div class="row">
         <div class="dropdown col-md-4">
             <label>Student name:</label> <input id="teachersComplete" name="teachername" class="coursesInputField" />
