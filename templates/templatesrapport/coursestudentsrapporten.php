@@ -45,4 +45,42 @@
                             <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
                         </td>
                     </tr>
+                    </tbody>
+                    </table>
+            </div>
 
+            <!-- Pagination and action container -->
+            <div class="container">
+                <!-- Pagination -->
+                <ul class="pagination float_left">
+                    <li id="pager-prev-btn"><a href="#" >&laquo;</a></li>
+                    <li class="pager-nr-btn"><a href="#" >1</a></li>
+                    <li class="pager-nr-btn"><a href="#" >2</a></li>
+                    <li class="pager-nr-btn"><a href="#">3</a></li>
+                    <li class="pager-nr-btn"><a href="#">4</a></li>
+                    <li class="pager-nr-btn"><a href="#">5</a></li>
+                    <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
+                </ul>
+
+                <button type="button" class="btn btn-default pagination-button" id="addCoursemembers">
+                    <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                </button>
+            </div>
+
+        </div>
+        <div id="addGroupForm" class="container">
+            <div class="row" >
+                <label>Teacher name:</label> <input id="teachersComplete" name="teachername" class="coursesInputField" />
+                <br />
+                <label>StudentList:</label> <input id="studentListComplete" name="studentlistname" class="coursesInputField"/>
+                <br />
+                <button id="addGroupBtn" class="btn btn-default">Add</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <?php include_once('templates/jsdepends.php') ?>
+</body>
+</html>
