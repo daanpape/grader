@@ -1,3 +1,6 @@
+var students = [];
+var studentsid = [];
+
 //viewmodel for the assess page
 function pageViewModel(gvm) {
     // Page specific i18n bindings
