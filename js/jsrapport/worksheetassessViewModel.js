@@ -139,7 +139,12 @@ function initPage() {
         var scores = getScores();
         var worksheetScore = $('#sheetscore').text();
         var user = $('#storage').text();
-        addWorksheetScores(date, scores, worksheetScore, wid, user);
+        //addWorksheetScores(date, scores, worksheetScore, wid, user);
+        
+        //modscores:
+        $.each(scores[0], function(i, item) {
+            console.log(item.modid + ': ' + item.score);
+        });
     });
     
     $('#date').datepicker();
