@@ -211,6 +211,7 @@ function deleteTableItem(id, tblOject) {
 }
 
 function initPage() {
+    console.log("initpage");
     $('#addGroupForm').hide();
     
     $('#addCoursemembers').click(function() {
