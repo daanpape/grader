@@ -38,13 +38,10 @@ $location = "jsrapport/studentmanagementrapporten";
         </thead>
         <tbody data-bind="foreach: tabledata">
         <tr>
-            <td data-bind="text: tid">--</td>
+            <td data-bind="text: tcode">--</td>
             <td data-bind="text: tname">--</td>
-            <td data-bind="text: tname">--</td>
+            <td data-bind="">--</td>
             <td>
-                <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
-                <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
             </td>
         </tr>
         </tbody>
