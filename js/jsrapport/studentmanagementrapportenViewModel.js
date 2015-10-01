@@ -30,7 +30,7 @@ function pageViewModel(gvm) {
             event.stopPropagation();
         });
     }
-    
+
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
