@@ -24,12 +24,13 @@ function pageViewModel(gvm) {
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
-        $('#removebtn-' + id).bind('click', function(event, data){
+        $('#removebtn-' + id).bind('click', function (event, data) {
             // Delete the table item
             deleteTableItem(id, tblOject);
             event.stopPropagation();
         });
-
+    }
+    
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
