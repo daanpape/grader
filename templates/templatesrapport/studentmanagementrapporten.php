@@ -5,7 +5,7 @@ $location = "jsrapport/studentmanagementrapporten";
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
 <head>
-    <?php include_once('templates/hddepends.php') ?>
+
 </head>
 
 <body>
