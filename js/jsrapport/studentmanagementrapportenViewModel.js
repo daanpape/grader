@@ -16,6 +16,10 @@ function pageViewModel(gvm) {
     gvm.courseName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("courseName");}, gvm);
     gvm.volgStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("volgStatus");}, gvm);
     gvm.courseAction = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("courseAction");}, gvm);
+
+    gvm.clearTable = function() {
+        gvm.tabledata.removeAll();
+    }
 }
 
 //get all students
