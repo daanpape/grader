@@ -211,13 +211,13 @@ function deleteTableItem(id, tblOject) {
 }
 
 function initPage() {
-    $('#addGroupForm').hide();
+    //$('#addGroupForm').hide();
     
-    $('#addCoursemembers').click(function() {
+   // $('#addCoursemembers').click(function() {
         $("#addGroupForm").show();
         $('#teachersComplete').autocomplete({ source: getAllTeachers() });
-        $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
-    });
+      //  $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
+    //});
     
     $('#addGroupBtn').click(function() {
          addGroup($('#projectHeader').attr("data-value"), getTeacherid(), getGroupid());
