@@ -210,13 +210,24 @@ function deleteTableItem(id, tblOject) {
     });
 }
 
+function getAllStudents() {
+    students = [];
+    studentsid = [];
+    $.getJSON('/api/allstudents', function(data) {
+        $.each(data, function(i, item) {
+            students.push(item.firstname + " " + item.lastname);
+            studentsid.push(item.id);
+        });
+    });
+    return students;
+}
+
 function initPage() {
-    console.log("initpage");
     $('#addGroupForm').hide();
     
     $('#addCoursemembers').click(function() {
         $("#addGroupForm").show();
-        $('#teachersComplete').autocomplete({ source: getAllTeachers() });
+        $('#teachersComplete').autocomplete({ source: getAllStudents() });
         $('#studentListComplete').autocomplete({ source: getAllStudentLists() });
     });
     
