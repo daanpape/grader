@@ -31,86 +31,10 @@ function getAllStudents() {
     return students;
 }
 
-function loadTablePage(pagenr,course)
-{
-    console.log('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course);
-    $.getJSON('/api/getWorkficheCourseUser/page/' + pagenr + '/' + viewModel.currentStudentId + '/' + course, function(data){
-
-        /* Clear current table page */
-        viewModel.clearTable();
-
-        // Load table data
-        $.each(data.data, function(i, item) {
-            console.log(item);
-            viewModel.addTableData(item.id, item.Name , item.datum, item.score);
-        });
-
-        //TODO pagers doen werken
-        //Momenteel wordt enkel alles geselecteerd met LIMIT 0,20
-        //Maar de pagers zelf blijven dissabled waardoor het ook niet mogelijk is LIMIT 21,40 op te vragen.
-        /* Let previous en next buttons work */
-
-
-        if(data.prev == "none"){
-            $('#pager-prev-btn').addClass('disabled');
-        } else {
-            $('#pager-prev-btn').removeClass('disabled');
-            $('#pager-prev-btn a').click(function(){
-                loadTablePage(data.prev,viewModel.currentCourseId);
-            });
-        }
-
-        if (data.next == "none"){
-            $('#pager-next-btn').addClass('disabled');
-        } else {
-            $('#pager-next-btn').removeClass('disabled');
-            $('#pager-next-btn a').click(function(){
-                loadTablePage(data.next,viewModel.currentCourseId);
-            });
-        }
-
-        // Number of pager buttons
-        var numItems = $('.pager-nr-btn').length;
-
-
-        /* Calculate for the pager buttons */
-        var lowPage = Math.floor(pagenr/numItems) + 1;
-
-
-        $('.pager-nr-btn').each(function() {
-            /* calculate current page number */
-            var thispagenr = lowPage++;
-
-            /* Add the page number */
-            $(this).html('<a href="#">' + thispagenr + '</a>');
-
-            /* Add active class to current page */
-            if(thispagenr == pagenr) {
-                $(this).addClass('active');
-            } else {
-                $(this).removeClass('active');
-            }
-
-            /* Disable inactive classes and bind handlers to active classes */
-            if(thispagenr > data.pagecount) {
-                $(this).addClass('disabled');
-            } else {
-                /* Add click listener for button */
-                $(this).click(function() {
-                    loadTablePage(thispagenr,viewModel.currentCourseId);
-                });
-            }
-        });
-    });
-}
-
 function initPage() {
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
-        viewModel.updateDropdowns();
     });
-    
-        $('#studentsComplete').autocomplete({ source: getAllWorksheets() });
 
-
+        $('#studentsComplete').autocomplete({ source: getAllStudents() });
 }
