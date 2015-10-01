@@ -33,6 +33,7 @@ function pageViewModel(gvm) {
     }
 
     function initPage() {
+        console.log("loadpage");
         $("#errormessage").hide();
 
         $('#studentsComplete').autocomplete({ source: getAllStudents() });
