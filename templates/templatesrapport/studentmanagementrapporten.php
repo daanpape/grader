@@ -43,6 +43,7 @@ $location = "jsrapport/studentmanagementrapporten";
             <td data-bind="text: tname">--</td>
             <td data-bind="">--</td>
             <td></td>
+            
             <td>
                 <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
                 <a data-bind="attr:{'href': '/api/coursemodule/' + tid + '/' + tname}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
