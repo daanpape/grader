@@ -34,6 +34,7 @@ $location = "jsrapport/studentmanagementrapporten";
             <th data-bind="text: courseName">Name</th>
             <th data-bind="text: volgStatus">Status</th>
             <th data-bind="text: courseAction">Actions</th>
+            <th data-bind="text: actionTableTitle">Tempary</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: tabledata">
@@ -41,7 +42,13 @@ $location = "jsrapport/studentmanagementrapporten";
             <td data-bind="text: tcode">--</td>
             <td data-bind="text: tname">--</td>
             <td data-bind="">--</td>
+            <td></td>
             <td>
+                <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
+                <a data-bind="attr:{'href': '/api/coursemodule/' + tid + '/' + tname}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
+                <a data-bind="attr:{'href': '/api/coursestudents/' + tid + '/' + tname}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
+                <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
             </td>
         </tr>
         </tbody>

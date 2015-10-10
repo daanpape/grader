@@ -24,9 +24,23 @@ function pageViewModel(gvm) {
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
-        $('#removebtn-' + id).bind('click', function (event, data) {
+        $('#removebtn-' + id).bind('click', function(event, data){
             // Delete the table item
             deleteTableItem(id, tblOject);
+            event.stopPropagation();
+        });
+
+        // Attach edit handler to edit button
+        $('#editbtn-' + id).bind('click', function(event, data){
+            // Edit the table item
+            showEditCourseModal(code, name, desc, id);
+            event.stopPropagation();
+        });
+
+        // Attach copy handler to copy button
+        $('#copybtn-' + id).bind('click', function(event, data){
+            // Delete the table item
+            copyTableItem(id, tblOject);
             event.stopPropagation();
         });
     }
