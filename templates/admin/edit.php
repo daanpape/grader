@@ -140,8 +140,10 @@ require_once('templates/header.php');
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><span class="navspan" onclick="setLang('en')">English</span></li>
-                            <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                            <li><span class="navspan">Guest</span></li>
+                            <li><span class="navspan">Student</span></li>
+                            <li><span class="navspan">User</span></li>
+                            <li><span class="navspan">Superuser</span></li>
                         </ul>
                     </li>
                 </ul>
