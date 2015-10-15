@@ -1406,7 +1406,24 @@ class UserDAO {
             $stmt->execute(array($studentlist));
             $students = $stmt->fetchAll();
             $returnData = array();
-            /*foreach($students as $student)
+            foreach($students as $student)
+            {
+                $studentData = new stdClass();
+                $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
+                $stmt->execute(array($student->student));
+                $data = $stmt->fetchAll();
+                array_push($returnData,$data);
+            }
+
+            return $returnData;
+        } catch (PDOException $err) {
+            Logger::logError('Could not select students from project', $err);
+            return null;
+        }
+    }
+
+    /*
+     * foreach($students as $student)
             {
                 $studentData = new stdClass();
                 $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
@@ -1421,14 +1438,7 @@ class UserDAO {
                 $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
                 $studentData->assessCount = $data;
                 array_push($returnData,$studentData);
-            }*/
-
-            return $returnData;
-        } catch (PDOException $err) {
-            Logger::logError('Could not select students from project', $err);
-            return null;
-        }
-    }
+     */
 
 }
 
