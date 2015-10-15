@@ -1421,7 +1421,6 @@ class UserDAO {
                 $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
                 $studentData->assessCount = $data;
                 array_push($returnData,$studentData);
-
             }
 
             return $returnData;
