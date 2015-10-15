@@ -109,6 +109,7 @@ function getDataCount(projectid, id)
             viewModel.users.push(element.firstname + " " + element.lastname);
         });
 
+        console.log(viewModel.users().length);
         return viewModel.users().length;
     });
 }
