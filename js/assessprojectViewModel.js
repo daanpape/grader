@@ -107,8 +107,7 @@ function getDataCount(id)
         {
             viewModel.users.push(element.firstname + " " + element.lastname);
         });
-
-        console.log(" ");
+        console.log("hello");
         console.log(viewModel.users().length);
         return viewModel.users().length;
     });
