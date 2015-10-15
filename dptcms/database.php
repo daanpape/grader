@@ -1413,6 +1413,9 @@ class UserDAO {
                 $stmt->execute(array($student['student']));
                 $data = $stmt->fetchAll();
                 $studentData->id = $data[0]['id'];
+                $studentData->firstname = $data[0]['firstname'];
+                $studentData->lastname = $data[0]['lastname'];
+                $studentData->mail = $data[0]['mail'];
                 array_push($returnData,$studentData);
             }
 
