@@ -1394,19 +1394,59 @@ class UserDAO {
 
 
 
-    public static function getStudentListWithNrOfAssessed($pid,$id)
+    public static function getStudentListWithNrOfAssessed($pid)
     {
         try {
+            // id,firstname,lastname, email en assessed
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT students.id, students.mail, students.firstname, students.lastname FROM students JOIN studentlist_students ON students.id = studentlist_students.student JOIN project_studentlist ON studentlist_students.studentlist = project_studentlist.studentlist WHERE project_studentlist.project = :id");
-            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS);
+            $stmt = $conn->prepare("SELECT studentlist FROM project_studentlist WHERE project = ?");
+            $stmt->execute(array($pid));
+            $studentlist = $stmt->fetch(PDO::FETCH_COLUMN,0);
+            $stmt = $conn->prepare("SELECT student FROM studentlist_students WHERE studentlist = ?");
+            $stmt->execute(array($studentlist));
+            $students = $stmt->fetchAll();
+            $returnData = array();
+            foreach($students as $student)
+            {
+                $studentData = new stdClass();
+                $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
+                $stmt->execute(array($student['student']));
+                $data = $stmt->fetchAll();
+                $studentData->id = $data[0]['id'];
+                $studentData->firstname = $data[0]['firstname'];
+                $studentData->lastname = $data[0]['lastname'];
+                $studentData->mail = $data[0]['mail'];
+                $stmt = $conn->prepare("SELECT COUNT(DISTINCT(user)) FROM assess_score WHERE student = ?");
+                $stmt->execute(array($student['student']));
+                $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
+                $studentData->assessCount = $data;
+                array_push($returnData,$studentData);
+            }
+
+            return $returnData;
         } catch (PDOException $err) {
             Logger::logError('Could not select students from project', $err);
             return null;
         }
     }
+
+    /*
+     * foreach($students as $student)
+            {
+                $studentData = new stdClass();
+                $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
+                $stmt->execute(array($student->student));
+                $data = $stmt->fetchAll();
+                $studentData->id = $data->id;
+                $studentData->firstname = $data->firstname;
+                $studentData->lastname = $data->lastname;
+                $studentData->mail = $data->mail;
+                $stmt = $conn->prepare("SELECT COUNT(DISTINCT(user)) FROM assess_score WHERE student = ?");
+                $stmt->execute(array($student->student));
+                $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
+                $studentData->assessCount = $data;
+                array_push($returnData,$studentData);
+     */
 
 }
 
