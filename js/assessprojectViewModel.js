@@ -108,9 +108,8 @@ function getDataCount(id)
             viewModel.users.push(element.firstname + " " + element.lastname);
         });
 
-        //if (viewModel.users().length >=0){
-            console.log(viewModel.users().length);
-        //}
+        console.log(" ");
+        console.log(viewModel.users().length);
         return viewModel.users().length;
     });
 }
