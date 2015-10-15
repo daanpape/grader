@@ -1392,6 +1392,22 @@ class UserDAO {
         }
     }
 
+
+
+    public static function getStudentListWithNrOfAssessed($pid,$id)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT students.id, students.mail, students.firstname, students.lastname FROM students JOIN studentlist_students ON students.id = studentlist_students.student JOIN project_studentlist ON studentlist_students.studentlist = project_studentlist.studentlist WHERE project_studentlist.project = :id");
+            $stmt->bindValue(':id', (int)$id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('Could not select students from project', $err);
+            return null;
+        }
+    }
+
 }
 
 /**

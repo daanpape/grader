@@ -272,6 +272,13 @@ $app->get('/api/project/:id', function($id) use ($app){
     echo json_encode($pagedata);
 });
 
+$app->get('/api/project/:pid/students/:id', function($pid,$id) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    echo json_encode(GraderAPI::getStudentListWithNrOfAssessed($pid,$id));
+});
+
 $app->get('/api/project/:id/students', function($id) use ($app) {
     $response = $app->response();
     $response->header('Content-Type', 'application/json');

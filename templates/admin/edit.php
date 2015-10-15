@@ -34,7 +34,7 @@ require_once('templates/header.php');
                 <ul class="nav" id="side-menu">
                     <li>
                         <a href="/admin/home"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
-                    </li>
+
                     <li>
                         <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-2x"></i> Rechten</span></a>
                     </li>
@@ -122,12 +122,12 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td><select class="form-control">
-                                <option value="guest">Guest</option>
-                                <option value="user">User</option>
-                                <option value="student">Student</option>
-                                <option value="superuser">Superuser</option>
-                            </select>
+                            <td><select class="form-control" id="">
+                                    <option value="guest">Guest</option>
+                                    <option value="user">User</option>
+                                    <option value="student">Student</option>
+                                    <option value="superuser">Superuser</option>
+                                </select>
                             </td>
                         </tr>
                         </tbody>
@@ -145,7 +145,6 @@ require_once('templates/header.php');
         </div>
     </div>
     <!-- /.row -->
-</div>
 <!-- /#page-wrapper -->
 
 </div>
