@@ -1416,7 +1416,11 @@ class UserDAO {
                 $studentData->firstname = $data[0]['firstname'];
                 $studentData->lastname = $data[0]['lastname'];
                 $studentData->mail = $data[0]['mail'];
-                array_push($returnData,$studentData);
+                $stmt = $conn->prepare("SELECT COUNT(DISTINCT(user)) FROM assess_score WHERE student = ?");
+                $stmt->execute(array($student['student']));
+                $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
+                array_push($returnData,$data);
+
             }
 
             return $returnData;
