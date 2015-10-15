@@ -1410,7 +1410,7 @@ class UserDAO {
             {
                 $studentData = new stdClass();
                 $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
-                $stmt->execute(array($student->student));
+                $stmt->execute(array($student['student']));
                 $data = $stmt->fetchAll();
                 array_push($returnData,$data);
             }
