@@ -52,7 +52,9 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: countAssessed};
+        //var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: countAssessed};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, email: email, tcountAssessed: countAssessed};
+
         gvm.tabledata.push(tblOject);
         console.log(tblOject);
     };
