@@ -23,8 +23,14 @@ function pageViewModel(gvm) {
         });
     };
 
+    gvm.getStudentListBis = function() {
+        $.getJSON('/api/project/' + gvm.projectid, function(data) {
+            console.log(data);
+        });
+    };
+
     gvm.getStudentList = function() {
-        $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
+        $.getJSON('/api/project/' + gvm.projectId + '/students/', function(data) {
             $.each(data, function(i, item) {
 
                 $.getJSON('/api/project/' + gvm.projectid  + '/student/' + item.id + '/assessed', function(data)
@@ -71,7 +77,8 @@ function pageViewModel(gvm) {
 
 function initPage() {
     viewModel.getProjectInfo();
-    viewModel.getStudentList();
+    viewModel.getStudentListBis();
+    //viewModel.getStudentList();
 
 }
 
