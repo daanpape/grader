@@ -60,10 +60,11 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: $root.tcountAssessed == 0 -->
+                    <td date-bind="text: tcountAssessed"></td>
+                    <!-- ko if: tcountAssessed == 0 -->
                     <td><img src="../img/check_red.png" alt="" title="red"></td>
                     <!-- /ko -->
-                    <!-- ko if: $root.tcountAssessed > 0 -->
+                    <!-- ko if: tcountAssessed > 0 -->
                     <td><img src="../img/check_orange.png" alt="" title="orange"></td>
                     <!-- /ko -->
 
