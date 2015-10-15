@@ -66,6 +66,9 @@ $location = "assessproject";
                     <!-- ko if: tcountAssessed > 0 -->
                     <td><img src="../img/check_orange.png" alt="" title="orange"></td>
                     <!-- /ko -->
+                    <!-- ko if: 1 === 1 -->
+                    <td><img src="../img/check_orange.png" alt="" title="orange"></td>
+                    <!-- /ko -->
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
