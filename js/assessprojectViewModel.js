@@ -26,7 +26,8 @@ function pageViewModel(gvm) {
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
-                //console.log(item);
+                console.log(gvm.projectId);
+                console.log(item.id);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(gvm.projectId));
                 console.log(getDataCount(gvm.projectId));
                 //viewModel.assassedUsers.push(getData(item.id));
