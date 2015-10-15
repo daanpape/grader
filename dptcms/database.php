@@ -1404,7 +1404,7 @@ class UserDAO {
             $studentlist = $stmt->fetch(PDO::FETCH_COLUMN,0);
             $stmt = $conn->prepare("SELECT student FROM studentlist_students WHERE studentlist = ?");
             $stmt->execute(array($studentlist));
-            $students = $stmt->fetch();
+            $students = $stmt->fetchAll();
             return $students;
         } catch (PDOException $err) {
             Logger::logError('Could not select students from project', $err);
