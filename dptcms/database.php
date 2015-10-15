@@ -824,8 +824,8 @@ class ClassDAO
             $conn = Db::getConnection();
             $stmt = $conn->prepare("INSERT into students (firstname, lastname, mail) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
             foreach ($studentArray as $student) {
-                if ($student[4] != "Titularis") {
-                    $stmt->execute(array($student[1], $student[2], $student[3]));
+                if ($student[3] != "Titularis") {
+                    $stmt->execute(array($student[0], $student[1], $student[2]));
                     $id = $conn->lastInsertId();
                     $stmt2 = $conn->prepare("INSERT into studentlist_students (studentlist, student) VALUES (?, ?)");
                     $stmt2->execute(array($listid, $id));

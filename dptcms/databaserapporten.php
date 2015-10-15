@@ -547,8 +547,7 @@ class rapportenDAO {
             $stmt = $conn->prepare("INSERT INTO werkfiche_module_score_rapport(werkfiche_module, werkfiche_user, score)
                                     VALUES (?,?,?)");
             $stmt->execute(array($sheetmodule, $user, $score));
-            $sid = $conn->lastInsertId();
-            return $sid;
+            return true;
         } catch (PDOException $err) {
             Logger::logError('Could not insert score for module', $err);
             return null;
@@ -561,8 +560,7 @@ class rapportenDAO {
             $stmt = $conn->prepare("INSERT INTO werkfiche_competence_score_rapport(werkfiche_competence, werkfiche_user, score)
                                     VALUES (?,?,?)");
             $stmt->execute(array($sheetcompetence, $user, $score));
-            $sid = $conn->lastInsertId();
-            return $sid;
+            return true;
         } catch (PDOException $err) {
             Logger::logError('Could not insert score for competence', $err);
             return null;
@@ -575,8 +573,7 @@ class rapportenDAO {
             $stmt = $conn->prepare("INSERT INTO werkfiche_criteria_score_rapport(werkfiche_criteria, werkfiche_user, score)
                                     VALUES (?,?,?)");
             $stmt->execute(array($sheetcriteria, $user, $score));
-            $sid = $conn->lastInsertId();
-            return $sid;
+            return true;
         } catch (PDOException $err) {
             Logger::logError('Could not insert score for criteria', $err);
             return null;

@@ -26,36 +26,6 @@ require_once 'dptcms/config.php';
                 <li class="<?php if ($location == 'projects') {
                         echo 'active';
                     } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
-                
-                <!---------- RapportSysteem ---------->
-                
-                <li class="<?php if ($location == 'jsrapport/homerapporten') {
-                    echo 'active';
-                } 
-                ?>" id="homerapporten"> <a href="homerapporten" >Home</a></li>
-                
-                <li class="<?php if ($location == 'jsrapport/assessrapporten') {
-                    echo 'active';
-                } 
-                ?>" id="assessrapporten"> <a href="/assessrapporten" >Assess</a></li>
-                
-                <li class="<?php if ($location == 'jsrapport/coursesrapporten') {
-                    echo 'active';
-                }
-                ?>" id="coursesrapporten"> <a href="/coursesrapporten" >Courses</a></li>
-                                
-                <li class="<?php if ($location == 'jsrapport/worksheetrapporten') {
-                    echo 'active';
-                } 
-                ?>" id="worksheetrapporten"> <a href="/worksheetrapporten" >Worksheets</a></li>
-
-                <li class="<?php if ($location == 'jsrapport/studentmanagementrapporten') {
-                    echo 'active';
-                }
-                ?>" id="studentmanagementrapporten"> <a href="/studentmanagementrapporten" >Student management</a></li>
-
-                <!----------  RapportSysteem ---------->
-                    
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -140,7 +110,6 @@ require_once 'dptcms/config.php';
                 The images must comply to the following restrictions:
             <ul>
                 <li>Maximum file size: <?php echo Config::$fileMaxSize/1024 ?>Mb</li>
-                <li>Supported file types: <?php echo Config::$fileFriendlySupport ?></li>
             </ul>
             </p>
             <form id="uploadform" enctype="multipart/form-data">
@@ -149,7 +118,7 @@ require_once 'dptcms/config.php';
                         <td><span data-bind="text: chooseFiles">Choose images</span>:</td>
                     </tr>
                     <tr>
-                        <td><input type="file" name="files[]" multiple></td>
+                        <td><input type="file" name="files[]"  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" multiple></td>
                         <td><button type="button" class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
                     </tr>
                 </table>

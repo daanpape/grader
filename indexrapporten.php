@@ -17,6 +17,10 @@ $app->get('/worksheetrapporten', function () use ($app) {
     $app->render('templatesrapport/worksheetrapporten.php');
 });
 
+$app->get('/studentmanagementrapporten', function () use ($app) {
+    $app->render('templatesrapport/studentmanagementrapporten.php');
+});
+
 $app->get('/api/coursemodule/:id/:name', function ($id, $name) use($app) {
     $app->render('templatesrapport/modulerapporten.php', array('courseid' => $id, 'coursename' => $name));
 });

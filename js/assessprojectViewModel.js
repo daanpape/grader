@@ -102,15 +102,6 @@ function getData(id)
 
 function getDataCount(id)
 {
-    $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
-    {
-        viewModel.users.removeAll();
-        data.forEach(function(element)
-        {
-            viewModel.users.push(element.firstname + " " + element.lastname);
-        });
-    });
 
-    console.log(viewModel.users().length);
     return viewModel.users().length;
 }
