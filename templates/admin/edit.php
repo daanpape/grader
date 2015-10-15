@@ -122,8 +122,12 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-
-                            </td>
+                            <select>
+                                <option value="guest">Guest</option>
+                                <option value="user">User</option>
+                                <option value="student">Student</option>
+                                <option value="superuser">Superuser</option>
+                            </select>
                         </tr>
                         </tbody>
                 </div>
@@ -136,22 +140,11 @@ require_once('templates/header.php');
         <div class="row">
             <div id="bottom-col" class="col-md-12">
                 <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><span class="navspan">Guest</span></li>
-                            <li><span class="navspan">Student</span></li>
-                            <li><span class="navspan">User</span></li>
-                            <li><span class="navspan">Superuser</span></li>
-                        </ul>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
     <!-- /.row -->
-
+</div>
 <!-- /#page-wrapper -->
 
 </div>
