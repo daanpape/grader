@@ -26,12 +26,10 @@ function pageViewModel(gvm) {
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
-                //console.log(item);
+                console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(item.id));
                 viewModel.assassedUsers.push(getData(item.id));
             });
-
-            console.log(viewModel.assassedUsers());
         });
     };
 
