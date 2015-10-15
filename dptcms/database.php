@@ -1405,7 +1405,25 @@ class UserDAO {
             $stmt = $conn->prepare("SELECT student FROM studentlist_students WHERE studentlist = ?");
             $stmt->execute(array($studentlist));
             $students = $stmt->fetchAll();
-            return $students;
+            $returnData = array();
+            foreach($students as $student)
+            {
+                $studentData = new stdClass();
+                $stmt = $conn->prepare("SELECT id,firstname,lastname,mail FROM students WHERE id = ?");
+                $stmt->execute(array($student['student']));
+                $data = $stmt->fetchAll();
+                $studentData->id = $data['id'];
+                $studentData->firstname = $data['firstname'];
+                $studentData->lastname = $data['lastname'];
+                $studentData->mail = $data['mail'];
+                $stmt = $conn->prepare("SELECT COUNT(DISTINCT(user)) FROM assess_score WHERE student = ?");
+                $stmt->execute(array($student['student']));
+                $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
+                $studentData->assessCount = $data;
+                array_push($returnData,$studentData);
+            }
+
+            return $returnData;
         } catch (PDOException $err) {
             Logger::logError('Could not select students from project', $err);
             return null;
