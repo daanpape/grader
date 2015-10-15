@@ -34,9 +34,6 @@ function pageViewModel(gvm) {
                     {
                         viewModel.users.push(element.firstname + " " + element.lastname);
                     });
-
-                    console.log(viewModel.users().length);
-
                     viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, viewModel.users().length);
                 });
             });
@@ -52,9 +49,9 @@ function pageViewModel(gvm) {
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
-        //var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: countAssessed};
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, email: email, tcountAssessed: countAssessed};
-
+        var data = countAssessed;
+        console.log(data);
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data};
         gvm.tabledata.push(tblOject);
         console.log(tblOject);
     };
