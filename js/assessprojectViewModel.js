@@ -44,6 +44,7 @@ function pageViewModel(gvm) {
         // Push data
         var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: countAssessed};
         gvm.tabledata.push(tblOject);
+        console.log(tblOject);
     };
 
     gvm.clearTable = function() {
@@ -110,4 +111,5 @@ function getDataCount(id)
 
         return viewModel.users().length;
     });
+    return viewModel.users().length;
 }
