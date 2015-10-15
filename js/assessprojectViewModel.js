@@ -26,7 +26,6 @@ function pageViewModel(gvm) {
     gvm.getStudentListBis = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             data.forEach(function(element){
-                viewModel.users.push(element.firstname + " " + element.lastname);
                 viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount);
             });
         });
