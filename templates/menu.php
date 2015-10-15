@@ -110,7 +110,6 @@ require_once 'dptcms/config.php';
                 The images must comply to the following restrictions:
             <ul>
                 <li>Maximum file size: <?php echo Config::$fileMaxSize/1024 ?>Mb</li>
-                <li>Supported file types: <?php echo Config::$fileFriendlySupport ?></li>
             </ul>
             </p>
             <form id="uploadform" enctype="multipart/form-data">
