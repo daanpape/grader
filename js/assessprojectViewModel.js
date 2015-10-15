@@ -27,7 +27,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
                 //console.log(item);
-                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail);
+                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(item.id));
                 viewModel.assassedUsers.push(getData(item.id));
             });
 
@@ -42,9 +42,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, firstname, lastname, email) {
+    gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: countAssessed};
         gvm.tabledata.push(tblOject);
     };
 
@@ -102,6 +102,15 @@ function getData(id)
 
 function getDataCount(id)
 {
+    $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
+    {
+        viewModel.users.removeAll();
+        data.forEach(function(element)
+        {
+            viewModel.users.push(element.firstname + " " + element.lastname);
+        });
+    });
 
+    console.log(viewModel.users().length);
     return viewModel.users().length;
 }
