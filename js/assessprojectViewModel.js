@@ -34,6 +34,8 @@ function pageViewModel(gvm) {
                     {
                         viewModel.users.push(element.firstname + " " + element.lastname);
                     });
+
+                    console.log(viewModel.users().length);
                     viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, viewModel.users().length);
                 });
             });
