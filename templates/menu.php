@@ -119,7 +119,7 @@ require_once 'dptcms/config.php';
                         <td><span data-bind="text: chooseFiles">Choose images</span>:</td>
                     </tr>
                     <tr>
-                        <td><input type="file" name="files[]" multiple></td>
+                        <td><input type="file" name="files[]" acccept=".csv" multiple></td>
                         <td><button type="button" class="btn btn-primary inline" data-bind="text: upload" id="uploadformbtn">Upload</button></td>
                     </tr>
                 </table>
