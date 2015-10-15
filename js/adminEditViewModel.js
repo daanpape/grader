@@ -20,7 +20,7 @@ function pageViewModel(gvm) {
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
-    gvm.checkedRights = ko.observableArray([]);
+    gvm.userRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
     
     gvm.updateUser = function(user)
