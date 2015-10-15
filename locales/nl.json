@@ -143,6 +143,11 @@
     "AdminUsersPage" : "Gebruikers",
     "AdminPage" : "Home",
 
-    "NextPage" : "Volgende"
+    "NextPage" : "Volgende",
+
+    "courseID" : "VakID",
+    "courseName" : "Naam",
+    "volgStatus" : "Status",
+    "courseAction" : "Acties"
 
 }

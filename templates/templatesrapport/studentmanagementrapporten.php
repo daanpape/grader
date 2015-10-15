@@ -1,12 +1,11 @@
 <?php
-$location = "jsrapport/worksheetrapporten";
+$location = "jsrapport/studentmanagementrapporten";
 ?>
 
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
 <head>
-    <?php include_once('templates/hddepends.php');
-    //Connection with local database: include_once('database.php') + Db::getConnection()  ?>
+    <?php include_once('templates/hddepends.php'); ?>
 </head>
 
 <body>
@@ -14,22 +13,15 @@ $location = "jsrapport/worksheetrapporten";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" data-bind="text: app">Worksheets</h1>
+    <h1 class="page-header" data-bind="text: app">Student Management</h1>
 </div>
 
 <!-- Content container -->
 <div class="container">
-    <div class="big-info"><span data-bind="text: selectCourse">Select course</span>:</div>
     <div class="row">
         <div class="dropdown col-md-4">
-            <button class="btn btn-wide btn-default btn-courseRapport dropdown-toggle" type="button" id="courseRapport" data-toggle="dropdown" aria-expanded="true">
-                <span class="text-center">Course</span>
-                <span class="pull-right caret-down caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-courseRapport ul-wide" role="menu" aria-labelledby="courseRapport" data-bind="foreach: availableCourses" id="testcliker">
-                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="attr:{'id': 'coursebtn-' + id}"><span data-bind="text: name"></span></a> </li>
-            </ul>
-        </div><p id="errormessage" class="text-danger">*</p>
+            <label>Student name:</label> <input id="studentsComplete" name="studentname" class="coursesInputField" />
+        </div>
     </div>
 </div>
 
@@ -38,19 +30,26 @@ $location = "jsrapport/worksheetrapporten";
     <table class="table table-striped">
         <thead>
         <tr>
-            <th data-bind="text: werkficheID">Werkfiche ID</th>
-            <th data-bind="text: werkficheName">Name</th>
-            <th data-bind="text: werkficheAction">Actions</th>
+            <th data-bind="text: courseID">Course ID</th>
+            <th data-bind="text: courseName">Name</th>
+            <th data-bind="text: volgStatus">Status</th>
+            <th data-bind="text: courseAction">Actions</th>
+            <th data-bind="text: actionTableTitle">Tempary</th>
         </tr>
         </thead>
         <tbody data-bind="foreach: tabledata">
         <tr>
-            <td data-bind="text: tid">--</td>
+            <td data-bind="text: tcode">--</td>
             <td data-bind="text: tname">--</td>
+            <td data-bind="">--</td>
+            <td></td>
+            
             <td>
                 <span class="glyphicon glyphicon-pencil glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
-                <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
+                <a data-bind="attr:{'href': '/api/coursemodule/' + tid + '/' + tname}"><span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span></a>
+                <a data-bind="attr:{'href': '/api/coursestudents/' + tid + '/' + tname}"><span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span></a>
                 <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                <span class="glyphicon glyphicon-copyright-mark glyphicon-btn" data-bind="attr:{'id': 'copybtn-' + tid}"></span>
             </td>
         </tr>
         </tbody>
@@ -68,10 +67,6 @@ $location = "jsrapport/worksheetrapporten";
         <li class="pager-nr-btn"><a href="#">5</a></li>
         <li id="pager-next-btn"><a href="#" >&raquo;</a></li>
     </ul>
-
-    <button type="button" class="btn btn-default pagination-button" id="addWorksheetBtn">
-        <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-    </button>
 </div>
 
 <?php include_once('templates/jsdepends.php') ?>

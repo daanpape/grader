@@ -33,7 +33,7 @@
                 padding: 0;
                 list-style-type: none;
             }
-            #modules li {
+            #modules>li {
                 display: block;
                 color: #FFF;
                 background-color: #154890;
@@ -45,7 +45,7 @@
                 font-weight: bold;
                 margin-bottom: 2px;
             }
-            #competences li {
+            #competences>li {
                 display: block;
                 color: #FFF;
                 background-color: #6699FF;
@@ -58,7 +58,7 @@
                 margin-bottom: 2px;
                 margin-left: 6%;
             }
-            #criterias li {
+            #criterias>li {
                 display: block;
                 color: #FFF;
                 background-color: #CDBFAC;
@@ -70,6 +70,14 @@
                 font-weight: normal;
                 margin-bottom: 2px;
                 margin-left: 12%;
+            }
+            #dropdownContainer {
+                display: inline-block;
+                vertical-align: top;
+                float: right;
+            }
+            #dropdown {
+                position: absolute;
             }
         </style>
         
@@ -88,7 +96,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form id="worksheetassess" action="/assessrapporten">    <!-- action="/assessrapporten" -->
+                    <form id="worksheetassess" >      <!-- action="/assessrapporten" -->
                         <div class="form-group">
                             <label data-bind="text: formdate"></label><br />
                             <input type="text" id="date" />
@@ -100,22 +108,60 @@
                             <label data-bind="text: formmodules"></label>
                             <div id="list">
                                 <ul data-bind="foreach: modules" id="modules">              <!-- modules -->
-                                    <li data-bind="text: modname">
-                        <!--------->    <div class="dropdown col-md-2">
-                                            <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
-                                                <span class="text-center" id="sheetscore">Choose...</span>
-                                                <span class="pull-right caret-down caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
-                                                <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
-                                            </ul>
-                        <!--------->    </div>
+                                    <li>
+                                        <span data-bind="text: modname"></span>
+                                        
+                      <!--------->      <div id="dropdownContainer">
+                                            <div class="dropdown col-md-2" id="dropdown">
+                                                <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                    <span class="text-center" data-bind="attr:{'id': 'modScore-' + modid}">Choose...</span>
+                                                    <span class="pull-right caret-down caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                    <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                                </ul>
+                                            </div>
+                      <!--------->      </div>
+                        
                                     </li>
                     
+                                    
                                     <ul data-bind="foreach: competences" id="competences">      <!-- competences -->
-                                        <li data-bind="text: comname"></li>
+                                        <li>
+                                            <span data-bind="text: comname"></span>
+                                            
+                          <!--------->      <div id="dropdownContainer">
+                                                <div class="dropdown col-md-2" id="dropdown">
+                                                    <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                        <span class="text-center" data-bind="attr:{'id': 'comScore-' + comid}">Choose...</span>
+                                                        <span class="pull-right caret-down caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                        <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                                    </ul>
+                                                </div>
+                          <!--------->      </div>
+                                            
+                                        </li>
+                                        
+                                        
                                         <ul data-bind="foreach: criterias" id="criterias">         <!-- criteria -->
-                                            <li data-bind="text: critname"></li>
+                                            <li>
+                                                <span data-bind="text: critname"></span>
+                                                
+                              <!--------->      <div id="dropdownContainer">
+                                                    <div class="dropdown col-md-2" id="dropdown">
+                                                        <button class="btn btn-wide btn-default btn-assessScore dropdown-toggle" type="button" id="assessScore" data-toggle="dropdown" aria-expanded="true">
+                                                            <span class="text-center" data-bind="attr:{'id': 'critScore-' + critid}">Choose...</span>
+                                                            <span class="pull-right caret-down caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-assessMethod ul-wide" role="menu" aria-labelledby="assessScore" name="assessScore" data-bind="foreach: viewModel.assessMethod">
+                                                            <li class="li-wide" role="presentation"><a role="menuitem" tabindex="-1" href="#" data-bind="text: score"></a></li>
+                                                        </ul>
+                                                    </div>
+                              <!--------->      </div>
+                                                
+                                            </li>
                                         </ul>
                                     </ul>
                                 </ul>
@@ -135,7 +181,7 @@
                             </div>
                         </div>
                         
-                        <input type="submit" id="submit" value="Save" class="btn btn-primary" />
+                        <input id="submit" value="Save" class="btn btn-primary" />    <!-- type="submit" -->
                         <input type="reset" id="cancel" value="Reset" class="btn btn-default" />
                     </form>
                 </div>
