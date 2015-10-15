@@ -533,6 +533,13 @@ $app->put('/api/studentlist/:id', function($id) use ($app) {
         $id, $app->request->post('name')));
 });
 
+$app->get('/assess/project/img/check_red.png', function($id) use ($app) {
+
+    $image = file_get_contents('/img/check_red.png');
+    $app->response()->header('Content-Type', 'content-type: image/jpg');
+    echo $image;
+});
+
 $app->put('/api/student/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
