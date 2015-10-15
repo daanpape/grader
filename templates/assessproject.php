@@ -50,7 +50,7 @@ $location = "assessproject";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>Status</th>
                     <th data-bind="text: firstNameTableTitle">FirstName</th>
                     <th data-bind="text: lastNameTableTitle">LastName</th>
                     <th data-bind="text: scoreTableTitle">Scores</th>
