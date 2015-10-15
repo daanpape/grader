@@ -26,10 +26,8 @@ function pageViewModel(gvm) {
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
-                console.log(gvm.projectId);
-                console.log(item.id);
-                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(gvm.projectId));
-                console.log(getDataCount(gvm.projectId));
+                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(gvm.projectId, item.id));
+                console.log(getDataCount(gvm.projectId, item.id));
                 //viewModel.assassedUsers.push(getData(item.id));
             });
         });
@@ -101,9 +99,9 @@ function getData(id)
     return viewModel.users();
 }
 
-function getDataCount(id)
+function getDataCount(projectid, id)
 {
-    $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
+    $.getJSON('/api/project/' + projectid  + '/student/' + id + '/assessed', function(data)
     {
         viewModel.users.removeAll();
         data.forEach(function(element)
