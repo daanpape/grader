@@ -133,18 +133,23 @@ require_once('templates/header.php');
     </div>
 
     <div class="container">
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><span class="navspan" onclick="setLang('en')">English</span></li>
-                    <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+        <div class="row">
+            <div id="bottom-col" class="col-md-12">
+                <button class="btn btn-lg savePageBtn pull-right" type="submit">Save</button>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                            <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
     <!-- /.row -->
-</div>
+
 <!-- /#page-wrapper -->
 
 </div>
