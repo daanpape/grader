@@ -62,10 +62,10 @@ $location = "assessproject";
                 <tr>
                     <td date-bind="text: tcountAssessed"></td>
                     <!-- ko if: tcountAssessed == 0 -->
-                    <td><img src="../img/check_red.png" alt="" title="red"></td>
+                    <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red"></td>
                     <!-- /ko -->
                     <!-- ko if: tcountAssessed > 0 -->
-                    <td><img src="../img/check_orange.png" alt="" title="orange"></td>
+                    <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange"></td>
                     <!-- /ko -->
 
                     <td data-bind="text: tfirstname">--</td>
