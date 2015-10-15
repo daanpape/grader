@@ -28,7 +28,8 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 //console.log(item);
                 viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(item.id));
-                viewModel.assassedUsers.push(getData(item.id));
+                console.log(getDataCount(item.id));
+                //viewModel.assassedUsers.push(getData(item.id));
             });
         });
     };
