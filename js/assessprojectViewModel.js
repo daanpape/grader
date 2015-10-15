@@ -26,9 +26,19 @@ function pageViewModel(gvm) {
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             $.each(data, function(i, item) {
-                viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, getDataCount(gvm.projectId, item.id));
-                console.log(getDataCount(gvm.projectId, item.id));
-                //viewModel.assassedUsers.push(getData(item.id));
+
+                $.getJSON('/api/project/' + gvm.projectid  + '/student/' + item.id + '/assessed', function(data)
+                {
+                    viewModel.users.removeAll();
+                    data.forEach(function(element)
+                    {
+                        viewModel.users.push(element.firstname + " " + element.lastname);
+                    });
+
+                    console.log(viewModel.users().length);
+
+                    viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, viewModel.users().length);
+                });
             });
         });
     };
