@@ -1397,11 +1397,15 @@ class UserDAO {
     public static function getStudentListWithNrOfAssessed($pid)
     {
         try {
+            // id,firstname,lastname, email en assessed
             $conn = Db::getConnection();
             $stmt = $conn->prepare("SELECT studentlist FROM project_studentlist WHERE project = ?");
             $stmt->execute(array($pid));
             $studentlist = $stmt->fetch(PDO::FETCH_COLUMN,0);
-            return $studentlist;
+            $stmt = $conn->prepare("SELECT student FROM studentlist_students WHERE studentlist = ?");
+            $stmt->execute(array($studentlist));
+            $students = $stmt->fetch(PDO::FETCH_COLUMN,0);
+            return $students;
         } catch (PDOException $err) {
             Logger::logError('Could not select students from project', $err);
             return null;
