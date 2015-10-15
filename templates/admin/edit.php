@@ -122,7 +122,7 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <select>
+                            <select class="form-control">
                                 <option value="guest">Guest</option>
                                 <option value="user">User</option>
                                 <option value="student">Student</option>
