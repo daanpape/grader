@@ -118,7 +118,8 @@ function getStudentByName(){
     else
     {
         viewModel.tabledata = viewModel.tempTableData.slice(0);
-        viewModel.tabledata = [];
+        viewModel.tabledata = ko.observableArray([]);
+        viewModel.tabledata([]);
     }
 
 
