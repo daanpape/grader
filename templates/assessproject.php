@@ -53,7 +53,6 @@ $location = "assessproject";
                     <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
-                            <span>PDF</span>
                         </a></td>
                 </tr>
             </table>
