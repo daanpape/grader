@@ -127,6 +127,7 @@ function getStudentByName(){
 
         if (item.tfirstname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || item.tlastname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullnameReverse.toLowerCase().contains(viewModel.searchStudent().toLowerCase())){
             data.push(item);
+            console.log(item);
         }
     });
 
