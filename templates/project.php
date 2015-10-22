@@ -83,9 +83,9 @@ $location = "project";
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                             <div class="panel-body">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                        <span>Maximum: <input type="text" placeholder="Maximum" class="form-control form-next"></span>
-                                                        <span>Minimum: <input type="text" placeholder="Minimun" class="form-control form-next"></span>
+                                                    <li>
+                                                        <input type="text" placeholder="Maximum" class="form-control form-next">
+                                                        <input type="text" placeholder="Minimun" class="form-control form-next">
                                                     </li>
                                                 </ul>
                                             </div>
