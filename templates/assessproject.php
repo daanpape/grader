@@ -51,7 +51,10 @@ $location = "assessproject";
             <table class="table table-striped">
                 <tr>
                     <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/'}"><button class="btn"><span class="glyphicon glyphicon-search"></span></button></a></td>
+                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <span>PDF</span>
+                        </a></td>
                 </tr>
             </table>
         </div>
