@@ -113,7 +113,7 @@ function getStudentByName(){
         var object;
 
         if (viewModel.searchStudent().contains(item.tfirstname) || viewModel.searchStudent().contains(item.tlastname)){
-            console.log(item);
+            console.log("success");
         } else {
             console.log("failed");
         }
