@@ -129,6 +129,8 @@ function getStudentByName(){
         }
     });
 
+    console.log(viewModel.tabledata.length);
+
 
 }
 
