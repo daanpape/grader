@@ -131,6 +131,8 @@ function getStudentByName(){
     });
 
     viewModel.tabledata = data;
+
+    console.log(viewModel.tabledata().length);
 }
 
 function getData(id)
