@@ -50,8 +50,8 @@ $location = "assessproject";
         <div class="col-md-12">
             <table class="table table-striped">
                 <tr>
-                    <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
-                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
+                    <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
+                    <td><a href="#" data-bind="click: function() { getStudentByName }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </a></td>
                 </tr>

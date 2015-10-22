@@ -16,6 +16,8 @@ function pageViewModel(gvm) {
     gvm.scoreTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle")});
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
+    gvm.searchStudent = ko.observable("SearchStudent");
+
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
@@ -103,6 +105,10 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
             alert("Please make sure points are given!");
         }
     });
+}
+
+function getStudentByName(input){
+
 }
 
 function getData(id)
