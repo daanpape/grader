@@ -112,7 +112,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 function getStudentByName(){
 
     if(viewModel.tempTableData.length == 0) {
-        viewModel.tempTableData = [].concat(viewModel.tabledata);
+        viewModel.tempTableData = viewModel.tabledata;
     }
     else
     {
