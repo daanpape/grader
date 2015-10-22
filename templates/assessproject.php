@@ -33,6 +33,19 @@ $location = "assessproject";
         .positioning button {
             width: 200px;
         }
+
+        span.search
+        {
+            display:inline-block;
+            border:1px solid black;
+            border-radius:0.5em;
+            -webkit-border-radius: 0.5em;
+        }
+        span.search > input
+        {
+            background: none;
+            border: none;
+        }
     </style>
 
 
@@ -50,10 +63,10 @@ $location = "assessproject";
         <div class="col-md-12">
             <table class="table table-striped">
                 <tr>
-                    <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
+                    <td><span class="search"><img src=lookup><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
                     <td><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
-                        </a></td>
+                        </a><span>x</span></span></td>
                 </tr>
             </table>
         </div>
