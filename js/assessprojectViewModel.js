@@ -108,6 +108,14 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 }
 
 function getStudentByName(){
+
+    viewModel.tabledata().forEach(function(item, element){
+        console.log(item);
+        console.log(element);
+    });
+
+
+
     console.log(viewModel.searchStudent());
 }
 
