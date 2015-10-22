@@ -133,7 +133,7 @@ function getStudentByName(){
 
 function showFullList()
 {
-    viewModel.searchStudent = '';
+    viewModel.searchStudent = ko.observable("");
     getStudentByName();
 }
 
