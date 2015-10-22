@@ -131,6 +131,12 @@ function getStudentByName(){
     });
 }
 
+function showFullList()
+{
+    viewModel.searchStudent = '';
+    getStudentByName();
+}
+
 function getData(id)
 {
     $.getJSON('/api/project/' + viewModel.projectId  + '/student/' + id + '/assessed', function(data)
