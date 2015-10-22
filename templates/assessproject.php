@@ -47,7 +47,7 @@ $location = "assessproject";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="col-md-12">
         <input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name">
-        <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
+        <td><a><button class="btn"><button></a></td>
 
     </div>
     <div class="row">
