@@ -112,7 +112,7 @@ function getStudentByName(){
     viewModel.tabledata().forEach(function(item, element){
         var object;
 
-        if (viewModel.searchStudent().contains(item.tfirstname) || viewModel.searchStudent().contains(item.tlastname)){
+        if (item.tfirstname.contains(viewModel.searchStudent()) || item.tlastname.contains(viewModel.searchStudent())){
             console.log("success");
         } else {
             console.log("failed");
