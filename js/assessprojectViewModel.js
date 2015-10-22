@@ -132,7 +132,7 @@ function getStudentByName(){
 
     viewModel.tabledata = data;
 
-    console.log(viewModel.tabledata.length);
+    console.log(data);
 }
 
 function getData(id)
