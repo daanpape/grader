@@ -112,16 +112,14 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 function getStudentByName(){
 
     if(viewModel.tempTableData.length == 0) {
-        viewModel.tempTableData = viewModel.tabledata;
+        viewModel.tempTableData = viewModel.tabledata.slice(0);
     }
     else
     {
-        viewModel.tabledata = viewModel.tempTableData;
+        viewModel.tabledata = viewModel.tempTableData.slice(0);
     }
 
-    console.log(viewModel.tempTableData.length);
     viewModel.tabledata([]);
-    console.log(viewModel.tempTableData.length);
     viewModel.tempTableData().forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
