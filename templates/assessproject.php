@@ -63,7 +63,7 @@ $location = "assessproject";
         <div class="col-md-12">
             <table class="table table-striped">
                 <tr>
-                    <td><span class="search"><img src=lookup><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
+                    <td><span class="search"><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
                     <td><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </a><span>x</span></span></td>
