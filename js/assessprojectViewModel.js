@@ -133,7 +133,7 @@ function getStudentByName(){
     viewModel.tabledata = ko.observableArray([]);
     viewModel.tabledata = data;
     console.log(viewModel.tabledata.length);
-    viewModel.tabledata.refresh();
+    viewModel.tabledata().refresh();
 }
 
 function getData(id)
