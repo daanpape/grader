@@ -93,8 +93,8 @@ $location = "project";
                                             <div class="panel-body">
                                                 <ul class="list-group">
                                                     <li class="white-group-item">
+                                                        <input type="text" placeholder="Minimum" class="form-control form-next">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
-                                                        <input type="text" placeholder="Minimun" class="form-control form-next">
                                                     </li>
                                                 </ul>
                                             </div>
