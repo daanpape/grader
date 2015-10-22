@@ -120,7 +120,7 @@ function getStudentByName(){
     }
 
     viewModel.tabledata([]);
-    viewModel.tempTableData().forEach(function(item, element){
+    viewModel.tempTableData.forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
