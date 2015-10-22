@@ -111,13 +111,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 
 function getStudentByName(){
 
-    if(viewModel.tempTableData === null) {
-        viewModel.tempTableData = viewModel.tabledata;
-    }
-    else
-    {
-        viewModel.tabledata = viewModel.tempTableData;
-    }
+    console.log(viewModel.tempTableData);
 
     var data = [];
 
