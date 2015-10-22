@@ -24,6 +24,12 @@ $location = "project";
             .hide{
                 display: none;
             }
+
+            .white-group-item {
+                list-style: none;
+                color:white;
+                background-color:white;
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -83,7 +89,7 @@ $location = "project";
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                             <div class="panel-body">
                                                 <ul class="list-group">
-                                                    <li>
+                                                    <li class="white-group-item">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
                                                         <input type="text" placeholder="Minimun" class="form-control form-next">
                                                     </li>
