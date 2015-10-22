@@ -31,6 +31,7 @@ $location = "project";
                 list-style: none;
                 color:white;
                 background-color:white;
+                border:1px solid #DDD;
             }
         </style>
 
