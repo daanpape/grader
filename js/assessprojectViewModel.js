@@ -119,21 +119,16 @@ function getStudentByName(){
         viewModel.tabledata = viewModel.tempTableData;
     }
 
-    var data = [];
-
-    viewModel.tabledata().forEach(function(item, element){
+    viewModel.tempTableData().forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
         if (item.tfirstname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || item.tlastname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullnameReverse.toLowerCase().contains(viewModel.searchStudent().toLowerCase())){
-            data.push(item);
+            viewModel.tabledata.push(item);
         }
     });
 
-    viewModel.tabledata = ko.observableArray([]);
-    viewModel.tabledata = data;
-    console.log(viewModel.tabledata.length);
-    viewModel.valueHasMutated();
+
 }
 
 function getData(id)
