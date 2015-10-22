@@ -94,11 +94,15 @@ $location = "project";
                                                     <li class="white-group-item">
                                                         <input type="text" placeholder="Minimum" class="form-control form-next">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
-                                                        <select>
-                                                            <option value="slider">Slider</option>
-                                                            <option value="janee">Ja / Nee</option>
-                                                            <option value="points">Punten</option>
-                                                        </select>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                                                                <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#">Dropdown</a></li>
+                                                                <li><a href="#">Ja/Nee</a></li>
+                                                                <li><a href="#">Punten</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>
