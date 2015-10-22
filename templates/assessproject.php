@@ -45,14 +45,16 @@ $location = "assessproject";
 <!-- Header container -->
 <div class="container">
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
-    <div class="col-md-12">
 
-        <table class="table table-striped">
-            <tr>
-                <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
-                <td><a><button class="btn"></button></a></td>
-            </tr>
-        </table>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tr>
+                    <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
+                    <td><a><button class="btn"></button></a></td>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="row">
         <div id="top-col" class="col-md-12">
