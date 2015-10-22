@@ -114,12 +114,11 @@ function getStudentByName(){
     if(viewModel.tempTableData.length == 0) {
         viewModel.tempTableData(viewModel.tabledata.slice(0));
     }
-    else
-    {
-        viewModel.tabledata(viewModel.tempTableData.slice(0));
-    }
 
     viewModel.tabledata([]);
+
+    console.log(viewModel.tempTableData());
+
     viewModel.tempTableData().forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
@@ -129,10 +128,6 @@ function getStudentByName(){
             console.log("OK");
         }
     });
-
-    console.log(viewModel.tabledata.length);
-
-
 }
 
 function getData(id)
