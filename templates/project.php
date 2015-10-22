@@ -26,6 +26,7 @@ $location = "project";
             }
 
             .white-group-item {
+                border-radius: 25px;
                 padding:2%;
                 list-style: none;
                 color:white;
