@@ -58,6 +58,8 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
+    gvm.tempTableData = ko.observableArray([]);
+
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
@@ -109,23 +111,26 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 
 function getStudentByName(){
 
+    if(viewModel.tempTableData === null) {
+        viewModel.tempTableData = viewModel.tabledata;
+    }
+    else
+    {
+        viewModel.tabledata = viewModel.tempTableData;
+    }
+
+    var data = [];
+
     viewModel.tabledata().forEach(function(item, element){
-        var object;
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
         if (item.tfirstname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || item.tlastname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullnameReverse.toLowerCase().contains(viewModel.searchStudent().toLowerCase())){
-            console.log("success");
-        } else {
-            console.log("failed");
+            data.push(item);
         }
-
-
     });
 
-
-
-    console.log(viewModel.searchStudent());
+    viewModel.tabledata = data;
 }
 
 function getData(id)
