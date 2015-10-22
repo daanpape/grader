@@ -109,7 +109,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 
 function getStudentByName(){
 
-    viewModel.tabledata.foreach(function(item, element){
+    viewModel.tabledata().foreach(function(item, element){
         console.log(item);
         console.log(element);
     });
