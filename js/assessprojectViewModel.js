@@ -111,8 +111,10 @@ function getStudentByName(){
 
     viewModel.tabledata().forEach(function(item, element){
         var object;
+        var fullname = item.tfirstname + " " + item.tlastname;
+        var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
-        if (item.tfirstname.contains(viewModel.searchStudent()) || item.tlastname.contains(viewModel.searchStudent())){
+        if (item.tfirstname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || item.tlastname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullnameReverse.toLowerCase().contains(viewModel.searchStudent().toLowerCase())){
             console.log("success");
         } else {
             console.log("failed");
