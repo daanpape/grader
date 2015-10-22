@@ -114,6 +114,8 @@ function getStudentByName(){
 
         if (viewModel.searchStudent().contains(item.tfirstname) || viewModel.searchStudent().contains(item.tlastname)){
             console.log(item);
+        } else {
+            console.log("failed");
         }
 
 
