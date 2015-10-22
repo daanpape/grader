@@ -51,7 +51,7 @@ $location = "assessproject";
             <table class="table table-striped">
                 <tr>
                     <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name"></td>
-                    <td><a><button class="btn"></button></a></td>
+                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/'}"><button class="btn"><span class="glyphicon glyphicon-info-sign"></span></button></a></td>
                 </tr>
             </table>
         </div>
