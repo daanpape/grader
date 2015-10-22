@@ -53,8 +53,7 @@ $location = "assessproject";
                     <td><input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
                     <td><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
-                        </a></td>
-                    <td><a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
+                        </a><a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
                 </tr>
