@@ -47,7 +47,7 @@ $location = "assessproject";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="col-md-12">
         <input type="text" class="form-control form-next" placeholder="Name of the student" data-bind="value: name">
-        <td><a><button class="btn"><button></a></td>
+        <a><button class="btn"></button></a>
 
     </div>
     <div class="row">
