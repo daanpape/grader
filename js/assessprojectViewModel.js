@@ -86,6 +86,17 @@ function initPage() {
     viewModel.getStudentListBis();
     //viewModel.getStudentList();
 
+    $("#searchField").bind("keypress", {}, keypressInBox);
+
+    function keypressInBox(e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13) { //Enter keycode
+            e.preventDefault();
+
+            getStudentByName();
+        }
+    };
+
 }
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
