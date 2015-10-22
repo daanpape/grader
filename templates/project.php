@@ -95,7 +95,7 @@ $location = "project";
                                                         <input type="text" placeholder="Minimum" class="form-control form-next">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
                                                         <div class="dropdown">
-                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose...
                                                                 <span class="caret"></span></button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a href="#">Dropdown</a></li>
