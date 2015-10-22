@@ -81,6 +81,12 @@ $location = "project";
                                             <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <input type="text" placeholder="Maximum" class="form-control form-next" data-bind="value: max">
+                                                    <input type="text" placeholder="Minimun" class="form-control form-next" data-bind="value: min">
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
