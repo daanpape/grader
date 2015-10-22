@@ -112,18 +112,15 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 function getStudentByName(){
 
     if(viewModel.tempTableData.length == 0) {
-        viewModel.tempTableData = viewModel.tabledata.slice(0);
-        viewModel.tabledata([]);
+        viewModel.tempTableData = viewModel.tabledata;
     }
     else
     {
-        viewModel.tabledata = viewModel.tempTableData.slice(0);
-        viewModel.tabledata = ko.observableArray([]);
-        viewModel.tabledata([]);
+        viewModel.tabledata = viewModel.tempTableData;
     }
 
 
-    viewModel.tempTableData.forEach(function(item, element){
+    viewModel.tempTableData().forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
