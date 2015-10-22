@@ -131,9 +131,8 @@ function getStudentByName(){
         }
     });
 
+    viewModel.tabledata = ko.observableArray([]);
     viewModel.tabledata = data;
-
-    console.log(data);
 }
 
 function getData(id)
