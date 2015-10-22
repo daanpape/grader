@@ -107,7 +107,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
     });
 }
 
-function getStudentByName{
+function getStudentByName(){
     console.log(viewModel.searchStudent);
 }
 
