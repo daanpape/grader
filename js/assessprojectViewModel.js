@@ -16,7 +16,7 @@ function pageViewModel(gvm) {
     gvm.scoreTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle")});
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
-    gvm.searchStudent = ko.observable("SearchStudent");
+    gvm.searchStudent = ko.observable("");
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
