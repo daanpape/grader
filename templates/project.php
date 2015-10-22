@@ -26,6 +26,7 @@ $location = "project";
             }
 
             .white-group-item {
+                padding:2%;
                 list-style: none;
                 color:white;
                 background-color:white;
