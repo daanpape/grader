@@ -129,7 +129,7 @@ function getStudentByName(){
         }
     });
 
-    console.log(viewModel.tabledata.length);
+    console.log(viewModel.tabledata().length);
 
 
 }
