@@ -95,6 +95,7 @@ function keypressInBox(e) {
     if (code == 13) { //Enter keycode
         console.log("Enter " + viewModel.searchStudent());
         getStudentByName();
+        getStudentByName();
 
     }
 };
