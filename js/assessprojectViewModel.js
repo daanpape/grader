@@ -108,7 +108,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 }
 
 function getStudentByName(){
-    console.log(viewModel.searchStudent);
+    console.log(viewModel.searchStudent());
 }
 
 function getData(id)
