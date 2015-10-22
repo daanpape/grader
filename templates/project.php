@@ -29,7 +29,6 @@ $location = "project";
                 border-radius: 4px;
                 padding:2%;
                 list-style: none;
-                color:white;
                 background-color:white;
                 border:1px solid #DDD;
             }
