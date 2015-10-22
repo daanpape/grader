@@ -94,7 +94,7 @@ $location = "project";
                                                     <li class="white-group-item">
                                                         <input type="text" placeholder="Minimum" class="form-control form-next">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
-                                                        <div class="dropdown">
+                                                        <div class="dropdown" style="display:inline-block">
                                                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose...
                                                                 <span class="caret"></span></button>
                                                             <ul class="dropdown-menu">
