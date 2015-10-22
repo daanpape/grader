@@ -111,8 +111,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 
 function getStudentByName(){
 
-    console.log(viewModel.tempTableData().length);
-    if(viewModel.tempTableData.length == 0) {
+    if(viewModel.tempTableData().length == 0) {
         viewModel.tempTableData(viewModel.tabledata.slice(0));
         console.log("222222229");
     }
