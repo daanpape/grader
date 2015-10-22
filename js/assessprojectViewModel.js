@@ -117,6 +117,7 @@ function getStudentByName(){
     else
     {
         viewModel.tabledata = viewModel.tempTableData.slice(0);
+        console.log(viewModel.tabledata);
     }
 
     viewModel.tabledata([]);
