@@ -113,14 +113,15 @@ function getStudentByName(){
 
     if(viewModel.tempTableData.length == 0) {
         viewModel.tempTableData = viewModel.tabledata.slice(0);
+        viewModel.tabledata([]);
     }
     else
     {
         viewModel.tabledata = viewModel.tempTableData.slice(0);
-        console.log(viewModel.tabledata);
+        viewModel.tabledata = [];
     }
 
-    viewModel.tabledata = [];
+
     viewModel.tempTableData.forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
