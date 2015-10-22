@@ -112,7 +112,8 @@ function getStudentByName(){
     viewModel.tabledata().forEach(function(item, element){
         var object;
 
-        console.log(item.firstname())
+        console.log(item.tfirstname);
+        console.log(item.tfirstname());
 
 
     });
