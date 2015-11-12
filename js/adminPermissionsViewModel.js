@@ -59,13 +59,9 @@ function fetchUsersData()
                     }
                 }
                 if (role[i] == "null" || role[i] == null || role[i] == ""){
-                    if (userRole == "GUEST" || userRole == "USER" || userRole == "STUDENT" || userRole == "SUPERUSER" ||  userRole == "") {
-                        userRole = "Nog geen rechten toegekend";
-                    }
+                    userRole = "Nog geen rechten toegekend";
                 }
             }
-
-
 
             if (addedUsername != current){
                 addedUsername = item.username;
