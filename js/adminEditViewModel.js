@@ -110,8 +110,7 @@ function saveUserPermissions(){
     });
 
     console.log(viewModel.selectedPermission);
-
-
+    console.log("end");
 
 }
 
