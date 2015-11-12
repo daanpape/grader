@@ -1097,7 +1097,7 @@ class UserDAO {
 
     public static function addUserRole($userid, $role)
     {
-        UserDAO::removeUserRoles($userid);
+        //UserDAO::removeUserRoles($userid);
 
         $roles = explode(" ", $role);
 
