@@ -17,7 +17,6 @@ function pageViewModel(gvm) {
 
     gvm.updateUsersPermissions = function(user)
     {
-        console.log(user);
         gvm.usersPermissions.push(user);
     }
 }
@@ -39,14 +38,35 @@ function fetchUsersData()
 
             role = permissions.split(" ");
             console.log(role);
+            var userRole = "";
 
-            if (permissions == "null" || permissions == null){
-                permissions = "Nog geen rechten toegekend";
+            for (i = 0; i < role.length; i++) {
+                if (role[i] == "GUEST"){
+                    userRole = "GUEST";
+                }
+                if (role[i] == "STUDENT"){
+                    if (userRole == "GUEST" || userRole == "") {
+                        userRole = "STUDENT";
+                    }
+                }
+                if (role[i] == "USER"){
+                    if (userRole == "GUEST" || userRole == "STUDENT" || userRole == "") {
+                        userRole = "USER";
+                    }                }
+                if (role[i] == "SUPERUSER"){
+                    if (userRole == "GUEST" || userRole == "USER" || userRole == "STUDENT" ||  userRole == "") {
+                        userRole = "SUPERUSER";
+                    }
+                }
+            }
+
+            if (userRole == "null" || userRole == null){
+                userRole = "Nog geen rechten toegekend";
             }
 
             if (addedUsername != current){
                 addedUsername = item.username;
-                viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, permissions.toUpperCase()));
+                viewModel.updateUsersPermissions(new User(item.userid, item.username, item.firstname, item.lastname, userRole.toUpperCase()));
             }
         });
     });
