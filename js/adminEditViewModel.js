@@ -109,7 +109,7 @@ function saveUserPermissions(){
         console.log("User permissions were removed");
     });
 
-    console.log(viewModel.selectedPermission);
+    console.log(viewModel.selectedPermission());
     console.log("end");
 
 }
