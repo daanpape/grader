@@ -1,7 +1,7 @@
 // View model for the courses page
 function pageViewModel(gvm) {
     gvm.userId = -1;
-    gvm.studentlistName = ko.observable('Name');
+    gvm.studentlistName = ko.observable("Name");
     gvm.listId = -1
     // Page specific i18n bindings
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AccountTitle");}, gvm);
@@ -153,6 +153,7 @@ function deleteTableItem(id, tblObject){
 }
 
 function loadStudentTable() {
+    console.log("table: " + $("#page-header").data('value'));
     $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
         // Load table data

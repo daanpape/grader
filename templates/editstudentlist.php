@@ -44,17 +44,6 @@ $location = "editstudentlist";
         </div>
     </div>
 </div>
-
-
-
-<div class="container">
-    <div class="row">
-        <button type="button" class="btn btn-default pagination-button" id="addStudent">
-            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
-        </button>
-    </div>
-</div>
-
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
