@@ -104,12 +104,37 @@ function saveUserEdits(id){
 
 function saveUserPermissions(){
     console.log("Save user permissions for user: " + viewModel.edituserid);
-    //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
-        console.log("User permissions were removed");
-    });
-
     console.log(viewModel.selectedPermission());
+
+    var role = viewModel.selectedPermission();
+    var permissions = "GUEST ";
+
+    if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
+        permissions += "STUDENT ";
+        if(role == 'USER' || role == 'SUPERUSER'){
+            permissions += "USER ";
+            if(role == 'SUPERUSER'){
+                permissions += "SUPERUSER";
+                //SAVE NEW PERMISSIONS
+                $.ajax({
+                    type: "POST",
+                    url: "/api/addrole/" + viewModel.edituserid,
+                    data: { 'permissions': permissions },
+                    success: function() {
+                        console.log('Success saved user permission: ' + currentRights);
+                    },
+                    error: function() {
+                        console.log('Error saving user permission: ' + currentRights);
+                    }
+                });
+
+            }
+
+        }
+
+    }
+
+
     console.log("end");
 
 }

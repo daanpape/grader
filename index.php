@@ -351,7 +351,7 @@ $app->get('/api/removeroles/:id', function($id) use ($app) {
 
 $app->post('/api/addrole/:id', function($id) use ($app) {
     // Try to edit the user
-    if(!GraderAPI::addUserRole($id, $_POST['currentRight'])) {
+    if(!GraderAPI::addUserRole($id, $_POST['permissions'])) {
         // Edit failed, bad request
         $app->response->setStatus(400);
     }
