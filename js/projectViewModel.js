@@ -127,13 +127,11 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
             {
                 $(event.target).addClass("icon-unlock").removeClass("icon-lock");
                 this.locked = false;
-                console.log(pointType);
             }
             else
             {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
-                console.log(pointType);
             }
         }
     };
@@ -201,9 +199,8 @@ function fetchProjectStructure() {
                
                $.each(subcomp.indicators, function(i, indic){
                    if(indic.id > 0) {
-                       var test = 'Punten';
-                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,test));
-                       console.log(test);
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,indic.pointType));
+                       console.log(indic.pointType);
                    }
                });
             });
