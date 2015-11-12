@@ -545,7 +545,8 @@ class ClassDAO
                         indicator.name iname,
                         indicator.description idescription,
                         indicator.max imax,
-                        indicator.weight iweight
+                        indicator.weight iweight,
+                        indicator.pointType itype
                     FROM competence
                     LEFT JOIN subcompetence ON competence.id = subcompetence.competence
                     LEFT JOIN indicator ON subcompetence.id = indicator.subcompetence
@@ -591,11 +592,11 @@ class ClassDAO
                     $indicator->description = $row['idescription'];
                     $indicator->max = $row['imax'];
                     $indicator->weight = $row['iweight'];
+                    $indicator->pointType = $row['itype'];
 
                     $subcompetence->indicators[$row['iid']] = $indicator;
                 }
             }
-
 
             return $data;
         } catch (PDOException $err) {
