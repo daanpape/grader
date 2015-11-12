@@ -30,16 +30,15 @@ function fetchUsersData()
         $.each(data, function(i, item){
             var permissions = "";
             var current = item.username;
-            console.log(item);
             $.each(data, function(i, item)
             {
-                console.log(item);
                 if(item.username == current){
-                    permissions += item.role + " - ";
+                    permissions += item.role + " ";
                 }
             });
 
-            permissions = permissions.substr(0, permissions.length - 3);
+            role = permissions.split(" ");
+            console.log(role);
 
             if (permissions == "null" || permissions == null){
                 permissions = "Nog geen rechten toegekend";
