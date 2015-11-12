@@ -32,6 +32,12 @@ $location = "project";
                 background-color:white;
                 border:1px solid #DDD;
             }
+
+
+            .btn-color {
+                color:black;
+                background-color: rgb(240,240,240);
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -89,16 +95,12 @@ $location = "project";
                                             <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
+                                            <select>
+                                                <option value="slider">Slider</option>
+                                                <option value="points">Punten</option>
+                                                <option value="ja/nee">Ja / Nee</option>
+                                            </select>
                                         </li>
-                                        <div class="dropdown" style="margin-top:5px">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Slider</a></li>
-                                                <li><a href="#">Punten</a></li>
-                                                <li><a href="#">Ja / Nee</a></li>
-                                            </ul>
-                                        </div>
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
