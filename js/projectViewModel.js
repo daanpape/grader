@@ -116,7 +116,7 @@ function Indicator(parent, id, name, weight, description, locked,pointType) {
         weight: ko.observable(weight),
         description : ko.observable(description),
         locked: false,
-        pointType: pointType,
+        pointType: ko.observable(pointType),
 
         removeThis: function() {
             parent.removeIndicator(this);
