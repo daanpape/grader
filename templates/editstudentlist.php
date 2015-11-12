@@ -11,7 +11,10 @@ $location = "editstudentlist";
 <body>
 <?php include_once('menu.php') ?>
 
-
+<!-- Header container -->
+<div class="container">
+    <h1 class="page-header" id="page-header" data-value="<?php echo $studentlistid?>"><span data-bind="text: pageHeader">List: </span><span data-bind="text: studentlistName">Name</span></h1>
+</div>
 
 <!-- Content container -->
 <div class="container">
@@ -31,6 +34,10 @@ $location = "editstudentlist";
                     <td data-bind="text: tusername">--</td>
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
+                    <td>
+                        <span class="glyphicon glyphicon-edit glyphicon-btn" data-bind="attr:{'id': 'editbtn-' + tid}"></span>
+                        <span class="glyphicon glyphicon-trash glyphicon-btn" data-bind="attr:{'id': 'removebtn-' + tid}"></span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
