@@ -122,11 +122,8 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td><select class="form-control" id="">
-                                    <option value="Guest">Guest</option>
-                                    <option value="Student">Student</option>
-                                    <option value="User">User</option>
-                                    <option value="Superuser">Superuser</option>
+                            <td><select class="form-control" id="selectedPermission" data-bind="options: allRights, value: selectedPermission">
+
                                 </select>
                             </td>
                         </tr>
