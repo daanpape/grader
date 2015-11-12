@@ -790,7 +790,6 @@ class ClassDAO
         }
     }
 
-
     /**
      * Delete a project's indicator
      * @param int $id
