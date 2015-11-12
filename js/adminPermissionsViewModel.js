@@ -58,11 +58,12 @@ function fetchUsersData()
                         userRole = "SUPERUSER";
                     }
                 }
+                if (role[i] == "null" || role[i] == null || role[i] == ""){
+                    userRole = "Nog geen rechten toegekend";
+                }
             }
 
-            if (userRole == "null" || userRole == null){
-                userRole = "Nog geen rechten toegekend";
-            }
+
 
             if (addedUsername != current){
                 addedUsername = item.username;
