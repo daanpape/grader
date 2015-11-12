@@ -28,7 +28,7 @@ function fetchUsersData()
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-            var permission = "";
+            var permissions = "";
             var current = item.username;
             console.log(item);
             $.each(data, function(i, item)
