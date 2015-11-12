@@ -199,7 +199,9 @@ function fetchProjectStructure() {
                
                $.each(subcomp.indicators, function(i, indic){
                    if(indic.id > 0) {
-                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,'Ja/Nee'));
+                       var test = 'Ja/Nee';
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,test));
+                       console.log(test);
                    }
                });
             });
