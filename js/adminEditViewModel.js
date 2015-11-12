@@ -188,10 +188,6 @@ function checkPermissions(){
             viewModel.updateCheckedRights(data);
         }
     });
-
-    $.each(viewModel.checkedRights(), function(i, item){
-        console.log(" - " + item["item"] + " - " + item["checked"]);
-    });
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
