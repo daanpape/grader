@@ -119,16 +119,18 @@ function saveUserPermissions(){
         }
     }
 
+    console.log(permissions);
+
     //SAVE NEW PERMISSIONS
     $.ajax({
         type: "POST",
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
-            console.log('Success saved user permission: ' + currentRights);
+            console.log('Success saved user permission: ' + permissions);
         },
         error: function() {
-            console.log('Error saving user permission: ' + currentRights);
+            console.log('Error saving user permission: ' + permissions);
         }
     });
 
