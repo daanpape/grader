@@ -71,8 +71,8 @@ require_once('templates/header.php');
                 </tbody>
                 <tbody>
                 <tr>
-                    <td>SUPERUSER</td>
-                    <td>The superuser role must have access to everything...</td>
+                    <td>STUDENT</td>
+                    <td>Can only do studentactions</td>
                 </tr>
                 </tbody>
                 <tbody>
@@ -83,10 +83,10 @@ require_once('templates/header.php');
                 </tbody>
                 <tbody>
                 <tr>
-                    <td>STUDENT</td>
-                    <td>Can only do studentactions</td>
+                    <td>SUPERUSER</td>
+                    <td>The superuser role must have access to everything...</td>
                 </tr>
-            </tbody>
+                </tbody>
         </div>
 
         <div>
