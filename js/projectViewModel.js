@@ -155,6 +155,8 @@ function pageViewModel(gvm) {
 
     gvm.competences = ko.observableArray([]);
 
+    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja / Nee']);
+
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
         automatedWeightCalculation(this.competences());
@@ -198,7 +200,6 @@ function fetchProjectStructure() {
                $.each(subcomp.indicators, function(i, indic){
                    if(indic.id > 0) {
                        subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,indic.pointType));
-                       console.log(indic.pointType);
                    }
                });
             });
