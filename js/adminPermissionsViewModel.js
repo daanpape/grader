@@ -28,8 +28,9 @@ function fetchUsersData()
     {
         var addedUsername = "";
         $.each(data, function(i, item){
-            var permissions = "";
+            var permission = "";
             var current = item.username;
+            console.log(item);
             $.each(data, function(i, item)
             {
                 if(item.username == current){
