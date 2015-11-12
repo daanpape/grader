@@ -36,7 +36,7 @@ function fetchUsersData()
                 }
             });
 
-            role = permissions.split(" ");
+            role = permissions.trim().split(" ");
             console.log(role);
             var userRole = "";
 
