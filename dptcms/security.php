@@ -65,6 +65,7 @@ class Security {
                 } else {
                     // Return the current user status
                     return $userdata->status;
+                    //return false;
                 }
             }
         }

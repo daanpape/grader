@@ -1097,10 +1097,17 @@ class UserDAO {
 
     public static function addUserRole($userid, $role)
     {
+        UserDAO::removeUserRoles($userid);
+
+        $roles = explode(" ", $role);
+
         $conn = Db::getConnection();
-        // Add role for user
-        $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
-        $stmt->execute(array($userid, $role));
+
+        for ($i = 0; $i < count($roles); $i++) {
+            // Add role for user
+            $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
+            $stmt->execute(array($userid, $roles[$i]));
+        }
 
         return true;
     }

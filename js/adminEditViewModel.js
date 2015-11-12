@@ -35,7 +35,6 @@ function pageViewModel(gvm) {
         gvm.rights.push(permission);
     },
 
-
     gvm.updateAllPermissions = function(permission)
     {
         gvm.allRights.push(permission);
@@ -49,10 +48,6 @@ function pageViewModel(gvm) {
     gvm.clearStructure = function() {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
-    }
-
-    gvm.updateCheckedRights = function(item){
-        gvm.checkedRights.push(item);
     }
 }
 
@@ -71,8 +66,6 @@ function initPage() {
             saveChanges();
         }
     });
-
-    setRights();
 }
 
 function getLoggedInUser(){
@@ -104,21 +97,41 @@ function saveUserEdits(id){
 
 function saveUserPermissions(){
     console.log("Save user permissions for user: " + viewModel.edituserid);
-    //FIRST DELETE ALL PERMISSIONS
-    $.getJSON("/api/removeroles/" + viewModel.edituserid, function(){
-        console.log("User permissions were removed");
+    console.log(viewModel.selectedPermission());
+
+    var role = viewModel.selectedPermission();
+    console.log("role: " + role);
+
+    var permissions = "GUEST ";
+
+    if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
+        permissions += "STUDENT ";
+        if(role == 'USER' || role == 'SUPERUSER'){
+            permissions += "USER ";
+            if(role == 'SUPERUSER'){
+                permissions += "SUPERUSER";
+            }
+        }
+    }
+
+    console.log(permissions);
+
+    //SAVE NEW PERMISSIONS
+    $.ajax({
+        type: "POST",
+        url: "/api/addrole/" + viewModel.edituserid,
+        data: { 'permissions': permissions },
+        success: function() {
+            console.log('Success saved user permission: ' + permissions);
+        },
+        error: function() {
+            console.log('Error saving user permission: ' + permissions);
+        }
     });
 
-    console.log(viewModel.selectedPermission());
+
     console.log("end");
 
-}
-
-function setRights(){
-    viewModel.updateAllPermissions("GUEST");
-    viewModel.updateAllPermissions("STUDENT");
-    viewModel.updateAllPermissions("USER");
-    viewModel.updateAllPermissions("SUPERUSER");
 }
 
 function getAllUserDataById(edituserid){
@@ -176,10 +189,6 @@ function checkPermissions(){
             }
             viewModel.updateCheckedRights(data);
         }
-    });
-
-    $.each(viewModel.checkedRights(), function(i, item){
-        console.log(" - " + item["item"] + " - " + item["checked"]);
     });
 }
 

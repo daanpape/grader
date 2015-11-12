@@ -84,8 +84,10 @@ function User(id, username, firstname, lastname, status) {
                 this.status("DISABLED");
             } else if (this.status() == "DISABLED") {
                 this.status("ACTIVE");
+            } else if (this.status() == "WAIT_ACTIVATION") {
+                this.status("ACTIVE");
             } else {
-                this.status("WAIT_ACTIVATION");
+                this.status("DISABLED");
             }
             updateUserStatus(this);
         }
