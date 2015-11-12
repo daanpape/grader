@@ -199,7 +199,7 @@ function fetchProjectStructure() {
                
                $.each(subcomp.indicators, function(i, indic){
                    if(indic.id > 0) {
-                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,indic.pointType));
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,'Ja/Nee'));
                    }
                });
             });
