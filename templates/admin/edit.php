@@ -103,8 +103,8 @@ require_once('templates/header.php');
                         </tbody>
                         <tbody>
                         <tr>
-                            <td>SUPERUSER</td>
-                            <td>The superuser role must have access to everything...</td>
+                            <td>STUDENT</td>
+                            <td>Can only do studentactions</td>
                         </tr>
                         </tbody>
                         <tbody>
@@ -115,18 +115,18 @@ require_once('templates/header.php');
                         </tbody>
                         <tbody>
                         <tr>
-                            <td>STUDENT</td>
-                            <td>Can only do studentactions</td>
+                            <td>SUPERUSER</td>
+                            <td>The superuser role must have access to everything...</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>Permission</td>
                             <td><select class="form-control" id="">
-                                    <option value="guest">Guest</option>
-                                    <option value="user">User</option>
-                                    <option value="student">Student</option>
-                                    <option value="superuser">Superuser</option>
+                                    <option value="Guest">Guest</option>
+                                    <option value="Student">Student</option>
+                                    <option value="User">User</option>
+                                    <option value="Superuser">Superuser</option>
                                 </select>
                             </td>
                         </tr>
