@@ -90,16 +90,12 @@ $location = "project";
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                             <div class="panel-body">
-                                                <ul class="list-group">
-                                                    <li class="white-group-item">
-                                                        <input type="text" placeholder="Minimum" class="form-control form-next">
-                                                        <input type="text" placeholder="Maximum" class="form-control form-next">
-                                                        <select class="form-next">
-                                                            <option value="slider">Slider</option>
-                                                            <option value="janee">Ja / Nee</option>
-                                                            <option value="points">Punten</option>
-                                                        </select>
-                                                    </li>
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                                                    <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Slider</a></li>
+                                                    <li><a href="#">Ja / Nee</a></li>
+                                                    <li><a href="#">Punten</a></li>
                                                 </ul>
                                             </div>
                                         </li>
