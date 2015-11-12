@@ -424,7 +424,8 @@ class GraderAPI {
                                 property_exists($indicator, "max") ? $indicator->max : 20,
                                 property_exists($indicator, "weight") ? $indicator->weight : 100,
                                 $subcompetenceid,
-                                property_exists($indicator, "id") ? $indicator->id : -1);
+                                property_exists($indicator, "id") ? $indicator->id : -1,
+                                property_exists($indicator, "pointType") ? $indicator->pointType : "");
                         }
 
                     }
@@ -455,13 +456,13 @@ class GraderAPI {
         }
     }
     
-    public static function putIndicator($name, $description, $max, $weight, $subcompetence, $id = -1) {
+    public static function putIndicator($name, $description, $max, $weight, $subcompetence, $id = -1,$pointType) {
         if($id == -1){
             // Insert a new indicator
-            return ClassDAO::putNewIndicator($name, $description, $max, $weight, $subcompetence);
+            return ClassDAO::putNewIndicator($name, $description, $max, $weight, $subcompetence,$pointType);
         } else {
             // Update an indicator
-            ClassDAO::updateIndicator($id, $name, $description, $max, $weight, $subcompetence);
+            ClassDAO::updateIndicator($id, $name, $description, $max, $weight, $subcompetence,$pointType);
             return $id;
         }
     }

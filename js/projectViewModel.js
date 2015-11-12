@@ -109,13 +109,14 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, weight, description, locked) {
+function Indicator(parent, id, name, weight, description, locked, pointType) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         weight: ko.observable(weight),
         description : ko.observable(description),
         locked: false,
+        pointType: ko.observable(pointType),
 
         removeThis: function() {
             parent.removeIndicator(this);
@@ -153,6 +154,8 @@ function pageViewModel(gvm) {
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
     gvm.competences = ko.observableArray([]);
+
+    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja/Nee']);
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
@@ -196,7 +199,7 @@ function fetchProjectStructure() {
                
                $.each(subcomp.indicators, function(i, indic){
                    if(indic.id > 0) {
-                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description));
+                       subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.weight, indic.description,false,indic.pointType));
                    }
                });
             });
