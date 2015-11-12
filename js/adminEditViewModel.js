@@ -100,6 +100,8 @@ function saveUserPermissions(){
     console.log(viewModel.selectedPermission());
 
     var role = viewModel.selectedPermission();
+    console.log("role: " + role);
+
     var permissions = "GUEST ";
 
     if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
