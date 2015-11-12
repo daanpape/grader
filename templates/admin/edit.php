@@ -122,7 +122,7 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: selectedPermission">
+                            <td><select class="form-control" id="selectedPermission" data-bind="options: viewModel.availablePermissions, value: selectedPermission">
 
                                 </select>
                             </td>
