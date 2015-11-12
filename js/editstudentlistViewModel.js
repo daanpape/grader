@@ -153,7 +153,7 @@ function deleteTableItem(id, tblObject){
 }
 
 function loadStudentTable() {
-    console.log($("#page-header").data('value'));
+    console.log("table: " + $("#page-header").data('value'));
     $.getJSON('/api/studentlist/students/' + $("#page-header").data('value'), function(data) {
         viewModel.clearTable();
         // Load table data
