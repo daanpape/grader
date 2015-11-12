@@ -30,126 +30,12 @@ function pageViewModel(gvm) {
         // Push data
         var tblOject = {tid: id, tusername: username, tfirstname: firstname, tlastname: lastname};
         gvm.tabledata.push(tblOject);
-
-        $('#editbtn-' + id).bind('click', function(event, data) {
-            showEditStudentModal(tblOject);
-            event.stopPropagation();
-        });
-
-        $('#removebtn-' + id).bind('click', function(event, data){
-            // Delete the table item
-            deleteTableItem(id, tblOject);
-            event.stopPropagation();
-        });
-    }
+    };
 
     gvm.clearTable = function() {
         gvm.tabledata.removeAll();
     }
 
-}
-
-function showEditStudentModal(tblObject) {
-    resetGeneralModal();
-    setGeneralModalTitle("Edit Student");
-    setGeneralModalBody('<form id="updateStudent"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tusername + '" " name="username" value="' + tblObject.tusername + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tfirstname + '" name="firstname" value="' + tblObject.tfirstname + '"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + tblObject.tlastname + '" name="lastname" value="' + tblObject.tlastname + '"> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateStudent(tblObject.tid, $('#updateStudent').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}
-
-function showNewStudentModal() {
-    resetGeneralModal();
-    setGeneralModalTitle("Add Student");
-    setGeneralModalBody('<form id="newStudentFrom"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="E-mail" name="username"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="First Name" name="firstname"> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="Last Name" name="lastname"> \
-            </div> \
-        </form>');
-    $.getJSON()
-
-    addGeneralModalButton(i18n.__("AddBtn"), function(){
-        addNewStudent($('#newStudentFrom').serialize(), function(result){
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })
-
-    showGeneralModal();
-}
-
-function addNewStudent(serialData, callback) {
-    console.log(serialData);
-    $.ajax({
-        url: "/api/newstudent/" + viewModel.listId,
-        type: "POST",
-        data: serialData,
-        success: function(data) {
-            viewModel.addTableData(data['id'], data['mail'], data['firstname'], data['lastname']);
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}
-
-function updateStudent(id, object, callback) {
-    $.ajax({
-        url: "/api/student/" + id,
-        type: "PUT",
-        data: object,
-        success: function(data) {
-            loadStudentTable();
-            callback(true);
-        },
-        error: function(data) {
-            callback(false);
-        }
-    });
-}
-
-function deleteTableItem(id, tblObject){
-    showYesNoModal("Bent u zeker dat u dit item wil verwijderen?", function(val){
-        if(val){
-            $.ajax({
-                url: '/api/studentlist/' + $("#page-header").data('value') + '/delete/student/' + id,
-                type: "DELETE",
-                success: function() {
-                    viewModel.tabledata.remove(tblObject);
-                }
-            });
-        }
-    });
 }
 
 function loadStudentTable() {
@@ -165,17 +51,6 @@ function loadStudentTable() {
 
 function initPage() {
     console.log("init");
-    $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
-        console.log(data[0].id);
-        viewModel.studentlistName(data[0].name);
-        viewModel.listId = (data[0].id);
-    });
-
-    console.log("init 2");
-    $('#addStudent').click(function(){
-        showNewStudentModal();
-    });
-
     console.log("load");
     loadStudentTable();
     
