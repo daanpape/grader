@@ -96,8 +96,8 @@ $location = "project";
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
-                                        <div class="dropdown" style="margin-top:5px; color:black; background-color:rgb(240,240,240)">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type<span class="caret"></span></button>
+                                        <div class="dropdown" style="margin-top:5px">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="color:black; background-color:rgb(240,240,240)">Type<span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#">Slider</a></li>
                                                 <li><a href="#">Punten</a></li>
