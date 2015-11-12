@@ -69,10 +69,6 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
             automatedWeightCalculation(this.indicators());
         },
 
-        /*calculateWeight: function(total){
-            this.weight = total;
-        },*/
-
         removeThis: function() {
             parent.removeSubCompetence(this);
 
@@ -219,7 +215,7 @@ function initPage() {
             saveProjectStructure();
             var url = document.URL;
             var string = url.split("/");
-            window.location.href = "http://" + string[2] + "/" + string[3] + "/students/" + string[4];
+            //window.location.href = "http://" + string[2] + "/" + string[3] + "/students/" + string[4];
             console.log("Saved");
         }
         else
