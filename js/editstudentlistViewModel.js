@@ -164,15 +164,19 @@ function loadStudentTable() {
 }
 
 function initPage() {
+    console.log("init");
     $.getJSON('/api/studentlist/info/' + $("#page-header").data('value'), function(data) {
         console.log(data[0].id);
         viewModel.studentlistName(data[0].name);
         viewModel.listId = (data[0].id);
     });
 
+    console.log("init 2");
     $('#addStudent').click(function(){
         showNewStudentModal();
     });
+
+    console.log("load");
     loadStudentTable();
     
     
