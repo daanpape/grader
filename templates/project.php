@@ -91,7 +91,7 @@ $location = "project";
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
                                         <div class="dropdown" style="margin-top:5px">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Points
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Point giving type
                                                 <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#">Slider</a></li>
