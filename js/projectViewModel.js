@@ -155,7 +155,7 @@ function pageViewModel(gvm) {
 
     gvm.competences = ko.observableArray([]);
 
-    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja / Nee']);
+    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja/Nee']);
 
     gvm.addCompetence = function() {
         gvm.competences.push(new Competence(this));
