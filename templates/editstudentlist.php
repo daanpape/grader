@@ -44,6 +44,7 @@ $location = "editstudentlist";
         </div>
     </div>
 </div>
+
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
