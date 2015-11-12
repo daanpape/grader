@@ -350,11 +350,19 @@ $app->get('/api/removeroles/:id', function($id) use ($app) {
 });
 
 $app->post('/api/addrole/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(GraderAPI::addUserRole($id, $_POST['permissions']));
+
+
     // Try to edit the user
-    if(!GraderAPI::addUserRole($id, $_POST['permissions'])) {
-        // Edit failed, bad request
-        $app->response->setStatus(400);
-    }
+    //if(!GraderAPI::addUserRole($id, $_POST['permissions'])) {
+    //    // Edit failed, bad request
+    //    $app->response->setStatus(400);
+    //}
 });
 
 $app->get('/api/project/:id/coupledlists', function($id) use ($app) {
