@@ -11,10 +11,7 @@ $location = "editstudentlist";
 <body>
 <?php include_once('menu.php') ?>
 
-<!-- Header container -->
-<div class="container">
-    <h1 class="page-header" id="page-header" data-bind="attr{'data-value': <?php echo $studentlistid?>}"><span data-bind="text: pageHeader">List: </span><span data-bind="text: studentlistName">Name</span></h1>
-</div>
+
 
 <!-- Content container -->
 <div class="container">
