@@ -33,7 +33,7 @@ $location = "project";
                 border:1px solid #DDD;
             }
 
-            .btn-primary {
+            .color-button{
                 background-color: rgb(240,240,240);
                 color:black;
             }
@@ -95,8 +95,8 @@ $location = "project";
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                         </li>
-                                        <div class="dropdown" style="margin-top:5px">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle color-button" type="button" data-toggle="dropdown">Type
                                                 <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#" onclick="setTo('Slider')">Slider</a></li>
