@@ -17,6 +17,8 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
+    gvm.selectedPermission = ko.observable();
+    gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
@@ -107,28 +109,8 @@ function saveUserPermissions(){
         console.log("User permissions were removed");
     });
 
-    $.each(viewModel.allRights(), function(i, currentRights){
-
-        var checkedValue = document.getElementsByName(currentRights);
-
-        console.log(checkedValue[0].checked + " - " + currentRights);
-
-        //SAVE NEW PERMISSIONS
-        if(checkedValue[0].checked == true) {
-            $.ajax({
-                type: "POST",
-                url: "/api/addrole/" + viewModel.edituserid,
-                data: { 'currentRight': currentRights },
-                success: function() {
-                    console.log('Success saved user permission: ' + currentRights);
-                },
-                error: function() {
-                    console.log('Error saving user permission: ' + currentRights);
-                }
-            });
-        }
-    });
-
+    console.log(viewModel.selectedPermission);
+    console.log("end");
 
 }
 
@@ -223,8 +205,8 @@ function User(id, username, firstname, lastname, status, permissions) {
                 this.status("DISABLED");
             } else if (this.status() == "DISABLED") {
                 this.status("ACTIVE");
-            } else {
-                this.status("WAIT_ACTIVATION");
+            } else if (this.status() == "WAIT_ACTIVATION") {
+                this.status("ACTIVE");
             }
             updateUserStatus(this);
         }
