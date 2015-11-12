@@ -58,6 +58,8 @@ function pageViewModel(gvm) {
 
     gvm.tabledata = ko.observableArray([]);
 
+    gvm.tempTableData = ko.observableArray([]);
+
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
@@ -84,7 +86,19 @@ function initPage() {
     viewModel.getStudentListBis();
     //viewModel.getStudentList();
 
+    $("#searchField").bind("keypress", {}, keypressInBox);
+
 }
+
+function keypressInBox(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 13) { //Enter keycode
+        console.log("Enter " + viewModel.searchStudent());
+        $("#searchField").blur();
+        getStudentByName();
+
+    }
+};
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
@@ -109,25 +123,30 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
 
 function getStudentByName(){
 
+    if(viewModel.tempTableData().length == 0) {
+        viewModel.tempTableData(viewModel.tabledata.slice(0));
+        console.log("222222229");
+    }
 
+    viewModel.tabledata([]);
 
-    viewModel.tabledata().forEach(function(item, element){
-        var object;
+    console.log(viewModel.tempTableData());
+
+    viewModel.tempTableData().forEach(function(item, element){
         var fullname = item.tfirstname + " " + item.tlastname;
         var fullnameReverse = item.tlastname + " " + item.tfirstname;
 
         if (item.tfirstname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || item.tlastname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullname.toLowerCase().contains(viewModel.searchStudent().toLowerCase()) || fullnameReverse.toLowerCase().contains(viewModel.searchStudent().toLowerCase())){
-            console.log("success");
-        } else {
-            console.log("failed");
+            viewModel.tabledata.push(item);
+            console.log("OK");
         }
-
-
     });
+}
 
-
-
-    console.log(viewModel.searchStudent());
+function showFullList()
+{
+    viewModel.searchStudent = ko.observable("");
+    getStudentByName();
 }
 
 function getData(id)

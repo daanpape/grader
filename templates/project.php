@@ -94,7 +94,7 @@ $location = "project";
                                                     <li class="white-group-item">
                                                         <input type="text" placeholder="Minimum" class="form-control form-next">
                                                         <input type="text" placeholder="Maximum" class="form-control form-next">
-                                                        <select>
+                                                        <select class="form-next">
                                                             <option value="slider">Slider</option>
                                                             <option value="janee">Ja / Nee</option>
                                                             <option value="points">Punten</option>
