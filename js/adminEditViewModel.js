@@ -50,10 +50,6 @@ function pageViewModel(gvm) {
         gvm.rights.destroyAll();
         gvm.user.destroyAll();
     }
-
-    gvm.updateCheckedRights = function(item){
-        gvm.checkedRights.push(item);
-    }
 }
 
 function initPage() {
@@ -137,13 +133,6 @@ function saveUserPermissions(){
 
     console.log("end");
 
-}
-
-function setRights(){
-    viewModel.updateAllPermissions("GUEST");
-    viewModel.updateAllPermissions("STUDENT");
-    viewModel.updateAllPermissions("USER");
-    viewModel.updateAllPermissions("SUPERUSER");
 }
 
 function getAllUserDataById(edituserid){
