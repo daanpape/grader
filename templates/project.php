@@ -89,13 +89,16 @@ $location = "project";
                                             <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Point<span class="caret"></span></button>
+                                        </li>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Points
+                                                <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
                                                 <li><a href="#">Slider</a></li>
-                                                <li><a href="#">Ja / Nee</a></li>
                                                 <li><a href="#">Punten</a></li>
+                                                <li><a href="#">Ja / Nee</a></li>
                                             </ul>
-                                        </li>
+                                        </div>
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
