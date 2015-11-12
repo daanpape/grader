@@ -35,7 +35,6 @@ function pageViewModel(gvm) {
         gvm.rights.push(permission);
     },
 
-
     gvm.updateAllPermissions = function(permission)
     {
         gvm.allRights.push(permission);
@@ -67,8 +66,6 @@ function initPage() {
             saveChanges();
         }
     });
-
-    setRights();
 }
 
 function getLoggedInUser(){
