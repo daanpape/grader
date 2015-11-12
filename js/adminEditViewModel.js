@@ -109,23 +109,8 @@ function saveUserPermissions(){
         console.log("User permissions were removed");
     });
 
-    if ()
+    console.log(viewModel.selectedPermission);
 
-
-    //SAVE NEW PERMISSIONS
-    if(checkedValue[0].checked == true) {
-        $.ajax({
-            type: "POST",
-            url: "/api/addrole/" + viewModel.edituserid,
-            data: { 'currentRight': currentRights },
-            success: function() {
-                console.log('Success saved user permission: ' + currentRights);
-            },
-            error: function() {
-                console.log('Error saving user permission: ' + currentRights);
-            }
-        });
-    }
 
 
 }
