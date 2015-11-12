@@ -57,6 +57,6 @@ function User(id, username, firstname, lastname, permissions) {
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
-        permissions: ko.observable(permissions),
+        permissions: ko.observable(permissions)
     };
 }

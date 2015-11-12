@@ -13,7 +13,7 @@ $location = "editstudentlist";
 
 <!-- Header container -->
 <div class="container">
-    <h1 class="page-header" id="page-header" data-bind="attr{'data-value': <?php echo $studentlistid?>}"><span data-bind="text: pageHeader">List: </span><span data-bind="text: studentlistName">Name</span></h1>
+    <h1 class="page-header" id="page-header" data-value="<?php echo $studentlistid?>"><span data-bind="text: pageHeader">List: </span><span data-bind="text: studentlistName">Name</span></h1>
 </div>
 
 <!-- Content container -->
@@ -44,6 +44,7 @@ $location = "editstudentlist";
         </div>
     </div>
 </div>
+
 <?php include_once('jsdepends.php') ?>
 </body>
 </html>
