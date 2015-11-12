@@ -123,10 +123,10 @@ require_once('templates/header.php');
                         <tr>
                             <td>Permission</td>
                             <td><select class="form-control" id="selectedPermission" data-bind="value: selectedPermission">
-                                    <option value="Guest">Guest</option>
-                                    <option value="Student">Student</option>
-                                    <option value="User">User</option>
-                                    <option value="Superuser">Superuser</option>
+                                    <option value="GUEST">Guest</option>
+                                    <option value="STUDENT">Student</option>
+                                    <option value="USER">User</option>
+                                    <option value="SUPERUSER">Superuser</option>
                                 </select>
                             </td>
                         </tr>
