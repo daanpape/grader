@@ -109,7 +109,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
 /**
  * Indicator class
  */
-function Indicator(parent, id, name, weight, description, locked,pointType) {
+function Indicator(parent, id, name, weight, description, locked, pointType) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
@@ -127,11 +127,13 @@ function Indicator(parent, id, name, weight, description, locked,pointType) {
             {
                 $(event.target).addClass("icon-unlock").removeClass("icon-lock");
                 this.locked = false;
+                console.log(pointType);
             }
             else
             {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
+                console.log(pointType);
             }
         }
     };
