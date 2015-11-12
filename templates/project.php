@@ -32,11 +32,6 @@ $location = "project";
                 background-color:white;
                 border:1px solid #DDD;
             }
-
-            .btn-primary {
-                background-color: rgb(240,240,240);
-                color:black;
-            }
         </style>
 
         <?php include_once('hddepends.php') ?>
@@ -99,9 +94,9 @@ $location = "project";
                                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type
                                                 <span class="caret"></span></button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#" onclick="setTo('Slider')">Slider</a></li>
-                                                <li><a href="#" onclick="setTo('Punten')">Punten</a></li>
-                                                <li><a href="#" onclick="setTo('Ja')">Ja / Nee</a></li>
+                                                <li><a href="#">Slider</a></li>
+                                                <li><a href="#">Punten</a></li>
+                                                <li><a href="#">Ja / Nee</a></li>
                                             </ul>
                                         </div>
                                     </ul>
