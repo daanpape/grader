@@ -780,7 +780,7 @@ class ClassDAO
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ?, $pointType = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ?, pointType = ? WHERE id = ?");
             $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid, $pointType, $id));
 
             return true;
@@ -789,7 +789,6 @@ class ClassDAO
             return false;
         }
     }
-
 
     /**
      * Delete a project's indicator
