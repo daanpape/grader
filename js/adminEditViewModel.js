@@ -115,24 +115,22 @@ function saveUserPermissions(){
             permissions += "USER ";
             if(role == 'SUPERUSER'){
                 permissions += "SUPERUSER";
-                //SAVE NEW PERMISSIONS
-                $.ajax({
-                    type: "POST",
-                    url: "/api/addrole/" + viewModel.edituserid,
-                    data: { 'permissions': permissions },
-                    success: function() {
-                        console.log('Success saved user permission: ' + currentRights);
-                    },
-                    error: function() {
-                        console.log('Error saving user permission: ' + currentRights);
-                    }
-                });
-
             }
-
         }
-
     }
+
+    //SAVE NEW PERMISSIONS
+    $.ajax({
+        type: "POST",
+        url: "/api/addrole/" + viewModel.edituserid,
+        data: { 'permissions': permissions },
+        success: function() {
+            console.log('Success saved user permission: ' + currentRights);
+        },
+        error: function() {
+            console.log('Error saving user permission: ' + currentRights);
+        }
+    });
 
 
     console.log("end");
