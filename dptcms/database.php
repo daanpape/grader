@@ -751,12 +751,12 @@ class ClassDAO
      * @param type $subcompetenceid
      * @return type the id of the newly inserted indicator or null on error.
      */
-    public static function putNewIndicator($name, $description, $max, $weight, $subcompetenceid)
+    public static function putNewIndicator($name, $description, $max, $weight, $subcompetenceid, $pointType)
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO indicator (name, description, max, weight, subcompetence) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid));
+            $stmt = $conn->prepare("INSERT INTO indicator (name, description, max, weight, subcompetence, pointType) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid, $pointType));
             $iid = $conn->lastInsertId();
 
             return $iid;
@@ -776,12 +776,12 @@ class ClassDAO
      * @param type $subcompetenceid
      * @return boolean true on succes, false on error
      */
-    public static function updateIndicator($id, $name, $description, $max, $weight, $subcompetenceid)
+    public static function updateIndicator($id, $name, $description, $max, $weight, $subcompetenceid, $pointType)
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ? WHERE id = ?");
-            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid, $id));
+            $stmt = $conn->prepare("UPDATE indicator SET name = ?, description = ?, max = ?, weight = ?, subcompetence = ?, $pointType = ? WHERE id = ?");
+            $stmt->execute(array($name, $description, $max, $weight, $subcompetenceid, $pointType, $id));
 
             return true;
         } catch (PDOException $err) {
