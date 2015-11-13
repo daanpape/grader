@@ -153,7 +153,7 @@ $location = "assessscore";
                                     </select>
                                     <!-- /ko -->
 
-                                    <input type="text" data-bind="value: pointType">
+                                    <input type="text" data-bind="text: pointType">
                                 </li>
                             </ul>
                         </div>
