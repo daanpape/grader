@@ -143,7 +143,7 @@ $location = "assessscore";
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType == 'Punten' -->
-                                    <input type="text" />
+                                    <input type="text" data-bind="value: score" />
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType == 'Ja/Nee' -->
@@ -152,8 +152,6 @@ $location = "assessscore";
                                         <value>Nee</value>
                                     </select>
                                     <!-- /ko -->
-
-                                    <label data-bind="text: pointType"></label>
                                 </li>
                             </ul>
                         </div>
