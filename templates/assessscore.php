@@ -144,7 +144,9 @@ $location = "assessscore";
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType() === 'Punten' -->
+                                    <div>
                                     <input type="text" data-bind="value: score" />
+                                    </div>
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType() === 'Ja/Nee' -->
