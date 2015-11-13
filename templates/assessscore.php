@@ -150,7 +150,8 @@ $location = "assessscore";
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType() === 'Ja/Nee' -->
-                                    <select data-bind="options: pointOptions"></select>
+                                    <input type="radio" name="ja_nee" value="100">Ja
+                                    <input type="radio" name="ja_nee" value="0">Nee
                                     <!-- /ko -->
 
                                 </li>
