@@ -150,7 +150,8 @@ $location = "assessscore";
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType() === 'Ja/Nee' -->
-                                    <input type="radio" name="ja_nee" value="100">Ja
+                                    <br>
+                                    <input type="radio" name="ja_nee" value="100">Ja<br>
                                     <input type="radio" name="ja_nee" value="0">Nee
                                     <!-- /ko -->
 
