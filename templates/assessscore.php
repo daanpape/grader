@@ -154,7 +154,7 @@ $location = "assessscore";
                                     </select>
                                     <!-- /ko -->
 
-                                    <!-- ko if: pointType === 0 -->
+                                    <!-- ko if: pointType == 0 -->
                                     <select>
                                         <value>Ja</value>
                                         <value>Nee</value>
