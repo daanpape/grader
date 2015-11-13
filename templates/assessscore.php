@@ -138,15 +138,15 @@ $location = "assessscore";
                             <ul class="list-group" data-bind="foreach: indicators">
                                 <li class="list-group-item">
                                     <label data-bind="text: description"></label>
-                                    <!-- ko if: pointType == Slider -->
+                                    <!-- ko if: pointType == 'Slider' -->
                                     <input type="range" min="0" max="100" step="1" data-bind="value: score" />
                                     <!-- /ko -->
 
-                                    <!-- ko if: pointType == Punten -->
+                                    <!-- ko if: pointType == 'Punten' -->
                                     <input type="text" />
                                     <!-- /ko -->
 
-                                    <!-- ko if: pointType == Ja/Nee -->
+                                    <!-- ko if: pointType == 'Ja/Nee' -->
                                     <select>
                                         <value>Ja</value>
                                         <value>Nee</value>
