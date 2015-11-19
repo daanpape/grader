@@ -70,8 +70,17 @@ function initPage() {
     $(document).ready(
         function(){
             var theValue = getUserPermission();
-            $('option[value=' + theValue + ']')
-                .attr('selected',true);
+
+            theValue.each(function(item){
+               if(item == "GUEST"){
+                   $('option[value=' + theValue + ']')
+                       .attr('selected',true);
+               }
+            });
+
+            if(theValue[0] == "GUEST"){
+
+            }
         });
 }
 
@@ -80,7 +89,7 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
-            console.log(data);
+            return data;
         },
         error: function() {
             console.log("Error saving user changes");
