@@ -393,6 +393,9 @@ function showEditProjectTypeModal(code, name, description, tid)
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
             </div> \
+            <div style="margin-bottom: 5px"> \
+                <input type="text" class="form-control input-lg" placeholder="Number of people grading" name="nrOfAssessing"> \
+            </div> \
         </form>');
     $.getJSON()
 
