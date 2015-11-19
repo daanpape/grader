@@ -349,6 +349,15 @@ $app->get('/api/removeroles/:id', function($id) use ($app) {
     echo json_encode(GraderAPI::removeUserRoles($id));
 });
 
+$app->post('/api/getUserRolesById/:id', function($id) use ($app) {
+    // Use json headers
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(GraderAPI::getUserRolesById($id));
+});
+
 $app->post('/api/addrole/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();

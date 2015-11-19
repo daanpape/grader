@@ -76,7 +76,7 @@ function initPage() {
 }
 
 function getUserPermission(){
-    $.getJSON("/api/getUserRoles", function(data){
+    $.getJSON("/api/getUserRolesById/" + viewModel.edituserid, function(data){
         console.log(data);
     });
 }
