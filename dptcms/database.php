@@ -396,12 +396,12 @@ class ClassDAO
      * @param type $description the new projecttype description
      */
 
-    public static function updateProject($id, $code, $name, $description)
+    public static function updateProject($id, $code, $name, $description, $nrOfAssessing)
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("UPDATE project SET code = ?, name = ?, description = ? WHERE id = ?");
-            $stmt->execute(array($code, $name, $description, $id));
+            $stmt = $conn->prepare("UPDATE project SET code = ?, name = ?, description = ?, nrOfAssessing = ? WHERE id = ?");
+            $stmt->execute(array($code, $name, $description, $nrOfAssessing, $id));
             return true;
         } catch (PDOException $err) {
             Logger::logError('Could not update project', $err);
