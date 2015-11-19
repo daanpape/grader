@@ -88,9 +88,6 @@ function getLoggedInUser(){
 }
 
 function saveChanges(){
-    console.log("Save changes");
-    console.log("userid: " + viewModel.edituserid);
-
     saveUserEdits(viewModel.edituserid);
 }
 
@@ -100,7 +97,6 @@ function saveUserEdits(id){
         url: "/api/saveedit/" + id,
         data: $('#userEditForm').serialize(),
         success: function() {
-            console.log('Success saved user changes');
         },
         error: function() {
             console.log("Error saving user changes");
@@ -128,20 +124,14 @@ function saveUserPermissions(){
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
-            console.log('Success saved user permission: ' + permissions);
         },
         error: function() {
             console.log('Error saving user permission: ' + permissions);
         }
     });
-
-
-    console.log("end");
-
 }
 
 function getAllUserDataById(edituserid){
-    console.log("Get data from user with id " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         var addedUsername = "";
@@ -151,14 +141,12 @@ function getAllUserDataById(edituserid){
             $.each(data, function(i, item)
             {
                 if(item.username == current && addedUsername != current){
-                    console.log(current + " " + item.role);
                     viewModel.updatePermissions(item.role)
                 }
             });
 
             if (addedUsername != current) {
                 addedUsername = current;
-                console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
