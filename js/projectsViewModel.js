@@ -356,6 +356,9 @@ function showNewProjectTypeModal()
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
+            <div> \
+                <input type="text" class="form-control input-lg" placeholder="Number of people grading"> \
+            </div> \
         </form>');
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
