@@ -357,7 +357,7 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
             <div> \
-                <input type="text" class="form-control input-lg" placeholder="Number of people grading"> \
+                <input type="text" class="form-control input-lg" placeholder="Number of people grading" name="nrOfAssessing"> \
             </div> \
         </form>');
 
