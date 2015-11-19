@@ -377,6 +377,13 @@ class GraderAPI {
     }
 
     /*
+     * remove user roles
+     */
+    public static function getUserRoles($id) {
+        return UserDAO::getUserRoles($id);
+    }
+
+    /*
      * Add user role
      */
     public static function addUserRole($id, $role) {

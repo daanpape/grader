@@ -66,6 +66,19 @@ function initPage() {
             saveChanges();
         }
     });
+
+    $(document).ready(
+        function(){
+            var theValue = getUserPermission();
+            $('option[value=' + theValue + ']')
+                .attr('selected',true);
+        });
+}
+
+function getUserPermission(){
+    $.getJSON("/api/getUserRoles", function(data){
+        console.log(data);
+    });
 }
 
 function getLoggedInUser(){
@@ -96,12 +109,7 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(){
-    console.log("Save user permissions for user: " + viewModel.edituserid);
-    console.log(viewModel.selectedPermission());
-
     var role = viewModel.selectedPermission();
-    console.log("role: " + role);
-
     var permissions = "GUEST ";
 
     if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
@@ -113,8 +121,6 @@ function saveUserPermissions(){
             }
         }
     }
-
-    console.log(permissions);
 
     //SAVE NEW PERMISSIONS
     $.ajax({
