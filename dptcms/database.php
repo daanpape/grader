@@ -1049,6 +1049,24 @@ class ClassDAO
         $stmt->bindValue(':projectId', $projectId);
         $stmt->execute();
     }
+
+
+    public static function getNrOfAssessing($projectid)
+    {
+
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT nrOfAssessing FROM project WHERE id=?");
+            $stmt->execute(array($projectid));
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $data;
+        }
+        catch (PDOException $ex)
+        {
+            Logger::logError("Could not get nr of assessing");
+        }
+    }
 }
 
 /*

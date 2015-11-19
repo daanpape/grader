@@ -103,6 +103,11 @@ class GraderAPI {
         return ClassDAO::getUsersAssessStudent($projectid,$userid);
     }
 
+    public static function getNrOfAssessing($projectid)
+    {
+        return ClassDAO::getNrOfAssessing($projectid);
+    }
+
     /*
      * Delete a projecttype from the database
      */
