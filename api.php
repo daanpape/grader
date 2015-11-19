@@ -377,6 +377,13 @@ class GraderAPI {
     }
 
     /*
+     * get user  by id
+     */
+    public static function getUserRolesById($id) {
+        return UserDAO::getUserRolesById($id);
+    }
+
+    /*
      * Add user role
      */
     public static function addUserRole($id, $role) {

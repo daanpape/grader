@@ -66,6 +66,19 @@ function initPage() {
             saveChanges();
         }
     });
+
+    $(document).ready(
+        function(){
+            var theValue = getUserPermission();
+            $('option[value=' + theValue + ']')
+                .attr('selected',true);
+        });
+}
+
+function getUserPermission(){
+    $.getJSON("/api/getUserRolesById/" + viewModel.edituserid, function(data){
+        console.log(data);
+    });
 }
 
 function getLoggedInUser(){
@@ -75,9 +88,6 @@ function getLoggedInUser(){
 }
 
 function saveChanges(){
-    console.log("Save changes");
-    console.log("userid: " + viewModel.edituserid);
-
     saveUserEdits(viewModel.edituserid);
 }
 
@@ -87,7 +97,6 @@ function saveUserEdits(id){
         url: "/api/saveedit/" + id,
         data: $('#userEditForm').serialize(),
         success: function() {
-            console.log('Success saved user changes');
         },
         error: function() {
             console.log("Error saving user changes");
@@ -96,12 +105,7 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(){
-    console.log("Save user permissions for user: " + viewModel.edituserid);
-    console.log(viewModel.selectedPermission());
-
     var role = viewModel.selectedPermission();
-    console.log("role: " + role);
-
     var permissions = "GUEST ";
 
     if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
@@ -114,28 +118,20 @@ function saveUserPermissions(){
         }
     }
 
-    console.log(permissions);
-
     //SAVE NEW PERMISSIONS
     $.ajax({
         type: "POST",
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
-            console.log('Success saved user permission: ' + permissions);
         },
         error: function() {
             console.log('Error saving user permission: ' + permissions);
         }
     });
-
-
-    console.log("end");
-
 }
 
 function getAllUserDataById(edituserid){
-    console.log("Get data from user with id " + edituserid);
     $.getJSON("/api/edituser/" + edituserid, function(data)
     {
         var addedUsername = "";
@@ -145,14 +141,12 @@ function getAllUserDataById(edituserid){
             $.each(data, function(i, item)
             {
                 if(item.username == current && addedUsername != current){
-                    console.log(current + " " + item.role);
                     viewModel.updatePermissions(item.role)
                 }
             });
 
             if (addedUsername != current) {
                 addedUsername = current;
-                console.log("Added: " + addedUsername);
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
