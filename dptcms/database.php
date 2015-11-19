@@ -1371,11 +1371,11 @@ class UserDAO {
      * @param type $username the username to search the roles from. 
      * @return type an array containing all the roles associated with the username, null on error. 
      */
-    public static function getUserRoles($userid) {
+    public static function getUserRoles($username) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT r.role FROM roles r INNER JOIN user_roles ur ON ur.role_id = r.id INNER JOIN users us ON us.id = ur.user_id WHERE us.id = ?");
-            $stmt->execute(array($userid));
+            $stmt = $conn->prepare("SELECT r.role FROM roles r INNER JOIN user_roles ur ON ur.role_id = r.id INNER JOIN users us ON us.id = ur.user_id WHERE us.username = ?");
+            $stmt->execute(array($username));
             return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
         } catch (PDOException $err) {
             return null;
