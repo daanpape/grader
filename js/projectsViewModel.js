@@ -138,9 +138,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc) {
+    gvm.addTableData = function(id, code, name, desc,nrOfAssessing) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, nrOfAssessing: nrOfAssessing};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -153,7 +153,7 @@ function pageViewModel(gvm) {
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
             // Edit the table item
-            showEditProjectTypeModal(code, name, desc, id);
+            showEditProjectTypeModal(code, name, desc, id, nrOfAssessing);
             event.stopPropagation();
         });
 
@@ -278,10 +278,12 @@ function loadTablePage(courseid, pagenr)
         
         /* Clear current table page */
         viewModel.clearTable();
-        
+
+
         // Load table data 
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description);
+            viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing);
+            console.log(item.nrOfAssessing);
         });
         
         /* Let previous en next buttons work */
@@ -379,7 +381,7 @@ function showNewProjectTypeModal()
  * @param {type} tid
  * @returns {undefined}
  */
-function showEditProjectTypeModal(code, name, description, tid)
+function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing)
 {
    resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
@@ -394,7 +396,7 @@ function showEditProjectTypeModal(code, name, description, tid)
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
             </div> \
             <div style="margin-bottom: 5px"> \
-                <input type="text" class="form-control input-lg" placeholder="Number of people grading" name="nrOfAssessing"> \
+                <input type="text" class="form-control input-lg" placeholder="Number of people grading" name="nrOfAssessing" value="' + nrOfAssessing + '"> \
             </div> \
         </form>');
     $.getJSON()

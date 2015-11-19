@@ -678,6 +678,13 @@ $app->post('/api/savedropdowns', function() use ($app) {
     echo json_encode(GraderAPI::saveDropdownChoice($app->request->post('location'), $app->request->post('locationid'), $app->request->post('training'), $app->request->post('trainingid'), $app->request->post('course'), $app->request->post('courseid'), $app->request->post('user')));
 });
 
+$app->post('/api/getNrOfAssessing', function($projectid) use ($app) {
+    $response = $app->response();
+    $response->header('Content-Type',  'application/json');
+
+    echo json_encode(GraderAPI::getNrOfAssessing($projectid));
+});
+
 $app->post('/api/upload', function() use($app){
     $app->response->headers->set('Content-Type', 'application/json');
     echo json_encode(FileUpload::uploadFile());
