@@ -344,12 +344,12 @@ class ClassDAO
      * @description a description about the project
      */
 
-    public static function insertProject($courseid, $code, $name, $description)
+    public static function insertProject($courseid, $code, $name, $description, $nrOfAssessing)
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("INSERT INTO project (code, name, description, course) VALUES (?, ?, ?, ?)");
-            $stmt->execute(array($code, $name, $description, $courseid));
+            $stmt = $conn->prepare("INSERT INTO project (code, name, description, course, nrOfAssessing) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute(array($code, $name, $description, $courseid, $nrOfAssessing));
 
             // Return the id of the newly inserted item on success.
             return $conn->lastInsertId();
