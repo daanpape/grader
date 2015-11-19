@@ -76,14 +76,10 @@ function initPage() {
 }
 
 function getUserPermission(){
-    $.getJSON("/api/getUserRolesById/" + viewModel.edituserid, function(data){
-        console.log(data);
-    });
-
     $.ajax({
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
-        success: function() {
+        success: function(data) {
             console.log(data);
         },
         error: function() {
