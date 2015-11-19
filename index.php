@@ -630,7 +630,7 @@ $app->post('/api/project/:id', function ($courseid) use ($app) {
 
     // Insert the data
     echo json_encode(GraderAPI::createProject(
-                    $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+                    $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description'), $app->request->post('nrOfAssessing')));
 });
 
 $app->post('/api/student/:id', function ($listid) use ($app) {
