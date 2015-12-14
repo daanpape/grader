@@ -65,7 +65,9 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         indicators: ko.observableArray(indicators),
         
         addIndicator: function() {
-            this.indicators.push(new Indicator(this));
+            var indic = new Indicator(this);
+            indic.setDefaults();
+            this.indicators.push();
             automatedWeightCalculation(this.indicators());
         },
 
@@ -129,6 +131,10 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
             }
+        },
+
+        setDefaults: function() {
+            this.pointType = 'Slider';
         }
     };
 }
@@ -180,8 +186,6 @@ function pageViewModel(gvm) {
 
 
     gvm.changePointType = function(data,parent) {
-        console.log(data.pointType());
-        console.log(parent);
         data.pointType(parent);
         console.log(data.pointType());
     }
