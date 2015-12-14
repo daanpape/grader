@@ -131,7 +131,6 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
             }
         },
 
-
         changePointType: function(indicator) {
             this.pointType = indicator;
             console.log(this.pointType);
