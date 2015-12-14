@@ -97,7 +97,7 @@ $location = "project";
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                             <select data-bind="options: viewModel.availableTypes, value: pointType"></select>
                                             <div class="dropdown">
-                                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" data-bind="text: pointType">
                                                     <span class="caret"></span></button>
                                                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: viewModel.availableTypes">
                                                     <li role="presentation"><a role="menuitem" href="#" data-bind="text: $data"></a></li>
