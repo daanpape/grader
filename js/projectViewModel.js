@@ -129,6 +129,11 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
             }
+        },
+
+
+        changePointType: function(indicator) {
+            console.log(indicator);
         }
     };
 }
@@ -178,9 +183,6 @@ function pageViewModel(gvm) {
         gvm.competences.removeAll();
     }
 
-    gvm.changePointType = function(indicator) {
-        console.log(indicator);
-    }
 }
 
 function fetchProjectStructure() {
