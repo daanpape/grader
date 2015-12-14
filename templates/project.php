@@ -96,6 +96,13 @@ $location = "project";
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
                                             <select data-bind="options: viewModel.availableTypes, value: pointType"></select>
+                                            <div class="dropdown">
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                                                    <span class="caret"></span></button>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                    <li role="presentation"><a role="menuitem" href="#">HTML</a></li>
+                                                </ul>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
