@@ -182,7 +182,6 @@ function pageViewModel(gvm) {
     gvm.clearStructure = function() {
         gvm.competences.removeAll();
     }
-
 }
 
 function fetchProjectStructure() {
