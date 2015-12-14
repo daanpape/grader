@@ -99,7 +99,7 @@ $location = "project";
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                                     <span class="caret"></span></button>
                                                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: viewModel.availableTypes">
-                                                    <li role="presentation"><a role="menuitem" data-bind="text: $data, click: $root.changePointType"></a></li>
+                                                    <li role="presentation"><a role="menuitem" data-bind="text: $data, click: $parent.$parent.changePointType"></a></li>
                                                 </ul>
                                             </div>
                                         </li>
