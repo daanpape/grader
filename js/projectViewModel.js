@@ -132,7 +132,6 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
         }
     };
 }
-
 // View model for the courses page
 function pageViewModel(gvm) {
     // projecttitle
@@ -177,6 +176,10 @@ function pageViewModel(gvm) {
     
     gvm.clearStructure = function() {
         gvm.competences.removeAll();
+    }
+
+    gvm.changePointType = function(indicator) {
+        console.log(indicator);
     }
 }
 
