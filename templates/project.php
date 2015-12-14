@@ -99,8 +99,8 @@ $location = "project";
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
                                                     <span class="caret"></span></button>
-                                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                                    <li role="presentation"><a role="menuitem" href="#">HTML</a></li>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: viewModel.availableTypes">
+                                                    <li role="presentation"><a role="menuitem" href="#" data-bind="text: $data"></a></li>
                                                 </ul>
                                             </div>
                                         </li>
