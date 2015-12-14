@@ -94,8 +94,8 @@ $location = "project";
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
-                                            <span>Point type: </span>
                                             <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
+                                            <span>Point type: </span>
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                                     <span class="caret"></span></button>
