@@ -180,7 +180,7 @@ function pageViewModel(gvm) {
 
 
     gvm.changePointType = function(data,parent) {
-        console.log(data);
+        console.log(data.pointType());
         console.log(parent);
     }
 }
