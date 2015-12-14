@@ -67,7 +67,7 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         addIndicator: function() {
             var indic = new Indicator(this);
             indic.setDefaults();
-            this.indicators.push();
+            this.indicators.push(indic);
             automatedWeightCalculation(this.indicators());
         },
 
