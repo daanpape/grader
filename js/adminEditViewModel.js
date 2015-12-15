@@ -76,22 +76,26 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
-            console.log(data);
 
             if(data == null){
+                console.log("guest");
                 return "GUEST";
             }
 
             if (data[0] == "GUEST" && data[0] != null){
+                console.log("guest");
                 return "GUEST";
             }
             if (data[4] == "STUDENT" && data[4] != null){
+                console.log("STUDENT");
                 return "STUDENT";
             }
             if (data[3] == "USER" && data[3] != null){
+                console.log("USER");
                 return "USER";
             }
             if (data[2] == "SUPERUSER" && data[2] != null){
+                console.log("SUPERUSER");
                 return "SUPERUSER";
             }
         },
