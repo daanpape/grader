@@ -18,7 +18,8 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.availablePermissions = ko.observableArray(['GUEST 123', 'STUDENT', 'USER', 'SUPERUSER']);
+    gvm.oldUserRole = ko.observable();
+    gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
@@ -75,27 +76,29 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
-            if(data == null){
-                viewModel.currentUserRole == "GUEST null";
-            }
+            console.log(data);
 
-            if (data[0] == "GUEST" && data[0] != null){
-                viewModel.currentUserRole == "GUEST 0";
+            if (data.length > 0) {
+                if (data[2] == "SUPERUSER" && data[2] != null){
+                    console.log("SUPERUSER");
+                    return "SUPERUSER";
+                }
+                if (data[3] == "USER" && data[3] != null){
+                    console.log("USER");
+                    return "USER";
+                }
+                if (data[4] == "STUDENT" && data[4] != null){
+                    console.log("STUDENT");
+                    return "STUDENT";
+                }
+                if (data[0] == "GUEST" && data[0] != null){
+                    console.log("guest");
+                    return "GUEST";
+                }
+            } else {
+                console.log("guest else");
+                return "GUEST";
             }
-            if (data[4] == "STUDENT" && data[4] != null){
-                viewModel.currentUserRole == "STUDENT";
-            }
-            if (data[3] == "USER" && data[3] != null){
-                viewModel.currentUserRole == "USER";
-            }
-            if (data[2] == "SUPERUSER" && data[2] != null){
-                viewModel.currentUserRole == "SUPERUSER";
-            }
-
-
-
-            alert(viewModel.currentUserRole());
-            return data;
         },
         error: function() {
             alert("Error while getting user info, please contact your administrator");
