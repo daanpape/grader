@@ -48,7 +48,7 @@ function pageViewModel(gvm) {
         $.ajax({
             type: "POST",
             url: "/api/project/" + gvm.projectId +  "/documenttype/add",
-            data: ko.toJSON(gvm.documents()),
+            data: gvm.documents(),
             success: function(){
                 // TODO make multilangual and with modals
                 alert("Saved documents to server");
