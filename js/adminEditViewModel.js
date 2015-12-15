@@ -168,11 +168,11 @@ function getAllUserDataById(edituserid){
             }
         });
 
-        GetPermission();
+        GetPermission(edituserid);
     });
 }
 
-function GetPermission(){
+function GetPermission(edituserid){
     $.getJSON("/api/getUserRolesById/" + edituserid, function(data)
     {
         var currentRole = "";
