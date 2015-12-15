@@ -18,7 +18,46 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.oldUserRole = ko.observable(getUserPermission());
+    gvm.oldUserRole = ko.observable(
+        $.ajax({
+            type: "POST",
+            url: "/api/getUserRolesById/" + viewModel.edituserid,
+            success: function(data) {
+                console.log(data);
+
+                if (data.length > 0) {
+                    var role = "GUEST";
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i] == "SUPERUSER" && data[i] != null){
+                            console.log("SUPERUSER");
+                            role = "SUPERUSER";
+                        }
+                        if (data[i] == "USER" && data[i] != null){
+                            console.log("USER");
+                            role = "USER";
+                        }
+                        if (data[i] == "STUDENT" && data[i] != null){
+                            console.log("STUDENT");
+                            role = "STUDENT";
+                        }
+                        if (data[i] == "GUEST" && data[i] != null){
+                            console.log("guest");
+                            role = "GUEST";
+                        }
+                    }
+                    console.log("role: " + role);
+                    return role;
+                } else {
+                    console.log("guest else");
+                    return "GUEST";
+                }
+            },
+            error: function() {
+                alert("Error while getting user info, please contact your administrator");
+            }
+        })
+    );
+
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
@@ -72,43 +111,7 @@ function initPage() {
 }
 
 function getUserPermission(){
-    $.ajax({
-        type: "POST",
-        url: "/api/getUserRolesById/" + viewModel.edituserid,
-        success: function(data) {
-            console.log(data);
 
-            if (data.length > 0) {
-                var role = "GUEST";
-                for (i = 0; i < data.length; i++) {
-                    if (data[i] == "SUPERUSER" && data[i] != null){
-                        console.log("SUPERUSER");
-                        role = "SUPERUSER";
-                    }
-                    if (data[i] == "USER" && data[i] != null){
-                        console.log("USER");
-                        role = "USER";
-                    }
-                    if (data[i] == "STUDENT" && data[i] != null){
-                        console.log("STUDENT");
-                        role = "STUDENT";
-                    }
-                    if (data[i] == "GUEST" && data[i] != null){
-                        console.log("guest");
-                        role = "GUEST";
-                    }
-                }
-                console.log("role: " + role);
-                return role;
-            } else {
-                console.log("guest else");
-                return "GUEST";
-            }
-        },
-        error: function() {
-            alert("Error while getting user info, please contact your administrator");
-        }
-    });
 }
 
 function getLoggedInUser(){
