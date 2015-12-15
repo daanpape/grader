@@ -1054,7 +1054,7 @@ class ClassDAO
     public static function saveProjectDocuments($projectId, $documents)
     {
         $conn = Db::getConnection();
-        /*$data = json_decode($documents);
+        $data = json_decode($documents);
 
         foreach($data as $document)
         {
@@ -1068,9 +1068,9 @@ class ClassDAO
                 $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ?, locked = ? WHERE id= ?");
                 $stmt->execute(array($document->description, $document->amount_required, $document->weight, $document->locked, $document->id));
             }
-        }*/
+        }
 
-        return $documents;
+        return true;
     }
 
 
