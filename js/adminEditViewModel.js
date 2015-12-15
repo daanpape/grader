@@ -76,7 +76,7 @@ function getUserPermission(){
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
             if(data == null){
-                viewModel.currentUserRole == "GUEST";
+                viewModel.currentUserRole == "GUEST null";
             }
 
             if (data[0] == "GUEST" && data[0] != null){
