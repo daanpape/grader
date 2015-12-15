@@ -163,13 +163,6 @@ function getData(id)
     return viewModel.users();
 }
 
-function getNrOfAssessing(){
-    $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
-    {
-        console.log("nr of assessing");
-        console.log(data);
-    });
-}
 
 function getDataCount(projectid, id)
 {
