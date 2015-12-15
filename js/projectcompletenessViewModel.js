@@ -56,8 +56,7 @@ function pageViewModel(gvm) {
                 console.log("Error::::::");
             }
         });
-    }
-
+    };
 }
 
 function Document(id,description,amount_required,weight,locked)
