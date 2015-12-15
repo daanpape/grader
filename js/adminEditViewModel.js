@@ -68,21 +68,7 @@ function initPage() {
         }
     });
 
-    $(document).ready(
-        function(){
-            var theValue = getUserPermission();
-            console.log(theValue);
-            theValue.each(function(item){
-               if(item == "GUEST"){
-                   $('option[value=' + theValue + ']')
-                       .attr('selected',true);
-               }
-            });
-
-            if(theValue[0] == "GUEST"){
-
-            }
-        });
+    getUserPermission();
 }
 
 function getUserPermission(){
@@ -94,6 +80,7 @@ function getUserPermission(){
 
 
             viewModel.currentUserRole = data;
+            console.log(viewModel.currentUserRole);
             return data;
         },
         error: function() {
