@@ -75,7 +75,7 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-                    <!-- ko if: tcountAssessed == 0 -->
+                    <!-- ko if: tcountAssessed === 0 -->
                     <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red" width="25px" height="25px"></td>
                     <!-- /ko -->
                     <!-- ko if: tcountAssessed > 0 && tcountAssessed < getNrOfAssessing() -->
