@@ -50,7 +50,10 @@ function pageViewModel(gvm) {
             success: function(){
                 // TODO make multilangual and with modals
                 alert("Saved documents to server");
-                gvm.getDocuments();
+            },
+            error: function()
+            {
+                console.log("Error::::::");
             }
         });
     }
