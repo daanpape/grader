@@ -81,8 +81,8 @@ $location = "assessproject";
                     <!-- ko if: tcountAssessed > 0 && tcountAssessed < getNrOfAssessing()-->
                     <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange" width="25px" height="25px"></td>
                     <!-- /ko -->
-                    <!-- ko if: tcountAssessed > 0 -->
-                    <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange" width="25px" height="25px"></td>
+                    <!-- ko if: tcountAssessed == getNrOfAssessing() -->
+                    <td style="text-align: center"><img src="../img/check_green.png" alt="" title="orange" width="25px" height="25px"></td>
                     <!-- /ko -->
 
                     <td data-bind="text: tfirstname">--</td>
