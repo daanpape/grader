@@ -25,7 +25,11 @@ function pageViewModel(gvm) {
     gvm.allRights = ko.observableArray([]);
     gvm.userRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
-    
+
+    gvm.oldUserRoleUpdate = function(role){
+        gvm.oldUserRole = role;
+    },
+
     gvm.updateUser = function(user)
     {
         gvm.user.push(user);
@@ -54,7 +58,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
-
+    getUserPermission();
     $('#userEditForm').on('submit', function(e)
     {
         e.preventDefault();
@@ -99,6 +103,7 @@ function getUserPermission(){
                     }
                 }
                 console.log("role: " + role);
+                viewModel.oldUserRoleUpdate(role);
                 return role;
             } else {
                 console.log("guest else");
