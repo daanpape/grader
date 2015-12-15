@@ -65,7 +65,9 @@ function SubCompetence(parent, id, code, name, weight, locked, indicators) {
         indicators: ko.observableArray(indicators),
         
         addIndicator: function() {
-            this.indicators.push(new Indicator(this));
+            var indic = new Indicator(this);
+            indic.setDefaults();
+            this.indicators.push(indic);
             automatedWeightCalculation(this.indicators());
         },
 
@@ -129,10 +131,13 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
                 this.locked = true;
             }
+        },
+
+        setDefaults: function() {
+            this.pointType = 'Slider';
         }
     };
 }
-
 // View model for the courses page
 function pageViewModel(gvm) {
     // projecttitle
@@ -177,6 +182,12 @@ function pageViewModel(gvm) {
     
     gvm.clearStructure = function() {
         gvm.competences.removeAll();
+    }
+
+
+    gvm.changePointType = function(data,parent) {
+        data.pointType(parent);
+        console.log(data.pointType());
     }
 }
 

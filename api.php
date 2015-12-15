@@ -155,15 +155,16 @@ class GraderAPI {
      * Create a new projecttype and put it in the database
      * @return -1 on error;
      */
-    public static function createProject($courseid, $code, $name, $description) {
-        $id = ClassDAO::insertProject($courseid, $code, $name, $description);
+    public static function createProject($courseid, $code, $name, $description,$nrOfAssessing) {
+        $id = ClassDAO::insertProject($courseid, $code, $name, $description,$nrOfAssessing);
 
         if ($id != null) {
             return array(
                 "id" => $id,
                 "code" => $code,
                 "name" => $name,
-                "description" => $description);
+                "description" => $description,
+                "nrOfAssessing" => $nrOfAssessing);
         } else {
             return -1;
         }
@@ -221,13 +222,14 @@ class GraderAPI {
     /*
      * Update a projecttype in the database
      */
-    public static function updateProject($id, $code, $name, $description) {
-        if(ClassDAO::updateProject($id, $code, $name, $description)){
+    public static function updateProject($id, $code, $name, $description,$nrOfAssessing) {
+        if(ClassDAO::updateProject($id, $code, $name, $description,$nrOfAssessing)){
             return array(
                 "id" => $id,
                 "code" => $code,
                 "name" => $name,
-                "description" => $description);
+                "description" => $description,
+                "nrOfAssessing" => $nrOfAssessing);
         } else {
             return -1;
         }

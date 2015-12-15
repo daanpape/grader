@@ -283,7 +283,6 @@ function loadTablePage(courseid, pagenr)
         // Load table data 
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing);
-            console.log(item.nrOfAssessing);
         });
         
         /* Let previous en next buttons work */

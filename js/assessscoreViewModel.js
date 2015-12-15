@@ -11,8 +11,6 @@ function pageViewModel(gvm) {
 
     gvm.competences = ko.observableArray([]);
 
-    gvm.pointOptions = ko.observableArray(['Ja','Nee']);
-
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);

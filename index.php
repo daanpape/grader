@@ -535,7 +535,7 @@ $app->put('/api/project/:id', function($id) use ($app){
     
     // Update the existing resource
     echo json_encode(GraderAPI::updateProject(
-                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+                    $id, $app->request->post('code'), $app->request->post('name'), $app->request->post('description'), $app->request->post('nrOfAssessing')));
 });
 
 /**$app->put('/api/project/:projectid/studentlist/:studentlistid', function($projectid, $studentlistid) use ($app){
@@ -630,7 +630,7 @@ $app->post('/api/project/:id', function ($courseid) use ($app) {
 
     // Insert the data
     echo json_encode(GraderAPI::createProject(
-                    $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description')));
+                    $courseid, $app->request->post('code'), $app->request->post('name'), $app->request->post('description'), $app->request->post('nrOfAssessing')));
 });
 
 $app->post('/api/student/:id', function ($listid) use ($app) {
