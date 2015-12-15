@@ -37,7 +37,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.addDocument = function(document) {
-        gvm.documents.push(document)
+        gvm.documents.push(document);
     };
 
     gvm.removeDocument = function(document) {
