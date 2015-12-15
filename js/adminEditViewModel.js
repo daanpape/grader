@@ -75,8 +75,12 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
+            if(data == null){
+                viewModel.currentUserRole == "GUEST null";
+            }
+
             if (data[0] == "GUEST" && data[0] != null){
-                viewModel.currentUserRole == "GUEST";
+                viewModel.currentUserRole == "GUEST 0";
             }
             if (data[4] == "STUDENT" && data[4] != null){
                 viewModel.currentUserRole == "STUDENT";
@@ -88,9 +92,7 @@ function getUserPermission(){
                 viewModel.currentUserRole == "SUPERUSER";
             }
 
-            if(data == null){
-                viewModel.currentUserRole == "GUEST";
-            }
+
 
             alert(viewModel.currentUserRole());
             return data;
