@@ -573,6 +573,13 @@ $app->get('/assess/project/img/check_red.png', function() use ($app) {
     echo $image;
 });
 
+$app->get('/assess/project/img/check_green.png', function() use ($app) {
+
+    $image = file_get_contents('./img/check_green.png');
+    $app->response()->header('Content-Type', 'content-type: image/jpg');
+    echo $image;
+});
+
 $app->get('/assess/project/img/check_orange.png', function() use ($app) {
 
     $image = file_get_contents('./img/check_orange.png');
