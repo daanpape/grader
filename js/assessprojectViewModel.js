@@ -161,6 +161,11 @@ function getNrOfAssessing(){
     {
         data.forEach(function(item)
         {
+            if (viewModel.tcountAssessed == item.nrOfAssessing){
+                alert("test");
+            }
+
+
             return item.nrOfAssessing;
         });
     });
