@@ -79,24 +79,27 @@ function getUserPermission(){
             console.log(data);
 
             if (data.length > 0) {
+                var role = "GUEST";
                 for (i = 0; i < data.length; i++) {
                     if (data[i] == "SUPERUSER" && data[i] != null){
                         console.log("SUPERUSER");
-                        return "SUPERUSER";
+                        role = "SUPERUSER";
                     }
                     if (data[i] == "USER" && data[i] != null){
                         console.log("USER");
-                        return "USER";
+                        role = "USER";
                     }
                     if (data[i] == "STUDENT" && data[i] != null){
                         console.log("STUDENT");
-                        return "STUDENT";
+                        role = "STUDENT";
                     }
                     if (data[i] == "GUEST" && data[i] != null){
                         console.log("guest");
-                        return "GUEST";
+                        role = "GUEST";
                     }
                 }
+
+                return role;
             } else {
                 console.log("guest else");
                 return "GUEST";
