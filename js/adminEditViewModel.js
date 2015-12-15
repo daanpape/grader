@@ -17,7 +17,6 @@ function pageViewModel(gvm) {
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
-    gvm.selectedPermission = ko.observable();
     gvm.currentUserRole = ko.observable();
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
@@ -92,7 +91,8 @@ function getUserPermission(){
             if(data == null){
                 viewModel.currentUserRole == "GUEST";
             }
-            alert(viewModel.currentUserRole);
+
+            ko.applyBindings();
             return data;
         },
         error: function() {
@@ -125,7 +125,7 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(){
-    var role = viewModel.selectedPermission();
+    var role = viewModel.currentUserRole();
     var permissions = "GUEST ";
 
     if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
