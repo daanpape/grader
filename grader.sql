@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: localhost
--- Genereertijd: 14 dec 2015 om 14:06
+-- Genereertijd: 15 dec 2015 om 17:24
 -- Serverversie: 5.5.43-0ubuntu0.14.04.1
 -- PHP-versie: 5.5.9-1ubuntu4.9
 
@@ -411,6 +411,7 @@ CREATE TABLE IF NOT EXISTS `documenttype` (
   `amount_required` int(2) NOT NULL,
   `weight` int(3) NOT NULL,
   `project` int(11) NOT NULL,
+  `locked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
 
@@ -418,29 +419,29 @@ CREATE TABLE IF NOT EXISTS `documenttype` (
 -- Gegevens worden uitgevoerd voor tabel `documenttype`
 --
 
-INSERT INTO `documenttype` (`id`, `description`, `amount_required`, `weight`, `project`) VALUES
-(33, 'Grondplannen', 4, 20, 1),
-(34, 'Dakenplan', 1, 15, 1),
-(35, 'snedes', 4, 25, 1),
-(36, 'gevels', 2, 20, 1),
-(37, 'rioleringsschema', 1, 20, 1),
-(38, 'funderingsschema', 1, 20, 1),
-(39, 'isometriÃ«n van dakkapel', 2, 15, 1),
-(40, 'voldoende details', 2, 15, 1),
-(41, 'projectbundel', 1, 15, 1),
-(42, 'goed gekozen doorsnedes', 2, 15, 1),
-(47, 'Projectdocument', 1, 50, 35),
-(48, 'Zipfile', 1, 50, 35),
-(49, 'Grondplannen', 4, 20, 37),
-(59, 'Goed gekozen doorsnedes ifv moeilijkheid knooppunten', 2, 15, 37),
-(60, 'oihoi', 100, 100, 46),
-(61, 'test5', 544, 50, 49),
-(62, 'Eerste webpagina', 1, 50, 32),
-(63, 'Tweede webpagina', 1, 50, 32),
-(66, 'First Document', 1, 50, 65),
-(67, 'Source Code', 1, 50, 67),
-(68, 'Presentation', 2, 50, 67),
-(69, 'Source', 1, 50, 68);
+INSERT INTO `documenttype` (`id`, `description`, `amount_required`, `weight`, `project`, `locked`) VALUES
+(33, 'Grondplannen', 4, 20, 1, 0),
+(34, 'Dakenplan', 1, 15, 1, 0),
+(35, 'snedes', 4, 25, 1, 0),
+(36, 'gevels', 2, 20, 1, 0),
+(37, 'rioleringsschema', 1, 20, 1, 0),
+(38, 'funderingsschema', 1, 20, 1, 0),
+(39, 'isometriÃ«n van dakkapel', 2, 15, 1, 0),
+(40, 'voldoende details', 2, 15, 1, 0),
+(41, 'projectbundel', 1, 15, 1, 0),
+(42, 'goed gekozen doorsnedes', 2, 15, 1, 0),
+(47, 'Projectdocument', 1, 50, 35, 0),
+(48, 'Zipfile', 1, 50, 35, 0),
+(49, 'Grondplannen', 4, 20, 37, 0),
+(59, 'Goed gekozen doorsnedes ifv moeilijkheid knooppunten', 2, 15, 37, 0),
+(60, 'oihoi', 100, 100, 46, 0),
+(61, 'test5', 544, 50, 49, 0),
+(62, 'Eerste webpagina', 1, 50, 32, 0),
+(63, 'Tweede webpagina', 1, 50, 32, 0),
+(66, 'First Document', 1, 50, 65, 0),
+(67, 'Source Code', 1, 50, 67, 0),
+(68, 'Presentation', 2, 50, 67, 0),
+(69, 'Source', 1, 50, 68, 0);
 
 -- --------------------------------------------------------
 
