@@ -139,7 +139,7 @@ require_once('templates/header.php');
                         </tr>
                         <tr>
                             <td>Current role</td>
-                            <td data-bind="text: getUserPermission()">
+                            <td data-bind="text: oldUserRole">
 
                             </td>
                         </tr>
