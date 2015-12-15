@@ -168,39 +168,19 @@ function getAllUserDataById(edituserid){
             }
         });
 
-        checkPermissions();
+        GetPermission();
     });
 }
 
-function checkPermissions(){
-    var checked = false;
-    $.each(viewModel.allRights(), function(i, itemAllRights){
-        checked = false;
-        var data = [];
-        $.each(viewModel.rights(), function(i, itemRights){
-            if(itemAllRights == itemRights && checked == false){
-                if(itemRights == "SUPERUSER" || viewModel.loggedinuser == viewModel.edituserid){
-                    data["disabled"] = true;
-                } else {
-                    data["disabled"] = false;
-                }
-                checked = true;
-                data["item"] = itemAllRights;
-                data["isChecked"] = true;
-                viewModel.updateCheckedRights(data);
-            }
+function GetPermission(){
+    $.getJSON("/api/getUserRolesById/" + edituserid, function(data)
+    {
+        var currentRole = "";
+        console.log(data);
+        $.each(data, function(i, item){
+            console.log(item);
         });
-        if (checked == false){
-            data["item"] = itemAllRights;
-            data["isChecked"] = false;
-            if(viewModel.loggedinuser == viewModel.edituserid){
-                data["disabled"] = true;
-            } else {
-                data["disabled"] = false;
-            }
-            viewModel.updateCheckedRights(data);
-        }
-    });
+
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
