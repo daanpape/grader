@@ -162,7 +162,7 @@ function getNrOfAssessing(){
         data.forEach(function(item)
         {
             console.log(item.nrOfAssessing);
-            if (viewModel.tcountAssessed === item.nrOfAssessing){
+            if (viewModel.tcountAssessed() == item.nrOfAssessing){
                 alert("test");
             }
 
