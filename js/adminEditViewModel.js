@@ -140,6 +140,7 @@ function saveUserPermissions(){
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
+            alert('Changes saved correctly')
         },
         error: function() {
             console.log('Error saving user permission: ' + permissions);
