@@ -43,19 +43,6 @@ function pageViewModel(gvm) {
     gvm.removeDocument = function(document) {
         gvm.documents.remove(document);
     };
-
-    gvm.saveDocuments = function() {
-        $.ajax({
-            type: "POST",
-            url: "/api/project/" + gvm.projectId +  "/documenttype/add",
-            data: gvm.documents(),
-            success: function(data){
-                // TODO make multilangual and with modals
-                console.log(data);
-                alert("Saved documents to server");
-            }
-        });
-    };
 }
 
 function Document(id,description,amount_required,weight,locked)
@@ -85,6 +72,18 @@ function Document(id,description,amount_required,weight,locked)
     }
 }
 
+var saveDocuments = function() {
+    $.ajax({
+        type: "POST",
+        url: "/api/project/" + viewModel.projectId +  "/documenttype/add",
+        data: ko.toJSON(viewModel.documents),
+        success: function(data){
+            // TODO make multilangual and with modals
+            console.log(data);
+            alert("Saved documents to server");
+        }
+    });
+};
 
 
 
