@@ -45,7 +45,7 @@ $location = "projectcompleteness";
                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                         </td>
                         <td>
-                            <button class="btn" data-bind="click: $root.removeDocumentType">Remove</button>
+                            <button class="btn" data-bind="click: removeThis">Remove</button>
                         </td>
                     </tr>
                 </tbody>
