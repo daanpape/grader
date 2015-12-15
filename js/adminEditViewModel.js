@@ -143,8 +143,9 @@ function saveUserPermissions(){
             console.log('Changes saved correctly')
         },
         error: function(xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
+            alert(xhr);
+            alert(status);
+            alert(error);
             console.log('Error saving user permission: ' + permissions);
         }
     });
