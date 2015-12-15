@@ -95,7 +95,7 @@ function getUserPermission(){
 
 
 
-            alert(viewModel.oldUserRole);
+            alert(viewModel.oldUserRole()[0]);
             return data;
         },
         error: function() {
