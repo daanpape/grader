@@ -92,7 +92,7 @@ function getUserPermission(){
                 viewModel.currentUserRole == "GUEST";
             }
 
-            ko.applyBindings();
+            alert(viewModel.currentUserRole());
             return data;
         },
         error: function() {
