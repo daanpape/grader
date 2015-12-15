@@ -42,6 +42,9 @@ $location = "projectcompleteness";
                             <input class="form-control" data-bind="value: weight">
                         </td>
                         <td>
+                            <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
+                        </td>
+                        <td>
                             <button class="btn" data-bind="click: $root.removeDocumentType">Remove</button>
                         </td>
                     </tr>

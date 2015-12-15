@@ -754,9 +754,8 @@ $app->get('/api/project/documenttype/delete/:id', function($id) use ($app) {
 
 $app->post('/api/project/:projectId/documenttype/add', function ($projectId) use ($app) {
     $app->response()->header('Content-Type', 'application/json');
-    echo json_encode(GraderAPI::addProjectDocumentType($projectId, $_POST['description'], $_POST['amount_required'], $_POST['weight']));
-}
-);
+    echo json_encode(GraderAPI::saveDocumentsForProject($projectId,file_get_contents('php://input')));
+});
 
 $app->delete('/api/project/:projectid/studentlist/uncouple/:studentlistid', function($projectid, $studentlistid) use ($app) {
     $response = $app->response();

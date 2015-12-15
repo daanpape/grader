@@ -1051,6 +1051,27 @@ class ClassDAO
     }
 
 
+    public static function saveProjectDocuments($projectId, $documents)
+    {
+        $conn = Db::getConnection();
+        $data = json_decode($documents);
+
+        foreach($data as $document)
+        {
+            if($document->id == 0)
+            {
+                $stmt = $conn->prepare("INSERT INTO documenttype (description,amount_required,weight,project,locked ) VALUES (?,?,?,?,?)");
+                $stmt->execute(array($document->description,$document->amount_required, $document->weight,$projectId,$document->locked));
+            }
+            else
+            {
+                $stmt = $conn->prepare("UPDATE documenttype SET description = ?, amount_required = ?, weight = ?, locked = ? WHERE id= ?");
+                $stmt->execute(array($document->description, $document->amount_required, $document->weight, $document->locked, $document->id));
+            }
+        }
+    }
+
+
     public static function getNrOfAssessing($projectid)
     {
 

@@ -26,84 +26,53 @@ function pageViewModel(gvm) {
 
     gvm.documents = ko.observableArray([]);
 
-    gvm.document = function(data)
-    {
-        this.id                 = ko.observable(data.id);
-        this.description        = ko.observable(data.description || "");
-        this.amount_required    = ko.observable(data.amount_required || "");
-        this.weight             = ko.observable(data.weight || "");
+    gvm.getDocuments = function() {
+        $.getJSON('/api/project/' + gvm.projectId + '/documents', function(data) {
+            console.log(data);
+        });
+    };
+
+    gvm.addDocument = function() {
+        gvm.documents.push()
+    };
+
+    gvm.removeDocument = function(document) {
+        gvm.documents.remove(document);
+    };
+
+    gvm.saveDocuments = function() {
+        $.ajax({
+            type: "POST",
+            url: "/api/project/" + gvm.projectId +  "/documenttype/add",
+            data: ko.toJSON(gvm.documents),
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved documents to server");
+                gvm.getDocuments();
+            }
+        });
     }
 
-    gvm.addDocument = function(id, description, amount_required, weight) {
-        // var document = {id: id, description: description, amount_required: amount_required, weight: weight};
-        gvm.documents.push(document);
-
-        /*$('#removebtn-' + id).bind('click', function(event, data) {
-            gvm.removeDocument(id, document);
-            event.stopPropagation();
-        });*/
-    };
-
-    gvm.addDocumentToSubmit = function()
-    {
-        i = gvm.documents.push(new gvm.document({}));
-
-        workQueue.push(
-            {
-                url: '/api/project/' + gvm.projectId + '/documenttype/add',
-                type: 'POST',
-                data: gvm.documents()[i - 1]
-            }
-        );
-    };
-
-    gvm.getDocumentsToSubmit = function()
-    {
-        $.getJSON(
-            '/api/project/'+ gvm.projectId + '/documents',
-            function(allData)
-            {
-                var mappedDocs = $.map(allData, function(item) { return new gvm.document(item) });
-                gvm.documents(mappedDocs);
-            }
-        );
-    };
-
-    gvm.removeDocumentType = function(documentType) {
-        if(documentType.id() !== undefined) {
-            workQueue.push({url:'/api/project/documenttype/delete/' + documentType.id(), type: 'GET'});
-        }
-        gvm.documents.remove(documentType);
-    };
-
-    gvm.saveDocumentsToSubmit = function()
-    {
-        var processedIndex = 0;
-        for(i = 0; i < workQueue.length; i++)
-        {
-            $.ajax(
-                workQueue[i].url,
-                { type: workQueue[i].type, data: workQueue[i].data },
-                function(result)
-                {
-                    if(processedIndex === workQueue.length - 1)
-                    {
-                        workQueue = [];
-                        alert("Saved");
-                    }
-                    processedIndex++;
-                }
-            );
-        }
-
-        var url = document.URL;
-        var string = url.split("/");
-        console.log(string);
-        window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];
-    };
 }
+
+function Document(id,description,amount_required,weight,locked)
+{
+    return {
+        id: ko.observable(id),
+        description: ko.observable(description || ""),
+        amount_required: ko.observable(amount_required || ""),
+        weight: ko.observable(weight || ""),
+        locked: ko.observable(locked || false),
+
+        removeThis: function() {
+            viewModel.removeDocument(this);
+        }
+    }
+}
+
+
 
 function initPage() {
     viewModel.getProjectInfo();
-    viewModel.getDocumentsToSubmit();
+    viewModel.getDocuments();
 }
