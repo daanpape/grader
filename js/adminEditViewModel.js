@@ -98,7 +98,7 @@ function getUserPermission(){
                         role = "GUEST";
                     }
                 }
-
+                console.log("role: " + role);
                 return role;
             } else {
                 console.log("guest else");
