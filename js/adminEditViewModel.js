@@ -18,6 +18,7 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.selectedPermission = ko.observable();
+    gvm.currentUserRole = ko.observable();
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
@@ -70,7 +71,7 @@ function initPage() {
     $(document).ready(
         function(){
             var theValue = getUserPermission();
-
+            console.log(theValue);
             theValue.each(function(item){
                if(item == "GUEST"){
                    $('option[value=' + theValue + ']')
@@ -89,11 +90,14 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
-            console.log(data);
+
+
+
+            viewModel.currentUserRole = data;
             return data;
         },
         error: function() {
-            console.log("Error saving user changes");
+            alert("Error while getting user info, please contact your administrator");
         }
     });
 }
@@ -171,11 +175,6 @@ function getAllUserDataById(edituserid){
 
         GetPermission();
     });
-}
-
-function GetPermission(){
-    var result = getUserPermission();
-    console.log(result);
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
