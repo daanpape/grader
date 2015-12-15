@@ -76,6 +76,8 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
+            viewModel.oldUserRole == "niets";
+
             if(data == null){
                 viewModel.oldUserRole == "GUEST null";
             }
