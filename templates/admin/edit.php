@@ -129,7 +129,7 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Permission</td>
-                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: getUserPermission()">
+                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, selectedOptions: getUserPermission(), value: currentUserRole">
                                 </select>
                             </td>
                         </tr>

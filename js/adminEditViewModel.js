@@ -69,6 +69,8 @@ function initPage() {
     });
 
     getUserPermission();
+
+    ko.applyBindings(viewModel);
 }
 
 function getUserPermission(){
