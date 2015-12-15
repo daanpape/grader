@@ -31,7 +31,8 @@ function pageViewModel(gvm) {
             data.forEach(function(entry) {
                 console.log(entry);
                 gvm.addDocument(new Document(entry.id,entry.description,entry.amount_required,entry.weight,entry.locked));
-            })
+            });
+            console.log(gvm.documents);
         });
     };
 
