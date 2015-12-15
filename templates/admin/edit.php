@@ -5,6 +5,8 @@ require_once('templates/header.php');
 ?>
 <body style="padding-top: 0px">
 <div id="wrapper">
+    <script>ko.applyBindings(viewModel);</script>
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -130,7 +132,6 @@ require_once('templates/header.php');
                         <tr>
                             <td>Permission</td>
                             <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: currentUserRole">
-
                                 </select>
                             </td>
                         </tr>
