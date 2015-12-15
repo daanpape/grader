@@ -163,7 +163,6 @@ function getData(id)
     return viewModel.users();
 }
 
-
 function getDataCount(projectid, id)
 {
     $.getJSON('/api/project/' + projectid  + '/student/' + id + '/assessed', function(data)
