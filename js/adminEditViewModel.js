@@ -18,7 +18,8 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.availablePermissions = ko.observableArray(['GUEST 123', 'STUDENT', 'USER', 'SUPERUSER']);
+    gvm.oldUserRole = ko.observable();
+    gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
@@ -76,25 +77,25 @@ function getUserPermission(){
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
             if(data == null){
-                viewModel.currentUserRole == "GUEST null";
+                viewModel.oldUserRole == "GUEST null";
             }
 
             if (data[0] == "GUEST" && data[0] != null){
-                viewModel.currentUserRole == "GUEST 0";
+                viewModel.oldUserRole == "GUEST 0";
             }
             if (data[4] == "STUDENT" && data[4] != null){
-                viewModel.currentUserRole == "STUDENT";
+                viewModel.oldUserRole == "STUDENT";
             }
             if (data[3] == "USER" && data[3] != null){
-                viewModel.currentUserRole == "USER";
+                viewModel.oldUserRole == "USER";
             }
             if (data[2] == "SUPERUSER" && data[2] != null){
-                viewModel.currentUserRole == "SUPERUSER";
+                viewModel.oldUserRole == "SUPERUSER";
             }
 
 
 
-            alert(viewModel.currentUserRole());
+            alert(viewModel.oldUserRole());
             return data;
         },
         error: function() {
