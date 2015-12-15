@@ -142,6 +142,22 @@ class ClassDAO
         }
     }
 
+
+    public static function getNrOfAssessingFromProject($projectid)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT nrOfAssessing FROM project WHERE id = ?");
+            $stmt->execute(array($projectid));
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $err) {
+            echo $err;
+            return null;
+        }
+    }
+
+
     public static function getCoupledListsFromProject($id)
     {
         try {

@@ -39,6 +39,11 @@ class GraderAPI {
         return UserDAO::getStudentListWithNrOfAssessed($pid);
     }
 
+    public static function getNrOfAssessingFromProject($pid)
+    {
+        return ClassDAO::getNrOfAssessingFromProject($pid);
+    }
+
     public static function getProjectCountByCourseId($courseid) {
         return ClassDAO::getProjectCountByCourseId($courseid);
     }
