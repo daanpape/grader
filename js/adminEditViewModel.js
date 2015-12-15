@@ -92,7 +92,7 @@ function getUserPermission(){
             if(data == null){
                 viewModel.currentUserRole == "GUEST";
             }
-            console.log(viewModel.currentUserRole);
+            console.log(viewModel.currentUserRole());
             return data;
         },
         error: function() {
