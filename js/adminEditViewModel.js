@@ -181,6 +181,7 @@ function GetPermission(){
             console.log(item);
         });
 
+    });
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
