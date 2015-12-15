@@ -1119,7 +1119,7 @@ class UserDAO {
 
             UserDAO::removeUserRoles($userid);
 
-            $roles = explode(" ", $role);
+            $roles = explode(" ", trim($role));
 
             $conn = Db::getConnection();
 
