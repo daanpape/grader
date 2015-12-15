@@ -77,7 +77,7 @@ $location = "assessproject";
                 <tr>
 
                     <td data-bind="text: tcountAssessed"></td>
-                    <!-- ko if: tcountAssessed == getNrOfAssessing() -->
+                    <!-- ko if: tcountAssessed >= getNrOfAssessing() -->
                     <td style="text-align: center"><img src="../img/check_green.png" alt="" title="green" width="25px" height="25px"></td>
                     <!-- /ko -->
 
