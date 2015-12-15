@@ -160,7 +160,7 @@ function getNrOfAssessing(){
     $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
     {
         console.log(viewModel.tcountAssessed);
-        console.log(data[0][0]);
+        console.log(data["nrOfAssessing"]);
 
         return data[0];
     });
