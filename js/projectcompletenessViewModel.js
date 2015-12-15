@@ -29,6 +29,7 @@ function pageViewModel(gvm) {
     gvm.getDocuments = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/documents', function(data) {
             data.forEach(function(entry) {
+                console.log(entry);
                 gvm.addDocument(new Document(entry.id,entry.description,entry.amount_required,entry.weight,entry.locked));
             })
         });
@@ -43,19 +44,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocuments = function() {
-        $.ajax({
-            type: "POST",
-            url: "/api/project/" + gvm.projectId +  "/documenttype/add",
-            data: gvm.documents,
-            success: function(){
-                // TODO make multilangual and with modals
-                alert("Saved documents to server");
-            },
-            error: function()
-            {
-                console.log("Error::::::");
-            }
-        });
+        console.log("Saving");
     };
 }
 
@@ -85,6 +74,7 @@ function Document(id,description,amount_required,weight,locked)
         }
     }
 }
+
 
 
 
