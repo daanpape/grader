@@ -28,12 +28,14 @@ function pageViewModel(gvm) {
 
     gvm.getDocuments = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/documents', function(data) {
-            console.log(data);
+            data.forEach(function(entry) {
+                gvm.addDocument(new Document(entry.id,entry.description,entry.amount_required,entry.weight,entry.locked));
+            })
         });
     };
 
-    gvm.addDocument = function() {
-        gvm.documents.push()
+    gvm.addDocument = function(document) {
+        gvm.documents.push(document)
     };
 
     gvm.removeDocument = function(document) {
@@ -58,7 +60,7 @@ function pageViewModel(gvm) {
 function Document(id,description,amount_required,weight,locked)
 {
     return {
-        id: ko.observable(id),
+        id: ko.observable(id || 0),
         description: ko.observable(description || ""),
         amount_required: ko.observable(amount_required || ""),
         weight: ko.observable(weight || ""),
