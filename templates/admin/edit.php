@@ -5,8 +5,6 @@ require_once('templates/header.php');
 ?>
 <body style="padding-top: 0px">
 <div id="wrapper">
-    <script>ko.applyBindings(viewModel);</script>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
