@@ -76,6 +76,8 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
+            console.log(data);
+
             if (data.length > 0) {
                 if (data[2] == "SUPERUSER" && data[2] != null){
                     console.log("SUPERUSER");
