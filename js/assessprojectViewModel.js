@@ -166,8 +166,7 @@ function getData(id)
 function getNrOfAssessing(){
     $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
     {
-        console.log("nr of assessing");
-        console.log(data[0]);
+        return data[0]
     });
 }
 
