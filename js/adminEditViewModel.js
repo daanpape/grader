@@ -18,7 +18,7 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.oldUserRole = ko.observable("GUEST");
+    gvm.oldUserRole = ko.observable();
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
@@ -55,6 +55,8 @@ function pageViewModel(gvm) {
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
     viewModel.oldUserRole = getUserPermission();
+
+
 
     $('#userEditForm').on('submit', function(e)
     {
