@@ -70,7 +70,7 @@ function initPage() {
 
     getUserPermission();
 
-    ko.applyBindings(viewModel);
+    ko.applyBindings(new pageViewModel(this));
 }
 
 function getUserPermission(){
