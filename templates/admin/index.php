@@ -25,7 +25,7 @@ require_once('templates/header.php');
                     <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
                 </ul>
             </li>';
-            echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>'; ?>
+            echo '<li><a href="/home" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>'; ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                 <ul class="dropdown-menu">
