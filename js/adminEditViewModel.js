@@ -142,7 +142,7 @@ function saveUserPermissions(){
         success: function() {
             alert('Changes saved correctly');
         },
-        error: function(xhr, status, error) {
+        error: function() {
             alert('Error saving user. Please contact the Administrator');
         }
     });
