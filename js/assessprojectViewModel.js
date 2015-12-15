@@ -159,9 +159,12 @@ function getData(id)
 function getNrOfAssessing(){
     $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
     {
-        console.log(data[0]);
+        console.log(data);
 
-        return data[0];
+        data.foreach(function(item)
+        {
+           console.log(item);
+        });
     });
 }
 
