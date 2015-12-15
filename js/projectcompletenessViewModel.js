@@ -68,6 +68,18 @@ function Document(id,description,amount_required,weight,locked)
 
         removeThis: function() {
             viewModel.removeDocument(this);
+        },
+
+        toggleLock: function(data,event) {
+            if(this.locked == true)
+            {
+                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
+            }
+            else
+            {
+                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
+            }
+            this.locked = !this.locked;
         }
     }
 }
