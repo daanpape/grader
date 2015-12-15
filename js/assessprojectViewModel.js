@@ -161,9 +161,9 @@ function getNrOfAssessing(){
     {
         console.log(data);
 
-        data.foreach(function(item)
+        data.forEach(function(item)
         {
-           console.log(item[0]);
+           console.log(item.nrOfAssessing);
 
         });
     });
