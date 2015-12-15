@@ -18,6 +18,7 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.selectedPermission = ko.observable();
+    gvm.currentUserRole = ko.observable();
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
@@ -70,8 +71,17 @@ function initPage() {
     $(document).ready(
         function(){
             var theValue = getUserPermission();
-            $('option[value=' + theValue + ']')
-                .attr('selected',true);
+            console.log(theValue);
+            theValue.each(function(item){
+               if(item == "GUEST"){
+                   $('option[value=' + theValue + ']')
+                       .attr('selected',true);
+               }
+            });
+
+            if(theValue[0] == "GUEST"){
+
+            }
         });
 }
 
@@ -80,10 +90,14 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
-            console.log(data);
+
+
+
+            viewModel.currentUserRole = data;
+            return data;
         },
         error: function() {
-            console.log("Error saving user changes");
+            alert("Error while getting user info, please contact your administrator");
         }
     });
 }
@@ -131,9 +145,10 @@ function saveUserPermissions(){
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
+            alert('Changes saved correctly');
         },
         error: function() {
-            console.log('Error saving user permission: ' + permissions);
+            alert('Error saving user. Please contact the Administrator');
         }
     });
 }
@@ -157,39 +172,6 @@ function getAllUserDataById(edituserid){
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
-
-        checkPermissions();
-    });
-}
-
-function checkPermissions(){
-    var checked = false;
-    $.each(viewModel.allRights(), function(i, itemAllRights){
-        checked = false;
-        var data = [];
-        $.each(viewModel.rights(), function(i, itemRights){
-            if(itemAllRights == itemRights && checked == false){
-                if(itemRights == "SUPERUSER" || viewModel.loggedinuser == viewModel.edituserid){
-                    data["disabled"] = true;
-                } else {
-                    data["disabled"] = false;
-                }
-                checked = true;
-                data["item"] = itemAllRights;
-                data["isChecked"] = true;
-                viewModel.updateCheckedRights(data);
-            }
-        });
-        if (checked == false){
-            data["item"] = itemAllRights;
-            data["isChecked"] = false;
-            if(viewModel.loggedinuser == viewModel.edituserid){
-                data["disabled"] = true;
-            } else {
-                data["disabled"] = false;
-            }
-            viewModel.updateCheckedRights(data);
-        }
     });
 }
 
@@ -201,7 +183,7 @@ function User(id, username, firstname, lastname, status, permissions) {
         lastname: ko.observable(lastname),
         status: ko.observable(status),
         permissions: ko.observableArray(permissions),
-        userStatuses: ko.observableArray(['WAIT_ACTIVATION', 'ACTIVE', 'DISABLED']),
+        userStatuses: ko.observableArray(['ACTIVE', 'DISABLED']),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))

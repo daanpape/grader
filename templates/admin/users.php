@@ -19,9 +19,15 @@ require_once('templates/header.php');
             </button>
             <a class="navbar-brand" href="/home"><i class="fa fa-home fa-fw fa-lg"></i>Grader Home</a>
         </div>
-        <!-- /.navbar-header -->
 
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+            <?php echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/account"><span class="navspan">Account</span></a></li>
+                    <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
+                    <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
+                </ul>
+            </li>'; ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
                 <ul class="dropdown-menu">
