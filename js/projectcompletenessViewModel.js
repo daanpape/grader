@@ -37,7 +37,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.addDocument = function(document) {
-        gvm.documents.push(document);
+        gvm.documents.push(new Document(document.id,document.description,document.amount_required,document.weight,document.locked));
     };
 
     gvm.removeDocument = function(document) {
