@@ -140,13 +140,10 @@ function saveUserPermissions(){
         url: "/api/addrole/" + viewModel.edituserid,
         data: { 'permissions': permissions },
         success: function() {
-            console.log('Changes saved correctly')
+            alert('Changes saved correctly');
         },
         error: function(xhr, status, error) {
-            console.log(xhr);
-            alert(status);
-            alert(error);
-            console.log('Error saving user permission: ' + permissions);
+            alert('Error saving user. Please contact the Administrator');
         }
     });
 }
