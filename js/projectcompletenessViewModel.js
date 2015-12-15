@@ -32,7 +32,7 @@ function pageViewModel(gvm) {
                 console.log(entry);
                 gvm.addDocument(new Document(entry.id,entry.description,entry.amount_required,entry.weight,entry.locked));
             });
-            console.log(gvm.documents);
+            console.log(gvm.documents());
         });
     };
 
@@ -48,7 +48,7 @@ function pageViewModel(gvm) {
         $.ajax({
             type: "POST",
             url: "/api/project/" + gvm.projectId +  "/documenttype/add",
-            data: gvm.documents,
+            data: ko.toJSON(gvm.documents()),
             success: function(){
                 // TODO make multilangual and with modals
                 alert("Saved documents to server");
