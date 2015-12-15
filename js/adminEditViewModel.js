@@ -18,9 +18,7 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.oldUserRole = ko.pureComputed(function() {
-        return getUserPermission();
-    }, gvm);
+    gvm.oldUserRole = ko.observable("GUEST");
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
@@ -101,7 +99,6 @@ function getUserPermission(){
                     }
                 }
                 console.log("role: " + role);
-                viewModel.oldUserRole = role;
                 return role;
             } else {
                 console.log("guest else");
