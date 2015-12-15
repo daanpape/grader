@@ -37,8 +37,12 @@ function pageViewModel(gvm) {
     };
 
     gvm.addDocument = function(document) {
-        gvm.documents.push(new Document(document.id,document.description,document.amount_required,document.weight,document.locked));
+        gvm.documents.push(document);
     };
+
+    gvm.addNewDocument = function() {
+        gvm.documents.push(new Document());
+    }
 
     gvm.removeDocument = function(document) {
         gvm.documents.remove(document);
