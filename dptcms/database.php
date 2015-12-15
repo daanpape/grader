@@ -1115,19 +1115,25 @@ class UserDAO {
 
     public static function addUserRole($userid, $role)
     {
-        UserDAO::removeUserRoles($userid);
+        try {
 
-        $roles = explode(" ", $role);
+            UserDAO::removeUserRoles($userid);
 
-        $conn = Db::getConnection();
+            $roles = explode(" ", $role);
 
-        for ($i = 0; $i < count($roles); $i++) {
-            // Add role for user
-            $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
-            $stmt->execute(array(trim($userid), trim($roles[$i])));
+            $conn = Db::getConnection();
+
+            for ($i = 0; $i < count($roles); $i++) {
+                // Add role for user
+                $stmt = $conn->prepare("INSERT INTO user_roles(id, user_id, role_id) VALUES (NULL, ?, (SELECT id FROM roles WHERE role = ?))");
+                $stmt->execute(array($userid, trim($roles[$i])));
+            }
+
+            return true;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
         }
-
-        return true;
     }
 
     /**
