@@ -211,7 +211,7 @@ function User(id, username, firstname, lastname, status, permissions) {
         lastname: ko.observable(lastname),
         status: ko.observable(status),
         permissions: ko.observableArray(permissions),
-        userStatuses: ko.observableArray(['WAIT_ACTIVATION', 'ACTIVE', 'DISABLED']),
+        userStatuses: ko.observableArray(['ACTIVE', 'DISABLED']),
 
         removeThisUser: function() {
             if(confirm('Are you sure you want to remove this user?'))
