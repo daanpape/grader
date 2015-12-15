@@ -54,6 +54,9 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
+    viewModel.oldUserRole = getUserPermission();
+
+    console.log(viewModel.oldUserRole);
 
     $('#userEditForm').on('submit', function(e)
     {
@@ -68,7 +71,7 @@ function initPage() {
         }
     });
 
-    getUserPermission();
+
 }
 
 function getUserPermission(){
