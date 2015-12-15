@@ -89,6 +89,7 @@ function getUserPermission(){
         type: "POST",
         url: "/api/getUserRolesById/" + viewModel.edituserid,
         success: function(data) {
+            console.log(data);
             return data;
         },
         error: function() {
