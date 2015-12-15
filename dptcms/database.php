@@ -1069,6 +1069,8 @@ class ClassDAO
                 $stmt->execute(array($document->description, $document->amount_required, $document->weight, $document->locked, $document->id));
             }
         }
+
+        return true;
     }
 
 
