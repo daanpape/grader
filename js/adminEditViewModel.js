@@ -99,7 +99,6 @@ function getUserPermission(){
                     }
                 }
                 console.log("role: " + role);
-                viewModel.oldUserRole = role;
                 return role;
             } else {
                 console.log("guest else");
