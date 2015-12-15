@@ -129,7 +129,7 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>Current role</td>
-                            <td><span data-bind="text: oldUserRole" class="form-control"></span>
+                            <td><span data-bind="value: getUserPermission()" class="form-control"></span>
                             </td>
                         </tr>
                         <tr>
