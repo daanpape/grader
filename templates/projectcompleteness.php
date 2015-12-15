@@ -50,8 +50,8 @@ $location = "projectcompleteness";
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-lg" data-bind="click: addDocumentToSubmit">Add a Document</button>
-            <button class="btn btn-lg" data-bind="click: saveDocumentsToSubmit">Next</button>
+            <button class="btn btn-lg" data-bind="click: addDocument">Add a Document</button>
+            <button class="btn btn-lg" data-bind="click: saveDocuments">Next</button>
         </div>
 
     </div>
