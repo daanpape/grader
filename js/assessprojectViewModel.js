@@ -163,7 +163,8 @@ function getNrOfAssessing(){
 
         data.foreach(function(item)
         {
-           console.log(item);
+           console.log(item.nrOfAssessing);
+
         });
     });
 }
