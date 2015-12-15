@@ -84,23 +84,27 @@ function getUserPermission(){
 
             if (data.length > 0) {
                 var role = "GUEST";
-                for (i = 0; i < data.length; i++) {
+                for (i = 0; i < 1; i++) {
                     if (data[i] == "GUEST" && data[i] != null){
                         console.log("guest");
                         role = "GUEST";
+                        i++;
+                        if (data[i] == "STUDENT" && data[i] != null){
+                            console.log("STUDENT");
+                            role = "STUDENT";
+                            i++;
+                            if (data[i] == "USER" && data[i] != null){
+                                console.log("USER");
+                                role = "USER";
+                                i++;
+                                if (data[i] == "SUPERUSER" && data[i] != null){
+                                    console.log("SUPERUSER");
+                                    role = "SUPERUSER";
+                                }
+                            }
+                        }
                     }
-                    if (data[i] == "STUDENT" && data[i] != null){
-                        console.log("STUDENT");
-                        role = "STUDENT";
-                    }
-                    if (data[i] == "USER" && data[i] != null){
-                        console.log("USER");
-                        role = "USER";
-                    }
-                    if (data[i] == "SUPERUSER" && data[i] != null){
-                        console.log("SUPERUSER");
-                        role = "SUPERUSER";
-                    }
+
                 }
                 console.log("role: " + role);
                 viewModel.oldUserRoleUpdate(role);
