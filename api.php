@@ -20,6 +20,11 @@ class GraderAPI {
         return ClassDAO::getAllProjects($start, $count);
     }
 
+    public static function saveDocumentsForProject($project,$data)
+    {
+        return ClassDAO::saveProjectDocuments($project,$data);
+    }
+
     public static function getProjectByCourseId($courseid, $start, $count) {
         return ClassDAO::getProjectsByCourseId($courseid, $start, $count);
     }
