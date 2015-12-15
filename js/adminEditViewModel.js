@@ -143,7 +143,7 @@ function saveUserPermissions(){
             console.log('Changes saved correctly')
         },
         error: function(xhr, status, error) {
-            alert(xhr);
+            console.log(xhr);
             alert(status);
             alert(error);
             console.log('Error saving user permission: ' + permissions);
