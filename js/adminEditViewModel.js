@@ -18,17 +18,12 @@ function pageViewModel(gvm) {
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
 
     gvm.currentUserRole = ko.observable();
-    gvm.oldUserRole = ko.observable("GUEST");
     gvm.availablePermissions = ko.observableArray(['GUEST', 'STUDENT', 'USER', 'SUPERUSER']);
 
     gvm.rights = ko.observableArray([]);
     gvm.allRights = ko.observableArray([]);
     gvm.userRights = ko.observableArray([]);
     gvm.user = ko.observableArray([]);
-
-    gvm.oldUserRoleUpdate = function(role){
-        gvm.oldUserRole = role;
-    },
 
     gvm.updateUser = function(user)
     {
@@ -58,7 +53,7 @@ function pageViewModel(gvm) {
 
 function initPage() {
     getAllUserDataById(viewModel.edituserid);
-    getUserPermission();
+
     $('#userEditForm').on('submit', function(e)
     {
         e.preventDefault();
@@ -71,54 +66,8 @@ function initPage() {
             saveChanges();
         }
     });
-
-
 }
 
-function getUserPermission(){
-    $.ajax({
-        type: "POST",
-        url: "/api/getUserRolesById/" + viewModel.edituserid,
-        success: function(data) {
-            console.log(data);
-
-            if (data.length > 0) {
-                var role = "GUEST";
-                for (i = 0; i < 1; i++) {
-                    if (data[i] == "GUEST" && data[i] != null){
-                        console.log("guest");
-                        role = "GUEST";
-                        i++;
-                        if (data[i] == "STUDENT" && data[i] != null){
-                            console.log("STUDENT");
-                            role = "STUDENT";
-                            i++;
-                            if (data[i] == "USER" && data[i] != null){
-                                console.log("USER");
-                                role = "USER";
-                                i++;
-                                if (data[i] == "SUPERUSER" && data[i] != null){
-                                    console.log("SUPERUSER");
-                                    role = "SUPERUSER";
-                                }
-                            }
-                        }
-                    }
-
-                }
-                console.log("role: " + role);
-                viewModel.oldUserRoleUpdate(role);
-                return role;
-            } else {
-                console.log("guest else");
-                return "GUEST";
-            }
-        },
-        error: function() {
-            alert("Error while getting user info, please contact your administrator");
-        }
-    });
-}
 
 function getLoggedInUser(){
     $.getJSON("/api/loggedinuser", function(data){
