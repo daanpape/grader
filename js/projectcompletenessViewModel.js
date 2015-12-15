@@ -40,6 +40,10 @@ function pageViewModel(gvm) {
         gvm.documents.push(document);
     };
 
+    gvm.addNewDocument = function() {
+        gvm.documents.push(new Document());
+    }
+
     gvm.removeDocument = function(document) {
         gvm.documents.remove(document);
     };
