@@ -168,20 +168,13 @@ function getAllUserDataById(edituserid){
             }
         });
 
-        GetPermission(edituserid);
+        GetPermission();
     });
 }
 
-function GetPermission(edituserid){
-    $.getJSON("/api/getUserRolesById/" + edituserid, function(data)
-    {
-        var currentRole = "";
-        console.log(data);
-        $.each(data, function(i, item){
-            console.log(item);
-        });
-
-    });
+function GetPermission(){
+    var result = getUserPermission();
+    console.log(result);
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
