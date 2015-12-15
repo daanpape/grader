@@ -49,8 +49,9 @@ function pageViewModel(gvm) {
             type: "POST",
             url: "/api/project/" + gvm.projectId +  "/documenttype/add",
             data: gvm.documents(),
-            success: function(){
+            success: function(data){
                 // TODO make multilangual and with modals
+                console.log(data);
                 alert("Saved documents to server");
             }
         });
