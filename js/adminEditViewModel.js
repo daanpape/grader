@@ -56,8 +56,6 @@ function initPage() {
     getAllUserDataById(viewModel.edituserid);
     viewModel.oldUserRole = getUserPermission();
 
-    console.log(viewModel.oldUserRole);
-
     $('#userEditForm').on('submit', function(e)
     {
         e.preventDefault();
