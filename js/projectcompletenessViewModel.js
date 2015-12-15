@@ -44,7 +44,15 @@ function pageViewModel(gvm) {
     };
 
     gvm.saveDocuments = function() {
-        console.log("Saving");
+        $.ajax({
+            type: "POST",
+            url: "/api/project/" + gvm.projectId +  "/documenttype/add",
+            data: gvm.documents,
+            success: function(){
+                // TODO make multilangual and with modals
+                alert("Saved documents to server");
+            }
+        });
     };
 }
 
