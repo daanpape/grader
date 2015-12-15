@@ -80,7 +80,7 @@ function getUserPermission(){
             }
 
             if (data[0] == "GUEST" && data[0] != null){
-                viewModel.currentUserRole == "GUEST";
+                viewModel.currentUserRole == "GUEST 0";
             }
             if (data[4] == "STUDENT" && data[4] != null){
                 viewModel.currentUserRole == "STUDENT";
