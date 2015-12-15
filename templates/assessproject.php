@@ -74,9 +74,9 @@ $location = "assessproject";
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: tabledata">
-                <tr data-bind="text: tcountassessed"></tr>
                 <tr>
 
+                    <td data-bind="text: tcountassessed"></td>
                     <!-- ko if: tcountAssessed == getNrOfAssessing() -->
                     <td style="text-align: center"><img src="../img/check_green.png" alt="" title="green" width="25px" height="25px"></td>
                     <!-- /ko -->
