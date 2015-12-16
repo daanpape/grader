@@ -67,7 +67,7 @@ function fetchProjectScore()
 
 function saveProjectScore()
 {
-    console.log(viewModel.competences());
+    console.log(viewModel.competences()[0].subcompetences()[0].indicators());
     $.ajax({
         type: "POST",
         url: "/api/projectscore/" + projectid + "/" + studentid,

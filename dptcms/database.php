@@ -990,6 +990,8 @@ class ClassDAO
                     }
                 }
             }
+
+            return true;
         } catch (PDOException $ex) {
             Logger::logError("could not save project rules. " . $ex);
         }
