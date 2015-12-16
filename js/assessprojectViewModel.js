@@ -173,6 +173,7 @@ function getNrOfAssessing(){
         success: function(data) {
             data.forEach(function(item)
             {
+                console.log(item.nrOfAssessing);
                 return item.nrOfAssessing;
             });        },
         error: function()
