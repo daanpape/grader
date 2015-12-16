@@ -129,8 +129,11 @@ require_once('templates/header.php');
 
             <div class="container">
                 <div class="row">
-                    <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-default savePageBtn" type="submit" data-bind="text: saveBtn">Save</button>
+                    <div class="col-lg-1">
+                        <button class="btn btn-default savePageBtn" type="submit">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>
+                            <span data-bind="text: saveBtn">Save</span>
+                        </button>
                     </div>
                 </div>
             </div>
