@@ -80,7 +80,10 @@ $location = "projectRules";
                 Add Rule
             </button>
 
-            <button class="btn btn-lg savePageBtn pull-right" data-bind="text: nextPage">Save</button>
+            <button class="btn btn-lg savePageBtn pull-right" >
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                <span data-bind="text: savePage">Save</span>
+            </button>
         </div>
     </div>
 </div>
