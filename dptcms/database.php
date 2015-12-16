@@ -977,6 +977,7 @@ class ClassDAO
             $data = json_decode($scores);
             $conn = Db::getConnection();
 
+
             foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
