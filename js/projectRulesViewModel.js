@@ -35,25 +35,25 @@ function pageViewModel(gvm) {
 
     gvm.addRule = function() {
         gvm.projectRules.push(new Rule(this));
-    }
+    },
 
     gvm.removeRule = function(rule) {
         gvm.projectRules.remove(rule);
-    }
+    },
 
     gvm.updateRule = function(rule)
     {
         gvm.projectRules.push(rule);
-    }
+    },
 
     gvm.clearActionsStructure = function() {
         gvm.projectActions.removeAll();
-    }
+    },
 
     gvm.clearRuleStructure = function()
     {
         gvm.projectRules.removeAll();
-    }
+    },
 
     gvm.addProjectAction = function(data) {
         gvm.projectActions.push(data);

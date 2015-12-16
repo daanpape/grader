@@ -63,7 +63,7 @@ $location = "projectRules";
                                     <option data-bind="text: $data"></option>
                                 </select>
                                 <input type="text" class="form-control form-next" placeholder="Percent"  data-bind="value: result">
-                                <button class="form-control btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
+                                <button class="form-control btn btn-default form-next" data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
                                     Remove this rule
                                 </button>
                             </div>
@@ -82,7 +82,7 @@ $location = "projectRules";
                 Add Rule
             </button>
 
-            <button type="button" class="btn btn-default pull-right" >
+            <button type="button" class="btn btn-default savePageBtn pull-right" >
                 <span class="glyphicon glyphicon-floppy-disk"></span>
                 <span data-bind="text: savePage">Save</span>
             </button>
