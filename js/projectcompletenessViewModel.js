@@ -17,6 +17,11 @@ function pageViewModel(gvm) {
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
     gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
     gvm.projectAddDocument = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAddDocument");}, gvm);
+    gvm.projectName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
+    gvm.projectAmount = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAmount");}, gvm);
+    gvm.projectWeigth = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
+    gvm.projectLock = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectLock");}, gvm);
+
     gvm.projectCompletenessTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectCompletenessTitle");}, gvm);
 
 
