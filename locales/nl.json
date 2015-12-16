@@ -101,6 +101,7 @@
 
     "AssessProjectStatus" : "Status",
     "AssessProjectCompleted" : "Voltooid: ",
+    "AssessProjectAssessedBy" : "Beoordeeld door: ",
 
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",

@@ -100,6 +100,7 @@
 
     "AssessProjectStatus" : "Status",
     "AssessProjectCompleted" : "Completed: ",
+    "AssessProjectAssessedBy" : "Assessed by: ",
 
     "AssessTitle2" : "Assess students",
     "CourseTitle2" : "Courses",

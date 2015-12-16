@@ -17,6 +17,7 @@ function pageViewModel(gvm) {
     gvm.scoreTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("scoreTableTitle")});
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
     gvm.assessProjectCompleted = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessProjectCompleted")});
+    gvm.assessProjectAssessedBy = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessProjectAssessedBy")});
 
     gvm.searchStudent = ko.observable("");
     gvm.totalCompleted = ko.observable();
