@@ -74,7 +74,7 @@ function saveProjectScore()
         success: function(){
             // TODO make multilangual and with modals
             alert("Saved projectscore to server");
-            console.log(viewModel.competences());
+            console.log(viewModel.competences);
             //window.location = "/assess/project/" + projectid + "/students";
         }
     });
