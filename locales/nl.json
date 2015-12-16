@@ -21,6 +21,8 @@
     "Password" : "Wachtwoord",
     "ConfirmPassword" : "Bevestig wachtwoord",
     "ProjectCompletenessTitle": "Documenten om in te dienen",
+    "ProjectAddDocument": "Voeg document toe",
+
     "ProjecttypesButton" : "Projecten",
     "ProjecttypeTitle" : "Projecten",
     "CourseButton" : "Richting",

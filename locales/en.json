@@ -21,6 +21,7 @@
     "Password" : "Password",
     "ConfirmPassword" : "Confirm Password",
     "ProjectCompletenessTitle": "Documents to be submitted",
+    "ProjectAddDocument": "Add a document",
 
     "ProjecttypesButton" : "Projects",
     "ProjecttypeTitle" : "Projects",
