@@ -17,6 +17,8 @@ function pageViewModel(gvm) {
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
     gvm.searchStudent = ko.observable("");
+    //gvm.totalCompleted = ko.observable("");
+    gvm.totalStudents = ko.observable("");
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
@@ -51,7 +53,8 @@ function pageViewModel(gvm) {
             });
 
 
-            gvm.totalStudents = gvm.tabledata().length;
+            console.log(viewModel.totalStudents);
+            viewModel.totalStudents = viewModel.tabledata().length;
         });
     };
 
@@ -63,8 +66,6 @@ function pageViewModel(gvm) {
 
     gvm.tempTableData = ko.observableArray([]);
 
-    //gvm.totalCompleted = ko.observable("");
-    gvm.totalStudents = ko.observable("");
 
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed, completedStatus) {
@@ -102,7 +103,7 @@ function keypressInBox(e) {
         getStudentByName();
 
     }
-};
+}
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
