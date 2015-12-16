@@ -17,7 +17,7 @@ function pageViewModel(gvm) {
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
     gvm.searchStudent = ko.observable("");
-    //gvm.totalCompleted = ko.observable("");
+    gvm.totalCompleted = ko.observable();
     gvm.totalStudents = ko.observable();
 
     gvm.getProjectInfo = function() {
@@ -26,8 +26,6 @@ function pageViewModel(gvm) {
             gvm.projectDescription(data[0].description);
         });
     };
-
-
 
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students/', function(data) {
@@ -83,9 +81,6 @@ function initPage() {
     //viewModel.getStudentList();
 
     $("#searchField").bind("keypress", {}, keypressInBox);
-
-
-    alert("students: " + viewModel.totalStudents());
 }
 
 function keypressInBox(e) {
@@ -190,11 +185,13 @@ function getDataCount(projectid, id)
 
 var getStudentListBis = function() {
     $.getJSON('/api/project/' + viewModel.projectId + '/students', function(data) {
+        var totalCompleted = 0;
         data.forEach(function(element){
             viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
+            totalCompleted += 1;
         });
 
-        //viewModel.totalStudents = viewModel.tabledata().length;
         viewModel.totalStudents(viewModel.tabledata().length);
+        viewModel.totalCompleted(totalCompleted);
     });
 };
