@@ -70,11 +70,11 @@ function saveProjectScore()
     $.ajax({
         type: "POST",
         url: "/api/projectscore/" + projectid + "/" + studentid,
-        data: ko.toJSON(viewModel.competences),
+        data: ko.toJSON(viewModel.competences()),
         success: function(){
             // TODO make multilangual and with modals
             alert("Saved projectscore to server");
-            console.log(viewModel.competences);
+            console.log(viewModel.competences());
             //window.location = "/assess/project/" + projectid + "/students";
         }
     });
