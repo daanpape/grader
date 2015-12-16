@@ -78,7 +78,7 @@ require_once('templates/header.php');
                 <tbody>
                 <tr>
                     <td>STUDENT</td>
-                    <td data-bind="text:adminStudent">Can only do studentactions</td>
+                    <td data-bind="text: adminStudent">Can only do studentactions</td>
                 </tr>
                 </tbody>
                 <tbody>
