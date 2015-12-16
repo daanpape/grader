@@ -41,7 +41,7 @@ $location = "assesscompletement";
         <div class="col-md-12">
             <button data-value="<?php echo $studentid ?>" id="saveBtn" type="button" class="btn btn-default pagination-button">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
-                <span data-bind="text: savePage">Save</span>
+                <span data-bind="text: saveBtn">Save</span>
             </button>
             <button id="cancelBtn" type="button" class="btn btn-default pagination-button" data-bind="text: cancelBtn">Cancel</button>
         </div>
