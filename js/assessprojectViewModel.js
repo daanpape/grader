@@ -61,19 +61,12 @@ function pageViewModel(gvm) {
     gvm.tempTableData = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, firstname, lastname, email, countAssessed, nrOfAssessing) {
+    gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
         // Push data
         var data = countAssessed;
         var completed = false;
 
-        console.log(data);
-        console.log("test: " + getNrOfAssessing());
-        if (data == getNrOfAssessing()){
-            console.log("true");
-            completed = true;
-        }
-
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data, tAssessedCompleted: completed};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data};
         gvm.tabledata.push(tblOject);
     };
 
