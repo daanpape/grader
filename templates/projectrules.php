@@ -63,7 +63,7 @@ $location = "projectRules";
                                 <input type="text" class="form-control form-next" style="display: inline-block; width: 40%" placeholder="Percent"  data-bind="value: result">
                             </div>
                             <div>
-                                <button type="button" class="btn  form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
+                                <button type="button" class="form-control btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
                                     Remove this rule
                                 </button>
                             </div>
