@@ -132,7 +132,7 @@ body {
 }
 
 .color-compPanel {
-    background-color: rgb(204, 204, 204) !important;
+    background-color: rgb(191, 191, 191) !important;
 }
 
 .color-subcomp {
@@ -140,7 +140,7 @@ body {
 }
 
 .list-group-item {
-    background-color: #E6E6E6
+	background-color: rgb(242, 242, 242) !important;
 }
 
 #uploadformbtn {
