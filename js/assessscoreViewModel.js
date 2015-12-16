@@ -72,9 +72,10 @@ function saveProjectScore()
         type: "POST",
         url: "/api/projectscore/" + projectid + "/" + studentid,
         data: ko.toJSON(viewModel.competences),
-        success: function(){
+        success: function(data){
             // TODO make multilangual and with modals
             alert("Saved projectscore to server");
+            console.log(data);
             //window.location = "/assess/project/" + projectid + "/students";
         }
     });
