@@ -10,6 +10,11 @@ function pageViewModel(gvm) {
     gvm.projectname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectName");}, gvm);
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
 
+    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
+    gvm.assessCompletementNumberToSubmit = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessCompletementNumberToSubmit");}, gvm);
+    gvm.projectWeight = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
+    gvm.assessCompletementNumberSubmitted = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessCompletementNumberSubmitted");}, gvm);
+
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);

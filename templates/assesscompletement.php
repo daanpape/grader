@@ -19,10 +19,10 @@ $location = "assesscompletement";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th># to submit</th>
-                    <th>Weight</th>
-                    <th>Submitted</th>
+                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: assessCompletementNumberToSubmit"># to submit</th>
+                    <th data-bind="text: projectWeight">Weight</th>
+                    <th data-bind="text: assessCompletementNumberSubmitted">Submitted</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: documents">
@@ -39,7 +39,7 @@ $location = "assesscompletement";
             </table>
         </div>
         <div class="col-md-12">
-            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg">Save</button>
+            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg" data-bind="text: SaveBtn">Save</button>
             <button id="cancelBtn" class="btn btn-lg">Cancel</button>
         </div>
     </div>

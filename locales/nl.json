@@ -104,6 +104,8 @@
     "AssessProjectCompleted" : "Voltooid: ",
     "AssessProjectAssessedBy" : "Beoordeeld door: ",
     "AssessProjectCreatePdfError" : "Zorg ervoor dat de punten gegeven zijn!",
+    "AssessCompletementNumberToSubmit" : "# om in te dienen",
+    "AssessCompletementNumberSubmitted" : "Aantal ingediend",
 
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",
