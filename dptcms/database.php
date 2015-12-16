@@ -1510,7 +1510,7 @@ class UserDAO {
                 $stmt->execute(array($pid));
                 $nr = $stmt->fetchAll(PDO::FETCH_COLUMN,0);
 
-                $studentData->testdata = $nr;
+                $studentData->testdata = $nr[0];
                 $studentData->testdata2 = $data;
 
                 if (intval($nr) == intval($data)){
