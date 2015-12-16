@@ -166,7 +166,7 @@ function getData(id)
 }
 
 function getNrOfAssessing(){
-    var nr = 0;
+    var nr;
 
     $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
     {
@@ -174,7 +174,7 @@ function getNrOfAssessing(){
         {
             //console.log(item.nrOfAssessing);
 
-            nr = item.nrOfAssessing;
+            this.nr = item.nrOfAssessing;
         });
     });
 
