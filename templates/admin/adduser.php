@@ -134,7 +134,7 @@ require_once('templates/header.php');
                             <span class="glyphicon glyphicon-floppy-disk"></span>
                             <span data-bind="text: saveBtn">Save</span>
                         </button>
-                    </divcol-lg-1>
+                    </div>
                 </div>
             </div>
                 
