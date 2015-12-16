@@ -75,7 +75,7 @@ $location = "projects";
                         <td width="35%">
                             <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
-                                <span>Edit</span>
+                                <span data-bind="text: viewModel.projectsEditBtn">Edit</span>
                             </a>
                             <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
