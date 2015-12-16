@@ -56,7 +56,7 @@ $location = "projectRules";
                         </td>
                         <td>
                             <div>
-                                <span data-bind="text: viewModel.ruleTotalScore">Total score:</span><br />
+                                <span data-bind="text: viewModel.ruleTotalScore" class="form-next">Total score:</span><br />
                                 <select class="form-control form-next" style="display: inline-block; width: 25%" data-bind="foreach: viewModel.availableSigns, value: sign">
                                     <option data-bind="text: $data"></option>
                                 </select>
