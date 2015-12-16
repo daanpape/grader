@@ -18,7 +18,7 @@ function pageViewModel(gvm) {
 
     gvm.searchStudent = ko.observable("");
     //gvm.totalCompleted = ko.observable("");
-    gvm.totalStudents = ko.observable("");
+    gvm.totalStudents = ko.observable();
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
