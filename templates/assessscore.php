@@ -168,11 +168,10 @@ $location = "assessscore";
 <div class="container">
     <div class="row">
         <div id="bottom-col" class="col-md-12">
-            <button class="btn btn-default" data-bind="text: savePage">
+            <button type="button" class="btn btn-default pagination-button" data-bind="text: savePage">
                 Save
             </button>
         </div>
-        <div class="row">
     </div>
 </div>
 
