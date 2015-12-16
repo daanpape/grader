@@ -24,6 +24,8 @@ function pageViewModel(gvm) {
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);
 
+    gvm.projectsStructureBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsStructureBtn");}, gvm);
+
     gvm.currentCourseId = null;
     gvm.currentLocationId = null;
     gvm.currentTrainingid = null;

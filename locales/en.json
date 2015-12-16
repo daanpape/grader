@@ -77,7 +77,7 @@
     "RuleActionDropdown" : "Action",
     "RuleNotOK" : "Result of the rule",
     "ProjectTitleRules" : "Project Rules",
-    
+    "ProjectsStructureBtn" : "Structure",
     
     
     "AssessTitle2" : "Assess students",
@@ -92,7 +92,6 @@
     "studentrapportRapportTitle":"Student grades",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder for future rapport</p>",
     "EditCourse" : "Edit course",
-    "AdminTitle":"Userlist",
     "AdminCodeTableTitle": "ID",
     "AdminNameTableTitle":"Name",
     "AdminDescTableTitle":"E-mail",

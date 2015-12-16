@@ -79,7 +79,7 @@ $location = "projects";
                             </a>
                             <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
-                                <span>Structure</span>
+                                <span data-bind="text: projectsStructureBtn">Structure</span>
                             </a>
                             <a data-bind="attr:{'href': '/project/students/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
