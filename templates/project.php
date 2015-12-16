@@ -74,8 +74,8 @@ $location = "project";
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
-                        <span data-bind="text: viewModel.projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
-                        <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="value: locked, click: toggleLock"></i></span>
+                        <span data-bind="text: viewModel.projectWeight">Current weight:</span> <input type="text" class="form-control form-next" data-bind="value: weight">%
+                        <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="value: locked, click: toggleLock"></i>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
                         <div class="subcompPanel">
