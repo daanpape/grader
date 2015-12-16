@@ -32,7 +32,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}, text: viewModel.projectStudentsUncouple">Uncouple</button>
+                        <button type="button" class="btn btn-default pagination-button" data-bind="attr:{'id': 'uncouplebtn-' + tid}, text: viewModel.projectStudentsUncouple">Uncouple</button>
                     </td>
                 </tr>
                 </tbody>
@@ -48,13 +48,13 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}, text: viewModel.projectStudentsCouple">Couple</button>
+                        <button type="button" class="btn btn-default pagination-button" data-bind="attr:{'id': 'couplebtn-' + tid}, text: viewModel.projectStudentsCouple">Couple</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <button  type="button" class="btn btn-default pagination-button" data-bind="text: nextPage">
+        <button type="button" class="btn btn-default pagination-button" data-bind="text: nextPage">
             Save
         </button>
     </div>
