@@ -17,6 +17,7 @@ function pageViewModel(gvm) {
     gvm.ruleActionDropdown = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleActionDropdown");}, gvm);
     gvm.ruleResult = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleResult");}, gvm);
     gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
+    gvm.ruleTotalScore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("RuleTotalScore");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
