@@ -20,7 +20,7 @@ $location = "projectstudents";
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <p>Coupled list</p>
+            <p data-bind="text: projectStudentsCoupledList">Coupled list</p>
             <table class="table table-striped">
                 <thead>
                 <tr>

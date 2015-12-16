@@ -95,6 +95,7 @@
 
     "ProjectStudentsUncouple" : "Uncouple",
     "ProjectStudentsCouple" : "Couple",
+    "ProjectStudentsCoupledList" : "Coupled lists",
 
     "TableName" : "Name",
     "TableActions" : "Actions",

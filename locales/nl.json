@@ -96,6 +96,7 @@
 
     "ProjectStudentsUncouple" : "Loskoppelen",
     "ProjectStudentsCouple" : "Koppelen",
+    "ProjectStudentsCoupledList" : "Gekoppelde lijsten",
 
     "TableName" : "Naam",
     "TableActions" : "Acties",

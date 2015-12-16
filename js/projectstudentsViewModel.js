@@ -20,6 +20,7 @@ function pageViewModel(gvm) {
     gvm.tableActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableActions");}, gvm);
     gvm.projectStudentsUncouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsUncouple");}, gvm);
     gvm.projectStudentsCouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsCouple");}, gvm);
+    gvm.projectStudentsCoupledList = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsCoupledList");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {
