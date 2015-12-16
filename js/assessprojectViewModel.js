@@ -35,6 +35,7 @@ function pageViewModel(gvm) {
             });
 
             viewModel.totalStudents = viewModel.tabledata().length;
+            alert(viewModel.totalStudents);
         });
     };
 
