@@ -1513,7 +1513,7 @@ class UserDAO {
                 if ($nr == $data){
                     $studentData->assessCompleted = 'COMPLETED';
                 } else if ($data > 0 && $data != $nr){
-                    $studentData->assessCompleted = 'Busy';
+                    $studentData->assessCompleted = 'BUSY';
                 } else {
                     $studentData->assessCompleted = 'EMPTY';
                 }
