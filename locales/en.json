@@ -51,6 +51,7 @@
     "filesTableTitle": "Check documents",
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
+    "AddNewProjectTypePlaceholder" : "Number of people grading",
     "EditProjectTitle" : "Edit projecttype",
     "CoupleStudentList": "Couple a studentlist",
     "CancelBtn" : "Cancel",

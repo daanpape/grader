@@ -51,6 +51,7 @@
     "filesNameTableTitle": "Ingediende documenten",
 
     "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
+    "AddNewProjectTypePlaceholder" : "Hoeveel juryleden voor dit project",
     "EditProjectTitle" : "Wijzig projecttype",
     "CoupleStudentList": "Koppel een studentenlijst",
     "CancelBtn" : "Annuleer",
