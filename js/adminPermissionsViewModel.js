@@ -12,6 +12,12 @@ function pageViewModel(gvm) {
 
     gvm.permissionRole = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionRole");}, gvm);
     gvm.permissionDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("PermissionDescription");}, gvm);
+
+    gvm.adminGuest = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminGuest");}, gvm);
+    gvm.adminStudent = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminStudent");}, gvm);
+    gvm.adminUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminUser");}, gvm);
+    gvm.adminSuperuser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminSuperuser");}, gvm);
+
     fetchUsersData();
 
     gvm.usersPermissions = ko.observableArray([]);

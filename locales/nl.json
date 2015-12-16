@@ -177,6 +177,10 @@
     "courseID" : "VakID",
     "courseName" : "Naam",
     "volgStatus" : "Status",
-    "courseAction" : "Acties"
+    "courseAction" : "Acties",
 
+    "AdminGuest" : "Wanneer de gebruiker niet ingelogd is, is hij een GUEST.",
+    "AdminStudent" : "Kan alleen studentenacties doen.",
+    "AdminUser" : "Kan studenten beoordelen",
+    "AdminSuperuser" : "Deze gebruiker heeft op alles rechten, ook de Admin Panel."
 }

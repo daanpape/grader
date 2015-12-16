@@ -72,25 +72,25 @@ require_once('templates/header.php');
                 <tbody>
                 <tr>
                     <td>GUEST</td>
-                    <td>When not logged in you get the GUEST role.</td>
+                    <td data-bind="text: adminGuest">When not logged in you get the GUEST role.</td>
                 </tr>
                 </tbody>
                 <tbody>
                 <tr>
                     <td>STUDENT</td>
-                    <td>Can only do studentactions</td>
+                    <td data-bind="text:adminStudent">Can only do studentactions</td>
                 </tr>
                 </tbody>
                 <tbody>
                 <tr>
                     <td>USER</td>
-                    <td>Contains rights for every USER in the system.</td>
+                    <td data-bind="text: adminUser">Contains rights for every USER in the system.</td>
                 </tr>
                 </tbody>
                 <tbody>
                 <tr>
                     <td>SUPERUSER</td>
-                    <td>The superuser role must have access to everything...</td>
+                    <td data-bind="text: adminSuperuser">The superuser role must have access to everything...</td>
                 </tr>
                 </tbody>
         </div>

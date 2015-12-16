@@ -179,5 +179,10 @@
     "courseID" : "CourseID",
     "courseName" : "Name",
     "volgStatus" : "Status",
-    "courseAction" : "Actions"
+    "courseAction" : "Actions",
+
+    "AdminGuest" : "When not logged in you get the GUEST role.",
+    "AdminStudent" : "Can only do studentactions.",
+    "AdminUser" : "Contains rights to assess students",
+    "AdminSuperuser" : "This user has access to everything, the Admin Panel included."
 }
