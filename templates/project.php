@@ -83,16 +83,16 @@ $location = "project";
                                 <div class="panel-heading color-subcomp">
                                     <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
                                     <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
-                                    <span data-bind="text: viewModel.projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
-                                    <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
+                                    <span data-bind="text: viewModel.projectWeight">Current weight:</span> <input type="text" class="form-control form-next" data-bind="value: weight">%
+                                    <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group" data-bind="foreach: indicators">
                                         <li class="list-group-item">
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
-                                            <span data-bind="text: viewModel.projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
-                                            <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
+                                            <span data-bind="text: viewModel.projectWeight">Current weight:</span> <input type="text" class="form-control form-next" data-bind="value: weight">%
+                                            <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i>
                                             <button class="btn" data-bind="click: removeThis, text: viewModel.projectRemoveIndicator">Remove this indicator</button>
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
