@@ -9,6 +9,7 @@ function pageViewModel(gvm) {
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
     gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
+    gvm.email = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Email");}, gvm);
     gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
     gvm.password = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Password");}, gvm);
     gvm.confirmPassword = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ConfirmPassword");}, gvm);

@@ -68,13 +68,13 @@ require_once('templates/header.php');
             <form id="userForm" class="form">
                 <input type="hidden" name="skipEmailVerification" value="true">
                 <div class="form-group">
-                    <label class="control-label col-md-4" data-bind="text: firstname">Firstname</label>
+                    <label class="control-label col-md-4" data-bind="text: firstName">Firstname</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control form-next" placeholder="Firstname" name="firstname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4" data-bind="text: lastname">Lastname</label>
+                    <label class="control-label col-md-4" data-bind="text: lastName">Lastname</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control form-next" placeholder="Lastname" name="lastname">
                     </div>
