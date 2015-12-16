@@ -61,7 +61,7 @@ function pageViewModel(gvm) {
     gvm.tempTableData = ko.observableArray([]);
 
     //gvm.totalCompleted = ko.observable("");
-    gvm.totalStudents = ko.observable("");
+    gvm.totalStudents = ko.observable("200");
 
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed, completedStatus) {
