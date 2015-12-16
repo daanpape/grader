@@ -44,7 +44,7 @@ $location = "projectRules";
                             <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: name">
                         </td>
 
-                        <td>
+                        <td class="col-md-2">
                             <select data-bind="{options: viewModel.projectActions, optionsText: 'name', value: action}" class="form-control form-next">
                             </select>
                             <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
@@ -54,7 +54,7 @@ $location = "projectRules";
                                 <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value">
                             </div>
                         </td>
-                        <td>
+                        <td class="col-md-2">
                             <div>
                                 <span data-bind="text: viewModel.ruleTotalScore" style="display: inline-block">Total score:</span>
                                 <select class="form-control form-next" style="display: inline-block; width: 20%" data-bind="foreach: viewModel.availableSigns, value: sign">
