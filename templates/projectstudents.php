@@ -32,7 +32,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button type="button" class="btn btn-default" data-bind="attr:{'id': 'uncouplebtn-' + tid}, text: viewModel.projectStudentsUncouple">Uncouple</button>
+                        <button class="btn btn-default" data-bind="attr:{'id': 'uncouplebtn-' + tid}, text: viewModel.projectStudentsUncouple">Uncouple</button>
                     </td>
                 </tr>
                 </tbody>
@@ -48,7 +48,7 @@ $location = "projectstudents";
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button type="button" class="btn btn-default" data-bind="attr:{'id': 'couplebtn-' + tid}, text: viewModel.projectStudentsCouple">Couple</button>
+                        <button class="btn btn-default" data-bind="attr:{'id': 'couplebtn-' + tid}, text: viewModel.projectStudentsCouple">Couple</button>
                     </td>
                 </tr>
                 </tbody>
