@@ -122,12 +122,12 @@ $location = "project";
         
         <div class="container">
             <div class="row">
-                <button type="button" class="btn btn-default pagination-button" data-bind="text: nextPage">
+                <button type="button" class="btn btn-default" data-bind="text: nextPage">
                     Save
                 </button>
 
                 <div id="bottom-col" class="col-md-12">
-                    <button type="button" class="btn btn-default pagination-button" data-bind="text: addCompetenceBtn">
+                    <button type="button" class="btn btn-default" data-bind="text: addCompetenceBtn">
                         Add competence
                     </button>
                 </div>
