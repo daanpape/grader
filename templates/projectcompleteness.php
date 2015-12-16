@@ -28,7 +28,7 @@ $location = "projectcompleteness";
                         <th data-bind="text: projectAmount">amount required</th>
                         <th data-bind="text: projectWeigth">weight</th>
                         <th data-bind="text: projectLock">Lock</th>
-                        <th data-bind="text: projectDelete">Delete</th>
+                        <th data-bind="text: projectActions">Delete</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: documents">
@@ -46,7 +46,7 @@ $location = "projectcompleteness";
                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default" data-bind="click: removeThis">Remove</button>
+                            <button type="button" class="btn btn-default" data-bind="click: removeThis, text: projectDelete">Remove</button>
                         </td>
                     </tr>
                 </tbody>
