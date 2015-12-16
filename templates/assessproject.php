@@ -114,7 +114,7 @@ $location = "assessproject";
 
 <script type="text/html" id="test-template">
     <div class="popup">
-        <h4><u data-bind="text: assessProjectAssessedBy">Assessed by</u></h4>
+        <h4><u data-bind="text: viewModel.assessProjectAssessedBy">Assessed by</u></h4>
         <p id="popupContainer">
             <ul data-bind="foreach: viewModel.users">
                 <li data-bind="text: $data"></li>
