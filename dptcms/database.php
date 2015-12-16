@@ -1510,12 +1510,9 @@ class UserDAO {
                 $stmt->execute(array($pid));
                 $nr = $stmt->fetchAll(PDO::FETCH_COLUMN,0);
 
-                $studentData->testdata = $nr[0];
-                $studentData->testdata2 = $data;
-
-                if (intval($nr) == intval($data)){
+                if (intval($nr[0]) == intval($data)){
                     $studentData->assessCompleted = 'COMPLETED';
-                } else if ($data > 0 && $data != $nr){
+                } else if (intval($data) > 0 && intval($data) != intval($nr[0])){
                     $studentData->assessCompleted = 'BUSY';
                 } else {
                     $studentData->assessCompleted = 'EMPTY';
