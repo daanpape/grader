@@ -33,6 +33,10 @@ function pageViewModel(gvm) {
                 console.log(element);
                 viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
             });
+
+            console.log("hey");
+            console.log(viewModel.totalStudents);
+            viewModel.totalStudents = viewModel.tabledata().length;
         });
     };
 
