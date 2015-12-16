@@ -194,7 +194,7 @@ var getStudentListBis = function() {
             viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
         });
 
-        viewModel.totalStudents = viewModel.tabledata().length;
-        alert(viewModel.totalStudents);
+        //viewModel.totalStudents = viewModel.tabledata().length;
+        viewModel.totalStudents(viewModel.tabledata().length);
     });
 };
