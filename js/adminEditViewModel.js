@@ -16,6 +16,8 @@ function pageViewModel(gvm) {
     gvm.adminUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminUser");}, gvm);
     gvm.adminSuperuser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminSuperuser");}, gvm);
 
+    gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+
     gvm.edituserid = $("#usereditHeader").data('value');
 
     gvm.loggedinuser = ko.observable();
