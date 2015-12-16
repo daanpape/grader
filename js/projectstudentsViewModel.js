@@ -16,8 +16,8 @@ function pageViewModel(gvm) {
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
-    gvm.tableName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableName");}, gvm);
-    gvm.tableActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableActions");}, gvm);
+    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
+    gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
     gvm.projectStudentsUncouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsUncouple");}, gvm);
     gvm.projectStudentsCouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsCouple");}, gvm);
     gvm.projectStudentsCoupledList = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsCoupledList");}, gvm);

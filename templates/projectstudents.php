@@ -24,8 +24,8 @@ $location = "projectstudents";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: tableName">Name</th>
-                    <th data-bind="text: tableActions">Actions</th>
+                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: ActionTableTitle">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: coupledLists">

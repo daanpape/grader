@@ -16,8 +16,8 @@ function pageViewModel(gvm) {
 
     // Table i18n bindings
     gvm.codeTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CodeTableTitle");}, gvm);
-    gvm.nameTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
-    gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
+    gvm.tableName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableName");}, gvm);
+    gvm.tableDescription = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableDescription");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
     gvm.availableLocations = ko.observableArray([]);
