@@ -977,12 +977,10 @@ class ClassDAO
             $data = json_decode($scores);
             $conn = Db::getConnection();
 
-            return $data;
-
-            /*foreach ($data as $competences) {
+            foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
-                        if ($indicators->scoreid == 0) {
+                        if (!isset($indicators->scoreid)) {
                             $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
                             $stmt->execute(array($projectid, $studentid, $userid, $competences->id, $subcompetences->id, $indicators->id, $indicators->score));
                         } else {
@@ -992,8 +990,6 @@ class ClassDAO
                     }
                 }
             }
-
-            return true;*/
         } catch (PDOException $ex) {
             Logger::logError("could not save project rules. " . $ex);
         }
