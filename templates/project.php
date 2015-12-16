@@ -126,8 +126,9 @@ $location = "project";
                         Add competence
                     </button>
 
-                    <button type="button" class="btn btn-default savePageBtn  pull-right" data-bind="text: nextPage">
-                        Save
+                    <button type="button" class="btn btn-default savePageBtn  pull-right">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        <span  data-bind="text: nextPage">Save</span>
                     </button>
                 </div>
             </div>
