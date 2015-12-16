@@ -50,8 +50,8 @@ $location = "assessproject";
         <div class="col-md-12">
             <table class="table table-striped">
                 <tr>
-                    <td><input type="text" id="searchField" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
-                    <td><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
+                    <td style="width: 80%"><input type="text" id="searchField" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
+                    <td style="width: 10%"><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
