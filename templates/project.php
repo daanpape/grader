@@ -51,6 +51,7 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
+
                     <button  type="button" class="btn btn-default pagination-button"  data-bind="text: nextPage">
                         Save
                     </button>
@@ -93,7 +94,7 @@ $location = "project";
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <span data-bind="text: viewModel.projectWeight">Current weight:</span> <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i>
-                                            <button class="btn btn-default pagination-button" data-bind="click: removeThis, text: viewModel.projectRemoveIndicator">Remove this indicator</button>
+                                            <button class="btn" data-bind="click: removeThis, text: viewModel.projectRemoveIndicator">Remove this indicator</button>
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                                     <span class="caret"></span></button>
@@ -105,15 +106,15 @@ $location = "project";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button type="button" class="btn btn-default pagination-button" value="NaN-0" data-bind="click: addIndicator, text: viewModel.projectAddIndicator">Add an indicator</button>
-                                    <button type="button" class="btn btn-default pagination-button" data-bind="click: removeThis, text: viewModel.projectRemoveSubComptence">Remove this subcompetence</button>
+                                    <button class="btn" value="NaN-0" data-bind="click: addIndicator, text: viewModel.projectAddIndicator">Add an indicator</button>
+                                    <button class="btn pull-right" data-bind="click: removeThis, text: viewModel.projectRemoveSubComptence">Remove this subcompetence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button type="button" class="btn btn-default pagination-button" value="NaN" data-bind="click: addSubCompetence, text: viewModel.projectAddSubComptence">Add a subcompetence</button>
-                        <button type="button" class="btn btn-default pagination-button" value="NaN" data-bind="click: removeThis, text: viewModel.projectRemoveComptence">Remove this competence</button>
+                        <button class="btn" value="NaN" data-bind="click: addSubCompetence, text: viewModel.projectAddSubComptence">Add a subcompetence</button>
+                        <button class="btn pull-right" value="NaN" data-bind="click: removeThis, text: viewModel.projectRemoveComptence">Remove this competence</button>
                     </div>
                 </div>
             </div>
