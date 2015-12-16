@@ -132,11 +132,11 @@ body {
 }
 
 .color-subcomp {
-    background-color: rgb(155, 155, 200) !important;
+    background-color: rgb(204, 204, 204) !important;
 }
 
 .list-group-item {
-    background-color: #ECDFA0
+    background-color: #B3B3B3
 }
 
 #uploadformbtn {
