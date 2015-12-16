@@ -50,13 +50,13 @@ $location = "assessproject";
         <div class="col-md-12">
             <table class="table table-striped">
                 <tr>
-                    <td style="width: 80%"><input type="text" id="searchField" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
+                    <td style="width: 75%"><input type="text" id="searchField" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
                     <td style="width: 10%"><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
-                    <td><p style="display:inline-block">Status: </p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
+                    <td><p style="display:inline-block; margin-right: 5px">Status</p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
                 </tr>
             </table>
         </div>
