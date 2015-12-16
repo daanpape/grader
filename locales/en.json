@@ -76,7 +76,7 @@
     "RuleName" : "Rule name",
     "AddRule" : "Add rule",
     "RuleActionDropdown" : "Action",
-    "RuleNotOK" : "Result of the rule",
+    "RuleResult" : "Result of the rule",
     "ProjectTitleRules" : "Project Rules",
     "ProjectsStructureBtn" : "Structure",
     "ProjectsStudentsBtn" : "Students",
