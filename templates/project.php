@@ -58,12 +58,11 @@ $location = "project";
                     <button class="btn btn-lg savePageBtn pull-right" data-bind="text: nextPage">
                         Save
                     </button>
-                    </button>
                 </div>
             </div>
             <!-- Validation Summary -->
             <div class="validationSummary hide">
-                <h2>Project was not saved!</h2>
+                <h2 data-bind="text: projectNotSaved">Project was not saved!</h2>
                 <ul></ul>
             </div>
         </div>
@@ -75,7 +74,7 @@ $location = "project";
                     <div class="panel-heading">
                         <input type="text" placeholder="Competence-Code" class="form-control form-next" data-bind="value: code">
                         <input type="text" placeholder="Name of the competence" class="form-control form-next" data-bind="value: name">
-                        <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
+                        <span data-bind="text: projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                         <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="value: locked, click: toggleLock"></i></span>
                     </div>
                     <div class="panel-body" data-bind="foreach: subcompetences">         
@@ -84,7 +83,7 @@ $location = "project";
                                 <div class="panel-heading color-subcomp">
                                     <input type="text" placeholder="SubCompetence-Code" class="form-control form-next" data-bind="value: code">
                                     <input type="text" placeholder="Name of the subcompetence" class="form-control form-next" data-bind="value: name">
-                                    <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
+                                    <span data-bind="text: projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                     <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                                 </div>
                                 <div class="panel-body">
@@ -92,9 +91,9 @@ $location = "project";
                                         <li class="list-group-item">
                                             <input type="text" placeholder="Indicatorname" class="form-control form-next" data-bind="value: name">
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
-                                            <span>Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
+                                            <span data-bind="text: projectWeight">Current weight: <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
-                                            <button class="btn" data-bind="click: removeThis">Remove this indicator</button>
+                                            <button class="btn" data-bind="click: removeThis, text: projectRemoveIndicator">Remove this indicator</button>
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                                     <span class="caret"></span></button>
@@ -106,15 +105,15 @@ $location = "project";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button class="btn" value="NaN-0" data-bind="click: addIndicator">Add an indicator</button>
-                                    <button class="btn pull-right" data-bind="click: removeThis">Remove this subcompetence</button>
+                                    <button class="btn" value="NaN-0" data-bind="click: addIndicator, text: projectAddIndicator">Add an indicator</button>
+                                    <button class="btn pull-right" data-bind="click: removeThis, text: projectRemoveSubComptence">Remove this subcompetence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn" value="NaN" data-bind="click: addSubCompetence">Add a subcompetence</button>
-                        <button class="btn pull-right" value="NaN" data-bind="click: removeThis">Remove this competence</button>
+                        <button class="btn" value="NaN" data-bind="click: addSubCompetence, text: projectAddSubComptence">Add a subcompetence</button>
+                        <button class="btn pull-right" value="NaN" data-bind="click: removeThis, text: projectRemoveComptence">Remove this competence</button>
                     </div>
                 </div>
             </div>

@@ -86,7 +86,14 @@
     "ProjectsDeleteBtn" : "Verwijder",
     "ProjectsEditBtn" : "Bewerk",
 
-    
+    "ProjectNotSaved" : "Project was niet opgeslagen!",
+    "ProjectWeight" : "Gewicht:",
+    "ProjectRemoveIndicator" : "Verwijder deze indicator",
+    "ProjectAddIndicator" : "Voeg indicator toe",
+    "ProjectRemoveSubComptence" : "Verwijder deze SubCompetence",
+    "ProjectAddSubComptence" : "Voeg Competence toe",
+    "ProjectRemoveComptence" : "Verwijder deze Competence",
+
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",
     "HomeRapportManual":"<p class=\"lead\"> Hier moet een overzicht getoond worden van de studenten die nog gequoteerd moeten worden</p>",
@@ -97,7 +104,6 @@
     "studentrapportRapportTitle":"Rapport van studenten",
     "studentrapportRapportManual":"<p class=\"lead\"> Placeholder voor toekomstige rapporten rapport</p>",
     "EditCourse" : "Wijzig vak",
-    "AdminTitle":"Gebruikerslijst",
     "AdminCodeTableTitle": "ID",
     "AdminNameTableTitle":"Naam",
     "AdminDescTableTitle":"E-mail",

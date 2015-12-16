@@ -153,6 +153,14 @@ function pageViewModel(gvm) {
 
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+    gvm.projectNotSaved = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectNotSaved");}, gvm);
+    gvm.projectWeight = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
+
+    gvm.projectRemoveIndicator = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRemoveIndicator");}, gvm);
+    gvm.projectAddIndicator = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAddIndicator");}, gvm);
+    gvm.projectRemoveSubComptence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRemoveSubComptence");}, gvm);
+    gvm.projectAddSubComptence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAddSubComptence");}, gvm);
+    gvm.projectRemoveComptence = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectRemoveComptence");}, gvm);
 
     gvm.competences = ko.observableArray([]);
 
