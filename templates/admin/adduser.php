@@ -129,6 +129,8 @@ require_once('templates/header.php');
 
             <div class="container">
                 <div class="row">
+                    <div class="col-lg-11">
+                    </div>
                     <div class="col-lg-1">
                         <button class="btn btn-default savePageBtn pagination-buttont" type="submit">
                             <span class="glyphicon glyphicon-floppy-disk"></span>
