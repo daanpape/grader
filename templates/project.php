@@ -95,7 +95,9 @@ $location = "project";
                                             <input type="text" placeholder="Description" class="form-control form-next" data-bind="value: description">
                                             <span data-bind="text: viewModel.projectWeight">Current weight:</span> <input type="text" class="form-control form-next" data-bind="value: weight">%
                                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i>
-                                            <button class="btn btn-default" data-bind="click: removeThis, text: viewModel.projectRemoveIndicator">Remove this indicator</button>
+                                            <button class="btn btn-default" data-bind="click: removeThis">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                                <span data-bind="text: viewModel.projectRemoveIndicator">Remove this indicator</button>
                                             <div class="dropdown">
                                                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                                     <span class="caret"></span></button>
@@ -108,13 +110,19 @@ $location = "project";
                                 </div>
                                 <div class="panel-footer color-subcomp">
                                     <button class="btn btn-default" value="NaN-0" data-bind="click: addIndicator, text: viewModel.projectAddIndicator">Add an indicator</button>
-                                    <button class="btn btn-default pull-right" data-bind="click: removeThis, text: viewModel.projectRemoveSubComptence">Remove this subcompetence</button>
+                                    <button class="btn btn-default pull-right" data-bind="click: removeThis">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                        <span data-bind="text: viewModel.projectRemoveSubComptence">Remove this subcompetence</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button class="btn btn-default" value="NaN" data-bind="click: addSubCompetence, text: viewModel.projectAddSubComptence">Add a subcompetence</button>
+                        <button class="btn btn-default" value="NaN" data-bind="click: addSubCompetence">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span data-bind="text: viewModel.projectAddSubComptence">Add a subcompetence</span>
+                        </button>
                         <button class="btn btn-default pull-right" value="NaN" data-bind="click: removeThis, text: viewModel.projectRemoveComptence">Remove this competence</button>
                     </div>
                 </div>
