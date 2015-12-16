@@ -30,7 +30,6 @@ function pageViewModel(gvm) {
     gvm.getStudentListBis = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             data.forEach(function(element){
-                console.log(element);
                 viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
             });
 
