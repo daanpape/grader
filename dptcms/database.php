@@ -977,7 +977,9 @@ class ClassDAO
             $data = json_decode($scores);
             $conn = Db::getConnection();
 
-            foreach ($data as $competences) {
+            return $data;
+
+            /*foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
                         if ($indicators->scoreid == 0) {
@@ -991,7 +993,7 @@ class ClassDAO
                 }
             }
 
-            return true;
+            return true;*/
         } catch (PDOException $ex) {
             Logger::logError("could not save project rules. " . $ex);
         }
