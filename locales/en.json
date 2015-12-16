@@ -93,6 +93,12 @@
     "ProjectAddSubComptence" : "Add SubCompetence",
     "ProjectRemoveComptence" : "Remove this Competence",
 
+    "ProjectStudentsUncouple" : "Uncouple",
+    "ProjectStudentsCouple" : "Couple",
+
+    "TableName" : "Name",
+    "TableActions" : "Actions",
+
     
     "AssessTitle2" : "Assess students",
     "CourseTitle2" : "Courses",

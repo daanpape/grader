@@ -16,6 +16,10 @@ function pageViewModel(gvm) {
     gvm.addCompetenceBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AddCompetence");}, gvm);
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
+    gvm.tableName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableName");}, gvm);
+    gvm.tableActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("TableActions");}, gvm);
+    gvm.projectStudentsUncouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsUncouple");}, gvm);
+    gvm.projectStudentsCouple = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectStudentsCouple");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value'), function(data) {

@@ -24,15 +24,15 @@ $location = "projectstudents";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th data-bind="text: tableName">Name</th>
+                    <th data-bind="text: tableActions">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: coupledLists">
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}">Uncouple</button>
+                        <button class="btn" data-bind="attr:{'id': 'uncouplebtn-' + tid}, text: viewModel.projectStudentsUncouple">Uncouple</button>
                     </td>
                 </tr>
                 </tbody>
@@ -40,15 +40,15 @@ $location = "projectstudents";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th data-bind="text: tableName">Name</th>
+                    <th data-bind="text: tableActions">Actions</th>
                 </tr>
                 </thead>
                 <tbody data-bind="foreach: availableLists">
                 <tr>
                     <td data-bind="text: tname">--</td>
                     <td>
-                        <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}">Couple</button>
+                        <button class="btn" data-bind="attr:{'id': 'couplebtn-' + tid}, text: viewModel.projectStudentsCouple">Couple</button>
                     </td>
                 </tr>
                 </tbody>
