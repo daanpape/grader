@@ -72,7 +72,7 @@ $location = "projects";
                         <td data-bind="text: tcode">--</td>
                         <td data-bind="text: tname">--</td>
                         <td data-bind="text: tdesc">--</td>
-                        <td style="width: 5%">
+                        <td style="width: 58%">
                             <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
                                 <span data-bind="text: viewModel.projectsEditBtn">Edit</span>
