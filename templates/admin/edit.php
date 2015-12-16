@@ -140,9 +140,7 @@ require_once('templates/header.php');
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-lg-11">
-                                    </div>
-                                    <div class="col-lg-1">
+                                    <div>
                                         <button class="btn btn-default savePageBtn pagination-button" type="submit">
                                             <span class="glyphicon glyphicon-plus"></span>
                                             <span data-bind="text: saveBtn">Save</span>
