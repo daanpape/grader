@@ -67,7 +67,16 @@ require_once('templates/header.php');
                 </a>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-11">
+            </div>
+            <div class="col-lg-1">
+                <button class="btn btn-default savePageBtn pagination-buttont" type="submit">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    <span data-bind="text: saveBtn">Save</span>
+                </button>
+            </div>
+        </div>
 
 
         <div>
