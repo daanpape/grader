@@ -111,7 +111,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
         },
         error: function()
         {
-            alert("Please make sure points are given!");
+            alert(i18n.__('AssessProjectCreatePdfError'));
         }
     });
 }

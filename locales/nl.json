@@ -102,6 +102,7 @@
     "AssessProjectStatus" : "Status",
     "AssessProjectCompleted" : "Voltooid: ",
     "AssessProjectAssessedBy" : "Beoordeeld door: ",
+    "AssessProjectCreatePdfError" : "Zorg ervoor dat de punten gegeven zijn!",
 
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",
