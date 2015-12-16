@@ -66,7 +66,7 @@ function pageViewModel(gvm) {
         var completed = false;
 
         console.log(data);
-        console.log(getNrOfAssessing());
+        console.log("test: " + getNrOfAssessing());
         if (data == getNrOfAssessing()){
             console.log("true");
             completed = true;
