@@ -85,7 +85,7 @@ function initPage() {
     $("#searchField").bind("keypress", {}, keypressInBox);
 
 
-    alert("students: " + viewModel.totalStudents);
+    alert("students: " + viewModel.totalStudents());
 }
 
 function keypressInBox(e) {
