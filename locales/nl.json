@@ -49,6 +49,7 @@
     "lastNameTableTitle": "Naam",
     "scoreNameTableTitle": "Score invullen",
     "filesNameTableTitle": "Ingediende documenten",
+    "studlistTableTitle" : "Studenten lijst",
 
     "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
     "AddNewProjectTypePlaceholder" : "Hoeveel juryleden voor dit project",
@@ -77,7 +78,7 @@
     "RuleAction" : "Actie",
     "AddRule" : "Maak regel",
     "RuleActionDropdown" : "Actie",
-    "RuleNotOK" : "Gevolg van de regel",
+    "RuleNotOK" : "Gevolg van deze regel",
     "ProjectTitleRules" : "Project Regels",
     "ProjectsStructureBtn" : "Structuur",
     "ProjectsStudentsBtn" : "Studenten",
@@ -132,9 +133,6 @@
     "PermissionRole" : "Rol",
     "PermissionDescription" : "Beschrijving",
     "Addmodule" : "Voeg module toe",
-
-    "studlistTableTitle" : "Studenten lijst",
-    "actionTableTitle" : "acties",
 
     "WorksheetNameRapport" : "Werkfiches",
     "WorksheetRapportManual" : "Overzicht van de werfiches",

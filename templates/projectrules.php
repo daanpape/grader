@@ -33,9 +33,9 @@ $location = "projectRules";
             <table class="table table-striped">
                 <thead>
                     <tr style="width: 100%">
-                        <th style="width: 25%">Rule Name</th>
-                        <th style="width: 50%">Action</th>
-                        <th style="width: 25%">Result of the rule</th>
+                        <th style="width: 25%" data-bind="text: ruleName">Rule Name</th>
+                        <th style="width: 50%" data-bind="text: actionTableTitle">Action</th>
+                        <th style="width: 25%" data-bind="text: RuleNotOK">Result of the rule</th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: projectRules">

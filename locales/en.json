@@ -49,6 +49,7 @@
     "lastNameTableTitle": "Last Name",
     "scoreTableTitle": "Fill in scores",
     "filesTableTitle": "Check documents",
+    "studlistTableTitle" : "Student list",
 
     "AddNewProjectTypeTitle" : "Add new projecttype",
     "AddNewProjectTypePlaceholder" : "Number of people grading",
@@ -73,7 +74,6 @@
     "ServiceNotReachableError" : "Could not connect to server, try again later",
 
     "RuleName" : "Rule name",
-    "RuleAction" : "Action",
     "AddRule" : "Add rule",
     "RuleActionDropdown" : "Action",
     "RuleNotOK" : "Result of the rule",
@@ -134,9 +134,6 @@
     "PermissionRole" : "Role",
     "PermissionDescription" : "Description",
     "Addmodule" : "Add module",
-
-    "studlistTableTitle" : "Student list",
-    "actionTableTitle" : "actions",
 
     "WorksheetNameRapport" : "Worksheets",
     "WorksheetRapportManual" : "Summary of the worksheets",
