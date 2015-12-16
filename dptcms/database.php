@@ -980,7 +980,7 @@ class ClassDAO
             foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
-                        if (!isset($indicators->scoreid)) {
+                        if ($indicators->scoreid == 0) {
                             $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
                             $stmt->execute(array($projectid, $studentid, $userid, $competences->id, $subcompetences->id, $indicators->id, $indicators->score));
                         } else {

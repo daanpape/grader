@@ -74,7 +74,6 @@ function saveProjectScore()
         success: function(){
             // TODO make multilangual and with modals
             alert("Saved projectscore to server");
-            console.log(viewModel.competences);
             //window.location = "/assess/project/" + projectid + "/students";
         }
     });
@@ -124,7 +123,7 @@ function Indicator(parent, id, name, description, score, scoreid,pointType, chec
         name: ko.observable(name),
         description: ko.observable(description),
         score: ko.observable(score),
-        scoreid: ko.observable(scoreid),
+        scoreid: ko.observable(scoreid || 0),
         pointType: ko.observable(pointType),
         checked : ko.observable(checked)
     };
