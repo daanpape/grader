@@ -105,15 +105,15 @@ $location = "project";
                                     </ul>
                                 </div>
                                 <div class="panel-footer color-subcomp">
-                                    <button type="button" class="btn btn-default pagination-button" data-bind="click: removeThis, text: viewModel.projectRemoveSubComptence">Remove this subcompetence</button>
                                     <button type="button" class="btn btn-default pagination-button" value="NaN-0" data-bind="click: addIndicator, text: viewModel.projectAddIndicator">Add an indicator</button>
+                                    <button type="button" class="btn btn-default pagination-button" data-bind="click: removeThis, text: viewModel.projectRemoveSubComptence">Remove this subcompetence</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button type="button" class="btn btn-default pagination-button" value="NaN" data-bind="click: removeThis, text: viewModel.projectRemoveComptence">Remove this competence</button>
                         <button type="button" class="btn btn-default pagination-button" value="NaN" data-bind="click: addSubCompetence, text: viewModel.projectAddSubComptence">Add a subcompetence</button>
+                        <button type="button" class="btn btn-default pagination-button" value="NaN" data-bind="click: removeThis, text: viewModel.projectRemoveComptence">Remove this competence</button>
                     </div>
                 </div>
             </div>
