@@ -38,7 +38,8 @@
     "No" : "Nee",
 
     "AddBtn" : "Maak nieuw",
-    "SaveBtn" : "Sla op",
+    "SaveBtn" : "Opslaan",
+    "CancelBtn" : "Annuleer",
     "CodeTableTitle" : "Code",
     "NameTableTitle" : "Naam",
     "DescTableTitle" : "Beschrijving",

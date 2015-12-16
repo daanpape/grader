@@ -15,6 +15,7 @@ function pageViewModel(gvm) {
     gvm.projectWeight = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
     gvm.assessCompletementNumberSubmitted = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessCompletementNumberSubmitted");}, gvm);
     gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+    gvm.cancelBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CancelBtn");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {

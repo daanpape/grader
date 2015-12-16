@@ -40,6 +40,7 @@
 
     "AddBtn" : "Add new",
     "SaveBtn" : "Save",
+    "CancelBtn" : "Cancel",
     "CodeTableTitle" : "Code",
     "NameTableTitle" : "Name",
     "DescTableTitle" : "Description",
