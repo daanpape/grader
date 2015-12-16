@@ -78,15 +78,15 @@ $location = "assessproject";
 
                     <td data-bind="text: tAssessedCompleted"></td>
 
-                    <!-- ko if: tcountAssessed == 0 -->
+                    <!-- ko if: tAssessedCompleted === 'EMPTY' -->
                     <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red" width="25px" height="25px"></td>
                     <!-- /ko -->
 
-                    <!-- ko if: tcountAssessed > 0 && tcountAssessed === false -->
+                    <!-- ko if: tAssessedCompleted === 'BUSY' -->
                     <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange" width="25px" height="25px"></td>
                     <!-- /ko -->
 
-                    <!-- ko if: tAssessedCompleted === true -->
+                    <!-- ko if: tAssessedCompleted === 'COMPLETED' -->
                     <td style="text-align: center"><img src="../img/check_green.png" alt="" title="green" width="25px" height="25px"></td>
                     <!-- /ko -->
 
