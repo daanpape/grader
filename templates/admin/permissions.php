@@ -28,7 +28,7 @@ require_once('templates/header.php');
                 </ul>
             </li>'; ?>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-bind="html: menuLanguage">Language</a></b>
                 <ul class="dropdown-menu">
                     <li><span class="navspan" onclick="setLang('en')">English</span></li>
                     <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
