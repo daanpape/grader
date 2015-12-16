@@ -122,50 +122,49 @@ $location = "assessscore";
 </div>
 
 <!-- Content container -->
-<div class="container" data-bind="foreach: competences">
-    <div class="col-md-12 compPanel">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <label data-bind="text: name"></label>
-            </div>
-            <div class="panel-body" data-bind="foreach: subcompetences">
-                <div class="subcompPanel">
-                    <div class="panel panel-default">
-                        <div class="panel-heading color-subcomp">
-                            <label data-bind="text: name"></label>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group" data-bind="foreach: indicators">
-                                <li class="list-group-item">
-                                    <label data-bind="text: description"></label>
+<div>
+    <div class="container" data-bind="foreach: competences">
+        <div class="col-md-12 compPanel">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label data-bind="text: name"></label>
+                </div>
+                <div class="panel-body" data-bind="foreach: subcompetences">
+                    <div class="subcompPanel">
+                        <div class="panel panel-default">
+                            <div class="panel-heading color-subcomp">
+                                <label data-bind="text: name"></label>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group" data-bind="foreach: indicators">
+                                    <li class="list-group-item">
+                                        <label data-bind="text: description"></label>
 
-                                    <!-- ko if: pointType() === 'Slider' -->
-                                    <input type="range" min="0" max="100" step="1" data-bind="value: score" />
-                                    <!-- /ko -->
+                                        <!-- ko if: pointType() === 'Slider' -->
+                                        <input type="range" min="0" max="100" step="1" data-bind="value: score" />
+                                        <!-- /ko -->
 
-                                    <!-- ko if: pointType() === 'Punten' -->
-                                    <div>
-                                        <input type="text" data-bind="value: score" placeholder="Score op 100" />
-                                    </div>
-                                    <!-- /ko -->
+                                        <!-- ko if: pointType() === 'Punten' -->
+                                        <div>
+                                            <input type="text" data-bind="value: score" placeholder="Score op 100" />
+                                        </div>
+                                        <!-- /ko -->
 
-                                    <!-- ko if: pointType() === 'Ja/Nee' -->
-                                    <br>
-                                    <input type="radio" name="ja_nee" value="100"> Ja<br>
-                                    <input type="radio" name="ja_nee" value="0"> Nee
-                                    <!-- /ko -->
+                                        <!-- ko if: pointType() === 'Ja/Nee' -->
+                                        <br>
+                                        <input type="radio" name="ja_nee" value="100"> Ja<br>
+                                        <input type="radio" name="ja_nee" value="0"> Nee
+                                        <!-- /ko -->
 
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
     <div class="row">
         <div id="bottom-col" class="col-md-12">
             <button type="button" class="btn btn-default pagination-button savePageBtn">
