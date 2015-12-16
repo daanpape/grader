@@ -90,7 +90,11 @@ $location = "assessproject";
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button  class="btn btn-default"><span class="glyphicon glyphicon-edit"> </span><span data-bind="text: tScoreTableBtn"></span></button></a></td>
+                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button  class="btn btn-default">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                <span data-bind="text: tScoreTableBtn"></span>
+                            </button>
+                        </a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button  class="btn btn-default"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-file"></span>
