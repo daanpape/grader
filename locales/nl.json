@@ -45,8 +45,8 @@
     "ActionTableTitle" : "Acties",
     "firstNameTableTitle": "Voornaam",
     "lastNameTableTitle": "Naam",
-    "scoreNameTableTitle": "Score invullen",
-    "filesNameTableTitle": "Ingediende documenten",
+    "scoreTableTitle": "Score invullen",
+    "filesTableTitle": "Ingediende documenten",
     "studlistTableTitle" : "Studenten lijst",
 
     "AddNewProjectTypeTitle" : "Voeg nieuw projecttype toe",
