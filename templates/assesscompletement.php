@@ -39,7 +39,7 @@ $location = "assesscompletement";
             </table>
         </div>
         <div class="col-md-12">
-            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg" data-bind="text: SaveBtn">Save</button>
+            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg" data-bind="text: saveBtn">Save</button>
             <button id="cancelBtn" class="btn btn-lg">Cancel</button>
         </div>
     </div>
