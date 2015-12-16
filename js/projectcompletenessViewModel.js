@@ -45,7 +45,7 @@ function pageViewModel(gvm) {
     }
 
     gvm.removeDocument = function(document) {
-        if(document.id != 0) {
+        if(document.id() != 0) {
             $.getJSON("/api/project/documenttype/delete/" + document.id(), function(data) {
                 console.log('Removed data');
             });
