@@ -188,7 +188,9 @@ var getStudentListBis = function() {
         var totalCompleted = 0;
         data.forEach(function(element){
             viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
-            totalCompleted += 1;
+            if (element.tAssessedCompleted === 'COMPLETED'){
+                totalCompleted += 1;
+            }
         });
 
         viewModel.totalStudents(viewModel.tabledata().length);
