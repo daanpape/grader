@@ -55,7 +55,7 @@ $location = "project";
                         Add competence
                     </button>
 
-                    <button  type="button" class="btn btn-default pull-right"  data-bind="text: nextPage">
+                    <button  type="button" class="btn btn-default savePageBtn  pull-right"  data-bind="text: nextPage">
                         Save
                     </button>
                 </div>
@@ -126,7 +126,7 @@ $location = "project";
                         Add competence
                     </button>
 
-                    <button type="button" class="btn btn-default pull-right" data-bind="text: nextPage">
+                    <button type="button" class="btn btn-default savePageBtn  pull-right" data-bind="text: nextPage">
                         Save
                     </button>
                 </div>

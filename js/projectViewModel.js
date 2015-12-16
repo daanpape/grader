@@ -181,17 +181,17 @@ function pageViewModel(gvm) {
     gvm.removeCompetence = function(competence) {
         gvm.competences.remove(competence);
         automatedWeightCalculation(this.competences());
-    }
+    },
     
     gvm.updateCompetence = function(id, code, description, max, weight) {
         var comp = new Competence(this, id, code, description, weight);
         gvm.competences.push(comp);
         return comp;
-    }
+    },
     
     gvm.clearStructure = function() {
         gvm.competences.removeAll();
-    }
+    },
 
 
     gvm.changePointType = function(data,parent) {
