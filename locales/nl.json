@@ -36,7 +36,6 @@
     "Yes" : "Ja",
     "No" : "Nee",
 
-
     "AddBtn" : "Maak nieuw",
     "SaveBtn" : "Sla op",
     "CodeTableTitle" : "Code",
@@ -99,6 +98,8 @@
     "ProjectStudentsUncouple" : "Loskoppelen",
     "ProjectStudentsCouple" : "Koppelen",
     "ProjectStudentsCoupledList" : "Gekoppelde lijsten",
+
+    "assessProjectStatus" : "Status",
 
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",

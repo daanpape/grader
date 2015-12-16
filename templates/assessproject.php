@@ -56,7 +56,7 @@ $location = "assessproject";
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
-                    <td style="vertical-align: middle"><p style="display:inline-block; margin-right: 5px">Status:</p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
+                    <td style="vertical-align: middle"><p style="display:inline-block; margin-right: 5px" data-bind="text: assessProjectStatus">Status:</p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
                 </tr>
             </table>
         </div>
@@ -90,8 +90,8 @@ $location = "assessproject";
 
                     <td data-bind="text: tfirstname">--</td>
                     <td data-bind="text: tlastname">--</td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: tScoreTableBtn"></span></button></a></td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: tFilesTableBtn"></span></button></a></td>
+                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button class="btn"><span data-bind="text: viewModel.scoreTableTitle"></span></button></a></td>
+                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}"><button class="btn"><span data-bind="text: viewModel.filesTableTitle"></span></button></a></td>
                     <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-file"></span>
                             <span>PDF</span>
