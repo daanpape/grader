@@ -21,6 +21,7 @@ function pageViewModel(gvm) {
     gvm.projectAmount = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAmount");}, gvm);
     gvm.projectWeigth = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
     gvm.projectLock = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectLock");}, gvm);
+    gvm.projectDelete = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDeleteBtn");}, gvm);
 
     gvm.projectCompletenessTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectCompletenessTitle");}, gvm);
 
