@@ -4,7 +4,7 @@ function pageViewModel(gvm) {
     gvm.pageHeaderAddUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserAddTitle");}, gvm);
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
 
-    gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("SaveBtn");}, gvm);
+    gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
