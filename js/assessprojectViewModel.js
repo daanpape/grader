@@ -178,7 +178,7 @@ function getNrOfAssessing(){
         });
     });
 
-    return nr();
+    return nr;
 }
 
 function getDataCount(projectid, id)
