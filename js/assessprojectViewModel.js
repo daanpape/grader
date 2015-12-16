@@ -83,6 +83,9 @@ function initPage() {
     //viewModel.getStudentList();
 
     $("#searchField").bind("keypress", {}, keypressInBox);
+
+
+    alert("students: " + viewModel.totalStudents);
 }
 
 function keypressInBox(e) {
