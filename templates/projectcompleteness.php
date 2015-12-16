@@ -46,7 +46,7 @@ $location = "projectcompleteness";
                             <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default pagination-button" data-bind="click: removeThis">Remove</button>
+                            <button type="button" class="btn btn-default" data-bind="click: removeThis">Remove</button>
                         </td>
                     </tr>
                 </tbody>
