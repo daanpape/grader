@@ -51,13 +51,12 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
+                    <button  type="button" class="btn btn-default  pull-right"  data-bind="text: addCompetenceBtn">
+                        Add competence
+                    </button>
 
                     <button  type="button" class="btn btn-default "  data-bind="text: nextPage">
                         Save
-                    </button>
-
-                    <button  type="button" class="btn btn-default  pull-right"  data-bind="text: addCompetenceBtn">
-                        Add competence
                     </button>
                 </div>
             </div>
