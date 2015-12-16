@@ -48,7 +48,7 @@ function pageViewModel(gvm) {
         if(document.id != 0) {
             $.ajax({
                 type: "POST",
-                url: "/api/project/documenttype/delete/" + document.id,
+                url: "/api/project/documenttype/delete/" + document.id(),
                 data: ko.toJSON(viewModel.documents),
                 success: function (data) {
                     console.log('Removed document');
