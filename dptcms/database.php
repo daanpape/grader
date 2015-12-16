@@ -1506,11 +1506,11 @@ class UserDAO {
                 $data = $stmt->fetch(PDO::FETCH_COLUMN,0);
                 $studentData->assessCount = $data;
 
-                $stmt = $conn->prepare("SELECT nrOfAssessing FROM project WHERE id = ? AND student = ?");
-                $stmt->execute(array($pid,$student['student']));
+                $stmt = $conn->prepare("SELECT nrOfAssessing FROM project WHERE id = ?");
+                $stmt->execute(array($pid));
                 $nr = $stmt->fetchAll(PDO::FETCH_COLUMN,0);
 
-                if ($nr == $data){
+                if (intval($nr) == intval($data)){
                     $studentData->assessCompleted = 'COMPLETED';
                 } else if ($data > 0 && $data != $nr){
                     $studentData->assessCompleted = 'BUSY';
