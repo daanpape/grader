@@ -15,7 +15,7 @@
     "NotMemberYetBtn" : "Nog geen lid?",
     "LoginBtn" : "Aanmelden",
     "LogoutBtn" : "Afmelden",
-    "MenuLanguage" : "Taal",
+    "MenuLanguage" : "Taal <b class=\"caret\">",
     "Email" : "Email",
     "Password" : "Wachtwoord",
     "ProjectCompletenessTitle": "Documenten om in te dienen",
