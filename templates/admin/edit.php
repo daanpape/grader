@@ -70,20 +70,20 @@ require_once('templates/header.php');
 
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
-                        <td data-bind="text: firstname">Firstname</td>
+                        <td data-bind="text: viewModel.firstname">Firstname</td>
                         <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="value: firstname"></td>
                     </tr>
                     <tr>
-                        <td data-bind="text: lastname">Lastname</td>
+                        <td data-bind="text: viewModel.lastname">Lastname</td>
                         <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="value: lastname"></td>
                     </tr>
                     <tr>
-                        <td data-bind="text: email">Email</td>
+                        <td data-bind="text: viewModel.email">Email</td>
                         <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="value: username">
                         </td>
                     </tr>
                     <tr>
-                        <td data-bind="text: status">Status</td>
+                        <td data-bind="text: viewModel.status">Status</td>
                         <td>
                             <select class="form-control form-next" name="status" data-bind="options: userStatuses, value: status">
                             </select>
