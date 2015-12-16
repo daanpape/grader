@@ -745,7 +745,7 @@ $app->delete('/api/project/:id', function ($id) use ($app) {
     echo json_encode(GraderAPI::deleteProject($id));
 });
 
-$app->delete('/api/studentlist/:studlistid/delete/student/:studid', function ($studlistid, $studid) use ($app) {
+$app->get('/api/studentlist/:studlistid/delete/student/:studid', function ($studlistid, $studid) use ($app) {
     // Use json headers
     $response = $app->response();
     $response->header('Content-Type', 'application/json');
