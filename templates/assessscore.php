@@ -173,8 +173,10 @@ $location = "assessscore";
             </button>
         </div>
     </div>
-    <br />
 </div>
+<br />
+<br />
+<br />
 
 <?php include_once('jsdepends.php') ?>
 <script>
