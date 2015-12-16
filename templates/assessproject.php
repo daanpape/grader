@@ -75,9 +75,6 @@ $location = "assessproject";
                 </thead>
                 <tbody data-bind="foreach: tabledata">
                 <tr>
-
-                    <td data-bind="text: tAssessedCompleted"></td>
-
                     <!-- ko if: tAssessedCompleted === 'EMPTY' -->
                     <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red" width="25px" height="25px"></td>
                     <!-- /ko -->
