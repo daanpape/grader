@@ -167,12 +167,13 @@ $location = "assessscore";
     </div>
     <div>
         <div id="bottom-col">
-            <button type="button" class="btn btn-default savePageBtn">
+            <button type="button" class="btn btn-default savePageBtn pull-right">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
                 <span data-bind="text: savePage">Save</span>
             </button>
         </div>
     </div>
+    <br />
 </div>
 
 <?php include_once('jsdepends.php') ?>
