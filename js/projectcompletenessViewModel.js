@@ -45,6 +45,16 @@ function pageViewModel(gvm) {
     }
 
     gvm.removeDocument = function(document) {
+        if(document.id != 0) {
+            $.ajax({
+                type: "POST",
+                url: "/api/project/documenttype/delete/" + document.id,
+                data: ko.toJSON(viewModel.documents),
+                success: function (data) {
+                    console.log('Removed document');
+                }
+            });
+        }
         gvm.documents.remove(document);
     };
 }
