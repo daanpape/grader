@@ -18,6 +18,8 @@ function pageViewModel(gvm) {
     gvm.descTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DescTableTitle");}, gvm);
     gvm.actionTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
 
+    gvm.projectsStudentsBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsStudentsBtn");}, gvm);
+
     gvm.availableLocations = ko.observableArray([]);
     gvm.availableTrainings = ko.observableArray([]);
     gvm.availableCourses = ko.observableArray([]);

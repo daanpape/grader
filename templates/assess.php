@@ -78,7 +78,7 @@ $location = "assess";
             <td>
                 <a data-bind="attr:{'href': '/assess/project/' + tid + '/students'}" type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-list-alt glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
-                    <span>Students</span>
+                    <span data-bind="text: viewModel.projectsStudentsBtn">Students</span>
                 </a>
             </td>
         </tr>
