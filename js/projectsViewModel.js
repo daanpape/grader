@@ -25,6 +25,10 @@ function pageViewModel(gvm) {
     gvm.availableCourses = ko.observableArray([]);
 
     gvm.projectsStructureBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsStructureBtn");}, gvm);
+    gvm.projectsStudentsBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsStudentsBtn");}, gvm);
+    gvm.projectsDocumentsBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDocumentsBtn");}, gvm);
+    gvm.projectsRulesBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsRulesBtn");}, gvm);
+    gvm.projectsDeleteBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDeleteBtn");}, gvm);
 
     gvm.currentCourseId = null;
     gvm.currentLocationId = null;

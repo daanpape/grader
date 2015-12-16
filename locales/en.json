@@ -78,7 +78,11 @@
     "RuleNotOK" : "Result of the rule",
     "ProjectTitleRules" : "Project Rules",
     "ProjectsStructureBtn" : "Structure",
-    
+    "ProjectsStudentsBtn" : "Students",
+    "ProjectsDocumentsBtn" : "Documents",
+    "ProjectsRulesBtn" : "Rules",
+    "ProjectsDeleteBtn" : "Delete",
+
     
     "AssessTitle2" : "Assess students",
     "CourseTitle2" : "Courses",

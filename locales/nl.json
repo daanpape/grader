@@ -79,7 +79,11 @@
     "RuleNotOK" : "Gevolg van de regel",
     "ProjectTitleRules" : "Project Regels",
     "ProjectsStructureBtn" : "Structuur",
-    
+    "ProjectsStudentsBtn" : "Studenten",
+    "ProjectsDocumentsBtn" : "Documenten",
+    "ProjectsRulesBtn" : "Regels",
+    "ProjectsDeleteBtn" : "Verwijder",
+
     
     "AssessTitle2" : "Beoordeel studenten",
     "CourseTitle2": "Vakken",

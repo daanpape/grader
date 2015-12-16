@@ -83,19 +83,19 @@ $location = "projects";
                             </a>
                             <a data-bind="attr:{'href': '/project/students/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
-                                <span>Students</span>
+                                <span data-bind="text: viewModel.projectsStudentsBtn">Students</span>
                             </a>
                             <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span>
-                                <span>Documents</span>
+                                <span data-bind="text: viewModel.projectsDocumentsBtn">Documents</span>
                             </a>
                             <a data-bind="attr:{'href': '/project/projectrules/' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span>
-                                <span>Rules</span>
+                                <span data-bind="text: viewModel.projectsRulesBtn">Rules</span>
                             </a>
                             <a data-bind="attr:{'id': 'removebtn-' + tid}" type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-trash glyphicon-btn"></span>
-                                <span>Delete</span>
+                                <span data-bind="text: viewModel.projectsDeleteBtn">Delete</span>
                             </a>
                             </td>
                     </tr>
