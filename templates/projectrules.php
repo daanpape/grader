@@ -78,8 +78,9 @@ $location = "projectRules";
 <div class="container">
     <div class="row">
         <div id="bottom-col" class="col-md-12">
-            <button type="button" class="btn btn-default addRuleBtn" data-bind="text: addRuleName">
-                Add Rule
+            <button type="button" class="btn btn-default addRuleBtn">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span data-bind="text: addRuleName">Add Rule</span>
             </button>
 
             <button type="button" class="btn btn-default savePageBtn pull-right" >

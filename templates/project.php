@@ -51,12 +51,14 @@ $location = "project";
             <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
             <div class="row">
                 <div id="top-col" class="col-md-12">
-                    <button  type="button" class="btn btn-default"  data-bind="click: addCompetence, text: addCompetenceBtn">
-                        Add competence
+                    <button  type="button" class="btn btn-default"  data-bind="click: addCompetence">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span data-bind="text: addCompetenceBtn">Add competence</span>
                     </button>
 
-                    <button  type="button" class="btn btn-default savePageBtn pull-right"  data-bind="text: nextPage">
-                        Save
+                    <button type="button" class="btn btn-default savePageBtn  pull-right">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        <span  data-bind="text: nextPage">Save</span>
                     </button>
                 </div>
             </div>
@@ -122,8 +124,9 @@ $location = "project";
         <div class="container">
             <div class="row">
                 <div id="bottom-col" class="col-md-12">
-                    <button type="button" class="btn btn-default" data-bind="click: addCompetence, text: addCompetenceBtn">
-                        Add competence
+                    <button  type="button" class="btn btn-default"  data-bind="click: addCompetence">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span data-bind="text: addCompetenceBtn">Add competence</span>
                     </button>
 
                     <button type="button" class="btn btn-default savePageBtn  pull-right">
