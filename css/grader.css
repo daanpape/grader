@@ -131,6 +131,10 @@ body {
     margin-bottom: 10px;
 }
 
+.color-compPanel {
+    background-color: rgb(204, 204, 204) !important;
+}
+
 .color-subcomp {
     background-color: rgb(217, 217, 217) !important;
 }
