@@ -24,7 +24,7 @@ $location = "projectstudents";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: nameTableTitle" style="width: 80%">Name</th>
                     <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
@@ -40,7 +40,7 @@ $location = "projectstudents";
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th data-bind="text: nameTableTitle">Name</th>
+                    <th data-bind="text: nameTableTitle" style="width: 80%">Name</th>
                     <th data-bind="text: actionTableTitle">Actions</th>
                 </tr>
                 </thead>
