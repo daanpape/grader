@@ -164,7 +164,8 @@ function getNrOfAssessing(){
             data.forEach(function(item)
             {
                 return item.nrOfAssessing;
-            });        },
+            });
+        },
         error: function()
         {
             alert("Ooops...");
