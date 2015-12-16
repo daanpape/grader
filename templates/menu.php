@@ -51,7 +51,6 @@ require_once 'dptcms/config.php';
                     <ul class="dropdown-menu">
                         <li><span class="navspan" onclick="setLang('en')">English</span></li>
                         <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
-                        <li><span class="navspan" onclick="setLang('en2')">English v2</span></li>
                     </ul>
                 </li>
             </ul>
