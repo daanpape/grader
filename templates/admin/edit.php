@@ -139,22 +139,22 @@ require_once('templates/header.php');
                         </tr>
                         </tbody>
                 </div>
+                <div class="row">
+                    <div class="col-lg-11">
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn btn-default savePageBtn pagination-button pull-right" type="submit">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span data-bind="text: saveBtn">Save</span>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <!-- /.row -->
 <!-- /#page-wrapper -->
 
-    <div class="row">
-        <div class="col-lg-11">
-        </div>
-        <div class="col-lg-1">
-            <button class="btn btn-default savePageBtn pagination-button pull-right bottom" type="submit">
-                <span class="glyphicon glyphicon-plus"></span>
-                <span data-bind="text: saveBtn">Save</span>
-            </button>
-        </div>
-    </div>
 </div>
 <!-- /#wrapper -->
 
