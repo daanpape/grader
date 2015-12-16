@@ -40,13 +40,13 @@ require_once('templates/header.php');
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="/admin/home"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
+                        <a href="/admin/home" data-bind="text: dashboard"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
+                        <a href="/admin/permissions" data-bind="text: rights"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
                     </li>
                     <li>
-                        <a href="/admin/users"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
+                        <a href="/admin/users" data-bind="text: permissions"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
                     </li>
                 </ul>
             </div>
@@ -62,9 +62,9 @@ require_once('templates/header.php');
             </div>
             <!-- /.col-lg-12 -->
             <div>
-                <p>Change the permissions of an user in the Permissions-tab</p>
+                <p data-bind="text: changePermissions">Change the permissions of an user in the Permissions-tab</p>
 
-                <p>Change an user in the Users-tab</p>
+                <p data-bind="text: changeUsers">Change an user in the Users-tab</p>
             </div>
         </div>
         <!-- /.row -->

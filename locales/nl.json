@@ -142,6 +142,11 @@
     "AdminPermissionPage" : "Rechten",
     "AdminUsersPage" : "Gebruikers",
     "AdminPage" : "Home",
+    "ChangePermissions" : "Wijzig de rechten van een gebruiker in het Rechten-tab",
+    "ChangeUsers" : "Wijzig een gebruiker in het Gebruikers-tab",
+    "AdminDashboard" : "Dashboard",
+    "AdminRights" : "Rechten" ,
+    "AdminUsers" : "Gebruikers",
 
     "NextPage" : "Volgende",
 

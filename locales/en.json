@@ -145,6 +145,12 @@
     "AdminPermissionPage" : "Permissions",
     "AdminUsersPage" : "Users",
     "AdminPage" : "Home",
+    "ChangePermissions" : "Change the permissions of an user in the Permissions-tab",
+    "ChangeUsers" : "Change an user in the Users-tab",
+    "AdminDashboard" : "Dashboard",
+    "AdminRights" : "Rights" ,
+    "AdminUsers" : "Users",
+
     "NextPage" : "Next",
 
     "courseID" : "CourseID",
