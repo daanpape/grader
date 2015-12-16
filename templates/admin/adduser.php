@@ -130,7 +130,7 @@ require_once('templates/header.php');
             <div class="container">
                 <div class="row">
                     <div id="bottom-col" class="col-md-12">
-                        <button class="btn btn-lg savePageBtn pull-right" type="submit" data-bind="text: saveBtn">Save</button>
+                        <button class="btn btn-default pagination-button savePageBtn pull-right" type="submit" data-bind="text: saveBtn">Save</button>
                     </div>
                 </div>
             </div>
