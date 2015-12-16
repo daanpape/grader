@@ -60,7 +60,7 @@ $location = "projectRules";
                                 <select class="form-control form-next" style="display: inline-block; width: 20%" data-bind="foreach: viewModel.availableSigns, value: sign">
                                     <option data-bind="text: $data"></option>
                                 </select>
-                                <input type="text" class="form-control form-next" style="display: inline-block; width: 40%" placeholder="Percent"  data-bind="value: result">
+                                <input type="text" class="form-control form-next" style="display: inline-block; width: 45%" placeholder="Percent"  data-bind="value: result">
                             </div>
                             <div>
                                 <button type="button" class="form-control btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
