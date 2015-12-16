@@ -70,20 +70,20 @@ require_once('templates/header.php');
 
                 <table class="table table-striped" data-bind="foreach: user">
                     <tr>
-                        <td>Firstname</td>
+                        <td data-bind="text: firstname">Firstname</td>
                         <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="value: firstname"></td>
                     </tr>
                     <tr>
-                        <td>Lastname</td>
+                        <td data-bind="text: lastname">Lastname</td>
                         <td><input type="text" class="form-control form-next" placeholder="Lastname" name="lastname" data-bind="value: lastname"></td>
                     </tr>
                     <tr>
-                        <td>Email</td>
+                        <td data-bind="text: email">Email</td>
                         <td><input type="text" class="form-control form-next" placeholder="Email" name="email" data-bind="value: username">
                         </td>
                     </tr>
                     <tr>
-                        <td>Status</td>
+                        <td data-bind="text: status">Status</td>
                         <td>
                             <select class="form-control form-next" name="status" data-bind="options: userStatuses, value: status">
                             </select>
@@ -93,7 +93,7 @@ require_once('templates/header.php');
                 </table>
 
 
-                <h2>User Permissions</h2>
+                <h2 data-bind="text: adminEditUserPermissions">User Permissions</h2>
                 <div>
                     <table class="table table-striped">
                         <thead>
@@ -105,30 +105,30 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td>GUEST</td>
-                            <td>When not logged in you get the GUEST role.</td>
+                            <td data-bind="text: adminGuest">When not logged in you get the GUEST role.</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>STUDENT</td>
-                            <td>Can only do studentactions</td>
+                            <td data-bind="text: adminStudent">Can only do studentactions</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>USER</td>
-                            <td>Contains rights for every USER in the system.</td>
+                            <td data-bind="text: adminUser">Contains rights for every USER in the system.</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>SUPERUSER</td>
-                            <td>The superuser role must have access to everything...</td>
+                            <td data-bind="text: adminSuperuser">The superuser role must have access to everything...</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
-                            <td>Permission</td>
+                            <td data-bind="text: adminRights">Permission</td>
                             <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: currentUserRole">
                                     <option value="GUEST">Guest</option>
                                     <option value="STUDENT">Student</option>

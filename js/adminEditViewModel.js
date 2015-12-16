@@ -3,6 +3,13 @@ function pageViewModel(gvm) {
     gvm.title = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("AdminEditPage");}, gvm);
     gvm.pageHeaderEditUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserEditTitle");}, gvm);
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
+    gvm.firstname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
+    gvm.lastname = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
+    gvm.email = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Email");}, gvm);
+    gvm.status = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessProjectStatus");}, gvm);
+
+    gvm.adminEditUserPermissions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminEditUserPermissions");}, gvm);
+    gvm.adminRights = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminRights");}, gvm);
 
     gvm.edituserid = $("#usereditHeader").data('value');
 

@@ -171,7 +171,7 @@
     "ChangePermissions" : "Change the permissions of an user in the Permissions-tab",
     "ChangeUsers" : "Change an user in the Users-tab",
     "AdminDashboard" : "Dashboard",
-    "AdminRights" : "Rights" ,
+    "AdminRights" : "Permissions" ,
     "AdminUsers" : "Users",
 
     "NextPage" : "Next",
@@ -184,5 +184,7 @@
     "AdminGuest" : "When not logged in you get the GUEST role.",
     "AdminStudent" : "Can only do studentactions.",
     "AdminUser" : "Contains rights to assess students",
-    "AdminSuperuser" : "This user has access to everything, the Admin Panel included."
+    "AdminSuperuser" : "This user has access to everything, the Admin Panel included.",
+
+    "AdminEditUserPermissions" : "User Permission"
 }

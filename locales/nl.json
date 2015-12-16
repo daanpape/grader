@@ -55,7 +55,6 @@
     "AddNewProjectTypePlaceholder" : "Hoeveel juryleden voor dit project",
     "EditProjectTitle" : "Wijzig projecttype",
     "CoupleStudentList": "Koppel een studentenlijst",
-    "CancelBtn" : "Annuleer",
     
     "Firstname" : "Voornaam",
     "Lastname" : "Achternaam",
@@ -182,5 +181,7 @@
     "AdminGuest" : "Wanneer de gebruiker niet ingelogd is, is hij een GUEST.",
     "AdminStudent" : "Kan alleen studentenacties doen.",
     "AdminUser" : "Kan studenten beoordelen",
-    "AdminSuperuser" : "Deze gebruiker heeft op alles rechten, ook de Admin Panel."
+    "AdminSuperuser" : "Deze gebruiker heeft op alles rechten, ook de Admin Panel.",
+
+    "AdminEditUserPermissions" : "Rechten van gebruiker"
 }
