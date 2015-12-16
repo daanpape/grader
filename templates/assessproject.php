@@ -56,7 +56,7 @@ $location = "assessproject";
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
-                    <td><p style="display:inline-block; margin-right: 5px">Status</p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
+                    <td><p style="display:inline-block; margin-right: 5px">Status:</p><p style="display:inline-block" data-bind="text: totalCompleted"></p><p style="display:inline-block; margin-left: 2px; margin-right: 2px">/</p><p style="display:inline-block" data-bind="text: totalStudents"></p></td>
                 </tr>
             </table>
         </div>
