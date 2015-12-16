@@ -52,7 +52,7 @@ function pageViewModel(gvm) {
                 }
             });
         });
-    }
+    },
 
     gvm.addAvailableLists = function(id, name) {
         var tblOject = {tid: id, tname: name};
@@ -72,7 +72,7 @@ function pageViewModel(gvm) {
                 alert("list already coupled");
             }
         });
-    }
+    },
 
     gvm.getCoupledLists = function() {
         $.getJSON('/api/project/' + $("#projectHeader").data('value') + '/coupledlists', function(data) {
@@ -81,7 +81,7 @@ function pageViewModel(gvm) {
                 gvm.addCoupledList(item.id, item.name);
             });
         });
-    }
+    },
 
     gvm.getAvailableLists = function() {
         $.getJSON('/api/studentlists/' + gvm.userId, function(data) {

@@ -52,7 +52,7 @@ function pageViewModel(gvm) {
 
     gvm.addNewDocument = function() {
         gvm.documents.push(new Document());
-    }
+    },
 
     gvm.removeDocument = function(document) {
         if(document.id() != 0) {
@@ -100,6 +100,9 @@ var saveDocuments = function() {
         success: function(data){
             // TODO make multilangual and with modals
             console.log(data);
+            var url = document.URL;
+            var string = url.split("/");
+            window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];
             alert("Saved documents to server");
         }
     });
