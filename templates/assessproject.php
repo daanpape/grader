@@ -51,12 +51,12 @@ $location = "assessproject";
             <table class="table table-striped">
                 <tr>
                     <td><input type="text" id="searchField" class="form-control form-next" placeholder="Name of the student" data-bind="value: searchStudent"></td>
-                    <td><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
+                    <td style="width: 15%"><a href="#" data-bind="click: function() { getStudentByName() }" type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
-                    <td><span><p data-bind="text: totalCompleted"></p><p>/</p><p data-bind="text: totalStudents"></p></span></p></td>
+                    <td><p data-bind="text: totalCompleted"></p><p>/</p><p data-bind="text: totalStudents"></p></p></td>
                 </tr>
             </table>
         </div>
