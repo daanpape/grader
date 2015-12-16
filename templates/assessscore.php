@@ -166,7 +166,7 @@ $location = "assessscore";
         </div>
     </div>
     <div class="row">
-        <div id="bottom-col" class="col-md-12">
+        <div id="bottom-col">
             <button type="button" class="btn btn-default pagination-button savePageBtn">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
                 <span data-bind="text: savePage">Save</span>
