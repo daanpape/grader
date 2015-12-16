@@ -82,7 +82,7 @@ $location = "projectRules";
                 Add Rule
             </button>
 
-            <button type="button" class="btn btn-default savePageBtn pull-right" >
+            <button type="button" class="btn btn-default addRuleBtn pull-right" >
                 <span class="glyphicon glyphicon-floppy-disk"></span>
                 <span data-bind="text: savePage">Save</span>
             </button>
