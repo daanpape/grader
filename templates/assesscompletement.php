@@ -39,8 +39,8 @@ $location = "assesscompletement";
             </table>
         </div>
         <div class="col-md-12">
-            <button data-value="<?php echo $studentid ?>" id="saveBtn" class="btn btn-lg" data-bind="text: saveBtn">Save</button>
-            <button id="cancelBtn" class="btn btn-lg" data-bind="text: cancelBtn">Cancel</button>
+            <button data-value="<?php echo $studentid ?>" id="saveBtn" type="button" class="btn btn-default pagination-button" data-bind="text: saveBtn">Save</button>
+            <button id="cancelBtn"  type="button" class="btn btn-default pagination-button" data-bind="text: cancelBtn">Cancel</button>
         </div>
     </div>
 </div>
