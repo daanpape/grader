@@ -57,10 +57,10 @@ $location = "projectRules";
                         <td>
                             <div>
                                 <span data-bind="text: viewModel.ruleTotalScore" style="display: inline-block">Total score:</span>
-                                <select class="form-control form-next" style="display: inline-block; width: 30%" data-bind="foreach: viewModel.availableSigns, value: sign">
+                                <select class="form-control form-next" style="display: inline-block; width: 20%" data-bind="foreach: viewModel.availableSigns, value: sign">
                                     <option data-bind="text: $data"></option>
                                 </select>
-                                <input type="text" class="form-control form-next" style="display: inline-block; width: 30%" placeholder="Percent"  data-bind="value: result">
+                                <input type="text" class="form-control form-next" style="display: inline-block; width: 40%" placeholder="Percent"  data-bind="value: result">
                             </div>
                             <div>
                                 <button type="button" class="btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
