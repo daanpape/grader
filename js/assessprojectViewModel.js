@@ -52,7 +52,7 @@ function pageViewModel(gvm) {
                 });
             });
 
-
+            console.log("hey");
             console.log(viewModel.totalStudents);
             viewModel.totalStudents = viewModel.tabledata().length;
         });
