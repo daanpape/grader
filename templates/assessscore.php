@@ -122,7 +122,7 @@ $location = "assessscore";
 </div>
 
 <!-- Content container -->
-<div class="col-lg-8">
+<div class="col-lg-8 container">
     <div class="container" data-bind="foreach: competences">
         <div class="col-md-12 compPanel">
             <div class="panel panel-default">
