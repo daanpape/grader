@@ -11,6 +11,11 @@ function pageViewModel(gvm) {
     gvm.adminEditUserPermissions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminEditUserPermissions");}, gvm);
     gvm.adminRights = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminRights");}, gvm);
 
+    gvm.adminGuest = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminGuest");}, gvm);
+    gvm.adminStudent = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminStudent");}, gvm);
+    gvm.adminUser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminUser");}, gvm);
+    gvm.adminSuperuser = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminSuperuser");}, gvm);
+
     gvm.edituserid = $("#usereditHeader").data('value');
 
     gvm.loggedinuser = ko.observable();
