@@ -28,6 +28,7 @@ function pageViewModel(gvm) {
     gvm.getStudentListBis = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
             data.forEach(function(element){
+                console.log(element);
                 viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount);
             });
         });
@@ -60,7 +61,7 @@ function pageViewModel(gvm) {
     gvm.tempTableData = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, firstname, lastname, email, countAssessed) {
+    gvm.addTableData = function(id, firstname, lastname, email, countAssessed, nrOfAssessing) {
         // Push data
         var data = countAssessed;
         var completed = false;
@@ -173,12 +174,11 @@ function getNrOfAssessing(){
         success: function(data) {
             data.forEach(function(item)
             {
-                console.log(item.nrOfAssessing);
                 return item.nrOfAssessing;
             });        },
         error: function()
         {
-            alert("Please make sure points are given!");
+            alert("Ooops...");
         }
     });
 }
