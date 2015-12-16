@@ -60,6 +60,9 @@ function pageViewModel(gvm) {
 
     gvm.tempTableData = ko.observableArray([]);
 
+    //gvm.totalCompleted = ko.observable("");
+    gvm.totalStudents = ko.observable("");
+
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed, completedStatus) {
         // Push data
@@ -68,6 +71,7 @@ function pageViewModel(gvm) {
 
         var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data, tAssessedCompleted: completedStatus};
         gvm.tabledata.push(tblOject);
+        gvm.totalStudents = gvm.tabledata().length;
     };
 
     gvm.clearTable = function() {
