@@ -166,15 +166,19 @@ function getData(id)
 }
 
 function getNrOfAssessing(){
+    var nr = 0;
+
     $.getJSON('/api/project/nrOfAssessing/' + viewModel.projectId , function(data)
     {
         data.forEach(function(item)
         {
             //console.log(item.nrOfAssessing);
 
-            return item.nrOfAssessing;
+            nr = item.nrOfAssessing;
         });
     });
+
+    return nr();
 }
 
 function getDataCount(projectid, id)
