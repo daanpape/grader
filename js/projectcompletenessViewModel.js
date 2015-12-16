@@ -49,7 +49,6 @@ function pageViewModel(gvm) {
             $.ajax({
                 type: "POST",
                 url: "/api/project/documenttype/delete/" + document.id(),
-                data: ko.toJSON(viewModel.documents),
                 success: function (data) {
                     console.log('Removed document');
                 }
