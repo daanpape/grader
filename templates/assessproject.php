@@ -96,7 +96,7 @@ $location = "assessproject";
                             </button>
                         </a></td>
                     <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}">
-                            <button  class="btn btn-default">
+                            <button class="btn btn-default">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span data-bind="text: tFilesTableBtn"></span>
                             </button>
