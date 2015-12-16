@@ -44,7 +44,7 @@ $location = "projectRules";
                             <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: name">
                         </td>
 
-                        <td class="col-md-2">
+                        <td>
                             <select data-bind="{options: viewModel.projectActions, optionsText: 'name', value: action}" class="form-control form-next">
                             </select>
                             <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
@@ -54,16 +54,14 @@ $location = "projectRules";
                                 <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value">
                             </div>
                         </td>
-                        <td class="col-md-2">
+                        <td>
                             <div>
-                                <span data-bind="text: viewModel.ruleTotalScore" style="display: inline-block; width: 30%">Total score:</span>
-                                <select class="form-control form-next" style="display: inline-block; width: 20%" data-bind="foreach: viewModel.availableSigns, value: sign">
+                                <span data-bind="text: viewModel.ruleTotalScore">Total score:</span>
+                                <select class="form-control form-next" data-bind="foreach: viewModel.availableSigns, value: sign">
                                     <option data-bind="text: $data"></option>
                                 </select>
-                                <input type="text" class="form-control form-next" style="display: inline-block; width: 47%" placeholder="Percent"  data-bind="value: result">
-                            </div>
-                            <div>
-                                <button type="button" class="form-control btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
+                                <input type="text" class="form-control form-next" placeholder="Percent"  data-bind="value: result">
+                                <button class="btn btn-default form-next"  data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
                                     Remove this rule
                                 </button>
                             </div>
