@@ -56,7 +56,7 @@ $location = "assessproject";
                         </a> <a href="#" data-bind="click: function() { showFullList() }" type="button" class="btn btn-default">
                             <span class=" glyphicon glyphicon-refresh"></span>
                         </a></td>
-                    <td><span><p ></p><p>/</p><p data-bind="text: totalStudents"></p></span></p></td>
+                    <td><span><p ></p><p>/</p><p data-bind="value: totalStudents"></p></span></p></td>
                 </tr>
             </table>
         </div>

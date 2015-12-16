@@ -34,8 +34,6 @@ function pageViewModel(gvm) {
                 viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
             });
 
-            console.log("hey");
-            console.log(viewModel.totalStudents);
             viewModel.totalStudents = viewModel.tabledata().length;
         });
     };
@@ -55,10 +53,6 @@ function pageViewModel(gvm) {
                     viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, viewModel.users().length);
                 });
             });
-
-            console.log("hey");
-            console.log(viewModel.totalStudents);
-            viewModel.totalStudents = viewModel.tabledata().length;
         });
     };
 
