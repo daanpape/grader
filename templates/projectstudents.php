@@ -54,7 +54,7 @@ $location = "projectstudents";
                 </tbody>
             </table>
         </div>
-        <button class="btn btn-lg nextPageButton pull-right" data-bind="text: nextPage">
+        <button  type="button" class="btn btn-default pagination-button" data-bind="text: nextPage">
             Save
         </button>
     </div>
