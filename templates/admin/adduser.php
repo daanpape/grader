@@ -68,35 +68,35 @@ require_once('templates/header.php');
             <form id="userForm" class="form">
                 <input type="hidden" name="skipEmailVerification" value="true">
                 <div class="form-group">
-                    <label class="control-label col-md-4">Firstname</label>
+                    <label class="control-label col-md-4" data-bind="text: firstname">Firstname</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control form-next" placeholder="Firstname" name="firstname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">Lastname</label>
+                    <label class="control-label col-md-4" data-bind="text: lastname">Lastname</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control form-next" placeholder="Lastname" name="lastname">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">Email</label>
+                    <label class="control-label col-md-4" data-bind="text: email">Email</label>
                     <div class="col-md-8"><input type="text" class="form-control form-next" placeholder="Email" name="email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">password</label>
+                    <label class="control-label col-md-4" data-bind="text: password">password</label>
                     <div class="col-md-8"><input type="password" class="form-control form-next" placeholder="Password" name="pass"
                                ></div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">Confirm password</label>
+                    <label class="control-label col-md-4" data-bind="text: confirmPassword">Confirm password</label>
                     <div class="col-md-8">
                         <input type="password" class="form-control form-next" placeholder="Confirm password" name="passconfirm">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">Language</label>
+                    <label class="control-label col-md-4" data-bind="text: language">Language</label>
                     <div class="col-md-8">
                         <select class="form-control form-next" name="lang">
                             <option>EN</option>
@@ -105,7 +105,7 @@ require_once('templates/header.php');
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-4">Status</label>
+                    <label class="control-label col-md-4" data-bind="text: userStatus">Status</label>
                     <div class="col-md-8">
                         <select class="form-control form-next" name="status">
                             <option>ACTIVE</option>

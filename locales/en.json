@@ -15,9 +15,11 @@
     "NotMemberYetBtn" : "Not a member yet?",
     "LoginBtn" : "Log in",
     "LogoutBtn" : "Log out",
+    "Language" : "Language",
     "MenuLanguage" : "Language <b class=\"caret\">",
     "Email" : "Email",
     "Password" : "Password",
+    "ConfirmPassword" : "Confirm Password",
     "ProjectCompletenessTitle": "Documents to be submitted",
 
     "ProjecttypesButton" : "Projects",

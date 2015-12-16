@@ -5,6 +5,14 @@ function pageViewModel(gvm) {
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
 
     gvm.savePage = ko.computed(function(){i18n.setLocale(gvm.lang()); return gvm.app() + ' - ' + i18n.__("SaveBtn");}, gvm);
+
+    gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
+    gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
+    gvm.lastName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Lastname");}, gvm);
+    gvm.userStatus = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserStatus");}, gvm);
+    gvm.password = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Password");}, gvm);
+    gvm.confirmPassword = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ConfirmPassword");}, gvm);
+    gvm.language = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Language");}, gvm);
 }
 
 function createNewUser()
