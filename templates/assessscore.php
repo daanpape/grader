@@ -176,7 +176,6 @@ $location = "assessscore";
 </div>
 <br />
 <br />
-<br />
 
 <?php include_once('jsdepends.php') ?>
 <script>
