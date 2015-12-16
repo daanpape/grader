@@ -56,22 +56,23 @@ function Document(id,description,amount_required,weight,locked)
         description: ko.observable(description || ""),
         amount_required: ko.observable(amount_required || ""),
         weight: ko.observable(weight || ""),
-        locked: ko.observable(locked || false),
+        locked: ko.observable(locked || 0),
 
         removeThis: function() {
             viewModel.removeDocument(this);
         },
 
         toggleLock: function(data,event) {
-            if(this.locked == true)
+            if(this.locked == 1)
             {
+                this.locked = 0;
                 $(event.target).addClass("icon-unlock").removeClass("icon-lock");
             }
             else
             {
+                this.locked = 1;
                 $(event.target).addClass("icon-lock").removeClass("icon-unlock");
             }
-            this.locked = !this.locked;
         }
     }
 }

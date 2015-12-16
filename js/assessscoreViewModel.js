@@ -92,7 +92,6 @@ function fetchProjectStructure() {
 
                 $.each(subcomp.indicators, function(i, indic){
                     subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0,indic.id, indic.pointType));
-                    console.log(indic.pointType);
                 });
             });
         });
@@ -118,13 +117,14 @@ function SubCompetence(parent, id, code, name, indicators) {
     };
 }
 
-function Indicator(parent, id, name, description, score, scoreid,pointType) {
+function Indicator(parent, id, name, description, score, scoreid,pointType, checked) {
     return {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
         score: ko.observable(score),
         scoreid: ko.observable(scoreid),
-        pointType: ko.observable(pointType)
+        pointType: ko.observable(pointType),
+        checked : ko.observable(checked)
     };
 }

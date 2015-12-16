@@ -27,6 +27,7 @@ $location = "projectcompleteness";
                         <th>Document</th>
                         <th>amount required</th>
                         <th>weight</th>
+                        <th>Lock</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
