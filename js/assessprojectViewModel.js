@@ -27,16 +27,7 @@ function pageViewModel(gvm) {
         });
     };
 
-    gvm.getStudentListBis = function() {
-        $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
-            data.forEach(function(element){
-                viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
-            });
 
-            gvm.totalStudents = gvm.tabledata().length;
-            alert(gvm.totalStudents);
-        });
-    };
 
     gvm.getStudentList = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/students/', function(data) {
@@ -87,8 +78,8 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
+    getStudentListBis();
     viewModel.getProjectInfo();
-    viewModel.getStudentListBis();
     //viewModel.getStudentList();
 
     $("#searchField").bind("keypress", {}, keypressInBox);
@@ -193,3 +184,14 @@ function getDataCount(projectid, id)
         return viewModel.users().length;
     });
 }
+
+var getStudentListBis = function() {
+    $.getJSON('/api/project/' + viewModel.projectId + '/students', function(data) {
+        data.forEach(function(element){
+            viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
+        });
+
+        viewModel.totalStudents = viewModel.tabledata().length;
+        alert(viewModel.totalStudents);
+    });
+};
