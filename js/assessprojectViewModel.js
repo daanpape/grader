@@ -69,7 +69,7 @@ function pageViewModel(gvm) {
             completed = true;
         }
 
-        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data, tAssessedCompleted:};
+        var tblOject = {tid: id, tfirstname: firstname, tlastname: lastname, tScoreTableBtn: gvm.scoreTableTitle, tFilesTableBtn: gvm.filesTableTitle, tpid: gvm.projectId, email: email, tcountAssessed: data, tAssessedCompleted: completed};
         gvm.tabledata.push(tblOject);
     };
 
