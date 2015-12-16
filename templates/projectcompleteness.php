@@ -51,8 +51,8 @@ $location = "projectcompleteness";
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span> <span data-bind="click: addNewDocument, text: projectAddDocument">Add a Document</span></button>
-            <button type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> <span data-bind="click: saveDocuments, text: nextPage">Next</span></span></button>
+            <button type="button" class="btn btn-default" data-bind="click: addNewDocument"><span class="glyphicon glyphicon-plus"></span> <span  data-bind="text: projectAddDocument">Add a Document</span></button>
+            <button type="button" class="btn btn-default pull-right" data-bind="click: saveDocuments"><span class="glyphicon glyphicon-floppy-disk"></span> <span data-bind="text: nextPage">Next</span></span></button>
         </div>
 
     </div>
