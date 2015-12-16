@@ -138,7 +138,7 @@ require_once('templates/header.php');
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style="text-align: right">
                                 <div class="row">
                                     <div>
                                         <button class="btn btn-default savePageBtn pull-right" type="submit">
