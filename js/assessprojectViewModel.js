@@ -49,6 +49,9 @@ function pageViewModel(gvm) {
                     viewModel.addTableData(item.id, item.firstname, item.lastname, item.mail, viewModel.users().length);
                 });
             });
+
+
+            gvm.totalStudents = gvm.tabledata().length;
         });
     };
 
@@ -90,10 +93,6 @@ function initPage() {
     //viewModel.getStudentList();
 
     $("#searchField").bind("keypress", {}, keypressInBox);
-
-
-    gvm.totalStudents = gvm.tabledata().length;
-
 }
 
 function keypressInBox(e) {
