@@ -17,20 +17,13 @@ function pageViewModel(gvm) {
     gvm.filesTableTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("filesTableTitle")});
 
     gvm.searchStudent = ko.observable("");
+    gvm.totalCompleted = ko.observable();
+    gvm.totalStudents = ko.observable();
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
             gvm.pageHeader(data[0].code + ' - ' + data[0].name);
             gvm.projectDescription(data[0].description);
-        });
-    };
-
-    gvm.getStudentListBis = function() {
-        $.getJSON('/api/project/' + gvm.projectId + '/students', function(data) {
-            data.forEach(function(element){
-                console.log(element);
-                viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
-            });
         });
     };
 
@@ -60,6 +53,7 @@ function pageViewModel(gvm) {
 
     gvm.tempTableData = ko.observableArray([]);
 
+
     // Add data to the table
     gvm.addTableData = function(id, firstname, lastname, email, countAssessed, completedStatus) {
         // Push data
@@ -82,12 +76,11 @@ function pageViewModel(gvm) {
 }
 
 function initPage() {
+    getStudentListBis();
     viewModel.getProjectInfo();
-    viewModel.getStudentListBis();
     //viewModel.getStudentList();
 
     $("#searchField").bind("keypress", {}, keypressInBox);
-
 }
 
 function keypressInBox(e) {
@@ -97,7 +90,7 @@ function keypressInBox(e) {
         getStudentByName();
 
     }
-};
+}
 
 function createPDF(id,name,lastname,email, projectheader, projectdescription)
 {
@@ -189,3 +182,16 @@ function getDataCount(projectid, id)
         return viewModel.users().length;
     });
 }
+
+var getStudentListBis = function() {
+    $.getJSON('/api/project/' + viewModel.projectId + '/students', function(data) {
+        var totalCompleted = 0;
+        data.forEach(function(element){
+            viewModel.addTableData(element.id, element.firstname, element.lastname, element.mail, element.assessCount, element.assessCompleted);
+            totalCompleted += 1;
+        });
+
+        viewModel.totalStudents(viewModel.tabledata().length);
+        viewModel.totalCompleted(totalCompleted);
+    });
+};
