@@ -36,7 +36,7 @@ $location = "projectcompleteness";
                     <tbody data-bind="foreach: documents">
                         <tr>
                             <td data-bind="attr: {'id': id}"">
-                                <input class="form-control" style="width: 20%" data-bind="value: description">
+                                <input class="form-control" style="width: 50%" data-bind="value: description">
                             </td>
                             <td>
                                 <input class="form-control" data-bind="value: amount_required">
