@@ -49,7 +49,6 @@ function fetchUsersData()
             });
 
             role = permissions.trim().split(" ");
-            console.log(role);
             var userRole = "";
 
             for (i = 0; i < role.length; i++) {
