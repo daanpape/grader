@@ -160,7 +160,7 @@ function getAllUserDataById(edituserid){
 
             if (addedUsername != current) {
                 addedUsername = current;
-                console.log(item + " : " + viewModel.rights());
+                console.log(data + " : " + viewModel.rights());
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
