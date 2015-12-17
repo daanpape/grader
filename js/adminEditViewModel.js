@@ -192,6 +192,7 @@ function User(id, username, firstname, lastname, status, permissions) {
             } else if (this.status() == "WAIT_ACTIVATION") {
                 this.status("ACTIVE");
             }
+            console.log(this.permissions());
             updateUserStatus(this);
         }
     };
