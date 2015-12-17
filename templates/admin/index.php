@@ -55,6 +55,7 @@ require_once('templates/header.php');
                         <th data-bind="text: firstName">Name</th>
                         <th data-bind="text: lastName">Lastname</th>
                         <th data-bind="text: userStatus">Status</th>
+                        <th data-bind="text: userPermissions">Permissions</th>
                         <th data-bind="text: userActions">Actions</th>
                     </tr>
                     </thead>
