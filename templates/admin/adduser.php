@@ -56,7 +56,7 @@ require_once('templates/header.php');
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <div style="width: 90%; margin: 0 auto; margin-top: 2%">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeaderAddUser">Add User</h1>
