@@ -63,7 +63,7 @@ require_once('templates/header.php');
                 </div>
             </div>
             <!-- /.col-lg-12 -->
-            <div class="row table-responsive">
+            <div class="row table-responsive" style="width: 100%">
                 <table class="table table-striped">
                     <thead>
                     <tr>
