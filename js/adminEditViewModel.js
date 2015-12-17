@@ -116,8 +116,8 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(){
-    alert(viewModel.permissions);
-    var role = viewModel.permissions;
+    console.log(viewModel.user);
+    var role = viewModel.user.permissions;
     var permissions = "GUEST ";
 
     if(role == 'STUDENT' || role == 'USER' || role == 'SUPERUSER'){
