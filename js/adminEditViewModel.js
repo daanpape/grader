@@ -116,7 +116,7 @@ function saveUserEdits(id){
 }
 
 function saveUserPermissions(){
-    console.log(viewModel.user);
+    console.log(viewModel.user());
     var role = viewModel.user.permissions;
     var permissions = "GUEST ";
 
