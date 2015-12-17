@@ -168,6 +168,7 @@ function getAllUserDataById(edituserid){
 }
 
 function User(id, username, firstname, lastname, status, permissions) {
+    console.log(permissions);
     return {
         id: ko.observable(id),
         username: ko.observable(username),
@@ -192,7 +193,6 @@ function User(id, username, firstname, lastname, status, permissions) {
             } else if (this.status() == "WAIT_ACTIVATION") {
                 this.status("ACTIVE");
             }
-            console.log(this.permissions());
             updateUserStatus(this);
         }
     };
