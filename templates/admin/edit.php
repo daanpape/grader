@@ -125,7 +125,7 @@ require_once('templates/header.php');
                         </tbody>
                         <tbody>
                         <tr>
-                            <td data-bind="text: adminRights">Permission</td>
+                            <td data-bind="text: viewModel.adminRights">Permission</td>
                             <td><select class="form-control" id="selectedPermission" data-bind="options: viewModel.availablePermissions, value: permissions">
                                 </select>
                             </td>
