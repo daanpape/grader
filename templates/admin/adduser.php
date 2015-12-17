@@ -91,6 +91,7 @@ require_once('templates/header.php');
                             <option>ACTIVE</option>
                             <option>DISABLED</option>
                         </select>
+                        <br />
                     </div>
                 </div>
                 <!--
@@ -108,7 +109,6 @@ require_once('templates/header.php');
                 -->
 
                 <div class="form-group">
-                    <br />
                     <div class="col-lg-12" style="text-align: right">
                         <button class="btn btn-default cancelPageBtn" type="button">
                             <span class="glyphicon glyphicon-remove-sign"></span>
