@@ -37,9 +37,7 @@ require_once('templates/header.php');
                                  <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
                             </ul>
                         </li>';
-                echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
             } else {
-                echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
             }
             ?>
 
