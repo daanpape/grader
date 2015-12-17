@@ -24,7 +24,9 @@ require_once('templates/header.php');
             </div>
         </div>
 
-        <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+
+        <ul class="nav navbar-nav navbar-right">
+
             <?php echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="/account"><span class="navspan">Account</span></a></li>
