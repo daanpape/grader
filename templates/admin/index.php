@@ -54,8 +54,8 @@ require_once('templates/header.php');
                         <th data-bind="text: userName">Username</th>
                         <th data-bind="text: firstName">Name</th>
                         <th data-bind="text: lastName">Lastname</th>
-                        <th data-bind="text: userStatus">Status</th>
                         <th data-bind="text: userPermissions">Permissions</th>
+                        <th data-bind="text: userStatus">Status</th>
                         <th data-bind="text: userActions">Actions</th>
                     </tr>
                     </thead>
@@ -64,8 +64,8 @@ require_once('templates/header.php');
                         <td data-bind="text: username"></td>
                         <td data-bind="text: firstname"></td>
                         <td data-bind="text: lastname"></td>
-                        <td data-bind="text: status"></td>
                         <td data-bind="text: permissions"></td>
+                        <td data-bind="text: status"></td>
                         <!-- ko if: status() === 'ACTIVE' -->
                         <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a>
                             <a  data-bind="attr:{'href': '/admin/permissions/edit/' + id()}" style="cursor:pointer"><i class="fa fa-wrench fa-lg"></i></a>
