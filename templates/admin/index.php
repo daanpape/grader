@@ -35,7 +35,7 @@ require_once('templates/header.php');
         </ul>
     </nav>
 
-    <div style="width: 90%; margin: 0 auto;>
+    <div style="width: 90%; margin: 0 auto; border: solid;>
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Dashboard</h1>
