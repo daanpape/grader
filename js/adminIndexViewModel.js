@@ -36,8 +36,6 @@ function fetchUsersData()
     viewModel.refreshUsers();
     $.getJSON("/api/alluserswithroles/", function(data)
     {
-
-        console.log(data);
         var addedUsername = "";
         $.each(data, function(i, item){
             var current = item.username;
@@ -95,8 +93,6 @@ function removeUser(user)
 
 function updateUserStatus(user)
 {
-    console.log(user);
-    console.log(user.id() + " : " + user.status() + " : " + user.firstname());
     $.getJSON("/api/updateuserstatus/" + user.id() + "/" + user.status(), function(data)
     {
         console.log("updated");
