@@ -1,7 +1,7 @@
 <?php
 // Page initialisation
 $location = "adminIndex";
-require_once('../header.php');
+require_once('templates/header.php');
 ?>
 <body>
 
