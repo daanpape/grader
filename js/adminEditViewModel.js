@@ -78,7 +78,6 @@ function initPage() {
         {
             saveChanges();
             saveUserPermissions();
-            window.location.href = "/admin/home";
         } else {
             saveChanges();
         }
@@ -135,6 +134,7 @@ function saveUserPermissions(){
         data: { 'permissions': permissions },
         success: function() {
             alert('Changes saved correctly');
+            window.location.href = "/admin/home";
         },
         error: function() {
             alert('Error saving user. Please contact the Administrator');
