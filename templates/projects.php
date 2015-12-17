@@ -58,49 +58,54 @@ $location = "projects";
         <!-- Content container -->
         <div class="container">
             <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th data-bind="text: codeTableTitle">Code</th>
-                        <th data-bind="text: nameTableTitle">Name</th>
-                        <th data-bind="text: descTableTitle">Description</th>
-                        <th data-bind="text: actionTableTitle">Actions</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: tabledata">
-                    <tr>
-                        <td data-bind="text: tcode">--</td>
-                        <td data-bind="text: tname">--</td>
-                        <td data-bind="text: tdesc">--</td>
-                        <td style="width: 58%">
-                            <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
-                                <span data-bind="text: viewModel.projectsEditBtn">Edit</span>
-                            </a>
-                            <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
-                                <span data-bind="text: viewModel.projectsStructureBtn">Structure</span>
-                            </a>
-                            <a data-bind="attr:{'href': '/project/students/' + tid}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
-                                <span data-bind="text: viewModel.projectsStudentsBtn">Students</span>
-                            </a>
-                            <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span>
-                                <span data-bind="text: viewModel.projectsDocumentsBtn">Documents</span>
-                            </a>
-                            <a data-bind="attr:{'href': '/project/projectrules/' + tid}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span>
-                                <span data-bind="text: viewModel.projectsRulesBtn">Rules</span>
-                            </a>
-                            <a data-bind="attr:{'id': 'removebtn-' + tid}" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash glyphicon-btn"></span>
-                                <span data-bind="text: viewModel.projectsDeleteBtn">Delete</span>
-                            </a>
-                            </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="col-lg-12 container">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th data-bind="text: codeTableTitle">Code</th>
+                                <th data-bind="text: nameTableTitle">Name</th>
+                                <th data-bind="text: descTableTitle">Description</th>
+                                <th data-bind="text: actionTableTitle">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: tabledata">
+                            <tr>
+                                <td data-bind="text: tcode">--</td>
+                                <td data-bind="text: tname">--</td>
+                                <td data-bind="text: tdesc">--</td>
+                                <td style="width: 58%">
+                                    <a data-bind="attr:{'id': 'editbtn-' + tid}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-pencil glyphicon-btn"></span>
+                                        <span data-bind="text: viewModel.projectsEditBtn">Edit</span>
+                                    </a>
+                                    <a data-bind="attr:{'href': '/project/' + tid}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-plus glyphicon-btn" data-bind="attr:{'id': 'managebtn-' + tid}"></span>
+                                        <span data-bind="text: viewModel.projectsStructureBtn">Structure</span>
+                                    </a>
+                                    <a data-bind="attr:{'href': '/project/students/' + tid}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-user glyphicon-btn" data-bind="attr:{'id': 'studentbtn-' + tid}"></span>
+                                        <span data-bind="text: viewModel.projectsStudentsBtn">Students</span>
+                                    </a>
+                                    <a data-bind="attr:{'href': '/project/' + tid + '/completeness'}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-list glyphicon-btn" data-bind="attr:{'id': 'completenessbtn-' + tid"></span>
+                                        <span data-bind="text: viewModel.projectsDocumentsBtn">Documents</span>
+                                    </a>
+                                    <a data-bind="attr:{'href': '/project/projectrules/' + tid}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-check glyphicon-btn" data-bind="attr:{'id': 'projectrulesbtn-' + tid"></span>
+                                        <span data-bind="text: viewModel.projectsRulesBtn">Rules</span>
+                                    </a>
+                                    <a data-bind="attr:{'id': 'removebtn-' + tid}" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-trash glyphicon-btn"></span>
+                                        <span data-bind="text: viewModel.projectsDeleteBtn">Delete</span>
+                                    </a>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Pagination and action container -->
