@@ -5,6 +5,7 @@ function pageViewModel(gvm) {
     gvm.menuLanguage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("MenuLanguage");}, gvm);
 
     gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
+    gvm.cancelBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CancelBtn");}, gvm);
 
     gvm.userName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("UserName");}, gvm);
     gvm.firstName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("Firstname");}, gvm);
@@ -44,7 +45,12 @@ function initPage() {
 
         //window.location.href = "/admin/users";
     });*/
-    
+
+
+    $(".cancelPageBtn").click(function()
+    {
+        window.location.href = "/admin/home";
+    });
 }
 
 
