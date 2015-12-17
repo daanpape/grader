@@ -16,34 +16,38 @@ $location = "assesscompletement";
     <h1 class="page-header" id="projectHeader" data-value="<?php echo $projectid ?>" data-bind="text: pageHeader">Project</h1>
     <div class="row">
         <div id="top-col" class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: nameTableTitle">Name</th>
-                    <th data-bind="text: assessCompletementNumberToSubmit"># to submit</th>
-                    <th data-bind="text: projectWeight">Weight</th>
-                    <th data-bind="text: assessCompletementNumberSubmitted">Submitted</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: documents">
-                    <tr>
-                        <td><span data-bind="text: description"></span></td>
-                        <td><span data-bind="text: amount_required"></span></td>
-                        <td><span data-bind="text: weight"></span></td>
-                        <td>
-                            <select class="form-control" data-bind="options: amount_not_submitted, value: submitted, attr:{'id': 'document-' + id}">
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-12">
-            <button data-value="<?php echo $studentid ?>" id="saveBtn" type="button" class="btn btn-default pagination-button">
-                <span class="glyphicon glyphicon-floppy-disk"></span>
-                <span data-bind="text: saveBtn">Save</span>
-            </button>
-            <button id="cancelBtn" type="button" class="btn btn-default pagination-button" data-bind="text: cancelBtn">Cancel</button>
+            <div class="col-lg-12 container">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th data-bind="text: nameTableTitle">Name</th>
+                            <th data-bind="text: assessCompletementNumberToSubmit"># to submit</th>
+                            <th data-bind="text: projectWeight">Weight</th>
+                            <th data-bind="text: assessCompletementNumberSubmitted">Submitted</th>
+                        </tr>
+                        </thead>
+                        <tbody data-bind="foreach: documents">
+                            <tr>
+                                <td><span data-bind="text: description"></span></td>
+                                <td><span data-bind="text: amount_required"></span></td>
+                                <td><span data-bind="text: weight"></span></td>
+                                <td>
+                                    <select class="form-control" data-bind="options: amount_not_submitted, value: submitted, attr:{'id': 'document-' + id}">
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <button data-value="<?php echo $studentid ?>" id="saveBtn" type="button" class="btn btn-default pagination-button">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        <span data-bind="text: saveBtn">Save</span>
+                    </button>
+                    <button id="cancelBtn" type="button" class="btn btn-default pagination-button" data-bind="text: cancelBtn">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
