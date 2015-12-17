@@ -140,6 +140,8 @@ function showFullList()
 {
     viewModel.searchStudent = ko.observable("");
     getStudentByName();
+
+    document.getElementById("searchField").value = "";
 }
 
 function getData(id)
