@@ -62,56 +62,60 @@ $location = "assessproject";
         </div>
     </div>
     <div class="row">
-        <div id="top-col" class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: assessProjectStatus">Status</th>
-                    <th data-bind="text: firstNameTableTitle">FirstName</th>
-                    <th data-bind="text: lastNameTableTitle">LastName</th>
-                    <th data-bind="text: scoreTableTitle">Scores</th>
-                    <th data-bind="text: filesTableTitle">Scores</th>
-                    <th data-bind="text: actionTableTitle">Actions</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: tabledata">
-                <tr>
-                    <!-- ko if: tAssessedCompleted === 'EMPTY' -->
-                    <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red" width="25px" height="25px"></td>
-                    <!-- /ko -->
+        <div id="top-col">
+            <div class="col-lg-12 container">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th data-bind="text: assessProjectStatus">Status</th>
+                            <th data-bind="text: firstNameTableTitle">FirstName</th>
+                            <th data-bind="text: lastNameTableTitle">LastName</th>
+                            <th data-bind="text: scoreTableTitle">Scores</th>
+                            <th data-bind="text: filesTableTitle">Scores</th>
+                            <th data-bind="text: actionTableTitle">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody data-bind="foreach: tabledata">
+                        <tr>
+                            <!-- ko if: tAssessedCompleted === 'EMPTY' -->
+                            <td style="text-align: center"><img src="../img/check_red.png" alt="" title="red" width="25px" height="25px"></td>
+                            <!-- /ko -->
 
-                    <!-- ko if: tAssessedCompleted === 'BUSY' -->
-                    <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange" width="25px" height="25px"></td>
-                    <!-- /ko -->
+                            <!-- ko if: tAssessedCompleted === 'BUSY' -->
+                            <td style="text-align: center"><img src="../img/check_orange.png" alt="" title="orange" width="25px" height="25px"></td>
+                            <!-- /ko -->
 
-                    <!-- ko if: tAssessedCompleted === 'COMPLETED' -->
-                    <td style="text-align: center"><img src="../img/check_green.png" alt="" title="green" width="25px" height="25px"></td>
-                    <!-- /ko -->
+                            <!-- ko if: tAssessedCompleted === 'COMPLETED' -->
+                            <td style="text-align: center"><img src="../img/check_green.png" alt="" title="green" width="25px" height="25px"></td>
+                            <!-- /ko -->
 
-                    <td data-bind="text: tfirstname">--</td>
-                    <td data-bind="text: tlastname">--</td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button  class="btn btn-default">
-                                <span class="glyphicon glyphicon-edit"></span>
-                                <span data-bind="text: tScoreTableBtn"></span>
-                            </button>
-                        </a></td>
-                    <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}">
-                            <button class="btn btn-default">
-                                <span class="glyphicon glyphicon-list-alt"></span>
-                                <span data-bind="text: tFilesTableBtn"></span>
-                            </button>
-                        </a></td>
-                    <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-file"></span>
-                            <span>PDF</span>
-                    </a></td>
-                    <td><a data-bind="popupTemplate: { template: 'test-template'}, click: function() { getData(tid) }" type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            <span>Info</span>
-                    </a></td>
-                </tr><!-- Header container -->
-                </tbody>
-            </table>
+                            <td data-bind="text: tfirstname">--</td>
+                            <td data-bind="text: tlastname">--</td>
+                            <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/scores'}"><button  class="btn btn-default">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        <span data-bind="text: tScoreTableBtn"></span>
+                                    </button>
+                                </a></td>
+                            <td><a data-bind="attr:{'href': '/assess/project/' + tpid + '/student/' + tid + '/completeness'}">
+                                    <button class="btn btn-default">
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                        <span data-bind="text: tFilesTableBtn"></span>
+                                    </button>
+                                </a></td>
+                            <td><a href="#" data-bind="click: function() { createPDF($data.tid,$data.tfirstname,$data.tlastname,$data.email,viewModel.pageHeader(),viewModel.projectDescription()) }" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                    <span>PDF</span>
+                            </a></td>
+                            <td><a data-bind="popupTemplate: { template: 'test-template'}, click: function() { getData(tid) }" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-info-sign"></span>
+                                    <span>Info</span>
+                            </a></td>
+                        </tr><!-- Header container -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
     </div>
