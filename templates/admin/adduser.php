@@ -34,26 +34,6 @@ require_once('templates/header.php');
                 </ul>
             </li>
         </ul>
-
-        <!-- /.navbar-header -->
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="/admin/home"><i class="fa fa-home fa-fw fa-lg"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="/admin/permissions"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
-                    </li>
-                    <li>
-                        <a href="/admin/users"><i class="fa fa-users fa-fw fa-2x"></i> Gebruikers</span></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
     </nav>
 
     <div style="width: 90%; margin: 0 auto; margin-top: 2%">
