@@ -138,12 +138,12 @@ require_once('templates/header.php');
                                     <div>
                                         <button class="btn btn-default cancelPageBtn" type="button">
                                             <span class="glyphicon glyphicon-remove-sign"></span>
-                                            <span data-bind="text: cancelBtn">Cancel</span>
+                                            <span data-bind="text: viewModel.cancelBtn">Cancel</span>
                                         </button>
 
                                         <button class="btn btn-default savePageBtn" type="submit">
                                             <span class="glyphicon glyphicon-floppy-disk"></span>
-                                            <span data-bind="text: saveBtn">Save</span>
+                                            <span data-bind="text: viewModel.saveBtn">Save</span>
                                         </button>
                                     </div>
                                 </div>
