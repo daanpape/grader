@@ -108,7 +108,7 @@ require_once('templates/header.php');
                 -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="text-align: right">
                         <br />
                         <button class="btn btn-default savePageBtn" type="submit">
                             <span class="glyphicon glyphicon-floppy-disk"></span>

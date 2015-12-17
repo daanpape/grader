@@ -121,7 +121,7 @@ require_once('templates/header.php');
                             <td>
                             </td>
                             <td>
-                                <div class="row">
+                                <div class="row pull-right">
                                     <div>
                                         <button class="btn btn-default cancelPageBtn" type="button">
                                             <span class="glyphicon glyphicon-remove-sign"></span>
