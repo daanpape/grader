@@ -167,15 +167,37 @@ function getAllUserDataById(edituserid){
     });
 }
 
+function contains(a, obj) {
+    var i = a.length;
+    while (i--) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function User(id, username, firstname, lastname, status, permissions) {
     console.log(permissions);
+    var hoogste = "GUEST";
+
+    if (contains(permissions, "SUPERUSER")){
+        hoogste = "SUPERUSER";
+    } else if (contains(permissions, "USER")){
+        hoogste = "USER";
+    } else if (contains(permissions, "STUDENT")){
+        hoogste = "STUDENT";
+    } else if (contains(permissions, "GUEST")){
+        hoogste = "GUEST";
+    }
+    console.log(hoogste);
     return {
         id: ko.observable(id),
         username: ko.observable(username),
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
-        permissions: ko.observableArray(permissions),
+        permissions: ko.observableArray(hoogste),
         userStatuses: ko.observableArray(['ACTIVE', 'DISABLED']),
 
         removeThisUser: function() {
