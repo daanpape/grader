@@ -31,7 +31,7 @@ require_once('templates/header.php');
                             <ul class="dropdown-menu">
                                 <li><a href="/account"><span class="navspan">Account</span></a></li>
                                 <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
-                                 <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
+                                 <li><a href="/home"><span class="navspan">Grader Home</span></a></li>
                             </ul>
                         </li>';
                 } else {
