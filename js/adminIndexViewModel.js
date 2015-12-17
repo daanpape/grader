@@ -6,8 +6,4 @@ function pageViewModel(gvm) {
 
     gvm.changePermissions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ChangePermissions");}, gvm);
     gvm.changeUsers = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ChangeUsers");}, gvm);
-
-    gvm.dashboard = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminDashboardIndex");}, gvm);
-    gvm.rights = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminRightsIndex");}, gvm);
-    gvm.permissions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AdminUsersIndex");}, gvm);
 }

@@ -50,7 +50,7 @@ require_once('templates/header.php');
 <!--                    </li>-->
 <!--                </ul>-->
 <!--            </div>-->
-<!--            <!-- /.sidebar-collapse -->-->
+<!--            <!-- /.sidebar-collapse -->
 <!--        </div>-->
         <!-- /.navbar-static-side -->
     </nav>
