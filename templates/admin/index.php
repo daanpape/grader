@@ -40,7 +40,7 @@ require_once('templates/header.php');
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-1">
-                        <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
+                        <a href="/admin/users/add" type="button" class="btn btn-default pull-right" id="addUser">
                             <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
                         </a>
                     </div>
