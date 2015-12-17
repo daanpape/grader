@@ -26,7 +26,7 @@ $location = "projectcompleteness";
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th data-bind="text: projectName" style="width: 100px">Document</th>
+                            <th data-bind="text: projectName" style="width: 200px">Document</th>
                             <th data-bind="text: projectAmount">amount required</th>
                             <th data-bind="text: projectWeigth">weight</th>
                             <th data-bind="text: projectLock">Lock</th>
