@@ -64,8 +64,8 @@ require_once('templates/header.php');
             <form id="userEditForm">
                 <input type="hidden" name="lang" value="EN"/>
 
-
-                <table class="table table-striped table-responsive" data-bind="foreach: user">
+                <div class="table-responsive">
+                <table class="table table-striped" data-bind="foreach: user">
                     <tr>
                         <td data-bind="text: viewModel.firstname">Firstname</td>
                         <td><input type="text" class="form-control form-next" placeholder="Firstname" name="firstname" data-bind="value: firstname"></td>
@@ -88,6 +88,7 @@ require_once('templates/header.php');
                     </tr>
                     <tr>
                 </table>
+                </div
 
 
                 <h2 data-bind="text: adminEditUserPermissions">User Permissions</h2>
