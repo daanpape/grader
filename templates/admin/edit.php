@@ -92,7 +92,7 @@ require_once('templates/header.php');
 
                 <h2 data-bind="text: adminEditUserPermissions">User Permissions</h2>
                 <div>
-                    <table class="table table-striped">
+                    <table class="table table-striped" data-bind="foreach: user">
                         <thead>
                         <tr>
                             <th data-bind="text: permissionRole">Role</th>
@@ -126,11 +126,7 @@ require_once('templates/header.php');
                         <tbody>
                         <tr>
                             <td data-bind="text: adminRights">Permission</td>
-                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: currentUserRole">
-                                    <option value="GUEST">Guest</option>
-                                    <option value="STUDENT">Student</option>
-                                    <option value="USER">User</option>
-                                    <option value="SUPERUSER">Superuser</option>
+                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: permissions">
                                 </select>
                             </td>
                         </tr>
