@@ -1,7 +1,6 @@
 <?php
 // Page initialisation
 $location = "home";
-require_once('templates/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
