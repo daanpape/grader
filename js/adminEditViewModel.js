@@ -81,6 +81,11 @@ function initPage() {
             saveChanges();
         }
     });
+
+    $(".cancelPageBtn").click(function()
+    {
+        window.location.href = "/admin/home";
+    });
 }
 
 
