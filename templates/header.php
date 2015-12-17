@@ -12,10 +12,9 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css" rel="stylesheet">
     <link href="/css/grader.css" rel="stylesheet">
-    <link href="/css/cssrapport/jquery-ui.min.css" rel="stylesheet">
     <link href="/bower_components/sb-admin-2/css/sb-admin-2.css" rel="stylesheet">
     <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../css/grader.css">
+    <link rel="stylesheet" href="../css/grader.css">
 
     <!--[if lt IE 9]>
         <script src="/js/html5shiv.min.js"></script>
