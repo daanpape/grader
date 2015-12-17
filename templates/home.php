@@ -1,6 +1,7 @@
 <?php
 // Page initialisation
 $location = "home";
+require_once('templates/header.php');
 ?>
 <!DOCTYPE html>
 <html lang="nl" id="htmldoc">
@@ -11,7 +12,6 @@ $location = "home";
     <body>
         <?php include_once('menu.php') ?>
 
-        <div id="wrapper">
         <!-- Header container -->
         <div class="container">
             <h1 class="page-header" data-bind="text: app">Projects</h1>
@@ -25,7 +25,6 @@ $location = "home";
             </div>
 
         </div>
-            </div>
 
 
 
