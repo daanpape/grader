@@ -19,15 +19,7 @@ require_once('templates/header.php');
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li <?php
-                if ($location == 'home') {
-                    echo 'class="active"';
-                }
-                ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
-                <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
-                <li class="<?php if ($location == 'projects') {
-                    echo 'active';
-                } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+                <li><a href="/admin/home">Admin Home</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -42,9 +34,7 @@ require_once('templates/header.php');
                                  <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
                             </ul>
                         </li>';
-                    echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
                 } else {
-                    echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
                 }
                 ?>
 
