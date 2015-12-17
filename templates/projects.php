@@ -59,7 +59,7 @@ $location = "projects";
         <div class="container">
             <div class="big-info"><span data-bind="text: foundProjects">Found projects</span>:</div>
 
-            <div class="col-lg-12 ">
+            <div class="col-lg-12 container">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
