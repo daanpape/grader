@@ -18,23 +18,25 @@ function pageViewModel(gvm) {
     gvm.updateUsers = function(user)
     {
         gvm.users.push(user);
-    },
+    }
 
-        gvm.removeUser = function(user) {
-            gvm.users.remove(user);
-            removeUser(user);
-        },
+    gvm.removeUser = function(user) {
+        gvm.users.remove(user);
+        removeUser(user);
+    }
 
-        gvm.refreshUsers = function()
-        {
-            gvm.users.destroyAll();
-        }
+    gvm.refreshUsers = function()
+    {
+        gvm.users.destroyAll();
+    }
 }
 function fetchUsersData()
 {
     viewModel.refreshUsers();
     $.getJSON("/api/alluserswithroles/", function(data)
     {
+
+        console.log(data);
         var addedUsername = "";
         $.each(data, function(i, item){
             var current = item.username;
