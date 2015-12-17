@@ -8,7 +8,7 @@ require_once('templates/header.php');
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header collapse navbar-collapse">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
