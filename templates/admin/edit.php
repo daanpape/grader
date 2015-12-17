@@ -123,12 +123,12 @@ require_once('templates/header.php');
                             <td>
                                 <div class="row">
                                     <div>
-                                        <button class="btn btn-default savePageBtn pull-right" type="submit">
+                                        <button class="btn btn-default savePageBtn" type="submit">
                                             <span class="glyphicon glyphicon-floppy-disk"></span>
                                             <span data-bind="text: saveBtn">Save</span>
                                         </button>
 
-                                        <button class="btn btn-default cancelPageBtn pull-right" type="button">
+                                        <button class="btn btn-default cancelPageBtn" type="button">
                                             <span class="glyphicon glyphicon-remove-sign"></span>
                                             <span data-bind="text: cancelBtn">Cancel</span>
                                         </button>
