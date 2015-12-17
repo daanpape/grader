@@ -35,16 +35,40 @@ require_once('templates/header.php');
         </ul>
     </nav>
 
-    <div style="width: 90%; margin: 0 auto; border: solid;>
+    <div style="width: 90%; margin: 0 auto;>
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" data-bind="text: pageHeader">Dashboard</h1>
             </div>
             <!-- /.col-lg-12 -->
             <div>
-                <p data-bind="text: changePermissions">Change the permissions of an user in the Permissions-tab</p>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th data-bind="text: userName">Username</th>
+                        <th data-bind="text: firstName">Name</th>
+                        <th data-bind="text: lastName">Lastname</th>
+                        <th data-bind="text: userStatus">Status</th>
+                        <th data-bind="text: userActions">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach: users">
+                    <tr style="width: 100%">
+                        <td data-bind="text: username"></td>
+                        <td data-bind="text: firstname"></td>
+                        <td data-bind="text: lastname"></td>
+                        <td data-bind="text: status"></td>
+                        <!-- ko if: status() === 'ACTIVE' -->
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a>
+                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"></td>
+                        <!-- /ko -->
+                        <!-- ko if: status() !== 'ACTIVE' -->
+                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a>
+                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"></td>
+                        <!-- /ko -->
 
-                <p data-bind="text: changeUsers">Change an user in the Users-tab</p>
+                    </tr>
+                    </tbody>
             </div>
         </div>
         <!-- /.row -->

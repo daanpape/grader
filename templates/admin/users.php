@@ -70,33 +70,7 @@ require_once('templates/header.php');
 
 
         <div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th data-bind="text: userName">Username</th>
-                    <th data-bind="text: firstName">Name</th>
-                    <th data-bind="text: lastName">Lastname</th>
-                    <th data-bind="text: userStatus">Status</th>
-                    <th data-bind="text: userActions">Actions</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: users">
-                    <tr style="width: 100%">
-                        <td data-bind="text: username"></td>
-                        <td data-bind="text: firstname"></td>
-                        <td data-bind="text: lastname"></td>
-                        <td data-bind="text: status"></td>
-                        <!-- ko if: status() === 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-on fa-lg" data-bind="click: changeStatus"></i></a>
-                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"></td>
-                        <!-- /ko -->
-                        <!-- ko if: status() !== 'ACTIVE' -->
-                        <td style="width: 15%" data-bind="if:status"><a style="cursor:pointer"><i class="fa fa-toggle-off fa-lg" data-bind="click: changeStatus"></i></a>
-                            <a style="cursor:pointer"><i class="fa fa-times fa-lg" data-bind="click: removeThisUser"></i></a><a style="cursor:pointer"></td>
-                        <!-- /ko -->
 
-                    </tr>
-                </tbody>
         </div>
 
         <!-- /.row -->
