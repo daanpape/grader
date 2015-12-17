@@ -174,9 +174,6 @@
     "AdminPage" : "Home",
     "ChangePermissions" : "Change the permissions of an user in the Permissions-tab",
     "ChangeUsers" : "Change an user in the Users-tab",
-    "AdminDashboard" : "Dashboard",
-    "AdminRights" : "Permissions" ,
-    "AdminUsers" : "Users",
 
     "NextPage" : "Save and Next",
 

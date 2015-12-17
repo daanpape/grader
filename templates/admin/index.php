@@ -36,22 +36,22 @@ require_once('templates/header.php');
 
         <!-- /.navbar-header -->
 
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="/admin/home" data-bind="text: dashboard"><i class="fa fa-home fa-fw fa-2x"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="/admin/permissions" data-bind="text: rights"><i class="fa fa-wrench fa-fw fa-lg"></i> Rechten</span></a>
-                    </li>
-                    <li>
-                        <a href="/admin/users" data-bind="text: permissions"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
+<!--        <div class="navbar-default sidebar" role="navigation">-->
+<!--            <div class="sidebar-nav navbar-collapse">-->
+<!--                <ul class="nav" id="side-menu">-->
+<!--                    <li>-->
+<!--                        <a href="/admin/home" data-bind="text: dashboard">Dashboard</a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="/admin/permissions" data-bind="text: rights">Rechten</span></a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a href="/admin/users" data-bind="text: permissions"><i class="fa fa-users fa-fw fa-lg"></i> Gebruikers</span></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <!-- /.sidebar-collapse -->-->
+<!--        </div>-->
         <!-- /.navbar-static-side -->
     </nav>
 
