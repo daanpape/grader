@@ -8,7 +8,7 @@ require_once('templates/header.php');
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="container">
-            <div class="navbar-header collapse navbar-collapse">
+            <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -16,9 +16,11 @@ require_once('templates/header.php');
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/home" data-bind="text: projectname">Grader</a>
-                <ul class="nav navbar-nav">
-                    <li><a href="/admin/home">Admin Home</a></li>
-                </ul>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/admin/home">Admin Home</a></li>
+                    </ul>
+                </div>
             </div>
 
             <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
