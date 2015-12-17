@@ -9,10 +9,6 @@ $app->get('/admin/home', function () use ($app) {
     $app->render('admin/index.php');
 });
 
-$app->get('/admin/users', function () use ($app) {
-    $app->render('admin/users.php');
-});
-
 $app->get('/admin/users/add', function () use ($app) {
     $app->render('admin/adduser.php');
 });
