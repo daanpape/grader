@@ -41,9 +41,7 @@ require_once('templates/header.php');
                 </li>
             </ul>
         </div>
-
-
-    </nav>
+    </div>
 
     <div style="width: 90%; margin: 0 auto; margin-top: 2%">
         <div class="row">
