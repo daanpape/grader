@@ -26,7 +26,7 @@ function createNewUser()
      data: $('#userForm').serialize(),
      success: function() {
         console.log('Success');
-        $(location).attr('href', '/admin/users');
+        $(location).attr('href', '/admin/home');
      },
      error: function() {
          console.log('error');
