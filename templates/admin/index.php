@@ -38,7 +38,13 @@ require_once('templates/header.php');
     <div style="width: 90%; margin: 0 auto;>
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" data-bind="text: pageHeader">Dashboard</h1>
+                <div class="row">
+                    <div class="col-lg-1">
+                        <a href="/admin/users/add" type="button" class="btn btn-default pagination-button" id="addUser">
+                            <span class="glyphicon glyphicon-plus"></span> <span data-bind="text: addBtn"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- /.col-lg-12 -->
             <div>
