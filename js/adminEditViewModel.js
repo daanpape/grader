@@ -78,6 +78,7 @@ function initPage() {
         {
             saveChanges();
             saveUserPermissions();
+            window.location.href = "/admin/home";
         } else {
             saveChanges();
         }
