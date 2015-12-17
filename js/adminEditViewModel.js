@@ -197,7 +197,7 @@ function User(id, username, firstname, lastname, status, permissions) {
         firstname: ko.observable(firstname),
         lastname: ko.observable(lastname),
         status: ko.observable(status),
-        permissions: ko.observableArray(hoogste),
+        permissions: ko.observable(hoogste),
         userStatuses: ko.observableArray(['ACTIVE', 'DISABLED']),
 
         removeThisUser: function() {
