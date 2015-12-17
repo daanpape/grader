@@ -26,7 +26,7 @@ $location = "projectcompleteness";
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th data-bind="text: projectName">Document</th>
+                            <th data-bind="text: projectName" style="width: 100px">Document</th>
                             <th data-bind="text: projectAmount">amount required</th>
                             <th data-bind="text: projectWeigth">weight</th>
                             <th data-bind="text: projectLock">Lock</th>
@@ -36,7 +36,7 @@ $location = "projectcompleteness";
                     <tbody data-bind="foreach: documents">
                         <tr>
                             <td data-bind="attr: {'id': id}"">
-                                <input class="form-control" style="width: 50%" data-bind="value: description">
+                                <input class="form-control" data-bind="value: description">
                             </td>
                             <td>
                                 <input class="form-control" data-bind="value: amount_required">
