@@ -95,38 +95,38 @@ require_once('templates/header.php');
                     <table class="table table-striped" data-bind="foreach: user">
                         <thead>
                         <tr>
-                            <th data-bind="text: permissionRole">Role</th>
-                            <th data-bind="text: permissionDescription">Description</th>
+                            <th data-bind="text: viewModel.permissionRole">Role</th>
+                            <th data-bind="text: viewModel.permissionDescription">Description</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>GUEST</td>
-                            <td data-bind="text: adminGuest">When not logged in you get the GUEST role.</td>
+                            <td data-bind="text: viewModel.adminGuest">When not logged in you get the GUEST role.</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>STUDENT</td>
-                            <td data-bind="text: adminStudent">Can only do studentactions</td>
+                            <td data-bind="text: viewModel.adminStudent">Can only do studentactions</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>USER</td>
-                            <td data-bind="text: adminUser">Contains rights for every USER in the system.</td>
+                            <td data-bind="text: viewModel.adminUser">Contains rights for every USER in the system.</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td>SUPERUSER</td>
-                            <td data-bind="text: adminSuperuser">The superuser role must have access to everything...</td>
+                            <td data-bind="text: viewModel.adminSuperuser">The superuser role must have access to everything...</td>
                         </tr>
                         </tbody>
                         <tbody>
                         <tr>
                             <td data-bind="text: adminRights">Permission</td>
-                            <td><select class="form-control" id="selectedPermission" data-bind="options: availablePermissions, value: permissions">
+                            <td><select class="form-control" id="selectedPermission" data-bind="options: viewModel.availablePermissions, value: permissions">
                                 </select>
                             </td>
                         </tr>
