@@ -63,8 +63,8 @@ require_once('templates/header.php');
                 </div>
             </div>
             <!-- /.col-lg-12 -->
-            <div class="table-responsive">
-                <table class="table table-striped">
+            <div>
+                <table class="table table-striped class="table-responsive">
                     <thead>
                     <tr>
                         <th data-bind="text: userName">Username</th>
