@@ -115,8 +115,7 @@ function saveUserEdits(id){
     });
 }
 
-function saveUserPermissions(user){
-    console.log(user.permissions());
+function saveUserPermissions(){
     var role = viewModel.currentUserRole();
     var permissions = "GUEST ";
 
@@ -161,6 +160,7 @@ function getAllUserDataById(edituserid){
 
             if (addedUsername != current) {
                 addedUsername = current;
+                console.log(item + " : " + viewModel.rights());
                 viewModel.updateUser(new User(item.userid, item.username, item.firstname, item.lastname, item.status, viewModel.rights()));
             }
         });
