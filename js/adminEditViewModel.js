@@ -115,7 +115,8 @@ function saveUserEdits(id){
     });
 }
 
-function saveUserPermissions(){
+function saveUserPermissions(user){
+    console.log(user.permissions());
     var role = viewModel.currentUserRole();
     var permissions = "GUEST ";
 
