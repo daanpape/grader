@@ -108,6 +108,7 @@ require_once('templates/header.php');
                 -->
 
                 <div class="form-group">
+                    <br />
                     <div class="col-lg-12" style="text-align: right">
                         <button class="btn btn-default cancelPageBtn" type="button">
                             <span class="glyphicon glyphicon-remove-sign"></span>
