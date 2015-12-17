@@ -92,7 +92,7 @@ require_once('templates/header.php');
 
 
                 <h2 data-bind="text: adminEditUserPermissions">User Permissions</h2>
-                <div class="table-responsive">
+                <div>
                     <table class="table table-striped table-responsive" data-bind="foreach: user">
                         <thead>
                         <tr>
