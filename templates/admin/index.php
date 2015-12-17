@@ -3,11 +3,63 @@
 $location = "adminIndex";
 require_once('templates/header.php');
 ?>
-<body style="padding-top: 0px">
-<?php
+<body>
 
-    require_once("templates/menu.php")
-?>
+<!-- Main menu -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home" data-bind="text: projectname">Grader</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li <?php
+                if ($location == 'home') {
+                    echo 'class="active"';
+                }
+                ?>><a href="/home" data-bind="text: homeBtn">Home</a></li>
+                <li><a href="/assess" data-bind="text: assessBtn">Assess</a></li>
+                <li class="<?php if ($location == 'projects') {
+                    echo 'active';
+                } ?>"> <a href="/projects" data-bind="text: projecttypeBtn">Projects</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <?php
+                if (Security::isUserLoggedIn()) {
+
+                    echo '<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">' . Security::getLoggedInName() . '<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account"><span class="navspan">Account</span></a></li>
+                                <li><a href="/account/studentlists"><span class="navspan">Student lists</span></a></li>
+                                 <li><a href="/admin/home"><span class="navspan">Admin Panel</span></a></li>
+                            </ul>
+                        </li>';
+                    echo '<li><a href="#" data-bind="text: logoutBtn" id="logoutbtn" onClick="javascript: logoutUser();">Logout</a></li>';
+                } else {
+                    echo '<li><a href="#" data-bind="text: loginModalTitle" id="usermanagement">Login</a></li>';
+                }
+                ?>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-bind="html: menuLanguage">Language</a></b>
+                    <ul class="dropdown-menu">
+                        <li><span class="navspan" onclick="setLang('en')">English</span></li>
+                        <li><span class="navspan" onclick="setLang('nl')">Nederlands</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div id="wrapper">
     <div style="width: 90%; margin: 0 auto; margin-top: 2%">
         <div class="row">
