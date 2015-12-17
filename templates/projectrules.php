@@ -29,48 +29,50 @@ $location = "projectRules";
 <!-- Content container -->
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                    <tr style="width: 100%">
-                        <th style="width: 25%" data-bind="text: ruleName">Rule Name</th>
-                        <th style="width: 50%" data-bind="text: actionTableTitle">Action</th>
-                        <th style="width: 25%" data-bind="text: ruleResult">Result of the rule</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: projectRules">
-                    <tr>
-                        <td class="col-md-2">
-                            <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: name">
-                        </td>
+        <div class="col-lg-12 container">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr style="width: 100%">
+                            <th style="width: 25%" data-bind="text: ruleName">Rule Name</th>
+                            <th style="width: 50%" data-bind="text: actionTableTitle">Action</th>
+                            <th style="width: 25%" data-bind="text: ruleResult">Result of the rule</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: projectRules">
+                        <tr>
+                            <td class="col-md-2">
+                                <input type="text" class="form-control form-next" placeholder="Name of the rule" data-bind="value: name">
+                            </td>
 
-                        <td>
-                            <select data-bind="{options: viewModel.projectActions, optionsText: 'name', value: action}" class="form-control form-next">
-                            </select>
-                            <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
-                                <option data-bind="text: $data"></option>
-                            </select>
-                            <div>
-                                <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value">
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <span data-bind="text: viewModel.ruleTotalScore">Total score:</span>
-                            </div>
-                            <div>
-                                <select class="form-control form-next" data-bind="foreach: viewModel.availableSigns, value: sign">
+                            <td>
+                                <select data-bind="{options: viewModel.projectActions, optionsText: 'name', value: action}" class="form-control form-next">
+                                </select>
+                                <select data-bind="foreach: viewModel.availableOperators, value: operator" class="form-control form-next">
                                     <option data-bind="text: $data"></option>
                                 </select>
-                                <input type="text" class="form-control form-next" placeholder="Percent"  data-bind="value: result">
-                                <button class="form-control btn btn-default form-next" data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
-                                    Remove this rule
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                <div>
+                                    <input type="text" class="form-control form-next" placeholder="Value" data-bind="value: value">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <span data-bind="text: viewModel.ruleTotalScore">Total score:</span>
+                                </div>
+                                <div>
+                                    <select class="form-control form-next" data-bind="foreach: viewModel.availableSigns, value: sign">
+                                        <option data-bind="text: $data"></option>
+                                    </select>
+                                    <input type="text" class="form-control form-next" placeholder="Percent"  data-bind="value: result">
+                                    <button class="form-control btn btn-default form-next" data-bind="click: removeThisRule, text: viewModel.deleteRuleName">
+                                        Remove this rule
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
