@@ -130,7 +130,7 @@ require_once('templates/header.php');
 
                                         <button class="btn btn-default cancelPageBtn pull-right" type="button">
                                             <span class="glyphicon glyphicon-remove-sign"></span>
-                                            <span data-bind="text: saveBtn">Cancel</span>
+                                            <span data-bind="text: cancelBtn">Cancel</span>
                                         </button>
                                     </div>
                                 </div>
