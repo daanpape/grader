@@ -18,18 +18,19 @@ function pageViewModel(gvm) {
     gvm.updateUsers = function(user)
     {
         gvm.users.push(user);
-    }
+    },
 
     gvm.removeUser = function(user) {
         gvm.users.remove(user);
         removeUser(user);
-    }
+    },
 
     gvm.refreshUsers = function()
     {
         gvm.users.destroyAll();
     }
 }
+
 function fetchUsersData()
 {
     viewModel.refreshUsers();
@@ -77,7 +78,7 @@ function fetchUsersData()
             if (addedUsername != current){
 
                 addedUsername = item.username;
-                viewModel.updateUsers(new User(item.id, item.username, item.firstname, item.lastname, userRole.toUpperCase(), item.status));
+                viewModel.updateUsers(new User(item.userid, item.username, item.firstname, item.lastname, userRole.toUpperCase(), item.status));
             }
         });
     });
