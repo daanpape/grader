@@ -55,6 +55,7 @@ function fetchProjectScore()
                         $.each(subcomp.indicators(),function(i,indic)
                         {
                             for(var i = 0; i < data.length; i++) {
+                                console.log(data[i].indicator);
                             if (indic.id() == data[i].indicator) {
                                 indic.score(data[i].score);
                                 indic.scoreid(data[i].id);
