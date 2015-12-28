@@ -48,14 +48,12 @@ function fetchProjectScore()
 {
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
-        console.log(data);
         $.each(viewModel.competences(), function(i,item){
                     $.each(item.subcompetences(), function(i, subcomp)
                     {
                         $.each(subcomp.indicators(),function(i,indic)
                         {
                             for(var i = 0; i < data.length; i++) {
-                                console.log(data[i].indicator);
                             if (indic.id() == data[i].indicator) {
                                 indic.score(data[i].score);
                                 indic.scoreid(data[i].id);
@@ -64,6 +62,8 @@ function fetchProjectScore()
                 });
             });
         });
+        console.log(viewModel.competences()[1].subcompetences()[0].indicators()[4].scoreid());
+
     });
 }
 
