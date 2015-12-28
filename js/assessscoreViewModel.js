@@ -38,7 +38,6 @@ function pageViewModel(gvm) {
 function initPage() {
     fetchProjectStructure();
     viewModel.getProjectInfo();
-    viewModel.getAllData();
 
     $(".savePageBtn").click(function(){
         saveProjectScore();
