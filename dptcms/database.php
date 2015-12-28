@@ -981,7 +981,7 @@ class ClassDAO
             foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
-                        error_log($indicators->scoreid,0);
+                        error_log($indicators->scoreid,3,"/var/tmp/grader.log");
                         if (!isset($indicators->scoreid)) {
                             $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
                             $stmt->execute(array($projectid, $studentid, $userid, $competences->id, $subcompetences->id, $indicators->id, $indicators->score));
