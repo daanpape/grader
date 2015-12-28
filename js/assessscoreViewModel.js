@@ -54,17 +54,14 @@ function fetchProjectScore()
                         $.each(subcomp.indicators(),function(i,indic)
                         {
                             for(var i = 0; i < data.length; i++) {
-                                console.log(data[i].indicator);
-                            if (indic.id() == data[i].indicator) {
-                                indic.score(data[i].score);
-                                indic.scoreid(data[i].id);
+                                if (indic.id() == data[i].indicator) {
+                                    indic.score(data[i].score);
+                                    indic.scoreid(data[i].id);
+                                }
                             }
-                    }
-                });
-            });
+                        });
+                    });
         });
-        console.log(viewModel.competences()[1].subcompetences()[0].indicators()[4].scoreid());
-
     });
 }
 
@@ -97,7 +94,7 @@ function fetchProjectStructure() {
                 competence.subcompetences.push(subcompetence);
 
                 $.each(subcomp.indicators, function(i, indic){
-                    subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0,indic.id, indic.pointType));
+                    subcompetence.indicators.push(new Indicator(subcompetence, indic.id, indic.name, indic.description, 0,0, indic.pointType));
                 });
             });
         });
@@ -129,7 +126,7 @@ function Indicator(parent, id, name, description, score, scoreid,pointType, chec
         name: ko.observable(name),
         description: ko.observable(description),
         score: ko.observable(score),
-        scoreid: ko.observable(scoreid || 0),
+        scoreid: ko.observable(scoreid),
         pointType: ko.observable(pointType),
         checked : ko.observable(checked)
     };
