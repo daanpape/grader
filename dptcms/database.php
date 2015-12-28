@@ -981,11 +981,12 @@ class ClassDAO
             foreach ($data as $competences) {
                 foreach ($competences->subcompetences as $subcompetences) {
                     foreach ($subcompetences->indicators as $indicators) {
-                        error_log((string)$indicators->scoreid,0);
-                        if ((string)$indicators->scoreid != '0') {
+                        if ((string)$indicators->scoreid == '0') {
+                            error_log('Inserted',0);
                             $stmt = $conn->prepare("INSERT INTO assess_score (project, student, user, competence, subcompetence, indicator, score ) VALUES (?,?,?,?,?,?,?)");
                             $stmt->execute(array($projectid, $studentid, $userid, $competences->id, $subcompetences->id, $indicators->id, $indicators->score));
                         } else {
+                            error_log('Update', 0);
                             $stmt = $conn->prepare("UPDATE assess_score SET score= ? WHERE id= ?");
                             $stmt->execute(array($indicators->score, $indicators->scoreid));
                         }
