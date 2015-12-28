@@ -49,6 +49,7 @@ function fetchProjectScore()
 {
     $.getJSON("/api/projectscore/" + projectid + "/" + studentid, function(data)
     {
+        console.log(data);
         $.each(viewModel.competences(), function(i,item){
                     $.each(item.subcompetences(), function(i, subcomp)
                     {
@@ -68,7 +69,7 @@ function fetchProjectScore()
 
 function saveProjectScore()
 {
-    console.log(viewModel.competences()[1].subcompetences()[0].indicators()[4].scoreid());
+    //console.log(viewModel.competences()[1].subcompetences()[0].indicators()[4].scoreid());
     //console.log(viewModel.competences()[0].subcompetences()[0].indicators()[0].score());
     $.ajax({
         type: "POST",
