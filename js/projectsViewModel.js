@@ -488,9 +488,9 @@ function initPage() {
         showNewProjectTypeModal();
     });
 
-    $('.auto-complete').keydown(function(event) {
+    $('.auto-complete').click(function() {
         console.log("DOWN");
-        automatedDocumentProjectWeight(event);
+        //automatedDocumentProjectWeight(event);
     });
 
     $.getJSON('/api/currentuser', function(data) {
