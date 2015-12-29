@@ -489,7 +489,8 @@ function initPage() {
     });
 
     $('.auto-complete').keydown(function(event) {
-       automatedDocumentProjectWeight(event);
+        console.log("DOWN");
+        automatedDocumentProjectWeight(event);
     });
 
     $.getJSON('/api/currentuser', function(data) {
