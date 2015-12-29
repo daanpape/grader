@@ -291,6 +291,7 @@ function loadTablePage(courseid, pagenr)
 
         // Load table data 
         $.each(data.data, function(i, item) {
+            console.log(data.data);
             viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing,item.projectPercent,item.documentPercent);
         });
 
