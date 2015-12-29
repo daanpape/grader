@@ -488,7 +488,7 @@ function initPage() {
         showNewProjectTypeModal();
     });
 
-    $('#general_modal .auto-complete').on('click', function() {
+    $('#general_modal').on('click', function() {
         console.log("DOWN");
         //automatedDocumentProjectWeight(event);
     });
