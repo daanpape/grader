@@ -293,7 +293,9 @@ function loadTablePage(courseid, pagenr)
         $.each(data.data, function(i, item) {
             viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing,item.projectPercent,item.documentPercent);
         });
-        
+
+        console.log(viewModel.tabledata);
+
         /* Let previous en next buttons work */
         if(data.prev == "none"){
             $('#pager-prev-btn').addClass('disabled');
