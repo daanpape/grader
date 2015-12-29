@@ -294,7 +294,7 @@ function loadTablePage(courseid, pagenr)
             viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing,item.projectPercent,item.documentPercent);
         });
 
-        console.log(viewModel.tabledata);
+        console.log(viewModel.tabledata());
 
         /* Let previous en next buttons work */
         if(data.prev == "none"){
