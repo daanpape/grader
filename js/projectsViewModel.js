@@ -147,9 +147,9 @@ function pageViewModel(gvm) {
     gvm.tabledata = ko.observableArray([]);
 
     // Add data to the table
-    gvm.addTableData = function(id, code, name, desc,nrOfAssessing) {
+    gvm.addTableData = function(id, code, name, desc,nrOfAssessing, projectPercent, documentPercent) {
         // Push data
-        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, nrOfAssessing: nrOfAssessing};
+        var tblOject = {tid: id, tcode: code, tname: name, tdesc: desc, nrOfAssessing: nrOfAssessing, projectPercent: projectPercent, documentPercent: documentPercent};
         gvm.tabledata.push(tblOject);
 
         // Attach delete handler to delete button
@@ -162,7 +162,7 @@ function pageViewModel(gvm) {
         // Attach edit handler to edit button
         $('#editbtn-' + id).bind('click', function(event, data){
             // Edit the table item
-            showEditProjectTypeModal(code, name, desc, id, nrOfAssessing);
+            showEditProjectTypeModal(code, name, desc, id, nrOfAssessing,projectPercent,documentPercent);
             event.stopPropagation();
         });
 
@@ -291,7 +291,7 @@ function loadTablePage(courseid, pagenr)
 
         // Load table data 
         $.each(data.data, function(i, item) {
-            viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing);
+            viewModel.addTableData(item.id, item.code, item.name, item.description, item.nrOfAssessing,item.projectPercent,item.documentPercent);
         });
         
         /* Let previous en next buttons work */
@@ -398,7 +398,7 @@ function showNewProjectTypeModal()
  * @param {type} tid
  * @returns {undefined}
  */
-function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing)
+function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, projectPercent, documentPercent)
 {
    resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
@@ -415,13 +415,16 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing)
             <div style="margin-bottom: 5px"> \
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '"> \
             </div> \
+            <div class="form-group"> \
+                <input type="text" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '"> \
+                <input type="text" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '"> \
+            </div> \
         </form>');
     $.getJSON()
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
             hideModal();
-            console.log("Test");
         });
     });
 
@@ -430,6 +433,11 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing)
     })
 
     showGeneralModal();
+
+    $('.auto-complete').on('click', function() {
+        console.log("DOWN");
+        //automatedDocumentProjectWeight(event);
+    });
 }
 
 function showCoupleStudentListModal(projectid) {
