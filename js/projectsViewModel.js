@@ -370,8 +370,8 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" style="display:inline-block; width: 49%; margin-right: 1%;" class="form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentProcent"> \
-                <input type="text" style="display:inline-block; width: 49%;" class="form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectProcent"> \
+                <input type="text" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentProcent"> \
+                <input type="text" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectProcent"> \
             </div> \
         </form>');
 
@@ -488,8 +488,16 @@ function initPage() {
         showNewProjectTypeModal();
     });
 
+    $('.auto-complete').keydown(function(event) {
+       automatedDocumentProjectWeight(event);
+    });
+
     $.getJSON('/api/currentuser', function(data) {
         viewModel.userId = data.id;
         viewModel.updateDropdowns();
     });
+}
+
+function automatedDocumentProjectWeight(event) {
+    console.log(event);
 }
