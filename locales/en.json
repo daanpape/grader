@@ -49,6 +49,8 @@
     "DescTableTitle" : "Description",
     "teacherTableTitle" : "Teacher",
     "ActionTableTitle" : "Actions",
+    "DocumentPercentTitle" : "Document Percent",
+    "ProjectPercentTitle" : "Project Percent",
     "firstNameTableTitle": "First Name",
     "lastNameTableTitle": "Last Name",
     "scoreTableTitle": "Fill in scores",

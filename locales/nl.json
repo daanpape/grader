@@ -49,6 +49,8 @@
     "DescTableTitle" : "Beschrijving",
     "teacherTableTitle" : "Leerkracht",
     "ActionTableTitle" : "Acties",
+    "DocumentPercentTitle" : "Document Procent",
+    "ProjectPercentTitle" : "Project Procent",
     "firstNameTableTitle": "Voornaam",
     "lastNameTableTitle": "Naam",
     "scoreTableTitle": "Score invullen",
