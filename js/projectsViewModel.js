@@ -369,6 +369,10 @@ function showNewProjectTypeModal()
             <div style="margin-bottom: 5px"> \
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
             </div> \
+            <div> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__("DocumentProcentTitle") + '" name="documentProcent"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__("ProjectProcentTitle") + '" name="projectProcent"> \
+            </div> \
         </form>');
 
     addGeneralModalButton(i18n.__("AddBtn"), function(){
