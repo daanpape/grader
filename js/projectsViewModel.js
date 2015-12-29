@@ -369,9 +369,11 @@ function showNewProjectTypeModal()
             <div style="margin-bottom: 5px"> \
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
             </div> \
-            <div> \
-                <input type="text" class="form-control" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentProcent"> \
-                <input type="text" class="form-control" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectProcent"> \
+            <div class="form-group col-xs-6"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentProcent"> \
+            </div> \
+            <div class="form-group col-xs-6"> \
+                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectProcent"> \
             </div> \
         </form>');
 
