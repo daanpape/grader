@@ -366,7 +366,7 @@ function showNewProjectTypeModal()
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
             </div> \
-            <div> \
+            <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
             </div> \
             <div class="form-group"> \
