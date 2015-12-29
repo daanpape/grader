@@ -383,6 +383,11 @@ function showNewProjectTypeModal()
     });
 
     showGeneralModal();
+
+    $('.auto-complete').on('click', function() {
+        console.log("DOWN");
+        //automatedDocumentProjectWeight(event);
+    });
 }
 
 /**
@@ -486,11 +491,6 @@ function initPage() {
     // Add button handlers
     $('#addProjectTypeBtn').click(function(){
         showNewProjectTypeModal();
-    });
-
-    $('.auto-complete').on('click', function() {
-        console.log("DOWN");
-        //automatedDocumentProjectWeight(event);
     });
 
     $.getJSON('/api/currentuser', function(data) {
