@@ -510,5 +510,13 @@ function initPage() {
 
 function automatedDocumentProjectWeight(event) {
     var target = event.target.id;
-    console.log(target);
+    console.log(event.target.outerHTML);
+    if(target == 'doc')
+    {
+
+    }
+    else if(target == 'proj')
+    {
+
+    }
 }
