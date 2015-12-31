@@ -388,7 +388,7 @@ function showNewProjectTypeModal()
     showGeneralModal();
 
     $('.auto-complete').on('click', function(event) {
-        automatedDocumentProjectWeight(event);
+        automatedDocumentProjectWeight(event,projectPercent, documentPercent);
     });
 }
 
@@ -437,7 +437,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     showGeneralModal();
 
     $('.auto-complete').on('click', function(event) {
-        automatedDocumentProjectWeight(event);
+        automatedDocumentProjectWeight(event,projectPercent,documentPercent);
     });
 }
 
@@ -508,9 +508,12 @@ function initPage() {
     });
 }
 
-function automatedDocumentProjectWeight(event) {
+function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
     var target = event.target.id;
-    console.log(event.target.value);
+    var input = event.target.value;
+
+    console.log(projectPercent +  ": " + documentPercent);
+
     if(target == 'doc')
     {
 
