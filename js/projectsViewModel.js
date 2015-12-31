@@ -527,6 +527,5 @@ function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
         $("#doc").val(documentPercent);
 //        documentPercent = 100 - projectPercent;
         console.log(projectPercent +  ": " + documentPercent);
-
     }
 }
