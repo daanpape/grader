@@ -511,14 +511,18 @@ function initPage() {
 function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
     var target = event.target.id;
 
-    console.log(projectPercent +  ": " + documentPercent);
-
     if(target == 'doc')
     {
+        documentPercent = event.target.value;
         projectPercent = 100 - documentPercent;
+        console.log(projectPercent +  ": " + documentPercent);
+
     }
     else if(target == 'proj')
     {
+        projectPercent = event.target.value;
         documentPercent = 100 - projectPercent;
+        console.log(projectPercent +  ": " + documentPercent);
+
     }
 }
