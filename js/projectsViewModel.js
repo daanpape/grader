@@ -387,9 +387,8 @@ function showNewProjectTypeModal()
 
     showGeneralModal();
 
-    $('.auto-complete').on('click', function() {
-        console.log("DOWN");
-        //automatedDocumentProjectWeight(event);
+    $('.auto-complete').on('click', function(event) {
+        automatedDocumentProjectWeight(event);
     });
 }
 
@@ -437,9 +436,8 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
 
     showGeneralModal();
 
-    $('.auto-complete').on('click', function() {
-        console.log("DOWN");
-        //automatedDocumentProjectWeight(event);
+    $('.auto-complete').on('click', function(event) {
+        automatedDocumentProjectWeight(event);
     });
 }
 
