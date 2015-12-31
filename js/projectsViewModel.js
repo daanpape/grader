@@ -514,14 +514,16 @@ function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
     if(target == 'doc')
     {
         documentPercent = event.target.value;
-        projectPercent = 100 - documentPercent;
+        $("#proj").val(100 - documentPercent);
+        //projectPercent = 100 - documentPercent;
         console.log(projectPercent +  ": " + documentPercent);
 
     }
     else if(target == 'proj')
     {
         projectPercent = event.target.value;
-        documentPercent = 100 - projectPercent;
+        $("#doc").val(100 - documentPercent);
+//        documentPercent = 100 - projectPercent;
         console.log(projectPercent +  ": " + documentPercent);
 
     }
