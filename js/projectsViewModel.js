@@ -373,8 +373,8 @@ function showNewProjectTypeModal()
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent"> \
-                <input type="text" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent"> \
+                <input type="text" id="doc" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent"> \
+                <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent"> \
             </div> \
         </form>');
 
@@ -418,8 +418,8 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                 <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '"> \
             </div> \
             <div class="form-group"> \
-                <input type="text" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '"> \
-                <input type="text" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '"> \
+                <input type="text" id="doc" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '"> \
+                <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '"> \
             </div> \
         </form>');
     $.getJSON()
@@ -509,5 +509,6 @@ function initPage() {
 }
 
 function automatedDocumentProjectWeight(event) {
-    console.log(event);
+    var target = event.target.id;
+    console.log(target);
 }
