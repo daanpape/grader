@@ -510,7 +510,7 @@ function initPage() {
 
 function automatedDocumentProjectWeight(event) {
     var target = event.target.id;
-    console.log(event.target.outerHTML);
+    console.log(event.target.value);
     if(target == 'doc')
     {
 
