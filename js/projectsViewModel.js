@@ -441,8 +441,8 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
-            <input type="submit" value="' + i18n.__("SaveBtn") + '" > \
-            <input type="button" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
+            <input type="submit" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
+            <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>');
 
     $('#updateprojectform').validator().on('submit', function (e) {
