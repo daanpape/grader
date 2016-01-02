@@ -455,6 +455,7 @@ function createFormModal(idname, code, name, description, tid, nrOfAssessing, pr
             <input type="submit" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
             <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>'
+    return form;
 }
 
 function showCoupleStudentListModal(projectid) {
