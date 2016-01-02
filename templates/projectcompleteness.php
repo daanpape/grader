@@ -39,7 +39,7 @@ $location = "projectcompleteness";
                                 <input class="form-control" style="width: 200px" data-bind="value: description">
                             </td>
                             <td>
-                                <div class="dropdown">
+                                <div class="btn-group">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: pointType"></span>
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="menu1" data-bind="foreach: viewModel.availableTypes">
