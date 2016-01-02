@@ -1086,8 +1086,6 @@ class ClassDAO
                 $stmt->execute(array($document->description, $document->point_type, $document->weight, $document->locked, $document->id));
             }
         }
-
-        return true;
     }
 
 
