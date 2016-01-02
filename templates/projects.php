@@ -8,6 +8,21 @@ $location = "projects";
         <?php include_once('hddepends.php') ?>
 
         <style>
+            input[type='number'] {
+                -moz-appearance:textfield;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                /* display: none; <- Crashes Chrome on hover */
+                -webkit-appearance: none;
+                margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+            }
         </style>
     </head>
 
