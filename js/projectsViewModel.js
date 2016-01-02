@@ -401,8 +401,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         if (e.isDefaultPrevented()) {
         } else {
             e.preventDefault();
-            console.log(Math.abs(parseInt($("#doc").val())) + Math.abs(parseInt($("#proj").val())));
-            if(projectPercent + documentPercent == 100) {
+            if(Math.abs(parseInt($("#doc").val())) + Math.abs(parseInt($("#proj").val()))) {
                 updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                     hideModal();
                 });
