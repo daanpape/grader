@@ -395,56 +395,19 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
 {
    resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
-    setGeneralModalBody('<form id="#updateprojectform"> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '" required> \
-                <div class="help-block with-errors"></div>\
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '" required> \
-                    <div class="help-block with-errors"></div> \
-            </div> \
-            <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '" required> \
-                    <div class="help-block with-errors"></div> \
-            </div> \
-            <div class="form-group"> \
-                <input required type="number" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" > \
-                    <div class="help-block with-errors"></div> \
-            </div> \
-            <div class="form-group"> \
-                <div style="display:inline-block; width: 49%; margin-right: 1%;" >\
-                    <input type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
-                    <div class="help-block with-errors"></div>\
-                </div>\
-                <div style="display:inline-block; width: 49%;" >\
-                    <input type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
-                    <div class="help-block with-errors"></div>\
-                </div>\
-            </div> \
-            <input type="button" id="saveBtn" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
-            <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
-        </form>');
+    setGeneralModalBody(createFormModal('updateprojectform',code, name, description, tid, nrOfAssessing, projectPercent, documentPercent));
 
     showGeneralModal();
 
-
-    /*$('#updateprojectform').validator().on('submit', function (e) {
+    $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
         } else {
             e.preventDefault();
-            e.stopImmediatePropagation();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                 hideModal();
             });
 
         }
-    });*/
-
-    $("#saveBtn").on('click', function() {
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
-            hideModal();
-        });
     });
 
     $('.auto-complete').on('keyup', function(event) {
@@ -459,7 +422,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
 }
 
 function createFormModal(idname, code, name, description, tid, nrOfAssessing, projectPercent, documentPercent) {
-    var form = '<form id="#' + idname  + '"> \
+    var form = '<form id="' + idname  + '"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '" required> \
                 <div class="help-block with-errors"></div>\
