@@ -432,10 +432,12 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
         } else {
+            e.preventDefault();
+            e.stopImmediatePropagation();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                 hideModal();
             });
-            return false;
+
         }
     });
 
