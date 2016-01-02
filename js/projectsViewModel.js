@@ -364,7 +364,7 @@ function showNewProjectTypeModal()
 
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
-            // handle the invalid form...
+            console.log('Test');
         } else {
             e.preventDefault();
             addNewProjecttypeForm(tid, $('#newprojectform').serialize(), function (result) {
@@ -395,16 +395,6 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
    resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody(createFormModal('updateprojectform', code, name, description, tid, nrOfAssessing, projectPercent, documentPercent));
-
-    /*addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
-            hideModal();
-        });
-    });
-
-    addGeneralModalButton(i18n.__("CancelBtn"), function(){
-        hideModal();
-    })*/
 
     showGeneralModal();
 
