@@ -422,14 +422,14 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
-            <input type="submit" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
+            <input type="submit" id="saveBtn" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
             <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>');
 
     showGeneralModal();
 
 
-    $('#updateprojectform').validator().on('submit', function (e) {
+    /*$('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
         } else {
             e.preventDefault();
@@ -439,6 +439,12 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
             });
 
         }
+    });*/
+
+    $("#saveBtn").on('click', function() {
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
+            hideModal();
+        });
     });
 
     $('.auto-complete').on('keyup', function(event) {
