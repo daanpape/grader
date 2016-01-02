@@ -234,14 +234,16 @@ class GraderAPI {
     /*
      * Update a projecttype in the database
      */
-    public static function updateProject($id, $code, $name, $description,$nrOfAssessing) {
-        if(ClassDAO::updateProject($id, $code, $name, $description,$nrOfAssessing)){
+    public static function updateProject($id, $code, $name, $description,$nrOfAssessing,$documentPercent, $projectPercent) {
+        if(ClassDAO::updateProject($id, $code, $name, $description,$nrOfAssessing, $documentPercent, $projectPercent)){
             return array(
                 "id" => $id,
                 "code" => $code,
                 "name" => $name,
                 "description" => $description,
-                "nrOfAssessing" => $nrOfAssessing);
+                "nrOfAssessing" => $nrOfAssessing,
+                "documentPercent" => $documentPercent,
+                "projectPercent" => $projectPercent);
         } else {
             return -1;
         }
