@@ -366,10 +366,10 @@ function showNewProjectTypeModal()
         if (e.isDefaultPrevented()) {
             console.log('Test');
         } else {
-            e.preventDefault();
             addNewProjecttypeForm(tid, $('#newprojectform').serialize(), function (result) {
                 hideModal();
             });
+            return false;
         }
     });
 
@@ -402,10 +402,10 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         if (e.isDefaultPrevented()) {
             console.log('Test');
         } else {
-            e.preventDefault();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                 hideModal();
             });
+            return false;
         }
     });
 
