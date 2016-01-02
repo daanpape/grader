@@ -449,6 +449,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         if (e.isDefaultPrevented()) {
             // handle the invalid form...
         } else {
+            e.preventDefault();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                 hideModal();
             });
