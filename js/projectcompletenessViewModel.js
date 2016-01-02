@@ -18,7 +18,7 @@ function pageViewModel(gvm) {
     gvm.nextPage = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NextPage");}, gvm);
     gvm.projectAddDocument = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAddDocument");}, gvm);
     gvm.projectName = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("NameTableTitle");}, gvm);
-    gvm.projectAmount = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectAmount");}, gvm);
+    gvm.projectPointType = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectPointType");}, gvm);
     gvm.projectWeigth = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectWeight");}, gvm);
     gvm.projectLock = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectLock");}, gvm);
     gvm.projectActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
@@ -39,8 +39,8 @@ function pageViewModel(gvm) {
     gvm.getDocuments = function() {
         $.getJSON('/api/project/' + gvm.projectId + '/documents', function(data) {
             data.forEach(function(entry) {
-                console.log(entry);
-                gvm.addDocument(new Document(entry.id,entry.description,entry.amount_required,entry.weight,entry.locked));
+                console.log(entry.point_type);
+                gvm.addDocument(new Document(entry.id,entry.description,entry.point_type,entry.weight,entry.locked));
             });
             console.log(gvm.documents());
         });
@@ -64,12 +64,12 @@ function pageViewModel(gvm) {
     };
 }
 
-function Document(id,description,amount_required,weight,locked)
+function Document(id,description,point_type,weight,locked)
 {
     return {
         id: ko.observable(id || 0),
         description: ko.observable(description || ""),
-        amount_required: ko.observable(amount_required || ""),
+        pointType: ko.observable(point_type || ""),
         weight: ko.observable(weight || ""),
         locked: ko.observable(locked || 0),
 

@@ -27,6 +27,7 @@ $location = "projectcompleteness";
                     <thead>
                         <tr>
                             <th data-bind="text: projectName">Document</th>
+                            <th data-bind="text: projectPointType"></th>
                             <th data-bind="text: projectWeigth">weight</th>
                             <th data-bind="text: projectLock">Lock</th>
                             <th data-bind="text: projectActions">Delete</th>

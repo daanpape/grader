@@ -89,6 +89,7 @@
     "ProjectsStructureBtn" : "Structure",
     "ProjectsStudentsBtn" : "Students",
     "ProjectsDocumentsBtn" : "Documents",
+    "ProjectPointType" : "Point type",
     "ProjectsRulesBtn" : "Rules",
     "ProjectsDeleteBtn" : "Delete",
     "ProjectsEditBtn" : "Edit",
