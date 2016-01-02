@@ -361,12 +361,13 @@ function showNewProjectTypeModal()
 
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
-            console.log('Test');
         } else {
             e.preventDefault();
-            addNewProjecttypeForm($('#newprojectform').serialize(), function (result) {
-                hideModal();
-            });
+            if(Math.abs(parseInt($("#doc").val())) + Math.abs(parseInt($("#proj").val())) == 100) {
+                addNewProjecttypeForm($('#newprojectform').serialize(), function (result) {
+                    hideModal();
+                });
+            }
         }
     });
 
