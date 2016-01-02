@@ -1074,6 +1074,7 @@ class ClassDAO
 
         foreach($data as $document)
         {
+            error_log($document->id, 0);
             if($document->id == 0)
             {
                 $stmt = $conn->prepare("INSERT INTO documenttype (description,project_type,weight,project,locked) VALUES (?,?,?,?,?)");
