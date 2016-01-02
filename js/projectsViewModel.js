@@ -400,7 +400,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
 
     $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
-            // handle the invalid form...
+            console.log('Test');
         } else {
             e.preventDefault();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
