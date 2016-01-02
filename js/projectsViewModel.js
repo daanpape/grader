@@ -366,7 +366,7 @@ function showNewProjectTypeModal()
             // handle the invalid form...
         } else {
             e.preventDefault();
-            addNewProjecttypeForm(tid, $('#newprojectform').serialize(), function (result) {
+            addNewProjecttypeForm($('#newprojectform').serialize(), function (result) {
                 hideModal();
             });
         }
