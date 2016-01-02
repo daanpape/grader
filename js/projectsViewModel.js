@@ -360,7 +360,6 @@ function showNewProjectTypeModal()
     setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
     setGeneralModalBody(createFormModal('newprojectform',"","",""));
 
-    showGeneralModal();
 
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
@@ -380,6 +379,8 @@ function showNewProjectTypeModal()
     $('#cancelBtn').on('click', function() {
         hideModal();
     });
+
+    showGeneralModal();
 }
 
 /**
@@ -395,8 +396,6 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
    resetGeneralModal();
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody(createFormModal('updateprojectform', code, name, description, tid, nrOfAssessing, projectPercent, documentPercent));
-
-    showGeneralModal();
 
     $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
@@ -416,6 +415,8 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     $('#cancelBtn').on('click', function() {
         hideModal();
     });
+
+    showGeneralModal();
 }
 
 function createFormModal(idname, code, name, description, tid, nrOfAssessing, projectPercent, documentPercent) {
