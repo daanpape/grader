@@ -418,7 +418,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div> \
             </div> \
             <div style="margin-bottom: 5px"> \
-                <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" required> \
+                <input required type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" > \
                     <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
