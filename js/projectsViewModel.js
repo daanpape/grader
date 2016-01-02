@@ -406,20 +406,26 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody('<form id="updateprojectform"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '" required> \
+                <div class="help-block with-errors"></div>\
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '" required> \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '" required> \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div style="margin-bottom: 5px"> \
-                <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '"> \
+                <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" required> \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input type="text" id="doc" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '"> \
-                <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '"> \
+                <input type="text" id="doc" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
+                    <div class="help-block with-errors"></div>\
+                <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
+                    <div class="help-block with-errors"></div>\
             </div> \
         </form>');
 
