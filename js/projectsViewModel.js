@@ -388,7 +388,7 @@ function showNewProjectTypeModal()
     showGeneralModal();
 
     $('.auto-complete').on('keyup', function(event) {
-        automatedDocumentProjectWeight(event,projectPercent, documentPercent);
+        //automatedDocumentProjectWeight(event,projectPercent, documentPercent);
     });
 }
 
@@ -437,7 +437,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     showGeneralModal();
 
     $('.auto-complete').on('keyup', function(event) {
-        automatedDocumentProjectWeight(event,projectPercent,documentPercent);
+        //automatedDocumentProjectWeight(event,projectPercent,documentPercent);
     });
 }
 
@@ -509,25 +509,23 @@ function initPage() {
 }
 
 function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
-    console.log(projectPercent + " : " + documentPercent);
+    var target = event.target.id;
 
+    if(target == 'doc')
+    {
+        documentPercent = event.target.value;
+        projectPercent = 100 - documentPercent;
+        $("#proj").attr('value' , projectPercent);
+        //projectPercent = 100 - documentPercent;
+        console.log(projectPercent +  ": " + documentPercent);
 
+    }
+    else if(target == 'proj')
+    {
+        projectPercent = event.target.value;
+        documentPercent = 100 - projectPercent;
+        $("#doc").attr('value' , documentPercent);
+//        documentPercent = 100 - projectPercent;
+        console.log(projectPercent +  ": " + documentPercent);
+    }
 }
-
-/*if(target == 'doc')
- {
- documentPercent = event.target.value;
- projectPercent = 100 - documentPercent;
- $("#proj").attr('value' , projectPercent);
- //projectPercent = 100 - documentPercent;
- console.log(projectPercent +  ": " + documentPercent);
-
- }
- else if(target == 'proj')
- {
- projectPercent = event.target.value;
- documentPercent = 100 - projectPercent;
- $("#doc").attr('value' , documentPercent);
- //        documentPercent = 100 - projectPercent;
- console.log(projectPercent +  ": " + documentPercent);
- }*/
