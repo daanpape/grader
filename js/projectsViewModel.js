@@ -442,24 +442,38 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                 </div>\
             </div> \
             <input type="submit" value="' + i18n.__("SaveBtn") + '" > \
+            <input type="button" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>');
 
-    $("#updateprojectform").validator();
+    $('#updateprojectform').validator().on('submit', function (e) {
+        if (e.isDefaultPrevented()) {
+            // handle the invalid form...
+        } else {
+            updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
+                hideModal();
+            });
+        }
+    });
+
 
     /*addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
             hideModal();
         });
-    });*/
+    });
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
         hideModal();
-    })
+    })*/
 
     showGeneralModal();
 
     $('.auto-complete').on('keyup', function(event) {
         automatedDocumentProjectWeight(event,projectPercent,documentPercent);
+    });
+
+    $('#cancelBtn').on('click', function() {
+        hideModal();
     });
 }
 
