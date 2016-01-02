@@ -214,15 +214,14 @@ function addNewProjecttypeForm(serialData, callback) {
             type: "POST",
             data: serialData,
             success: function(data) {
-                /*viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 var url = document.URL;
                 var string = url.split("/");
                 var current  = string[3];
                 window.location.href = "http://" + string[2] + "/project/" + data['id'];
                 console.log("Ok test ok");
 
-                callback(true);*/
-                console.log('Saved');
+                callback(true);
             },
             error: function(data) {
                 callback(false);
