@@ -422,7 +422,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
-            <input type="submit" id="saveBtn" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
+            <input type="button" id="saveBtn" class="btn btn-default" value="' + i18n.__("SaveBtn") + '" > \
             <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>');
 
