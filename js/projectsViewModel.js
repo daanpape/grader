@@ -359,6 +359,8 @@ function showNewProjectTypeModal()
     setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
     setGeneralModalBody(createFormModal('newprojectform',"","",""));
 
+    showGeneralModal();
+
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             // handle the invalid form...
@@ -370,11 +372,12 @@ function showNewProjectTypeModal()
         }
     });
 
-    showGeneralModal();
-
-
     $('.auto-complete').on('keyup', function(event) {
         automatedDocumentProjectWeight(event,projectPercent, documentPercent);
+    });
+
+    $('#cancelBtn').on('click', function() {
+        hideModal();
     });
 }
 
@@ -392,17 +395,6 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody(createFormModal('updateprojectform', code, name, description, tid, nrOfAssessing, projectPercent, documentPercent));
 
-    $('#updateprojectform').validator().on('submit', function (e) {
-        if (e.isDefaultPrevented()) {
-            // handle the invalid form...
-        } else {
-            e.preventDefault();
-            updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
-                hideModal();
-            });
-        }
-    });
-
     /*addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
             hideModal();
@@ -414,6 +406,17 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     })*/
 
     showGeneralModal();
+
+    $('#updateprojectform').validator().on('submit', function (e) {
+        if (e.isDefaultPrevented()) {
+            // handle the invalid form...
+        } else {
+            e.preventDefault();
+            updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
+                hideModal();
+            });
+        }
+    });
 
     $('.auto-complete').on('keyup', function(event) {
         automatedDocumentProjectWeight(event,projectPercent,documentPercent);
