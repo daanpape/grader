@@ -27,7 +27,6 @@ $location = "projectcompleteness";
                     <thead>
                         <tr>
                             <th data-bind="text: projectName">Document</th>
-                            <th data-bind="text: projectAmount">amount required</th>
                             <th data-bind="text: projectWeigth">weight</th>
                             <th data-bind="text: projectLock">Lock</th>
                             <th data-bind="text: projectActions">Delete</th>
@@ -37,9 +36,6 @@ $location = "projectcompleteness";
                         <tr>
                             <td data-bind="attr: {'id': id}"">
                                 <input class="form-control" style="width: 200px" data-bind="value: description">
-                            </td>
-                            <td>
-                                <input class="form-control" data-bind="value: amount_required">
                             </td>
                             <td>
                                 <input class="form-control" data-bind="value: weight">
