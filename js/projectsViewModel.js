@@ -401,10 +401,12 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         if (e.isDefaultPrevented()) {
         } else {
             e.preventDefault();
-            updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
-                hideModal();
-            });
-
+            console.log(projectPercent + documentPercent);
+            if(projectPercent + documentPercent == 100) {
+                updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
+                    hideModal();
+                });
+            }
         }
     });
 
