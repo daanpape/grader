@@ -75,7 +75,7 @@ function Document(id,description,point_type,weight,locked)
     return {
         id: ko.observable(id || 0),
         description: ko.observable(description || ""),
-        pointType: ko.observable(point_type || ""),
+        pointType: ko.observable(point_type),
         weight: ko.observable(weight || ""),
         locked: ko.observable(locked || 0),
 
