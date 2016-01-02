@@ -24,6 +24,8 @@ function pageViewModel(gvm) {
     gvm.projectActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
     gvm.projectDelete = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDeleteBtn");}, gvm);
 
+    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja/Nee']);
+
     gvm.projectCompletenessTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectCompletenessTitle");}, gvm);
 
 
