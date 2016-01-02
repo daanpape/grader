@@ -397,9 +397,8 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     setGeneralModalTitle(i18n.__("EditProjectTitle"));
     setGeneralModalBody(createFormModal('updateprojectform', code, name, description, tid, nrOfAssessing, projectPercent, documentPercent));
 
-    $('#updateprojectform').validator().submit(function (e) {
+    $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
-            console.log('Test');
         } else {
             e.preventDefault();
             updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
@@ -420,7 +419,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
 }
 
 function createFormModal(idname, code, name, description, tid, nrOfAssessing, projectPercent, documentPercent) {
-    var form = '<form id="#' + idname  + '" METHOD="post"> \
+    var form = '<form id="#' + idname  + '"> \
             <div class="form-group"> \
                 <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '" required> \
                 <div class="help-block with-errors"></div>\
