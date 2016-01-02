@@ -401,7 +401,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         if (e.isDefaultPrevented()) {
         } else {
             e.preventDefault();
-            console.log(Math.abs(parseInt(projectPercent)));
+            console.log(Math.abs(parseInt($("#projectPercent").val())));
             if(projectPercent + documentPercent == 100) {
                 updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
                     hideModal();
@@ -439,11 +439,11 @@ function createFormModal(idname, code, name, description, tid, nrOfAssessing, pr
             </div> \
             <div class="form-group"> \
                 <div style="display:inline-block; width: 49%; margin-right: 1%;" >\
-                    <input type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
+                    <input id="documentPercent" type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
                 <div style="display:inline-block; width: 49%;" >\
-                    <input type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
+                    <input id="projectPercent" type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
