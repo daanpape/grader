@@ -436,6 +436,9 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         }
     });
 
+    showGeneralModal();
+
+
     $('.auto-complete').on('keyup', function(event) {
         automatedDocumentProjectWeight(event,projectPercent,documentPercent);
     });
@@ -444,7 +447,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
         hideModal();
     });
 
-    showGeneralModal();
+
 }
 
 function createFormModal(idname, code, name, description, tid, nrOfAssessing, projectPercent, documentPercent) {
