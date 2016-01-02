@@ -64,6 +64,10 @@ function pageViewModel(gvm) {
         }
         gvm.documents.remove(document);
     };
+
+    gvm.changePointType = function(data,parent) {
+        data.pointType= parent;
+    };
 }
 
 function Document(id,description,point_type,weight,locked)
