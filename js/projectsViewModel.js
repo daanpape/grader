@@ -439,11 +439,11 @@ function createFormModal(idname, code, name, description, tid, nrOfAssessing, pr
             </div> \
             <div class="form-group"> \
                 <div style="display:inline-block; width: 49%; margin-right: 1%;" >\
-                    <input id="documentPercent" type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
+                    <input type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
                 <div style="display:inline-block; width: 49%;" >\
-                    <input id="projectPercent" type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
+                    <input type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
