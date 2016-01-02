@@ -214,14 +214,15 @@ function addNewProjecttypeForm(serialData, callback) {
             type: "POST",
             data: serialData,
             success: function(data) {
-                viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
+                /*viewModel.addTableData(data['id'], data['code'], data['name'], data['description']);
                 var url = document.URL;
                 var string = url.split("/");
                 var current  = string[3];
                 window.location.href = "http://" + string[2] + "/project/" + data['id'];
                 console.log("Ok test ok");
 
-                callback(true);
+                callback(true);*/
+                console.log('Saved');
             },
             error: function(data) {
                 callback(false);
@@ -366,7 +367,7 @@ function showNewProjectTypeModal()
             // handle the invalid form...
         } else {
             e.preventDefault();
-            addNewProjecttypeForm($('#newprojectform').serialize(), function (result) {
+            addNewProjecttypeForm(tid, $('#newprojectform').serialize(), function (result) {
                 hideModal();
             });
         }
