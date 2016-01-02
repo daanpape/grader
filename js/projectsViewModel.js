@@ -373,7 +373,7 @@ function showNewProjectTypeModal()
     });
 
     $('.auto-complete').on('keyup', function(event) {
-        automatedDocumentProjectWeight(event,projectPercent, documentPercent);
+        automatedDocumentProjectWeight(event,0,0);
     });
 
     $('#cancelBtn').on('click', function() {
@@ -548,8 +548,4 @@ function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
 //        documentPercent = 100 - projectPercent;
         console.log(projectPercent +  ": " + documentPercent);
     }
-}
-
-function formValidation() {
-
 }
