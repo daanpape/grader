@@ -426,6 +426,9 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
             <input type="button"  class="btn btn-default" id="cancelBtn" value="' + i18n.__("CancelBtn") + '" > \
         </form>');
 
+    showGeneralModal();
+
+
     $('#updateprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
         } else {
@@ -435,9 +438,6 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
             });
         }
     });
-
-    showGeneralModal();
-
 
     $('.auto-complete').on('keyup', function(event) {
         automatedDocumentProjectWeight(event,projectPercent,documentPercent);
