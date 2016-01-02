@@ -357,7 +357,7 @@ function showNewProjectTypeModal()
 {
     resetGeneralModal();
     setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
-    setGeneralModalBody(createFormModal('newprojectform')," "," "," ");
+    setGeneralModalBody(createFormModal('newprojectform',"","",""));
 
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
