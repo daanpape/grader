@@ -422,10 +422,11 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                 <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '"> \
             </div> \
         </form>');
-    $.getJSON()
+
+    $("#updateprojectform").validator();
 
     addGeneralModalButton(i18n.__("SaveBtn"), function(){
-        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function(result){
+        updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
             hideModal();
         });
     });
@@ -528,4 +529,8 @@ function automatedDocumentProjectWeight(event,projectPercent, documentPercent) {
 //        documentPercent = 100 - projectPercent;
         console.log(projectPercent +  ": " + documentPercent);
     }
+}
+
+function formValidation() {
+
 }
