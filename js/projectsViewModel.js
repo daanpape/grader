@@ -360,7 +360,6 @@ function showNewProjectTypeModal()
     setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
     setGeneralModalBody(createFormModal('newprojectform',"","",""));
 
-
     $('#newprojectform').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             console.log('Test');
@@ -417,8 +416,6 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
     $('#cancelBtn').on('click', function() {
         hideModal();
     });
-
-
 }
 
 function createFormModal(idname, code, name, description, tid, nrOfAssessing, projectPercent, documentPercent) {
