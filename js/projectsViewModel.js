@@ -423,7 +423,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
             </div> \
             <div class="form-group"> \
                 <div style="display:inline-block; width: 49%; margin-right: 1%;" >\
-                    <input type="text" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
+                    <input type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
                 <div style="display:inline-block; width: 49%;" >\
