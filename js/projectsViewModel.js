@@ -361,20 +361,30 @@ function showNewProjectTypeModal()
     setGeneralModalTitle(i18n.__("AddNewProjectTypeTitle"));
     setGeneralModalBody('<form id="newprojectform"> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '"  name="code"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('CodeTableTitle') + '" " name="code" value="' + code + '" required> \
+                <div class="help-block with-errors"></div>\
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('NameTableTitle') + '" name="name" value="' + name + '" required> \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description"> \
+                <input type="text" class="form-control input-lg" placeholder="' + i18n.__('DescTableTitle') + '" name="description" value="' + description + '" required> \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing"> \
+                <input required type="number" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" > \
+                    <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input type="text" id="doc" style="display:inline-block; width: 49%; margin-right: 1%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent"> \
-                <input type="text" id="proj" style="display:inline-block; width: 49%;" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent"> \
+                <div style="display:inline-block; width: 49%; margin-right: 1%;" >\
+                    <input type="number" id="doc" class="auto-complete form-control input-lg" placeholder="' + i18n.__("DocumentPercentTitle") + '" name="documentPercent" value="'+ documentPercent + '" required> \
+                    <div class="help-block with-errors"></div>\
+                </div>\
+                <div style="display:inline-block; width: 49%;" >\
+                    <input type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
+                    <div class="help-block with-errors"></div>\
+                </div>\
             </div> \
         </form>');
 
@@ -418,7 +428,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
-                <input required type="text" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" > \
+                <input required type="number" class="form-control input-lg" placeholder="'+ i18n.__("AddNewProjectTypePlaceholder") + '" name="nrOfAssessing" value="' + nrOfAssessing + '" > \
                     <div class="help-block with-errors"></div> \
             </div> \
             <div class="form-group"> \
@@ -427,7 +437,7 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div>\
                 </div>\
                 <div style="display:inline-block; width: 49%;" >\
-                    <input type="text" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
+                    <input type="number" id="proj" class="auto-complete form-control input-lg" placeholder="' + i18n.__("ProjectPercentTitle") + '" name="projectPercent" value="' + projectPercent + '" required> \
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
