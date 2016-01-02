@@ -441,15 +441,16 @@ function showEditProjectTypeModal(code, name, description, tid, nrOfAssessing, p
                     <div class="help-block with-errors"></div>\
                 </div>\
             </div> \
+            <input type="submit" value="' + i18n.__("SaveBtn") + '" > \
         </form>');
 
     $("#updateprojectform").validator();
 
-    addGeneralModalButton(i18n.__("SaveBtn"), function(){
+    /*addGeneralModalButton(i18n.__("SaveBtn"), function(){
         updateProjecttypeForm(tid, $('#updateprojectform').serialize(), function (result) {
             hideModal();
         });
-    });
+    });*/
 
     addGeneralModalButton(i18n.__("CancelBtn"), function(){
         hideModal();
