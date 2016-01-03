@@ -54,7 +54,7 @@ function pageViewModel(gvm) {
 
     gvm.addNewDocument = function() {
         gvm.documents.push(new Document());
-        automatedWeightCalculation(gvm.documents);
+        automatedWeightCalculation(gvm.documents());
     },
 
     gvm.removeDocument = function(document) {
@@ -136,6 +136,8 @@ function automatedWeightCalculation(data) {
             nrOfUnlocked++;
         }
     }
+
+    console.log(nrOfUnlocked);
 
     var remainingPercent = 100 - lockedPercent;
 
