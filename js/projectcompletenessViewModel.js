@@ -64,6 +64,7 @@ function pageViewModel(gvm) {
             });
         }
         gvm.documents.remove(document);
+        automatedDocumentProjectWeight(gvm.documents());
     };
 
     gvm.changePointType = function(data,parent) {
