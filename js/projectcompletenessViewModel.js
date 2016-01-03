@@ -137,12 +137,12 @@ function documentValidation() {
     {
         $(".red").addClass("shown").removeClass("hidden");
         $("#error").html(error);
-        console.log(error);
         return false;
     }
-
-    return false;
-
+    else {
+        $(".red").addClass("hidden").removeClass("shown");
+        return true;
+    }
 }
 
 
