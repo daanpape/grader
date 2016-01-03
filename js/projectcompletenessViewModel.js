@@ -54,6 +54,7 @@ function pageViewModel(gvm) {
 
     gvm.addNewDocument = function() {
         gvm.documents.push(new Document());
+        automatedWeightCalculation(gvm.documents);
     },
 
     gvm.removeDocument = function(document) {
@@ -96,10 +97,10 @@ var saveDocuments = function() {
         data: ko.toJSON(viewModel.documents),
         success: function(data){
             // TODO make multilangual and with modals
-            console.log(data);
+            /*console.log(data);
             var url = document.URL;
             var string = url.split("/");
-            window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];
+            window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];*/
             alert("Saved documents to server");
         }
     });
@@ -120,6 +121,33 @@ function initPage() {
     })
 }
 
-function automatedWeightCalculation() {
+function automatedWeightCalculation(data) {
+    var lockedPercent = 0;
+    var nrOfUnlocked = 0;
 
+    for(var index = 0; index < data.length; index++)
+    {
+        if(data[index].locked == true)
+        {
+            lockedPercent = lockedPercent + parseInt(data[index].weight());
+        }
+        else
+        {
+            nrOfUnlocked++;
+        }
+    }
+
+    var remainingPercent = 100 - lockedPercent;
+
+    var percentPerCompetence = remainingPercent / nrOfUnlocked;
+
+    percentPerCompetence = Math.floor(percentPerCompetence);
+
+    for(var index = 0; index < data.length; index++)
+    {
+        if(data[index].locked == false)
+        {
+            data[index].weight(percentPerCompetence);
+        }
+    }
 }
