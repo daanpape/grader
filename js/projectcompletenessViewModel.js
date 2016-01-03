@@ -129,7 +129,6 @@ function automatedWeightCalculation(data) {
     {
         if(data[index].locked() == 1)
         {
-            console.log(data[index].weight());
             lockedPercent = lockedPercent + parseInt(data[index].weight());
         }
         else
@@ -138,10 +137,9 @@ function automatedWeightCalculation(data) {
         }
     }
 
-    console.log(nrOfUnlocked);
-
     var remainingPercent = 100 - lockedPercent;
 
+    console.log(remainingPercent);
     var percentPerCompetence = remainingPercent / nrOfUnlocked;
 
     percentPerCompetence = Math.floor(percentPerCompetence);
