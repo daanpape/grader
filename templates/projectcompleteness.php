@@ -51,10 +51,15 @@ $location = "projectcompleteness";
                                 <input class="form-control" data-bind="value: weight">
                             </td>
                             <td>
+                                <!-- ko if: locked === 0 -->
                                 <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                <!-- /ko -->
+                                <!-- ko if: locked === 1 -->
+                                <i class="icon-large icon-lock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                <!-- /ko -->
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default" data-bind="click: removeThis, text: viewModel.projectDelete"><span class="glyphicon glyphicon-trash"></span>Remove</button>
+                                <button type="button" class="btn btn-default" data-bind="click: removeThis, text: viewModel.projectDelete">Remove</button>
                             </td>
                         </tr>
                     </tbody>
