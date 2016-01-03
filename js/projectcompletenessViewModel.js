@@ -89,6 +89,7 @@ function Document(id,description,point_type,weight,locked)
         },
 
         setIcon: function(locked,target) {
+            console.log(locked);
             if(locked == 0)
             {
                 $(target).addClass("icon-unlock").removeClass("icon-lock");
