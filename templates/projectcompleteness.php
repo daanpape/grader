@@ -51,10 +51,10 @@ $location = "projectcompleteness";
                                 <input class="form-control" data-bind="value: weight">
                             </td>
                             <td>
-                                <!-- ko if: locked === 0 -->
+                                <!-- ko if: locked() === 0 -->
                                 <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
                                 <!-- /ko -->
-                                <!-- ko if: locked === 1 -->
+                                <!-- ko if: locked() === 1 -->
                                 <i class="icon-large icon-lock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
                                 <!-- /ko -->
                             </td>
