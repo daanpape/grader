@@ -32,7 +32,7 @@ $location = "projectcompleteness";
         <div id="top-col" class="col-md-12">
             <div class="big-info">
                 <span data-bind="text: projectCompletenessTitle"></span>
-                <span class="red hidden"><ul id="error"></ul></span>
+                <span class="red hidden"><h3>Documents were not saved</h3><ul id="error"></ul></span>
             </div>
         </div>
 
