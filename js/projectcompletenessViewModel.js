@@ -84,8 +84,7 @@ function Document(id,description,point_type,weight,locked)
         },
 
         toggleLock: function(data,event) {
-            console.log(this.locked + " : " + this.locked());
-            this.locked((this.locked() - 1) * -1);
+            this.locked(Math.abs((this.locked() - 1) * -1));
             this.setIcon(this.locked, event.target);
         },
 
