@@ -122,7 +122,7 @@ function documentValidation() {
        else if(entry.pointType() != "Slider" && entry.pointType() != "Punten" && entry.pointType() != "Ja/Nee"){
            error += "<li>Please enter a valid pointype for document " + index + "!</li>";
        }
-       else if(!Number.isInteger(entry.weight()))
+       else if(entry.weight() < 0 || entry.weight() > 100)
        {
            error += "<li>Please enter a valid weight for document " + index + "!</li>";
        }
