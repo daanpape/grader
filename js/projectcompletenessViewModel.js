@@ -117,14 +117,14 @@ function documentValidation() {
        currentWeight += parseInt(entry.weight());
        if(entry.description() == "")
        {
-           error += "<li>Please make sure document " + index + " has an name!</li>";
+           error += "<li>Please make sure document " + (index+1) + " has an name!</li>";
        }
        else if(entry.pointType() != "Slider" && entry.pointType() != "Punten" && entry.pointType() != "Ja/Nee"){
-           error += "<li>Please enter a valid pointype for document " + index + "!</li>";
+           error += "<li>Please enter a valid pointype for document " + (index+1) + "!</li>";
        }
        else if(entry.weight() < 0 || entry.weight() > 100)
        {
-           error += "<li>Please enter a valid weight for document " + index + "!</li>";
+           error += "<li>Please enter a valid weight for document " + (index+1) + "!</li>";
        }
     });
 
