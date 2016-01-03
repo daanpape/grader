@@ -6,6 +6,20 @@ $location = "projectcompleteness";
 <html lang="nl" id="htmldoc">
 <head>
     <?php include_once('hddepends.php') ?>
+
+    <style>
+        .red {
+            color:red;
+        }
+
+        .hidden {
+            display:none;
+        }
+
+        .shown {
+            display:block;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,6 +32,7 @@ $location = "projectcompleteness";
         <div id="top-col" class="col-md-12">
             <div class="big-info">
                 <span data-bind="text: projectCompletenessTitle"></span>
+                <span class="red hidden"><ul id="error"></ul></span>
             </div>
         </div>
 

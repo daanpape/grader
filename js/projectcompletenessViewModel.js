@@ -135,6 +135,8 @@ function documentValidation() {
 
     if(error != "")
     {
+        $(".red").addClass("shown").removeClass("hidden");
+        $("#error").html(error);
         console.log(error);
         return false;
     }
