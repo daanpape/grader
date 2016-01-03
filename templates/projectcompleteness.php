@@ -28,7 +28,7 @@ $location = "projectcompleteness";
                         <tr>
                             <th data-bind="text: projectName">Document</th>
                             <th data-bind="text: projectPointType"></th>
-                            <th data-bind="text: projectWeigth">weight</th>
+                            <th data-bind="text: projectWeigth" style="text-align: center;">weight</th>
                             <th data-bind="text: projectLock">Lock</th>
                             <th data-bind="text: projectActions">Delete</th>
                         </tr>
@@ -51,10 +51,10 @@ $location = "projectcompleteness";
                                 <input class="form-control" data-bind="value: weight">
                             </td>
                             <td>
-                                <i class="icon-large icon-unlock" style="vertical-align: middle;" data-bind="click: toggleLock"></i></span>
+                                <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default" data-bind="click: removeThis, text: viewModel.projectDelete">Remove</button>
+                                <button type="button" class="btn btn-default" data-bind="click: removeThis, text: viewModel.projectDelete"><span class="glyphicon glyphicon-trash"></span>Remove</button>
                             </td>
                         </tr>
                     </tbody>

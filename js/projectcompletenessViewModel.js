@@ -84,15 +84,18 @@ function Document(id,description,point_type,weight,locked)
         },
 
         toggleLock: function(data,event) {
-            if(this.locked == 1)
+            this.locked((this.locked - 1) * -1);
+            this.setIcon(this.locked, event.target);
+        },
+
+        setIcon: function(locked,target) {
+            if(locked == 0)
             {
-                this.locked = 0;
-                $(event.target).addClass("icon-unlock").removeClass("icon-lock");
+                $(target).addClass("icon-unlock").removeClass("icon-lock");
             }
             else
             {
-                this.locked = 1;
-                $(event.target).addClass("icon-lock").removeClass("icon-unlock");
+                $(target).addClass("icon-lock").removeClass("icon-unlock");
             }
         }
     }
@@ -127,4 +130,8 @@ function initPage() {
     $('.table-responsive').on('hide.bs.dropdown', function () {
         $('.table-responsive').css( "overflow", "auto" );
     })
+}
+
+function automatedWeightCalculation() {
+
 }
