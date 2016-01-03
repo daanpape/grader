@@ -92,20 +92,30 @@ function Document(id,description,point_type,weight,locked)
 }
 
 var saveDocuments = function() {
-    $.ajax({
-        type: "POST",
-        url: "/api/project/" + viewModel.projectId +  "/documenttype/add",
-        data: ko.toJSON(viewModel.documents),
-        success: function(data){
-            // TODO make multilangual and with modals
-            /*console.log(data);
-            var url = document.URL;
-            var string = url.split("/");
-            window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];*/
-            alert("Saved documents to server");
-        }
-    });
+    if(documentValidation()) {
+        $.ajax({
+            type: "POST",
+            url: "/api/project/" + viewModel.projectId + "/documenttype/add",
+            data: ko.toJSON(viewModel.documents),
+            success: function (data) {
+                // TODO make multilangual and with modals
+                /*console.log(data);
+                 var url = document.URL;
+                 var string = url.split("/");
+                 window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];*/
+                alert("Saved documents to server");
+            }
+        });
+    }
 };
+
+function documentValidation() {
+    var error = "";
+
+    viewModel.documents().forEach(function(entry,index) {
+       console.log(index);
+    });
+}
 
 
 
