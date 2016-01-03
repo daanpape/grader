@@ -119,7 +119,7 @@ function documentValidation() {
        {
            error += "<li>Please make sure document " + index + " has an name!</li>";
        }
-       else if(entry.pointType != "Slider" && entry.pointType != "Punten" && entry.pointType != "Ja/Nee"){
+       else if(entry.pointType() != "Slider" && entry.pointType() != "Punten" && entry.pointType() != "Ja/Nee"){
            error += "<li>Please enter a valid pointype for document " + index + "!</li>";
        }
        else if(!Number.isInteger(entry.weight()))
