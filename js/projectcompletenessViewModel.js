@@ -85,11 +85,10 @@ function Document(id,description,point_type,weight,locked)
 
         toggleLock: function(data,event) {
             this.locked(Math.abs((this.locked() - 1) * -1));
-            this.setIcon(this.locked, event.target);
+            this.setIcon(this.locked(), event.target);
         },
 
         setIcon: function(locked,target) {
-            console.log(locked);
             if(locked == 0)
             {
                 $(target).addClass("icon-unlock").removeClass("icon-lock");
