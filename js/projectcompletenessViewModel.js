@@ -127,7 +127,7 @@ function automatedWeightCalculation(data) {
 
     for(var index = 0; index < data.length; index++)
     {
-        if(data[index].locked == true)
+        if(data[index].locked() == 1)
         {
             lockedPercent = lockedPercent + parseInt(data[index].weight());
         }
@@ -145,7 +145,7 @@ function automatedWeightCalculation(data) {
 
     for(var index = 0; index < data.length; index++)
     {
-        if(data[index].locked == false)
+        if(data[index].locked == 0)
         {
             data[index].weight(percentPerCompetence);
         }
