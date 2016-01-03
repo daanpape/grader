@@ -129,6 +129,7 @@ function automatedWeightCalculation(data) {
     {
         if(data[index].locked() == 1)
         {
+            console.log(data[index].weight());
             lockedPercent = lockedPercent + parseInt(data[index].weight());
         }
         else
