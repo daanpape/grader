@@ -111,10 +111,36 @@ var saveDocuments = function() {
 
 function documentValidation() {
     var error = "";
+    var currentWeight = 0;
 
     viewModel.documents().forEach(function(entry,index) {
-       console.log(index);
+       currentWeight += entry.weight();
+       if(entry.description() == "")
+       {
+           error += "<li>Please make sure document " + index + " has an name!</li>";
+       }
+       else if(entry.pointType != "Slider" && entry.pointType != "Punten" && entry.pointType != "Ja/Nee"){
+           error += "<li>Please enter a valid pointype for document " + index + "!</li>";
+       }
+       else if(!Number.isInteger(entry.weight()))
+       {
+           error += "<li>Please enter a valid weight for document " + index + "!</li>";
+       }
     });
+
+    if(currentWeight != 100)
+    {
+        error += "<li>Please make sure the weight total is 100!</li>";
+    }
+
+    if(error != "")
+    {
+        console.log(error);
+        return false;
+    }
+
+    return false;
+
 }
 
 
