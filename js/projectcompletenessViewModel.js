@@ -128,6 +128,8 @@ function documentValidation() {
        }
     });
 
+    console.log(currentWeight);
+
     if(currentWeight != 100)
     {
         error += "<li>Please make sure the weight total is 100!</li>";
