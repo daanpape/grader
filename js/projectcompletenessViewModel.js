@@ -114,7 +114,7 @@ function documentValidation() {
     var currentWeight = 0;
 
     viewModel.documents().forEach(function(entry,index) {
-       currentWeight += entry.weight();
+       currentWeight += parseInt(entry.weight());
        if(entry.description() == "")
        {
            error += "<li>Please make sure document " + index + " has an name!</li>";
