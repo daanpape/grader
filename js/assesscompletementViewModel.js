@@ -102,7 +102,7 @@ function Document(id,parentId,description ,weight,pointType, score, nrDocuments,
         weight: ko.observable(weight),
         score: ko.observable(score),
         isChecked: ko.observable(checked),
-        nrDocuments: ko.observable(nrDocuments),
+        nrDocuments: ko.observableArray(nrDocuments),
         notSubmitted: ko.observable(notSubmitted)
     }
 
