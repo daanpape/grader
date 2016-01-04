@@ -82,16 +82,6 @@ function Document(id,parentId,description ,weight,pointType, score)
         score: ko.observable(score),
         isChecked: ko.observable(false),
 
-        answer: ko.computed({
-            read: function() {
-                return this.isChecked().toString();
-            },
-            write: function(newValue) {
-                this.isChecked(newValue === "true");
-            },
-            owner: this
-        }),
-
         voteYes: function(event,target) {
             if(this.score() == 0) {
                 this.score(100);
