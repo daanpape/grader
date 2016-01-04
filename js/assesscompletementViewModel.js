@@ -72,7 +72,7 @@ function Document(id,parentId,description ,weight,pointType, score)
 {
     return {
         id: ko.observable(id),
-        parentId: ko.parentId(parentId),
+        parentId: ko.observable(parentId),
         description: ko.observable(description),
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
