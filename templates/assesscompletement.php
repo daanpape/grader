@@ -154,6 +154,24 @@ $location = "assesscompletement";
                                     </div>
                                 </td>
                             </tr>
+                            <tr data-bind="foreach: nrDocuments">
+                                <tr>
+                                    <!-- ko if: pointType() === 'Slider' -->
+                                    <input type="range" min="0" max="100" step="1" data-bind="value: score" />
+                                    <!-- /ko -->
+
+                                    <!-- ko if: pointType() === 'Punten' -->
+                                    <div>
+                                        <input type="text" class="form-control" data-bind="value: score" placeholder="Score op 100" />
+                                    </div>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: pointType() === 'Ja/Nee' -->
+                                    <input type="radio" name="ja_nee" value="yes" data-bind="checked: checkedValue, attr: { name: description }"> Ja
+                                    <input type="radio" name="ja_nee"  value="no" style="margin-left:2%;" data-bind="checked: checkedValue, attr: { name: description }"> Nee
+                                    <!-- /ko -->
+                                </tr>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
