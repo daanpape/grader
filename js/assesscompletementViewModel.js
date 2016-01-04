@@ -97,7 +97,7 @@ function initPage() {
                 alert("Saved document completeness to server");
                 viewModel.clearStructure();
                 viewModel.getProjectInfo();
-                viewModel.getAllData();
+                viewModel.getDocumentsToSubmit();
             }
         });
     });
