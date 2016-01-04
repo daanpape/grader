@@ -69,7 +69,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 var array = [];
-                for(var i = 0; i < item.nr_documents; i++)
+                for(var i = 0; i <= item.nr_documents; i++)
                 {
                     array.push({id: 0,parentId: 0, nr: i, score: 0 });
                 }
