@@ -81,6 +81,19 @@ function Document(id,parentId,description ,weight,pointType, score)
         weight: ko.observable(weight),
         score: ko.observable(score),
         isChecked: ko.observable("yes"),
+        checkedValue: ko.computed({
+            //return a formatted price
+            read: function() {
+                return this.isChecked();
+            },
+            //if the value changes, make sure that we store a number back to price
+            write: function(newValue) {
+                console.log(newValue);
+                this.isChecked(newValue);
+            },
+            owner: this
+        })
+
     }
 }
 
