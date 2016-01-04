@@ -80,8 +80,7 @@ function pageViewModel(gvm) {
     };
 
     gvm.changeNotSubmitted = function(data,parent) {
-        console.log(data);
-        console.log(parent);
+        data.notSubmitted(parent.nr);
     };
 
     gvm.clearStructure = function()

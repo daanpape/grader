@@ -110,11 +110,14 @@ $location = "assesscompletement";
     .table > tbody > tr > td {
         vertical-align: middle;
         text-align: center;
-
     }
 
     th {
         text-align: center;
+    }
+
+    .dropdown > ul > li :hover {
+        cursor:pointer;
     }
 
 </style>
