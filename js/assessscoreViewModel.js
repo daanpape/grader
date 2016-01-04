@@ -143,18 +143,18 @@ function Indicator(parent, id, name, description, score, scoreid,pointType, chec
     self.indicators.checkedValue =  ko.computed({
         //return a formatted price
         read: function() {
-            return self.documents.isChecked();
+            return self.indicators.isChecked();
         },
         //if the value changes, make sure that we store a number back to price
         write: function(newValue) {
             console.log(self);
-            self.documents.isChecked(newValue);
-            if(self.documents.isChecked() == "yes")
+            self.indicators.isChecked(newValue);
+            if(self.indicators.isChecked() == "yes")
             {
-                self.documents.score(100);
+                self.indicators.score(100);
             }
             else {
-                self.documents.score(0);
+                self.indicators.score(0);
             }
         },
         owner: this
