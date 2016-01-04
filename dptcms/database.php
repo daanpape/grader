@@ -1012,7 +1012,7 @@ class ClassDAO
         }
     }
 
-    public static function saveDocumentsForUser($projectid, $userid, $studentid, $structure)
+    public static function saveDocumentsForUser($projectid, $studentid,$structure)
     {
         try {
             $data = json_decode($structure);
@@ -1023,8 +1023,8 @@ class ClassDAO
                 error_log($document->id, 0);
                 if($document->id == 0)
                 {
-                    $stmt = $conn->prepare("INSERT INTO assess_documents (document,user,student,score,project) VALUES (?,?,?,?,?)");
-                    $stmt->execute(array($document->parentId,$userid,$studentid,$document->score,$projectid));
+                    $stmt = $conn->prepare("INSERT INTO assess_documents (document,student,score,project) VALUES (?,?,?,?)");
+                    $stmt->execute(array($document->parentId,$studentid,$document->score,$projectid));
                 }
                 else
                 {
