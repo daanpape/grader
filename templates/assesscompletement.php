@@ -157,19 +157,6 @@ $location = "assesscompletement";
                                         </ul>
                                     </div>
                                 </td>
-                                <ul data-bind="foreach: nrDocuments">
-                                    <!-- ko if: pointType() === 'Slider' -->
-                                    <li class="none">
-                                        <input type="range" min="0" max="100" step="1" data-bind="value: assessScore" />
-                                    </li>
-                                    <!-- /ko -->
-
-                                    <!-- ko if: pointType() === 'Punten' -->
-                                    <li class="none">
-                                        <input type="text" class="form-control" data-bind="value: assessScore" placeholder="Score op 100" />
-                                    </li>
-                                    <!-- /ko -->
-                                </ul>
                             </tr>
                         </tbody>
                     </table>
