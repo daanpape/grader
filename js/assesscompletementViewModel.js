@@ -82,14 +82,15 @@ function Document(id,parentId,description ,weight,pointType, score)
         score: ko.observable(score),
         isChecked: ko.observable("yes"),
 
-        voteYes: function(event,target) {
+        voteYes: function() {
+                console.log(this.score() < 100)
                 if(this.score() < 100) {
                     this.score(100);
                 }
                 this.isChecked("yes");
         },
 
-        voteNo: function(event,target) {
+        voteNo: function() {
             if(this.score() > 0) {
                 this.score(0);
             }
