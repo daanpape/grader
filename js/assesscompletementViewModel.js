@@ -58,7 +58,14 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
+                if(item.point_type == "Ja/Nee") {
+                    if(item.score > 0) {
+                        gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, "yes");
+                    }
+                    else {
+                        gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, "false");
+                    }
+                }
             });
             gvm.getAllData();
         });
@@ -71,7 +78,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function Document(id,parentId,description ,weight,pointType, score)
+function Document(id,parentId,description ,weight,pointType, score,checked)
 {
     var self = this;
     self.documents = {
@@ -81,7 +88,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
-        isChecked: ko.observable("yes")
+        isChecked: ko.observable(checked)
     }
 
     self.documents.checkedValue =  ko.computed({
