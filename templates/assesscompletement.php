@@ -148,8 +148,8 @@ $location = "assesscompletement";
                                     <div class="btn-group">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: notSubmitted"></span>
                                             <span class="caret"></span></button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: nrDocuments">
-                                            <li role="presentation"><a role="menuitem" data-bind="text: nr, click: viewModel.changeNotSubmitted.bind($data,$parent)"></a></li>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: nrNotSubmitted">
+                                            <li role="presentation"><a role="menuitem" data-bind="text: $data, click: viewModel.changeNotSubmitted.bind($data,$parent)"></a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -169,6 +169,9 @@ $location = "assesscompletement";
                                     <input type="radio" name="ja_nee"  value="no" style="margin-left:2%;" data-bind="checked: checkedValue, attr: { name: description }"> Nee
                                     <!-- /ko -->
                                 </td>
+                            </tr>
+                            <tr data-bind="foreach: nrDocuments">
+
                             </tr>
                         </tbody>
                     </table>

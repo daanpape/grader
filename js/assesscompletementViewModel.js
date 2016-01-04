@@ -28,8 +28,8 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
     gvm.userData = ko.observableArray([]);
 
-    gvm.addDocument = function(id,parentId, description, weight, pointType,score, nrDocuments, notSubmitted) {
-        var doc = new Document(id,parentId,description,weight,pointType,score, nrDocuments, notSubmitted);
+    gvm.addDocument = function(id,parentId, description, weight, pointType,score, nrDocuments, notSubmitted, nrNotSubmitted) {
+        var doc = new Document(id,parentId,description,weight,pointType,score, nrDocuments, notSubmitted, nrNotSubmitted);
         gvm.documents.push(doc);
     };
 
@@ -69,18 +69,20 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
                 var array = [];
+                var numberArray = [];
                 for(var i = 0; i <= item.nr_documents; i++)
                 {
-                    array.push({id: 0,parentId: 0, nr: i, score: 0 });
+                    array.push({id: 0,parentId: 0, score: 0 });
+                    numberArray.push(i);
                 }
-                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array, 0);
+                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array, numberArray, 0);
             });
             gvm.getAllData();
         });
     };
 
     gvm.changeNotSubmitted = function(data,parent) {
-        data.notSubmitted(parent.nr);
+        data.notSubmitted(parent);
     };
 
     gvm.clearStructure = function()
@@ -90,7 +92,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function Document(id,parentId,description ,weight,pointType, score, nrDocuments, notSubmitted, checked)
+function Document(id,parentId,description ,weight,pointType, score, nrDocuments, notSubmitted,nrNotSubmitted, checked)
 {
     var self = this;
     console.log(nrDocuments);
@@ -102,6 +104,7 @@ function Document(id,parentId,description ,weight,pointType, score, nrDocuments,
         weight: ko.observable(weight),
         score: ko.observable(score),
         isChecked: ko.observable(checked),
+        nrNotSubmitted: ko.observable(nrNotSubmitted),
         nrDocuments: ko.observableArray(nrDocuments),
         notSubmitted: ko.observable(notSubmitted)
     }
