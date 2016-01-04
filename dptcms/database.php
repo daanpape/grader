@@ -1002,7 +1002,7 @@ class ClassDAO
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM assess_documents WHERE project = ? AND user = ?");
+            $stmt = $conn->prepare("SELECT * FROM assess_documents WHERE project = ? AND student = ?");
             $stmt->execute(array($projectid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -31,17 +31,6 @@ function pageViewModel(gvm) {
         gvm.documents.push(new Document(id,parentId,description,weight,pointType,score));
     };
 
-    gvm.getUserData = function()
-    {
-        $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
-            console.log("getUserData");
-            console.log(data);
-            $.each(data, function(i, item) {
-                gvm.userData.push(item);
-            });
-        });
-    };
-
     gvm.getAllData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
