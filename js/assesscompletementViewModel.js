@@ -66,6 +66,9 @@ function pageViewModel(gvm) {
                         gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, "false");
                     }
                 }
+                else {
+                    gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
+                }
             });
             gvm.getAllData();
         });
