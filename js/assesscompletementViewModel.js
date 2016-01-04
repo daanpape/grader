@@ -79,7 +79,19 @@ function Document(id,parentId,description ,weight,pointType, score)
         description: ko.observable(description),
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
-        score: ko.observable(score)
+        score: ko.observable(score),
+
+        voteYes: function() {
+            if(this.score() == 0) {
+                this.score(100);
+            }
+        },
+
+        voteNo: function() {
+            if(this.score() == 100) {
+                this.score(0);
+            }
+        }
     }
 }
 
