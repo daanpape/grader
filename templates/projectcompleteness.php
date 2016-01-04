@@ -41,7 +41,7 @@ $location = "projectcompleteness";
         </div>
 
         <div class="col-lg-12 container">
-            <div class="table-responsive">
+            <div class="table-responsive" style="overflow: auto;">
                 <table class="table table-striped">
                     <thead>
                         <tr>
