@@ -127,7 +127,7 @@ $location = "assesscompletement";
     <div class="row">
         <div id="top-col" class="col-md-12">
             <div class="col-lg-12 container">
-                <div class="table-responsive" style="overflow: auto;">
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
