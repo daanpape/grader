@@ -55,8 +55,6 @@ function pageViewModel(gvm) {
     {
         gvm.userData.destroyAll();
         gvm.documents.destroyAll();
-        gvm.amountSubmitted.destroyAll();
-
     }
 }
 
