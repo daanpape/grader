@@ -84,7 +84,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         checkedValue: ko.computed({
             //return a formatted price
             read: function() {
-                return parent.isChecked();
+                return this.isChecked;
             },
             //if the value changes, make sure that we store a number back to price
             write: function(newValue) {
