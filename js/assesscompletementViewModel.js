@@ -48,12 +48,12 @@ function pageViewModel(gvm) {
         gvm.documents().forEach(function(item) {
             console.log(data);
             console.log(item);
-           if(data.document == item.parentId) {
-               item.id = data.id;
-               item.score = data.score;
+           if(data.document == item.parentId()) {
+               item.id(data.id);
+               item.score(data.score);
            }
         });
-    }
+    };
 
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
