@@ -166,14 +166,7 @@ $location = "assesscompletement";
                                             <input type="text" class="form-control" data-bind="value: assessScore" placeholder="Score op 100" />
                                         </li>
                                         <!-- /ko -->
-
-                                        <!-- ko if: pointType() === 'None' -->
-                                        <li>
-                                            <input type="text" class="form-control" data-bind="value: assessScore" placeholder="Score op 100" />
-                                        </li>
-                                        <!-- /ko -->
-
-                                    </ul>
+\                                    </ul>
                                 </td>
                             </tr>
 
