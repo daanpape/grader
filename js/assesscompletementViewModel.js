@@ -37,9 +37,18 @@ function pageViewModel(gvm) {
             console.log("getAllData");
             console.log(data);
             $.each(data, function(i, item) {
+                gvm.enterData(item);
                 gvm.userData.push(item);
             });
-            gvm.getDocumentsToSubmit()
+        });
+    };
+
+    gvm.enterData = function(data)
+    {
+        gvm.documents.forEach(function(item) {
+           if(data.document == item.parentId) {
+               item.id = data.id;
+           }
         });
     }
 
@@ -48,6 +57,7 @@ function pageViewModel(gvm) {
             $.each(data, function(i, item) {
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
             });
+            gvm.getAllData();
         });
     };
 
@@ -72,7 +82,8 @@ function Document(id,parentId,description ,weight,pointType, score)
 
 function initPage() {
     viewModel.getProjectInfo();
-    viewModel.getAllData();
+    gvm.getDocumentsToSubmit()
+    ;
 
     $("#saveBtn").click(function() {
         $.ajax({
