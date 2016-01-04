@@ -71,7 +71,7 @@ $location = "projectcompleteness";
                                 <input class="form-control" data-bind="value: weight">
                             </td>
                             <td>
-                                <input class="form-control">
+                                <input class="form-control" data-bind="value: nrDocuments">
                             </td>
                             <td>
                                 <!-- ko if: locked() == 0 -->
