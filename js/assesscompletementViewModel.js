@@ -45,7 +45,7 @@ function pageViewModel(gvm) {
 
     gvm.enterData = function(data)
     {
-        gvm.documents.forEach(function(item) {
+        gvm.documents().forEach(function(item) {
            if(data.document == item.parentId) {
                item.id = data.id;
            }
