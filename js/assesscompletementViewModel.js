@@ -105,7 +105,7 @@ function Document(id,parentId,description ,weight,pointType, score)
             },
             write: function(value){
                 if (value)
-                    this.isChecked("yes");
+                    this.isChecked = "yes";
             }
         }
         ,this),
@@ -117,7 +117,7 @@ function Document(id,parentId,description ,weight,pointType, score)
             },
             write: function(value){
                 if (value)
-                    this.isChecked("no");
+                    this.isChecked = "no";
             }
         }
         ,this)
