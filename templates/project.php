@@ -38,6 +38,10 @@ $location = "project";
                 color:black;
                 background-color: rgb(240,240,240);
             }
+
+            .dropdown ul:hover {
+                cursor:hand;
+            }
         </style>
 
         <?php include_once('hddepends.php') ?>
