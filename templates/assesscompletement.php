@@ -158,7 +158,7 @@ $location = "assesscompletement";
                                     </div>
                                 </td>
                                 <tr>
-                                <td>
+                                <div>
                                     <ul data-bind="foreach: nrDocuments">
                                         <!-- ko if: pointType() === 'Slider' -->
                                         <li class="none">
@@ -172,7 +172,7 @@ $location = "assesscompletement";
                                         </li>
                                         <!-- /ko -->
                                     </ul>
-                                </td>
+                                </div>
                                 </tr>
                             </tr>
 
