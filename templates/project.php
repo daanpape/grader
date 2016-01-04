@@ -40,7 +40,7 @@ $location = "project";
             }
 
             .dropdown > ul > li :hover {
-                cursor:hand;
+                cursor:pointer;
             }
         </style>
 
