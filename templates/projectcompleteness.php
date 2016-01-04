@@ -48,7 +48,7 @@ $location = "projectcompleteness";
                             <th data-bind="text: projectName">Document</th>
                             <th data-bind="text: projectPointType"></th>
                             <th data-bind="text: projectWeigth" style="text-align: center;"></th>
-                            <th data-bind="text: documentToSubmit"></th>
+                            <th data-bind="text: documentToSubmit" style="text-align: center;"></th>
                             <th data-bind="text: projectLock" style="text-align: center;">Lock</th>
                             <th data-bind="text: projectActions">Delete</th>
                         </tr>
