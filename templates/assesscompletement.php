@@ -147,7 +147,7 @@ $location = "assesscompletement";
 
                                     <!-- ko if: pointType() === 'Punten' -->
                                     <div>
-                                        <input type="text" data-bind="value: score" placeholder="Score op 100" />
+                                        <input type="text" class="form-control" data-bind="value: score" placeholder="Score op 100" />
                                     </div>
                                     <!-- /ko -->
 
