@@ -43,7 +43,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/' + gvm.projectId + '/documents', function(data) {
             data.forEach(function(entry) {
                 console.log(entry.point_type);
-                gvm.addDocument(new Document(entry.id,entry.description,entry.point_type,entry.weight,entry.locked));
+                gvm.addDocument(new Document(entry.id,entry.description,entry.point_type,entry.weight,entry.locked,entry.nr_documents));
             });
             console.log(gvm.documents());
         });
@@ -73,7 +73,7 @@ function pageViewModel(gvm) {
     };
 }
 
-function Document(id,description,point_type,weight,locked)
+function Document(id,description,point_type,weight,locked,nrDocuments)
 {
     return {
         id: ko.observable(id || 0),
@@ -81,6 +81,7 @@ function Document(id,description,point_type,weight,locked)
         pointType: ko.observable(point_type || "Punten"),
         weight: ko.observable(weight || ""),
         locked: ko.observable(locked || 0),
+        nrDocuments: ko.observable(nrDocuments),
 
         removeThis: function() {
             viewModel.removeDocument(this);
