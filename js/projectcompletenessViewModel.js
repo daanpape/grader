@@ -25,7 +25,7 @@ function pageViewModel(gvm) {
     gvm.projectDelete = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDeleteBtn");}, gvm);
     gvm.documentToSubmit = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DocumentToSubmit");}, gvm);
 
-    gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja/Nee']);
+    gvm.availableTypes = ko.observableArray(['None','Slider','Punten','Ja/Nee']);
 
     gvm.projectCompletenessTitle = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectCompletenessTitle");}, gvm);
 
@@ -78,7 +78,7 @@ function Document(id,description,point_type,weight,locked,nrDocuments)
     return {
         id: ko.observable(id || 0),
         description: ko.observable(description || ""),
-        pointType: ko.observable(point_type || "Punten"),
+        pointType: ko.observable(point_type || "None"),
         weight: ko.observable(weight || ""),
         locked: ko.observable(locked || 0),
         nrDocuments: ko.observable(nrDocuments),
@@ -121,7 +121,7 @@ function documentValidation() {
        {
            error += "<li>Please make sure document " + (index+1) + " has an name!</li>";
        }
-       else if(entry.pointType() != "Slider" && entry.pointType() != "Punten" && entry.pointType() != "Ja/Nee"){
+       else if(entry.pointType() != "Slider" && entry.pointType() != "Punten" && entry.pointType() != "Ja/Nee" && entry.pointType() != 'None'){
            error += "<li>Please enter a valid pointype for document " + (index+1) + "!</li>";
        }
        else if(entry.weight() < 0 || entry.weight() > 100)
