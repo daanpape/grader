@@ -34,6 +34,8 @@ function pageViewModel(gvm) {
     gvm.getUserData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
+            console.log("getUserData");
+            console.log(data);
             $.each(data, function(i, item) {
                 gvm.userData.push(item);
             });
@@ -43,6 +45,8 @@ function pageViewModel(gvm) {
     gvm.getAllData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
+            console.log("getAllData");
+            console.log(data);
             $.each(data, function(i, item) {
                 gvm.userData.push(item);
             });
@@ -52,12 +56,10 @@ function pageViewModel(gvm) {
 
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
-            console.log(data);
             $.each(data, function(i, item) {
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
             });
         });
-        console.log(gvm.documents());
     };
 
     gvm.clearStructure = function()

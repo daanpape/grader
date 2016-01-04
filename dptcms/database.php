@@ -1012,7 +1012,7 @@ class ClassDAO
         }
     }
 
-    public static function saveDocumentsForUser($projectid, $userid, $structure)
+    public static function saveDocumentsForUser($projectid, $userid, $studentid, $structure)
     {
         try {
             $data = json_decode($structure);
@@ -1020,15 +1020,15 @@ class ClassDAO
 
             foreach($data as $document)
             {
-                if($document->submittedId == 0)
+                if($document->id == 0)
                 {
-                    $stmt = $conn->prepare("INSERT INTO assess_documents (user, document, project, submitted ) VALUES (?,?,?,?)");
-                    $stmt->execute(array($userid,$document->id,$projectid,$document->submitted));
+                    $stmt = $conn->prepare("INSERT INTO assess_documents (document,user,student,score,project) VALUES (?,?,?,?,?)");
+                    $stmt->execute(array($document->parentId,$userid,$studentid,$document->score,$projectid));
                 }
                 else
                 {
-                    $stmt = $conn->prepare("UPDATE assess_documents SET submitted= ? WHERE id= ?");
-                    $stmt->execute(array($document->submitted, $document->submittedId));
+                    $stmt = $conn->prepare("UPDATE assess_documents SET score=? WHERE id= ?");
+                    $stmt->execute(array($document->score, $document->id));
                 }
             }
         } catch (PDOException $ex) {

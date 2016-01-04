@@ -103,9 +103,9 @@ class GraderAPI {
         return ClassDAO::getUserDataForDocument($projectid, $userid);
     }
 
-    public static function saveDocumentsForUser($projectid, $userid, $structure)
+    public static function saveDocumentsForUser($projectid, $userid, $studentid, $structure)
     {
-        return ClassDAO::saveDocumentsForUser($projectid,$userid, $structure);
+        return ClassDAO::saveDocumentsForUser($projectid,$userid, $studentid, $structure);
     }
 
     public static function getUsersAssessStudent($projectid,$userid)
