@@ -116,7 +116,7 @@ $location = "assesscompletement";
         text-align: center;
     }
 
-    .dropdown > ul > li {
+    ul > li {
         cursor:pointer;
     }
 
