@@ -75,7 +75,7 @@ function pageViewModel(gvm) {
                     array.push({id: 0,parentId: 0, score: 0 });
                     numberArray.push(i);
                 }
-                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array, numberArray, 0);
+                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array,0,numberArray);
             });
             gvm.getAllData();
         });
