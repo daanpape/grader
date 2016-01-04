@@ -52,6 +52,14 @@ function pageViewModel(gvm) {
            if(data.document == item.parentId()) {
                item.id(data.id);
                item.score(data.score);
+               if (item.pointType == "Ja/Nee") {
+                   if (item.score > 0) {
+                       item.isChecked("yes");
+                   }
+                   else {
+                       item.isChecked("no");
+                   }
+               }
            }
         });
     };
@@ -59,17 +67,7 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                if(item.point_type == "Ja/Nee") {
-                    if(item.score > 0) {
-                        gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, "yes");
-                    }
-                    else {
-                        gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, "false");
-                    }
-                }
-                else {
-                    gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
-                }
+                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
             });
             gvm.getAllData();
         });
