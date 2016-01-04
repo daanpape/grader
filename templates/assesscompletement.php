@@ -120,6 +120,10 @@ $location = "assesscompletement";
         cursor:pointer;
     }
 
+    .none {
+        list-style: none;
+    }
+
 </style>
 <body>
 <?php include_once('menu.php') ?>
@@ -156,13 +160,13 @@ $location = "assesscompletement";
                                 <td>
                                     <ul data-bind="foreach: nrDocuments">
                                         <!-- ko if: pointType() === 'Slider' -->
-                                        <li>
+                                        <li class="none">
                                             <input type="range" min="0" max="100" step="1" data-bind="value: assessScore" />
                                         </li>
                                         <!-- /ko -->
 
                                         <!-- ko if: pointType() === 'Punten' -->
-                                        <li>
+                                        <li class="none">
                                             <input type="text" class="form-control" data-bind="value: assessScore" placeholder="Score op 100" />
                                         </li>
                                         <!-- /ko -->
