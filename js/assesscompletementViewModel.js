@@ -82,8 +82,7 @@ function Document(id,parentId,description ,weight,pointType, score)
 
 function initPage() {
     viewModel.getProjectInfo();
-    gvm.getDocumentsToSubmit()
-    ;
+    viewModel.getDocumentsToSubmit();
 
     $("#saveBtn").click(function() {
         $.ajax({
