@@ -85,13 +85,16 @@ function Document(id,parentId,description ,weight,pointType, score)
             if(this.score() == 0) {
                 this.score(100);
             }
-            console.log(target);
+            target.currentTarget.checked = true
+            console.log(target.currentTarget.checked);
         },
 
         voteNo: function() {
             if(this.score() == 100) {
                 this.score(0);
             }
+            target.currentTarget.checked = true
+            console.log(target.currentTarget.checked);
         }
     }
 }
