@@ -52,8 +52,9 @@ function pageViewModel(gvm) {
 
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
+            console.log(data);
             $.each(data, function(i, item) {
-                gvm.addDocument(0, item.id, item.description, item.weight, item.pointType, 0);
+                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
             });
         });
         console.log(gvm.documents());
