@@ -190,5 +190,7 @@
     "AdminUser" : "Contains rights to assess students",
     "AdminSuperuser" : "This user has access to everything, the Admin Panel included.",
 
-    "AdminEditUserPermissions" : "User Permission"
+    "AdminEditUserPermissions" : "User Permission",
+
+    "DocumentScore" : "Score"
 }

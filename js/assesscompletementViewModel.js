@@ -16,6 +16,7 @@ function pageViewModel(gvm) {
     gvm.assessCompletementNumberSubmitted = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("AssessCompletementNumberSubmitted");}, gvm);
     gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.cancelBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CancelBtn");}, gvm);
+    gvm.documentScore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DocumentScore");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
@@ -26,13 +27,13 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
     gvm.userData = ko.observableArray([]);
 
-    gvm.addDocument = function(id, description, amount_required, weight, submitted, submittedId) {
+    gvm.addDocument = function(id, description, amount_required, weight, pointType) {
         var amount_not_submitted = ko.observableArray([]);
         for(i = 0; i <= amount_required; i++) {
             amount_not_submitted.push(i);
         }
 
-        var document = {id: id, description: description, amount_required: amount_required, weight: weight, amount_not_submitted: amount_not_submitted, submitted: submitted, submittedId: submittedId};
+        var document = {id: id, description: description, weight: weight, pointType: pointType};
         gvm.documents.push(document);
     };
 
@@ -58,28 +59,10 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                var current = $.grep(gvm.userData(), function(e) {return e.document == item.id});
-
-                var value;
-                var valueId;
-
-                if(current.length == 0)
-                {
-                    value = 0;
-                    valueId = 0;
-                }
-                else
-                {
-                    value = current[0].submitted;
-                    valueId = current[0].id;
-                }
-
-                gvm.addDocument(item.id, item.description, item.amount_required, item.weight, value, valueId);
+                gvm.addDocument(item.id, item.description, item.weight, item.pointType);
             });
         });
     };
-
-    gvm.amountSubmitted = ko.observableArray([]);
 
     gvm.clearStructure = function()
     {

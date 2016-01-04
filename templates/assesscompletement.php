@@ -22,19 +22,26 @@ $location = "assesscompletement";
                         <thead>
                         <tr>
                             <th data-bind="text: nameTableTitle">Name</th>
-                            <th data-bind="text: assessCompletementNumberToSubmit"># to submit</th>
                             <th data-bind="text: projectWeight">Weight</th>
-                            <th data-bind="text: assessCompletementNumberSubmitted">Submitted</th>
+                            <th data-bind="text: documentScore"></th>
                         </tr>
                         </thead>
                         <tbody data-bind="foreach: documents">
                             <tr>
                                 <td><span data-bind="text: description"></span></td>
-                                <td><span data-bind="text: amount_required"></span></td>
                                 <td><span data-bind="text: weight"></span></td>
                                 <td>
-                                    <select class="form-control" data-bind="options: amount_not_submitted, value: submitted, attr:{'id': 'document-' + id}">
-                                    </select>
+                                    <!-- ko if: pointType() == "Slider" -->
+                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: pointType() == "Punten" -->
+                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- /ko -->
+
+                                    <!-- ko if: pointType() == "Ja/Nee" -->
+                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- /ko -->
                                 </td>
                             </tr>
                         </tbody>

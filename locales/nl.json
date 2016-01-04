@@ -189,5 +189,7 @@
     "AdminUser" : "Kan studenten beoordelen",
     "AdminSuperuser" : "Deze gebruiker heeft op alles rechten, ook de Admin Panel.",
 
-    "AdminEditUserPermissions" : "Rechten van gebruiker"
+    "AdminEditUserPermissions" : "Rechten van gebruiker",
+
+    "DocumentScore" : "Score"
 }
