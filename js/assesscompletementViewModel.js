@@ -48,6 +48,7 @@ function pageViewModel(gvm) {
         gvm.documents().forEach(function(item) {
            if(data.document == item.parentId) {
                item.id = data.id;
+               item.score = data.score;
            }
         });
     }
