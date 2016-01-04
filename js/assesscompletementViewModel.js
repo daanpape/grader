@@ -52,7 +52,7 @@ function pageViewModel(gvm) {
            if(data.document == item.parentId()) {
                item.id(data.id);
                item.score(data.score);
-               if (item.pointType == "Ja/Nee") {
+               if (item.pointType() == "Ja/Nee") {
                    if (item.score > 0) {
                        item.isChecked("yes");
                    }
