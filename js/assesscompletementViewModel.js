@@ -94,6 +94,7 @@ function pageViewModel(gvm) {
 function Document(id,parentId,description ,weight,pointType, score, nrDocuments, notSubmitted, checked)
 {
     var self = this;
+    console.log(nrDocuments);
     self.documents = {
         id: ko.observable(id),
         parentId: ko.observable(parentId),
