@@ -80,7 +80,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
-        isChecked: ko.observable(),
+        isChecked: ko.observable("yes"),
 
         voteYes: function(event,target) {
                 if(this.score() == 0) {
@@ -101,7 +101,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         yes : ko.computed(
         {
             read: function() {
-                return this.isChecked() == "yes";
+                return this.isChecked();
             },
             write: function(value){
                 if (value)
@@ -113,7 +113,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         no: ko.computed(
         {
             read: function() {
-                return this.isChecked() == "no";
+                return this.isChecked();
             },
             write: function(value){
                 if (value)
