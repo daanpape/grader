@@ -86,41 +86,15 @@ function Document(id,parentId,description ,weight,pointType, score)
                 if(this.score() == 0) {
                     this.score(100);
                 }
-                $(target).attr('checked',true);
-                console.log(target);
+                this.isChecked("yes");
         },
 
         voteNo: function(event,target) {
             if(this.score() == 100) {
                 this.score(0);
             }
-            target.currentTarget.checked = true;
-            console.log(target.currentTarget.checked);
-        },
-
-        yes : ko.computed(
-        {
-            read: function() {
-                return this.isChecked;
-            },
-            write: function(value){
-                if (value)
-                    this.isChecked = "yes";
-            }
+            this.isChecked("no");
         }
-        ,this),
-
-        no: ko.computed(
-        {
-            read: function() {
-                return this.isChecked;
-            },
-            write: function(value){
-                if (value)
-                    this.isChecked = "no";
-            }
-        }
-        ,this)
     }
 }
 
