@@ -106,6 +106,17 @@ $location = "assesscompletement";
         -moz-border-radius:5px;
         background-repeat: no-repeat;
     }
+
+    td {
+        vertical-align: middle;
+        text-align: center;
+
+    }
+
+    th {
+        text-align: center;
+    }
+
 </style>
 <body>
 <?php include_once('menu.php') ?>
@@ -129,7 +140,7 @@ $location = "assesscompletement";
                             <tr>
                                 <td><span data-bind="text: description"></span></td>
                                 <td><span data-bind="text: weight"></span></td>
-                                <td>
+                                <td >
                                     <!-- ko if: pointType() === 'Slider' -->
                                     <input type="range" min="0" max="100" step="1" data-bind="value: score" />
                                     <!-- /ko -->
