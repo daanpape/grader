@@ -73,28 +73,31 @@ function pageViewModel(gvm) {
 
 function Document(id,parentId,description ,weight,pointType, score)
 {
-    return {
+    var self = this;
+    self.documents = {
         id: ko.observable(id),
         parentId: ko.observable(parentId),
         description: ko.observable(description),
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
-        isChecked: ko.observable(),
-        checkedValue: ko.computed({
-            //return a formatted price
-            read: function() {
-                return this.isChecked;
-            },
-            //if the value changes, make sure that we store a number back to price
-            write: function(newValue) {
-                console.log(parent);
-                this.isChecked = newValue;
-            },
-            owner: this
-        })
-
+        isChecked: ko.observable("yes")
     }
+
+    self.documents.checkedValue =  ko.computed({
+        //return a formatted price
+        read: function() {
+            return this.isChecked();
+        },
+        //if the value changes, make sure that we store a number back to price
+        write: function(newValue) {
+            console.log(this);
+            this.isChecked(newValue);
+        },
+        owner: this
+    });
+
+    return self.documents;
 }
 
 function initPage() {
