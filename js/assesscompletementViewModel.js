@@ -46,6 +46,8 @@ function pageViewModel(gvm) {
     gvm.enterData = function(data)
     {
         gvm.documents().forEach(function(item) {
+            console.log(data);
+            console.log(item);
            if(data.document == item.parentId) {
                item.id = data.id;
                item.score = data.score;
