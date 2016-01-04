@@ -191,5 +191,7 @@
 
     "AdminEditUserPermissions" : "Rechten van gebruiker",
 
-    "DocumentScore" : "Score"
+    "DocumentScore" : "Score",
+
+    "DocumentToSubmit" : "In te dienen documenten"
 }

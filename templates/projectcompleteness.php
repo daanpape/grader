@@ -47,7 +47,8 @@ $location = "projectcompleteness";
                         <tr>
                             <th data-bind="text: projectName">Document</th>
                             <th data-bind="text: projectPointType"></th>
-                            <th data-bind="text: projectWeigth" style="text-align: center;">weight</th>
+                            <th data-bind="text: projectWeigth" style="text-align: center;"></th>
+                            <th data-bind="text: documentToSubmit"></th>
                             <th data-bind="text: projectLock" style="text-align: center;">Lock</th>
                             <th data-bind="text: projectActions">Delete</th>
                         </tr>
@@ -70,6 +71,9 @@ $location = "projectcompleteness";
                                 <input class="form-control" data-bind="value: weight">
                             </td>
                             <td>
+                                <input class="form-control">
+                            </td>
+                            <td>
                                 <!-- ko if: locked() == 0 -->
                                 <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
                                 <!-- /ko -->
@@ -87,7 +91,6 @@ $location = "projectcompleteness";
             <button type="button" class="btn btn-default" data-bind="click: addNewDocument"><span class="glyphicon glyphicon-plus"></span> <span  data-bind="text: projectAddDocument">Add a Document</span></button>
             <button type="button" class="btn btn-default pull-right" data-bind="click: saveDocuments"><span class="glyphicon glyphicon-floppy-disk"></span> <span data-bind="text: nextPage">Next</span></span></button>
         </div>
-
     </div>
 </div>
 

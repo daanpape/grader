@@ -23,6 +23,7 @@ function pageViewModel(gvm) {
     gvm.projectLock = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectLock");}, gvm);
     gvm.projectActions = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ActionTableTitle");}, gvm);
     gvm.projectDelete = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("ProjectsDeleteBtn");}, gvm);
+    gvm.documentToSubmit = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DocumentToSubmit");}, gvm);
 
     gvm.availableTypes = ko.observableArray(['Slider','Punten','Ja/Nee']);
 

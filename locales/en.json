@@ -192,5 +192,7 @@
 
     "AdminEditUserPermissions" : "User Permission",
 
-    "DocumentScore" : "Score"
+    "DocumentScore" : "Score",
+
+    "DocumentToSubmit" : "Nr of documents to submit"
 }
