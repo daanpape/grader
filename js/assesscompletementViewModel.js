@@ -89,7 +89,7 @@ function Document(id,parentId,description ,weight,pointType, score)
             //if the value changes, make sure that we store a number back to price
             write: function(newValue) {
                 console.log(newValue);
-                this.isChecked = newValue;
+                this.isChecked(newValue);
             },
             owner: this
         })
