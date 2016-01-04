@@ -138,7 +138,7 @@ $location = "assessscore";
                             <div class="panel-body">
                                 <ul class="list-group" data-bind="foreach: indicators">
                                     <li class="list-group-item">
-                                        <label data-bind="text: description"></label>
+                                        <label data-bind="text: description" style="margin-bottom:2%;"></label>
 
                                         <!-- ko if: pointType() === 'Slider' -->
                                         <input type="range" min="0" max="100" step="1" data-bind="value: score" />
