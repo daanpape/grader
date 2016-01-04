@@ -1077,13 +1077,13 @@ class ClassDAO
         {
             if($document->id == 0)
             {
-                $stmt = $conn->prepare("INSERT INTO documenttype (description,point_type,weight,project,locked) VALUES (?,?,?,?,?)");
-                $stmt->execute(array($document->description,$document->pointType, $document->weight,$projectId,$document->locked));
+                $stmt = $conn->prepare("INSERT INTO documenttype (description,point_type,weight,project,locked, nr_documents) VALUES (?,?,?,?,?,?)");
+                $stmt->execute(array($document->description,$document->pointType, $document->weight,$projectId,$document->locked,$document->nrDocuments));
             }
             else
             {
-                $stmt = $conn->prepare("UPDATE documenttype SET description = ?, point_type = ?, weight = ?, locked = ? WHERE id= ?");
-                $stmt->execute(array($document->description, $document->pointType, $document->weight, $document->locked, $document->id));
+                $stmt = $conn->prepare("UPDATE documenttype SET description = ?, point_type = ?, weight = ?, locked = ?, nr_documents = ? WHERE id= ?");
+                $stmt->execute(array($document->description, $document->pointType, $document->weight, $document->locked, $document->nrDocuments,$document->id));
             }
         }
 
