@@ -101,7 +101,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         yes : ko.computed(
         {
             read: function() {
-                return this.isChecked();
+                return this.isChecked;
             },
             write: function(value){
                 if (value)
@@ -113,7 +113,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         no: ko.computed(
         {
             read: function() {
-                return this.isChecked();
+                return this.isChecked;
             },
             write: function(value){
                 if (value)
