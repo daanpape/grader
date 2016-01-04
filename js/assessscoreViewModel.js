@@ -160,5 +160,5 @@ function Indicator(parent, id, name, description, score, scoreid,pointType, chec
         owner: this
     });
 
-    return self.documents;
+    return self.indicators;
 }
