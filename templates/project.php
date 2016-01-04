@@ -39,7 +39,7 @@ $location = "project";
                 background-color: rgb(240,240,240);
             }
 
-            .dropdown ul:hover {
+            .dropdown li:hover {
                 cursor:hand;
             }
         </style>
