@@ -107,7 +107,7 @@ $location = "assesscompletement";
         background-repeat: no-repeat;
     }
 
-    td {
+    .table > tbody > tr > td {
         vertical-align: middle;
         text-align: center;
 
