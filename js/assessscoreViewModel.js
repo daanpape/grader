@@ -57,7 +57,18 @@ function fetchProjectScore()
                                 if (indic.id() == data[i].indicator) {
                                     indic.score(data[i].score);
                                     indic.scoreid(data[i].id);
+                                    if (indic.pointType() == "Ja/Nee") {
+                                        if (indic.score() > 0) {
+                                            indic.isChecked("yes");
+                                            indic.score(100);
+                                        }
+                                        else {
+                                            indic.isChecked("no");
+                                            indic.score(0);
+                                        }
+                                    }
                                 }
+
                             }
                         });
                     });
@@ -117,13 +128,37 @@ function SubCompetence(parent, id, code, name, indicators) {
 }
 
 function Indicator(parent, id, name, description, score, scoreid,pointType, checked) {
-    return {
+    var self = this;
+
+    self.indicators = {
         id: ko.observable(id),
         name: ko.observable(name),
         description: ko.observable(description),
         score: ko.observable(score),
         scoreid: ko.observable(scoreid),
         pointType: ko.observable(pointType),
-        checked : ko.observable(checked)
+        isChecked : ko.observable(checked)
     };
+
+    self.indicators.checkedValue =  ko.computed({
+        //return a formatted price
+        read: function() {
+            return self.documents.isChecked();
+        },
+        //if the value changes, make sure that we store a number back to price
+        write: function(newValue) {
+            console.log(self);
+            self.documents.isChecked(newValue);
+            if(self.documents.isChecked() == "yes")
+            {
+                self.documents.score(100);
+            }
+            else {
+                self.documents.score(0);
+            }
+        },
+        owner: this
+    });
+
+    return self.documents;
 }

@@ -152,8 +152,8 @@ $location = "assessscore";
 
                                         <!-- ko if: pointType() === 'Ja/Nee' -->
                                         <br>
-                                        <input type="radio" name="ja_nee" value="100"> Ja<br>
-                                        <input type="radio" name="ja_nee" value="0"> Nee
+                                        <input type="radio" name="ja_nee" value="yes" data-bind="checked: checkedValue, attr: { name: description }"> Ja
+                                        <input type="radio" name="ja_nee"  value="no" style="margin-left:2%;" data-bind="checked: checkedValue, attr: { name: description }"> Nee
                                         <!-- /ko -->
 
                                     </li>
