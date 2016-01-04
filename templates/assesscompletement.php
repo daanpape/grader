@@ -8,6 +8,105 @@ $location = "assesscompletement";
     <?php include_once('hddepends.php') ?>
 </head>
 
+<style>
+    input[type=range] {
+        -webkit-appearance: none;
+        width: 100%;
+        margin: 13.8px 0;
+    }
+    input[type=range]:focus {
+        outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #ffffff;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -14px;
+    }
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #ffffff;
+    }
+    input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #ffffff;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;
+    }
+    input[type=range]::-moz-range-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+    }
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+    input[type=range]::-ms-fill-lower {
+        background: #ffffff;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+    input[type=range]::-ms-fill-upper {
+        background: #ffffff;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+    input[type=range]::-ms-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+        height: 8.4px;
+    }
+    input[type=range]:focus::-ms-fill-lower {
+        background: #ffffff;
+    }
+    input[type=range]:focus::-ms-fill-upper {
+        background: #ffffff;
+    }
+    input[type="range"] {
+        -webkit-appearance:none !important;
+        pointer:cursor;
+        background: -webkit-linear-gradient(left, darkred, lawngreen); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, darkred, lawngreen); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(left, darkred, lawngreen); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(right, darkred, lawngreen); /* Standard syntax */
+        height: 25px;
+        -webkit-border-radius:15px;
+        -moz-border-radius:5px;
+        background-repeat: no-repeat;
+    }
+</style>
 <body>
 <?php include_once('menu.php') ?>
 
