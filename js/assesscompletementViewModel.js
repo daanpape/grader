@@ -80,6 +80,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
+        isChecked: ko.observable(false),
 
         voteYes: function(event,target) {
             if(this.score() == 0) {
