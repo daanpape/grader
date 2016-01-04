@@ -133,6 +133,7 @@ $location = "assesscompletement";
                         <tr>
                             <th data-bind="text: nameTableTitle">Name</th>
                             <th data-bind="text: projectWeight">Weight</th>
+                            <th data-bind="text: documentSubmit"></th>
                             <th data-bind="text: documentScore"></th>
                         </tr>
                         </thead>
@@ -140,6 +141,15 @@ $location = "assesscompletement";
                             <tr>
                                 <td><span data-bind="text: description"></span></td>
                                 <td><span data-bind="text: weight"></span></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span data-bind="text: notSubmitted"></span>
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" data-bind="foreach: nrDocuments">
+                                            <li role="presentation"><a role="menuitem" data-bind="text: nr, click: viewModel.changeNotSubmitted.bind($data,$parent)"></a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                                 <td >
                                     <!-- ko if: pointType() === 'Slider' -->
                                     <input type="range" min="0" max="100" step="1" data-bind="value: score" />

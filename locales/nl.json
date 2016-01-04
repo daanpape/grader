@@ -193,5 +193,6 @@
 
     "DocumentScore" : "Score",
 
-    "DocumentToSubmit" : "In te dienen documenten"
+    "DocumentToSubmit" : "In te dienen documenten",
+    "DocumentSubmit" : "Niet ingediend"
 }

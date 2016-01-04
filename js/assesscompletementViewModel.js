@@ -17,6 +17,7 @@ function pageViewModel(gvm) {
     gvm.saveBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("SaveBtn");}, gvm);
     gvm.cancelBtn = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("CancelBtn");}, gvm);
     gvm.documentScore = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DocumentScore");}, gvm);
+    gvm.documentSubmit = ko.computed(function(){i18n.setLocale(gvm.lang()); return i18n.__("DocumentSubmit");}, gvm);
 
     gvm.getProjectInfo = function() {
         $.getJSON('/api/project/' + gvm.projectId, function(data) {
@@ -52,6 +53,7 @@ function pageViewModel(gvm) {
            if(data.document == item.parentId()) {
                item.id(data.id);
                item.score(data.score);
+               item.notSubmitted(data.not_submitted);
                if (item.pointType() == "Ja/Nee") {
                    if (item.score() > 0) {
                        item.isChecked("yes");
@@ -69,10 +71,20 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0);
+                var array = [];
+                for(var i = 0; i < item.nr_documents; i++)
+                {
+                    array.push({id: 0,parentId: 0, nr: i, score: 0 });
+                }
+                gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array, 0);
             });
             gvm.getAllData();
         });
+    };
+
+    gvm.changeNotSubmitted = function(data,parent) {
+        console.log(data);
+        console.log(parent);
     };
 
     gvm.clearStructure = function()
@@ -82,7 +94,7 @@ function pageViewModel(gvm) {
     }
 }
 
-function Document(id,parentId,description ,weight,pointType, score,checked)
+function Document(id,parentId,description ,weight,pointType, score, nrDocuments, notSubmitted, checked)
 {
     var self = this;
     self.documents = {
@@ -92,7 +104,9 @@ function Document(id,parentId,description ,weight,pointType, score,checked)
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
-        isChecked: ko.observable(checked)
+        isChecked: ko.observable(checked),
+        nrDocuments: ko.observable(nrDocuments),
+        notSubmitted: ko.observable(notSubmitted)
     }
 
     self.documents.checkedValue =  ko.computed({

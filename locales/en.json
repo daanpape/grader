@@ -194,5 +194,6 @@
 
     "DocumentScore" : "Score",
 
-    "DocumentToSubmit" : "Nr of documents to submit"
+    "DocumentToSubmit" : "Nr of documents to submit",
+    "DocumentSubmit" : "Not submitted"
 }
