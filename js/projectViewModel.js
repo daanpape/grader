@@ -134,7 +134,7 @@ function Indicator(parent, id, name, weight, description, locked, pointType) {
         },
 
         setDefaults: function() {
-            this.pointType = 'Slider';
+            this.pointType('Slider');
         }
     };
 }

@@ -19,6 +19,10 @@ $location = "projectcompleteness";
         .shown {
             display:block;
         }
+
+        .dropdown > ul > li :hover {
+            cursor:pointer;
+        }
     </style>
 </head>
 
