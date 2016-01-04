@@ -80,14 +80,14 @@ function Document(id,parentId,description ,weight,pointType, score)
         pointType: ko.observable(pointType),
         weight: ko.observable(weight),
         score: ko.observable(score),
-        isChecked: ko.observable(false),
+        isChecked: ko.observable(),
 
         voteYes: function(event,target) {
-            if(this.score() == 0) {
-                this.score(100);
-            }
-            $(target).attr('checked',true);
-            console.log(target);
+                if(this.score() == 0) {
+                    this.score(100);
+                }
+                $(target).attr('checked',true);
+                console.log(target);
         },
 
         voteNo: function(event,target) {
@@ -96,7 +96,31 @@ function Document(id,parentId,description ,weight,pointType, score)
             }
             target.currentTarget.checked = true;
             console.log(target.currentTarget.checked);
+        },
+
+        yes : ko.computed(
+        {
+            read: function() {
+                return this.isChecked() == "yes";
+            },
+            write: function(value){
+                if (value)
+                    this.isChecked("yes");
+            }
         }
+        ,this),
+
+        no: ko.computed(
+        {
+            read: function() {
+                return this.isChecked() == "no";
+            },
+            write: function(value){
+                if (value)
+                    this.isChecked("no");
+            }
+        }
+        ,this)
     }
 }
 
