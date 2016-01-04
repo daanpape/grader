@@ -93,7 +93,7 @@ function Document(id,parentId,description ,weight,pointType, score)
         write: function(newValue) {
             console.log(self);
             self.documents.isChecked(newValue);
-            if(self.documents.isChecked == "yes")
+            if(self.documents.isChecked() == "yes")
             {
                 self.documents.score(100);
             }
