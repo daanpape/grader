@@ -81,11 +81,11 @@ function Document(id,parentId,description ,weight,pointType, score)
         weight: ko.observable(weight),
         score: ko.observable(score),
 
-        voteYes: function(event) {
+        voteYes: function(event,target) {
             if(this.score() == 0) {
                 this.score(100);
             }
-            console.log(event);
+            console.log(target);
         },
 
         voteNo: function() {
