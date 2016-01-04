@@ -85,7 +85,7 @@ function Document(id,parentId,description ,weight,pointType, score)
             if(this.score() == 0) {
                 this.score(100);
             }
-            target.target.checked = true;
+            $(target).attr('checked',true);
             console.log(target);
         },
 
