@@ -122,6 +122,7 @@ $location = "assesscompletement";
 
     .none {
         list-style: none;
+        margin-bottom:2%;
     }
 
 </style>
