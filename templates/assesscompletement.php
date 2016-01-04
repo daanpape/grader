@@ -152,8 +152,8 @@ $location = "assesscompletement";
                                     <!-- /ko -->
 
                                     <!-- ko if: pointType() === 'Ja/Nee' -->
-                                    <input type="radio" name="ja_nee" value="true" data-bind="checked: isChecked"> Ja
-                                    <input type="radio" name="ja_nee" value="false" style="margin-left:2%;" data-bind="checked: isChecked"> Nee
+                                    <input type="radio" name="isChecked" value="true" data-bind="checked: answer"> Ja
+                                    <input type="radio" name="isChecked" value="false" style="margin-left:2%;" data-bind="checked: answer"> Nee
                                     <!-- /ko -->
                                 </td>
                             </tr>
