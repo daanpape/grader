@@ -96,7 +96,7 @@ function AssessedDocument(id,parentId, score, pointType) {
     return {
         id: ko.observable(id),
         parentId: ko.observable(parentId),
-        score: ko.observable(score),
+        assessScore: ko.observable(score),
         pointType: ko.observable(pointType)
     }
 }
