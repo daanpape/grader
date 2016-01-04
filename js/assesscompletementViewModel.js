@@ -73,6 +73,7 @@ function pageViewModel(gvm) {
                 {
                     array.push({id: 0,parentId: 0, nr: i, score: 0 });
                 }
+                console.log(array);
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array, 0);
             });
             gvm.getAllData();
