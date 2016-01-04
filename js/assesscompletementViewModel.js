@@ -27,14 +27,8 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
     gvm.userData = ko.observableArray([]);
 
-    gvm.addDocument = function(id, description, amount_required, weight, pointType) {
-        var amount_not_submitted = ko.observableArray([]);
-        for(i = 0; i <= amount_required; i++) {
-            amount_not_submitted.push(i);
-        }
-
-        var document = {id: id, description: description, weight: weight, pointType: pointType};
-        gvm.documents.push(document);
+    gvm.addDocument = function(id,parentId, description, weight, pointType,score) {
+        gvm.documents.push(new Document(id,parentId,description,weight,pointType,score));
     };
 
     gvm.getUserData = function()
@@ -59,9 +53,10 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
-                gvm.addDocument(item.id, item.description, item.weight, item.pointType);
+                gvm.addDocument(0, item.id, item.description, item.weight, item.pointType, 0);
             });
         });
+        console.log(gvm.documents());
     };
 
     gvm.clearStructure = function()
@@ -70,6 +65,18 @@ function pageViewModel(gvm) {
         gvm.documents.destroyAll();
         gvm.amountSubmitted.destroyAll();
 
+    }
+}
+
+function Document(id,parentId,description ,weight,pointType, score)
+{
+    return {
+        id: ko.observable(id),
+        parentId: ko.parentId(parentId),
+        description: ko.observable(description),
+        pointType: ko.observable(pointType),
+        weight: ko.observable(weight),
+        score: ko.observable(score)
     }
 }
 

@@ -31,16 +31,20 @@ $location = "assesscompletement";
                                 <td><span data-bind="text: description"></span></td>
                                 <td><span data-bind="text: weight"></span></td>
                                 <td>
-                                    <!-- ko if: pointType() == "Slider" -->
-                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- ko if: pointType() === 'Slider' -->
+                                    <input type="range" min="0" max="100" step="1" data-bind="value: score" />
                                     <!-- /ko -->
 
-                                    <!-- ko if: pointType() == "Punten" -->
-                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- ko if: pointType() === 'Punten' -->
+                                    <div>
+                                        <input type="text" data-bind="value: score" placeholder="Score op 100" />
+                                    </div>
                                     <!-- /ko -->
 
-                                    <!-- ko if: pointType() == "Ja/Nee" -->
-                                    <i class="icon-large icon-unlock" style="margin-right:auto; margin-left:auto; display:block;" data-bind="click: toggleLock"></i></span>
+                                    <!-- ko if: pointType() === 'Ja/Nee' -->
+                                    <br>
+                                    <input type="radio" name="ja_nee" value="100"> Ja<br>
+                                    <input type="radio" name="ja_nee" value="0"> Nee
                                     <!-- /ko -->
                                 </td>
                             </tr>
