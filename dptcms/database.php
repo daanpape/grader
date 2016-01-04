@@ -1023,13 +1023,13 @@ class ClassDAO
                 error_log($document->id, 0);
                 if($document->id == 0)
                 {
-                    $stmt = $conn->prepare("INSERT INTO assess_documents (document,student,score,project) VALUES (?,?,?,?)");
-                    $stmt->execute(array($document->parentId,$studentid,$document->score,$projectid));
+                    $stmt = $conn->prepare("INSERT INTO assess_documents (document,student,score,project,not_submitted) VALUES (?,?,?,?,?)");
+                    $stmt->execute(array($document->parentId,$studentid,$document->score,$projectid,$document->notSubmitted));
                 }
                 else
                 {
-                    $stmt = $conn->prepare("UPDATE assess_documents SET score=? WHERE id= ?");
-                    $stmt->execute(array($document->score, $document->id));
+                    $stmt = $conn->prepare("UPDATE assess_documents SET score=?,not_submitted=? WHERE id= ?");
+                    $stmt->execute(array($document->score,$document->notSubmitted, $document->id));
                 }
             }
         } catch (PDOException $ex) {
