@@ -28,8 +28,8 @@ function pageViewModel(gvm) {
     gvm.documents = ko.observableArray([]);
     gvm.userData = ko.observableArray([]);
 
-    gvm.addDocument = function(id,parentId, description, weight, pointType,score) {
-        var doc = new Document(id,parentId,description,weight,pointType,score);
+    gvm.addDocument = function(id,parentId, description, weight, pointType,score, nrDocuments, notSubmitted) {
+        var doc = new Document(id,parentId,description,weight,pointType,score, nrDocuments, notSubmitted);
         gvm.documents.push(doc);
     };
 
