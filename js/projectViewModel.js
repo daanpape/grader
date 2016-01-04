@@ -195,7 +195,7 @@ function pageViewModel(gvm) {
 
 
     gvm.changePointType = function(data,parent) {
-        data.pointType= parent;
+        data.pointType(parent);
     }
 }
 
