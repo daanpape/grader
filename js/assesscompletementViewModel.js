@@ -36,8 +36,6 @@ function pageViewModel(gvm) {
     gvm.getAllData = function()
     {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents/' + gvm.studentId, function(data) {
-            console.log("getAllData");
-            console.log(data);
             $.each(data, function(i, item) {
                 gvm.enterData(item);
                 gvm.userData.push(item);
@@ -48,8 +46,6 @@ function pageViewModel(gvm) {
     gvm.enterData = function(data)
     {
         gvm.documents().forEach(function(item) {
-            console.log(data);
-            console.log(item);
            if(data.document == item.parentId()) {
                item.id(data.id);
                item.score(data.score);
@@ -71,6 +67,7 @@ function pageViewModel(gvm) {
     gvm.getDocumentsToSubmit = function() {
         $.getJSON('/api/project/'+ gvm.projectId + '/documents', function(data) {
             $.each(data, function(i, item) {
+                console.log(item);
                 var array = [];
                 for(var i = 0; i < item.nr_documents; i++)
                 {
@@ -116,7 +113,6 @@ function Document(id,parentId,description ,weight,pointType, score, nrDocuments,
         },
         //if the value changes, make sure that we store a number back to price
         write: function(newValue) {
-            console.log(self);
             self.documents.isChecked(newValue);
             if(self.documents.isChecked() == "yes")
             {
