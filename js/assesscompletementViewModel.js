@@ -86,7 +86,7 @@ function Document(id,parentId,description ,weight,pointType, score)
                 this.score(100);
             }
             target.target.checked = true;
-            console.log(target.target);
+            console.log(target);
         },
 
         voteNo: function(event,target) {
