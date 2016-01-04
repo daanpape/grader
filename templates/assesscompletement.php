@@ -122,7 +122,7 @@ $location = "assesscompletement";
 
     .none {
         list-style: none;
-        margin-bottom:3%;
+        margin-bottom:2%;
     }
 
 </style>
@@ -161,7 +161,7 @@ $location = "assesscompletement";
                                 <td>
                                     <ul data-bind="foreach: nrDocuments">
                                         <!-- ko if: pointType() === 'Slider' -->
-                                        <li class="none">
+                                        <li class="none" style="margin-bottom:4%;">
                                             <input type="range" min="0" max="100" step="1" data-bind="value: assessScore" />
                                         </li>
                                         <!-- /ko -->
