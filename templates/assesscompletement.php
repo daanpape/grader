@@ -116,7 +116,7 @@ $location = "assesscompletement";
         text-align: center;
     }
 
-    .dropdown > ul > li :hover {
+    .dropdown > ul > li {
         cursor:pointer;
     }
 

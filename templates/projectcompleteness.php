@@ -20,7 +20,7 @@ $location = "projectcompleteness";
             display:block;
         }
 
-        .dropdown > ul > li :hover {
+        .dropdown > ul > li {
             cursor:pointer;
         }
     </style>
