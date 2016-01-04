@@ -72,7 +72,7 @@ function pageViewModel(gvm) {
                 var numberArray = [];
                 for(var i = 0; i <= item.nr_documents; i++)
                 {
-                    array.push({id: 0,parentId: 0, score: 0, pointType: item.point_type });
+                    array.push(new AssessedDocument(0,0,0, item.point_type));
                     numberArray.push(i);
                 }
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array,0,numberArray);
@@ -89,6 +89,15 @@ function pageViewModel(gvm) {
     {
         gvm.userData.destroyAll();
         gvm.documents.destroyAll();
+    }
+}
+
+function AssessedDocument(id,parentId, score, pointType) {
+    return {
+        id: ko.observable(id),
+        parentId: ko.observable(parentId),
+        score: ko.observable(score),
+        pointType: ko.observable(pointType)
     }
 }
 
