@@ -153,10 +153,11 @@ $location = "assesscompletement";
                                         </ul>
                                     </div>
                                 </td>
+                                <tr data-bind="foreach: nrDocuments">
+                                    <input class="form-control" type="text">
+                                </tr>
                             </tr>
-                            <tr data-bind="foreach: nrDocuments">
-                                <input class="form-control" type="text">
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
