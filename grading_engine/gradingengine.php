@@ -283,10 +283,6 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-        foreach($rules as $rule) {
-
-        }
-
         return $rules;
     }
 
@@ -303,7 +299,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
+        //$finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
