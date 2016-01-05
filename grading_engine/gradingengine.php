@@ -54,10 +54,20 @@ class Competence {
     public $score;              /* The calculated score */
 }
 
+class Document {
+    public $id;
+    public $name;
+    public $nrDocuments;
+    public $notSubmitted;
+    public $result;
+}
+
 /**
  * The guts of the grader engine. 
  */
 class GradingEngine {
+
+    public $documentArray = array();
 
     public static function createProjectStructure($structure)
     {
@@ -242,32 +252,23 @@ class GradingEngine {
         }
     }
 
-    public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
+    public function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
-        $count = 0;
         $documentWeight = 0.0;
-
-        foreach($allDocuments as $allDocument)
-        {
-            $current = 0;
-            foreach($documents as $document)
-            {
-                if($allDocument['document'] == $document->document)
-                {
-                    $current = $current + 1;
-                }
-            }
-            if($current == 0)
-            {
-                $noneDocuments[$count] =  $allDocument;
-                $count = $count + 1;
-            }
-        }
 
         foreach($allDocuments as $allDocument)
         {
             $singleWeight = $allDocument['weight'] / $allDocument['nr_documents'];
             $documentWeight = $documentWeight + ($singleWeight * $allDocument['not_submitted']);
+
+            $doc = new Document();
+            $doc->id = $allDocument->id;
+            //$doc-name = $allDocument->
+            //$doc->nrDocuments;
+            //$doc->notSubmitted;
+            //$doc->result;
+
+            //$this->documentArray[$count] = new Document()
         }
 
         foreach($documents as $document)
@@ -283,7 +284,7 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-        return $documentWeight;
+        return $allDocuments;
     }
 
     /*
@@ -324,8 +325,6 @@ class GradingEngine {
             }
         }
 
-
-
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
         $finalScoreProject = new Competence();
@@ -336,8 +335,8 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
-        return $finalScore;
+        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        //return $finalScore;
 
         // Add final score to projectstructure
 
