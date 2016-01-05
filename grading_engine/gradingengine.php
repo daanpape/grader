@@ -66,8 +66,6 @@ class Document {
  */
 class GradingEngine {
 
-    public $documentArray;
-
     public static function createProjectStructure($structure)
     {
         $projectStructure = array();
@@ -251,9 +249,8 @@ class GradingEngine {
         }
     }
 
-    public function createAllDocuments($allDocuments)
+    public static function createAllDocuments($allDocuments)
     {
-
         foreach($allDocuments as $allDocument)
         {
             $doc = new Document();
@@ -262,10 +259,10 @@ class GradingEngine {
             $doc->nrDocuments = $allDocument['nr_documents'];
             $doc->notSubmitted = $allDocument['not_submitted'];
 
-            $this->documentArray[$allDocument['id']] = $doc;
+            $documentArray[$allDocument['id']] = $doc;
         }
 
-        return $this->documentArray;
+        return $documentArray;
     }
 
     public function calculateFinalScoreWithDocuments($documents,$allDocuments)
@@ -341,7 +338,7 @@ class GradingEngine {
         $finalScoreProject->description = "Final score";
 
         $projectStructure[0] = $finalScoreProject;
-        $projectStructure[1] = createAllDocuments($allDocuments);
+        $projectStructure[1] = GraderAPI::createAllDocuments($allDocuments);
 
         return $projectStructure[1];
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
