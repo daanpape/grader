@@ -260,7 +260,7 @@ class GradingEngine {
             }
         }
 
-        return $documents[0]->document;
+        return $allDocuments[0]->document;
     }
 
     /*
