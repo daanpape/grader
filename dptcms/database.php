@@ -1049,8 +1049,10 @@ class ClassDAO
 
                     foreach($document->nrDocuments as $documentScore)
                     {
-                        $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score,projectid,studentid) VALUES (?,?,?,?)");
-                        $stmt->execute(array($document->id,$documentScore->assessScore, $projectid,$studentid));
+                        if($document->pointType != 'None') {
+                            $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score,projectid,studentid) VALUES (?,?,?,?)");
+                            $stmt->execute(array($document->id, $documentScore->assessScore, $projectid, $studentid));
+                        }
                     }
                 }
             }
