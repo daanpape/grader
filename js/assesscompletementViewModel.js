@@ -76,6 +76,7 @@ function pageViewModel(gvm) {
                     }
                 });
             });
+            console.log('Done');
         });
 
     };
