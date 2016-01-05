@@ -1026,7 +1026,7 @@ class ClassDAO
     public static function getUserDocumentData($projectid, $userid) {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT assess_documents.id, assess_documents.document, assess_documents.student, assess_documents.project, assess_documents.not_submitted, documenttype.nr_documents, documenttype.weight FROM assess_documents JOIN documenttype ON assess_documents.document = documenttype.id WHERE assess_documents.project = ? AND assess_documents.student = ?");
+            $stmt = $conn->prepare("SELECT assess_documents.id, assess_documents.document, assess_documents.student, assess_documents.project, assess_documents.not_submitted, documenttype.nr_documents, documenttype.weight, documenttype.description FROM assess_documents JOIN documenttype ON assess_documents.document = documenttype.id WHERE assess_documents.project = ? AND assess_documents.student = ?");
             $stmt->execute(array($projectid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
