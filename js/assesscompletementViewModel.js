@@ -85,12 +85,11 @@ function pageViewModel(gvm) {
         data.notSubmitted(parent);
         var len = data.nrNotSubmitted().length - data.notSubmitted() - 1;
         console.log(len);
-        console.log(data.pointType());
         var point = data.pointType();
         data.nrDocuments([]);
         for(var i = 0; i < len; i++)
         {
-            data.nrDocuments.push(0,0,0,point);
+            data.nrDocuments.push(new AssessedDocument(0,0,0,point));
         }
     };
 
