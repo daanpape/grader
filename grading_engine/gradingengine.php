@@ -259,11 +259,11 @@ class GradingEngine {
             }
             if($current == 0)
             {
-                $count = $count + 1;
+                array_push($noneDocuments, $allDocument);
             }
         }
 
-        return $count;
+        return $noneDocuments;
     }
 
     /*
