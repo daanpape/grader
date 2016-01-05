@@ -68,18 +68,7 @@ function pageViewModel(gvm) {
 
     gvm.setDocumentScores = function() {
         $.getJSON('/api/project/documents/scores/' + gvm.projectId + '/' + gvm.studentId, function(data) {
-            data.forEach(function(item) {
-                gvm.documents().forEach(function(document) {
-                    document.nrDocuments().forEach(function(assessed) {
-                        console.log(item.assessedId);
-                        console.log(document.id());
-                        if(item.assessedId == document.id())
-                        {
-                            assessed.assessScore(data.score);
-                        }
-                    });
-                });
-            })
+            console.log(data);
         })
     };
 
