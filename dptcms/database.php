@@ -1037,7 +1037,7 @@ class ClassDAO
                     foreach($document->nrDocuments as $documentScore)
                     {
                         $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score) VALUES (?,?)");
-                        $stmt->execute(array($document->id,2));
+                        $stmt->execute(array($document->id,$documentScore->assessScore));
                     }
                 }
             }
