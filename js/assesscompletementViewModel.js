@@ -72,7 +72,7 @@ function pageViewModel(gvm) {
                 gvm.documents().forEach(function(document) {
                     if(item.assess_id == document.id())
                     {
-                        console.log(item.score);
+                        console.log(item.assess_id);
                     }
                 });
             });
