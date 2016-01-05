@@ -272,11 +272,19 @@ class GradingEngine {
 
         foreach($documents as $document)
         {
+            $singleWeight = $document->weight / $document->nr_documents;
+
+            $singleDocumentWeight = 100 / $singleWeight;
+            $documentScore = 100 / $singleDocumentWeight;
+
+            $finalDocumentScore = $singleWeight - $documentScore;
+
+            $documentWeight = $documentWeight + ($finalDocumentScore);
 
         }
 
 
-        return $documents;
+        return $documentWeight;
     }
 
     /*
