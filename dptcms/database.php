@@ -62,6 +62,20 @@ class ClassDAO
         }
     }
 
+    public static function getDocumentScoreForStudent($projectid, $studentid)
+    {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM assessed_score WHERE projectid = ? AND studentid = ?");
+            $stmt->execute(array($projectid,$studentid));
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all projects', $err);
+            return null;
+        }
+    }
+
     /**
      * Get the projects corresponding to a course.
      * @param type $courseid the course ID to get the associated projects from.
@@ -1036,8 +1050,8 @@ class ClassDAO
 
                     foreach($document->nrDocuments as $documentScore)
                     {
-                        $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score) VALUES (?,?)");
-                        $stmt->execute(array($document->id,$documentScore->assessScore));
+                        $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score,projectid,studentid) VALUES (?,?,?,?)");
+                        $stmt->execute(array($document->id,$documentScore->assessScore, $projectid,$studentid));
                     }
                 }
             }

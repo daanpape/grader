@@ -118,6 +118,11 @@ class GraderAPI {
         return ClassDAO::getNrOfAssessing($projectid);
     }
 
+    public static function getDocumentScoreForStudent($projectid,$studentid)
+    {
+        return ClassDAO::getDocumentScoreForStudent($projectid,$studentid);
+    }
+
     /*
      * Delete a projecttype from the database
      */

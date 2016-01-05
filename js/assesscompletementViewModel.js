@@ -62,7 +62,14 @@ function pageViewModel(gvm) {
                }
            }
             gvm.setScores(item);
+            gvm.setDocumentScores();
         });
+    };
+
+    gvm.setDocumentScores = function() {
+        $.getJSON('/api/project/documents/scores/' + gvm.projectId + '/' + gvm.studentId, function(data) {
+            console.log(data);
+        })
     };
 
     gvm.getDocumentsToSubmit = function() {

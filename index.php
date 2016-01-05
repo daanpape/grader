@@ -587,6 +587,15 @@ $app->get('/assess/project/img/check_orange.png', function() use ($app) {
     echo $image;
 });
 
+$app->get('/api/project/documents/scores/:projectid/:studentid', function($projectid,$studentid) use ($app) {
+
+    $response = $app->response();
+    $response->header('Content-Type', 'application/json');
+
+    // Update the existing resource
+    echo json_encode(GraderAPI::getDocumentScoreForStudent($projectid,$studentid));
+});
+
 $app->put('/api/student/:id', function($id) use ($app) {
     // Use json headers
     $response = $app->response();
