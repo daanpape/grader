@@ -67,7 +67,7 @@ class Document {
  */
 class GradingEngine {
 
-    public $documentArray = array();
+    public $documentArray;
 
     public static function createProjectStructure($structure)
     {
