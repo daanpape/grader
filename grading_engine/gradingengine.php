@@ -284,7 +284,7 @@ class GradingEngine {
         }
 
 
-        return $allDocuments;
+        return ceil($documentWeight);
     }
 
     /*
