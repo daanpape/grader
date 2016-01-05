@@ -259,7 +259,7 @@ class GradingEngine {
      * @param $competences: an array of Competence objects. 
      * @
      */
-    public static function gradeProjectForStudent($structure, $score, $rules, $documents) {
+    public static function gradeProjectForStudent($structure, $score, $rules, $documents, $allDocuments) {
 
         $projectStructure = GradingEngine::createProjectStructure($structure);
 
@@ -279,7 +279,7 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        return $documents;
+        return $allDocuments;
 
         // Add final score to projectstructure
 

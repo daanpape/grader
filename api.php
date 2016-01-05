@@ -95,7 +95,8 @@ class GraderAPI {
 
     public static function gradeProjectForStudent($projectid, $userid)
     {
-        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid), ClassDAO::getProjectRules($projectid), ClassDAO::getAllDocumentData($projectid,$userid));
+        return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid),
+            ClassDAO::getProjectRules($projectid), ClassDAO::getAllDocumentData($projectid,$userid), ClassDAO::getDocumentScoreForStudent($projectid,$userid));
     }
 
     public static function getUserDataForDocument($projectid, $userid)
