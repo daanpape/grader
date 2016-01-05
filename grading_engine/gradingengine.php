@@ -242,7 +242,7 @@ class GradingEngine {
         }
     }
 
-    public static function calculateFinalScoreWithDocuments($documents,$allDocuments,$rules)
+    public static function calculateFinalScoreWithDocuments($finalScore, $documents,$allDocuments,$rules)
     {
         $count = 0;
         $documentWeight = 0.0;
@@ -283,7 +283,26 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-        return $rules;
+        foreach($rules as $rule)
+        {
+            if($rule->action['subject'] == "totalDocument")
+            {
+                if($rule->operator == ">")
+                {
+                    if($documentWeight > $rule->value)
+                    {
+                        GradingEngine::applyRule($finalScore,$rule);
+                    }
+                }
+                else if($rule->operator == "<")
+                {
+                    if($documentWeight < $rule->value)
+                    {
+                        GradingEngine::applyRule($finalScore,$rule);
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -299,7 +318,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        //$finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
+        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
