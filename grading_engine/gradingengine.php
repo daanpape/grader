@@ -59,7 +59,6 @@ class Document {
     public $name;
     public $nrDocuments;
     public $notSubmitted;
-    public $result;
 }
 
 /**
@@ -252,6 +251,23 @@ class GradingEngine {
         }
     }
 
+    public function createAllDocuments($allDocuments)
+    {
+
+        foreach($allDocuments as $allDocument)
+        {
+            $doc = new Document();
+            $doc->id = $allDocument['id'];
+            $doc->name = $allDocument['description'];
+            $doc->nrDocuments = $allDocument['nr_documents'];
+            $doc->notSubmitted = $allDocument['not_submitted'];
+
+            $this->documentArray[$allDocument['id']] = $doc;
+        }
+
+        return $this->documentArray;
+    }
+
     public function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
         $documentWeight = 0.0;
@@ -260,15 +276,6 @@ class GradingEngine {
         {
             $singleWeight = $allDocument['weight'] / $allDocument['nr_documents'];
             $documentWeight = $documentWeight + ($singleWeight * $allDocument['not_submitted']);
-
-            $doc = new Document();
-            $doc->id = $allDocument['id'];
-            //$doc-name = $allDocument->
-            //$doc->nrDocuments;
-            //$doc->notSubmitted;
-            //$doc->result;
-
-            //$this->documentArray[$count] = new Document()
         }
 
         foreach($documents as $document)
@@ -284,7 +291,7 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-        return $allDocuments;
+        return $documentWeight;
     }
 
     /*
@@ -300,10 +307,9 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $documentWeight = 0;
-        //$documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        $documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
 
-        //$finalScore = $finalScore - $documentWeight;
+        $finalScore = $finalScore - $documentWeight;
 
         foreach($rules as $rule)
         {
@@ -335,8 +341,10 @@ class GradingEngine {
         $finalScoreProject->description = "Final score";
 
         $projectStructure[0] = $finalScoreProject;
+        $projectStructure[1] =  GraderAPI::createAllDocuments($allDocuments);
 
-        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        return $projectStructure[1];
+        //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
         //return $finalScore;
 
         // Add final score to projectstructure
