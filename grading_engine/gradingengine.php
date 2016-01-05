@@ -266,10 +266,11 @@ class GradingEngine {
         foreach($noneDocuments as $noneDocument)
         {
             $singleWeight = $noneDocument['weight'] / $noneDocument['nr_documents'];
+            $documentWeight = $singleWeight * $noneDocument['not_submitted'];
         }
 
 
-        return $singleWeight;
+        return $documentWeight;
     }
 
     /*
