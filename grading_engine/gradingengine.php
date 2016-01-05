@@ -347,7 +347,7 @@ class GradingEngine {
         $finalScoreBeforeDocuments = new Competence();
         $finalScoreBeforeDocuments->id = "1";
         $finalScoreBeforeDocuments->weight = "100";
-        $finalScoreBeforeDocuments->score = "-".ceil($finalScore);
+        $finalScoreBeforeDocuments->score = ceil($finalScore);
         $finalScoreBeforeDocuments->description = "Final score";
 
         $projectStructure[0] = $finalScoreProject;
