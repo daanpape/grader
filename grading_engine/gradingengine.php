@@ -161,10 +161,9 @@ class GradingEngine {
 
     public static function applyRule(&$finalScore,$rule)
     {
-        if ($rule->sign == '-') {
-            $finalScore -= (($rule->result / 100) * $finalScore);
-        } elseif ($rule->sign == '+') {
-            $finalScore += (($rule->result / 100) * $finalScore);
+        if($finalScore > $rule->result)
+        {
+            $finalScore = $rule->result;
         }
     }
 
@@ -237,47 +236,6 @@ class GradingEngine {
                                 }
                             }
                         }
-                    }
-                }
-            } elseif ($rule->action['subject'] == "document") {
-                if ($rule->operator == '<') {
-                    foreach($documents as $document)
-                    {
-                        if($rule->action['id'] == $document['document'])
-                        {
-                            if ($document['submitted'] < $rule->value) {
-                                GradingEngine::applyRule($finalScore,$rule);
-                            }
-                        }
-                    }
-
-                } elseif ($rule->operator == '>') {
-                    foreach($documents as $document)
-                    {
-                        if($rule->action['id'] == $document['document'])
-                        {
-                            if ($document['submitted'] > $rule->value) {
-                                GradingEngine::applyRule($finalScore,$rule);
-                            }
-                        }
-                    }
-
-                }
-            } elseif ($rule->action['subject'] == "totalDocument") {
-                $totalDocuments = 0;
-                foreach($documents as $document)
-                {
-                    $totalDocuments += (int)($document['submitted']);
-                }
-                if ($rule->operator == '<') {
-                    if($totalDocuments < $rule->value)
-                    {
-                        GradingEngine::applyRule($finalScore,$rule);
-                    }
-                } elseif ($rule->operator == '>') {
-                    if($totalDocuments > $rule->value)
-                    {
-                        GradingEngine::applyRule($finalScore,$rule);
                     }
                 }
             }
