@@ -300,9 +300,10 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        $documentWeight = 0;
+        //$documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
 
-        $finalScore = $finalScore - $documentWeight;
+        //$finalScore = $finalScore - $documentWeight;
 
         foreach($rules as $rule)
         {
