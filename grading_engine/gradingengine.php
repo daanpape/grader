@@ -305,6 +305,7 @@ class GradingEngine {
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
         $documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        $finalScoreBefore = $finalScore;
 
         $finalScore = $finalScore - $documentWeight;
 
@@ -334,8 +335,8 @@ class GradingEngine {
         $finalScoreProject = new Competence();
         $finalScoreProject->id = "0";
         $finalScoreProject->weight = "100";
-        $finalScoreProject->score =  ceil($finalScore);
-        $finalScoreProject->description = "Final score";
+        $finalScoreProject->score =  ceil($finalScoreBefore);
+        $finalScoreProject->description = "Final score before documents";
 
         $finalDocumentScore = new Competence();
         $finalDocumentScore->id = "1";
@@ -343,8 +344,15 @@ class GradingEngine {
         $finalDocumentScore->score = "-".ceil($documentWeight);
         $finalDocumentScore->description = "Final document score";
 
+        $finalScoreBeforeDocuments = new Competence();
+        $finalScoreBeforeDocuments->id = "1";
+        $finalScoreBeforeDocuments->weight = "100";
+        $finalScoreBeforeDocuments->score = "-".ceil($documentWeight);
+        $finalScoreBeforeDocuments->description = "Final score";
+
         $projectStructure[0] = $finalScoreProject;
         $projectStructure[1] = $finalDocumentScore;
+        $projectStructure[2] = $finalScoreBeforeDocuments;
 
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
         //return $finalScore;
