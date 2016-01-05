@@ -259,7 +259,8 @@ class GradingEngine {
             }
             if($current == 0)
             {
-                array_push($noneDocuments, $allDocument);
+                $noneDocuments[$count] =  $allDocument;
+                $count = $count + 1;
             }
         }
 
