@@ -244,7 +244,13 @@ class GradingEngine {
 
     public static function calculateFinalScoreWithDocuments($documents)
     {
+        foreach($documents as $document)
+        {
+            if($document->point_type == 'None')
+            {
 
+            }
+        }
     }
 
     /*
