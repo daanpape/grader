@@ -262,7 +262,7 @@ class GradingEngine {
             $documentWeight = $documentWeight + ($singleWeight * $allDocument['not_submitted']);
 
             $doc = new Document();
-            $doc->id = $allDocument->id;
+            //$doc->id = $allDocument->id;
             //$doc-name = $allDocument->
             //$doc->nrDocuments;
             //$doc->notSubmitted;
