@@ -140,7 +140,7 @@ function fetchProjectRules()
 
             action = $.grep(viewModel.projectActions(), function(e) {return (e.id() == item.action.id) && (e.subject() == item.action.subject)});
 
-            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value,item.sign, item.result));
+            viewModel.updateRule(new Rule(viewModel,item.id,item.name,action[0],item.operator,item.value, item.result));
         });
     });
 }
@@ -165,14 +165,13 @@ function saveProjectRules() {
  * Rule class
  */
 
-function Rule(viewmodel,id, name, action, operator, value, sign, result) {
+function Rule(viewmodel,id, name, action, operator, value, result) {
     return{
         id: ko.observable(id),
         name: ko.observable(name),
         action: ko.observable(action),
         operator: ko.observable(operator),
         value: ko.observable(value),
-        sign: ko.observable(sign),
         result: ko.observable(result),
 
         removeThisRule: function() {
