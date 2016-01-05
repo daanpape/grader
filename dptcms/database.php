@@ -1028,8 +1028,17 @@ class ClassDAO
                 }
                 else
                 {
-                    $stmt = $conn->prepare("UPDATE assess_documents SET score=?,not_submitted=? WHERE id= ?");
-                    $stmt->execute(array($document->score,$document->notSubmitted, $document->id));
+                    $stmt = $conn->prepare("UPDATE assess_documents SET not_submitted=? WHERE id= ?");
+                    $stmt->execute(array($document->notSubmitted, $document->id));
+
+                    $stmt = $conn->prepare("DELETE FROM assessed_score WHERE assess_id = ?");
+                    $stmt->execute(array($document->id));
+
+                    foreach($document->nrDocuments as $documentScore)
+                    {
+                        $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score) VALUES (?,?)");
+                        $stmt->execute(array($document->id,$documentScore->score));
+                    }
                 }
             }
         } catch (PDOException $ex) {

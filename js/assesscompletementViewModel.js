@@ -63,7 +63,6 @@ function pageViewModel(gvm) {
            }
             gvm.setScores(item);
         });
-        console.log(gvm.documents());
     };
 
     gvm.getDocumentsToSubmit = function() {
@@ -116,7 +115,6 @@ function AssessedDocument(id,parentId, score, pointType) {
 function Document(id,parentId,description ,weight,pointType, score, nrDocuments, notSubmitted,nrNotSubmitted, checked)
 {
     var self = this;
-    console.log(nrDocuments);
     self.documents = {
         id: ko.observable(id),
         parentId: ko.observable(parentId),
