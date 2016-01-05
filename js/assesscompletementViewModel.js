@@ -62,8 +62,8 @@ function pageViewModel(gvm) {
                }
            }
             gvm.setScores(item);
-            gvm.setDocumentScores();
         });
+        gvm.setDocumentScores();
     };
 
     gvm.setDocumentScores = function() {
