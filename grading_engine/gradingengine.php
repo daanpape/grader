@@ -245,7 +245,7 @@ class GradingEngine {
     public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
         $count = 0;
-        $documentWeight = 0;
+        $documentWeight = 0.0;
 
         foreach($allDocuments as $allDocument)
         {
@@ -278,7 +278,7 @@ class GradingEngine {
             $documentScore = 100 / $singleDocumentWeight;
 
             $finalDocumentScore = $singleWeight - $documentScore;
-            error_log("Data: ".$documentScore,0);
+            error_log("Data: ".$finalDocumentScore,0);
 
             $documentWeight = $documentWeight + ($finalDocumentScore);
         }
