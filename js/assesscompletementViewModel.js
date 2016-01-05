@@ -68,8 +68,15 @@ function pageViewModel(gvm) {
 
     gvm.setDocumentScores = function() {
         $.getJSON('/api/project/documents/scores/' + gvm.projectId + '/' + gvm.studentId, function(data) {
-            console.log(data);
-        })
+            data.forEach(function(item) {
+                gvm.documents().forEach(function(document) {
+                    if(document.id() == item.assess_id)
+                    {
+                        document.nrDocuments().push(new AssessedDocument(0,document.id(),item.score,document.pointType()));
+                    }
+                });
+            });
+        });
     };
 
     gvm.getDocumentsToSubmit = function() {
@@ -79,7 +86,6 @@ function pageViewModel(gvm) {
                 var numberArray = [];
                 for(var i = 0; i <= item.nr_documents; i++)
                 {
-                    array.push(new AssessedDocument(0,0,0, item.point_type));
                     numberArray.push(i);
                 }
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array,0,numberArray);
