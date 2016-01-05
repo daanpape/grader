@@ -70,7 +70,7 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/documents/scores/' + gvm.projectId + '/' + gvm.studentId, function(data) {
             data.forEach(function(item) {
                 gvm.documents().forEach(function(document) {
-                    document.nrDocuments.forEach(function(assessed) {
+                    document.nrDocuments().forEach(function(assessed) {
                         if(item.assessedId == document.id())
                         {
                             assessed.assessScore(data.score);
