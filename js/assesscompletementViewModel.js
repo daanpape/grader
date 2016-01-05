@@ -41,7 +41,6 @@ function pageViewModel(gvm) {
                 gvm.userData.push(item);
             });
         });
-        gvm.setScores();
     };
 
     gvm.enterData = function(data)
@@ -62,6 +61,7 @@ function pageViewModel(gvm) {
                    }
                }
            }
+            gvm.setScores(item);
         });
         console.log(gvm.documents());
     };
@@ -84,10 +84,10 @@ function pageViewModel(gvm) {
 
     gvm.changeNotSubmitted = function(data,parent) {
         data.notSubmitted(parent);
-        gvm.setScores();
+        gvm.setScores(data);
     };
 
-    gvm.setScores = function() {
+    gvm.setScores = function(data) {
         var len = data.nrNotSubmitted().length - data.notSubmitted() - 1;
         var point = data.pointType();
         data.nrDocuments([]);
