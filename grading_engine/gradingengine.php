@@ -273,7 +273,7 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        return $documents[0]->id;
+        return $documents;
 
         // Add final score to projectstructure
 
