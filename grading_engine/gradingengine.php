@@ -244,15 +244,26 @@ class GradingEngine {
 
     public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
-        foreach($documents as $document)
-        {
-            foreach($allDocuments as $allDocument)
-            {
-                $count = 0;
+        $noneDocuments = array();
+        $count = 0;
 
-                //if($document->)
+        foreach($allDocuments as $allDocument)
+        {
+            $current = 0;
+            foreach($documents as $document)
+            {
+                if($allDocument->document == $document->document)
+                {
+                    $current = $current + 1;
+                }
+            }
+            if($current == 0)
+            {
+                $count = $count + 1;
             }
         }
+
+        return $count;
     }
 
     /*
@@ -268,7 +279,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $finalScore = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        //$finalScore = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
 
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
@@ -281,7 +292,7 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        return $documents;
+        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
 
         // Add final score to projectstructure
 
