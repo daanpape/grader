@@ -303,7 +303,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
@@ -315,7 +315,7 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments,$rules);
         //return $finalScore;
 
         // Add final score to projectstructure
