@@ -278,7 +278,7 @@ class GradingEngine {
             $documentScore = 100 / $singleDocumentWeight;
 
             $finalDocumentScore = $singleWeight - $documentScore;
-            error_log("Data: ".$singleWeight,0);
+            error_log("Data: ".$documentScore,0);
 
             $documentWeight = $documentWeight + ($finalDocumentScore);
         }
