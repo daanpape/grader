@@ -72,13 +72,13 @@ function pageViewModel(gvm) {
                 gvm.documents().forEach(function(document) {
                     if(document.id() == item.assess_id)
                     {
-                        console.log(item);
-                        console.log(document);
                         document.nrDocuments().push(new AssessedDocument(0,document.id(),item.score,document.pointType()));
                     }
                 });
             });
+            console.log(gvm.documents()[1].nrDocuments()[0].assessScore());
         });
+
     };
 
     gvm.getDocumentsToSubmit = function() {
