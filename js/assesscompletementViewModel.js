@@ -70,14 +70,12 @@ function pageViewModel(gvm) {
         $.getJSON('/api/project/documents/scores/' + gvm.projectId + '/' + gvm.studentId, function(data) {
             data.forEach(function(item) {
                 gvm.documents().forEach(function(document) {
-                    if(document.id() == item.assess_id)
+                    if(item.assess_id == document.id())
                     {
-                        console.log(item.score);
-                        document.nrDocuments().push(new AssessedDocument(0,document.id(),item.score,document.pointType()));
+                        console.log('Test');
                     }
                 });
             });
-            console.log(gvm.documents()[1].nrDocuments()[0].assessScore());
         });
 
     };
