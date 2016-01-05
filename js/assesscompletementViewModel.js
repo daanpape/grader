@@ -41,6 +41,7 @@ function pageViewModel(gvm) {
                 gvm.userData.push(item);
             });
         });
+        gvm.setScores();
     };
 
     gvm.enterData = function(data)
@@ -83,8 +84,11 @@ function pageViewModel(gvm) {
 
     gvm.changeNotSubmitted = function(data,parent) {
         data.notSubmitted(parent);
+        gvm.setScores();
+    };
+
+    gvm.setScores = function() {
         var len = data.nrNotSubmitted().length - data.notSubmitted() - 1;
-        console.log(len);
         var point = data.pointType();
         data.nrDocuments([]);
         for(var i = 0; i < len; i++)
