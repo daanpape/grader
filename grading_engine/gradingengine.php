@@ -242,6 +242,11 @@ class GradingEngine {
         }
     }
 
+    public static function calculateFinalScoreWithDocuments($documents)
+    {
+
+    }
+
     /*
      * Calculate grading result and give back result in a 
      * GradingResult object.
@@ -255,6 +260,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
+        $finalScore = GradingEngine::calculateFinalScoreWithDocuments($documents);
 
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
@@ -267,10 +273,9 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
+        return $documents;
 
         // Add final score to projectstructure
-
-        return $documents;
 
         //return $projectStructure;
     }

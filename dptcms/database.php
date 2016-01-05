@@ -41,6 +41,18 @@ class Db {
 class ClassDAO
 {
 
+    public static function getAllDocumentData($projectid,$userid) {
+        try {
+            $conn = Db::getConnection();
+            $stmt = $conn->prepare("SELECT * FROM documenttype JOIN assess_documents ON documenttype.id = assess_documents.document JOIN assessed_score ON assess_documents.id = assessed_score.assess_id WHERE documenttype.project = ? AND assess_documents.student = ?");
+            $stmt->execute(array($projectid,$userid));
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (PDOException $err) {
+            Logger::logError('could not select all projects', $err);
+            return null;
+        }
+    }
+
     /**
      * Get part of the projects, ready for pagination.
      * @param type $start the start row offset.
