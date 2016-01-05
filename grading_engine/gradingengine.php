@@ -242,7 +242,7 @@ class GradingEngine {
         }
     }
 
-    public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
+    public static function calculateFinalScoreWithDocuments($documents,$allDocuments,$rules)
     {
         $count = 0;
         $documentWeight = 0.0;
@@ -283,7 +283,11 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-        return ceil($documentWeight);
+        foreach($rules as $rule) {
+
+        }
+
+        return $rules;
     }
 
     /*
