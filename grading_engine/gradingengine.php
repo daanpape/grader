@@ -340,7 +340,7 @@ class GradingEngine {
         $projectStructure[0] = $finalScoreProject;
         $projectStructure[1] = GradingEngine::createAllDocuments($allDocuments);
 
-        return $projectStructure[1];
+        return $projectStructure[1][0];
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
         //return $finalScore;
 
