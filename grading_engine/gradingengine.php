@@ -279,7 +279,7 @@ class GradingEngine {
 
             error_log("New Data: ".$documentScore,0);
 
-            $documentWeight = $documentWeight + ($finalDocumentScore);
+            //$documentWeight = $documentWeight + ($finalDocumentScore);
         }
 
 
