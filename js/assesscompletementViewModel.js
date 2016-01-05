@@ -41,7 +41,6 @@ function pageViewModel(gvm) {
                 gvm.userData.push(item);
             });
         });
-        gvm.setDocumentScores();
     };
 
     gvm.enterData = function(data)
@@ -93,6 +92,7 @@ function pageViewModel(gvm) {
                 }
                 gvm.addDocument(0, item.id, item.description, item.weight, item.point_type, 0, array,0,numberArray);
             });
+            gvm.setDocumentScores();
             gvm.getAllData();
         });
     };
