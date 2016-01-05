@@ -283,7 +283,6 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
-
         return ceil($documentWeight);
     }
 
@@ -300,8 +299,7 @@ class GradingEngine {
         GradingEngine::calculateIndicatorPoints($projectStructure,$score);
 
         $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        //$finalScore = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
-
+        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
@@ -313,7 +311,7 @@ class GradingEngine {
 
         $projectStructure[0] = $finalScoreProject;
 
-        return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+        return $finalScore;
 
         // Add final score to projectstructure
 
