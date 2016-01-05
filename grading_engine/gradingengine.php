@@ -337,9 +337,13 @@ class GradingEngine {
         $finalScoreProject->score =  ceil($finalScore);
         $finalScoreProject->description = "Final score";
 
+        $finalDocumentScore = new Competence();
+        $finalDocumentScore->id = "1";
+        $finalDocumentScore->weight = "100";
+        $finalDocumentScore->score = "-".ceil($documentWeight);
+        $finalScoreProject->description = "Final document score";
+
         $projectStructure[0] = $finalScoreProject;
-        $projectStructure[1] = GradingEngine::createAllDocuments($allDocuments);
-        $projectStructure[2] = $documentWeight;
 
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
         //return $finalScore;

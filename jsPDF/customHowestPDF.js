@@ -43,6 +43,7 @@ function makePDF(id,name,lastname,email, projectheader, projectdescription, proj
 
     doc.setFontSize(8);
 
+
     for(var competenceKey in projectstructure)
     {
         if(projectstructure.hasOwnProperty(competenceKey))
