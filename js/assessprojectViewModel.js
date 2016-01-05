@@ -107,7 +107,7 @@ function createPDF(id,name,lastname,email, projectheader, projectdescription)
         type: "GET",
         dataType: 'json',
         success: function(data) {
-            makePDF(id,name,lastname,email,projectheader,projectdescription,data);
+            //makePDF(id,name,lastname,email,projectheader,projectdescription,data);
             console.log(data);
         },
         error: function()
