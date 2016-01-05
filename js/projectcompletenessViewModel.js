@@ -101,11 +101,10 @@ var saveDocuments = function() {
             data: ko.toJSON(viewModel.documents),
             success: function (data) {
                 // TODO make multilangual and with modals
-                /*console.log(data);
+                console.log(data);
                  var url = document.URL;
                  var string = url.split("/");
                  window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];*/
-                alert("Saved documents to server");
             }
         });
     }
