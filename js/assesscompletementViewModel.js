@@ -41,6 +41,7 @@ function pageViewModel(gvm) {
                 gvm.userData.push(item);
             });
         });
+        gvm.setDocumentScores();
     };
 
     gvm.enterData = function(data)
@@ -63,7 +64,6 @@ function pageViewModel(gvm) {
            }
             gvm.setScores(item);
         });
-        gvm.setDocumentScores();
     };
 
     gvm.setDocumentScores = function() {
