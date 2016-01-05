@@ -83,8 +83,14 @@ function pageViewModel(gvm) {
 
     gvm.changeNotSubmitted = function(data,parent) {
         data.notSubmitted(parent);
-        var len = data.nrDocuments().length - data.notSubmitted();
+        var len = data.nrNotSubmitted.length - data.notSubmitted() - 1;
         console.log(len);
+        var point = data.pointType();
+        data.nrDocuments([]);
+        for(var i = 0; i < len; i++)
+        {
+            data.nrDocuments.push(0,0,0,point);
+        }
     };
 
     gvm.clearStructure = function()
