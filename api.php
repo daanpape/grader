@@ -96,7 +96,7 @@ class GraderAPI {
     public static function gradeProjectForStudent($projectid, $userid)
     {
         return GradingEngine::gradeProjectForStudent(ClassDAO::getAllDataFromProject($projectid),ClassDAO::getAllScoresForStudentByProject($projectid,$userid),
-            ClassDAO::getProjectRules($projectid), ClassDAO::getAllDocumentData($projectid,$userid), ClassDAO::getDocumentScoreForStudent($projectid,$userid));
+            ClassDAO::getProjectRules($projectid), ClassDAO::getAllDocumentData($projectid,$userid), ClassDAO::getUserDataForDocument($projectid,$userid));
     }
 
     public static function getUserDataForDocument($projectid, $userid)
@@ -304,8 +304,6 @@ class GraderAPI {
         return Security::getLoggedInId();
 
     }
-
-
 
     /*
      * Get all courses from database
