@@ -244,7 +244,7 @@ class GradingEngine {
 
     public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
-        $noneDocuments = array();
+        //$noneDocuments = array();
         $count = 0;
 
         foreach($allDocuments as $allDocument)
@@ -263,7 +263,7 @@ class GradingEngine {
             }
         }
 
-        return $count;
+        return $documents;
     }
 
     /*
