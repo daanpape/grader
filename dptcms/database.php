@@ -1027,7 +1027,7 @@ class ClassDAO
     {
         try {
             $conn = Db::getConnection();
-            $stmt = $conn->prepare("SELECT * FROM assess_documents WHERE project = ? AND student = ?");
+            $stmt = $conn->prepare("SELECT * FROM assess_documents JOIN documenttype ON assess_documents.document = documenttype.id WHERE project = ? AND student = ?");
             $stmt->execute(array($projectid, $userid));
             $dataFromDb = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
