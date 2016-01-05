@@ -252,7 +252,10 @@ class GradingEngine {
             $current = 0;
             foreach($documents as $document)
             {
-
+                if($allDocument['document'] == $document->document)
+                {
+                    $current = $current + 1;
+                }
             }
             if($current == 0)
             {
@@ -260,7 +263,7 @@ class GradingEngine {
             }
         }
 
-        return $allDocuments[0]['document'];
+        return $count;
     }
 
     /*
