@@ -338,7 +338,7 @@ class GradingEngine {
         $finalScoreProject->description = "Final score";
 
         $projectStructure[0] = $finalScoreProject;
-        $projectStructure[1] = GraderAPI::createAllDocuments($allDocuments);
+        $projectStructure[1] = GradingEngine::createAllDocuments($allDocuments);
 
         return $projectStructure[1];
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
