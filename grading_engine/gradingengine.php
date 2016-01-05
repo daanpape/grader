@@ -242,7 +242,7 @@ class GradingEngine {
         }
     }
 
-    public static function calculateFinalScoreWithDocuments($finalScore, $documents,$allDocuments,$rules)
+    public static function calculateFinalScoreWithDocuments($documents,$allDocuments)
     {
         $count = 0;
         $documentWeight = 0.0;
@@ -283,6 +283,26 @@ class GradingEngine {
             error_log("New Data: ".$documentScore,0);
         }
 
+        return $documentWeight;
+    }
+
+    /*
+     * Calculate grading result and give back result in a 
+     * GradingResult object.
+     * @param $competences: an array of Competence objects. 
+     * @
+     */
+    public static function gradeProjectForStudent($structure, $score, $rules, $documents, $allDocuments) {
+
+        $projectStructure = GradingEngine::createProjectStructure($structure);
+
+        GradingEngine::calculateIndicatorPoints($projectStructure,$score);
+
+        $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
+        $documentWeight = GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
+
+        $finalScore = $finalScore - $documentWeight;
+
         foreach($rules as $rule)
         {
             if($rule->action['subject'] == "totalDocument")
@@ -303,22 +323,8 @@ class GradingEngine {
                 }
             }
         }
-    }
 
-    /*
-     * Calculate grading result and give back result in a 
-     * GradingResult object.
-     * @param $competences: an array of Competence objects. 
-     * @
-     */
-    public static function gradeProjectForStudent($structure, $score, $rules, $documents, $allDocuments) {
 
-        $projectStructure = GradingEngine::createProjectStructure($structure);
-
-        GradingEngine::calculateIndicatorPoints($projectStructure,$score);
-
-        $finalScore = GradingEngine::calculateFinalScoreWithoutRules($projectStructure);
-        $finalScore = $finalScore - GradingEngine::calculateFinalScoreWithDocuments($finalScore,$documents,$allDocuments,$rules);
 
         GradingEngine::checkRules($projectStructure,$rules,$documents,$finalScore);
 
