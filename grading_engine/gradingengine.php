@@ -341,9 +341,10 @@ class GradingEngine {
         $finalDocumentScore->id = "1";
         $finalDocumentScore->weight = "100";
         $finalDocumentScore->score = "-".ceil($documentWeight);
-        $finalScoreProject->description = "Final document score";
+        $finalDocumentScore->description = "Final document score";
 
         $projectStructure[0] = $finalScoreProject;
+        $projectStructure[1] = $finalDocumentScore;
 
         //return GradingEngine::calculateFinalScoreWithDocuments($documents,$allDocuments);
         //return $finalScore;
