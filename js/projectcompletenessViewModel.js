@@ -104,7 +104,7 @@ var saveDocuments = function() {
                 console.log(data);
                  var url = document.URL;
                  var string = url.split("/");
-                 window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];*/
+                 window.location.href = "http://" + string[2] + "/" + string[3] + "/projectrules/" + string[4];
             }
         });
     }
