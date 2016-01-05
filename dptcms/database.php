@@ -1034,7 +1034,11 @@ class ClassDAO
                     $stmt = $conn->prepare("DELETE FROM assessed_score WHERE assess_id = ?");
                     $stmt->execute(array($document->id));
 
-
+                    foreach($document->nrDocuments as $documentScore)
+                    {
+                        $stmt = $conn->prepare("INSERT INTO assessed_score (assess_id,score) VALUES (?,?)");
+                        $stmt->execute(array($document->id,$documentScore->score));
+                    }
                 }
             }
         } catch (PDOException $ex) {
