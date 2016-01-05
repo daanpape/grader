@@ -273,13 +273,14 @@ class GradingEngine {
         foreach($documents as $document)
         {
             $singleWeight = $document->weight / $document->nr_documents; // 12,5
-
             $singleDocumentWeight = 100 / $singleWeight; // 8
-            $documentScore = 100 / $singleDocumentWeight; // 92
 
+            $documentScore = $document->score / $singleDocumentWeight; // 6,25
+
+            $finalDocumentScore = $singleWeight - $documentScore; // 12,5 - 6,25 = 6,25
+
+            $documentWeight = $documentWeight + $finalDocumentScore;
             error_log("New Data: ".$documentScore,0);
-
-            //$documentWeight = $documentWeight + ($finalDocumentScore);
         }
 
 
